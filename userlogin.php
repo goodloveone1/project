@@ -45,7 +45,7 @@
 			}
 			
 			.list-group  span.text{
-				display: none;
+		
 			}
 			.list-group a{
 				text-decoration: none;
