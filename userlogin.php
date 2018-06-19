@@ -32,6 +32,12 @@
 				text-align: center;
 
 			}
+
+			aside , #main2 {
+				
+			}
+
+
 			
 			#main2 {
 			border: none;
@@ -67,10 +73,7 @@
 			.FontSetSmall{
 				font-size: 16px;
 			}
-			.icon , .FontSetBig ,.FontSetSmall{
-				transition: .3s ease-in-out;
-			}
-
+			
 			/* COLOR MEMU */
 			.bt-color{
 				/* background-color:#6c757d; */
@@ -92,7 +95,7 @@
 
 	</head>
 	<body>
-		<aside class="text-light" id="mySidenav" style="width:250px;">
+		<aside class="text-light" id="mySidenav" style="width:220px;">
 			
 			
 			<?php
@@ -103,7 +106,7 @@
 		</aside>
 		
 		
-		<div id="main2" style="margin-left:250px;">
+		<div id="main2" style="margin-left:220px;">
 			<!-- MENU -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -244,29 +247,39 @@
 				var x = document.getElementById("mySidenav");
 				var y = document.getElementById("main2");
 				if(window.innerWidth*window.devicePixelRatio <= 770 ){
-					if(x.style.width = "0px")
-					x.style.width = "180px";
-					y.style.marginLeft = "180px";
-					chechopenNav(x,y);
+					if(x.style.width = "0px"){
+						x.style.width = "180px";
+						y.style.marginLeft = "180px";
+						chechopenNav(x,y);
+					}else if(x.style.width = "180px"){
+						x.style.width = "88px";
+						y.style.marginLeft = "88px";
+						chechopenNav(x,y);
+					}
+					
 				}else{
-					if(x.style.width == "250px"){
-						x.style.width = "0px";
-						y.style.marginLeft = "0px";
+					if(x.style.width == "220px"){
+						x.style.width = "88px";
+						y.style.marginLeft = "88px";
 						chechopenNav(x,y);
 						
 					}else if(x.style.width == "0px"){
-							x.style.width = "250px";
+							x.style.width = "220px";
 							y.style.marginLeft = "250px";
 							chechopenNav(x,y);
 							
 					}else if(x.style.width == "180px"){
-							x.style.width = "250px";
-							y.style.marginLeft = "250px";
+							x.style.width = "220px";
+							y.style.marginLeft = "220px";
 							chechopenNav(x,y);
 					
-					}
+					}else if(x.style.width == "88px"){
+							x.style.width = "88px";
+							y.style.marginLeft = "88px";
+							chechopenNav(x,y);
 				}
 			}
+		}
 			function chechopenNav(x,y){
 				z = openNav2(x,y);
 				x.style.width = z.trim();
@@ -297,10 +310,11 @@
 				alert(y.style.marginLeft);
 				alert(window.innerWidth*window.devicePixelRatio);
 				*/
-				var maxside = "250px";
+				var maxside = "220px";
 				var minside = "88px";
 				var maxside2 = "180px";
-				var minside2 = "0px";
+				var minside2 = "88px";
+
 				var iconsizabig1 = " fa-3x ";
 				var iconsizasmall1 = " fa-lg";
 				var iconsizabig2 = " fa-2x ";
@@ -417,10 +431,17 @@
 						}
 						*/
 						$(".list-menu-user").removeClass("text-left");
-						if(x.style.width == maxside)
+
+						if(x.style.width == maxside){
+							
 										return 	minside;
-						else
+						}
+						else{
+							
 							return  minside2;
+						}
+
+							
 
 					}else if(x.style.width == minside && y.style.marginLeft == minside || x.style.width == minside2 && y.style.marginLeft == minside2){
 						/*
@@ -445,6 +466,8 @@
 							lefts[i].className +=" text-left";
 						}
 						*/
+	
+				
 						$(".icon").removeClass(iconsizabig1.trim());
 						$(".icon").removeClass(iconsizabig2.trim());
 						$(".icon").addClass(iconsizasmall1.trim());
