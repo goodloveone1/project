@@ -6,6 +6,7 @@
 
 <div class="row  p-2 headtitle">
 	<div class="col-md text-center">
+	
 		<h2> จัดการบุคลากร </h2>
 	</div>
 	<div class="col-md-4">
@@ -16,6 +17,7 @@
 	</div>
 </div>
 <div class="row">
+<div class="col-md-12 mt-2">GGG</div>
 	<div class="col-md-12 mt-2">
 		<table class="table">
 			<thead class="thead-light">
