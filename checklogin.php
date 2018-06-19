@@ -1,0 +1,56 @@
+<?php
+	session_start();
+	
+	$user = $_POST['user'];
+	$pw = $_POST['pwd'];
+
+	if(empty($user)or empty($pw)){
+		echo"<script>alert('ไม่ได้กรอก username หรือ passwd')</script>";
+		echo "<script>window.location='index.php?page=home'</script>";
+	}
+	
+	include("function/db_function.php");
+	$con=connect_db();
+	$login=mysqli_query ($con,"SELECT gen_user,gen_pass,permiss_id FROM  general WHERE gen_user='$user' AND gen_pass='$pw' " )or die ("erro=>".mysqli_error($con));
+	list($username,$passwd,$level) = mysqli_fetch_row($login);
+	
+		if($user==$username && $pw==$passwd)
+		{
+				$_SESSION['valid_user']=$username;
+				$_SESSION['user_level']=$level;
+				
+				if($_SESSION['user_level']=="1")
+				{
+					echo "<script>window.location='userlogin.php'</script>";
+					echo "admin";
+				}
+				elseif($_SESSION['user_level']=="2")
+				{
+					//echo "<script>window.location='teacher.php'</script>";
+					echo"อาจารย์";
+				}
+				elseif($_SESSION['user_level']=="3")
+				{
+					//echo "<script>window.location='student.php'</script>";
+					echo"หัวหน้าหลักสูตร์";
+				}
+				elseif($_SESSION['user_level']=="4")
+				{
+					//echo "<script>window.location='student.php'</script>";
+					echo"หน้าน้าสาขา";
+				}
+				elseif($_SESSION['user_level']=="5")
+				{
+					//echo "<script>window.location='student.php'</script>";
+					echo"หัวหน้าคณะ";
+				}
+		 }
+		 else
+			 {
+			 echo"<script>alert('username หรือ passwd ไม่ถูกต้อง')</script>";
+			 echo "<script>window.location='index.php?'</script>";
+			 }
+			 
+	mysqli_free_result($login);
+	mysqli_close($con);
+?>
