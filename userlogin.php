@@ -65,7 +65,7 @@
 				font-size: 18px;
 			}
 			.FontSetSmall{
-				font-size: 14px;
+				font-size: 16px;
 			}
 			.icon , .FontSetBig ,.FontSetSmall{
 				transition: .3s ease-in-out;
@@ -92,7 +92,7 @@
 
 	</head>
 	<body>
-		<aside class="text-light" id="mySidenav" style="width:88px;">
+		<aside class="text-light" id="mySidenav" style="width:250px;">
 			
 			
 			<?php
@@ -103,7 +103,7 @@
 		</aside>
 		
 		
-		<div id="main2" style="margin-left:88px;">
+		<div id="main2" style="margin-left:250px;">
 			<!-- MENU -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -249,19 +249,19 @@
 					y.style.marginLeft = "180px";
 					chechopenNav(x,y);
 				}else{
-					if(x.style.width == "220px"){
+					if(x.style.width == "250px"){
 						x.style.width = "0px";
 						y.style.marginLeft = "0px";
 						chechopenNav(x,y);
 						
 					}else if(x.style.width == "0px"){
-							x.style.width = "220px";
-							y.style.marginLeft = "220px";
+							x.style.width = "250px";
+							y.style.marginLeft = "250px";
 							chechopenNav(x,y);
 							
 					}else if(x.style.width == "180px"){
-							x.style.width = "220px";
-							y.style.marginLeft = "220px";
+							x.style.width = "250px";
+							y.style.marginLeft = "250px";
 							chechopenNav(x,y);
 					
 					}
@@ -297,7 +297,7 @@
 				alert(y.style.marginLeft);
 				alert(window.innerWidth*window.devicePixelRatio);
 				*/
-				var maxside = "220px";
+				var maxside = "250px";
 				var minside = "88px";
 				var maxside2 = "180px";
 				var minside2 = "0px";
@@ -332,7 +332,7 @@
 							}
 						*/
 						$(".text").css("display","none");
-						$(".text").addClass('FontSetSmall');
+						// $(".text").addClass('FontSetSmall');
 							/*
 						var lefts = document.getElementsByClassName("list-menu-user");
 						for(var i=0; i<lefts.length; i++) {
@@ -368,7 +368,7 @@
 						}
 						*/
 						$(".text").css("display","inline-table");
-						$(".text").addClass('FontSetSmall');
+						// $(".text").addClass('FontSetSmall');
 						/*
 						var lefts = document.getElementsByClassName("list-menu-user");
 						for(var i=0; i<lefts.length; i++) {
@@ -407,7 +407,9 @@
 						}
 						*/
 						$(".text").css("display","none");
-						$(".text").removeClass('FontSetSmall');
+						// $(".text").removeClass('FontSetSmall');
+
+						$(".text").addClass('FontSetSmall');
 						/*
 						var lefts = document.getElementsByClassName("list-menu-user");
 						for(var i=0; i<lefts.length; i++) {
@@ -419,6 +421,7 @@
 										return 	minside;
 						else
 							return  minside2;
+
 					}else if(x.style.width == minside && y.style.marginLeft == minside || x.style.width == minside2 && y.style.marginLeft == minside2){
 						/*
 						x.style.width = maxside;
@@ -446,7 +449,7 @@
 						$(".icon").removeClass(iconsizabig2.trim());
 						$(".icon").addClass(iconsizasmall1.trim());
 						$(".text").css("display","inline-grid");
-						$(".text").removeClass('FontSetSmall');
+						$(".text").addClass('FontSetSmall');
 						$(".list-menu-user").addClass("text-left");
 						if(x.style.width == minside)
 										return 	maxside;
