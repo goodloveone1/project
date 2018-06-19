@@ -43,10 +43,7 @@
 			border: none;
 			margin-left: 88px;
 			}
-			
-			.list-group  span.text{
 		
-			}
 			.list-group a{
 				text-decoration: none;
 			}
@@ -54,9 +51,12 @@
 				padding: 5px;
 				background:transparent;
 				border: none;
+				text-align: left;
+				
 			}
 			.list-group-item .text{
 				text-indent: 1px;
+				font-size: 16px;
 			}
 
 			section#detail{
@@ -65,13 +65,13 @@
 
 
 			.icon{
-				text-align: center;
+				
 			}
 			.FontSetBig{
-				font-size: 18px;
+			
 			}
 			.FontSetSmall{
-				font-size: 16px;
+				
 			}
 			
 			/* COLOR MEMU */
@@ -219,7 +219,7 @@
 				$(window).on('load', function(){
 				    // your logic here`enter code here`
 				    
-					checksceen(); /* MENU SIDE CHECK*/
+					//checksceen(); /* MENU SIDE CHECK*/
 					
 				});
 
@@ -353,7 +353,7 @@
 							lefts[i].classList.remove("text-left");
 						}
 						*/
-						$(".list-menu-user").removeClass("text-left");
+						$(".list-menu-user").css("text-align","center");
 							if(x.style.width == maxside2)
 											return 	minside2;
 							else
@@ -389,7 +389,7 @@
 							lefts[i].className +=" text-left";
 						}
 						*/
-						$(".list-menu-user").addClass("text-left");
+						$(".list-menu-user").css("text-align","left");
 						if(x.style.width == minside2)
 										return 	maxside2;
 						else
@@ -430,7 +430,8 @@
 							lefts[i].classList.remove("text-left");
 						}
 						*/
-						$(".list-menu-user").removeClass("text-left");
+						$(".list-menu-user").css("text-align","center");
+
 
 						if(x.style.width == maxside){
 							
@@ -473,7 +474,7 @@
 						$(".icon").addClass(iconsizasmall1.trim());
 						$(".text").css("display","inline-grid");
 						$(".text").addClass('FontSetSmall');
-						$(".list-menu-user").addClass("text-left");
+						$(".list-menu-user").css("text-align","left");
 						if(x.style.width == minside)
 										return 	maxside;
 						else
