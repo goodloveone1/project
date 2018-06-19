@@ -265,7 +265,7 @@
 						
 					}else if(x.style.width == "0px"){
 							x.style.width = "220px";
-							y.style.marginLeft = "250px";
+							y.style.marginLeft = "220px";
 							chechopenNav(x,y);
 							
 					}else if(x.style.width == "180px"){
