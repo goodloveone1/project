@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	include("../../function/db_function.php");
+	$con=connect_db();
+?>
+
 <div class="row  p-2 headtitle">
 	<div class="col-md text-center">
 		<h2> จัดการบุคลากร </h2>
@@ -22,6 +28,22 @@
 				</tr>
 			</thead>
 			<tbody>
+			<?php
+					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname FROM general");
+					while(list($gen_id,$gen_fname,$genlname)=mysqli_fetch_row($show)){
+						echo"
+							<tr>
+								<td></td>
+								<td>$gen_id</td>
+								<td>$gen_fname</td>
+								<td>$genlname</td>
+								<td><a href=#>แก้ไข</a></td>
+								<td><a href=#>ลบ</a></td>
+							";
+						
+					}
+
+			?>
 				<tr>
 					<th scope="row">1</th>
 					<td>Mark</td>
