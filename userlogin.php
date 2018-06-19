@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -88,8 +91,11 @@
 			
 		</style>
 		<?php 
-				$module = empty($_GET['modules'])?'personnel':$_GET['modules'];
-				$action = empty($_GET['action'])?'home':$_GET['action'];
+				// $module = empty($_GET['modules'])?'personnel':$_GET['modules'];
+				// $action = empty($_GET['action'])?'home':$_GET['action'];
+
+				$module = empty($_SESSION["modules"])?'':$_SESSION["modules"];
+				$action = empty($_SESSION["action"])?'':$_SESSION["action"];
 		
 		?>
 
@@ -165,9 +171,9 @@
 			?>
 
 			<script>
-				var modules = '<?php echo $module; ?>'
-				var action = '<?php echo $action; ?>'
 
+			var module1;
+			var action;
 
 			$(document).ready(function() {
 				$("#usermenu").click(function(){
@@ -176,13 +182,19 @@
 
 				/* CLICK MENU */
 				
-				$(".menuuser").on('click',loadmain(modules,action));
+				$(".menuuser").on('click',);
+
+
 
 				/* ANIMATION*/
 					/* ANIMATION USE */
 
 					$(".menuuser").on('click',function(){
 						$('#detail').animateCss('fadeIn');
+
+						var module1 = $(this).data('modules');
+						var action = $(this).data('action');
+						loadmain(module1,action);
 					});
 					/* END ANIMATION USE */
 				$.fn.extend({
@@ -217,15 +229,10 @@
 			
 				// FISTH LOAD PAGE
 				$(window).on('load', function(){
-				    // your logic here`enter code here`
-				    
-					//checksceen(); /* MENU SIDE CHECK*/
+   
+					checksceen(); /* MENU SIDE CHECK*/
 					
 				});
-
-			
-
-
 
 				/* script HOVER MENU  COVER CSS .bg-color*/
 					$(".bt-color").hover(function() {
@@ -239,10 +246,8 @@
 				/* END script HOVER MENU */
 				
 
-				
-
-			
 			});
+
 			function checksceen(){
 				var x = document.getElementById("mySidenav");
 				var y = document.getElementById("main2");
@@ -485,5 +490,10 @@
 			
 			/* END MENU SIDE*/
 			</script>
+
+			<?php
+				// Set session variables
+				
+			?>
 		</body>
 	</html>
