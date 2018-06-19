@@ -10,12 +10,12 @@ function webmenu($id,$head){
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
-						<i class="icon fas fa-home fa-lg " ></i><span class="text">  หน้าหลัก</span>
+						<i class="icon fas fa-home fa-lg" ></i><span class="text">  หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="personnel" data-action="mangauser">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="mangauser">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
