@@ -29,21 +29,21 @@ function webmenu($id,$head){
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="advertise" data-action="adv_manage">
+				<a href="javascript:void(0)" class="menuuser" data-modules="public_relations" data-action="pr_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-bullhorn fa-lg " ></i><span class="text">  จัดการประชาสัมพันธ์</span>
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="advertise" data-action="home">
+				<a href="javascript:void(0)" class="menuuser" data-modules="download" data-action="download_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-arrow-circle-down fa-lg " ></i><span class="text">   จัดการไฟล์ดาวโหลด</span>
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="1">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="evidence_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-lg " ></i><span class="text">  จัดการไฟล์หลักฐาน</span>

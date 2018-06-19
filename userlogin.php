@@ -90,15 +90,6 @@
 		
 			
 		</style>
-		<?php 
-				// $module = empty($_GET['modules'])?'personnel':$_GET['modules'];
-				// $action = empty($_GET['action'])?'home':$_GET['action'];
-
-				$module = empty($_SESSION["modules"])?'':$_SESSION["modules"];
-				$action = empty($_SESSION["action"])?'':$_SESSION["action"];
-		
-		?>
-
 	</head>
 	<body>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
@@ -168,35 +159,41 @@
 			
 			<?php 
 				$name="ทองดี สุขอิ่นใจ";
+
+
 			?>
 
 			<script>
 
-			var module1;
-			var action;
+			var module1 = sessionStorage.getItem("module1");			
+			var action = sessionStorage.getItem("action");
+
+			alert(module1);
+			alert(action);
 
 			$(document).ready(function() {
 				$("#usermenu").click(function(){
 					openNav();
 				});
 
-				/* CLICK MENU */
-				
-				$(".menuuser").on('click',);
-
-
-
-				/* ANIMATION*/
-					/* ANIMATION USE */
 
 					$(".menuuser").on('click',function(){
-						$('#detail').animateCss('fadeIn');
+						$('#detail').animateCss('fadeIn'); /* ANIMATION USE */
 
-						var module1 = $(this).data('modules');
-						var action = $(this).data('action');
+						/* CLICK MENU */
+						
+
+
+						module1 = $(this).data('modules');
+						action = $(this).data('action');
 						loadmain(module1,action);
+
+						sessionStorage.setItem("module1", module1);
+						sessionStorage.setItem("action", action);
+
+
 					});
-					/* END ANIMATION USE */
+				/* ANIMATION*/
 				$.fn.extend({
 					  animateCss: function(animationName, callback) {
 					    var animationEnd = (function(el) {
@@ -231,6 +228,7 @@
 				$(window).on('load', function(){
    
 					checksceen(); /* MENU SIDE CHECK*/
+					loadmain(module1,action);
 					
 				});
 
