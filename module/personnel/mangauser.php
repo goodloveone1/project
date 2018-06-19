@@ -30,42 +30,21 @@
 			<tbody>
 			<?php
 					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname FROM general");
+					$no=1;
 					while(list($gen_id,$gen_fname,$genlname)=mysqli_fetch_row($show)){
 						echo"
 							<tr>
-								<td></td>
+								<td>$no</td>
 								<td>$gen_id</td>
-								<td>$gen_fname</td>
-								<td>$genlname</td>
+								<td><a href=#>$gen_fname &nbsp;&nbsp;$genlname</a></td>
 								<td><a href=#>แก้ไข</a></td>
 								<td><a href=#>ลบ</a></td>
 							";
-						
+						$no++;
 					}
 
 			?>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td><a href="#" class="mangadeluser" data-modules="personnel" data-action="edituser">cdhw-</a></td>
-					<td>@mdo</td>
-					
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-					<td>@mdo</td>
-				</tr>
+				
 			</tbody>
 		</table>
 	</div>
