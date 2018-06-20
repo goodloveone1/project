@@ -24,7 +24,8 @@
 				<tr>
 					<th scope="col">ลำดับ</th>
 					<th scope="col">รหัส</th>
-					<th scope="col">ชื่อ – นามสกุล</th>
+					<th scope="col">ชื่อ </th>
+					<th scope="col">นามสกุล</th>
 					<th scope="col">แก้ไข</th>
 					<th scope="col">ลบ</th>
 				</tr>
@@ -32,30 +33,34 @@
 			<tbody>
 			<?php
 					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname FROM general");
-					$no=1;
+					$i=1;
 					while(list($gen_id,$gen_fname,$genlname)=mysqli_fetch_row($show)){
 						echo"
 							<tr>
-								<td>$no</td>
+								<td>$i</td>
 								<td>$gen_id</td>
-								<td><a href=#>$gen_fname &nbsp;&nbsp;$genlname</a></td>
-								<td><a href=#><i class='fas fa-edit fa-2x'></i></a></td>
-								<td><a href=# onclick='return confirm(\"ยืนยันการลบ\")'><i class='fas fa-trash-alt fa-2x'></i></a></td>
-								
+								<td>$gen_fname</td>
+								<td>$genlname</td>
+								<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'>แก้ไข</a></td>
+								<td><a href=#>ลบ</a></td>
 							";
-						$no++;
+					$i++;
 					}
 
 			?>
-				
+			
 			</tbody>
 		</table>
 	</div>
 </div>	
-
+<!-- <a href="#" class="mangadeluser" data-modules="personnel" data-action="edituser">cdhw-</a> LINK TO EDIT --> 
 <script type="text/javascript">
 		$(document).ready(function() {
 
-			$("a.mangadeluser").click(loadmain);
+			$("a.managaedituser").click(function(){
+				var module1 = $(this).data('modules');
+				var action = $(this).data('action');
+				loadmain(module1,action)
+			});
 		});
 </script>

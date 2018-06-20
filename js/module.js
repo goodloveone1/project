@@ -2,7 +2,7 @@
 
 
 function modules(module1,action){
-	if(module1 != undefined && action != undefined){
+	if(module1 != null && action != null){
 		var Url ="";
 		switch (module1) {
 			    case "assessment":break;

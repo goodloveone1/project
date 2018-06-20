@@ -120,7 +120,11 @@
 
 
 		$(document).ready(function() {
-			$("button.re").click(loadmain);
+			$("button.re").click(function(){
+				var module1 = $(this).data('modules');
+				var action = $(this).data('action');
+				loadmain(module1,action);
+			});
 
 			/* reload ปริญญาตรี*/
 
@@ -137,7 +141,7 @@
 				
 				if(count != undefined){
 
-					var text = "<div class='row m-1' text11><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' onclick='test()''>ลบ</button></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree11' onclick='test()''>ลบ</button></div></div>";
+					var text = "<div class='row m-1 text11'><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' onclick='test()''>ลบ</button></div></div>";
 					
 																	
 					// $(".loaddegree").html(text);
@@ -152,8 +156,9 @@
 		function test(){
 			var  a = document.getElementsByClassName("text11");
 			alert('555555');
+			a[0].remove();
 
-			a.remove(0);
+			
 			
 		}
 		

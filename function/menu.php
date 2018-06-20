@@ -7,43 +7,43 @@ function webmenu($id,$head){
 	<p> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
 			<ul class="list-group" >
 
-				<a href="userlogin.php?modules=personnel&action=home" class="menuuser " data-modules="personnel" data-action="home" >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
-						<i class="icon fas fa-home fa-lg " ></i><span class="text">  หน้าหลัก</span>
+						<i class="icon fas fa-home fa-lg" ></i><span class="text">  หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="userlogin.php?modules=personnel&action=mangauser" class="menuuser" data-modules="personnel" data-action="mangauser">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="mangauser">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
 					</li>
 					</button>
 				</a>
-				<a href="userlogin.php?modules=assessment&action=Criteria_manage" class="menuuser" data-modules="assessment" data-action="Criteria_manage">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการเกณฑ์การประเมิน</span>
 					</li>
 					</button>
 				</a>
-				<a href="userlogin.php?modules=public_relations&action=pr_manage" class="menuuser" data-modules="advertise" data-action="adv_manage">
+				<a href="javascript:void(0)" class="menuuser" data-modules="public_relations" data-action="pr_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-bullhorn fa-lg " ></i><span class="text">  จัดการประชาสัมพันธ์</span>
 					</li>
 					</button>
 				</a>
-				<a href="userlogin.php?modules=download&action=download_manage" class="menuuser" data-modules="advertise" data-action="home">
+				<a href="javascript:void(0)" class="menuuser" data-modules="download" data-action="download_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-arrow-circle-down fa-lg " ></i><span class="text">   จัดการไฟล์ดาวโหลด</span>
 					</li>
 					</button>
 				</a>
-				<a href="userlogin.php?modules=assessment&action=evidence_manage" class="menuuser" data-modules="staff" data-action="1">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="evidence_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-lg " ></i><span class="text">  จัดการไฟล์หลักฐาน</span>

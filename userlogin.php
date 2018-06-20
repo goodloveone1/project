@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -87,12 +90,6 @@
 		
 			
 		</style>
-		<?php 
-				$module = empty($_GET['modules'])?'personnel':$_GET['modules'];
-				$action = empty($_GET['action'])?'home':$_GET['action'];
-		
-		?>
-
 	</head>
 	<body>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
@@ -111,7 +108,7 @@
 			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active" id="usermenu">
-						<a class="nav-link" href="#"  ><i class="fas fa-bars" ></i> เมนู <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="javascript:void(0)"  ><i class="fas fa-bars" ></i> เมนู <span class="sr-only">(current)</span></a>
 					</li>
 				</ul>
 				<!-- BAND CENTER -->
@@ -123,14 +120,14 @@
 				<!-- END BAND CENTER -->
 				<!-- USER LOGIN -->
 				<div class="dropdown my-2 my-lg-0 " >
-					<a class="btn btn-sm dropdown-toggle text-light" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
+					<a class="btn btn-sm dropdown-toggle text-light" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
 						<i class="fas fa-user-tie fa-lg d-inline-block "></i>
 						ทองดี สุขอิ่นใจ
 					</a>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 						<a class="dropdown-item" href="#"><i class="fas fa-user-tie fa-md d-inline-block "></i> ประวัติส่วนตัว</a>
-						<a class="dropdown-item" href="index.php"><i class="fas fa-sign-out-alt fa-md d-inline-block" ></i> ออกจากระบบ</a>
+						<a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt fa-md d-inline-block" ></i> ออกจากระบบ</a>
 					</div>
 				</div>
 				<!-- END USER LOGIN -->
@@ -162,29 +159,34 @@
 			
 			<?php 
 				$name="ทองดี สุขอิ่นใจ";
+
+
 			?>
 
 			<script>
-				var modules = '<?php echo $module; ?>'
-				var action = '<?php echo $action; ?>'
 
+			var module1 = sessionStorage.getItem("module1");			
+			var action = sessionStorage.getItem("action");
+
+			// alert(module1+" "+action);
 
 			$(document).ready(function() {
 				$("#usermenu").click(function(){
 					openNav();
 				});
 
-				/* CLICK MENU */
-				
-				$(".menuuser").on('click',loadmain(modules,action));
 
-				/* ANIMATION*/
-					/* ANIMATION USE */
+		
 
 					$(".menuuser").on('click',function(){
-						$('#detail').animateCss('fadeIn');
+						$('#detail').animateCss('fadeIn'); /* ANIMATION USE */
+
+						module1 = $(this).data('modules');
+						action = $(this).data('action');
+						loadmain(module1,action)
+
 					});
-					/* END ANIMATION USE */
+				/* ANIMATION*/
 				$.fn.extend({
 					  animateCss: function(animationName, callback) {
 					    var animationEnd = (function(el) {
@@ -214,18 +216,31 @@
 
 				/* END ANIMATION*/
 
+
+				
+				$(window).bind('beforeunload', function(e) {
+				    var message = "Why are you leaving?";
+
+				    module1 = sessionStorage.getItem("module1");			
+					action = sessionStorage.getItem("action");
+					sessionStorage.setItem("module1", module1);
+					sessionStorage.setItem("action", action);
+
+
+				    e.returnValue = message;
+				    return message;
+				});
+
+
+
 			
 				// FISTH LOAD PAGE
 				$(window).on('load', function(){
-				    // your logic here`enter code here`
-				    
-					//checksceen(); /* MENU SIDE CHECK*/
+   				
+					checksceen(); /* MENU SIDE CHECK*/
+					loadmain(module1,action);
 					
 				});
-
-			
-
-
 
 				/* script HOVER MENU  COVER CSS .bg-color*/
 					$(".bt-color").hover(function() {
@@ -239,13 +254,14 @@
 				/* END script HOVER MENU */
 				
 
-				
-
-			
 			});
+
+
+
 			function checksceen(){
 				var x = document.getElementById("mySidenav");
 				var y = document.getElementById("main2");
+
 				if(window.innerWidth*window.devicePixelRatio <= 770 ){
 					if(x.style.width = "0px"){
 						x.style.width = "180px";
@@ -346,6 +362,7 @@
 							}
 						*/
 						$(".text").css("display","none");
+						
 						// $(".text").addClass('FontSetSmall');
 							/*
 						var lefts = document.getElementsByClassName("list-menu-user");
@@ -353,6 +370,7 @@
 							lefts[i].classList.remove("text-left");
 						}
 						*/
+						$(".list-group-item .text").css("font-size","14px");
 						$(".list-menu-user").css("text-align","center");
 							if(x.style.width == maxside2)
 											return 	minside2;
@@ -402,34 +420,13 @@
 						x.style.width = minside;
 						y.style.marginLeft = minside;
 						*/
-						/*
-						var icon = document.getElementsByClassName("icon");
-						for(var i=0; i< icon.length; i++) {
-						icon[i].classList.remove(iconsizasmall1.trim());
-						icon[i].classList.remove(iconsizasmall2.trim());
-						icon[i].className += iconsizabig1;
-							}
-						*/
 						$(".icon").removeClass(iconsizasmall1.trim());
 						$(".icon").removeClass(iconsizasmall2.trim());
 						$(".icon").addClass(iconsizabig1.trim());
-						/*
-						var text = document.getElementsByClassName("text");
-						for(var i=0; i<text.length; i++) {
-							text[i].style.display = "none";
-							text[i].classList.remove("FontSetSmall");
-						}
-						*/
+	
 						$(".text").css("display","none");
-						// $(".text").removeClass('FontSetSmall');
 
-						$(".text").addClass('FontSetSmall');
-						/*
-						var lefts = document.getElementsByClassName("list-menu-user");
-						for(var i=0; i<lefts.length; i++) {
-							lefts[i].classList.remove("text-left");
-						}
-						*/
+						$(".list-group-item .text").css("font-size","16px");
 						$(".list-menu-user").css("text-align","center");
 
 
@@ -449,31 +446,11 @@
 						x.style.width = maxside;
 						y.style.marginLeft= maxside;
 						*/
-						/*
-						var icon =document.getElementsByClassName("icon");
-						
-						for(var i=0; i<icon.length; i++) {
-							icon[i].classList.remove(iconsizabig1.trim());
-							icon[i].classList.remove(iconsizabig2.trim());
-						icon[i].className += iconsizasmall1;
-							}
-						var text = document.getElementsByClassName("text");
-						for(var i=0; i<text.length; i++) {
-							text[i].style.display = "inline";
-							text[i].classList.remove("FontSetSmall");
-						}
-						var lefts = document.getElementsByClassName("list-menu-user");
-						for(var i=0; i<lefts.length; i++) {
-							lefts[i].className +=" text-left";
-						}
-						*/
-	
-				
+
 						$(".icon").removeClass(iconsizabig1.trim());
 						$(".icon").removeClass(iconsizabig2.trim());
 						$(".icon").addClass(iconsizasmall1.trim());
 						$(".text").css("display","inline-grid");
-						$(".text").addClass('FontSetSmall');
 						$(".list-menu-user").css("text-align","left");
 						if(x.style.width == minside)
 										return 	maxside;
@@ -485,5 +462,10 @@
 			
 			/* END MENU SIDE*/
 			</script>
+
+			<?php
+				// Set session variables
+				
+			?>
 		</body>
 	</html>
