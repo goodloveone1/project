@@ -221,12 +221,7 @@
 				$(window).bind('beforeunload', function(e) {
 				    var message = "Why are you leaving?";
 
-				    module1 = sessionStorage.getItem("module1");			
-					action = sessionStorage.getItem("action");
-					sessionStorage.setItem("module1", module1);
-					sessionStorage.setItem("action", action);
-
-
+				    sessionStorage.removeItem("count");
 				    e.returnValue = message;
 				    return message;
 				});
