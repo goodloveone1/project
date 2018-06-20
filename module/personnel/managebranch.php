@@ -29,7 +29,8 @@
                 </tr>";
         $i++;
     }
-
+    mysqli_free_result($result);
+  
 ?>
 </table>
 
@@ -50,9 +51,11 @@
             <tr>
                 <td>$no</td>
                 <td>$branch_Name</td>
-                <td><a href='#'>แก้ไข</a></td>
+                <td><a href='editbranch.php?b_id=$branch_ID'>แก้ไข</a></td>
                 <td><a href='#'  onclick='return confirm(\"ยืนยันการลบ\")'>ลบ</a></td>
             </tr>";
             $no++;
     }
+    mysqli_free_result($Sbranch);
+    mysqli_close($con);
 ?>
