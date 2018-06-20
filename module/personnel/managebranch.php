@@ -24,7 +24,7 @@
                     <td>$i<ttd> 
                     <td>$subject_name<ttd>
                     <td> $branch_name</td>
-                    <td><a href='#'>แก้ไข</a></td>
+                    <td><a href='editsubjects.php?s_id=$subject_id'>แก้ไข</a></td>
                     <td><a href='#' onclick='return confirm(\"ยืนยันการลบ\")'>ลบ</a></td>
                 </tr>";
         $i++;
