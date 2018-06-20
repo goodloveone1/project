@@ -102,12 +102,17 @@
 					<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาตรี</label>
 				</div>
 				
-				<span class="loaddegree col-sm-12">
+				<span class="col-sm-12">
 					<div class='row'>
 						
-						<div class="col-sm">
-							<button type="button" class="btn btn-secondary adddegree1 btn-block" data-count='1' >เพิ่ม</button>
+						<div class="col-md">
+							<button type="button" class="btn btn-secondary adddegree1 btn-block">เพิ่ม</button>
 						</div>
+						<div class="col-md">
+							<button type="button" class="btn btn-secondary deldegree1 btn-block">CLEAR</button>
+						</div>
+
+						<div class="loaddegree col-md-12"></div>
 						
 					</div>
 				</span>
@@ -126,37 +131,83 @@
 				loadmain(module1,action);
 			});
 
+			$(window).on('load', function(){
+   				
+				sessionStorage.removeItem("count");
+								
+			});
+
+			$("button.deldegree1").on("click",function(event) {
+				sessionStorage.removeItem("count");
+				var count = 0;
+				degreeload1(count);
+			});
+
+
 			/* reload ปริญญาตรี*/
 
 			$("button.adddegree1").on("click",function(event) {
 				
-				var count = $(this).data('count');
+
+				var count = sessionStorage.getItem("count")
+
+				alert(count);
 				degreeload1(count);
+				count++;
+				sessionStorage.setItem("count",count);
+
 				
 			});
 
 				function degreeload1(count){
+
+				if(count == null){
+					count=1;	
+				}else if(count == 1){
+					count=2;	
+				}
+				
+
 				var text ="";
 				var i;
 				
 				if(count != undefined){
-
-					var text = "<div class='row m-1 text11'><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' onclick='test()''>ลบ</button></div></div>";
+					if(count != 0){
+						for(i=0;i < count;i++){
+						var text = text +"<div class='row m-1 text11'><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' onclick='test("+i+")''>ลบ</button></div></div>";
+						}
+					}else{
+						 text ="";
+					}
+					
 					
 																	
 					// $(".loaddegree").html(text);
-					$(".loaddegree").append(text)
+						$(".loaddegree").html(text);
+
+					}
+					
 				}
 				
-			}
+			
 
 			
 		});
 
-		function test(){
+		function test(i){
+
 			var  a = document.getElementsByClassName("text11");
-			alert('555555');
-			a[0].remove();
+			
+			var count = sessionStorage.getItem("count");
+			count--;
+			degreeload1(count);
+			alert("del " + count);
+			sessionStorage.setItem("count",count);
+			
+			a[i].remove();
+			
+
+
 
 			
 			
