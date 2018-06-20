@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div class="row mt-2 headtitle">
 	<h2 class="text-center col-md "> จัดการบุคลากร </h2>
 </div>
@@ -54,15 +54,5 @@
 		</div>   
 	</div>
 </div>
-=======
 
 
-<div class="col-md-12 mt-2"><a href=#>จัดการบุคลากร</a></div>
-	<div class="col-md-12 mt-2">
-	   
-
-
-        
-	</div>
-</div>	
->>>>>>> 66bfe16c8fd3de9696ce7e0326454614e4627f7f
