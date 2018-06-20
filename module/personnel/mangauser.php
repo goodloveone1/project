@@ -17,7 +17,7 @@
 	</div>
 </div>
 <div class="row">
-<div class="col-md-12 mt-2">GGG</div>
+<div class="col-md-12 mt-2"><a href=#>เพิ่มบุคลากร</a></div>
 	<div class="col-md-12 mt-2">
 		<table class="table">
 			<thead class="thead-light">
@@ -39,8 +39,9 @@
 								<td>$no</td>
 								<td>$gen_id</td>
 								<td><a href=#>$gen_fname &nbsp;&nbsp;$genlname</a></td>
-								<td><a href=#>แก้ไข</a></td>
-								<td><a href=#>ลบ</a></td>
+								<td><a href=#><i class='fas fa-edit fa-2x'></i></a></td>
+								<td><a href=# onclick='return confirm(\"ยืนยันการลบ\")'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+								
 							";
 						$no++;
 					}
