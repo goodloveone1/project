@@ -14,9 +14,12 @@ function modules(module1,action){
 		
 
 		switch (action) {
+			  /* personnel */
 			    case "home":break;
 			    case "mangauser":break;
-			    case "edituser":break;
+			    case "edituser":break; 
+			    case "menumanage":break;
+			  /* END personnel */
 			    case "Criteria_manage":break;
 			    case "pr_manage":break;
 			    case "download_manage":break;

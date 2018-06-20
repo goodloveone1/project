@@ -153,8 +153,7 @@
 
 				alert(count);
 				degreeload1(count);
-				count++;
-				sessionStorage.setItem("count",count);
+				
 
 				
 			});
@@ -163,55 +162,54 @@
 
 				if(count == null){
 					count=1;	
-				}else if(count == 1){
-					count=2;	
 				}
-				
 
-				var text ="";
+
+
+				var text =[];
 				var i;
 				
 				if(count != undefined){
 					if(count != 0){
 						for(i=0;i < count;i++){
-						var text = text +"<div class='row m-1 text11'><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' onclick='test("+i+")''>ลบ</button></div></div>";
+							text[i] = "<div class='row m-1 text11'><div class='col-sm'><input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า'></div><div class='col-sm'><input type='text'class='form-control' id='staticEmail' placeholder='จบที่'></div><div class='col-sm-2'><button type='button' class='btn btn-danger btn-block deldegree1' data-nums="+i+">ลบ</button></div></div>";
 						}
-					}else{
-						 text ="";
+
 					}
-					
-					
+
+					count++;
+					sessionStorage.setItem("count",count);
+					sessionStorage.setItem("text1[]",text);
 																	
 					// $(".loaddegree").html(text);
-						$(".loaddegree").html(text);
+
+						$.ajax({
+							  type: "POST",
+							  url: "module/personnel/loaddata.php",
+							  data : {textdata:text},
+							  statusCode: {
+								    404: function() {
+								      alert( "page not found" );
+								    }
+								  }
+							}).done(function(data) {
+							  $(".loaddegree").html(data);	
+							});
+
+							
 
 					}
 					
 				}
+
 				
-			
+				
+		
 
 			
 		});
 
-		function test(i){
-
-			var  a = document.getElementsByClassName("text11");
-			
-			var count = sessionStorage.getItem("count");
-			count--;
-			degreeload1(count);
-			alert("del " + count);
-			sessionStorage.setItem("count",count);
-			
-			a[i].remove();
-			
-
-
-
-			
-			
-		}
+		
 		
 
 
