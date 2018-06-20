@@ -15,7 +15,7 @@ function webmenu($id,$head){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="mangauser">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="menumanage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
