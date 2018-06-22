@@ -53,7 +53,7 @@
 										<td>$branch_name</td>
 										<td>$subject_name</td>
 										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'><i class='fas fa-edit fa-2x '></i></a></td>
-										<td><a href=# ><i class='fa fa-trash fa-2x'</i></a></td>
+										<td><a href=#  onclick='return confirm(\"ยืนยันการลบ\")'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
 							}
