@@ -63,7 +63,8 @@
 <script>
     $(".link").click(function( ){
         var id =$(this).data("id");
-        loadmain("personnel","editsubjects",id);
         alert(id);
+        loadmain("personnel","editsubjects",id);
+        
     });
 </script>
