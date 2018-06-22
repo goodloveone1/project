@@ -12,7 +12,7 @@
 
 <form>
 <p>ชื่อสาขาวิชา : 
-    <input type="text"  value="<?php echo $branch_name ?>">
+    <input type="text"  value="<?php echo $branch_name ?>" require>
 <p>
     <?php
         mysqli_free_result($result);
