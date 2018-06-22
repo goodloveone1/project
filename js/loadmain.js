@@ -1,6 +1,6 @@
 
 
-function loadmain(module1,action){ 
+function loadmain(module1,action,idbranch){ 
 
 
 						sessionStorage.setItem("module1", module1);
@@ -11,8 +11,8 @@ function loadmain(module1,action){
 							$.ajax({
 							  type: "POST",
 							  url: url,
-							  dataType: "text",
-							  data : {name:"55555",sure:"666666"},
+
+							  data : {name:"55555",s_id:"344"},
 							  statusCode: {
 								    404: function() {
 								      alert( "page not found" );

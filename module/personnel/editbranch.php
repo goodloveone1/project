@@ -5,7 +5,7 @@
 ?>
 
 <?php
-    $result=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$_GET[b_id]'") or die ("mysql error=>>".mysql_error($con));
+    $result=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$_POST[b_id]'") or die ("mysql error=>>".mysql_error($con));
     list($branch_id,$branch_name)=mysqli_fetch_row($result);
 
 ?>

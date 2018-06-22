@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="menumanage">
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managebranch">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>

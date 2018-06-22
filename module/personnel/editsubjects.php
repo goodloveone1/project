@@ -5,7 +5,9 @@
 ?>
 
 <?php
-    $result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$_GET[s_id]'") or die ("mysql error=>>".mysql_error($con));
+    echo $_POST['name'];
+    echo $_POST['s_id'];
+    $result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$_POST[s_id]'") or die ("mysql error=>>".mysql_error($con));
     list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
    
 ?>

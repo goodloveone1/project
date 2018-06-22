@@ -5,7 +5,7 @@
     $con=connect_db();
 ?>
 จัดการหลักสูตร
-<table border=1>
+<table border=1 class="table">
     <tr align='center'>
         <td>ลำดับ</td>
         <td>หลักสูตร</td>
@@ -24,7 +24,7 @@
                     <td>$i<ttd> 
                     <td>$subject_name<ttd>
                     <td> $branch_name</td>
-                    <td><a href='editsubjects.php?s_id=$subject_id'>แก้ไข</a></td>
+                    <td><a href='#'class='link' data-id='$subject_id'>แก้ไข</a></td>
                     <td><a href='#' onclick='return confirm(\"ยืนยันการลบ\")'>ลบ</a></td>
                 </tr>";
         $i++;
@@ -59,3 +59,11 @@
     mysqli_free_result($Sbranch);
     mysqli_close($con);
 ?>
+
+<script>
+    $(".link").click(function( ){
+        var id =$(this).data("id");
+        loadmain("personnel","editsubjects",id);
+        alert(id);
+    });
+</script>
