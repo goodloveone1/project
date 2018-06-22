@@ -29,21 +29,29 @@
 				<th scope="col">รหัส</th>
 				<th scope="col">ชื่อ </th>
 				<th scope="col">นามสกุล</th>
+				<th scope="col">สาขา</th>
+				<th scope="col">หลักสูตร</th>
 				<th scope="col">แก้ไข</th>
 				<th scope="col">ลบ</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
-					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname FROM general");
+					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general");
 					$i=1;
-					while(list($gen_id,$gen_fname,$genlname)=mysqli_fetch_row($show)){
+					while(list($gen_id,$gen_fname,$genlname,$branch_id,$subject_id)=mysqli_fetch_row($show)){
+							$Sbrach=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
+								list($Sbranch_id,$branch_name)=mysqli_fetch_row($Sbrach);
+							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
+							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
 							<tr>
 										<td>$i</td>
 										<td>$gen_id</td>
 										<td>$gen_fname</td>
 										<td>$genlname</td>
+										<td>$branch_name</td>
+										<td>$subject_name</td>
 										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'>แก้ไข</a></td>
 										<td><a href=#>ลบ</a></td>
 									";
