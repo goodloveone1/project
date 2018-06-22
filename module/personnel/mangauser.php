@@ -52,8 +52,8 @@
 										<td>$genlname</td>
 										<td>$branch_name</td>
 										<td>$subject_name</td>
-										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'>แก้ไข</a></td>
-										<td><a href=#>ลบ</a></td>
+										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'><i class='fas fa-edit fa-2x '></i></a></td>
+										<td><a href=# ><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
 							}
