@@ -22,7 +22,7 @@
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class="col-md">  จัดการหลักสูตร</span>
+					<span class="col-md">  สาขา</span>
 				</div>
 			</a>
 		
