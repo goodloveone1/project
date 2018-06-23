@@ -68,7 +68,7 @@
     $(".link").click(function( ){
         var ideditsub =$(this).data("ideditsub");
         
-            $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
+            $.post("module/personnel/editsubjects.php", { id : ideditsub }).done(function(data){
                 $('#loadeditsub').html(data);
                  $('#editsub').modal('show');
             })
