@@ -7,7 +7,7 @@ $con=connect_db();
         <button type="button" class="btn" id="backpage" data-modules="personnel" data-action="menumanage">ย้อนกลับ</button>
     </div>
     <div class="col-sm-2">
-        <button type="button" class="btn">เพื่มหลักสูตร</button>
+        <button type="button" class="btn" id="addbrn" data-toggle='modal'>เพื่มหลักสูตร</button>
     </div>
     <div class="col-md">
         <h2>จัดการหลักสูตร</h2>
@@ -38,7 +38,7 @@ $con=connect_db();
                     <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
                     <td><a href='#' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
-<<<<<<< HEAD
+
                 $i++;
                 }
                 mysqli_free_result($result);
@@ -49,27 +49,17 @@ $con=connect_db();
         <?php
         mysqli_close($con);
         ?>
-        <div id="loadeditsub"></div>
-        <script>
-        $(".editbrn").click(function( ){
-=======
-        $i++;
-    }
-    mysqli_free_result($result);
-  
-?>
+            
 </table>
 
-<?php
-    mysqli_close($con);
-?>
 
 
-<div id="loadeditsub"></div>
+<div id="loadeditsub"></div> 
+<div id="loadaddsub"></div>     
+
 
 <script>
     $(".editbrn").click(function( ){
->>>>>>> b9a7650f8eb1f1a963cec3ac536b4b40cebd06e2
         var ideditsub =$(this).data("ideditsub");
         
         $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
@@ -100,6 +90,16 @@ $con=connect_db();
                 loadmain(module1,action)
             });
         })
+
+        $("#addbrn").click(function( ){
+
+        $('#loadaddsub').load("module/personnel/addbranch.php",function(){
+              $('#addsub').modal('show');     
+        });
+      
+        
+        });
+       
          
        
         </script>
