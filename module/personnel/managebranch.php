@@ -34,8 +34,8 @@
 ?>
 </table>
 
-จัดการสาขาวิชา
 
+<<<<<<< HEAD
 <table border=1>
     <tr align='center'>
         <td>ลำดับ</td>
@@ -61,6 +61,8 @@
 
     
 ?>
+=======
+>>>>>>> cd12ab7b12da0ac73a55736a5865c8d8841eada8
 
 <div id="loadeditsub"></div>
 
