@@ -2,7 +2,7 @@
 include("../../function/db_function.php");
 $con=connect_db();
 ?>
-<div class="col-md headtitle text-center p-2 row mb-2">
+<div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-sm-2">
         <button type="button" class="btn" id="backpage" data-modules="personnel" data-action="menumanage">ย้อนกลับ</button>
     </div>
