@@ -67,9 +67,7 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
             })
            
             
-        } else {
-            
-        }
+        } 
 
        
     });

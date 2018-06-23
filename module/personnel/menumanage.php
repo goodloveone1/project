@@ -1,11 +1,11 @@
 <link rel="stylesheet" type="text/css" href="css/mainmg.css">
-<div class="row mt-2 headtitle">
+<div class="row  p-2 headtitle">
 	<h2 class="text-center col-md "> จัดการบุคลากร </h2>
 </div>
 <div class="row mt-5">
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="mangauser">
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="mangauser" >
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>

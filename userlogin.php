@@ -162,10 +162,11 @@
 					});
 				
 						$(".menuuser").on('click',function(){
-							$('#detail').animateCss('fadeIn'); /* ANIMATION USE */
+							
 							module1 = $(this).data('modules');
 							action = $(this).data('action');
-							loadmain(module1,action)
+							loadmain(module1,action);
+							
 						});
 					/* ANIMATION*/
 					$.fn.extend({

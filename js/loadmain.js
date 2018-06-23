@@ -26,7 +26,10 @@ function loadmain(module1,action){
 							*/
 							$.post( url, { name: "John"})
 						  	.done(function( data ) {
-						      $("#detail").html(data);	
+						     
+						      $('#detail').animateCss('fadeIn',function(){ /* ANIMATION USE */
+								 $("#detail").html(data);	
+							}); 
 						  });
 						});
 				}
