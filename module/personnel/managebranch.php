@@ -2,12 +2,12 @@
 include("../../function/db_function.php");
 $con=connect_db();
 ?>
-<div class="col-md headtitle text-center p-2 row mb-2">
+<div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-sm-2">
         <button type="button" class="btn" id="backpage" data-modules="personnel" data-action="menumanage">ย้อนกลับ</button>
     </div>
     <div class="col-sm-2">
-        <button type="button" class="btn">เพื่มหลักสูตร</button>
+        <button type="button" class="btn" id="addbrn" data-toggle='modal'>เพื่มหลักสูตร</button>
     </div>
     <div class="col-md">
         <h2>จัดการหลักสูตร</h2>
@@ -38,19 +38,27 @@ $con=connect_db();
                     <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
                     <td><a href='#' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
-        $i++;
-    }
-    mysqli_free_result($result);
-  
-?>
+
+
+                $i++;
+                }
+                mysqli_free_result($result);
+                
+                ?>
+            </tbody>
+        </table>
+        <?php
+        mysqli_close($con);
+        ?>
+            
+
 </table>
 
-<?php
-    mysqli_close($con);
-?>
 
 
-<div id="loadeditsub"></div>
+<div id="loadeditsub"></div> 
+<div id="loadaddsub"></div>     
+
 
 <script>
     $(".editbrn").click(function( ){
@@ -84,6 +92,16 @@ $con=connect_db();
                 loadmain(module1,action)
             });
         })
+
+        $("#addbrn").click(function( ){
+
+        $('#loadaddsub').load("module/personnel/addbranch.php",function(){
+              $('#addsub').modal('show');     
+        });
+      
+        
+        });
+       
          
        
         </script>
