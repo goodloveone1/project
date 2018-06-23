@@ -38,6 +38,7 @@ $con=connect_db();
                     <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
                     <td><a href='#' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
+<<<<<<< HEAD
                 $i++;
                 }
                 mysqli_free_result($result);
@@ -51,6 +52,24 @@ $con=connect_db();
         <div id="loadeditsub"></div>
         <script>
         $(".editbrn").click(function( ){
+=======
+        $i++;
+    }
+    mysqli_free_result($result);
+  
+?>
+</table>
+
+<?php
+    mysqli_close($con);
+?>
+
+
+<div id="loadeditsub"></div>
+
+<script>
+    $(".editbrn").click(function( ){
+>>>>>>> b9a7650f8eb1f1a963cec3ac536b4b40cebd06e2
         var ideditsub =$(this).data("ideditsub");
         
         $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
