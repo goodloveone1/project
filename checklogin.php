@@ -21,10 +21,11 @@
 				$_SESSION['user_fnaem']=$fname;
 				$_SESSION['user_lnaem']=$lname;
 			
-				
+	
 				if($_SESSION['user_level']=="1")
 				{
 					echo "<script>window.location='userlogin.php'</script>";
+					
 				}
 				elseif($_SESSION['user_level']=="2")
 				{
