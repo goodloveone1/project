@@ -11,7 +11,7 @@ $result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subject
 list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
 
 ?>
-<form>
+<form id="foreditbrc">
     <div class="modal fade" id="editsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -24,7 +24,8 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                 <div class="modal-body">
                     <div class="form-group">
                         <label > ชื่อหลักสูตร :</label>
-                         <input type="text"   class="form-control" value="<?php echo $subject_name ?>" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $subject_name ?>"  name="subject" size=40 require>
+                          <input type="hidden"    value="<?php echo $subject_id ?>"  name="subject_id" size=40 require>
                     </div>
                     <div class="form-group">
                         <label > ชื่อสาขาวิชา :</label>
@@ -42,12 +43,37 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary">บันทึก</button>
+                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
+<script type="text/javascript">
+
+    $("#updatesu").click(function(event) {
+        var r = confirm("Press a button!");
+        if (r == true) {
+            $.post( "module/personnel/updatebranch.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+                 // alert(data);
+             });
+            $('#editsub').modal("hide");
+
+            $('#editsub').on('hidden.bs.modal', function (e) {
+
+                var module1 = sessionStorage.getItem("module1");
+                var action = sessionStorage.getItem("action");
+               loadmain(module1,action);
+            })
+           
+            
+        } else {
+            
+        }
+
+       
+    });
+</script>
 
             <?php
             mysqli_free_result($result);

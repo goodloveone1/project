@@ -1,6 +1,6 @@
 
 
-function loadmain(module1,action,idbranch){ 
+function loadmain(module1,action){ 
 
 
 						sessionStorage.setItem("module1", module1);
@@ -8,6 +8,7 @@ function loadmain(module1,action,idbranch){
 
 						$.getScript("js/module.js", function() {
 							var url = modules(module1 ,action);
+							 alert(url);
 							/*
 							$.ajax({
 							  type: "POST",
@@ -23,7 +24,7 @@ function loadmain(module1,action,idbranch){
 							  $("#detail").html(data);	
 							});
 							*/
-							$.post( url, { name: "John", s_id : idbranch })
+							$.post( url, { name: "John"})
 						  	.done(function( data ) {
 						      $("#detail").html(data);	
 						  });

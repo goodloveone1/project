@@ -153,9 +153,9 @@
 					$name="ทองดี สุขอิ่นใจ";
 				?>
 				<script>
-							var module1 = sessionStorage.getItem("module1");
+				var module1 = sessionStorage.getItem("module1");
 				var action = sessionStorage.getItem("action");
-				// alert(module1+" "+action);
+				
 				$(document).ready(function() {
 					$("#usermenu").click(function(){
 						openNav();
