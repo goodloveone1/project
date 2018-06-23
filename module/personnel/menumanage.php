@@ -22,7 +22,7 @@
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class="col-md">  สาขา</span>
+					<span class="col-md">  จัดการหลักศูตร</span>
 				</div>
 			</a>
 		
@@ -34,7 +34,7 @@
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class="col-md"> จัดการหลักศูตร</span>
+					<span class="col-md">จัดการสาขา </span>
 				</div>
 			</a>
 	
