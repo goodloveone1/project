@@ -38,6 +38,7 @@ $con=connect_db();
                     <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
                     <td><a href='#' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
+<<<<<<< HEAD
 
                 $i++;
                 }
@@ -50,6 +51,13 @@ $con=connect_db();
         mysqli_close($con);
         ?>
             
+=======
+        $i++;
+    }
+    mysqli_free_result($result);
+  
+?>
+>>>>>>> e7dae0d66eb38cdfdbc87f0834e82c636a63c497
 </table>
 
 
