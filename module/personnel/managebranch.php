@@ -34,7 +34,14 @@
 ?>
 </table>
 
+<<<<<<< HEAD
     
+=======
+<?php
+    mysqli_close($con);
+?>
+
+>>>>>>> 53bae3641f2fc1d2d694b501129d5871a3f8f8d6
 
 <div id="loadeditsub"></div>
 

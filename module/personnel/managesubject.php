@@ -5,8 +5,8 @@
 ?>
 จัดการสาขาวิชา
 
-<table border=1>
-    <tr align='center'>
+<table border=1 class="table">
+    <tr>
         <td>ลำดับ</td>
         <td>สาขา</td>
         <td>แก้ไข</td>
