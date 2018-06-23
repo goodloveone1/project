@@ -16,6 +16,7 @@
 		<script src="js/loadmain.js"></script> <!--FUNCTION LOAD MAIN -->
 		<?php
 			require('function/menu.php');
+
 		?>
 		<style type="text/css">
 			

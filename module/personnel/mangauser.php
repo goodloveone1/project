@@ -63,6 +63,7 @@
 		</table>
 	</div>
 </div>
+
 <!-- <a href="#" class="mangadeluser" data-modules="personnel" data-action="edituser">cdhw-</a> LINK TO EDIT -->
 <script type="text/javascript">
 		$(document).ready(function() {

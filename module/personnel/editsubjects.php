@@ -1,15 +1,18 @@
 <?php
-session_start();
-    include("../../function/db_function.php");
+
+include("../../function/db_function.php");
 $con=connect_db();
 ?>
 <?php
-$result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$_POST[s_id]'") or die ("mysql error=>>".mysql_error($con));
+
+$s_id = empty($_POST['id'])?'':$_POST['id'];
+// echo "text s_id =".$s_id;
+$result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$s_id'") or die ("mysql error=>>".mysql_error($con));
 list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
 
 ?>
 <form>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,11 +23,11 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label >ชื่อสาขาวิชา :</label>
+                        <label > ชื่อหลักสูตร :</label>
                          <input type="text"   class="form-control" value="<?php echo $subject_name ?>" size=40 require>
                     </div>
                     <div class="form-group">
-                        <label > ชื่อหลักสูตร :</label>
+                        <label > ชื่อสาขาวิชา :</label>
                         <select class="form-control" name="branch">
                             <?php
                                 $selectB=mysqli_query($con,"SELECT branch_id,branch_name FROM branch") or die ("mysql error=>>".mysql_error($con));

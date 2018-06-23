@@ -1,6 +1,6 @@
 
 <?php
-    session_start();
+  
 	include("../../function/db_function.php");
     $con=connect_db();
 ?>
@@ -24,7 +24,7 @@
                     <td>$i<ttd> 
                     <td>$subject_name<ttd>
                     <td> $branch_name</td>
-                    <td><a href='#'class='link' data-id='$subject_id'>แก้ไข</a></td>
+                    <td><a href='#'class='link' data-ideditsub='$subject_id' data-toggle='modal'>แก้ไข</a></td>
                     <td><a href='#' onclick='return confirm(\"ยืนยันการลบ\")'>ลบ</a></td>
                 </tr>";
         $i++;
@@ -58,13 +58,21 @@
     }
     mysqli_free_result($Sbranch);
     mysqli_close($con);
+
+    
 ?>
+
+<div id="loadeditsub"></div>
 
 <script>
     $(".link").click(function( ){
-        var id =$(this).data("id");
-        alert(id);
-        loadmain("personnel","editsubjects",id);
+        var ideditsub =$(this).data("ideditsub");
+        
+            $.post("module/personnel/editsubjects.php", { id : ideditsub }).done(function(data){
+                $('#loadeditsub').html(data);
+                 $('#editsub').modal('show');
+            })
+       
         
     });
 </script>
