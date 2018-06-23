@@ -25,6 +25,7 @@ function modules(module1,action){
 			    case "download_manage":break;
 				case "evidence_manage":break;
 				case "managebranch":break;
+				case "managesubject":break;
 				case "editbranch":break;
 				case "editsubjects":break;
 			   	default: action = "404";  
