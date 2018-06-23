@@ -10,7 +10,7 @@
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class="">  จัดการบุคลากร</span>
+					<span class=""> จัดการบุคลากร</span>
 				</div>
 			</a>
 	
