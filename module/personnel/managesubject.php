@@ -21,7 +21,7 @@
                 <td>$no</td>
                 <td>$branch_Name</td>
                 <td><a href='editbranch.php?b_id=$branch_ID'>แก้ไข</a></td>
-                <td><a href='#'  onclick='return confirm(\"ยืนยันการลบ\")'>ลบ</a></td>
+                <td><a href='#'  onclick='return confirm(\"ต้องการลบสาขา $branch_Name ใช่หรือไม่ \")'>ลบ</a></td>
             </tr>";
             $no++;
     }
