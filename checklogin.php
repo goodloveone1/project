@@ -11,13 +11,16 @@
 	
 	include("function/db_function.php");
 	$con=connect_db();
-	$login=mysqli_query ($con,"SELECT gen_user,gen_pass,permiss_id FROM  general WHERE gen_user='$user' AND gen_pass='$pw' " )or die ("erro=>".mysqli_error($con));
-	list($username,$passwd,$level) = mysqli_fetch_row($login);
+	$login=mysqli_query ($con,"SELECT gen_user,gen_pass,permiss_id,gen_fname,gen_lname FROM  general WHERE gen_user='$user' AND gen_pass='$pw' " )or die ("erro=>".mysqli_error($con));
+	list($username,$passwd,$level,$fname,$lname) = mysqli_fetch_row($login);
 	
 		if($user==$username && $pw==$passwd)
 		{
 				$_SESSION['valid_user']=$username;
 				$_SESSION['user_level']=$level;
+				$_SESSION['user_fnaem']=$fname;
+				$_SESSION['user_lnaem']=$lname;
+			
 				
 				if($_SESSION['user_level']=="1")
 				{
