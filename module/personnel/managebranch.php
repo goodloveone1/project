@@ -16,11 +16,11 @@ $con=connect_db();
 <table  class="table">
     <thead class="thead-light">
         <tr>
-            <td>ลำดับ</td>
-            <td>หลักสูตร</td>
-            <td>สาขา</td>
-            <td>แก้ไข</td>
-            <td>ลบ</td>
+            <th scope="col">ลำดับ</th>
+            <th scope="col">หลักสูตร</th>
+            <th scope="col">สาขา</th>
+            <th scope="col">แก้ไข</th>
+            <th scope="col">ลบ</th>
         </tr>
     </thead>
     <tbody>
