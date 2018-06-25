@@ -21,7 +21,7 @@
                 <td>$no</td>
                 <td>$branch_Name</td>
                 <td><a href='#'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' >แก้ไข</a></td>
-                <td><a href='#' class='delbrn' data-branchname='$branch_Name'>ลบ</a></td>
+                <td><a href='#' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'>ลบ</a></td>
             </tr>";
             $no++;
     }
@@ -53,13 +53,16 @@
             });
         })
         $(".delbrn").click(function(){
+            
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
+
             var r = confirm("ต้องการลบสาขา "+branchname+" ใช่หรือไม่?");
             if (r == true) {
                 $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
+    
                     loadmain(module1,action);
                     })
             }
