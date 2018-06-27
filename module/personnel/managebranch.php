@@ -85,18 +85,16 @@ $con=connect_db();
 
         $("#backpage").click(function(event) {
 
-            var module1 = $(this).data('modules');
-            var action = $(this).data('action');
-             
-            $('#detail').animateCss('fadeOut' , function() { /* ANIMATION USE */
-                loadmain(module1,action)
-            });
+            var module1 = $(this).data('modules')
+            var action = $(this).data('action')
+            loadmain(module1,action)
+
         })
 
         $("#addbrn").click(function( ){
 
         $('#loadaddsub').load("module/personnel/addbranch.php",function(){
-              $('#addsub').modal('show');     
+              $('#addsub').modal('show')     
         });
       
         
