@@ -8,7 +8,7 @@ function loadmain(module1,action){
 
 						$.getScript("js/module.js", function() {
 							var url = modules(module1 ,action);
-							 alert(url);
+							
 							/*
 							$.ajax({
 							  type: "POST",
@@ -27,8 +27,9 @@ function loadmain(module1,action){
 							$.post( url, { name: "John"})
 						  	.done(function( data ) {
 						     
-						      $('#detail').animateCss('fadeIn',function(){ /* ANIMATION USE */
-								 $("#detail").html(data);	
+						      $('#detail').animateCss('fadeOut',function(){ /* ANIMATION USE */
+						      	$("#detail").html(data)
+								 $('#detail').animateCss('fadeIn')	
 							}); 
 						  });
 						});
