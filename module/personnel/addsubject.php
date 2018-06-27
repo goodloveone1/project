@@ -18,19 +18,8 @@ $con=connect_db();
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label > ชื่อหลักสูตร :</label>
-                         <input type="text"   class="form-control" value="" placeholder="ชื่อหลักสตร" name="subject" size=40 require>
-                    </div>
-                    <div class="form-group">
-                        <label > ชื่อสาขาวิชา :</label>
-                        <select class="form-control" name="branch">
-                            <?php
-                                $selectB=mysqli_query($con,"SELECT branch_id,branch_name FROM branch") or die ("mysql error=>>".mysql_error($con));
-                                while(list( $branch_ID,$branch_name)=mysqli_fetch_row($selectB)){
-                                echo "<option value=$branch_ID>$branch_name</option>";
-                                }
-                            ?>
-                        </select>
+                        <label > ชื่อสาขา :</label>
+                         <input type="text"   class="form-control" value="" placeholder="ชื่อสาขา" name="subject" size=40 require>
                     </div>
                     
                 </div>
@@ -47,8 +36,8 @@ $con=connect_db();
     $("#addsu").click(function(event) {
         var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
         if (r == true) {
-            $.post( "module/personnel/adddatabranch.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
-                alert(data);
+            $.post( "module/personnel/adddatasubject.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
+                //alert(data);
                 $('#addsub').modal("hide")
 
                 $('#addsub').on('hidden.bs.modal', function (e) {
@@ -56,7 +45,7 @@ $con=connect_db();
                 var module1 = sessionStorage.getItem("module1")
                 var action = sessionStorage.getItem("action")
               loadmain(module1,action);
-               })
+                })
              })
             
            
