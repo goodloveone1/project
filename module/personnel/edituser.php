@@ -1,3 +1,8 @@
+<?php
+	include("../../function/db_function.php");
+	$con=connect_db();
+?>
+
 <div class="row headtitle" >
 	<div class="col-md-12 text-center mb-2">
 		<h2> แก้ไขบุคลากร </h2>
@@ -28,19 +33,19 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputPassword" placeholder="ชื่อ"  name="name">
+					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สกุล</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="inputPassword" placeholder="สกุล"  name="lname">
+					<input type="text" class="form-control"  placeholder="สกุล"  name="lname">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="exampleFormControlSelect1" name="pos">
+				<div class="col-sm">
+					<select class="form-control"  name="pos">
 						<option>อาจารย์</option>
 						<option>2</option>
 						<option>3</option>
@@ -48,11 +53,10 @@
 						<option>5</option>
 					</select>
 				</div>
-			</div>
-			<div class="form-group row">
+		
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่งวิชาการ</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="exampleFormControlSelect1" name="ap">
+				<div class="col-sm">
+					<select class="form-control"  name="ap">
 						<option>ข้าราชการ</option>
 						<option>2</option>
 						<option>3</option>
@@ -62,35 +66,40 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">สาขา</label>
-				<div class="col-sm-4">
-					<select class="form-control" id="exampleFormControlSelect1" name="suj">
-						<option>บริหารธุรกิจ</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+				<label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
+				<div class="col-md">
+					<select class="form-control" id="selectsuj" name="suj">
+						<?php
+						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
+
+						 while(list($subject_id,$subject_name,$idbranch)=mysqli_fetch_row($result)){
+						 	$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
+        					list($branch_name)=mysqli_fetch_row($branch);
+
+						 	echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";		
+						 }
+
+						?>
+					
 					</select>
 				</div>
+			</div>
+			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
-				<div class="col-sm-4">
-					<select class="form-control" id="exampleFormControlSelect1" name="brn">
-						<option>สารสนเทศทางคอมพิวเตอร์</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+				<div class="col-md">
+					<select class="form-control" id="selectbrn" name="brn" disabled>
+						
 					</select>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">Username</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="staticEmail" placeholder="Username" name="uname">
+					<input type="text" class="form-control"  placeholder="Username" name="uname">
 				</div>
 				<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
 				<div class="col-sm-4">
-					<input type="Password" class="form-control" id="staticEmail" placeholder="Password" name="passwd">
+					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
 				</div>
 			</div>
 		</div>
@@ -169,10 +178,23 @@
 
 
 		$(document).ready(function() {
+
+			selectsuj();
+
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action);
+			});
+
+			function selectsuj(){
+				var $idbrn = $("#selectsuj option:selected").data('idbrn');
+				var $nbrn = $("#selectsuj option:selected").data('nbrn');
+				$("#selectbrn").html("<option value='"+$idbrn+"'>"+$nbrn+"</option>")
+			}
+
+			$("#selectsuj").change(function() {				
+				selectsuj();					
 			});
 
 		
