@@ -7,7 +7,7 @@
 	<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button></a>
 	
 </div>
-<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='formuser'><button type="button" class="btn btn-block">เพิ่มบุคลากร</button></a>
+<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='formuser'><button type="button" class="btn btn-block"><i class="fas fa-plus"></i> เพิ่มบุคลากร</button></a>
 	
 </div>
 <div class="col-md text-center">
