@@ -7,7 +7,7 @@
 	<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button></a>
 	
 </div>
-<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block">เพิ่มบุคลากร</button></a>
+<div class="col-md-2" style="display: block;"><a href=# class="managaedituser" data-modules='personnel' data-action='formuser'><button type="button" class="btn btn-block">เพิ่มบุคลากร</button></a>
 	
 </div>
 <div class="col-md text-center">
@@ -86,7 +86,7 @@
 										<td>$genlname</td>
 										<td>$branch_name</td>
 										<td>$subject_name</td>
-										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser'><i class='fas fa-edit fa-2x '></i></a></td>
+										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser' data-iduser='$gen_id'><i class='fas fa-edit fa-2x '></i></a></td>
 										<td><a href=#  onclick='return confirm(\"ยืนยันการลบ\")'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
@@ -142,6 +142,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			$("a.managaedituser").click(function(){
+
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action);
