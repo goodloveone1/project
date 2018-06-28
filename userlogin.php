@@ -12,11 +12,12 @@
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script>
 		<script src="js/loadmain.js"></script> <!--FUNCTION LOAD MAIN -->
+		
 		<?php
 			require('function/menu.php');
-
 		?>
 		<style type="text/css">
 			
@@ -148,6 +149,7 @@
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 				<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 				<script src="bootstrap/js/bootstrap.js" ></script>
+				<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script> <!-- DATATABLE  JS -->
 				
 				<?php
 					$name="ทองดี สุขอิ่นใจ";
@@ -330,7 +332,7 @@
 							$(".list-group-item .text").css("font-size","14px");
 							$(".list-menu-user").css("text-align","center");
 								if(x.style.width == maxside2)
-													return 	minside2;
+														return 	minside2;
 								else
 									return minside;
 						}else if(x.style.width == minside2 && y.style.marginLeft == minside2 || x.style.width == minside && y.style.marginLeft == minside){
@@ -366,9 +368,9 @@
 							*/
 							$(".list-menu-user").css("text-align","left");
 							if(x.style.width == minside2)
-												return 	maxside2;
+													return 	maxside2;
 							else
-												return 	maxside;
+													return 	maxside;
 						}
 					}
 					else{ /* หน้าจอ มากกว่า 770*/
@@ -386,7 +388,7 @@
 							$(".list-menu-user").css("text-align","center");
 							if(x.style.width == maxside){
 								
-												return 	minside;
+													return 	minside;
 							}
 							else{
 								
@@ -404,7 +406,7 @@
 							$(".text").css("display","inline-grid");
 							$(".list-menu-user").css("text-align","left");
 							if(x.style.width == minside)
-												return 	maxside;
+													return 	maxside;
 							else
 								return  maxside2;
 						}

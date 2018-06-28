@@ -14,15 +14,15 @@
 	<h2> จัดการบุคลากร </h2>
 </div>
 <div class="col-md-4">
-	<form class="form-inline my-lg-1 row" method="post">
+	<form class="form-inline my-lg-1 row" id="search" method="post">
 		<input class="form-control mr-md-1 col" type="search" placeholder="Search" aria-label="Search" name="keyword">
-		<button class="btn bg-light my-2 my-md-0 col" type="submit"><i class="fas fa-search fa-sm"></i> Search</button>
+		<button class="btn bg-light my-2 my-md-0 col" id="btnsearch" type="button"><i class="fas fa-search fa-sm"></i> Search</button>
 	</form>
 </div>
 </div>
 <div class="row">
 <div class="col-md-12 mt-2">
-	<table class="table">
+	<table class="table" id="example">
 		<thead class="thead-light">
 			<tr>
 				<th scope="col">ลำดับ</th>
@@ -147,6 +147,18 @@
 				var action = $(this).data('action');
 				loadmain(module1,action);
 			});
+
+			$("#btnsearch").click(function(event) {
+
+				$.post('module/personnel/mangauser.php', $("#search").serialize(), function(data, textStatus, xhr) {
+					$("#detail").html(data)
+				});
+				
+			});
+
+			$('#example').dataTable();
+
+
 		});
 </script>
 <!-- aleat-->

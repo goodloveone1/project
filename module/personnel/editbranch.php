@@ -63,7 +63,7 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
 
                 var module1 = sessionStorage.getItem("module1");
                 var action = sessionStorage.getItem("action");
-               loadmain(module1,action);
+                loadmain(module1,action);
             })
            
             
