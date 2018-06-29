@@ -414,6 +414,7 @@
 				}
 				
 				/* END MENU SIDE*/
+				$('.managetable').DataTable();
 				</script>
 				<?php
 					// Set session variables

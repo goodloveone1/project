@@ -14,7 +14,7 @@
         <h2>จัดการสาขา</h2>
     </div>
 </div>
-<table  class="table">
+<table  class="table" id="tablebranch" >
     <thead class="thead-light">
          <tr>
             <th scope="col">ลำดับ</th>
@@ -45,6 +45,7 @@
 <div id="loadaddsub"></div> 
 
 <script>
+     $('#tablebranch').DataTable();
     $(".editbrn").click(function( ){
         var ideditsub =$(this).data("ideditsub");
         
