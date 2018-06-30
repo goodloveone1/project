@@ -43,6 +43,12 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="13">รหัสประชาชน</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
 					<select class="form-control"  name="pos">
@@ -93,12 +99,20 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">Username</label>
-				<div class="col-sm-4">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
+				<div class="col-sm-10">
 					<input type="text" class="form-control"  placeholder="Username" name="uname">
 				</div>
-				<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-				<div class="col-sm-4">
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
+				<div class="col-sm-10">
+					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
+				<div class="col-sm-10">
 					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
 				</div>
 			</div>
@@ -172,7 +186,7 @@
 			</div>		
 		</div> <!-- > END ปริญญาโท -->
 		<button type="button" class="btn updateuser" data-modules="personnel" data-action="updateuser"> ADD </button>
-	</div>	
+	</div>
 </form>
 <script type="text/javascript">
 
