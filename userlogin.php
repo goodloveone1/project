@@ -9,12 +9,12 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
-		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css?Ver=0001">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>  <!-- DATATABLE  CSS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script>
-		<script src="js/loadmain.js"></script> <!--FUNCTION LOAD MAIN -->
+		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
+		<script src="js/loadmain.js?Ver=0001" ></script> <!--FUNCTION LOAD MAIN -->
 		
 		<?php
 			require('function/menu.php');
@@ -61,15 +61,6 @@
 			}
 			section#detail{
 				box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			}
-			.icon{
-				
-			}
-			.FontSetBig{
-			
-			}
-			.FontSetSmall{
-				
 			}
 			
 			/* COLOR MEMU */
@@ -143,13 +134,11 @@
 				
 				
 				<script
-				src="https://code.jquery.com/jquery-3.3.1.min.js"
-				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-				crossorigin="anonymous"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+				src="js/jquery-3.3.1.min.js"></script>
+			<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
 				<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 				<script src="bootstrap/js/bootstrap.js" ></script>
-				<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script> <!-- DATATABLE  JS -->
+				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 				
 				<?php
 					$name="ทองดี สุขอิ่นใจ";
@@ -157,8 +146,12 @@
 				<script>
 				var module1 = sessionStorage.getItem("module1");
 				var action = sessionStorage.getItem("action");
+
+
 				
 				$(document).ready(function() {
+
+
 					$("#usermenu").click(function(){
 						openNav();
 					});

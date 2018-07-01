@@ -15,7 +15,7 @@
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top img-thumbnail" src="http://lorempixel.com/200/200/" alt="Card image cap">
+				<img class="card-img-top img-thumbnail" src="img/people.jpg" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
 						<input type="file" name="" class="form-control  btn" >
