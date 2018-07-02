@@ -69,6 +69,15 @@
 					</select>
 				</div>
 			</div>
+				<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
+				<div class="col-md">
+					<select class="form-control" id="selectbrn" name="brn" >
+			
+						
+					</select>
+				</div>
+			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
 				<div class="col-md">
@@ -85,14 +94,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
-				<div class="col-md">
-					<select class="form-control" id="selectbrn" name="brn" disabled>
-						
-					</select>
-				</div>
-			</div>
+		
 		</div>  	<!-- END side  -->
 		<div class="col-md-12">
 			<div class="form-group row">
