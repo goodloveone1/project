@@ -73,7 +73,12 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
 				<div class="col-md">
 					<select class="form-control" id="selectbrn" name="brn" >
-			
+						<?php
+			$branch=mysqli_query($con,"SELECT * FROM branch ") or die ("errorSQL".mysqli_error($con));
+			while(list($branch_id,$branch_name)=mysqli_fetch_row($branch)){
+				echo "<option value='".$branch_id."' data-idbrn='".$branch_id."' data-nbrn='".$branch_name."'>$branch_name</option>";
+			}
+				?>
 						
 					</select>
 				</div>
@@ -83,11 +88,11 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
-						while(list($subject_id,$subject_name,$idbranch)=mysqli_fetch_row($result)){
-							$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
+			$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
+		while(list($subject_id,$subject_name,$idbranch)=mysqli_fetch_row($result)){
+				$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='1'") or die ("errorSQL".mysqli_error($con));
 						list($branch_name)=mysqli_fetch_row($branch);
-									echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";
+							echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";
 						}
 						?>
 						
@@ -179,24 +184,25 @@
 	</span>
 </div>
 </div> <!-- > END ปริญญาโท -->
-<button type="button" class="btn updateuser" data-modules="personnel" data-action="updateuser"> ADD </button>
+<button type="button" class="btn adduser" data-modules="personnel" data-action="updateuser"> ADD </button>
 </div>
 </form>
 <script type="text/javascript">
 		$(document).ready(function() {
-			selectsuj();
+			
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action);
 			});
-			function selectsuj(){
-				var $idbrn = $("#selectsuj option:selected").data('idbrn');
-				var $nbrn = $("#selectsuj option:selected").data('nbrn');
-				$("#selectbrn").html("<option value='"+$idbrn+"'>"+$nbrn+"</option>")
-			}
-							$("#selectsuj").change(function() {
-									selectsuj();
+			
+
+			$("#selectbrn").change(function(event) {
+				var idbrn = $("#selectbrn option:selected").data("idbrn")
+				$.post('module/personnel/getdatesuj.php', {id: idbrn}, function(data, textStatus, xhr) {
+					$("#selectsuj").html(data);
+				});
+				
 			});
 		
 // ปริญญาตรี
@@ -305,8 +311,8 @@
 			
 		
 					
-			$(".updateuser").click(function(){
-				$.post( "module/personnel/updateuser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
+			$(".adduser").click(function(){
+				$.post( "module/personnel/adduser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
 		alert(data);
 		});
 		// $('#editsub').modal("hide");
