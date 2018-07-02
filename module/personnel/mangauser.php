@@ -21,7 +21,6 @@
 		<thead class="thead-light">
 			<tr>
 				<th scope="col">ลำดับ</th>
-				<th scope="col">รหัส</th>
 				<th scope="col">ชื่อ </th>
 				<th scope="col">นามสกุล</th>
 				<th scope="col">สาขา</th>
@@ -46,8 +45,7 @@
 							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
 							<tr>
-										<td>$i</td>
-										<td>$gen_id</td>
+										<td>$i</td>					
 										<td>$gen_fname</td>
 										<td>$genlname</td>
 										<td>$branch_name</td>
