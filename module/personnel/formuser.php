@@ -100,6 +100,12 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="วันเริ่มทำงาน" class="col-md-2 col-form-label">วันเริ่มทำงาน</label>
+				<div class="col-md-10">
+					<input type="date" class="form-control" min="0"  placeholder="วันเริ่มทำงาน" name="startwork">
+				</div>
+			</div>
+			<div class="form-group row">
 				<label for="salary" class="col-md-2 col-form-label">เงินเดือน</label>
 				<div class="col-md-10">
 					<input type="number" class="form-control" min="0"  placeholder="เงินเดือน" name="salary">
