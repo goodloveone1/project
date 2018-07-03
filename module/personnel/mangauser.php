@@ -73,7 +73,11 @@
 
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
-				loadmain(module1,action);
+				var genid = $(this).data('iduser');
+				$.post('module/personnel/'+action+'.php', {id:genid}, function(data, textStatus, xhr) {
+					$("#detail").html(data);
+				})
+				
 			});
 
 			$("#btnsearch").click(function(event) {

@@ -1,7 +1,14 @@
 <?php
 	include("../../function/db_function.php");
 	$con=connect_db();
+
+
+	$gen_id=$_POST['id'];
+	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
+	list($gen_id,$gen_user,$gen_pass,$branch_id,$subject_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
+
 ?>
+
 
 <div class="row headtitle" >
 	<div class="col-md-12 text-center mb-2">
@@ -27,25 +34,25 @@
 			<div class="form-group row">
 				<label for="staticEmail" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="staticEmail" placeholder="คำนำหน้า" name="titlename">
+					<input type="text" class="form-control" id="staticEmail" placeholder="คำนำหน้า" name="titlename" value="<?php echo $gen_prefix ?>">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name">
+					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name" value="<?php echo $gen_fname ?>">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สกุล</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="สกุล"  name="lname">
+					<input type="text" class="form-control"  placeholder="สกุล"  name="lname" value="<?php echo $gen_lname ?>">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="13">รหัสประชาชน</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="17" >รหัสประชาชน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid">
+					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo $gen_code?>">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -76,13 +83,13 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
+						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'  ") or die ("error".mysqli_error($con));
 
-						 while(list($subject_id,$subject_name,$idbranch)=mysqli_fetch_row($result)){
+						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
 						 	$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
 
-						 	echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";		
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";		
 						 }
 
 						?>
@@ -101,13 +108,13 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname">
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>">
 				</div>
 			</div>
 			<div class="form-group row">
