@@ -210,7 +210,9 @@
 	</span>
 </div>
 </div> <!-- > END ปริญญาโท -->
-<button type="button" class="btn adduser" data-modules="personnel" data-action="updateuser"> ADD </button>
+<div class="col-md-12"> 
+<button type="button" class="btn adduser ml-0" data-modules="personnel" data-action="updateuser"> ADD </button>
+</div> 
 </div>
 </form>
 <script type="text/javascript">
