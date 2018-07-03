@@ -99,9 +99,19 @@
 					</select>
 				</div>
 			</div>
-		
-		</div>  	<!-- END side  -->
-		<div class="col-md-12">
+			<div class="form-group row">
+				<label for="วันเริ่มทำงาน" class="col-md-2 col-form-label">วันเริ่มทำงาน</label>
+				<div class="col-md-10">
+					<input type="date" class="form-control" min="0"  placeholder="วันเริ่มทำงาน" name="startwork">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="salary" class="col-md-2 col-form-label">เงินเดือน</label>
+				<div class="col-md-10">
+					<input type="number" class="form-control" min="0"  placeholder="เงินเดือน" name="salary">
+				</div>
+			</div>
+
 			<div class="form-group row">
 				<label for="inputPassword" class="col-md-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-md-10">
@@ -120,7 +130,22 @@
 					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="" class="col-md-2 col-form-label">ประเภทบุคลากร</label>
+				<div class="col-md-10">
+					<select class="form-control"  name="permiss">
+						<?php
+							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
+							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
+								echo "<option value='".$permissid."'>$permissname</option>";
+							}
+							 mysqli_free_result($permiss);
+						?>
+					</select>
+				</div>
 			</div>
+		
+		</div>	
 			<div class="col-md-12"> 		<!-- >ปริญญาตรี -->
 			<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
 				<div class="col-sm-12" >
@@ -141,6 +166,7 @@
 				</div>
 			</span>
 		</div>
+
 		</div> <!-- > END ปริญญาตรี -->
 		<div class="col-md-12"> 		<!-- >ปริญญาโท -->
 		<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
@@ -184,7 +210,9 @@
 	</span>
 </div>
 </div> <!-- > END ปริญญาโท -->
-<button type="button" class="btn adduser" data-modules="personnel" data-action="updateuser"> ADD </button>
+<div class="col-md-12"> 
+<button type="button" class="btn adduser ml-0" data-modules="personnel" data-action="updateuser"> ADD </button>
+</div> 
 </div>
 </form>
 <script type="text/javascript">
