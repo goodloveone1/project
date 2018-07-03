@@ -62,10 +62,8 @@
 
             var module1 = $(this).data('modules');
             var action = $(this).data('action');
-             
-            $('#detail').animateCss('fadeOut' , function() { /* ANIMATION USE */
-                loadmain(module1,action)
-            });
+			loadmain(module1,action)
+
         })
         $(".delbrn").click(function(){
             
