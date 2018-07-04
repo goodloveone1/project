@@ -7,13 +7,15 @@
 	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($gen_id,$gen_user,$gen_pass,$branch_id,$subject_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
+	$userphoto=empty($gen_pict)?"people.jpg":$gen_pict;
+	
+	
 ?>
 
 
 <div class="row headtitle" >
 	<div class="col-md-12 text-center mb-2">
 		<h2> แก้ไขบุคลากร </h2>
-		<button type="button" class="btn re" data-modules="personnel" data-action="edituser"> REFRE </button>
 		<button type="button" class="btn re" data-modules="personnel" data-action="mangauser"> ย้อนกลับ </button>
 
 	</div>
@@ -22,7 +24,7 @@
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top img-thumbnail" src="img/people.jpg" alt="Card image cap">
+				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
 						<input type="file" name="" class="form-control  btn" >
@@ -59,22 +61,30 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
 					<select class="form-control"  name="pos">
-						<option>อาจารย์</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<?php
+						$selectP=mysqli_query ($con,"SELECT  *FROM position ") or die ("error".mysqli_error($con));
+
+						 while(list($pos_id,$pos_name)=mysqli_fetch_row($selectP)){
+							$select=$pos_id==$gen_pos?"selected":"";
+							echo "<option value=$pos_id $select>$pos_name</option>";
+						 }
+
+						?>
 					</select>
 				</div>
 		
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่งวิชาการ</label>
 				<div class="col-sm">
 					<select class="form-control"  name="ap">
-						<option>ข้าราชการ</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<?php
+						$selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
+
+						 while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
+							$select=$aca_id==$gen_acadeic?"selected":"";
+							echo "<option value=$aca_id $select>$aca_name</option>";
+						 }
+
+						?>
 					</select>
 				</div>
 			</div>
@@ -106,23 +116,42 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">เงินเดือน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">
+				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $gen_salary ?>">
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มทำงาน</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $gen_startdate ?>">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">หมายเหตุ</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $level_id ?>">
+				</div>
+			</div>
+			<hr>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">	
+					
+				</div>
+			</div>
+		
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>">
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>"readonly>
+				</div>
+				<div class="col-md-12  mb-2">
+				<button type="button" class="btnEditPw" data-modules="personnel" data-action="edituser"> แก้ไขระหัสผ่าน </button>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
-				<div class="col-sm-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwd">
-				</div>
-			</div>
+			
 		</div>
 		<div class="col-md-12"> 		<!-- >ปริญญาตรี -->
 			<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
@@ -153,7 +182,7 @@
 					<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาโท</label>
 				</div>
 				
-				<span class="col-sm-12">
+				<span class="col-sm-12" >
 					<div class='row'>
 						
 						<div class="col-md">
@@ -192,7 +221,9 @@
 				</span>
 			</div>		
 		</div> <!-- > END ปริญญาโท -->
-		<button type="button" class="btn updateuser" data-modules="personnel" data-action="updateuser"> ADD </button>
+		<div class="col-md-12 text-center mb-2" >
+		<button type="button" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
+		</div>
 	</div>
 </form>
 <script type="text/javascript">
