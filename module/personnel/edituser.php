@@ -7,6 +7,9 @@
 	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($gen_id,$gen_user,$gen_pass,$branch_id,$subject_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
+	$userphoto=empty($gen_pict)?"people.jpg":$gen_pict;
+	
+	
 ?>
 
 
@@ -21,7 +24,7 @@
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top img-thumbnail" src="img/people.jpg" alt="Card image cap">
+				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
 						<input type="file" name="" class="form-control  btn" >
@@ -113,11 +116,32 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">เงินเดือน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">
+				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $gen_salary ?>">
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มทำงาน</label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $gen_startdate ?>">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">หมายเหตุ</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $level_id ?>">
+				</div>
+			</div>
+			<hr>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">	
+					
+				</div>
+			</div>
+		
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
