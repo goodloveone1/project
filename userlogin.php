@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>ระบบประเมิน</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
@@ -132,10 +132,11 @@
 				
 				
 				
-				
-				<script
-				src="js/jquery-3.3.1.min.js"></script>
-			<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+				<script src="js/jquery-3.3.1.min.js"></script>
+				<script src="js/jquery.validate.min.js" ></script>
+				<script src="js/additional-methods.min.js" >
+
+
 				<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 				<script src="bootstrap/js/bootstrap.js" ></script>
 				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
