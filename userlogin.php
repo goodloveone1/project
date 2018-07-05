@@ -70,21 +70,14 @@
 				color: #EEE;
 				border:none;
 				border-bottom: solid 1px #EEE;
-			}
-		
-		
-			
+			}		
 		</style>
 	</head>
 	<body>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
-			
-			
 			<?php
 				webmenu("1","ผู้ดูและระบบ");
 			?>
-			
-			
 		</aside>
 		
 		
@@ -128,10 +121,7 @@
 						
 					</footer>
 				</div>
-				
-				
-				
-				
+
 				<script src="js/jquery-3.3.1.min.js"></script>
 				<script src="js/jquery.validate.min.js" ></script>
 				<script src="js/additional-methods.min.js" >
@@ -141,8 +131,6 @@
 				<script src="bootstrap/js/bootstrap.js" ></script>
 				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 				<!-- IMGREDER -->
-				
-				
 				
 				<?php
 					$name="ทองดี สุขอิ่นใจ";
@@ -275,8 +263,7 @@
 					y.style.marginLeft = z.trim();
 				}
 					
-				}
-				
+				}				
 				function openNav2(x,y) {
 					/*
 					alert(x.style.width);
