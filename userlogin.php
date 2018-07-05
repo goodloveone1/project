@@ -140,6 +140,9 @@
 				<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 				<script src="bootstrap/js/bootstrap.js" ></script>
 				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
+				<!-- IMGREDER -->
+				
+				
 				
 				<?php
 					$name="ทองดี สุขอิ่นใจ";
