@@ -17,8 +17,9 @@ echo $_POST['uname'],"/";
 echo $_POST['passwd'],"/";
 
 $update="UPDATE general SET gen_id='',gen_user=' $_POST[uname]',gen_pass='$_POST[passwd]',branch_id='$_POST[brn]',subject_id='$_POST[suj]',gen_code=' $_POST[codeid]',gen_prefix=' $_POST[titlename]',gen_fnam='$_POST[name]',gen_lname='$_POST[lname]',
-gen_salary=' $_POST[salary]',gen_acadeic='$_POST[ap]',level_id='$_POST['level_id']',gen_startdate='',permiss_id='',gen_pos='',genpict='' ";
+gen_salary=' $_POST[salary]',gen_acadeic='$_POST[ap]',level_id='$_POST[level_id]',gen_startdate='',permiss_id='',gen_pos='',genpict='' ";
 
+echo $update;
 /*echo $_POST['titlename'];
 $a1 =  $_POST['a1'];
 
