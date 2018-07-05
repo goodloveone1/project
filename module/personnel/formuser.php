@@ -222,7 +222,18 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			
-		
+			$('#edituser').validate({ // initialize the plugin
+		        rules: {
+		            fname: {
+		                required: true
+		          
+		            },
+		            lname: {
+		                required: true
+
+		            }
+		        }
+		    });
 
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
