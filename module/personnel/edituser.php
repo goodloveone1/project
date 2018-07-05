@@ -27,7 +27,7 @@
 				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
-						<input type="file" name="" class="form-control  btn" >
+						<input type="file" name="userphoto" class="form-control  btn" >
 					</div>
 				</div>
 			</div>
