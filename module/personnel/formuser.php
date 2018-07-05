@@ -227,19 +227,7 @@
 
 		$(document).ready(function() {
 			
-			$('#edituser').validate({ // initialize the plugin
-		        rules: {
-		            fname: {
-		                required: true
-		          
-		            },
-		            lname: {
-		                required: true
-
-
-		            }
-		        }
-		    });
+			
 
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
@@ -358,16 +346,41 @@
 					}
 // END ปริญญาเอก
 
-			
-			
+			$('#edituser').change(function(event) {
+				/* Act on the event */
 		
-					
+			$('#edituser').validate({ // initialize the plugin
+						        rules: {
+						            passwd: {
+						                required: true,
+						                minlength:5
+						            },
+						            passwdv: {
+						                required: true,
+						                minlength:5,
+						                equalTo: "#passwd"
+						            }
+						        },
+								messages: {
+									password: {
+										required: "Please provide a password",
+										minlength: "Your password must be at least 5 characters long"
+									},
+									confirm_password: {
+										required: "Please provide a password",
+										minlength: "Your password must be at least 5 characters long",
+										equalTo: "Please enter the same password as above"
+									},
+									
+								}
+
+						    });
+		
+					});	
 			$("#edituser").submit(function(e){
 
-					$("#edituser").validate({
-
-
-					});
+				
+				
 					$check = $("#edituser").valid();
 
 					if($check == true){
