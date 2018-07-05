@@ -50,8 +50,8 @@
 										<td>$genlname</td>
 										<td>$branch_name</td>
 										<td>$subject_name</td>
-										<td><a href='#' class='managaedituser' data-modules='personnel' data-action='edituser' data-iduser='$gen_id'><i class='fas fa-edit fa-2x '></i></a></td>
-										<td><a href=#  onclick='return confirm(\"ยืนยันการลบ\")'><i class='fa fa-trash fa-2x'</i></a></td>
+										<td><a href='javascript:void(0)' class='managaedituser' data-modules='personnel' data-action='edituser' data-iduser='$gen_id'><i class='fas fa-edit fa-2x '></i></a></td>
+										<td><a href='javascript:void(0)'  class='deluser' data-iduser='$gen_id' data-nuser='$gen_fname $genlname'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
 							}
@@ -74,6 +74,7 @@
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				var genid = $(this).data('iduser');
+				
 				$.post('module/personnel/'+action+'.php', {id:genid}, function(data, textStatus, xhr) {
 					$("#detail").html(data);
 				})
@@ -87,6 +88,22 @@
 				});
 				
 			});
+
+			$(".deluser").click(function(){
+            
+            var iduser =$(this).data("iduser");
+            var nuser =$(this).data("nuser");
+
+            var r = confirm("ต้องการลบข้อมูล "+nuser+" ใช่หรือไม่?");
+            if (r == true) {
+                $.post( "module/personnel/deluser.php", {id : iduser}).done(function(data,txtstuta){
+                    var module1 = sessionStorage.getItem("module1");
+                    var action = sessionStorage.getItem("action");
+    				// alert(data);
+                    loadmain(module1,action);
+                    })
+            	}
+        	})
 
 			$('#example').dataTable();
 
