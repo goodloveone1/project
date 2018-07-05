@@ -175,7 +175,7 @@
 		</div>
 		
 		<div class="col-md-12 text-center mb-2" >
-		<button type="button" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
+		<button type="submit" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
 		</div>
 	</div>
 </form>
@@ -203,11 +203,28 @@
 			});
 
 			
-			$(".updateuser").click(function(){
+			$("#edituser").submit(function(){
+				
+				$check = $("#edituser").valid();
 
-				 $.post( "module/personnel/updateuser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
-            	 	alert(data);
-		         });
+				if($check == true){
+				var formData = new FormData(this);
+
+					    $.ajax({
+					        url: "module/personnel/updateuser.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data)
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				// $.post( "module/personnel/updateuser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
+            	 	//alert(data);
+		        // });
 
 		        // $('#editsub').modal("hide");
 
