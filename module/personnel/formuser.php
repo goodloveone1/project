@@ -2,21 +2,23 @@
 	include("../../function/db_function.php");
 	$con=connect_db();
 ?>
-<div class="row headtitle" >
-	<div class="col-md-12 text-center mb-2">
+<div class="row headtitle p-2" >
+	<div class="col-md-2 text-center ">
+	<button type="button" class="btn re btn-block" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
+	</div>
+	<div class="col-md text-center">
 		<h2> เพิ่มบุคลากร </h2>
-		<button type="button" class="btn re" data-modules="personnel" data-action="formuser"> REFRE </button>
-		<button type="button" class="btn re" data-modules="personnel" data-action="mangauser"> ย้อนกลับ </button>
 	</div>
 </div>
-<form method="" enctype="multipart/form-data" id="edituser">
+<form method="POST"  enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top img-thumbnail" src="img/people.jpg" alt="Card image cap">
+				<img class="card-img-top img-thumbnail" src="img/user_default.svg" id="showpic" alt="Card image cap">
+
 				<div class="card-body text-center">
 					<div class="form-group row">
-						<input type="file" name="" class="form-control  btn" >
+						<input type="file" name="pic" class="form-control  btn" >
 					</div>
 				</div>
 			</div>
@@ -214,12 +216,15 @@
 <div class="col-md-10">
 </div>
 <div class="col-md">
-	<button type="button" class="btn adduser ml-0" data-modules="personnel" data-action="updateuser"> ADD </button>
+	<button type="submit" class="btn adduser ml-0" data-modules="personnel" data-action="updateuser"> ADD </button>
 </div>
 </div>
 </div>
 </form>
 <script type="text/javascript">
+
+
+
 		$(document).ready(function() {
 			
 			$('#edituser').validate({ // initialize the plugin
@@ -230,6 +235,7 @@
 		            },
 		            lname: {
 		                required: true
+
 
 		            }
 		        }
@@ -351,20 +357,42 @@
 							}
 					}
 // END ปริญญาเอก
+
 			
 			
 		
 					
-			$(".adduser").click(function(){
+			$("#edituser").submit(function(e){
+
+					$("#edituser").validate({
 
 
-				// var validator = $( "#edituser" ).validate();
-				// validator.form();
+					});
+					$check = $("#edituser").valid();
 
-				$.post( "module/personnel/adduser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
-					alert(data);
-				  })
+					if($check == true){
 
+
+					    e.preventDefault();
+
+					    var formData = new FormData(this);
+
+					    $.ajax({
+					        url: "module/personnel/adduser.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data)
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+					}
+
+					
+
+			
 				
 				})	// END adduser
 		
