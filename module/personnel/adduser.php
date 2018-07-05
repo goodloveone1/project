@@ -3,7 +3,7 @@
 include("../../function/db_function.php");
 $con=connect_db();
 $imgname;
-if(!empty($_FILES['pic'])){
+if(!empty($_FILES['pic']['name'])){
 	$target_dir = "../../img/";
 
 	$name = date("yyyymmdd")."ASDFGHJKLZXCVBNM";
@@ -24,7 +24,7 @@ if(!empty($_FILES['pic'])){
 	    if($check !== false) {
 	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
-	        copy($_FILES["pic"]["tmp_name"], "$target_file");
+	       // copy($_FILES["pic"]["tmp_name"], "$target_file");
 	        $imgname=$name;
 	        
 	    } else {
@@ -47,11 +47,11 @@ echo $_POST['degaddes3']." ==> ";
 */
 
 
- $sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
+ // $sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
 
 
- mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
-     mysqli_close($con);
+ // mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
+ //     mysqli_close($con);
 
 
 ?>

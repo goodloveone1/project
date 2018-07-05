@@ -124,7 +124,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-md-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-md-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwd" required>
+					<input type="Password" class="form-control"  placeholder="Password" name="passwd" id="passwd" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -346,7 +346,7 @@
 					}
 // END ปริญญาเอก
 
-			$('#edituser').change(function(event) {
+			$('#edituser input').change(function(event) {
 				/* Act on the event */
 		
 			$('#edituser').validate({ // initialize the plugin
