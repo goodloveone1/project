@@ -5,21 +5,21 @@
 
 	$gen_id=$_POST['id'];
 	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
-	list($gen_id,$gen_user,$gen_pass,$branch_id,$subject_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
+	list($gen_id,$gen_user,$gen_pass,$branch_id,$sub_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
 	$userphoto=empty($gen_pict)?"people.jpg":$gen_pict;
-	
-	
 ?>
 
-
-<div class="row headtitle" >
-	<div class="col-md-12 text-center mb-2">
-		<h2> แก้ไขบุคลากร </h2>
-		<button type="button" class="btn re" data-modules="personnel" data-action="mangauser"> ย้อนกลับ </button>
-
-	</div>
+<div class=" headtitle text-center p-2 row mb-2 row">
+    <div class="col-sm-2" >
+       <a href=#> <button type="button" class="btn re btn-block" id="backpage" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    </div>
+    <div class="col-md">
+        <h2>จัดการข้อมูลบุคลากร</h2>
+    </div>
 </div>
+
+
 <form method="" enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
 		<div class="col-md-3">
@@ -80,8 +80,8 @@
 						$selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
 
 						 while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
-							$select=$aca_id==$gen_acadeic?"selected":"";
-							echo "<option value=$aca_id $select>$aca_name</option>";
+							$seA=$aca_id==$gen_acadeic?"selected":"";
+							echo "<option value=$aca_id $seA>$aca_name</option>";
 						 }
 
 						?>
@@ -93,24 +93,27 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'  ") or die ("error".mysqli_error($con));
+						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects ") or die ("error".mysqli_error($con));
 
 						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
 						 	$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
-
-						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";		
+							
+							$seP=$sub_id==$subject_ID?"selected":""; 
+						
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";		
 						 }
 
 						?>
 					
 					</select>
+						
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
 				<div class="col-md">
-					<select class="form-control" id="selectbrn" name="brn" disabled>
+					<select class="form-control" id="selectbrn" name="brn">
 						
 					</select>
 				</div>
@@ -145,11 +148,14 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>"readonly>
-				</div>
-				<div class="col-md-12  mb-2">
-				<button type="button" class="btnEditPw" data-modules="personnel" data-action="edituser"> แก้ไขระหัสผ่าน </button>
-				</div>
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>">
+				</div>	
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>">
+				</div>	
 			</div>
 			
 		</div>
@@ -282,8 +288,8 @@
 
 					if(count < 10 && count >= 0){
 						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า' name='a1[]'> "
-						+ "<input type='text'class='form-control' id='staticEmail' placeholder='จบที่'  name='a2[]'> "
+						+ "<input type='text' class='form-control'  placeholder='คำนำหน้า' name='a1[]'> "
+						+ "<input type='text'class='form-control'  placeholder='จบที่'  name='a2[]'> "
 						+ "<button type='button' class='btn btn-danger btn-block deldegree1 '>ลบ</button>"
 						+ "</li>"
 				
@@ -327,8 +333,8 @@
 
 					if(count < 10 && count >= 0){
 						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า' name='a1[]'> "
-						+ "<input type='text'class='form-control' id='staticEmail' placeholder='จบที่'  name='a2[]'> "
+						+ "<input type='text' class='form-control'  placeholder='คำนำหน้า' name='a1[]'> "
+						+ "<input type='text'class='form-control'  placeholder='จบที่'  name='a2[]'> "
 						+ "<button type='button' class='btn btn-danger btn-block deldegree2 '>ลบ</button>"
 						+ "</li>"
 				
@@ -372,8 +378,8 @@
 
 					if(count < 10 && count >= 0){
 						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control' id='staticEmail' placeholder='คำนำหน้า' name='a1[]'> "
-						+ "<input type='text'class='form-control' id='staticEmail' placeholder='จบที่'  name='a2[]'> "
+						+ "<input type='text' class='form-control'  placeholder='คำนำหน้า' name='a1[]'> "
+						+ "<input type='text'class='form-control'  placeholder='จบที่'  name='a2[]'> "
 						+ "<button type='button' class='btn btn-danger btn-block deldegree3 '>ลบ</button>"
 						+ "</li>"
 				
