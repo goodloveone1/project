@@ -7,7 +7,7 @@
 	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($gen_id,$gen_user,$gen_pass,$branch_id,$sub_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
-	$userphoto=empty($gen_pict)?"people.jpg":$gen_pict;
+	$userphoto=empty($gen_pict)?"user_default.svg":$gen_pict;
 ?>
 
 <div class=" headtitle text-center p-2 row mb-2 row">
@@ -20,42 +20,42 @@
 </div>
 
 
-<form method="" enctype="multipart/form-data" id="edituser">
+<form method="POST" enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
 				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
-						<input type="file" name="" class="form-control  btn" >
+						<input type="file" name="pic_u" class="form-control  btn" >
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md">
 			<div class="form-group row">
-				<label for="staticEmail" class="col-sm-2 col-form-label">คำนำหน้า</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
 				<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
-					<input type="text" class="form-control" id="staticEmail" placeholder="คำนำหน้า" name="titlename" value="<?php echo $gen_prefix ?>">
+					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $gen_prefix ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name" value="<?php echo $gen_fname ?>">
+					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name" value="<?php echo $gen_fname ?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สกุล</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="สกุล"  name="lname" value="<?php echo $gen_lname ?>">
+					<input type="text" class="form-control"  placeholder="สกุล"  name="lname" value="<?php echo $gen_lname ?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="17" >รหัสประชาชน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo $gen_code?>">
+					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo $gen_code?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -122,26 +122,26 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">เงินเดือน</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $gen_salary ?>">
+				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $gen_salary ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มทำงาน</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $gen_startdate ?>">
+					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $gen_startdate ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">หมายเหตุ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $level_id ?>">
+					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $level_id ?>" required>
 				</div>
 			</div>
 			<hr>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>">	
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>" required>	
 					
 				</div>
 			</div>
@@ -149,13 +149,13 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>">
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>" required>
 				</div>	
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>">
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required>
 				</div>	
 			</div>
 			<div class="form-group row">
