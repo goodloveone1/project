@@ -15,7 +15,7 @@
        <a href=#> <button type="button" class="btn re btn-block" id="backpage" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-md">
-        <h2>จัดการข้อมูลบุคลากร</h2>
+        <h2>แก้ไขบุคลากร</h2>
     </div>
 </div>
 
