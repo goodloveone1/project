@@ -18,8 +18,6 @@ else{
     $updete_photo=",gen_pict='$pic_user'";
  }
 
-
-
 //เช็คค่า
 echo $_POST['gen_id'],"/";
 echo $_POST['titlename'],"/";
@@ -37,8 +35,8 @@ echo $_POST['uname'],"/";
 echo $_POST['passwd'],"/";
 echo $_POST['permiss'],"/";
 
-echo "old img", $_POST['old_pic'];
-echo"NEW igm= $updete_photo";
+echo "รูปเดิม =", $_POST['old_pic'];
+echo"รูปใหม่= $updete_photo";
 $update="UPDATE general SET gen_id='',gen_user=' $_POST[uname]',gen_pass='$_POST[passwd]',branch_id='$_POST[brn]',subject_id='$_POST[suj]',gen_code='$_POST[codeid]',gen_prefix='$_POST[titlename]',gen_fname='$_POST[name]',gen_lname='$_POST[lname]',
 gen_salary=' $_POST[salary]',gen_acadeic='$_POST[ap]',level_id='$_POST[level_id]',gen_startdate='$_POST[gen_startdate]',permiss_id='echo $_POST[permiss]',gen_pos='echo $_POST[pos]'$updete_photo WHERE  gen_id='$_POST[gen_id]'";
 
