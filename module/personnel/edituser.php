@@ -150,13 +150,15 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>" required>
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>" required id="showpw">
+					<input type="checkbox" onclick="chkpw()">แสดงรหัส
 				</div>	
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required>
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required id="showconPW">
+					<input type="checkbox" onclick="chkpwcon()">แสดงรหัส
 				</div>	
 			</div>
 			<div class="form-group row">
@@ -165,8 +167,10 @@
 					<select class="form-control"  name="permiss">
 						<?php
 							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
+							
 							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
-								echo "<option value='".$permissid."'>$permissname</option>";
+								$sePM=$permiss_id==$permissid?"selected":""; 
+								echo "<option value='".$permissid."'$sePM>$permissname</option>";
 							}
 							mysqli_free_result($permiss);
 						?>
@@ -243,9 +247,53 @@
 
 			
 		});
+//ดูรหัส
+function chkpw() {
+    var x = document.getElementById("showpw");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+function chkpwcon() {
+    var x = document.getElementById("showconPW");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+		
+//เซ็ค PW CON
+$('#edituser').validate({ // initialize the plugin
+						        rules: {
+						            passwd: {
+						                required: true,
+						                minlength:5
+						            },
+						            conPW: {
+						                required: true,
+						                minlength:5,
+						                equalTo: "#showpw"
+						            }
+						        },
+								messages: {
+									password: {
+										required: "Please provide a password",
+										minlength: "Your password must be at least 5 characters long"
+									},
+									confirm_password: {
+										required: "Please provide a password",
+										minlength: "Your password must be at least 5 characters long",
+										equalTo: "Please enter the same password as above"
+									},
+									
+								}
 
+						    });
 		
-		
+							
 
 
 </script>
