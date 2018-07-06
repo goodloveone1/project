@@ -36,7 +36,8 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
+					<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
+					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $gen_pict ?>" hidden>
 					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $gen_prefix ?>" required>
 				</div>
 			</div>
@@ -53,9 +54,9 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="17" >รหัสประชาชน</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="13" >รหัสประชาชน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo $gen_code?>"required>
+					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo$gen_code?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
