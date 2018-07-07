@@ -177,11 +177,48 @@
 					</select>
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
+				<div class="col-md-30">
+					<table class="table">
+					<tr>
+							<th>วุฒิการศึกษา</th>
+							<th>ชื่อวุฒิการศึกษา</th>
+							<th>สถานที่จบการศึกษา</th>
+							<th>แก้ไข</th>
+							<th>ลบ</th>
+					</tr>
+					<?php
+						$degree = mysqli_query($con,"SELECT  degree_id,doc_id,doc_name,doc_loc FROM doctorate WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
+						while(list($degree_id,$doc_id,$doc_name,$doc_loc)=mysqli_fetch_row($degree)){
+							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
+							list($degree_name)=mysqli_fetch_row($deName);
+							echo"
+									<tr>
+										<td>$degree_name</td>
+										<td>$doc_name</td>
+										<td>$doc_loc</td>
+										<td><a href='#'class='editbrn' data-ideditsub='$doc_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+										<td><a href='#' class='delbrn' data-branchname='$degree_name' data-ideditsub='$doc_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+										
+									</tr>
+							";
+						}
+						mysqli_free_result($degree);
+					?>
+					<tr>
+						<td><button>เพิ่มวุฒิการศึกษา</button></td>
+					</tr>
+					</table>
+				</div>
+			</div>
 		</div>
-		
+		</div>
+
 		<div class="col-md-12 text-center mb-2" >
 		<button type="submit" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
 		</div>
+
 	</div>
 </form>
 <script type="text/javascript">
