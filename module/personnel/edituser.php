@@ -181,7 +181,7 @@
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
 					<table class="table">
-					<tr>
+					<tr>	
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
 							<th>สถานที่จบการศึกษา</th>
@@ -189,17 +189,18 @@
 							<th>ลบ</th>
 					</tr>
 					<?php
-						$degree = mysqli_query($con,"SELECT  degree_id,doc_id,doc_name,doc_loc FROM doctorate WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
-						while(list($degree_id,$doc_id,$doc_name,$doc_loc)=mysqli_fetch_row($degree)){
+						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
+						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
 							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
 							list($degree_name)=mysqli_fetch_row($deName);
 							echo"
 									<tr>
+							
 										<td>$degree_name</td>
-										<td>$doc_name</td>
-										<td>$doc_loc</td>
-										<td><a href='#'class='editbrn' data-ideditsub='$doc_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-										<td><a href='#' class='delbrn' data-branchname='$degree_name' data-ideditsub='$doc_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+										<td>$ed_name</td>
+										<td>$ed_loc</td>
+										<td><a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                						<td><a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
 										
 									</tr>
 							";
@@ -207,7 +208,7 @@
 						mysqli_free_result($degree);
 					?>
 					<tr>
-						<td><button>เพิ่มวุฒิการศึกษา</button></td>
+						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
 					</tr>
 					</table>
 				</div>
@@ -221,6 +222,8 @@
 
 	</div>
 </form>
+<div id="editD">
+</div>
 <script type="text/javascript">
 
 
@@ -330,7 +333,36 @@ $('#edituser').validate({ // initialize the plugin
 
 						    });
 		
-							
+	   $(".editbrn").click(function(){
+        var iddegree =$(this).data("iddegree");
+        
+        $.post("module/personnel/editdegree.php", { id : iddegree }).done(function(data){
+			// alert(data);
+        $('#editD').html(data);
+         $('#editsub').modal('show');
+        })
+        
+        
+        });						
 
+	  $(".delbrn").click(function(){
+		var ideditsub =$(this).data("iddegree");
+		var degreename =$(this).data("degreename");
+		
+            var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
+            if (r == true) {
+                $.post( "module/personnel/deletedegree.php", { id : iddegree}).done(function(data,txtstuta){
+                 
+                    })
+            }
+		
+	})
+        $("#adddegree").click(function( ){
+
+        $('#loadaddsub').load("module/personnel/addsubject.php",function(){
+            $('#addsub').modal('show');     
+            });
+         });
+       	
 
 </script>
