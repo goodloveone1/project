@@ -155,7 +155,7 @@
 				<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาตรี</label>
 			</div>
 			
-			<span class="col-sm-12">
+			<span class="col-md-12">
 				<div class='row'>
 					
 					<div class="col-md">
@@ -164,54 +164,14 @@
 					<div class="col-md">
 						<button type="button" class="btn btn-secondary cleardegree1 btn-block">CLEAR</button>
 					</div>
-				<ul class="loaddegree col-12  list-group"></ul>
+				</div>
+				<ul class="loaddegree list-group"></ul>
 				
-			</div>
+			
 		</span>
 	</div>
 	</div> <!-- > END ปริญญาตรี -->
-	<div class="col-md-12"> 		<!-- >ปริญญาโท -->
-	<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
-		<div class="col-sm-12" >
-			<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาโท</label>
-		</div>
-		
-		<span class="col-sm-12">
-			<div class='row'>
-				
-				<div class="col-md">
-					<button type="button" class="btn btn-secondary adddegree2 btn-block">เพิ่ม</button>
-				</div>
-				<div class="col-md">
-					<button type="button" class="btn btn-secondary cleardegree2 btn-block">CLEAR</button>
-				</div>
-			<ul class="loaddegree2 col-12  list-group"></ul>
-			
-		</div>
-	</span>
-</div>
-</div> <!-- > END ปริญญาโท -->
-<div class="col-md-12"> 		<!-- >ปริญญาเอก -->
-<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
-	<div class="col-sm-12" >
-		<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาเอก</label>
-	</div>
 	
-	<span class="col-sm-12">
-		<div class='row'>
-			
-			<div class="col-md">
-				<button type="button" class="btn btn-secondary adddegree3 btn-block">เพิ่ม</button>
-			</div>
-			<div class="col-md">
-				<button type="button" class="btn btn-secondary cleardegree3 btn-block">CLEAR</button>
-			</div>
-		<ul class="loaddegree3 col-12  list-group"></ul>
-		
-	</div>
-</span>
-</div>
-</div> <!-- > END ปริญญาโท -->
 <div class="col-md-12 row">
 <div class="col-md-10">
 </div>
@@ -226,7 +186,7 @@
 
 
 		$(document).ready(function() {
-			
+			var count =0;
 			
 
 			$("button.re").click(function(){
@@ -254,22 +214,34 @@
 			$('.loaddegree').on('click', '.deldegree1', function(e) {
 			e.preventDefault();
 			var r = confirm("คณต้องการลบใช่ไหม?");
-	if (r == true) {
-				$(this).parent().remove();
+			if (r == true) {
+				$(this).parent().closest( "li" ).remove();
 				}
 			});
 			$("button.adddegree1").on("click",function(e) {
 				e.preventDefault();
-			degreeload1()
+				degreeload1()
 			});
+
 			function degreeload1(){
-				var count =$('.loaddegree li').length
+				 count =$('.loaddegree li').length
 					if(count < 10 && count >= 0){
-						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control'  placeholder='จบสาขาวิชา' name='degn1[]'> "
-						+ "<input type='text'class='form-control' placeholder='จบที่'  name='degaddes1[]'> "
-						+ "<button type='button' class='btn btn-danger btn-block deldegree1 '>ลบ</button>"
+						var text = "<li class='list-group-item rem'>"
+						+ "<div class='row'><div class='col'><input type='text' class='form-control '  placeholder='จบสาขาวิชา' name='degname[]'> </div>"
+						+ "<div class='col'><input type='text'class='form-control' placeholder='จบที่'  name='degaddes[]'> </div>"
+
+						text += "<div class='col'><select class='form-control' name='degree[]'>"+
+						<?php
+						$degree = mysqli_query($con,"SELECT * FROM degree") or die ("error".mysqli_error($con));
+							while(list($degree_id,$degree_name) = mysqli_fetch_row($degree)){
+								echo "\"<option value='".$degree_id."'>$degree_name</option>\"+";
+							}
+							mysqli_free_result($degree);
+						?>
+						"<select></div>"
+						text += "<div class='col'><button type='button' class='btn btn-danger btn-block deldegree1 '>ลบ</button></div></div>"
 						+ "</li>"
+
 				
 						$(".loaddegree").append(text);
 					}else{
@@ -277,74 +249,7 @@
 							}
 					}
 // END ปริญญาตรี
-//  ปริญญาโท
-			$("button.cleardegree2").on("click",function(e) {
-				e.preventDefault();
-			var r = confirm("คณต้องการล้างใช่ไหม?");
-			if(r == true){
-					$('.loaddegree2').html("");
-				}
-			});
-			$("button.adddegree2").on("click",function(e) {
-				e.preventDefault();
-			degreeload2()
-			});
-			$('.loaddegree2').on('click', '.deldegree2', function(e) {
-			e.preventDefault();
-			var r = confirm("คณต้องการลบใช่ไหม?");
-	if (r == true) {
-				$(this).parent().remove();
-				}
-			});
-				function degreeload2(){
-					var count =$('.loaddegree2 li').length
-					if(count < 10 && count >= 0){
-						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control'  placeholder='จบสาขาวิชา' name='degn2[]'> "
-						+ "<input type='text'class='form-control'  placeholder='จบที่'  name='degaddes2[]'> "
-						+ "<button type='button' class='btn btn-danger btn-block deldegree2 '>ลบ</button>"
-						+ "</li>"
-				
-						$(".loaddegree2").append(text);
-					}else{
-						alert("ไม่สามารเพื่มได้แล้ว");
-							}
-					}
-// END ปริญญาโท
-// ปริญญาเอก
-			$("button.cleardegree3").on("click",function(e) {
-				e.preventDefault();
-			var r = confirm("คณต้องการล้างใช่ไหม?");
-			if(r == true){
-					$('.loaddegree3').html("");
-				}
-						});
-			$("button.adddegree3").on("click",function(e) {
-				e.preventDefault();
-			degreeload3()
-			});
-			$('.loaddegree3').on('click', '.deldegree3', function(e) {
-			e.preventDefault();
-			var r = confirm("คณต้องการลบใช่ไหม?");
-	if (r == true) {
-				$(this).parent().remove();
-				}
-			});
-				function degreeload3(){
-					var count =$('.loaddegree3 li').length
-					if(count < 10 && count >= 0){
-						var text = "<li class='list-group-item'>"
-						+ "<input type='text' class='form-control'  placeholder='จบสาขาวิชา' name='degn3[]'> "
-						+ "<input type='text'class='form-control'  placeholder='จบที่'  name='degaddes3[]'> "
-						+ "<button type='button' class='btn btn-danger btn-block deldegree3 '>ลบ</button>"
-						+ "</li>"
-				
-						$(".loaddegree3").append(text);
-					}else{
-						alert("ไม่สามารเพื่มได้แล้ว");
-							}
-					}
-// END ปริญญาเอก
+
 
 			$('#edituser input').change(function(event) {
 				/* Act on the event */

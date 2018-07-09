@@ -24,7 +24,7 @@ if(!empty($_FILES['pic']['name'])){
 	    if($check !== false) {
 	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
-	       // copy($_FILES["pic"]["tmp_name"], "$target_file");
+	        //copy($_FILES["pic"]["tmp_name"], "$target_file");
 	        $imgname=$name;
 	        
 	    } else {
@@ -37,21 +37,38 @@ if(!empty($_FILES['pic']['name'])){
  $imgname="user_default.svg";
 }
 
-/*
-echo $_POST['degn1']." ==> ";
-echo $_POST['degaddes1']." ==> ";
-echo $_POST['degn2']." ==> ";
-echo $_POST['degaddes2']." ==> ";
-echo $_POST['degn3']." ==> ";
-echo $_POST['degaddes3']." ==> ";
-*/
-
 
  $sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
 echo $sql;
+mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
 
- // mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
- //     mysqli_close($con);
+$result = mysqli_query($con,"SELECT MAX(gen_id) FROM general") or die ("mysql error=>>".mysql_error($con));
+list($genid) = mysqli_fetch_row($result);
+
+
+if(!empty($_POST['degname']) && !empty($_POST['degaddes']) && !empty($_POST['degree'])){
+	// $sqlder ="";
+	$degname = $_POST['degname'];
+	$degaddes = $_POST['degaddes'];
+	$degree = $_POST['degree'];
+ 	
+
+	for($i=0;$i < count($degname);$i++){
+		$sqlder = "INSERT INTO education VALUES ('','".$genid."','".$degname[$i]."','".$degaddes[$i]."','".$degree[$i]."')";
+
+		mysqli_query($con,$sqlder) or  die ("mysql error=>>".mysql_error($con));
+
+	}
+
+	echo "<br>".$sqlder."<br>";
+
+
+}
+
+
+
+ 
+      mysqli_close($con);
 
 
 ?>
