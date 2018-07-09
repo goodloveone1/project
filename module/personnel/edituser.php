@@ -348,11 +348,12 @@ $('#edituser').validate({ // initialize the plugin
 	  $(".delbrn").click(function(){
 		var ideditsub =$(this).data("iddegree");
 		var degreename =$(this).data("degreename");
-		
+			
             var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
             if (r == true) {
-                $.post( "module/personnel/deletedegree.php", { id : iddegree}).done(function(data,txtstuta){
-                 
+				
+                $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
+					alert(data);
                     })
             }
 		
