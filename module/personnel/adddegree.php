@@ -30,15 +30,11 @@
 					</select>
                     </div>
                     <div class="form-group">
-                        <label > ชื่อวุฒิการศึกษา :</label>
+                        <label > วุฒิการศึกษา :</label>
                          <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
-                          <input type="hidden"    value=""  name="ed_id" size=40 require>
+                          <input type="hidden"    value=""  name="degree_name" size=40 require>
                     </div>
-                    <div class="form-group">
-                        <label > สถานที่จบการศึกษา :</label>
-                        <input type="text"   class="form-control" value=""  name="ed_loc" size=40 require>
-                    </div>
-                    
+                   
                     
                 </div>
                 <div class="modal-footer">
