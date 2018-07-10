@@ -8,36 +8,37 @@
        <a href=#> <button type="button" class="btn btn-block" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-sm-2">
-        <a href=#><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
+        <a href=#><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
     </div>
     <div class="col-md">
-        <h2>จัดการสาขา</h2>
+        <h2>จัดการวุฒิการศึกษา</h2>
     </div>
 </div>
-<table  class="table" id="tablebranch" >
+<table  class="table" id="tabldegree" >
     <thead class="thead-light">
          <tr>
             <th scope="col">ลำดับ</th>
-            <th scope="col">สาขา</th>
+            <th scope="col">วุฒการศึกษา</th>
             <th scope="col">แก้ไข</th>
             <th scope="col">ลบ</th>
         </tr>
     </thead>
 <tbody>
 <?php
-    $Sbranch=mysqli_query($con,"SELECT *FROM branch") or die("errorSQLselect".mysqli_error($con));
+    $sedegree=mysqli_query($con,"SELECT *FROM degree") or die("errorSQLselect".mysqli_error($con));
     $no=1;
-    while(list($branch_ID,$branch_Name)=mysqli_fetch_row($Sbranch)){
+    while(list($D_id,$D_name)=mysqli_fetch_row($sedegree)){
+      
         echo"
             <tr>
                 <td>$no</td>
-                <td>$branch_Name</td>
-                <td><a href='#'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-                <td><a href='#' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+                <td>$D_name</td>
+                <td><a href='#'class='editbrn' data-ideditsub='$D_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='#' class='delbrn' data-branchname='$D_name' data-ideditsub='$D_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
     }
-    mysqli_free_result($Sbranch);
+    mysqli_free_result($sedegree);
     mysqli_close($con);
 ?>
  </tbody>
@@ -45,7 +46,7 @@
 <div id="loadaddsub"></div> 
 
 <script>
-     $('#tablebranch').DataTable();
+     $('#tabldegree').DataTable();
     $(".editbrn").click(function( ){
         var ideditsub =$(this).data("ideditsub");
         

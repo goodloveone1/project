@@ -227,6 +227,7 @@
 	</div>
 </form>
 <div id="editD">
+<?php mysqli_close($con) ?>
 </div>
 
 <script type="text/javascript">
@@ -363,6 +364,7 @@ $('#edituser').validate({ // initialize the plugin
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
 					//table.ajex.reload(null,false);
+					//location.reload();
                     })
             }
 		
