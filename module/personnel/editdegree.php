@@ -72,7 +72,7 @@ $("#updatesu").click(function(event) {
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-            
+            $('#tbeucation').DataTable().ajax.reload();
         })
        
         

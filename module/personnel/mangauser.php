@@ -75,9 +75,16 @@
 				var action = $(this).data('action');
 				var genid = $(this).data('iduser');
 				
-				$.post('module/personnel/'+action+'.php', {id:genid}, function(data, textStatus, xhr) {
-					$("#detail").html(data);
+			
+				$.post('module/personnel/'+action+'.php', {id:genid}, function(){
+					
+				}).done(function(data){
+				
+					 $("#detail").html(data);
 				})
+
+			
+
 				
 			});
 
@@ -105,7 +112,7 @@
             	}
         	})
 
-			$('#example').dataTable();
+			$('#example').DataTable();
 
 
 		});
