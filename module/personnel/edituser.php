@@ -226,9 +226,10 @@
 
 	</div>
 </form>
-<div id="editD">
+<div id="addsub"></div>
+<div id="editD"></div>
 <?php mysqli_close($con) ?>
-</div>
+
 
 <script type="text/javascript">
 
@@ -371,7 +372,7 @@ $('#edituser').validate({ // initialize the plugin
 	})
         $("#adddegree").click(function( ){
 
-        $('#loadaddsub').load("module/personnel/addsubject.php",function(){
+        $('#loadaddsub').load("module/personnel/adddegree.php",function(){
             $('#addsub').modal('show');     
             });
          });
