@@ -36,7 +36,7 @@ $con=connect_db();
                 <td>$subject_name<ttd>
                     <td> $branch_name</td>
                     <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
-                    <td><a href='#' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+                    <td><a href='#'data-branchname='$subject_name' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
 
 
@@ -74,7 +74,8 @@ $con=connect_db();
         });
         $(".delbrn").click(function(){
             var ideditsub =$(this).data("ideditsub");
-            var r = confirm("คณต้องการลบใช่ไหม?");
+            var branchname =$(this).data("branchname");
+            var r = confirm("คณต้องการลบหลักสูตร "+branchname+" ใช่ไหม?");
             if (r == true) {
                 $.post( "module/personnel/delbranch.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");

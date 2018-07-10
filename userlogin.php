@@ -102,7 +102,7 @@
 				<div class="dropdown my-2 my-lg-0 mr-1" >
 					<a class="btn btn-sm dropdown-toggle text-light" href="javascript:void(0)" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-user-tie fa-lg d-inline-block "></i>
-						ทองดี สุขอิ่นใจ
+						<?php echo $_SESSION['user_fnaem'],"&nbsp;",$_SESSION['user_lnaem'] ?>
 					</a>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
