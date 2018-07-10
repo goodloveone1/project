@@ -180,7 +180,8 @@
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
-					<table class="table">
+					<table class="table" id="tbeducate">
+					<thead class="thead-light">
 					<tr>	
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
@@ -188,6 +189,8 @@
 							<th>แก้ไข</th>
 							<th>ลบ</th>
 					</tr>
+					</thead>
+					<tbody>
 					<?php
 						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
 						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
@@ -210,6 +213,7 @@
 					<tr>
 						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
 					</tr>
+					</tbody>
 					</table>
 				</div>
 			</div>
@@ -224,10 +228,14 @@
 </form>
 <div id="editD">
 </div>
+
 <script type="text/javascript">
 
-
+		//var table=$("#tbeducate").DataTable()
 		$(document).ready(function() {
+
+			
+		
 
 			selectsuj();
 
@@ -354,6 +362,7 @@ $('#edituser').validate({ // initialize the plugin
 				
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
+					//table.ajex.reload(null,false);
                     })
             }
 		
@@ -365,5 +374,5 @@ $('#edituser').validate({ // initialize the plugin
             });
          });
        	
-
+		
 </script>
