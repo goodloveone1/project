@@ -12,5 +12,5 @@ echo $sql;
 
 
 // $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
-
+mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 ?>

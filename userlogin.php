@@ -13,11 +13,14 @@
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
+
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
 		<script src="js/loadmain.js?Ver=0001" ></script> <!--FUNCTION LOAD MAIN -->
+
 		
 		<?php
 			require('function/menu.php');
+			
 		?>
 		<style type="text/css">
 			
@@ -36,10 +39,9 @@
 			aside p{
 				text-align: center;
 			}
-			aside , #main2 {
-				
-			}
 			
+			
+
 			#main2 {
 			border: none;
 			margin-left: 88px;
@@ -124,12 +126,14 @@
 
 				<script src="js/jquery-3.3.1.min.js"></script>
 				<script src="js/jquery.validate.min.js" ></script>
-				<script src="js/additional-methods.min.js" >
+				<script src="js/additional-methods.min.js" ></script>
 
 
 				<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 				<script src="bootstrap/js/bootstrap.js" ></script>
+
 				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
+				
 				<!-- IMGREDER -->
 				
 				<?php
@@ -279,8 +283,7 @@
 					var iconsizabig2 = " fa-2x ";
 					var iconsizasmall2 = " fa-sm";
 					if(window.innerWidth*window.devicePixelRatio <= 770 ){ /* CHECK หน้าจอ น้อยกว่า 770*/
-						
-						
+												
 						if (x.style.width == maxside2 && y.style.marginLeft == maxside2 || x.style.width == maxside && y.style.marginLeft == maxside) {
 							/*
 							x.style.width = minside;

@@ -27,6 +27,8 @@
 			</a>
 		
 	</div>
+</div>
+<div class="row mt-5">
 	<div class="col-md">
 	
 			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managesubject">
@@ -35,6 +37,17 @@
 				</div>
 				<div class="col-md">
 					<span class="col-md">จัดการสาขา </span>
+				</div>
+			</a>
+	</div>
+	<div class="col-md">
+	
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="managedegree" data-action="managesubject">
+				<div class="col-md">
+					<i class="fas fa-user-tie fa-7x mt-3"></i>
+				</div>
+				<div class="col-md">
+					<span class="col-md">จัดการวุฒิการศึกษา </span>
 				</div>
 			</a>
 	

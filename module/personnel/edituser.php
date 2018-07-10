@@ -177,10 +177,11 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group row">
+			<div class="form-group row " >
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
-					<table class="table">
+					<table class="table col-md display" id="tbeucation">
+					<thead>
 					<tr>	
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
@@ -188,28 +189,33 @@
 							<th>แก้ไข</th>
 							<th>ลบ</th>
 					</tr>
-					<?php
-						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
-						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
-							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
-							list($degree_name)=mysqli_fetch_row($deName);
-							echo"
-									<tr>
+					</thead>
+					<tbody>
+						
+
+				<!-- 	<?php
+						// $degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
+						// while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
+						// 	$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
+						// 	list($degree_name)=mysqli_fetch_row($deName);
+						// 	echo"
+						// 			<tr>
 							
-										<td>$degree_name</td>
-										<td>$ed_name</td>
-										<td>$ed_loc</td>
-										<td><a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-                						<td><a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+						// 				<td>$degree_name</td>
+						// 				<td>$ed_name</td>
+						// 				<td>$ed_loc</td>
+						// 				<td><a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+      //           						<td><a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
 										
-									</tr>
-							";
-						}
-						mysqli_free_result($degree);
-					?>
-					<tr>
-						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
-					</tr>
+						// 			</tr>
+						// 	";
+						// }
+						// mysqli_free_result($degree);
+					?> -->
+					<!-- <tr>
+						
+					</tr> -->
+					</tbody>
 					</table>
 				</div>
 			</div>
@@ -224,10 +230,28 @@
 </form>
 <div id="editD">
 </div>
-<script type="text/javascript">
 
+<button type="button" class="btn test"> test </button>
+<script >
 
 		$(document).ready(function() {
+	
+	$(".test").click(function(event) {
+		  $('#tbeucation').DataTable().ajax.reload();
+	});
+
+		$("#tbeucation").DataTable({
+			 "ajax" : {
+			 	 "url": "module/personnel/loaddatadegree.php",
+			 	 "data" : {getid: <?php echo $gen_id;?>},
+			 	 "type": "POST",
+				 "dataSrc":""
+			 }
+
+		});
+			
+
+			
 
 			selectsuj();
 
@@ -281,30 +305,7 @@
 		        // })
 			})	
 
-				
-				
-		
-
-			
-		});
-//ดูรหัส
-function chkpw() {
-    var x = document.getElementById("showpw");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-function chkpwcon() {
-    var x = document.getElementById("showconPW");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-		
+					
 //เซ็ค PW CON
 $('#edituser').validate({ // initialize the plugin
 						        rules: {
@@ -333,7 +334,10 @@ $('#edituser').validate({ // initialize the plugin
 
 						    });
 		
-	   $(".editbrn").click(function(){
+		$("#tbeucation").on('click', '.editbrn', function(event) {
+			event.preventDefault();
+		// });	
+	 //   $(".editbrn").click(function(){
         var iddegree =$(this).data("iddegree");
         
         $.post("module/personnel/editdegree.php", { id : iddegree }).done(function(data){
@@ -345,7 +349,9 @@ $('#edituser').validate({ // initialize the plugin
         
         });						
 
-	  $(".delbrn").click(function(){
+$("#tbeucation").on('click', '.delbrn', function(event) {
+			event.preventDefault();
+	  // $(".delbrn").click(function(){
 		var ideditsub =$(this).data("iddegree");
 		var degreename =$(this).data("degreename");
 			
@@ -354,16 +360,45 @@ $('#edituser').validate({ // initialize the plugin
 				
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
+					 $('#tbeucation').DataTable().ajax.reload();
                     })
+
+               
             }
 		
 	})
-        $("#adddegree").click(function( ){
+
+$("#tbeucation").on('click', '#adddegree', function(event) {
+		event.preventDefault();
+        // $("#adddegree").click(function( ){
 
         $('#loadaddsub').load("module/personnel/addsubject.php",function(){
             $('#addsub').modal('show');     
             });
-         });
+         });	
+				
+		
+
+			
+		});
+//ดูรหัส
+function chkpw() {
+    var x = document.getElementById("showpw");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+function chkpwcon() {
+    var x = document.getElementById("showconPW");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
        	
 
 </script>
