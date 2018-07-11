@@ -32,11 +32,13 @@
                     <div class="form-group">
                         <label > ชื่อวุฒิการศึกษา :</label>
                          <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
-                          <input type="hidden"    value=""  name="ed_id" size=40 require>
+                          <input type="hidden"    value=""  name="ed_id" size=40>
+                          <input type="hidden"   class="form-control" value=""  name="gen_id" size=40 >
                     </div>
                     <div class="form-group">
                         <label > สถานที่จบการศึกษา :</label>
                         <input type="text"   class="form-control" value=""  name="ed_loc" size=40 require>
+                       
                     </div>
                     
                     
