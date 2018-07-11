@@ -26,7 +26,7 @@
 							
 							while(list($id_D,$name_D) = mysqli_fetch_row($edu)){
 								
-								echo "<option value='".$id_D."'$seleced>$name_D</option>";
+								echo "<option value='".$id_D."'>$name_D</option>";
 							}
 							mysqli_free_result($edu);
 						?>
