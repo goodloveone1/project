@@ -67,12 +67,12 @@ $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
         $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+             //alert(data);
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-            $('#tbeucation').DataTable().ajax.reload();
+            $('#tabldegree').DataTable().ajax.reload();
         })
        
         

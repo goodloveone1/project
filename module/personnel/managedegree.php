@@ -77,7 +77,7 @@
                 $.post( "module/personnel/deletedegree.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
-                    alert(data);
+                   // alert(data);
                     loadmain(module1,action);
                     })
             }
