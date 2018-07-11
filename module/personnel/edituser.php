@@ -307,18 +307,7 @@
 					        processData: false
 					    });
 				}
-				// $.post( "module/personnel/updateuser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
-            	 	//alert(data);
-		        // });
-
-		        // $('#editsub').modal("hide");
-
-		        // $('#editsub').on('hidden.bs.modal', function (e) {
-
-		        //     var module1 = sessionStorage.getItem("module1");
-		        //     var action = sessionStorage.getItem("action");
-		        //    loadmain(module1,action);
-		        // })
+				
 			})	
 
 					
@@ -376,13 +365,10 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 				
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
-<<<<<<< HEAD
+
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
-					 
-=======
-					//table.ajex.reload(null,false);
-					//location.reload();
->>>>>>> c7f58b93ef7d9b8f38c6b9b653ccb8cbb444a9e4
+			 
+
                     })
 
                
