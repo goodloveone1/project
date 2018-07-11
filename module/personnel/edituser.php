@@ -180,8 +180,12 @@
 			<div class="form-group row " >
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
-					<table class="table" id="tbeducate">
-					<thead class="thead-light">
+
+
+					<table class="table col-md display" id="tbeucation">
+					<thead>
+
+				
 					<tr>	
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
@@ -191,28 +195,9 @@
 					</tr>
 					</thead>
 					<tbody>
-					<?php
-						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
-						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
-							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
-							list($degree_name)=mysqli_fetch_row($deName);
-							echo"
-									<tr>
-							
-						// 				<td>$degree_name</td>
-						// 				<td>$ed_name</td>
-						// 				<td>$ed_loc</td>
-						// 				<td><a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-      //           						<td><a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
-										
-									</tr>
-							";
-						}
-						mysqli_free_result($degree);
-					?>
-					<tr>
-						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
-					</tr>
+
+
+
 					</tbody>
 					</table>
 				</div>
@@ -250,11 +235,6 @@
 
 		});
 			
-
-			
-
-			
-		
 
 			selectsuj();
 
@@ -294,18 +274,7 @@
 					        processData: false
 					    });
 				}
-				// $.post( "module/personnel/updateuser.php", $( "#edituser" ).serialize()).done(function(data,txtstuta){
-            	 	//alert(data);
-		        // });
-
-		        // $('#editsub').modal("hide");
-
-		        // $('#editsub').on('hidden.bs.modal', function (e) {
-
-		        //     var module1 = sessionStorage.getItem("module1");
-		        //     var action = sessionStorage.getItem("action");
-		        //    loadmain(module1,action);
-		        // })
+				
 			})	
 
 					
@@ -363,8 +332,10 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 				
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
-					//table.ajex.reload(null,false);
-					//location.reload();
+
+					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
+			 
+
                     })
 
                
