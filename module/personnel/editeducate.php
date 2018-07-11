@@ -27,7 +27,7 @@
 							$edu = mysqli_query($con,"SELECT *FROM degree") or die ("error".mysqli_error($con));
 							
 							while(list($id_D,$name_D) = mysqli_fetch_row($edu)){
-								$seleced=$id_D==$ed_iD?"selected":""; 
+								$seleced=$id_D==$degree_iD?"selected":""; 
 								echo "<option value='".$id_D."'$seleced>$name_D</option>";
 							}
 							mysqli_free_result($edu);
@@ -66,7 +66,7 @@
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/personnel/updateeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
         $('#editsub').modal("hide");
