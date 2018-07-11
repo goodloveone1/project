@@ -284,7 +284,7 @@
 					});	
 			$("#edituser").submit(function(e){
 
-				
+				e.preventDefault();
 				
 					$check = $("#edituser").valid();
 

@@ -48,7 +48,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
+                    <button type="button" class="btn btn-primary" id="updateedu">บันทึก</button>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
 
 <script type="text/javascript">
 
-$("#updatesu").click(function(event) {
+$("#updateedu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
         $.post( "module/personnel/updateeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){

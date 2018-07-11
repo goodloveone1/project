@@ -4,7 +4,7 @@
 	$con=connect_db();
 ?>
 <div class="row  p-2 headtitle">
-	<div class="col-md-2" style="display: block;"><a href="javascript:void(0)" class="managaedituser" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button></a>
+	<div class="col-md-2" style="display: block;"><a href="javascript:void(0)" id="btnre" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button></a>
 	
 </div>
 
@@ -69,6 +69,15 @@
 <!-- <a href="#" class="mangadeluser" data-modules="personnel" data-action="edituser">cdhw-</a> LINK TO EDIT -->
 <script type="text/javascript">
 		$(document).ready(function() {
+
+			$("#btnre").click(function(event) {
+				var module1 = $(this).data('modules');
+				var action = $(this).data('action');
+
+				loadmain(module1,action);
+			});
+
+
 			$("a.managaedituser").click(function(){
 
 				var module1 = $(this).data('modules');
