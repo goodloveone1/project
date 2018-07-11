@@ -66,13 +66,18 @@
 $("#updateedu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
+<<<<<<< HEAD
+        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+             //alert(data);
+=======
         $.post( "module/personnel/updateeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
+>>>>>>> c5582a2c89c5160c668d8f9dc71f2d6603966e44
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-            $('#tbeucation').DataTable().ajax.reload();
+            $('#tabldegree').DataTable().ajax.reload();
         })
        
         

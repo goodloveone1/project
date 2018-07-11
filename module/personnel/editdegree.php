@@ -2,9 +2,9 @@
 	include("../../function/db_function.php");
     $con=connect_db();
     
-    $dee = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE ed_id='$_POST[id]'") or die ("error".mysqli_error($con));
+    $dee = mysqli_query($con,"SELECT *FROM degree WHERE degree_id='$_POST[id]'") or die ("error".mysqli_error($con));
     
-    list($ed_iD,$degree_iD,$ed_name,$ed_Locate)=mysqli_fetch_row($dee);
+    list($degree_id,$degree_name)=mysqli_fetch_row($dee);
    
 ?>
 
@@ -22,9 +22,9 @@
                 <div class="modal-body">
                 
                     <div class="form-group">
-                        <label > ชื่อวุฒิการศึกษา :</label>
-                         <input type="text"   class="form-control" value="<?php echo $ed_name ?>"  name="ed_name" size=40 require>
-                          <input type="hidden"    value="<?php echo $ed_iD ?>"  name="ed_id" size=40 require>
+                        <label > วุฒิการศึกษา :</label>
+                         <input type="text"   class="form-control" value="<?php echo $degree_name ?>"  name="degree_name" size=40 require>
+                          <input type="hidden"    value="<?php echo $degree_id ?>"  name="degree_id" size=40 require>
                     </div>
                     
                 </div>
@@ -49,12 +49,17 @@ $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
         $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+              alert(data);
+              
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
             $('#tbeucation').DataTable().ajax.reload();
+
+             var module1 = sessionStorage.getItem("module1");
+                    var action = sessionStorage.getItem("action");
+                    loadmain(module1,action);
         })
        
         

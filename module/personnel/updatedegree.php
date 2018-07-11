@@ -2,14 +2,12 @@
 include("../../function/db_function.php");
 $con=connect_db();
 
-echo $id_degree = $_POST['degree_id'];
-echo $ed_id = $_POST['ed_id'];
-echo $ed_name = $_POST['ed_name'];
-echo $ed_loc = $_POST['ed_loc'];
-echo"<hr>";
-$sql = "UPDATE education SET ed_id = '$ed_id' , ed_name = '$ed_name',ed_loc = '$ed_loc',degree_id='$id_degree'  WHERE  ed_id = '$ed_id'";
+$degree_id = $_POST['degree_id'];
+$degree_name = $_POST['degree_name'];
 
-//echo $sql;
+$sql = "UPDATE degree SET degree_id = '$degree_id' , degree_name = '$degree_name' WHERE  degree_id = '$degree_id'";
+
+
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 
 ?>
