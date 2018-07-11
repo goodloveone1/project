@@ -251,9 +251,6 @@
 // END ปริญญาตรี
 
 
-			$('#edituser input').change(function(event) {
-				/* Act on the event */
-		
 			$('#edituser').validate({ // initialize the plugin
 						        rules: {
 						            passwd: {
@@ -281,7 +278,7 @@
 
 						    });
 		
-					});	
+			
 			$("#edituser").submit(function(e){
 
 				e.preventDefault();
@@ -317,12 +314,7 @@
 		})
 
 	
-		// $('#editsub').modal("hide");
-		// $('#editsub').on('hidden.bs.modal', function (e) {
-		//     var module1 = sessionStorage.getItem("module1");
-		//     var action = sessionStorage.getItem("action");
-		//    loadmain(module1,action);
-		// })
+	
 			
 				
 				

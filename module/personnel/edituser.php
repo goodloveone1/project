@@ -274,6 +274,8 @@
 					        processData: false
 					    });
 				}
+
+				loadmain("personnel","mangauser")
 				
 			})	
 
