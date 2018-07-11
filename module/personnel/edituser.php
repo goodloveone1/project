@@ -225,7 +225,7 @@
 					<tr>
 						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
 					</tr>
->>>>>>> c7f58b93ef7d9b8f38c6b9b653ccb8cbb444a9e4
+
 					</tbody>
 					</table>
 				</div>
