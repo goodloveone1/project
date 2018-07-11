@@ -20,12 +20,30 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                
+                <div class="form-group">
+                        <label> วุฒิการศึกษา :</label>
+                        <select class="form-control"  name="degree_id">
+						<?php
+							$edu = mysqli_query($con,"SELECT *FROM degree") or die ("error".mysqli_error($con));
+							
+							while(list($id_D,$name_D) = mysqli_fetch_row($edu)){
+								$seleced=$id_D==$ed_iD?"selected":""; 
+								echo "<option value='".$id_D."'$seleced>$name_D</option>";
+							}
+							mysqli_free_result($edu);
+						?>
+					</select>
+                    </div>
                     <div class="form-group">
                         <label > ชื่อวุฒิการศึกษา :</label>
                          <input type="text"   class="form-control" value="<?php echo $ed_name ?>"  name="ed_name" size=40 require>
                           <input type="hidden"    value="<?php echo $ed_iD ?>"  name="ed_id" size=40 require>
                     </div>
+                    <div class="form-group">
+                        <label > สถานที่จบการศึกษา :</label>
+                        <input type="text"   class="form-control" value="<?php echo $ed_Locate ?>"  name="ed_loc" size=40 require>
+                    </div>
+                    
                     
                 </div>
                 <div class="modal-footer">

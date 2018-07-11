@@ -312,7 +312,7 @@ $('#edituser').validate({ // initialize the plugin
 	 //   $(".editbrn").click(function(){
         var iddegree =$(this).data("iddegree");
         
-        $.post("module/personnel/editdegree.php", { id : iddegree }).done(function(data){
+        $.post("module/personnel/editeducate	.php", { id : iddegree }).done(function(data){
 			// alert(data);
         $('#editD').html(data);
          $('#editsub').modal('show');
@@ -330,7 +330,7 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
             var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
             if (r == true) {
 				
-                $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
+                $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
 
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
