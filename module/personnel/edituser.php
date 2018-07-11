@@ -181,8 +181,13 @@
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
 
+
 					<table class="table col-md display" id="tbeucation">
 					<thead>
+
+					<table class="table" id="tbeducate">
+					<thead class="thead-light">
+
 
 					<table class="table" id="tbeducate">
 					<thead class="thead-light">
@@ -197,10 +202,30 @@
 					</thead>
 					<tbody>
 
-						
 
-				
-
+					<?php
+						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
+						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
+							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
+							list($degree_name)=mysqli_fetch_row($deName);
+							echo"
+									<tr>
+							
+						// 				<td>$degree_name</td>
+						// 				<td>$ed_name</td>
+						// 				<td>$ed_loc</td>
+						// 				<td><a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+      //           						<td><a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+										
+									</tr>
+							";
+						}
+						mysqli_free_result($degree);
+					?>
+					<tr>
+						<td><button type="button" class="adddegree" data-toggle="modal">เพิ่มวุฒิการศึกษา</button></td>
+					</tr>
+>>>>>>> c7f58b93ef7d9b8f38c6b9b653ccb8cbb444a9e4
 					</tbody>
 					</table>
 				</div>
@@ -214,16 +239,12 @@
 
 	</div>
 </form>
-<div id="editD">
+<div id="addsub"></div>
+<div id="editD"></div>
 <?php mysqli_close($con) ?>
-</div>
 
-<<<<<<< HEAD
-<button type="button" class="btn test"> test </button>
-<script >
-=======
+
 <script type="text/javascript">
->>>>>>> b7c57adf2749352236a9a791a32480176bf19f8d
 
 		//var table=$("#tbeducate").DataTable()
 		$(document).ready(function() {
@@ -355,8 +376,13 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 				
                 $.post( "module/personnel/deletedegree.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
+<<<<<<< HEAD
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
 					 
+=======
+					//table.ajex.reload(null,false);
+					//location.reload();
+>>>>>>> c7f58b93ef7d9b8f38c6b9b653ccb8cbb444a9e4
                     })
 
                
@@ -368,7 +394,7 @@ $("#tbeucation").on('click', '#adddegree', function(event) {
 		event.preventDefault();
         // $("#adddegree").click(function( ){
 
-        $('#loadaddsub').load("module/personnel/addsubject.php",function(){
+        $('#loadaddsub').load("module/personnel/adddegree.php",function(){
             $('#addsub').modal('show');     
             });
          });	
