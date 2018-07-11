@@ -308,15 +308,14 @@ $('#edituser').validate({ // initialize the plugin
 		
 		$("#tbeucation").on('click', '.editbrn', function(event) {
 			event.preventDefault();
-		// });	
-	 //   $(".editbrn").click(function(){
+	
         var iddegree =$(this).data("iddegree");
         
-        $.post("module/personnel/editeducate	.php", { id : iddegree }).done(function(data){
-			// alert(data);
-        $('#editD').html(data);
-         $('#editsub').modal('show');
-        })
+	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
+				// alert(data);
+	        $('#editD').html(data);
+	         $('#editsub').modal('show');
+	        })
         
         
         });						
@@ -345,17 +344,19 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 
 $("#tbeucation").on('click', '#adddegree', function(event) {
 		event.preventDefault();
-        // $("#adddegree").click(function( ){
-
-        $('#loadaddsub').load("module/personnel/adddegree.php",function(){
-            $('#addsub').modal('show');     
-            });
-         });	
-				
+        
+			var genids =$(this).data("genid");
+        
+	        $.post("module/personnel/formeducate.php", { genid : genids }).done(function(data){
+				// alert(data);
+	        $('#addsub').html(data);
+	         $('#addedu').modal('show');
+	        })	
 		
 
 			
 		});
+	});
 //ดูรหัส
 function chkpw() {
     var x = document.getElementById("showpw");
