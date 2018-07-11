@@ -267,7 +267,7 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data)
+					            alert(data);
 					        },
 					        cache: false,
 					        contentType: false,
@@ -348,7 +348,7 @@ $("#tbeucation").on('click', '#adddegree', function(event) {
 			var genids =$(this).data("genid");
         
 	        $.post("module/personnel/formeducate.php", { genid : genids }).done(function(data){
-				// alert(data);
+				alert(data);
 	        $('#addsub').html(data);
 	         $('#addedu').modal('show');
 	        })	
