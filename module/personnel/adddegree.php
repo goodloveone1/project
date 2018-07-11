@@ -15,20 +15,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <div class="form-group">
-                        <label> วุฒิการศึกษา :</label>
-                        <select class="form-control"  name="degree_id">
-						<?php
-							$edu = mysqli_query($con,"SELECT *FROM degree") or die ("error".mysqli_error($con));
-							
-							while(list($id_D,$name_D) = mysqli_fetch_row($edu)){
-				
-								echo "<option value='".$id_D."'>$name_D</option>";
-							}
-							mysqli_free_result($edu);
-						?>
-					</select>
-                    </div>
                     <div class="form-group">
                         <label > วุฒิการศึกษา :</label>
                          <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
@@ -58,12 +44,15 @@ $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
         $.post( "module/personnel/adddatadegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+             
          });
+         
         $('#addsub').modal("hide");
 
         $('#addsub').on('hidden.bs.modal', function (e) {
-            
+            var module1 = sessionStorage.getItem("module1")
+            var action = sessionStorage.getItem("action")
+            loadmain(module1,action);
         })
        
         

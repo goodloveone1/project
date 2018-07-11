@@ -30,6 +30,7 @@ function modules(module1,action){
 				case "editsubjects":break;
 				case "formuser":break;
 				case "editdegree":break;
+				case "managedegree":break;
 			   	default: action = "404";  
 			}
 

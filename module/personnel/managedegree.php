@@ -50,7 +50,7 @@
     $(".editbrn").click(function( ){
         var ideditsub =$(this).data("ideditsub");
         
-        $.post("module/personnel/editsubject.php", { id : ideditsub }).done(function(data){
+        $.post("module/personnel/editdegree.php", { id : ideditsub }).done(function(data){
         $('#loadeditsub').html(data);
         $('#editsub').modal('show');
         })
@@ -71,20 +71,22 @@
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
 
-            var r = confirm("ต้องการลบสาขา "+branchname+" ใช่หรือไม่?");
+            var r = confirm("ต้องการลบวุฒิ "+branchname+" ใช่หรือไม่?");
             if (r == true) {
-                $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
+            
+                $.post( "module/personnel/deletedegree.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
-    
+                    alert(data);
                     loadmain(module1,action);
                     })
             }
         })
         $("#addbrn").click(function( ){
 
-        $('#loadaddsub').load("module/personnel/addsubject.php",function(){
-            $('#addsub').modal('show');     
+        $('#loadaddsub').load("module/personnel/adddegree.php",function(){
+            $('#addsub').modal('show');   
+            alert(data); 
             });
          });
        

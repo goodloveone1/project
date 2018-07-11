@@ -2,9 +2,9 @@
 	include("../../function/db_function.php");
     $con=connect_db();
     
-    $dee = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE ed_id='$_POST[id]'") or die ("error".mysqli_error($con));
+    $dee = mysqli_query($con,"SELECT *FROM degree WHERE degree_id='$_POST[id]'") or die ("error".mysqli_error($con));
     
-    list($ed_iD,$degree_iD,$ed_name,$ed_Locate)=mysqli_fetch_row($dee);
+    list($degree_id,$degree_name)=mysqli_fetch_row($dee);
    
 ?>
 
@@ -20,28 +20,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <div class="form-group">
-                        <label> วุฒิการศึกษา :</label>
-                        <select class="form-control"  name="degree_id">
-						<?php
-							$edu = mysqli_query($con,"SELECT *FROM degree") or die ("error".mysqli_error($con));
-							
-							while(list($id_D,$name_D) = mysqli_fetch_row($edu)){
-								$seleced=$id_D==$ed_iD?"selected":""; 
-								echo "<option value='".$id_D."'$seleced>$name_D</option>";
-							}
-							mysqli_free_result($edu);
-						?>
-					</select>
-                    </div>
+                   
                     <div class="form-group">
-                        <label > ชื่อวุฒิการศึกษา :</label>
-                         <input type="text"   class="form-control" value="<?php echo $ed_name ?>"  name="ed_name" size=40 require>
-                          <input type="hidden"    value="<?php echo $ed_iD ?>"  name="ed_id" size=40 require>
-                    </div>
-                    <div class="form-group">
-                        <label > สถานที่จบการศึกษา :</label>
-                        <input type="text"   class="form-control" value="<?php echo $ed_Locate ?>"  name="ed_loc" size=40 require>
+                        <label > วุฒิการศึกษา :</label>
+                        <input type="text"   class="form-control" value="<?php echo $degree_name ?>"  name="ed_loc" size=40 require>
                     </div>
                     
                     
@@ -66,7 +48,7 @@
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/personnel/editdegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
         $('#editsub').modal("hide");
