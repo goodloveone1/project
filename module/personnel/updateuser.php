@@ -10,7 +10,7 @@ if (empty($_FILES['pic_u']['name'])){
 }
 else{
     $sum_name=date("dmyhis")."abcdefghirstuvwxyz";//เวลา+ตัวอักษร
-    $char=substr(str_shuffle($sum_name),0,5);	//ตัดให้เหลือ 5 ตัว
+    $char=substr(str_shuffle($sum_name),0,10);	//ตัดให้เหลือ 10 ตัว
    $pic_user=$char."_".$_FILES['pic_u']['name'];//ชื่อไฟล์
    $pic_usertemp=$_FILES['pic_u']['tmp_name'];
     copy($pic_usertemp,"../../img/$pic_user");

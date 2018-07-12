@@ -113,9 +113,9 @@
             var r = confirm("ต้องการลบข้อมูล "+nuser+" ใช่หรือไม่?");
             if (r == true) {
                 $.post( "module/personnel/deluser.php", {id : iduser}).done(function(data,txtstuta){
+					alert(data);
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
-    				// alert(data);
                     loadmain(module1,action);
                     })
             	}
