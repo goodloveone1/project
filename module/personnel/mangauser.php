@@ -18,15 +18,29 @@
 <div class="row">
 <div class="col-md-12 mt-2">
 	<table class="table" id="example">
+	<form method="post">
 		<thead class="thead-light">
 			<tr>
-				<th scope="col">ลำดับ</th>
-				<th scope="col">ชื่อ </th>
-				<th scope="col">นามสกุล</th>
-				<th scope="col">สาขา</th>
-				<th scope="col">หลักสูตร</th>
-				<th scope="col">แก้ไข</th>
-				<th scope="col">ลบ</th>
+				<?php
+					if(!empty($_GET['se'])){
+						echo "<th><a href='#' class='select1' >ไม่เลือก</a></th>";
+						$ch="checked";
+						}
+						else{
+							echo "<th><a href='#' class='select2' >เลือก</a></th>";
+						$ch="";
+							}
+					
+				echo"
+				<th scope='col'>ลำดับ</th>
+				<th scope='col'>ชื่อ </th>
+				<th scope='col'>นามสกุล</th>
+				<th scope='col'>สาขา</th>
+				<th scope='col'>หลักสูตร</th>
+				<th scope='col'>แก้ไข</th>
+				<th scope='col'>ลบ</th>";
+
+				?>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,7 +58,7 @@
 							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
 							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
-							<tr>
+							<tr>		<td><input type='checkbox' name='del_id[]' value='$gen_id' $ch></td>
 										<td>$i</td>					
 										<td>$gen_fname</td>
 										<td>$genlname</td>
@@ -55,13 +69,17 @@
 									";
 							$i++;
 							}
+							
 				
-					
+							
 				?>
 				
 			</tbody>
+		</form>
 		</table>
-		
+		<tfoot>
+		<p><input type="submit" value="ลบที่เลือก"></p>
+		</tfoot>
 	</div>
 	
 </div>
@@ -122,8 +140,28 @@
         	})
 
 			$('#example').DataTable();
+			
+			$(".select1").click(function(){
+				$.get("module/personnel/mangauser.php",{se : ""}).done(function(data,txtstuta){
+					alert(data);
+                    // var module1 = sessionStorage.getItem("module1");
+                    // var action = sessionStorage.getItem("action");
+                    // loadmain(module1,action);
+					$("#detail").html(data);
+                    })
+			});
+
+			$(".select2").click(function(){
+				$.get("module/personnel/mangauser.php",{se : "1"}).done(function(data,txtstuta){
+					alert(data);
+					$("#detail").html(data);
+                    })
+			});
 
 
 		});
+
+
+
 </script>
 <!-- aleat-->
