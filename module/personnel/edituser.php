@@ -7,7 +7,7 @@
 	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($gen_id,$gen_user,$gen_pass,$branch_id,$sub_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
-	$userphoto=empty($gen_pict)?"user_default.svg":$gen_pict;
+	$userphoto=empty($gen_pict)?"default/user_default.svg":$gen_pict;
 ?>
 
 <div class=" headtitle text-center p-2 row mb-2 row">

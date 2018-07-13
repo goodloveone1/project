@@ -17,8 +17,9 @@
 </div>
 <div class="row">
 <div class="col-md-12 mt-2">
+<form  id="delall">
 	<table class="table" id="example">
-	<form method="post" id="del_all">
+	
 		<thead class="thead-light">
 			<tr>
 				<?php
@@ -58,7 +59,7 @@
 							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
 							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
-							<tr>		<td><input type='checkbox' name='del_id[]' value='$gen_id' $ch></td>
+							<tr>		<td><input type='checkbox' name='delid[]' value='$gen_id' $ch></td>
 										<td>$i</td>					
 										<td>$gen_fname</td>
 										<td>$genlname</td>
@@ -73,10 +74,13 @@
 				
 							
 				?>
+			
 				
 			</tbody>
-		</form>
+	
 		</table>
+		<input type="hidden" name="test" value="1">
+			</form>
 		<tfoot>
 		<p><input type="button" value="ลบที่เลือก" id="btndelall" ></p>
 		</tfoot>
@@ -157,10 +161,25 @@
 					$("#detail").html(data);
                     })
 			});
-			$("#btndelall").click(funtion(){
-				$.post("module/personnel/deluser.php",$("#del_all").serialize()).done(function(data,txtstuta){
+
+			$("#btndelall").click(function(){
+	
+				var text=$("input[name='delid[]']:checked").val();
+
+				
+
+				if(text!=undefined){
+					$.post("module/personnel/deluser.php",$("#delall").serialize()).done(function(data,txtstuta){
 					alert(data);
+					var module1 = sessionStorage.getItem("module1");
+                    var action = sessionStorage.getItem("action");
+                    loadmain(module1,action);
 				})
+				}
+				else{
+					alert("กรุณาเลือกข้อมูลที่ต้องการลบ");
+				}
+				
 			})
 
 		});

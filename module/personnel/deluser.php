@@ -2,6 +2,8 @@
 include("../../function/db_function.php");
 $con=connect_db();
 
+$msg = "";
+
 if(!empty($_POST['id']))
 {
 
@@ -23,12 +25,39 @@ if(!empty($_POST['id']))
   
   mysqli_query ($con,$sqldel) or die ("error".mysqli_error($con));
   echo $msg;
-}
-else if(empty($_POST['del_id'])){
-
-
-}
-
   mysqli_fetch_row($selecUser);
+}
+else if(empty($_POST['delid'])){
+ echo "กรุณาเลือกข้อมูลที่ต้องการลบ";
+
+
+}
+else{
+  $del_id=$_POST['delid'];
+  //print_r($del_id);
+  foreach($del_id as $id ){
+    $selecUser=mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,gen_pict FROM general WHERE gen_id='$id'") or die("sqlError".mysqli_error($con));
+    list($gen_id,$gen_fname,$gen_lname,$gen_pict)=mysqli_fetch_row($selecUser);
+    
+    if(!empty($gen_pict)){
+      if(file_exists("../../img/$gen_pict"))//ถ้าไม่ว่างให่ใช้คำสั่ง unlink("ตำแหน่งของไฟล์รูป"); ทำการลบ
+        {
+           unlink("../../img/$gen_pict"); //คำสั่ง unlink("ตำแหน่งของไฟล์รูป");
+        }
+      
+      }
+  
+      
+          $sql="DELETE FROM general WHERE gen_id='$id'";
+          mysqli_query($con,$sql)or die ("erroe=>".mysqli_error($con));
+          $msg="ลบข้อมูลบุคลากรชือ $gen_fname $gen_lname เรียบร้อยแล้ว\n";
+          echo $msg;
+      }
+         // echo "<script>alert('ลบเสรจแล้ว')</script>";
+         // echo "<script>window.location='manage_student.php'</script>";
+  
+}
+
+
   mysqli_close($con);
 ?>

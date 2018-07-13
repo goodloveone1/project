@@ -24,7 +24,7 @@ if(!empty($_FILES['pic']['name'])){
 	    if($check !== false) {
 	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
-	        //copy($_FILES["pic"]["tmp_name"], "$target_file");
+	        copy($_FILES["pic"]["tmp_name"], "$target_file");
 	        $imgname=$name;
 	        
 	    } else {
@@ -34,7 +34,7 @@ if(!empty($_FILES['pic']['name'])){
 	    }
 	
 }else{
- $imgname="user_default.svg";
+ $imgname="";
 }
 
 

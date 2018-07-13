@@ -14,7 +14,7 @@
 	<div class="row mt-2">
 		<div class="col-md-3">
 			<div class="card">
-				<img class="card-img-top img-thumbnail" src="img/user_default.svg" id="showpic" alt="Card image cap">
+				<img class="card-img-top img-thumbnail" src="img/default/user_default.svg" id="showpic" alt="Card image cap">
 
 				<div class="card-body text-center">
 					<div class="form-group row">
