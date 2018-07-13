@@ -2,9 +2,10 @@
 include("../../function/db_function.php");
 $con=connect_db();
 
+if(!empty($_POST['id']))
+{
 
-
-    $gen_id = $_POST['id'];
+   $gen_id = $_POST['id'];
     
     $selecUser=mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,gen_pict FROM general WHERE gen_id='$gen_id'") or die("sqlError".mysqli_error($con));
     list($gen_id,$gen_fname,$gen_lname,$gen_pict)=mysqli_fetch_row($selecUser);
@@ -22,6 +23,11 @@ $con=connect_db();
   
   mysqli_query ($con,$sqldel) or die ("error".mysqli_error($con));
   echo $msg;
+}
+else if(empty($_POST['del_id'])){
+
+
+}
 
   mysqli_fetch_row($selecUser);
   mysqli_close($con);

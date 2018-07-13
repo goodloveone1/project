@@ -18,7 +18,7 @@
 <div class="row">
 <div class="col-md-12 mt-2">
 	<table class="table" id="example">
-	<form method="post">
+	<form method="post" id="del_all">
 		<thead class="thead-light">
 			<tr>
 				<?php
@@ -78,7 +78,7 @@
 		</form>
 		</table>
 		<tfoot>
-		<p><input type="submit" value="ลบที่เลือก"></p>
+		<p><input type="button" value="ลบที่เลือก" id="btndelall" ></p>
 		</tfoot>
 	</div>
 	
@@ -157,7 +157,11 @@
 					$("#detail").html(data);
                     })
 			});
-
+			$("#btndelall").click(funtion(){
+				$.post("module/personnel/deluser.php",$("#del_all").serialize()).done(function(data,txtstuta){
+					alert(data);
+				})
+			})
 
 		});
 
