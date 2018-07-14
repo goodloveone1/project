@@ -225,7 +225,7 @@
 		  $('#tbeucation').DataTable().ajax.reload();
 	});
 
-		$("#tbeucation").DataTable({
+	$("#tbeucation").DataTable({
 			 "ajax" : {
 			 	 "url": "module/personnel/loaddatadegree.php",
 			 	 "data" : {getid: <?php echo $gen_id;?>},
@@ -233,7 +233,18 @@
 				 "dataSrc":""
 			 }
 
-		});
+	});
+
+	if ( $.fn.dataTable.isDataTable( '#tbeucation' ) ) {
+  
+	}
+	else {
+	    table = $('#tbeucation').DataTable( {
+	        paging: false
+	    } );
+	}
+
+		
 			
 
 			selectsuj();
