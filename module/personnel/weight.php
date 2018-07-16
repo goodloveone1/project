@@ -26,19 +26,19 @@
     </thead>
 <tbody>
 <?php
-    $Sbranch=mysqli_query($con,"SELECT *FROM branch") or die("errorSQLselect".mysqli_error($con));
+    $re=mysqli_query($con,"SELECT *FROM weights") or die("errorSQLselect".mysqli_error($con));
     $no=1;
-    while(list($branch_ID,$branch_Name)=mysqli_fetch_row($Sbranch)){
+    while(list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re)){
         echo"
             <tr>
                 <td>$no</td>
-                <td>$branch_Name</td>
-                <td><a href='#'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-                <td><a href='#' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+                <td>$weighs</td>
+                <td><a href='#'class='editbrn' data-ideditsub='$w_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='#' class='delbrn' data-branchname='$w_id' data-ideditsub='$w_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
     }
-    mysqli_free_result($Sbranch);
+    mysqli_free_result($re);
     mysqli_close($con);
 ?>
  </tbody>
