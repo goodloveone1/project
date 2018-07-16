@@ -23,6 +23,10 @@
 			
 		?>
 		<style type="text/css">
+
+		aside, #main2 , section#detail{
+			box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
 			
 			aside {
 			height: 100%;
@@ -34,6 +38,7 @@
 			padding-top: 10px;
 			border: none;
 			background-color: #513300;
+			/*box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 			
 			}
 			aside p{
@@ -61,9 +66,7 @@
 				text-indent: 1px;
 				font-size: 16px;
 			}
-			section#detail{
-				box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			}
+			
 			
 			/* COLOR MEMU */
 			.bt-color{
@@ -115,14 +118,14 @@
 			</nav>
 			<!-- MEUN END -->
 			<div class="container-fluid mt-2">
-				<div class="row">
-					<section class="col-md-12 pt-2 pb-2" id="detail">
+				
+					<section class="col-md-12  mt-0 pb-2" id="detail">
 						
 					</section>
 					<footer class="col-md-12 mt-3">
 						
 					</footer>
-				</div>
+			
 
 				<script src="js/jquery-3.3.1.min.js"></script>
 				<script src="js/jquery.validate.min.js" ></script>
@@ -133,7 +136,10 @@
 				<script src="bootstrap/js/bootstrap.js" ></script>
 
 				<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
-				
+
+				<script type="text/javascript" src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>				
 				<!-- IMGREDER -->
 				
 				<?php
@@ -146,6 +152,13 @@
 
 				
 				$(document).ready(function() {
+
+
+					$("#menuaside li").hover(function() {
+						
+					}, function() {
+						/* Stuff to do when the mouse leaves the element */
+					});
 
 
 					$("#usermenu").click(function(){

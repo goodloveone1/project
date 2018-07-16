@@ -22,7 +22,7 @@
 
 <form method="POST" enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
-		<div class="col-md-3">
+		<div class="col-lg-3">
 			<div class="card">
 				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md">
+		<div class="col-lg">
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
@@ -180,9 +180,9 @@
 			<div class="form-group row " >
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
+					
 
-
-					<table class="table col-md display" id="tbeucation">
+					<table class="table col-md display setdt" id="tbeucation">
 					<thead>
 
 				
@@ -200,6 +200,8 @@
 
 					</tbody>
 					</table>
+					<button type='button' class='btn mx-auto' id='adddegree' data-genid='$gen_id' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
+
 				</div>
 			</div>
 		</div>
@@ -218,22 +220,36 @@
 
 <script type="text/javascript">
 
-		//var table=$("#tbeducate").DataTable()
+		
 		$(document).ready(function() {
 	
-	$(".test").click(function(event) {
-		  $('#tbeucation').DataTable().ajax.reload();
-	});
-
-		$("#tbeucation").DataTable({
+	
+	
+	$("#tbeucation").DataTable({
 			 "ajax" : {
 			 	 "url": "module/personnel/loaddatadegree.php",
 			 	 "data" : {getid: <?php echo $gen_id;?>},
 			 	 "type": "POST",
 				 "dataSrc":""
-			 }
+			 },
+			 "language": {
+    		"search":         "ค้นหาข้อมูล:",
+    		 "zeroRecords": "ไม่พบข้มมูล",
+    	   }	
 
-		});
+	});
+
+	if ( $.fn.dataTable.isDataTable( '#tbeucation' ) ) {
+  
+	}
+	else {
+	    table = $('#tbeucation').DataTable( {
+	        paging: false
+	    } );
+	}
+
+	
+		
 			
 
 			selectsuj();
@@ -344,13 +360,13 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 		
 	})
 
-$("#tbeucation").on('click', '#adddegree', function(event) {
+$("#adddegree").on('click', function(event) {
 		event.preventDefault();
         
 			var genids =$(this).data("genid");
         
 	        $.post("module/personnel/formeducate.php", { genid : genids }).done(function(data){
-				alert(data);
+				//alert(data);
 	        $('#addsub').html(data);
 	         $('#addedu').modal('show');
 	        })	
