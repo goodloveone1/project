@@ -59,7 +59,7 @@
 							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
 							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
-							<tr>		<td><input type='checkbox' name='delid[]' value='$gen_id' $ch></td>
+							<tr>		<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$gen_id' $ch></div></td>
 										<td>$i</td>					
 										<td>$gen_fname</td>
 										<td>$genlname</td>
@@ -82,17 +82,16 @@
 		<input type="hidden" name="test" value="1">
 			</form>
 		<tfoot>
-		<p><input type="button" value="ลบที่เลือก" id="btndelall" ></p>
+		<p><input type="button " class="btn bg-success" value="ลบที่เลือก" id="btndelall" ></p>
 		</tfoot>
 	</div>
 	
 </div>
 
-<!-- <a href="#" class="mangadeluser" data-modules="personnel" data-action="edituser">cdhw-</a> LINK TO EDIT -->
 <script type="text/javascript">
 		$(document).ready(function() {
 
-			$("#btnre").click(function(event) {
+			$("#btnre").click(function(event) {   /// ป่มย้อนกลับ
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 
@@ -100,7 +99,7 @@
 			});
 
 
-			$("a.managaedituser").click(function(){
+			$("a.managaedituser").click(function(){ 
 
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
@@ -119,15 +118,9 @@
 				
 			});
 
-			$("#btnsearch").click(function(event) {
+			
 
-				$.post('module/personnel/mangauser.php', $("#search").serialize(), function(data, textStatus, xhr) {
-					$("#detail").html(data)
-				});
-				
-			});
-
-			$(".deluser").click(function(){
+			$(".deluser").click(function(){   /// ป่มลบข้อมูล user
             
             var iduser =$(this).data("iduser");
             var nuser =$(this).data("nuser");
@@ -143,7 +136,9 @@
             	}
         	})
 
-			$('#example').DataTable();
+			$('#example').DataTable({
+				"ordering": false
+			});
 			
 			$(".select1").click(function(){
 				$.get("module/personnel/mangauser.php",{se : ""}).done(function(data,txtstuta){
