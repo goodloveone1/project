@@ -200,7 +200,7 @@
 
 					</tbody>
 					</table>
-					<button type='button' class='btn mx-auto' id='adddegree' data-genid='$gen_id' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
+					<button type='button' class='btn mx-auto' id='adddegree' data-genid='<?php echo $gen_id;?>' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
 
 				</div>
 			</div>
