@@ -19,9 +19,9 @@
     <thead class="thead-light">
          <tr>
             <th scope="col">ลำดับ</th>
-            <th scope="col">สาขา</th>
-            <th scope="col">แก้ไข</th>
-            <th scope="col">ลบ</th>
+            <th scope="col">ตำแหน่ง</th>
+            <th scope="col">ด้านที่</th>
+            <th scope="col">น้ำหนัก</th>
         </tr>
     </thead>
 <tbody>
@@ -32,6 +32,8 @@
         echo"
             <tr>
                 <td>$no</td>
+                <td>$aca_id</td>
+                <td>$tit</td>
                 <td>$weighs</td>
                 <td><a href='#'class='editbrn' data-ideditsub='$w_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='#' class='delbrn' data-branchname='$w_id' data-ideditsub='$w_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
