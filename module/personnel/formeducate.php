@@ -18,6 +18,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+              
                 <div class="form-group">
                         <label> วุฒิการศึกษา :</label>
                         <select class="form-control"  name="degree_id">

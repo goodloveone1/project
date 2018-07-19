@@ -62,7 +62,7 @@
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/personnel/addddtaeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
         $('#editsub').modal("hide");

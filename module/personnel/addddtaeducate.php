@@ -9,7 +9,7 @@ $ed_loc = empty($_POST['ed_loc'])?'':$_POST['ed_loc'];
 $degree_id=empty($_POST['degree_id'])?'':$_POST['degree_id'];
 
 
-$sql = "INSERT INTO  education (ed_id,gen_id,ed_name,ed_loc,degree_id) VALUES ('$ed_id','$gen_id','$ed_name','$ed_loc','$degree_id')";
+$sql = "INSERT INTO  education (ed_id,gen_id,degree_id,ed_name,ed_loc) VALUES ('','$gen_id','$degree_id','$ed_name','$ed_loc')";
 
 echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
