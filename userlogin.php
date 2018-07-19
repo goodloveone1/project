@@ -88,7 +88,7 @@
 		
 		<div id="main2" style="margin-left:220px;">
 			<!-- MENU -->
-			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown " style="height: 40px;">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown " style="height: 50px;">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active" id="usermenu">
 						<a class="nav-link" href="javascript:void(0)"  ><i class="fas fa-bars" ></i> เมนู <span class="sr-only">(current)</span></a>

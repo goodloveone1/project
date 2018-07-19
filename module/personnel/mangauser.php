@@ -165,7 +165,7 @@
 
 				if(text!=undefined){
 					$.post("module/personnel/deluser.php",$("#delall").serialize()).done(function(data,txtstuta){
-					alert(data);
+					//alert(data);
 					var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
                     loadmain(module1,action);
