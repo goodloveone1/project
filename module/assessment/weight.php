@@ -20,26 +20,38 @@
          <tr>
             <th scope="col">ลำดับ</th>
             <th scope="col">ตำแหน่ง</th>
-            <th scope="col">ด้านที่</th>
+            <th scope="col">ภาระงาน</th>
             <th scope="col">น้ำหนัก</th>
         </tr>
     </thead>
 <tbody>
 <?php
-    $re=mysqli_query($con,"SELECT *FROM weights") or die("errorSQLselect".mysqli_error($con));
+    $sums=mysqli_query($con,"SELECT COUNT(aca_id) FROM academic");
+
+    for($i=1;$i<=$y){
+    $re=mysqli_query($con,"SELECT *FROM weights WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
     $no=1;
     while(list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re)){
+        $seac = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca_id'" ) or die("SQL error".mysqli_error($con));
+        list($aca_name)=mysqli_fetch_row($seac);
+        $setit = mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$tit'") or die("SQL error".mysqli_error($con));
+        list($tit_name)=mysqli_fetch_row($setit);
+
+        if($weighs==0){
+            $weighs="ไม่มี";
+        }
         echo"
             <tr>
                 <td>$no</td>
-                <td>$aca_id</td>
-                <td>$tit</td>
+                <td>$aca_name</td>
+                <td>$tit_name</td>
                 <td>$weighs</td>
                 <td><a href='#'class='editbrn' data-ideditsub='$w_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='#' class='delbrn' data-branchname='$w_id' data-ideditsub='$w_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
     }
+}
     mysqli_free_result($re);
     mysqli_close($con);
 ?>
