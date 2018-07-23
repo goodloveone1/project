@@ -5,7 +5,7 @@ function webmenu($id,$head){
 		case "1":  // ADMIN MENU
 ?>			
 	<p> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
-			<ul class="list-group" >
+			<ul class="list-group" id="menuaside">
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >

@@ -103,12 +103,12 @@
 				<!-- END BAND CENTER -->
 				<!-- USER LOGIN -->
 				<div class="dropdown my-2 my-lg-0 mr-1" >
-					<a class="btn btn-sm dropdown-toggle text-light" href="javascript:void(0)" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 <button class="btn btn-sm dropdown-toggle text-light bg-transparent" type="button"  id="dropdownMenuLink99" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
 						<i class="fas fa-user-tie fa-lg d-inline-block "></i>
 						<?php echo $_SESSION['user_fnaem'],"&nbsp;",$_SESSION['user_lnaem'] ?>
-					</a>
+					 </button>
 					
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink99">
 						<a class="dropdown-item" href="#"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
 						<a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt  d-inline-block" ></i> ออกจากระบบ</a>
 					</div>

@@ -18,17 +18,17 @@
 <div class="row">
 <div class="col-md-12 mt-2">
 <form  id="delall">
-	<table class="table" id="example">
+	<table class="table" id="showuser">
 	
 		<thead class="thead-light">
 			<tr>
 				<?php
 					if(!empty($_GET['se'])){
-						echo "<th><a href='#' class='select1' >ไม่เลือก</a></th>";
+						echo "<th><a href='javascript:void(0)' class='select1' >ไม่เลือก</a></th>";
 						$ch="checked";
 						}
 						else{
-							echo "<th><a href='#' class='select2' >เลือก</a></th>";
+							echo "<th><a href='javascript:void(0)' class='select2' >เลือก</a></th>";
 						$ch="";
 							}
 					
@@ -136,23 +136,22 @@
             	}
         	})
 
-			$('#example').DataTable({
+			$('#showuser').DataTable({
 				"ordering": false
 			});
 			
+			// ไมเลือกทั้งหมด
 			$(".select1").click(function(){
 				$.get("module/personnel/mangauser.php",{se : ""}).done(function(data,txtstuta){
-					alert(data);
-                    // var module1 = sessionStorage.getItem("module1");
-                    // var action = sessionStorage.getItem("action");
-                    // loadmain(module1,action);
+					//alert(data);
 					$("#detail").html(data);
                     })
 			});
 
+			// เลือกทั้งหมด
 			$(".select2").click(function(){
 				$.get("module/personnel/mangauser.php",{se : "1"}).done(function(data,txtstuta){
-					alert(data);
+					//alert(data);
 					$("#detail").html(data);
                     })
 			});
