@@ -9,7 +9,7 @@
 	
 	<div class="col-md-3">
 		<div class="card">
-			<img class="card-img-top img-thumbnail" src="img/people.jpg" alt="Card image cap">
+			<img class="card-img-top img-thumbnail" src="img\default\user_default.svg" alt="Card image cap">
 			<div class="card-body">
 				<p class="card-text">MIINNEE</p>
 			</div>
