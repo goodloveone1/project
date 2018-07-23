@@ -13,17 +13,20 @@ function modules(module1,action){
 			}
 		
 
-		switch (action) {
+		switch (action){
 			  /* personnel */
 			    case "home":break;
 			    case "mangauser":break;
 			    case "edituser":break; 
 			    case "menumanage":break;
 			  /* END personnel */
+			  /* assessment */
 			    case "Criteria_manage":break;
+			    case "evidence_manage":break;
+			    case "menuassm":break; // mainmenu
+			 /* END assessment */
+			 	case "download_manage":break;
 			    case "pr_manage":break;
-			    case "download_manage":break;
-				case "evidence_manage":break;
 				case "managebranch":break;
 				case "managesubject":break;
 				case "editbranch":break;
