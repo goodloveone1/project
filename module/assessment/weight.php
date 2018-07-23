@@ -26,9 +26,9 @@
     </thead>
 <tbody>
 <?php
-    $sums=mysqli_query($con,"SELECT COUNT(aca_id) FROM academic");
+    $sums=mysqli_query($con,"SELECT COUNT(aca_id) FROM academic")or die("sqlError".mysqli_error($con));
 
-    for($i=1;$i<=$y){
+    for($i=1;$i<=$y;$i++){
     $re=mysqli_query($con,"SELECT *FROM weights WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
     $no=1;
     while(list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re)){
