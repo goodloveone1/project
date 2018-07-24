@@ -3,6 +3,7 @@
 	$con=connect_db();
 
 ?>
+<form>
 <table class="table" border="1">
 	<tr>
 		<th rowspan="2">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
@@ -31,16 +32,17 @@
 		echo "<tr>";
 		echo "<td>$e_name</td>";
 		echo "<td></td>";
-		echo "<td></td>";
-		echo "<td></td>";
-		echo "<td></td>";
-		echo "<td></td>";
-		echo "<td></td>";
+		echo "<td><input type='radio' name='$tit'></td>";
+		echo "<td><input type='radio' name='$tit'></td>";
+		echo "<td><input type='radio' name='$tit'></td>";
+		echo "<td><input type='radio' name='$tit'></td>";
+		echo "<td><input type='radio' name='$tit'></td>";
 		echo "<td></td>";
 		echo "<td>$weight</td>";
 		echo "<td></td>";
 		echo "</tr>";
 	}
 ?>	
+</form>
 
 </table>
