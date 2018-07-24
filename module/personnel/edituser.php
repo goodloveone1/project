@@ -151,14 +151,25 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
 					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>" required id="showpw">
-					<input type="checkbox" onclick="chkpw()">แสดงรหัส
+					<div class="form-check">
+					 <input class="form-check-input " type="checkbox" onclick="chkpw()">
+					  <label class="form-check-label" for="defaultCheck2">
+					   แสดงรหัส
+					  </label>
+					</div>
+					
 				</div>	
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
 					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required id="showconPW">
-					<input type="checkbox" onclick="chkpwcon()">แสดงรหัส
+					<div class="form-check">
+					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()">
+					  <label class="form-check-label" for="defaultCheck2">
+					   แสดงรหัส
+					  </label>
+					</div>
 				</div>	
 			</div>
 			<div class="form-group row">
@@ -177,7 +188,8 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group row " >
+			</div>
+			<div class="form-group col-md-12" >
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
 				<div class="col-md-30">
 					
@@ -204,7 +216,7 @@
 
 				</div>
 			</div>
-		</div>
+		
 		</div>
 
 		<div class="col-md-12 text-center mb-2" >
@@ -235,8 +247,7 @@
 			 "language": {
     		"search":         "ค้นหาข้อมูล:",
     		 "zeroRecords": "ไม่พบข้มมูล",
-    	   }	
-
+    	   }
 	});
 
 	if ( $.fn.dataTable.isDataTable( '#tbeucation' ) ) {

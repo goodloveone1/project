@@ -18,7 +18,8 @@
 <div class="row">
 <div class="col-md-12 mt-2">
 <form  id="delall">
-	<table class="table" id="showuser">
+<div class="table-responsive">	
+	<table class="table " id="showuser">
 	
 		<thead class="thead-light">
 			<tr>
@@ -79,6 +80,7 @@
 			</tbody>
 	
 		</table>
+	</div>	
 		<input type="hidden" name="test" value="1">
 			</form>
 		<tfoot>
@@ -137,7 +139,8 @@
         	})
 
 			$('#showuser').DataTable({
-				"ordering": false
+				"ordering": false,
+				
 			});
 			
 			// ไมเลือกทั้งหมด
