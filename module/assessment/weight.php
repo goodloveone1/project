@@ -31,10 +31,14 @@
     $re=mysqli_query($con,"SELECT *FROM weights WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
     $aca_sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
     list($sumW)=mysqli_fetch_row($aca_sum);
-    $no=1;
+        $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
+        list($post_name)=mysqli_fetch_row($posi);
 
+    $no=1;
+    
     echo "<table  class='table' id='tablebranch' >
     <thead class='thead-light'>
+         <h3>$post_name</h3>
          <tr>
             <th scope='col'>ลำดับ</th>
            
@@ -66,7 +70,7 @@
 
             $no++;     
     }
-    echo"<tr><td colspan=3 align=center>รวม</td><td colspan=2 style='color:red;'>$sumW</td></tr>";
+    echo"<tr><td colspan=3 align=right>รวม</td><td colspan=2 style='color:red;'>$sumW</td></tr>";
     echo "<hr>";
 }
     mysqli_free_result($re);
