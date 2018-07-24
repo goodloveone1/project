@@ -24,6 +24,7 @@ function modules(module1,action){
 			    case "Criteria_manage":break;
 			    case "evidence_manage":break;
 			    case "menuassm":break; // mainmenu
+			    case "formtea_tor":break; //
 			 /* END assessment */
 			 	case "download_manage":break;
 			    case "pr_manage":break;
