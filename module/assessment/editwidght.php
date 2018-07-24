@@ -5,6 +5,9 @@
 ?>
 
 <?php
+    if(empty($_POST['id'])){
+        $_POST['id']="";
+    }
     $i=$_POST['id'];
      $re=mysqli_query($con,"SELECT *FROM weights WHERE w_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
      list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re);
@@ -27,7 +30,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label >ภาระงาน : <?php echo $tit_name; ?></label>
-                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="Wid" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="wid" size=40 require>
                           <input type="hidden"    value="<?php echo $w_id ?>"  name="w_id" size=40 require>
                     </div>
                     
@@ -55,16 +58,14 @@
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/personnel/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-             alert(date);
-            var module1 = sessionStorage.getItem("module1");
-            var action = sessionStorage.getItem("action");
-           loadmain(module1,action);
+            
+           loadmain("assessment","weight");
         })
        
         
