@@ -1,5 +1,12 @@
 <?php
 	session_start();
+
+	if(empty($_SESSION['user_fnaem']) && empty($_SESSION['user_lnaem'])){
+
+		//echo "<script> alert('กรุณาล็อกอินก่อนใช้งาน!') </script>";
+		//echo "<script> window.location='index.php' </script>";
+
+	}
 ?>
 <!DOCTYPE html>
 <html>
