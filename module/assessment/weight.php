@@ -31,8 +31,8 @@
     $re=mysqli_query($con,"SELECT *FROM weights WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
     $aca_sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
     list($sumW)=mysqli_fetch_row($aca_sum);
-        $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
-        list($post_name)=mysqli_fetch_row($posi);
+    $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
+    list($post_name)=mysqli_fetch_row($posi);
 
     $no=1;
     
@@ -74,6 +74,11 @@
     echo "<hr>";
 }
     mysqli_free_result($re);
+    mysqli_free_result($sums);
+    mysqli_free_result($aca_sum);
+    mysqli_free_result($posi);
+    
+    
     mysqli_close($con);
 ?>
  </tbody>

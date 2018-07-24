@@ -27,8 +27,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label >ภาระงาน : <?php echo $tit_name; ?> :</label>
-                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="branch_name" size=40 require>
-                          <input type="hidden"    value="<?php echo $w_id ?>"  name="branch_id" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="Wid" size=40 require>
+                          <input type="hidden"    value="<?php echo $w_id ?>"  name="w_id" size=40 require>
                     </div>
                     
                     
@@ -55,7 +55,7 @@
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/personnel/updatesubject.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/personnel/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
         $('#editsub').modal("hide");
