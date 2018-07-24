@@ -29,9 +29,11 @@
 
     for($i=1;$i<=$loop;$i++){
     $re=mysqli_query($con,"SELECT *FROM weights WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
+    $aca_sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
+    list($sumW)=mysqli_fetch_row($aca_sum);
     $no=1;
+
     echo "<table  class='table' id='tablebranch' >
-    
     <thead class='thead-light'>
          <tr>
             <th scope='col'>ลำดับ</th>
@@ -62,9 +64,9 @@
                 <td><a href='#'class='edit' data-ideditsub='$w_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
             </tr>";
 
-            $no++;
-            
+            $no++;     
     }
+    echo"<tr><td colspan=3 align=center>รวม</td><td colspan=2 style='color:red;'>$sumW</td></tr>";
     echo "<hr>";
 }
     mysqli_free_result($re);
