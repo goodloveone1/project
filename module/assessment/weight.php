@@ -83,7 +83,6 @@
 ?>
  </tbody>
 <div id="loadeditsub"></div>
-<div id="loadaddsub"></div> 
 
 <script>
      //$('#tablebranch').DataTable();

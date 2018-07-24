@@ -26,7 +26,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label >ภาระงาน : <?php echo $tit_name; ?> :</label>
+                        <label >ภาระงาน : <?php echo $tit_name; ?></label>
                          <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="Wid" size=40 require>
                           <input type="hidden"    value="<?php echo $w_id ?>"  name="w_id" size=40 require>
                     </div>
