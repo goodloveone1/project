@@ -3,8 +3,9 @@
 
     $con=connect_db();
 
-    $update"UPDATE  weights SET weights = '$_POST[wid]' WHERE w_id= '$_POST[w_id]'"; 
-    mysqli_query($con,$update) or  die ("mysql error=>>".mysql_error($con));
-    //echo $update;
+    $update="UPDATE  weights SET weights = '$_POST[wid]' WHERE w_id= '$_POST[w_id]'"; 
+    echo $update;
+   mysqli_query($con,$update) or  die ("mysql error=>>".mysql_error($con));
+  
     mysqli_close($con);
 ?>
