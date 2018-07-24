@@ -1,11 +1,11 @@
 <?php
-function webmenu($id,$head){
+function webmenu($id){
 
 	switch ($id) {
 		case "1":  // ADMIN MENU
 ?>			
 	<p> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
-			<ul class="list-group" >
+			<ul class="list-group" id="menuaside">
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
@@ -58,59 +58,59 @@ function webmenu($id,$head){
 		case "2": // อาจาทย์
 ?>
 		<p> ยินดีต้อนรับ อาจารย์</p>
-			<ul class="list-group" >
-				<a href="#" class="menuuser " data-modules="staff" data-action="1" >
-					<button class="btn-block"  >
+			<ul class="list-group" id="menuaside">
+				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
+					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
-						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
+						<i class="icon fas fa-home fa-3x " ></i><span class="text"> หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
+						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">แก้ไขข้อมูลส่วนตัว</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;จัดการภาระงานของตน</span>
+						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">จัดการภาระงานของตน</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
+						<i class="icon fas fa-archive fa-3x " ></i><span class="text">จัดการไฟล์หลักฐาน</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-info fa-3x " ></i><span class="text">&nbsp;รับทราบข้อตกลง TOR</span>
+						&nbsp;<i class="icon fas fa-info fa-3x " ></i><span class="text"> &nbsp;รับทราบข้อตกลง TOR</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
+						<i class="icon fas fa-check-square fa-3x " ></i><span class="text"> ประเมินตนเอง</span>
 					</li>
 					</button>
 				</a>
 		
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
+						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">  ผลการประเมิน</span>
 					</li>
 					</button>
 				</a>
@@ -122,64 +122,64 @@ function webmenu($id,$head){
 ?>
 				<p> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
 			<ul class="list-group" >
-				<a href="#" class="menuuser " data-modules="staff" data-action="1" >
-					<button class="btn-block"  >
+				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
+					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;จัดการภาระงานของตน</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-info fa-3x " ></i><span class="text">&nbsp;รับทราบข้อตกลง TOR</span>
+						&nbsp;<i class="icon fas fa-info fa-3x " ></i><span class="text">&nbsp;รับทราบข้อตกลง TOR</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินการบุคลากร</span>
 					</li>
 					</button>
 				</a>
 		
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block">
+				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
 					</li>
