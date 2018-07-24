@@ -18,8 +18,7 @@
 				<tr>
 					<th scope="row">1</th>
 					<td>น้ำหนักความสำคัญของงาน</td>
-					<td>แก้ไข</td>
-					
+					<td><a href='javascript:void(0)' class='editwid' data-modules='assessment' data-action='weight'><i class='fas fa-edit fa-2x '></i></a></td>
 					
 				</tr>
 				<tr>
@@ -38,3 +37,18 @@
 		</table>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$(".editwid").click(function(){ 
+
+			var module1 = $(this).data('modules');
+			var action = $(this).data('action');
+			$.post('module/assessment/'+action+'.php',function(){
+			}).done(function(data){
+		 		$("#detail").html(data);
+			})
+		});
+	});
+</script>
