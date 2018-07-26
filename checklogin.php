@@ -30,8 +30,8 @@
 				}
 				elseif($_SESSION['user_level']=="2")
 				{
-					//echo "<script>window.location='teacher.php'</script>";
-					echo"อาจารย์/บุคลากรทั้วไป";
+					echo "<script>window.location='userlogin.php'</script>";
+					//echo"อาจารย์/บุคลากรทั้วไป";
 				}
 				elseif($_SESSION['user_level']=="3")
 				{

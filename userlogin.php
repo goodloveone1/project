@@ -83,7 +83,12 @@
 	<body>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
 			<?php
-				webmenu("2");
+				if($_SESSION['user_level']==1){
+					webmenu("1");
+				}
+				else {
+					webmenu("2");
+				}
 			?>
 		</aside>
 		
