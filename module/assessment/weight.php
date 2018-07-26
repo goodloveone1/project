@@ -56,7 +56,7 @@
         $setit = mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$tit'") or die("SQL error".mysqli_error($con));
         list($tit_name)=mysqli_fetch_row($setit);
         if($weighs==0){
-            $weighs="ไม่มี";
+            $weighs="-";
         }
         echo"
             <tr>
