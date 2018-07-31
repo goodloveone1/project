@@ -34,11 +34,11 @@
 		echo "<tr id='$tit'>";
 		echo "<td>$e_name</td>";
 		echo "<td></td>";
-		echo "<td><input type='radio' name='$tit' data-sco='1'></td>";
-		echo "<td><input type='radio' name='$tit' data-sco='2'></td>";
-		echo "<td><input type='radio' name='$tit' data-sco='3'></td>";
-		echo "<td><input type='radio' name='$tit' data-sco='4'></td>";
-		echo "<td><input type='radio' name='$tit' data-sco='5'></td>";
+		echo "<td><input type='radio' name='$tit' value='10'></td>";
+		echo "<td><input type='radio' name='$tit' value='20'></td>";
+		echo "<td><input type='radio' name='$tit' value='30'></td>";
+		echo "<td><input type='radio' name='$tit' value='40'></td>";
+		echo "<td><input type='radio' name='$tit' value='50'></td>";
 		echo "<td id='sco$tit'></td>";
 		echo "<td id='wei$tit' data-wei='$weight'>$weight</td>";
 		echo "<td id='total$tit'></td>";
@@ -50,20 +50,32 @@
 </table>
 
 <script type="text/javascript">
-	$('#<?php echo $titcheck[0]; ?>').on('click', 'input[name="1"]:checked', function(event) {
+
+	<?php 
+		foreach ($titcheck as $tit) {
+	?>		
+		$('#<?php echo $tit; ?>').on('click', 'input[name="<?php echo $tit; ?>"]:checked', function(event) {
 		
-		var sco = $(this).data('sco');
-		var wei = $("#wei1").data('wei');
-		$("#sco1").html(sco);
+		var sco = $(this).val();
+		var wei = $("#wei<?php echo $tit; ?>").data('wei');
+		$("#sco<?php echo $tit; ?>").html(sco);
 
 
 
 		var total = (sco*wei/100);
 
-		$('#total1').html(total);
+		$("#total<?php echo $tit; ?>").html(total);
+
+		})
+	<?php
+		}
+	?>
+	
+
+	// 	
 
 		
-	});
+	
 	
 
 </script>
