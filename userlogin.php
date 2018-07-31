@@ -118,7 +118,7 @@
 						</button>
 						
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink99">
-							<a class="dropdown-item" href="#"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
+							<a class="dropdown-item" href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
 							<a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt  d-inline-block" ></i> ออกจากระบบ</a>
 						</div>
 					</li>
@@ -148,7 +148,7 @@
 		<!-- IMGREDER -->
 		
 		<?php
-			$name="ทองดี สุขอิ่นใจ";
+			//$name="ทองดี สุขอิ่นใจ";
 		?>
 		<script>
 		var module1 = sessionStorage.getItem("module1");

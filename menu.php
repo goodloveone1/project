@@ -59,7 +59,7 @@ function webmenu($id,$head){
 ?>
 		<p> ยินดีต้อนรับ อาจารย์</p>
 			<ul class="list-group" >
-				<a href="#" class="menuuser " data-modules="staff" data-action="1" >
+				<a href="userlogin.php?modules=assessment&action=edituserall" class="menuuser " data-modules="staff" data-action="1" >
 					<button class="btn-block"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
@@ -67,7 +67,7 @@ function webmenu($id,$head){
 					</button>
 				</a>
 
-				<a href="#" class="menuuser" data-modules="staff" data-action="2">
+				<a href="userlogin.php?modules=assessment&action=edituserall" class="menuuser" data-modules="edituserall" data-action="2">
 					<button class="btn-block">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>

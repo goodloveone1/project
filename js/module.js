@@ -37,6 +37,7 @@ function modules(module1,action){
 				case "managedegree":break;
 				case "weight":break;
 				case "editwidght":break;
+				case "edituserall":break;
 				
 			   	default: action = "404";  
 			}
