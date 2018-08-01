@@ -21,7 +21,7 @@
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
-		<script src="js/loadmain.js?Ver=0001" ></script> <!--FUNCTION LOAD MAIN -->
+		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
 		
 		<?php
 			require('function/menu.php');
@@ -143,9 +143,9 @@
 		<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
 		<script src="bootstrap/js/bootstrap.js" ></script>
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
-		<script type="text/javascript" src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+	<!-- 	<script type="text/javascript" src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
-		<!-- IMGREDER -->
+		 IMGREDER --> -->
 		
 		<?php
 			//$name="ทองดี สุขอิ่นใจ";

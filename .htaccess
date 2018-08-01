@@ -1,0 +1,3 @@
+RewriteEngine On 
+ErrorDocument 404 module/404/404.php
+ErrorDocument 500 http://blognone.com

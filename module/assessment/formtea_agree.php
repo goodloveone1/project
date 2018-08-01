@@ -2,8 +2,8 @@
 	include("../../function/db_function.php");
 	$con=connect_db();
 ?>
-<form>
-	<div class="row">
+<form class="p-2">
+	<div class="row" >
 		<div class="col-md">
 			<h4 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ (ตำแหน่ง อาจารย์) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h4>
 		</div>
@@ -327,10 +327,10 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th rowspan="2" class="text-center">ประเภท<br></th>
+				<th rowspan="2" class="text-center">ประเภท</th>
 				<th colspan="2">รอบที่ ๑</th>
 				<th colspan="2">รอบที่ ๒</th>
-				<th rowspan="2" class="text-center">ประเภท<br></th>
+				<th rowspan="2" class="text-center">ประเภท</th>
 				<th colspan="2">รอบที่ ๑</th>
 				<th colspan="2">รอบที่ ๒</th>
 			</tr>
@@ -484,6 +484,7 @@
 									echo "<td id='total$tit'></td>";
 		echo "</tr>";
 	}
+	mysqli_close($con);
 ?>
 </form>
 </table>
