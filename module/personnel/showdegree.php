@@ -28,8 +28,8 @@
                              <tr>
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อ - นามสกุล</th>
-                                <th scope="col">แก้ไข</th>
-                                <th scope="col">ลบ</th>
+                                <th scope="col">สาขา</th>
+                                <th scope="col">หลักสูตร</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,7 +73,7 @@
 
 
 <script type="text/javascript">
-$('#tabldegree').DataTable();
+// $('#tabldegree').DataTable();
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
