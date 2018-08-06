@@ -16,9 +16,9 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
-		<link rel="stylesheet" type="text/css" href="css/home.css?Ver=0001">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.css">
+		
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
 		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
@@ -140,12 +140,10 @@
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/jquery.validate.min.js" ></script>
 		<script src="js/additional-methods.min.js" ></script>
-		<script src="bootstrap/js/bootstrap.bundle.min.js" ></script>
+		<!-- <script src="bootstrap/js/bootstrap.bundle.min.js" ></script> -->
 		<script src="bootstrap/js/bootstrap.js" ></script>
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
-	<!-- 	<script type="text/javascript" src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js"></script>
-		 IMGREDER --> -->
+	
 		
 		<?php
 			//$name="ทองดี สุขอิ่นใจ";
