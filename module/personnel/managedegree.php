@@ -32,7 +32,7 @@
         echo"
             <tr>
                 <td>$no</td>
-                <td>$D_name</td>
+                <td><a href='#' class ='showdegree' data-iddegree='$D_id' data-toggle='modal'>$D_name</a></td>
                 <td><a href='#'class='editbrn' data-ideditsub='$D_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='#' class='delbrn' data-branchname='$D_name' data-ideditsub='$D_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
@@ -44,7 +44,8 @@
  </tbody>
 <div id="loadeditsub"></div>
 <div id="loadaddsub"></div> 
-
+<div id="showdegree"></div> 
+</table>
 <script>
      $('#tabldegree').DataTable();
     $(".editbrn").click(function( ){
@@ -89,5 +90,14 @@
             alert(data); 
             });
          });
+
+        $(".showdegree").click(function(event) {
+             var iddegree =$(this).data("iddegree");
+             $.post("module/personnel/showdegree.php", { id : iddegree}).done(function(data){
+                $('#loadeditsub').html(data);
+                $('#showdegree').modal('show');
+            })
+             
+        });
        
         </script>
