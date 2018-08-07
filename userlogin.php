@@ -331,7 +331,7 @@
 					$(".list-menu-user").css("text-align","center");
 					if(x.style.width == maxside){
 						
-						00return 	minside;
+						return 	minside;
 					}
 					else{
 						
