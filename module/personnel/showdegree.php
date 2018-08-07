@@ -5,6 +5,7 @@
         $sedegree = "";
     }else{
         $sedegree=mysqli_query($con,"SELECT *FROM education WHERE degree_id ='$_POST[id]'") or die("errorSQLselect".mysqli_error($con));
+
     }
    
 ?>
@@ -15,7 +16,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title " id="exampleModalLabel">รายชื่อ ฒิการศึกษา </h5>
+                <?php  
+                    $Dname=mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id ='$_POST[id]'")or die("SQL_Error".mysqli_error($con));
+                    list($D_name)=mysqli_fetch_row($Dname);
+                    $reCount = mysqli_query($con,"SELECT COUNT(degree_id) FROM education WHERE degree_id='$_POST[id]'") or die("SQl_Error".mysqli_error($con));
+                    list($countD)=mysqli_fetch_row($reCount);
+
+                    mysqli_free_result($Dname);
+                    mysqli_free_result($reCount);
+                ?>
+                    <h5 class="modal-title " id="exampleModalLabel">รายชื่อวุฒิการศึกษา <b style="color:blue;"><?php echo $D_name; ?></b> มีจำนวน <?php echo $countD?> วุฒิ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -41,12 +51,14 @@
         list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$subject_id)=mysqli_fetch_row($re_genname);
         $br = mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'") or die("SQL_Error".mysqli_error($con));
         list($branch_name)=mysqli_fetch_row($br);
+        $sub = mysqli_query($con,"SELECT subject_name FROM subjects WHERE subject_id='$subject_id'") or die("SQL_Error".mysqli_error($con));
+        list($subject_name)=mysqli_fetch_row($sub);
         echo"
             <tr>
                 <td>$no</td>
                 <td>$gen_prefix $gen_fname $gen_lname</td>
                 <td>$branch_name</td>
-                <td>$subject_id</td>
+                <td>$subject_name</td>
             </tr>";
             $no++;
     }
