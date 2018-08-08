@@ -5,13 +5,8 @@
         $sedegree = "";
     }else{
         $sedegree=mysqli_query($con,"SELECT *FROM education WHERE degree_id ='$_POST[id]'") or die("errorSQLselect".mysqli_error($con));
-
     }
-   
 ?>
-
-
-
  <div class="modal fade" id="showdegree" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -38,17 +33,17 @@
                              <tr>
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อ - นามสกุล</th>
+                                <th scope="col">ตำแหน่งงานทางวิชาการ</th>
                                 <th scope="col">สาขา</th>
-                                <th scope="col">หลักสูตร</th>
-                            </tr>
+                                
                         </thead>
                         <tbody>
                         <?php
    
     $no=1;
     while(list($ed_id,$gen_id,$ed_name,$ed_loc,$id_degree)=mysqli_fetch_row($sedegree)){
-        $re_genname = mysqli_query($con,"SELECT  gen_prefix,gen_fname,gen_lname,branch_id,subject_id FROM general WHERE gen_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
-        list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$subject_id)=mysqli_fetch_row($re_genname);
+        $re_genname = mysqli_query($con,"SELECT  gen_prefix,gen_fname,gen_lname,branch_id,subject_id,gen_acadeic FROM general WHERE gen_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
+        list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_acadeic)=mysqli_fetch_row($re_genname);
         $br = mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'") or die("SQL_Error".mysqli_error($con));
         list($branch_name)=mysqli_fetch_row($br);
         $sub = mysqli_query($con,"SELECT subject_name FROM subjects WHERE subject_id='$subject_id'") or die("SQL_Error".mysqli_error($con));
@@ -59,6 +54,7 @@
                 <td>$gen_prefix $gen_fname $gen_lname</td>
                 <td>$branch_name</td>
                 <td>$subject_name</td>
+               
             </tr>";
             $no++;
     }
@@ -85,7 +81,7 @@
 
 
 <script type="text/javascript">
-// $('#tabldegree').DataTable();
+$('#tabldegree').DataTable();
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
