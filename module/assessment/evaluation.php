@@ -38,6 +38,7 @@
     
     echo "<table  class='table' id='tablebranch' >
     <thead class='thead-light'>
+        <hr>
          <h3>$post_name</h3>
          <tr>
             <th scope='col'>ลำดับ</th>
