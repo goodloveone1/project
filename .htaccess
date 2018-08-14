@@ -1,3 +1,6 @@
 RewriteEngine On 
+DirectoryIndex index.php userlogin.php
+RewriteRule userlogin userlogin.php
+RewriteRule userlogin userlogin.php
 ErrorDocument 404 module/404/404.php
 ErrorDocument 500 http://blognone.com

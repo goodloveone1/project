@@ -7,21 +7,27 @@
 		//echo "<script> window.location='index.php' </script>";
 
 	}
+
+	$basename = "http://localhost/project/";
+
 ?>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<title>ระบบประเมิน</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo $basename?>bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		<link rel="stylesheet" href="<?php echo $basename?>fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
+		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>css/home.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>css/animate.css">
 		
-		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
+		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
-		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
+		<script src="<?php echo $basename?>js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
+		<script src="<?php echo $basename?>js/menushow.js"></script> <!--FUNCTION MENU -->
+		<script src="<?php echo $basename?>js/functionjs.js"></script> <!--FUNCTION script -->
 		
 		<?php
 			require('function/menu.php');
@@ -137,18 +143,22 @@
 				</footer>
 			</div>
 		</div>
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<script src="js/jquery.validate.min.js" ></script>
-		<script src="js/additional-methods.min.js" ></script>
+		<script src="<?php echo $basename?>js/jquery-3.3.1.min.js"></script>
+		<script src="<?php echo $basename?>js/jquery.validate.min.js" ></script>
+		<script src="<?php echo $basename?>js/additional-methods.min.js" ></script>
 		<!-- <script src="bootstrap/js/bootstrap.bundle.min.js" ></script> -->
-		<script src="bootstrap/js/bootstrap.js" ></script>
-		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
+		<script src="<?php echo $basename?>bootstrap/js/bootstrap.js" ></script>
+		<script type="text/javascript" src="<?php echo $basename?>js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 	
 		
 		<?php
 			//$name="ทองดี สุขอิ่นใจ";
 		?>
 		<script>
+
+
+
+
 		var module1 = sessionStorage.getItem("module1");
 		var action = sessionStorage.getItem("action");
 		
@@ -166,9 +176,14 @@
 					
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
+
+					$data = $('body').html();
 					loadmain(module1,action);
+					urlwrite(module1,action);			
+					return false;
 					
 				});
+
 			/* ANIMATION*/
 			$.fn.extend({
 				animateCss: function(animationName, callback) {
@@ -218,43 +233,7 @@
 			/* END script HOVER MENU */
 			
 		});
-		function checksceen(){
-			var x = document.getElementById("mySidenav");
-			var y = document.getElementById("main2");
-			if(window.innerWidth*window.devicePixelRatio <= 770 ){
-				if(x.style.width = "0px"){
-					x.style.width = "180px";
-					y.style.marginLeft = "180px";
-					chechopenNav(x,y);
-				}else if(x.style.width = "180px"){
-					x.style.width = "88px";
-					y.style.marginLeft = "88px";
-					chechopenNav(x,y);
-				}
-				
-			}else{
-				if(x.style.width == "220px"){
-					x.style.width = "88px";
-					y.style.marginLeft = "88px";
-					chechopenNav(x,y);
-					
-				}else if(x.style.width == "0px"){
-						x.style.width = "220px";
-						y.style.marginLeft = "220px";
-						chechopenNav(x,y);
-						
-				}else if(x.style.width == "180px"){
-						x.style.width = "220px";
-						y.style.marginLeft = "220px";
-						chechopenNav(x,y);
-				
-				}else if(x.style.width == "88px"){
-						x.style.width = "88px";
-						y.style.marginLeft = "88px";
-						chechopenNav(x,y);
-			}
-		}
-		}
+		
 		function chechopenNav(x,y){
 			z = openNav2(x,y);
 			x.style.width = z.trim();
@@ -271,94 +250,15 @@
 			var y = document.getElementById("main2");
 			var z ="";
 			z = openNav2(x,y);
-			/*alert(z);*/
-			if (z != undefined) {
-			x.style.width = z.trim();
-			y.style.marginLeft = z.trim();
-		}
-			
-						}
-		function openNav2(x,y) {
-			
-			var maxside = "220px";
-			var minside = "88px";
-			var maxside2 = "180px";
-			var minside2 = "88px";
-			var iconsizabig1 = " fa-3x ";
-			var iconsizasmall1 = " fa-lg";
-			var iconsizabig2 = " fa-2x ";
-			var iconsizasmall2 = " fa-sm";
-			if(window.innerWidth*window.devicePixelRatio <= 770 ){ /* CHECK หน้าจอ น้อยกว่า 770*/
-										
-				if (x.style.width == maxside2 && y.style.marginLeft == maxside2 || x.style.width == maxside && y.style.marginLeft == maxside) {
-					
-					$(".icon").removeClass(iconsizasmall1.trim());
-					$(".icon").removeClass(iconsizasmall2.trim());
-					$(".icon").addClass(iconsizabig2.trim());
-					
-					$(".text").css("display","none");
-					
-					$(".list-group-item .text").css("font-size","14px");
-					$(".list-menu-user").css("text-align","center");
-						if(x.style.width == maxside2)
-													return 	minside2;
-						else
-							return minside;
-				}else if(x.style.width == minside2 && y.style.marginLeft == minside2 || x.style.width == minside && y.style.marginLeft == minside){
-					
-					$(".icon").removeClass(iconsizabig1.trim());
-					$(".icon").removeClass(iconsizabig2.trim());
-					$(".icon").addClass(iconsizasmall2.trim());
-					
-					$(".text").css("display","inline-table");
-					
-					$(".list-menu-user").css("text-align","left");
-					if(x.style.width == minside2)
-												return 	maxside2;
-					else
-												return 	maxside;
-				}
-			}
-			else{ /* หน้าจอ มากกว่า 770*/
-				if (x.style.width == maxside && y.style.marginLeft == maxside || x.style.width == maxside2 && y.style.marginLeft == maxside2) {
-					
-					$(".icon").removeClass(iconsizasmall1.trim());
-					$(".icon").removeClass(iconsizasmall2.trim());
-					$(".icon").addClass(iconsizabig1.trim());
-		
-					$(".text").css("display","none");
-					$(".list-group-item .text").css("font-size","16px");
-					$(".list-menu-user").css("text-align","center");
-					if(x.style.width == maxside){
-						
-						return 	minside;
-					}
-					else{
-						
-						return  minside2;
-					}
-						
-				}else if(x.style.width == minside && y.style.marginLeft == minside || x.style.width == minside2 && y.style.marginLeft == minside2){
-					
-					$(".icon").removeClass(iconsizabig1.trim());
-					$(".icon").removeClass(iconsizabig2.trim());
-					$(".icon").addClass(iconsizasmall1.trim());
-					$(".text").css("display","inline-grid");
-					$(".list-menu-user").css("text-align","left");
-					if(x.style.width == minside)
-												return 	maxside;
-					else
-						return  maxside2;
-				}
+				/*alert(z);*/
+				if (z != undefined) {
+				x.style.width = z.trim();
+				y.style.marginLeft = z.trim();
 			}
 		}
-		
-		/* END MENU SIDE*/
+	
 		
 		</script>
-		<?php
-			// Set session variables
-			
-		?>
+		
 	</body>
 </html>

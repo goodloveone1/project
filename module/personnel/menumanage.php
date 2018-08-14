@@ -58,7 +58,8 @@
 			$("a.maninuser").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
-				loadmain(module1,action)
+				loadmain(module1,action);
+				urlwrite(module1,action);
 			});
 		});
 </script>
