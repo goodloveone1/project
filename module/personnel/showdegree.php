@@ -8,7 +8,7 @@
     }
 ?>
  <div class="modal fade" id="showdegree" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                 <?php  
@@ -33,13 +33,12 @@
                              <tr>
                                 <th scope="col">ลำดับ</th>
                                 <th scope="col">ชื่อ - นามสกุล</th>
-                                <th scope="col">ตำแหน่งงานทางวิชาการ</th>
                                 <th scope="col">สาขา</th>
+                                <!-- <th scope="col">สาขา</th> -->
                                 
                         </thead>
                         <tbody>
                         <?php
-   
     $no=1;
     while(list($ed_id,$gen_id,$ed_name,$ed_loc,$id_degree)=mysqli_fetch_row($sedegree)){
         $re_genname = mysqli_query($con,"SELECT  gen_prefix,gen_fname,gen_lname,branch_id,subject_id,gen_acadeic FROM general WHERE gen_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
@@ -53,7 +52,7 @@
                 <td>$no</td>
                 <td>$gen_prefix $gen_fname $gen_lname</td>
                 <td>$branch_name</td>
-                <td>$subject_name</td>
+               
                
             </tr>";
             $no++;
@@ -70,32 +69,20 @@
             </div>
         </div>
     </div>
-
-
     <?php
         
         mysqli_free_result($sedegree);
         mysqli_close($con);
-
     ?>
-
-
 <script type="text/javascript">
 $('#tabldegree').DataTable();
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
         $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-              alert(data);
-              
+              alert(data);      
          });
-        $('#showdegree').modal("hide");
-
-        
-       
-        
-    } 
-
-   
+        $('#showdegree').modal("hide");            
+    }  
 });
 </script>
