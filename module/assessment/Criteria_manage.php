@@ -24,7 +24,7 @@
 				<tr>
 					<th scope="row">2</th>
 					<td>ตัวชีวัดเกณฑ์การประเมิน</td>
-					<td>แก้ไข</td>
+					<td><a href='javascript:void(0)' class='editwid' data-modules='assessment' data-action='evaluation'><i class='fas fa-edit fa-2x '></i></a></td>
 					
 				</tr>
 				<tr>

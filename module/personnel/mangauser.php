@@ -29,7 +29,7 @@
 						$ch="checked";
 						}
 						else{
-							echo "<th><a href='javascript:void(0)' class='select2' >เลือก</a></th>";
+							echo "<th><a href='javascript:void(0)' class='select2' >เลือกทั้งหมด</a></th>";
 						$ch="";
 							}
 					
