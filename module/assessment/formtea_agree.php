@@ -463,6 +463,7 @@
 <th >๕</th>
 </tr>
 <?php
+	
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='1'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
