@@ -8,7 +8,7 @@ function loadmain(module1,action){
 
 						
 
-						$.getScript("http://localhost/project/js/module.js", function() {
+						$.getScript("js/module.js", function() {
 							var url = modules(module1 ,action);
 							
 							

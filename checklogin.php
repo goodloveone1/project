@@ -35,8 +35,8 @@
 				}
 				elseif($_SESSION['user_level']=="3")
 				{
-					//echo "<script>window.location='student.php'</script>";
-					echo"หัวหน้าหลักสูตร์";
+					echo "<script>window.location='userlogin.php'</script>";
+					//echo"หัวหน้าหลักสูตร์";
 				}
 				elseif($_SESSION['user_level']=="4")
 				{
