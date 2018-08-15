@@ -108,15 +108,8 @@
 				}).done(function(data){
 				
 					 $("#detail").html(data);
-				})
-
-			
-
-				
+				})		
 			});
-
-			
-
 			$(".deluser").click(function(){   /// ป่มลบข้อมูล user
             
             var iduser =$(this).data("iduser");
@@ -175,8 +168,6 @@
 			})
 
 		});
-
-
 
 </script>
 <!-- aleat-->
