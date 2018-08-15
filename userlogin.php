@@ -89,19 +89,30 @@
 	<body>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
 			<?php
-				if($_SESSION['user_level']==1){
-					webmenu("1");
+
+				switch ($_SESSION['user_level']) {
+					case '1':
+						webmenu("1");
+						break;
+					case '2':
+						webmenu("2");
+						break;
+					case '3':
+						webmenu("3");
+						break;		
+					
+					default:
+					
+						break;
 				}
-				else {
-					webmenu("2");
-				}
+				
 			?>
 		</aside>
 		
 		
 		<div id="main2" style="margin-left:220px;">
 			<!-- MENU -->
-			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown " style="height: 50px;">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown sticky-top" style="height: 50px;">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item active" id="usermenu">
 						<a class="nav-link" href="javascript:void(0)"  ><i class="fas fa-bars" ></i> เมนู <span class="sr-only">(current)</span></a>
