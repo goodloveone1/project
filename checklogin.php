@@ -35,18 +35,18 @@
 				}
 				elseif($_SESSION['user_level']=="3")
 				{
-					//echo "<script>window.location='student.php'</script>";
-					echo"หัวหน้าหลักสูตร์";
+					echo "<script>window.location='userlogin.php'</script>";
+					// echo"หัวหน้าหลักสูตร์";
 				}
 				elseif($_SESSION['user_level']=="4")
 				{
-					//echo "<script>window.location='student.php'</script>";
-					echo"หน้าน้าสาขา";
+					echo "<script>window.location='userlogin.php'</script>";
+					// echo"หน้าน้าสาขา";
 				}
 				elseif($_SESSION['user_level']=="5")
 				{
-					//echo "<script>window.location='student.php'</script>";
-					echo"หัวหน้าคณะ";
+					echo "<script>window.location='userlogin.php'</script>";
+					// echo"หัวหน้าคณะ";
 				}
 		 }
 		 else
