@@ -119,6 +119,7 @@
 				<label for="inputPassword" class="col-md-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-md-10">
 					<input type="text" class="form-control"  placeholder="Username" name="uname" required >
+					<span id='showtxtuser'></span>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -284,32 +285,48 @@
 				e.preventDefault();
 				
 					$check = $("#edituser").valid();
+					$text  = $('#showtxtuser').val();
 
-					if($check == true){
+					if($check == true ){
 
+						if( $text != ""){
+						    e.preventDefault();
 
-					    e.preventDefault();
+						    var formData = new FormData(this);
 
-					    var formData = new FormData(this);
+						    $.ajax({
+						        url: "module/personnel/adduser.php",
+						        type: 'POST',
+						        data: formData,
+						        success: function (data) {
+						            alert(data)
+						        },
+						        cache: false,
+						        contentType: false,
+						        processData: false
+						    });
+						}else{
+							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
+						}
+					}				
+				})	// END edituser
 
-					    $.ajax({
-					        url: "module/personnel/adduser.php",
-					        type: 'POST',
-					        data: formData,
-					        success: function (data) {
-					            alert(data)
-					        },
-					        cache: false,
-					        contentType: false,
-					        processData: false
-					    });
-					}
+			$('input[name=uname]').change(function(event) {
+				var text = $(this).val();
+				$.getJSON( "module/personnel/jsonnuser.php", function( data ) {
+				  var items = [];
 
-					
-
-			
-				
-				})	// END adduser
+				  $.each( data, function( key, val ) {
+				    if(val == text ){
+				    	$('#showtxtuser').html("<b>ชื่อผู้ใช้ถูกใช้แล้ว !!!!</b>");
+				    	 return false;
+				    }else{
+				    	$('#showtxtuser').html("");	
+				    }
+				  });
+				  
+				});
+			});
 		
 		})
 
