@@ -26,6 +26,7 @@
 				if($_SESSION['user_level']=="1")
 				{
 					echo "<script>window.location='userlogin.php'</script>";
+					//echo"admin";
 					
 				}
 				elseif($_SESSION['user_level']=="2")
