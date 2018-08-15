@@ -50,14 +50,14 @@
 
 			<?php
 					
-					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general ") or  die("SQL Error1==>1".mysql_error($con)); ;
+					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general ") or  die("SQL Error1==>1".mysqli_error($con)); ;
 					$i=1;
 
 
 						while(list($gen_id,$gen_fname,$genlname,$branch_id,$subject_id)=mysqli_fetch_row($show)){
-							$Sbrach=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
+							$Sbrach=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$branch_id'") or die ("mysql error=>>".mysqli_error($con));
 								list($Sbranch_id,$branch_name)=mysqli_fetch_row($Sbrach);
-							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
+							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysqli_error($con));
 							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
 						echo"
 							<tr>		<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$gen_id' $ch></div></td>
