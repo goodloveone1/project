@@ -70,13 +70,8 @@
 										<td><a href='javascript:void(0)'  class='deluser' data-iduser='$gen_id' data-nuser='$gen_fname $genlname'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
-							}
-							
-				
-							
-				?>
-			
-				
+							}							
+				?>				
 			</tbody>
 	
 		</table>
