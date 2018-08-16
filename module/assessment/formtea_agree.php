@@ -16,6 +16,7 @@
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seaPos);
+	mysqli_free_result($seBrench);
 ?>
 <form class="p-2">
 	<div class="row" >
