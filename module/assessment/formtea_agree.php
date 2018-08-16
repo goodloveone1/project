@@ -15,18 +15,14 @@
 <form class="p-2">
 	<div class="row" >
 		<div class="col-md">
-			<h4 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ (ตำแหน่ง อาจารย์) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h4>
+			<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ (ตำแหน่ง อาจารย์) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
 		</div>
 		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
 			<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
-			<u>เอกสารหมายเลข 2</u>
+			<u>เอกสารหมายเลข 1</u>
 		</div>
 	</div>
-	<div class="row ">
-		<div class="col-md">
-			<p class="text-center"> ...................................................... </p>
-		</div>
-	</div>
+	<br><br>
 	<div class="row text-center" >
 		<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
 		
@@ -692,7 +688,7 @@
 		</tr>
 		<tr>
 			<td colspan="4" class="text-right">
-				<p class="text-center">ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว (ระบุข้อมูลใน (๑) (๒) (๓) และ (๕) ให้ครบ) จึงลงลายมือชื่อไว้เป็นหลักฐาน (ลงนามเมื่อจัดทำข้อตกลง)</p>
+				<p class="text-center">ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว (ระบุข้อมูลใน (๑) (๒) (๓) และ (๕) ให้ครบ) จึงลงลายมือชื่อไว้เป็นหลักฐาน <br>(ลงนามเมื่อจัดทำข้อตกลง)</p>
 				
 
 				<div class="form-group row">
@@ -865,7 +861,7 @@
 		</div>
 
 	</div>
-	<div class="col-md-6 border border-left-0  border-dark p-3">
+	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
@@ -906,7 +902,7 @@
 		</div>
 
 	</div>
-	<div class="col-md-6 border border-left-0  border-dark p-3">
+	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
@@ -958,7 +954,7 @@
 		 </div>
 
 	</div>
-	<div class="col-md-6 border border-left-0  border-dark p-3">
+	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
@@ -1000,7 +996,7 @@
 		 </div>
 
 	</div>
-	<div class="col-md-6 border border-left-0  border-dark p-3">
+	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
