@@ -1,6 +1,16 @@
 <?php
+	session_start();
 	include("../../function/db_function.php");
 	$con=connect_db();
+	
+
+	$seaca=mysqli_query($con,"SELECT gen_acadeic FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	list($acaID)=mysqli_fetch_row($seaca);
+	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acaID'")or die("SQL_ERROR".mysqli_error($con));
+	list($acaName)=mysqli_fetch_row($seacaName);
+
+	mysqli_free_result($seaca);
+	mysqli_free_result($seacaName);
 ?>
 <form class="p-2">
 	<div class="row" >
@@ -8,7 +18,7 @@
 			<h4 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ (ตำแหน่ง อาจารย์) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h4>
 		</div>
 		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
-			<u>ตัวชี้วัด – อาจารย์</u><br>
+			<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
 			<u>เอกสารหมายเลข 2</u>
 		</div>
 	</div>
@@ -129,7 +139,7 @@
 <div class="row">
 <div class="col-md">
 	<p class="text-center" style="font-size: 20px"><b>ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา
-		สายวิชาการ (ตำแหน่ง อาจารย์)
+		สายวิชาการ (ตำแหน่ง <?php echo $acaName ?>)
 	</b></p>
 </div>
 </div>
@@ -464,7 +474,9 @@
 </tr>
 <?php
 	
-	$sql = "SELECT tit,weights FROM weights WHERE aca_id='1'";
+
+
+	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$acaID'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
 	while (list($tit,$weight)=mysqli_fetch_row($weights)) {
