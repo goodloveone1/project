@@ -5,8 +5,8 @@
 <title>opendir()</title>
 </head>
 
-<body>
-
+<body style="background-color:black;">
+<img src="../../img/การัณฑ์-logo-500p.png">
 <?php
 
 
