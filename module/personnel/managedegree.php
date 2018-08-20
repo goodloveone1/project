@@ -4,14 +4,14 @@
     $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
-    <div class="col-sm-2" >
-       <a href=#> <button type="button" class="btn btn-block" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    <div class="col-lg-2" >
+       <a href="javascript:void(0)"> <button type="button" class="btn btn-block" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
-    <div class="col-md">
+    <div class="col-lg">
         <h2>จัดการวุฒิการศึกษา</h2>
     </div>
-    <div class="col-sm-2">
-        <a href=#><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
+    <div class="col-lg-2">
+        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
     </div>
 </div>
 <table  class="table" id="tabldegree" >
@@ -32,9 +32,9 @@
         echo"
             <tr>
                 <td>$no</td>
-                <td><a href='#' class ='showdegree' data-iddegree='$D_id' data-toggle='modal'>$D_name</a></td>
-                <td><a href='#'class='editbrn' data-ideditsub='$D_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-                <td><a href='#' class='delbrn' data-branchname='$D_name' data-ideditsub='$D_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)' class ='showdegree' data-iddegree='$D_id' data-toggle='modal'>$D_name</a></td>
+                <td><a href='javascript:void(0)'class='editbrn' data-ideditsub='$D_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)' class='delbrn' data-branchname='$D_name' data-ideditsub='$D_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
     }
@@ -87,7 +87,7 @@
 
         $('#loadaddsub').load("module/personnel/adddegree.php",function(){
             $('#addsub').modal('show');   
-            alert(data); 
+            
             });
          });
 

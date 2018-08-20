@@ -18,6 +18,9 @@
     <div class="col-md">
         <h2>แก้ไขข้อมูลส่วนตัว</h2>
     </div>
+     <div class="col-sm-2" >
+      
+    </div>
 </div>
 
 
