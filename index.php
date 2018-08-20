@@ -98,6 +98,7 @@
 			
 		</div>
 		<!-- MODEL LOGIN  -->
+		<form class="form-control" id="logins" action="checklogin.php" method="post">
 		<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content" >
@@ -108,7 +109,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form-control" id="logins" action="checklogin.php" method="post">
+						
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
@@ -121,17 +122,16 @@
 								</div>
 								<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="pwd" required>
 							</div>
-							
-						
-					</div>
+				    </div>
 					<div class="modal-footer bg-Brown" >
 						<button type="submin" class="btn btn-primary" id="">เข้าสู่ระบบ</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal" >ยกเลิก</button>
-						</form>
+						
 					</div>
 				</div>
 			</div>
 		</div>
+		</form>
 		<!-- END MODEL LOGIN  -->
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
