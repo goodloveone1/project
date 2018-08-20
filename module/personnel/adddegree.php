@@ -15,9 +15,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label > วุฒิการศึกษา :</label>
-                         <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-center">วุฒิการศึกษา :</label>
+                         <div class="col-md">
+                            <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
+                        </div>
                           <input type="hidden"    value=""  name="degree_name" size=40 require>
                     </div>
                    
