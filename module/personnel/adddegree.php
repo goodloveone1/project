@@ -8,16 +8,18 @@
  <div class="modal fade" id="addsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header headtitle">
                     <h5 class="modal-title " id="exampleModalLabel">เพิ่มวุฒิการศึกษา</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label > วุฒิการศึกษา :</label>
-                         <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-center">วุฒิการศึกษา :</label>
+                         <div class="col-md">
+                            <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
+                        </div>
                           <input type="hidden"    value=""  name="degree_name" size=40 require>
                     </div>
                    

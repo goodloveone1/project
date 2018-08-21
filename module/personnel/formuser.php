@@ -9,6 +9,7 @@
 	<div class="col-md text-center">
 		<h2> เพิ่มบุคลากร </h2>
 	</div>
+	<div class="col-md-2"></div>
 </div>
 <form method="POST"  enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">

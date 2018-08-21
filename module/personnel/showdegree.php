@@ -10,7 +10,7 @@
  <div class="modal fade" id="showdegree" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header headtitle">
                 <?php  
                     $Dname=mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id ='$_POST[id]'")or die("SQL_Error".mysqli_error($con));
                     list($D_name)=mysqli_fetch_row($Dname);

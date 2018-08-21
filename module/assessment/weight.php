@@ -4,12 +4,15 @@
     $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
-    <div class="col-sm-2" >
-       <a href=#> <button type="button" class="btn btn-block" id="backpage" data-modules="assessment" data-action="Criteria_manage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    <div class="col-lg-2" >
+       <a href="javascript:void(0)"> <button type="button" class="btn btn-block" id="backpage" data-modules="assessment" data-action="Criteria_manage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     
-    <div class="col-md">
+    <div class="col-lg">
         <h2>จัดการ น้ำหนัก</h2>
+    </div>
+    <div class="col-lg-2" >
+      
     </div>
 </div>
 <!-- <table  class="table" id="tablebranch" >

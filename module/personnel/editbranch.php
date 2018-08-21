@@ -15,7 +15,7 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
     <div class="modal fade" id="editsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header headtitle">
                     <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูลหลักสูตร</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
