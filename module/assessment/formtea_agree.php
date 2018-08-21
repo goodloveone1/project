@@ -5,17 +5,16 @@
 	
 
 	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaID,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id)=mysqli_fetch_row($seaca);
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acaID'")or die("SQL_ERROR".mysqli_error($con));
+	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id)=mysqli_fetch_row($seaca);
+	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
-	$seaPos=mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$gen_pos'")or die("SQL_ERROR".mysqli_error($con));
-	list($position)=mysqli_fetch_row($seaPos);
+	
 	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
 	list($branchName)=mysqli_fetch_row($seBrench);
 	
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
-	mysqli_free_result($seaPos);
+
 	mysqli_free_result($seBrench);
 ?>
 <form class="p-2">
@@ -100,7 +99,18 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>">
+		<select class="form-control" name="branch">
+		<?php 
+			$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
+			while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
+			$select=$aca_id==$gen_pos?"selected":"";
+			echo "<option value=$aca_id $select>$aca_name</option>";
+			}
+
+			mysqli_free_result($seaPos);
+		?>
+		</select>
+			<!-- <input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>"> -->
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
@@ -118,7 +128,16 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-			<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+		<select class="form-control" name="branch">
+		<?php 
+			$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
+			while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
+			// $select=$aca_id==$gen_pos?"selected":"";
+			echo "<option value=$aca_id>$aca_name</option>";
+			}
+			mysqli_free_result($seaPos);
+		?>
+		</select>
 		</div>
 		
 	</div>
