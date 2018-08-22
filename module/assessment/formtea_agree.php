@@ -1,11 +1,12 @@
 <?php
 	session_start();
 	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
 	$con=connect_db();
 	
 
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary)=mysqli_fetch_row($seaca);
+	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
@@ -14,7 +15,6 @@
 	
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
-
 	mysqli_free_result($seBrench);
 ?>
 <form class="p-2">
@@ -244,7 +244,7 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล">
+		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>">
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
@@ -326,46 +326,23 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div>
-		    <label  class="col-sm-1 col-form-label"> เดือน </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div>
-		    <label  class="col-sm-1 col-form-label"> พ.ศ. </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="date"   class="form-control" id="datethai" placeholder="" value="<?php echo $gen_startdate   ?>">
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+			 <?php
+			 	$birthdate = strtotime($gen_startdate);
+				 $today = time();
+				
+			 ?>
+			 
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php  echo timespan( $birthdate , $today ) ?>">
 		    </div>    
 	</div>
 	</div>	
 </div>
 
-<div class="row ">
-	<div class="col-md">
-	<div class="form-group row">	 	
-			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div>
-		    <label  class="col-sm-1 col-form-label">ปี </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div> 
-		    <label  class="col-sm-1 col-form-label">เดือน </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div> 
-		    <label  class="col-sm-1 col-form-label">วัน </label>
-		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
-		    </div>     
-	</div>
-	</div>	
-</div>
+
 
 <div class="row ">
 	<div class="col-md">
@@ -484,7 +461,7 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control"></textarea>
+		<textarea class="form-control" rows=4></textarea>
 	</div>	
 </div>
 <br><br>
@@ -822,31 +799,31 @@
 		<b><u>ระดับผลการประเมิน</u></b>
 		<div style="padding-left: 100px ">	
 			<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดีเด่น  (๙๐-๑๐๐)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดีมาก (๘๐-๘๙)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดี (๗๐-๗๙)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
 			    พอใช้(๖๐-๖๙)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ต้องปรับปรุง (ต่ำกว่า ๖๐)
 			  </label>
@@ -1078,4 +1055,11 @@ $("#total<?php echo $tit; ?>").html(total);
 <?php
 	}
 ?>
+
+// 	$("#datethai").datetimepicker({
+//     timepicker:false,
+//     lang:'th',  // แสดงภาษาไทย
+//     yearOffset:543,  // ใช้ปี พ.ศ. บวก 543 เพิ่มเข้าไปในปี ค.ศ
+//     inline:true
+// });
 </script>

@@ -28,7 +28,7 @@
 		<script src="<?php echo $basename?>js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
 		<script src="<?php echo $basename?>js/menushow.js"></script> <!--FUNCTION MENU -->
 		<script src="<?php echo $basename?>js/functionjs.js"></script> <!--FUNCTION script -->
-		
+
 		<?php
 			require('function/menu.php');
 			
