@@ -4,18 +4,17 @@
 	$con=connect_db();
 	
 
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaID,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id)=mysqli_fetch_row($seaca);
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acaID'")or die("SQL_ERROR".mysqli_error($con));
+	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary)=mysqli_fetch_row($seaca);
+	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
-	$seaPos=mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$gen_pos'")or die("SQL_ERROR".mysqli_error($con));
-	list($position)=mysqli_fetch_row($seaPos);
+	
 	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
 	list($branchName)=mysqli_fetch_row($seBrench);
 	
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
-	mysqli_free_result($seaPos);
+
 	mysqli_free_result($seBrench);
 ?>
 <form class="p-2">
@@ -96,15 +95,26 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>">
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>">
+		<select class="form-control" name="">
+		<?php 
+			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
+			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
+			$select=$pos_id==$gen_pos?"selected":"";
+			echo "<option value=$pos_id $select>$pos_name</option>";
+			}
+
+			mysqli_free_result($seaPos);
+		?>
+		</select>
+			<!-- <input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>"> -->
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="<?php echo $branchName?>">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $branchName?>">
 		</div>
 	</div>
 </div>
@@ -114,11 +124,19 @@
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
 		<div class="col-sm">
-			<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา">
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-			<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+		<select class="form-control" name="">
+		<?php 
+			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
+			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
+			// $select=$pos_id==$gen_pos?"selected":"";
+			echo "<option value=$pos_id >$pos_name</option>";
+			}
+		?>
+		</select>
 		</div>
 		
 	</div>
@@ -209,7 +227,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="">
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน">
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -226,11 +244,21 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล">
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
+			  <select class="form-control" name="">
+			  <?php   
+			  	$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
+				  while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
+				  // $select=$aca_id==$gen_pos?"selected":"";
+				  echo "<option value=$aca_id>$aca_name</option>";
+				  }
+				  mysqli_free_result($seaPos);
+			  ?>
+			  </select>
 		    </div>  
 	</div>
 	</div>	
@@ -241,11 +269,22 @@
 
 		 	<label  class="col-sm-2 col-form-label"> ตำแหน่งบริหาร </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
+			  <select class="form-control" name="">
+				<?php 
+					$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
+					while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
+					$select=$pos_id==$gen_pos?"selected":"";
+					echo "<option value=$pos_id $select>$pos_name</option>";
+					}
+
+					mysqli_free_result($seaPos);
+				?>
+		</select>
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>">
 		    </div> 
 		    <label  class="col-sm-1 col-form-label">บาท </label> 
 	</div>
@@ -257,11 +296,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง">
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="สังกัด">
 		    </div>    
 	</div>
 	</div>	
@@ -272,11 +311,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด">
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="">
+		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ">
 		    </div>    
 	</div>
 	</div>	
@@ -426,7 +465,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="">
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ">
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 
@@ -478,7 +517,7 @@
 	
 
 
-	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$acaID'";
+	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
 	while (list($tit,$weight)=mysqli_fetch_row($weights)) {
