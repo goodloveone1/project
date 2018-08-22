@@ -5,10 +5,18 @@ function urlwrite(module1,action){
 }
 
 function loadingpage(module1,action){
-	$("#detail").html("<img style='display: block;margin-left: auto;margin-right: auto;' src='img/loading.svg'>")
-					setTimeout(function(){
-						loadmain(module1,action);
-						urlwrite(module1,action);			
+	
+					$("#picloading").show();
+	        		$("#detail").hide();
+	        		loadmain(module1,action);
+	        		urlwrite(module1,action);
+	        		setTimeout(function(){
+	        			$("#picloading").hide();
+		        		$("#detail").show();
 						
-	} ,2000);
+					},1000)				
+						
+	
 }
+
+

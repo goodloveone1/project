@@ -14,10 +14,12 @@ function loadmain(module1,action){
 							$.post( url, { name: "John"})
 						  	.done(function( data ) {
 
-						      $('#detail').animateCss('fadeOut',function(){ /* ANIMATION USE */
-						      	$("#detail").html(data);
-								 $('#detail').animateCss('fadeIn'); 	
-								});
+						  		$("#detail").html(data);
+
+						  //     $('#detail').animateCss('fadeOut',function(){ /* ANIMATION USE */
+						  //     	$("#detail").html(data);
+								//  $('#detail').animateCss('fadeIn'); 	
+								// });
 						  });
 						  		
 

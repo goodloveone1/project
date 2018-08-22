@@ -149,6 +149,9 @@
 				<section class="col-md-12  mt-0 pb-2" id="detail">
 					
 				</section>
+				<div id='picloading' class="p-lg-5 " style="display: none">
+					<img style='display: block;margin-left: auto;margin-right: auto;' src='img/loading.svg'>
+				</div>
 				<footer class="col-md-12 mt-3">
 					
 				</footer>
@@ -168,12 +171,13 @@
 		<script>
 
 
-
-
 		var module1 = sessionStorage.getItem("module1");
 		var action = sessionStorage.getItem("action");
 		
 		$(document).ready(function() {
+
+			
+
 			$("#menuaside li").hover(function() {
 				
 			}, function() {
@@ -183,14 +187,13 @@
 				openNav();
 			});
 		
-				$(".menuuser").on('click',function(){
-					
+				$(".menuuser").on('click',function(e){
+					e.preventDefault();
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
-
-					loadingpage(module1,action);
-					return false;
 					
+					loadingpage(module1,action); //code local functionjs.js
+
 				});
 
 			/* ANIMATION*/
