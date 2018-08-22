@@ -59,7 +59,7 @@ function webmenu($id){
 ?>
 		<p> ยินดีต้อนรับ อาจารย์</p>
 			<ul class="list-group" id="menuaside">
-				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
+				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-3x " ></i><span class="text"> หน้าหลัก</span>

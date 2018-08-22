@@ -1,51 +1,40 @@
-<div class="jumbotron col-md-12">
-	<h1 class="display-4">ข่าวประชาสัมพันธ์</h1>
-	<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-	<hr class="my-4">
-	<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-	<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
 <div class="row">
-	
-	<div class="col-md-3">
-		<div class="card">
-			<img class="card-img-top img-thumbnail" src="img\default\user_default.svg" alt="Card image cap">
-			<div class="card-body">
-				<p class="card-text">MIINNEE</p>
-			</div>
+	<div class="col-md-12">
+	<h2 class="headtitle p-2 text-center"> ข่าวประชาสัมพันธ์ </h2> 
+		<div class="list-group" id='testna'>
+		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">List group item heading</h5>
+		      <small>3 days ago</small>
+		    </div>
+		    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+		    <small>Donec id elit non mi porta.</small>
+		  </a>
+		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">List group item heading</h5>
+		      <small class="text-muted">3 days ago</small>
+		    </div>
+		    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+		    <small class="text-muted">Donec id elit non mi porta.</small>
+		  </a>
+		  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+		    <div class="d-flex w-100 justify-content-between">
+		      <h5 class="mb-1">List group item heading</h5>
+		      <small class="text-muted">3 days ago</small>
+		    </div>
+		    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+		    <small class="text-muted">Donec id elit non mi porta.</small>
+		  </a>
 		</div>
 	</div>
-	<div class="col-md">
-		
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 </div>
+
+<script type="text/javascript">
+	$("#testna").on('hover', 'a', function(event) {
+		event.preventDefault();
+		/* Act on the event */
+		alert("HOVER!!!")
+		$(this).addClass('active');
+	});
+</script>
