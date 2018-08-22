@@ -126,12 +126,12 @@ function timespan($seconds = 1, $time = '')
 	// 	$str .= $seconds.' วินาที';
 	// }
  
-	return substr(trim($str), 0, -1);
+	return substr(trim($str), 0, 100);
 }
  
  
 // ตัวอย่างการใช้งาน
-$birthdate = strtotime( '1992-03-09' );
+$birthdate = strtotime( '2018-07-19' );
 $today = time();
  
 echo timespan( $birthdate , $today );
