@@ -10,5 +10,5 @@ function loadingpage(module1,action){
 						loadmain(module1,action);
 						urlwrite(module1,action);			
 						
-	} ,3000);
+	} ,2000);
 }
