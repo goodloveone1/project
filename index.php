@@ -111,12 +111,14 @@
 					<div class="modal-body">
 						
 							<div class="input-group mb-3">
+								
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
 								</div>
 								<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="user" required>
 							</div>
 							<div class="input-group mb-3">
+							
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1"><i class="fas fa-unlock"></i></span>
 								</div>

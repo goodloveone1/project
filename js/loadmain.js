@@ -10,8 +10,7 @@ function loadmain(module1,action){
 
 						$.getScript("js/module.js", function() {
 							var url = modules(module1 ,action);
-							
-							
+
 							$.post( url, { name: "John"})
 						  	.done(function( data ) {
 
@@ -20,5 +19,7 @@ function loadmain(module1,action){
 								 $('#detail').animateCss('fadeIn'); 	
 								});
 						  });
+						  		
+
 						});
 				}

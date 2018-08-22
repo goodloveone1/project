@@ -188,9 +188,7 @@
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
 
-					$data = $('body').html();
-					loadmain(module1,action);
-					urlwrite(module1,action);			
+					loadingpage(module1,action);
 					return false;
 					
 				});
