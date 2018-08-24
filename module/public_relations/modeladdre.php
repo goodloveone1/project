@@ -23,15 +23,16 @@ echo  $date;
                    
                     <div class="form-group">
                         <label > หัวเรื่อง :</label>
-                         <input type="text"   class="form-control" value="" placeholder="หัวเรื่อง" name="subject" size=40 require>
+                         <input type="text"   class="form-control" value="" placeholder="หัวเรื่อง" name="title" size=40 require>
                     </div>
                     <div class="form-group">
                         <label > รายละเอียด :</label>
-                         <input type="text"   class="form-control" value="" placeholder="ชื่อสาขา" name="subject" size=40 require>
+
+                          <textarea class="form-control" id="" rows="3" require name="detail"></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
-                         <input type="date"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="subject" size=40   >
+                         <input type="date"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="date" size=40   >
                     </div>
                     
                 </div>
@@ -48,15 +49,15 @@ echo  $date;
     $("#addsu").click(function(event) {
         var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
         if (r == true) {
-            $.post( "module/personnel/adddatasubject.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
-                //alert(data);
-                $('#addsub').modal("hide")
+            $.post( "module/public_relations/insertre.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
+                alert(data);
+                $('#addre').modal("hide")
 
-                $('#addsub').on('hidden.bs.modal', function (e) {
+                $('#addre').on('hidden.bs.modal', function (e) {
 
-                var module1 = sessionStorage.getItem("module1")
-                var action = sessionStorage.getItem("action")
-              loadmain(module1,action);
+                 var module1 = sessionStorage.getItem("module1")
+                 var action = sessionStorage.getItem("action")
+                 loadmain(module1,action);
                 })
              })
             
