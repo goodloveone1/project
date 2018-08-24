@@ -25,18 +25,18 @@
 	
 				if($_SESSION['user_level']=="1")
 				{
-					echo "<script>window.location='userlogin.php'</script>";
+					echo "<script>window.location='userlogin'</script>";
 					//echo"admin";
 					
 				}
 				elseif($_SESSION['user_level']=="2")
 				{
-					echo "<script>window.location='userlogin.php'</script>";
+					echo "<script>window.location='userlogin'</script>";
 					//echo"อาจารย์/บุคลากรทั้วไป";
 				}
 				elseif($_SESSION['user_level']=="3")
 				{
-					echo "<script>window.location='userlogin.php'</script>";
+					echo "<script>window.location='userlogin'</script>";
 					//echo"หัวหน้าหลักสูตร์";
 				}
 				elseif($_SESSION['user_level']=="4")

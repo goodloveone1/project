@@ -2,7 +2,7 @@
 
 include("../../function/db_function.php");
 $con=connect_db();
-$date = date("Y-m-d H:i:s");
+$date = date("Y-m-d");
 
 echo  $date;
 
@@ -31,7 +31,7 @@ echo  $date;
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
-                         <input type="datetime-local"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="subject" size=40   >
+                         <input type="date"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="subject" size=40   >
                     </div>
                     
                 </div>
