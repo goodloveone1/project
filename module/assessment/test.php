@@ -29,7 +29,7 @@
 // }
 
 
-
+// echo dateDifference($gen_startdate,date("Y/m/d"),'%y Year %m Month %d Day'
 
 function timespan($seconds = 1, $time = '')
 {

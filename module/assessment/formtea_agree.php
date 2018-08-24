@@ -326,17 +326,17 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate),"$gen_startdate";   ?>" readonly>
+		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)   ?>" readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
 			 <?php
-			 	$birthdate = strtotime($gen_startdate);
-				 $today = time();
+			 	// $birthdate = strtotime($gen_startdate);
+				//  $today = time();
 				
 			 ?>
 			 
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php  echo timespan( $birthdate , $today ) ?>">
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>">
 		    </div>    
 	</div>
 	</div>	
