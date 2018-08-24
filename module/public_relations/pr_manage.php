@@ -23,6 +23,7 @@ include("../../function/db_function.php");
 					<th scope="col">ชื่เรื่อง</th>
 					<th scope="col">รายละเอียด</th>
 					<th scope="col">วันที่อัปโหลด</th>
+					<th scope="col">ผู้อัปโหลด</th>
 					<th scope="col">แก้ไข</th>
 					<th scope="col">ลบ</th>
 				</tr>
@@ -31,14 +32,18 @@ include("../../function/db_function.php");
 				<?php
 					$re = mysqli_query($con,"SELECT * FROM relations ORDER BY re_date DESC") or die("SQL >>".mysqli_error($con));
 
-					while (list($re_id,$re_title,$re_detail,$re_date)=mysqli_fetch_row($re)) {
+					while (list($re_id,$re_title,$re_detail,$re_date,$gen_id)=mysqli_fetch_row($re)) {
+
+						$gen = mysqli_query($con,"SELECT gen_fname,gen_lname FROM general WHERE gen_id = '$gen_id'");
+						list($name,$lname) = mysqli_fetch_row($gen);
 						echo "<tr>";
-						echo "<td>$re_id<td>";
-						echo "<td>$re_title<td>";
-						echo "<td>$re_detail<td>";
-						echo "<td>$re_date<td>";
-						echo "<td><td>";
-						echo "<td><td>";
+						echo "<td>$re_id</td>";
+						echo "<td>$re_title</td>";
+						echo "<td>$re_detail</td>";
+						echo "<td>$re_date</td>";
+						echo "<td>$name $lname</td>";
+						echo "<td></td>";
+						echo "<td></td>";
 						echo "</tr>";
 					}
 					mysqli_free_result($re);
