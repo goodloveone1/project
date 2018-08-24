@@ -326,7 +326,7 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="date"   class="form-control" id="datethai" placeholder="" value="<?php echo $gen_startdate   ?>">
+		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate);   ?>" readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
