@@ -30,5 +30,4 @@
         return $interval->format($differenceFormat);
         
         }
-
 ?>
