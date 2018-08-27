@@ -131,11 +131,11 @@ function timespan($seconds = 1, $time = '')
  
  
 // ตัวอย่างการใช้งาน
-$birthdate = strtotime( '2018-07-19' );
-$today = time();
+// $birthdate = strtotime( '2018-07-19' );
+// $today = time();
  
-echo timespan( $birthdate , $today );
-//36 ปี, 2 เดือน, 3 สัปดาห์, 2 วัน, 4 ชั่วโมง, 51 นาที
+// echo timespan( $birthdate , $today );
+// //36 ปี, 2 เดือน, 3 สัปดาห์, 2 วัน, 4 ชั่วโมง, 51 นาที
 
 
 
