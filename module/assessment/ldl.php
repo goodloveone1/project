@@ -9,6 +9,7 @@
 
     for ($set = array (); $row = $seldlt->fetch_assoc(); $set[] = $row);
 print_r($set);
+echo "<br>";
 ?>
 
 <form id="foreditbrc" method="get" action="ldl_insert.php">
