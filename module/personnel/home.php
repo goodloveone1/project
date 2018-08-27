@@ -1,5 +1,6 @@
 <?php 
 include("../../function/db_function.php");
+include("../../function/fc_time.php");
 $con=connect_db();
 ?>
 <div class="row">
@@ -21,10 +22,13 @@ $con=connect_db();
 		      <!-- <small>3 days ago</small> -->
 		    </div>
 		    <p class="mb-1"><?php echo $re_detail; ?></p>
-		    <small><?php echo "เผยแพร่เมื่อ $re_date โดย $name $lname" ?>  </small>
+		    <small><?php echo "เผยแพร่เมื่อ ".DateThai($re_date)." โดย $name $lname" ?>  </small>
 		  </a>
 		  <?php
 		 	 }
+		 	 mysqli_free_result($re);
+		 	 mysqli_free_result($gen);
+		 	 mysqli_close($con);
 		  ?>
 		</div>
 	</div>

@@ -12,13 +12,13 @@ $data=array();
 											);
 				
 							array_push($data,$addarry);
+							mysqli_free_result($deName);
+
 						}
 						mysqli_free_result($degree);
-			// $addarry = array("<button type='button' class='btn' id='adddegree' data-genid='$gen_id' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>","","","","");
-			// 	array_push($data,$addarry);
-	
-			
-			
-		echo	json_encode($data);
+
+						mysqli_close($con);
+
+			echo	json_encode($data);
 	
 ?>

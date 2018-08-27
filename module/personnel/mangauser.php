@@ -4,7 +4,7 @@
 	$con=connect_db();
 ?>
 <div class="row  p-2 headtitle">
-	<div class="col-md-2" style="display: block;"><a href="javascript:void(0)" id="btnre" data-modules='personnel' data-action='menumanage'><button type="button" class="btn btn-block"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button></a>
+	<div class="col-md-2" style="display: block;"><button type="button" class="btn btn-block menuuser"  data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button>
 	
 </div>
 
@@ -70,7 +70,12 @@
 										<td><a href='javascript:void(0)'  class='deluser' data-iduser='$gen_id' data-nuser='$gen_fname $genlname'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
-							}							
+							$Sbrach->free_result();
+							$subjects->free_result();
+
+							}
+							$show->free_result();	
+							$con->close();							
 				?>				
 			</tbody>
 	
@@ -85,16 +90,11 @@
 	
 </div>
 
+
 <script type="text/javascript">
 		$(document).ready(function() {
 
-			$("#btnre").click(function(event) {   /// ป่มย้อนกลับ
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-
-				loadmain(module1,action);
-			});
-
+			
 
 			$("a.managaedituser").click(function(){ 
 

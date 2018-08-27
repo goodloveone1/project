@@ -5,13 +5,13 @@
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-lg-2" >
-       <a href="javascript:void(0)"> <button type="button" class="btn btn-block" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-lg">
         <h2>จัดการวุฒิการศึกษา</h2>
     </div>
     <div class="col-lg-2">
-        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
+        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
     </div>
 </div>
 <table  class="table" id="tabldegree" >
@@ -60,13 +60,6 @@
         });
        
 
-        $("#backpage").click(function(event) {
-
-            var module1 = $(this).data('modules');
-            var action = $(this).data('action');
-			loadmain(module1,action)
-
-        })
         $(".delbrn").click(function(){
             
             var ideditsub =$(this).data("ideditsub");
@@ -83,13 +76,13 @@
                     })
             }
         })
-        $("#addbrn").click(function( ){
-
-        $('#loadaddsub').load("module/personnel/adddegree.php",function(){
-            $('#addsub').modal('show');   
-            
-            });
-         });
+        $("#addbrn").click(function(e){
+            e.preventDefault()
+            $('#loadaddsub').load("module/personnel/adddegree.php",function(){
+                $('#addsub').modal('show');   
+                
+                });
+             });
 
         $(".showdegree").click(function(event) {
              var iddegree =$(this).data("iddegree");

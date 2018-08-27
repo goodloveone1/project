@@ -88,7 +88,7 @@
 							$seA=$aca_id==$gen_acadeic?"selected":"";
 							echo "<option value=$aca_id $seA>$aca_name</option>";
 						 }
-
+						 $selectP->free_result();
 						?>
 					</select>
 				</div>
@@ -106,9 +106,11 @@
 							
 							$seP=$sub_id==$subject_ID?"selected":""; 
 						
-						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";		
-						 }
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";
 
+						 	$branch->free_result();		
+						 }
+						 $result->free_result();	
 						?>
 					
 					</select>
