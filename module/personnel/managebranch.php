@@ -35,7 +35,7 @@ $con=connect_db();
             <td>$i<ttd>
                 <td>$subject_name<ttd>
                     <td> $branch_name</td>
-                    <td><a href='#'class='editbrn' data-ideditsub='$subject_id' data-toggle='modal'><i class='fas fa-edit fa-2x'></i></a></td>
+                    <td><a href='#'class='editbrn' data-ideditsub='$subject_id'><i class='fas fa-edit fa-2x'></i></a></td>
                     <td><a href='#'data-branchname='$subject_name' data-ideditsub='$subject_id' class='delbrn'><i class='fas fa-trash-alt fa-2x'></i></a></td>
                 </tr>";
                 mysqli_free_result($branch);

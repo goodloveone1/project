@@ -47,10 +47,10 @@ $date = date("Y-m-d");
         var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
         if (r == true) {
             $.post( "module/public_relations/insertre.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
-                alert(data);
-                $('#modelre').modal("hide")
+                //alert(data);
+                $('#addre').modal("hide")
 
-                $('#modelre').on('hidden.bs.modal', function (e) {
+                $('#addre').on('hidden.bs.modal', function (e) {
 
                  var module1 = sessionStorage.getItem("module1")
                  var action = sessionStorage.getItem("action")

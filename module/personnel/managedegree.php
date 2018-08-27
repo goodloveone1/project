@@ -32,7 +32,7 @@
         echo"
             <tr>
                 <td>$no</td>
-                <td><a href='javascript:void(0)' class ='showdegree' data-iddegree='$D_id' data-toggle='modal'>$D_name</a></td>
+                <td><a href='javascript:void(0)' class ='showdegree' data-iddegree='$D_id'>$D_name</a></td>
                 <td><a href='javascript:void(0)'class='editbrn' data-ideditsub='$D_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='javascript:void(0)' class='delbrn' data-branchname='$D_name' data-ideditsub='$D_id'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";

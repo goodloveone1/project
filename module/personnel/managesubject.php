@@ -12,7 +12,7 @@
         <h2>จัดการสาขา</h2>
     </div>
     <div class="col-lg-2">
-        <a href=#><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
+        <a href=#><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
     </div>
 </div>
 <table  class="table" id="tablebranch" >
