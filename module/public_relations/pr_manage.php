@@ -1,5 +1,6 @@
 <?php
 include("../../function/db_function.php");
+include("../../function/fc_time.php");
 	$con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
@@ -10,7 +11,7 @@ include("../../function/db_function.php");
         <h2>จัดการข้อมูลประชาสัมพันธ์</h2>
     </div>
     <div class="col-md-2">
-        <a href='javascript:void(0)'><button type="button" class="btn btn-block" id="addrela" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button></a>
+        <a href='javascript:void(0)'><button type="button" class="btn btn-block " id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button></a>
     </div>
 </div>
 
@@ -20,8 +21,8 @@ include("../../function/db_function.php");
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">รหัส</th>
-					<th scope="col">ชื่เรื่อง</th>
-					<th scope="col">รายละเอียด</th>
+					<th scope="col">ชื่อเรื่อง</th>
+					
 					<th scope="col">วันที่อัปโหลด</th>
 					<th scope="col">ผู้อัปโหลด</th>
 					<th scope="col">แก้ไข</th>
@@ -38,12 +39,12 @@ include("../../function/db_function.php");
 						list($name,$lname) = mysqli_fetch_row($gen);
 						echo "<tr>";
 						echo "<td>$re_id</td>";
-						echo "<td>$re_title</td>";
-						echo "<td>$re_detail</td>";
-						echo "<td>$re_date</td>";
+						echo "<td><a href='javascript:void(0)' data-reid='$re_id' data-action='modelshowre.php' class='showre'> $re_title </a></td>";
+						
+						echo "<td>".DateThai($re_date)."</td>";
 						echo "<td>$name $lname</td>";
-						echo "<td></td>";
-						echo "<td></td>";
+						echo "<td><a href='javascript:void(0)' class='showre' data-reid='$re_id' data-action='modeleditre.php'><i class='fas fa-edit fa-2x '></i></a></td>";
+						echo "<td><a href='javascript:void(0)'  class='delre' data-reid='$re_id' data-retit='$re_title' ><i class='fa fa-trash fa-2x'</i></a></td>";
 						echo "</tr>";
 					}
 					mysqli_free_result($re);
@@ -54,7 +55,7 @@ include("../../function/db_function.php");
 	</div>
 </div>
 
-<div id="loadmodeladd"> </div>
+<div id="loadmodel"> </div>
 
 <script type="text/javascript">
 	$( document ).ready(function(){
@@ -63,12 +64,44 @@ include("../../function/db_function.php");
 
 
 		$("#addrela").click(function(event) {
+			event.preventDefault()	
 
-
-			 $('#loadmodeladd').load("module/public_relations/modeladdre.php",function(){
+			 $('#loadmodel').load("module/public_relations/modeladdre.php",function(){
             $('#addre').modal('show');     
             });
 
 		});
+
+		$(".showre").click(function(event) {
+
+			event.preventDefault()
+
+			var re_id = $(this).data('reid')
+			var action = $(this).data('action')
+			$.post('module/public_relations/'+action, {reid: re_id}).done(function(data,txtstuta){
+
+				$('#loadmodel').html(data);
+				$('#modelre').modal('show');  
+			});
+
+		});
+
+		$(".delre").click(function(event) {
+			event.preventDefault()
+			var re_tit = $(this).data('retit')
+			var r = confirm("ต้องการข่าวประชาสัมพันธ์นี้ "+re_tit+" ใช่หรือไม่?");
+            if (r == true) {
+			var re_id = $(this).data('reid')
+			$.post('module/public_relations/delre.php', {reid: re_id}).done(function(data,txtstuta){
+
+				alert(data);
+				$('#loadmodel').html(data);
+			});
+			}
+		});
+
+
+
+
 	})
 </script>	

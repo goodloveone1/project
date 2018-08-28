@@ -5,7 +5,7 @@
 <div class="row mt-5">
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="mangauser" >
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="personnel" data-action="mangauser" >
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managebranch">
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="personnel" data-action="managebranch">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
@@ -31,7 +31,7 @@
 <div class="row mt-5">
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managesubject">
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="personnel" data-action="managesubject">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
@@ -42,7 +42,7 @@
 	</div>
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managedegree">
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="personnel" data-action="managedegree">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
@@ -53,13 +53,3 @@
 	
 	</div>
 </div>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$("a.maninuser").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				loadmain(module1,action);
-				urlwrite(module1,action);
-			});
-		});
-</script>

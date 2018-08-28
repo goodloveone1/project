@@ -98,7 +98,9 @@
 						$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='1'") or die ("errorSQL".mysqli_error($con));
 						list($branch_name)=mysqli_fetch_row($branch);
 							echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";
+						mysql_free_result($branch);	
 						}
+						mysql_free_result($result);	
 						?>
 						
 					</select>
@@ -145,6 +147,8 @@
 								echo "<option value='".$permissid."'>$permissname</option>";
 							}
 							mysqli_free_result($permiss);
+
+							mysql_close($con);
 						?>
 					</select>
 				</div>

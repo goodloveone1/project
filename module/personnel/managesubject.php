@@ -5,14 +5,14 @@
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-lg-2" >
-       <a href=#> <button type="button" class="btn btn-block" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href=#> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     
     <div class="col-lg">
         <h2>จัดการสาขา</h2>
     </div>
     <div class="col-lg-2">
-        <a href=#><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
+        <a href=#><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
     </div>
 </div>
 <table  class="table" id="tablebranch" >
@@ -59,13 +59,7 @@
         });
        
 
-        $("#backpage").click(function(event) {
-
-            var module1 = $(this).data('modules');
-            var action = $(this).data('action');
-			loadmain(module1,action)
-
-        })
+       
         $(".delbrn").click(function(){
             
             var ideditsub =$(this).data("ideditsub");

@@ -86,7 +86,7 @@
 					}
 		</style>
 	</head>
-	<body>
+	<body id='idbody'>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
 			<?php
 
@@ -187,7 +187,7 @@
 				openNav();
 			});
 		
-				$(".menuuser").on('click',function(e){
+				$("#idbody").on('click',".menuuser",function(e){
 					e.preventDefault();
 					module1 = $(this).data('modules');
 					action = $(this).data('action');

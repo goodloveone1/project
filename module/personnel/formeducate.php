@@ -2,7 +2,7 @@
 	include("../../function/db_function.php");
     $con=connect_db();
     
-  $genid = $_POST['genid'];
+  echo $genid = $_POST['genid'];
    
 ?>
 
