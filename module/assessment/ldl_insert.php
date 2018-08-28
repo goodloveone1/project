@@ -1,7 +1,7 @@
 <?php
 	include("../../function/db_function.php");
 	$con=connect_db();
-    for ($i=0;$i<5;$i++){
+    for ($i=0;$i<7;$i++){
         $name1="i_no";
         $name2="i_day";
         $s=$i+1;
