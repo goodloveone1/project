@@ -349,7 +349,14 @@
 	<p>๓. บันทึกการมาปฏิบัติงาน</p>
 	</div>	
 </div>
-
+<?php
+	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='1'")or die(mysqli_error($con));
+	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
+	$seldlt2=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='2'")or die(mysqli_error($con));
+    for ($set2 = array (); $row = $seldlt->fetch_assoc(); $set2[] = $row);
+	// print_r($set1);	
+	// print_r($set2);				
+?>
 <div class="row ">
 	<div class="col-md">
 	<table class="table table-bordered">
@@ -376,22 +383,26 @@
 		<tbody>
 			<tr>
 				<td>ลาป่วย</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[0]['idl_num'])?"":$set1[0]['idl_num'] ?></td>
+				<td><?php echo empty($set1[0]['idl_day'])?"":$set1[0]['idl_day'] ?></td>
+				<td><?php echo empty($set2[0]['idl_num'])?"":$set2[0]['idl_num'] ?></td>
+				<td><?php echo empty($set2[0]['idl_day'])?"":$set2[0]['idl_day'] ?></td>
+				<?php
+					echo empty($set1[8]['idl_num'])?"":"$set1[8]['idl_num']";
+
+				?>
 				<td rowspan="3">ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานาน<br>คราวเดียวหรือหลายคราวรวมกัน</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[5]['idl_num'])?"":$set1[5]['idl_num'] ?></td>
+				<td><?php echo empty($set1[5]['idl_day'])?"":$set1[5]['idl_day'] ?></td>
+				<td><?php echo empty($set2[5]['idl_num'])?"":$set2[5]['idl_num'] ?></td>
+				<td><?php echo empty($set2[5]['idl_day'])?"":$set2[5]['idl_day'] ?></td>
 			</tr>
 			<tr>
 				<td>ลากิจ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[1]['idl_num'])?"":$set1[1]['idl_num'] ?></td>
+				<td><?php echo empty($set1[1]['idl_day'])?"":$set1[1]['idl_day'] ?></td>
+				<td><?php echo empty($set2[1]['idl_num'])?"":$set2[1]['idl_num'] ?></td>
+				<td><?php echo empty($set2[1]['idl_day'])?"":$set2[1]['idl_day'] ?></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -400,10 +411,10 @@
 			</tr>	
 			<tr>
 				<td>มาสาย</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[2]['idl_num'])?"":$set1[2]['idl_num'] ?></td>
+				<td><?php echo empty($set1[2]['idl_day'])?"":$set1[2]['idl_day'] ?></td>
+				<td><?php echo empty($set2[2]['idl_num'])?"":$set2[2]['idl_num'] ?></td>
+				<td><?php echo empty($set2[2]['idl_day'])?"":$set2[2]['idl_day'] ?></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -412,22 +423,22 @@
 			</tr>	
 			<tr>
 				<td>ลาคลอดบุตร</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>ลาคลอดบุตร</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[3]['idl_num'])?"":$set1[3]['idl_num'] ?></td>
+				<td><?php echo empty($set1[3]['idl_day'])?"":$set1[3]['idl_day'] ?></td>
+				<td><?php echo empty($set2[3]['idl_num'])?"":$set2[3]['idl_num'] ?></td>
+				<td><?php echo empty($set2[3]['idl_day'])?"":$set2[3]['idl_day'] ?></td>
+				<td>ขาดราชการ</td>
+				<td><?php echo empty($set1[6]['idl_num'])?"":$set1[6]['idl_num'] ?></td>
+				<td><?php echo empty($set1[6]['idl_day'])?"":$set1[6]['idl_day'] ?></td>
+				<td><?php echo empty($set2[6]['idl_num'])?"":$set2[6]['idl_num'] ?></td>
+				<td><?php echo empty($set2[6]['idl_day'])?"":$set2[6]['idl_day'] ?></td>
 			</tr>
 			<tr>
 				<td>ลาอุปสมบท</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php echo empty($set1[4]['idl_num'])?"":$set1[4]['idl_num'] ?></td>
+				<td><?php echo empty($set1[4]['idl_day'])?"":$set1[4]['idl_day'] ?></td>
+				<td><?php echo empty($set2[4]['idl_num'])?"":$set2[4]['idl_num'] ?></td>
+				<td><?php echo empty($set2[4]['idl_day'])?"":$set2[4]['idl_day'] ?></td>
 				<td colspan="5"></td>
 				
 			</tr>		
