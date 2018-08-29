@@ -29,6 +29,7 @@
                        <input type="text"   class="form-control" value=""  name="i_no<?php echo $i+1 ?>" size=10 > ครั้ง
                        <input type="text"   class="form-control" value=""  name="i_day<?php echo $i+1 ?>" size=10 > วัน
                        <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="<?php  ?>" size=40 require>
+                       <input type="hidden"    value=""  name="<?php  ?>" size=40 require>
                     </div>
                 <?php   }?>
                 </div>
