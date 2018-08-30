@@ -20,7 +20,7 @@
 <form class="p-2">
 	<div class="row" >
 		<div class="col-md">
-			<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ (ตำแหน่ง อาจารย์) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
+			<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ(ตำแหน่ง <?php echo $acaName ?>) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
 		</div>
 		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
 			<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
@@ -349,93 +349,24 @@
 	<p>๓. บันทึกการมาปฏิบัติงาน</p>
 	</div>	
 </div>
+<div class="row">
+	<div class="col-md">	
+		<?php
+			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='1' AND idl_year='2018' ")or die(mysqli_error($con));
+			$idl=mysqli_fetch_assoc($reS);
+			
+			if(empty($idl)){
+				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
+				echo "<div align='center'><button type='button'>กรอกข้อมูล</button><div><br>";
 
-<div class="row ">
-	<div class="col-md">
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">รอบที่ ๑</th>
-				<th colspan="2">รอบที่ ๒</th>
-				<th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">รอบที่ ๑</th>
-				<th colspan="2">รอบที่ ๒</th>
-			</tr>
-			<tr>
-				<th>ครั้ง</th>
-				<th>วัน</th>
-				<th>ครั้ง</th>
-				<th>วัน</th>
-				<th>ครั้ง</th>
-				<th>วัน</th>
-				<th>ครั้ง</th>
-				<th>วัน</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>ลาป่วย</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td rowspan="3">ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานาน<br>คราวเดียวหรือหลายคราวรวมกัน</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>ลากิจ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
 				
-			</tr>	
-			<tr>
-				<td>มาสาย</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				
-			</tr>	
-			<tr>
-				<td>ลาคลอดบุตร</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td>ลาคลอดบุตร</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>ลาอุปสมบท</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td colspan="5"></td>
-				
-			</tr>		
-		</tbody>
-	</table>
-	</div>	
+			}else{
+				include("idl.php");
+			}
+			
+		?>
+	</div>
 </div>
-
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md">

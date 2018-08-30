@@ -6,7 +6,7 @@
     for ($set = array (); $row = $seldlt->fetch_assoc(); $set[] = $row);
     //print_r($set);
 
-    echo $set[0]['idl_type_name'];
+   // echo $set[0]['idl_type_name'];
 ?>
 
 <form id="foreditbrc" method="get" action="ldl_insert.php">
@@ -24,12 +24,12 @@
                     $name="value";
                     $n=1 ?>
                     <div class="form-group">
-    
                         <label > <?php echo $set[$i]['idl_type_name']; ?> :</label>
                         <!-- <input type="text"   class="form-control" value=""  name="i_no" size=10 > -->
                        <input type="text"   class="form-control" value=""  name="i_no<?php echo $i+1 ?>" size=10 > ครั้ง
                        <input type="text"   class="form-control" value=""  name="i_day<?php echo $i+1 ?>" size=10 > วัน
                        <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="<?php  ?>" size=40 require>
+                       <input type="hidden"    value=""  name="<?php  ?>" size=40 require>
                     </div>
                 <?php   }?>
                 </div>
