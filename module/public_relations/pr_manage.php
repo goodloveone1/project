@@ -11,7 +11,7 @@ include("../../function/fc_time.php");
         <h2>จัดการข้อมูลประชาสัมพันธ์</h2>
     </div>
     <div class="col-md-2">
-        <a href='javascript:void(0)'><button type="button" class="btn btn-block " id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button></a>
+       <button type="button" class="btn btn-block " id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button>
     </div>
 </div>
 
@@ -37,6 +37,7 @@ include("../../function/fc_time.php");
 
 						$gen = mysqli_query($con,"SELECT gen_fname,gen_lname FROM general WHERE gen_id = '$gen_id'");
 						list($name,$lname) = mysqli_fetch_row($gen);
+						mysqli_free_result($gen);
 						echo "<tr>";
 						echo "<td>$re_id</td>";
 						echo "<td><a href='javascript:void(0)' data-reid='$re_id' data-action='modelshowre.php' class='showre'> $re_title </a></td>";
@@ -65,9 +66,8 @@ include("../../function/fc_time.php");
 
 		$("#addrela").click(function(event) {
 			event.preventDefault()	
-
-			 $('#loadmodel').load("module/public_relations/modeladdre.php",function(){
-            $('#addre').modal('show');     
+			  $('#loadmodel').load("module/public_relations/modeladdre.php",function(){			  	
+			  		$('#addre').modal('show');     
             });
 
 		});
@@ -89,13 +89,13 @@ include("../../function/fc_time.php");
 		$(".delre").click(function(event) {
 			event.preventDefault()
 			var re_tit = $(this).data('retit')
-			var r = confirm("ต้องการข่าวประชาสัมพันธ์นี้ "+re_tit+" ใช่หรือไม่?");
+			var r = confirm("ต้องการลบข่าวประชาสัมพันธ์ "+re_tit+" ใช่หรือไม่?");
             if (r == true) {
 			var re_id = $(this).data('reid')
 			$.post('module/public_relations/delre.php', {reid: re_id}).done(function(data,txtstuta){
 
-				alert(data);
-				$('#loadmodel').html(data);
+				loadingpage("public_relations","pr_manage");
+				
 			});
 			}
 		});
