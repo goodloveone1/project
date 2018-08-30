@@ -6,6 +6,8 @@ function urlwrite(module1,action){
 
 function loadingpage(module1,action){
 	
+
+					
 					$("#picloading").show();
 	        		$("#detail").hide();
 	        		loadmain(module1,action);
@@ -14,7 +16,7 @@ function loadingpage(module1,action){
 	        			$("#picloading").hide();
 		        		$("#detail").show();
 						
-					},1000)				
+					},1500)				
 						
 	
 }

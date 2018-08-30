@@ -192,6 +192,7 @@
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
 					
+					
 					loadingpage(module1,action); //code local functionjs.js
 
 				});
