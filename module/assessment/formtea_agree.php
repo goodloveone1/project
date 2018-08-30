@@ -357,14 +357,16 @@
 			
 			if(empty($idl)){
 				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
-				echo "<div align='center'><button type='button'>กรอกข้อมูล</button><div><br>";
-
-				
+			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
+			 ?>
+			<div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;กรอกข้อมูล</button></a></div><br>
+			<?php	
 			}else{
 				include("idl.php");
 			}
 			
 		?>
+		<div id="loadaddsub"></div> 
 	</div>
 </div>
 <div class="row">
@@ -987,10 +989,12 @@ $("#total<?php echo $tit; ?>").html(total);
 	}
 ?>
 
-// 	$("#datethai").datetimepicker({
-//     timepicker:false,
-//     lang:'th',  // แสดงภาษาไทย
-//     yearOffset:543,  // ใช้ปี พ.ศ. บวก 543 เพิ่มเข้าไปในปี ค.ศ
-//     inline:true
-// });
+
+    $("#addbrn").click(function(e){
+            e.preventDefault()
+            $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
+                $('#addsub').modal('show');   
+                
+                });
+             });
 </script>

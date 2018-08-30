@@ -10,9 +10,12 @@
         $s=$i+1;
         $N=$name1.$s;
         $D=$name2.$s;
-        echo "NO:",$_GET[$N];
-        echo " Day:",$_GET[$D],"<br>";
-
+        
+        $test="INSERT INTO tablea VALUES('','$_POST[no]','$_POST[$N]','$_POST[$D]'";
+        //$InData=mysqli_query($con,)")or die(mysqli_error($con));
+        echo $test;
+      
+   
 
         // echo "$name$i<br>";
 
