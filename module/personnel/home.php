@@ -4,7 +4,7 @@ include("../../function/fc_time.php");
 $con=connect_db();
 ?>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md p-1">
 		<h2 class="headtitle p-2 text-center"> ข่าวประชาสัมพันธ์ </h2>
 		<div class="list-group" id='testna'>
 			<?php
