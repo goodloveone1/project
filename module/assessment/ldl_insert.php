@@ -11,14 +11,9 @@
         $N=$name1.$s;
         $D=$name2.$s;
         
-        $test="INSERT INTO tablea VALUES('','$_POST[no]','$_POST[$N]','$_POST[$D]'";
-        //$InData=mysqli_query($con,)")or die(mysqli_error($con));
+        $test="INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]')";
+        mysqli_query($con,"INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]');")or die (mysqli_error($con));
         echo $test;
-      
-   
-
-        // echo "$name$i<br>";
-
     }
     
 

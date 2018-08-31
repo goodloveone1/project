@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("../../function/db_function.php");
 	$con=connect_db();
 
@@ -20,9 +21,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                <?php $years ="2018";  ?>
+                <input type="hidden"    value="<?php echo $years; ?>"  name="Y" size=40 require>
                 <SELECT name='no' >
-                    <option>รอบที่1</option>
-                    <option>รอบที่2</option>
+        
+                    <option value='1'>รอบที่1</option>
+                    <option value='2'>รอบที่2</option>
                 </SELECT>
                 <?php  for($i=0;$i<count($set);$i++){
                     $name="value";
@@ -33,7 +37,7 @@
                        <input type="text"   class="form-control col-sm" value=""  name="i_no<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > ครั้ง</label>
                        <input type="text"   class="form-control col-sm" value=""  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
                        <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="<?php  ?>" size=40 require>
-                       <input type="hidden"    value=""  name="<?php  ?>" size=40 require>
+                       <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 require>
                     </div>
                 <?php   }?>
                 </div>
