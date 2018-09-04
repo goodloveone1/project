@@ -66,9 +66,7 @@
 	$(".datatables").DataTable();
 
 	$('.addtor2tit').click(function(event) {
-		/* Act on the event */
-		
-		
+	
 		var id = $(this).data('tor2id');
 	});
 </script>
