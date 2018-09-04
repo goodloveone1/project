@@ -5,7 +5,7 @@
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-lg-2" >
-       <a href="javascript:void(0)"> <button type="button" class="btn btn-block" id="backpage" data-modules="assessment" data-action="Criteria_manage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" data-modules="assessment" data-action="Criteria_manage_tor1"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     
     <div class="col-lg">
@@ -56,8 +56,10 @@
     while(list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re)){
         $seac = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca_id'" ) or die("SQL error".mysqli_error($con));
         list($aca_name)=mysqli_fetch_row($seac);
+        $seac->free_result();
         $setit = mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$tit'") or die("SQL error".mysqli_error($con));
         list($tit_name)=mysqli_fetch_row($setit);
+        $setit->free_result();
         if($weighs==0){
             $weighs="-";
         }
@@ -101,12 +103,6 @@
         });
        
 
-        $("#backpage").click(function(event) {
-
-            var module1 = $(this).data('modules');
-            var action = $(this).data('action');
-			loadmain(module1,action)
-
-        })
+ 
 
         </script>

@@ -22,7 +22,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="main_assess">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการเกณฑ์การประเมิน</span>
