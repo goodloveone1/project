@@ -99,7 +99,7 @@
 	<div class="row">
 		<div class="col-md">
 			<table class="table table-bordered">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th>ลำดับ</th>
 						<th>องค์ประกอบที่ใช้ประเมิน</th>
