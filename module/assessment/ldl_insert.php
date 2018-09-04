@@ -10,12 +10,10 @@
         $s=$i+1;
         $N=$name1.$s;
         $D=$name2.$s;
-        echo "NO:",$_GET[$N];
-        echo " Day:",$_GET[$D],"<br>";
-
-
-        // echo "$name$i<br>";
-
+        
+        $test="INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]')";
+        mysqli_query($con,"INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]');")or die (mysqli_error($con));
+        echo $test;
     }
     
 

@@ -26,7 +26,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                
                     <div class="form-group">
                     <table class ="table" id="tabldegree">
                         <thead class="thead-light">

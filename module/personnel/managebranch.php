@@ -88,7 +88,7 @@ $con=connect_db();
        
         $("#addbrn").click(function( ){
 
-        $('#loadaddsub').load("module/personnel/addbranch.php",function(){
+        $('#foreditbrc').load("module/personnel/addbranch.php",function(){
               $('#addsub').modal('show')     
         });
       
