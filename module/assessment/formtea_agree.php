@@ -133,7 +133,7 @@
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
 			// $select=$pos_id==$gen_pos?"selected":"";
-			echo "<option value=$pos_id >$pos_name</option>";
+			echo "<option value=$pos_id>$pos_name</option>";
 			}
 		?>
 		</select>
@@ -435,6 +435,9 @@
 		$sql = "SELECT e_name FROM evaluation WHERE e_id='$tit'";
 		$eval = mysqli_query($con,$sql) or die(mysqli_error($con));
 		list($e_name)=mysqli_fetch_row($eval);
+		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+		list($sumS)=mysqli_fetch_row($sum);
+
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
@@ -449,10 +452,11 @@
 		echo "</tr>";
 	}
 	mysqli_close($con);
+	
 ?>
 	<tr> 
 		<td colspan="8" class="text-center"> ผลรวม </td>
-		<td class="text-center"> 100 </td>
+		<td class="text-center"> <?php echo $sumS ?> </td>
 		<td class="text-center">  </td>
 	</tr>
 	<tr> 
