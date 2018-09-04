@@ -18,11 +18,11 @@ function loadingpage(module1,action){
 			
 }
 
-function loadingpagepost(module1,action,id){
+function loadingpagepost(module1,action,ids){
 		
 					$("#picloading").show();
 	        		$("#detail").hide();
-	        		$.post('module/assessment/'+action+'.php',function(){
+	        		$.post('module/'+module1+'/'+action+'.php',{id:ids},function(){
 					}).done(function(data){
 				 		$("#detail").html(data);
 					})

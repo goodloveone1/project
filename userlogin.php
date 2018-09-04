@@ -176,8 +176,6 @@
 		
 		$(document).ready(function() {
 
-			
-
 			$("#menuaside li").hover(function() {
 				
 			}, function() {
@@ -269,6 +267,8 @@
 				y.style.marginLeft = z.trim();
 			}
 		}
+
+
 	
 		
 		</script>

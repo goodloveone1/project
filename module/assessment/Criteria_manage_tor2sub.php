@@ -1,8 +1,12 @@
 <?php
 	include("../../function/db_function.php");
 	$con=connect_db();
+	$tortit_id= $_POST['id'];
+	$retitname = $con->query("SELECT tort2_til_name FROM  tort2_title WHERE tort2_til_id ='$tortit_id'");
+	list($titname) = $retitname->fetch_row();
+	$retitname->free_result();
 
-	$re = $con->query("SELECT * FROM tort2_title");
+	$re = $con->query("SELECT tort2_sub_id,tort2_name FROM  tort2_subtit WHERE tort2_tit_id ='$tortit_id'");
 
 ?>
 
@@ -11,7 +15,7 @@
        <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser"  data-modules="assessment" data-action="main_assess"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
 	<div class="col-md text-center">
-		<h3> จัดการเกณฑ์การประเมิน ส่วนที่ 2 พฤติกรรมการปฏิบัติงาน  </h3>
+		<h3> <?php echo $titname ?> </h3>
 	</div>
 	 <div class="col-md-2" >
        <a href='javascript:void(0)'> <button type="button" class="btn re btn-block" ><i class="fas fa-plus"></i>&nbsp;เพื่มหัวข้อ</button></a>
@@ -19,6 +23,9 @@
 </div>
 <div class="row p-2">
 	<div class="col-md-12 mt-2">
+		<?php
+
+		?>	
 		<table class="table table-bordered datatables">
 			<thead class="thead-light">
 				<tr>
@@ -60,9 +67,9 @@
 
 	$('.addtor2tit').click(function(event) {
 		/* Act on the event */
-
+		
+		
 		var id = $(this).data('tor2id');
-		loadingpagepost("assessment","Criteria_manage_tor2sub",id);
 	});
 </script>
 

@@ -16,10 +16,7 @@ function loadmain(module1,action){
 
 						  		$("#detail").html(data);
 
-						  //     $('#detail').animateCss('fadeOut',function(){ /* ANIMATION USE */
-						  //     	$("#detail").html(data);
-								//  $('#detail').animateCss('fadeIn'); 	
-								// });
+						
 						  });
 						  		
 
