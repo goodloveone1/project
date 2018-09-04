@@ -21,11 +21,13 @@ function modules(module1,action){
 			    case "menumanage":break;
 			  /* END personnel */
 			  /* assessment */
-			    case "Criteria_manage":break;
+			    case "Criteria_manage_tor1":break;
+			    case "Criteria_manage_tor2":break;
 			    case "evidence_manage":break;
 			    case "menuassm":break; // mainmenu
 			    case "formtea_agree":break; //
 			    case "formreport_prm":break; //
+			    case "main_assess":break; 
 			 /* END assessment */
 			 	case "download_manage":break;
 			    case "pr_manage":break;

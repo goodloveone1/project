@@ -1,14 +1,20 @@
 <div class="row p-2 headtitle">
+	 <div class="col-md-2" >
+       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser"  data-modules="assessment" data-action="main_assess"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    </div>
 	<div class="col-md text-center">
-		<h2> จัดการเกณฑ์การประเมิน </h2>
+		<h3> จัดการเกณฑ์การประเมิน ส่วนที่ 2 พฤติกรรมการปฏิบัติงาน  </h3>
 	</div>
+	 <div class="col-md-2" >
+       
+    </div>
 </div>
 <div class="row p-2">
 	<div class="col-md-12 mt-2">
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">ลำดับ</th>
+					<th scope="col">รหัส</th>
 					<th scope="col">เกณฑ์การประเมิน</th>
 					<th scope="col">แก้ไข</th>
 
