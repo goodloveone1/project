@@ -23,7 +23,7 @@ function modules(module1,action){
 			  /* assessment */
 			    case "Criteria_manage_tor1":break;
 			    case "Criteria_manage_tor2":break;
-			    case "riteria_manage_tor2sub":break;
+			    case "Criteria_manage_tor2sub":break;
 			    case "evidence_manage":break;
 			    case "menuassm":break; // mainmenu
 			    case "formtea_agree":break; //
