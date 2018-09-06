@@ -12,7 +12,10 @@
 	
 	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
 	list($branchName)=mysqli_fetch_row($seBrench);
-	
+
+	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
+	print_r($set);
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
@@ -481,10 +484,12 @@
 	<div class="col-md">
 		<b><u> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </u></b>
 	</div>
+	
 </div>
 
 <div class="row">
 	<div class="col-md">
+	
 		<table class="table table-bordered">
 			<tr>
 				<th>สมรรถนะหลัก (ที่สภามหาวิทยาลัยกำหนด) </th>
@@ -493,28 +498,39 @@
 			</tr>			
 			<tr>
 				<td> การมุ่งผลสัมฤทธิ์ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[0]['exp_score'])?"-":$set[0]['exp_score'] ?></td>	
+				
+				<div class="form-group">
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="" >
+					</div>
+				 </td>		
 			</tr>
 			<tr>
 				<td>บริการที่ดี </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[1]['exp_score'])?"-":$set[1]['exp_score'] ?></td>	
+					<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การสั่งสมความเชี่ยวชาญในงานอาชีพ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[2]['exp_score'])?"-":$set[2]['exp_score'] ?> </td>	
+				<td>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				</td>		
 			</tr>
 			<tr>
 				<td>การยึดมั่นในความถูกต้องชอบธรรม  และจริยธรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[3]['exp_score'])?"-":$set[3]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การทำงานเป็นทีม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[4]['exp_score'])?"-":$set[4]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>		
 		</table>
 	</div>
@@ -527,28 +543,38 @@
 			</tr>
 			<tr>
 				<td>ทักษะการสอนและการให้คำปรึกษาแก่นักศึกษา </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[5]['exp_score'])?"-":$set[5]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[6]['exp_score'])?"-":$set[6]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[7]['exp_score'])?"-":$set[7]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ความกระตือรือร้นและการเป็นแบบอย่างที่ดี </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[8]['exp_score'])?"-":$set[8]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทำนุบำรุงศิลปวัฒนธรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[9]['exp_score'])?"-":$set[9]['exp_score'] ?></td>	
+				<td>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				</td>		
 			</tr>	
 		</table>
 	</div>
@@ -562,28 +588,38 @@
 			</tr>
 			<tr>
 				<td>สภาวะผู้นำ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[10]['exp_score'])?"-":$set[10]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>วิสัยทัศน์ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[11]['exp_score'])?"-":$set[11]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ศักยภาพเพื่อนำการปรับเปลี่ยน </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[12]['exp_score'])?"-":$set[12]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การสอนงานและการมอบหมายงาน </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[13]['exp_score'])?"-":$set[13]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การควบคุมตนเอง </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[14]['exp_score'])?"-":$set[14]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 		</table>
 	</div>
@@ -645,6 +681,7 @@
 			<td></td>	
 		</tr>
 		<tr>
+		
 			<td colspan="4" class="text-right">
 				<p class="text-center">ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว (ระบุข้อมูลใน (๑) (๒) (๓) และ (๕) ให้ครบ) จึงลงลายมือชื่อไว้เป็นหลักฐาน <br>(ลงนามเมื่อจัดทำข้อตกลง)</p>
 				
