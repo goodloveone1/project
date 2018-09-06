@@ -106,7 +106,6 @@
 			$select=$pos_id==$gen_pos?"selected":"";
 			echo "<option value=$pos_id $select>$pos_name</option>";
 			}
-
 			mysqli_free_result($seaPos);
 		?>
 		</select>
