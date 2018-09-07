@@ -15,10 +15,11 @@
 
 	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	print_r($set);
+	// print_r($set);
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
+	mysqli_free_result($seexp);
 ?>
 <form class="p-2">
 	<div class="row" >
