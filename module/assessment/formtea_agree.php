@@ -188,27 +188,39 @@
 <div class="row">
 <div class="col-md-2"></div>
 <div class="col-md row text-center"> <!-- รอบที่ -->
-<div class="form-check col-md-1">
+<!-- <div class="form-check col-md-1">
 	<input type="checkbox"  class="form-check-input" id="" value="">
-</div>
-<div class="form-group row col-md">
-	<label for="inputState" class="col-md">ครั้งที่  ๑ (๑ ต.ค. </label>
+</div> -->
+<div class="form-group row">
+	<!-- <label for="inputState" class="col-md">ครั้งที่  ๑ (๑ ต.ค. </label>
 	<div class="col-md">
 		<select id="inputState" class="form-control ">
 			<option selected>2561</option>
 			<option>2562</option>
 		</select>
+	</div> -->
+	<div class="col-sm">
+					
+			<select id="No" class="form-control ">
+					<?php 
+						 $yNow=date("Y");
+						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+							echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+						}
+					?>
+					</select>
 	</div>
 </div>
 <div class="form-group row col-md">
-	<label for="inputState" class="col-md"> - ๓๑ มี.ค </label>
+	<!-- <label for="inputState" class="col-md"> - ๓๑ มี.ค </label>
 	<div class="col-md">
 		<select id="inputState" class="form-control">
 			<option selected>2561</option>
 			<option>2562</option>
 		</select>
-	</div>
-	<label for="inputState" class="col-md-1"> )</label>
+	</div> -->
+	<!-- <label for="inputState" class="col-md-1"> )</label> -->
 </div>
 </div>
 <div class="col-md-2"></div>
@@ -217,26 +229,26 @@
 <div class="col-md-2"></div>
 <div class="col-md row text-center">
 <div class="form-check col-md-1">
-<input type="checkbox"  class="form-check-input" id="" value="">
+<!-- <input type="checkbox"  class="form-check-input" id="" value=""> -->
 </div>
 <div class="form-group row col-md">
-<label for="inputState" class="col-md">ครั้งที่  ๒  (๑ เม.ย. </label>
+<!-- <label for="inputState" class="col-md">ครั้งที่  ๒  (๑ เม.ย. </label>
 <div class="col-md">
 	<select id="inputState" class="form-control ">
 		<option selected>2561</option>
 		<option>2562</option>
-	</select>
+	</select> -->
 </div>
 </div>
 <div class="form-group row col-md">
-<label for="inputState" class="col-md"> - ๓๐ ก.ย.  </label>
-<div class="col-md">
+<!-- <label for="inputState" class="col-md"> - ๓๐ ก.ย.  </label> -->
+<!-- <div class="col-md">
 	<select id="inputState" class="form-control">
 		<option selected>2561</option>
 		<option>2562</option>
 	</select>
-</div>
-<label for="inputState" class="col-md-1"> )</label>
+</div> -->
+<!-- <label for="inputState" class="col-md-1"> )</label> -->
 
 </div>
 </div>
@@ -358,7 +370,7 @@
 				
 			 ?>
 			 
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>">
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>"readonly>
 		    </div>    
 	</div>
 	</div>	
