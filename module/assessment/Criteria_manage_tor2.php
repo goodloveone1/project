@@ -14,19 +14,18 @@
 		<h3> จัดการเกณฑ์การประเมิน ส่วนที่ 2 พฤติกรรมการปฏิบัติงาน  </h3>
 	</div>
 	 <div class="col-md-2" >
-       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block" ><i class="fas fa-plus"></i>&nbsp;เพื่มหัวข้อ</button></a>
+      
     </div>
 </div>
 <div class="row p-2">
 	<div class="col-md-12 mt-2">
-		<table class="table table-bordered datatables">
+		<table class="table table-bordered datatables" >
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">รหัส</th>
 					<th scope="col">เกณฑ์การประเมิน</th>
-					<th scope="col" class="text-center">เพิ่มหัวข้อย่อย</th>
-					<th scope="col" class="text-center">แก้ไข</th>
-					<th scope="col" class="text-center">ลบ</th>
+					<th scope="col" class="text-center">จัดการหัวข้อย่อย</th>
+					
 
 				</tr>
 			</thead>
@@ -39,10 +38,11 @@
 					<th scope="row"><?php echo $id ?></th>
 					<td><?php echo $name ?></td>
 					<td class="text-center"><a href='javascript:void(0)' class='addtor2tit'  data-tor2id='<?php echo $id ?>'><i class='fas fa-plus fa-2x '></i></a></td>
-					<td class="text-center"><a href='javascript:void(0)' class='editwid' data-modules='assessment' data-action='weight'><i class='fas fa-edit fa-2x '></i></a></td>
-					<td class="text-center"><a href='javascript:void(0)' class='editwid' data-modules='assessment' data-action='weight'><i class='fas fa-trash fa-2x '></i></a></td>
+					
 					
 				</tr>
+
+				
 				<?php
 					} // END WHILE
 
@@ -50,19 +50,23 @@
 					$con->close();
 
 				?>
-			</tbody>
+			</tbody >
 		</table>
 	</div>
 </div>
 
 <script type="text/javascript">
-	$(".datatables").DataTable();
+	// $(".datatables").DataTable();
 
 	$('.addtor2tit').click(function(event) {
 		/* Act on the event */
 
-		var id = $(this).data('tor2id');
-		loadingpagepost("assessment","Criteria_manage_tor2sub",id);
+		 var id = $(this).data('tor2id');
+		 loadingpagepost("assessment","Criteria_manage_tor2sub",id);
+
+		// $(this).appendTo($(this).closest('tr')) icon ย้ายไปด้านหลัง
+		// $(this).parent().closest('tr').after('<tr style="display:none" id="test" ><td colspan=5 ><div class="p-5">TEST</div></td></tr>')
+	
 	});
 </script>
 
