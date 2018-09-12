@@ -491,7 +491,7 @@
 	<tr> 
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"> <?php echo $sumS ?> </td>
-		<td class="text-center">  </td>
+		<td class="text-center" id="tot" data-tot="<?php $tot ?>"><?php echo empty($tot)?"ยังไม่คำนวณ":""?>  </td>
 	</tr>
 	<tr> 
 		<td colspan="9" >
@@ -1054,13 +1054,19 @@ $('#<?php echo $tit; ?>').on('click', 'input[name="<?php echo $tit; ?>"]:checked
 var sco = $(this).val();
 var wei = $("#wei<?php echo $tit; ?>").data('wei');
 $("#sco<?php echo $tit; ?>").html(sco);
-var total = (sco*wei/100);
-$("#total<?php echo $tit; ?>").html(total);
-})
-<?php
+	if(wei==0){
+		var total = (sco/100);
 	}
-?>
+	else{
+		var total = (sco*wei/100);
+	}
+	
+$("#total<?php echo $tit; ?>").html(total);
+	var tot = total;
+	$("#tot").html(total);
+})
 
+	<?php } ?>
 
     $("#addbrn").click(function(e){
             e.preventDefault()
