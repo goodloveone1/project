@@ -12,10 +12,14 @@
 	
 	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
 	list($branchName)=mysqli_fetch_row($seBrench);
-	
+
+	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
+	// print_r($set);
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
+	mysqli_free_result($seexp);
 ?>
 <form class="p-2">
 	<div class="row" >
@@ -34,56 +38,75 @@
 		<div class="form-group row">
 			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-6">
-				<input type="text"  class="form-control" id="" value="">
+				<select id="inputState" class="form-control">
+				<?php 
+				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
+				while(list($y_year)=mysqli_fetch_row($sYears)){
+					echo"<option value='$y_year'>$y_year</option>";
+				}
+				mysqli_free_result($sYears);
+			?>
+						
+						
+				</select>
 			</div>
 		</div>
 	</div>
 	<div class="col-md  ">
 		<div class="col-md-12 row">
-			<div class="form-check col-sm-1">
+			<!-- <div class="form-check col-sm-1">
 				<input type="checkbox"  class="form-check-input" id="" value="">
-			</div>
+			</div> -->
 			<div class="form-group  row">
-				<label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label>
+				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
 				<div class="col-sm">
-					<select id="inputState" class="form-control ">
-						<option selected>2561</option>
-						<option>2562</option>
+					<select id="inputNo" class="form-control ">
+					<?php 
+						 $yNow=date("Y");
+						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+							echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+
+						}
+	
+					?>
+						
+						
 					</select>
 				</div>
 				
-				<label for="inputState" class="col-sm"> - ๓๑ มี.ค.</label>
+				<!-- <label for="inputState" class="col-sm"> - ๓๑ มี.ค.</label>
 				<div class="col-sm">
 					<select id="inputState" class="form-control">
 						<option selected>2561</option>
 						<option>2562</option>
 					</select>
-				</div>
-				<label for="inputState" class="col-sm-1"> )</label>
+				</div> -->
+				<!-- <label for="inputState" class="col-sm-1"> )</label> -->
 				
 			</div>
 		</div>
 		<div class="col-md-12 row"> <!-- รอบที่ -->
-		<div class="form-check col-sm-1">
+		<!-- <div class="form-check col-sm-1">
 			<input type="checkbox"  class="form-check-input" id="" value="">
-		</div>
+		</div> -->
 		<div class="form-group  row">
-			<label for="inputState" class="col-sm">รอบที่ ๒  (๑ เม.ย. </label>
-			<div class="col-sm">
+			<!-- <label for="inputState" class="col-sm">รอบที่ ๒  (๑ เม.ย. </label> -->
+			<!-- <div class="col-sm">
 				<select id="inputState" class="form-control ">
 					<option selected>2561</option>
 					<option>2562</option>
 				</select>
-			</div>
+			</div> -->
 			
-			<label for="inputState" class="col-sm"> - ๓๐ ก.ย. </label>
-			<div class="col-sm">
+			<!-- <label for="inputState" class="col-sm"> - ๓๐ ก.ย. </label> -->
+			<!-- <div class="col-sm">
 				<select id="inputState" class="form-control">
 					<option selected>2561</option>
 					<option>2562</option>
 				</select>
-			</div>
-			<label for="inputState" class="col-sm-1"> )</label>
+			</div> -->
+			<!-- <label for="inputState" class="col-sm-1"> )</label> -->
 			
 		</div>
 	</div>
@@ -106,7 +129,6 @@
 			$select=$pos_id==$gen_pos?"selected":"";
 			echo "<option value=$pos_id $select>$pos_name</option>";
 			}
-
 			mysqli_free_result($seaPos);
 		?>
 		</select>
@@ -482,10 +504,12 @@
 	<div class="col-md">
 		<b><u> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </u></b>
 	</div>
+	
 </div>
 
 <div class="row">
 	<div class="col-md">
+	
 		<table class="table table-bordered">
 			<tr>
 				<th>สมรรถนะหลัก (ที่สภามหาวิทยาลัยกำหนด) </th>
@@ -494,28 +518,39 @@
 			</tr>			
 			<tr>
 				<td> การมุ่งผลสัมฤทธิ์ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[0]['exp_score'])?"-":$set[0]['exp_score'] ?></td>	
+				
+				<div class="form-group">
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="" >
+					</div>
+				 </td>		
 			</tr>
 			<tr>
 				<td>บริการที่ดี </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[1]['exp_score'])?"-":$set[1]['exp_score'] ?></td>	
+					<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การสั่งสมความเชี่ยวชาญในงานอาชีพ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[2]['exp_score'])?"-":$set[2]['exp_score'] ?> </td>	
+				<td>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				</td>		
 			</tr>
 			<tr>
 				<td>การยึดมั่นในความถูกต้องชอบธรรม  และจริยธรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[3]['exp_score'])?"-":$set[3]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การทำงานเป็นทีม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[4]['exp_score'])?"-":$set[4]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>		
 		</table>
 	</div>
@@ -528,28 +563,38 @@
 			</tr>
 			<tr>
 				<td>ทักษะการสอนและการให้คำปรึกษาแก่นักศึกษา </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[5]['exp_score'])?"-":$set[5]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[6]['exp_score'])?"-":$set[6]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[7]['exp_score'])?"-":$set[7]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ความกระตือรือร้นและการเป็นแบบอย่างที่ดี </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[8]['exp_score'])?"-":$set[8]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ทำนุบำรุงศิลปวัฒนธรรม </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[9]['exp_score'])?"-":$set[9]['exp_score'] ?></td>	
+				<td>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				</td>		
 			</tr>	
 		</table>
 	</div>
@@ -563,28 +608,38 @@
 			</tr>
 			<tr>
 				<td>สภาวะผู้นำ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[10]['exp_score'])?"-":$set[10]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>วิสัยทัศน์ </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[11]['exp_score'])?"-":$set[11]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>ศักยภาพเพื่อนำการปรับเปลี่ยน </td>
-				<td> </td>	
-				<td> </td>		
+				<td> <?php echo empty($set[12]['exp_score'])?"-":$set[12]['exp_score'] ?></td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การสอนงานและการมอบหมายงาน </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[13]['exp_score'])?"-":$set[13]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 			<tr>
 				<td>การควบคุมตนเอง </td>
-				<td> </td>	
-				<td> </td>		
+				<td><?php echo empty($set[14]['exp_score'])?"-":$set[14]['exp_score'] ?> </td>	
+				<td> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				</td>		
 			</tr>
 		</table>
 	</div>
@@ -646,6 +701,7 @@
 			<td></td>	
 		</tr>
 		<tr>
+		
 			<td colspan="4" class="text-right">
 				<p class="text-center">ผู้ประเมินและผู้รับการประเมินได้ตกลงร่วมกันและเห็นพ้องกันแล้ว (ระบุข้อมูลใน (๑) (๒) (๓) และ (๕) ให้ครบ) จึงลงลายมือชื่อไว้เป็นหลักฐาน <br>(ลงนามเมื่อจัดทำข้อตกลง)</p>
 				
@@ -1001,4 +1057,16 @@ $("#total<?php echo $tit; ?>").html(total);
                 
                 });
              });
+
+ $("#inputState").change(function(){
+	 var years=$(this,"option:selected").val()
+	//  alert(years)
+	 $.post("module/assessment/loaddatayear.php",{year:years},
+		 function (data, textStatus, jqXHR) {
+			// alert(data) 
+			$("#inputNo").html(data)
+		 }
+		
+	 );
+ })
 </script>
