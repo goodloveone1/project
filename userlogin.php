@@ -1,10 +1,10 @@
 <?php
 	session_start();
 
-	if(empty($_SESSION['user_fnaem']) && empty($_SESSION['user_lnaem'])){
+	if(empty($_SESSION['user_fnaem']) || empty($_SESSION['user_lnaem'])){
 
-		//echo "<script> alert('กรุณาล็อกอินก่อนใช้งาน!') </script>";
-		//echo "<script> window.location='index.php' </script>";
+		echo "<script> alert('กรุณาล็อกอินก่อนใช้งาน!') </script>";
+		echo "<script> window.location='index.php' </script>";
 
 	}
 
@@ -34,7 +34,7 @@
 			
 		?>
 		<style type="text/css">
-		aside, #main2 , section#detail{
+		aside,  section#detail{
 			box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		}
 			
@@ -144,18 +144,17 @@
 				
 			</nav>
 			<!-- MEUN END -->
-			<div class="container-fluid mt-2">
+			<div class="container-fluid mt-2" id="contramain">
 				
 				<section class="col-md-12  mt-0 pb-2" id="detail">
 					
 				</section>
-				<div id='picloading' class="p-lg-5 " style="display: none">
-					<img style='display: block;margin-left: auto;margin-right: auto;' src='img/loading.svg'>
-				</div>
-				<footer class="col-md-12 mt-3">
+				
+				<footer id="footers" class="col-md-12 mt-3">
 					
 				</footer>
 			</div>
+			<div id='picloading' style="display: none;"><img style='display: block;margin:12% auto; ' src='img/loading.svg'></div>
 		</div>
 		<script src="<?php echo $basename?>js/jquery-3.3.1.min.js"></script>
 		<script src="<?php echo $basename?>js/jquery.validate.min.js" ></script>
@@ -169,7 +168,7 @@
 			//$name="ทองดี สุขอิ่นใจ";
 		?>
 		<script>
-
+	
 
 		var module1 = sessionStorage.getItem("module1");
 		var action = sessionStorage.getItem("action");
@@ -189,6 +188,11 @@
 					e.preventDefault();
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
+					id = $(this).data('dataid');
+
+					if(id==undefined){
+						id=null
+					}
 					
 					
 					loadingpage(module1,action); //code local functionjs.js

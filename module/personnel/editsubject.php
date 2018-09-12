@@ -7,6 +7,8 @@
 <?php
     $result=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$_POST[id]'") or die ("mysql error=>>".mysql_error($con));
     list($branch_id,$branch_name)=mysqli_fetch_row($result);
+    mysqli_free_result($result);
+    mysqli_close($con);
 
 ?>
 <form id="foreditbrc">
@@ -37,12 +39,6 @@
     </div>
 </form>
 
-    <?php
-        mysqli_free_result($result);
-        mysqli_close($con);
-    ?>
-
-
 <script type="text/javascript">
 
 $("#updatesu").click(function(event) {
@@ -58,11 +54,7 @@ $("#updatesu").click(function(event) {
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
            loadmain(module1,action);
-        })
-       
-        
-    } 
-
-   
+        })          
+    }   
 });
 </script>

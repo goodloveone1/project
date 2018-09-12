@@ -5,10 +5,7 @@
 	<div class="col-md text-center">
 		<h2> จัดการเกณฑ์การประเมิน TOR ส่วนที่ 1 </h2>
 	</div>
-	 <div class="col-md-2" style="display: block;">
-	 	
-	
-	</div>
+	 <div class="col-md-2" ></div>
 </div>
 <div class="row p-2">
 	<div class="col-md-12 mt-2">
@@ -37,8 +34,7 @@
 				<tr>
 					<th scope="row">3</th>
 					<td>จัดการเกณฑ์ภาระงาน/กิจกรรม</td>
-					<td>แก้ไข</td>
-					
+					<td>แก้ไข</td>					
 				</tr>
 			</tbody>
 		</table>

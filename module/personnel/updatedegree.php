@@ -9,5 +9,6 @@ $sql = "UPDATE degree SET degree_id = '$degree_id' , degree_name = '$degree_name
 
 
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
+$con->close();
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 
 include("../../function/db_function.php");
-$con=connect_db();
 $date = date("Y-m-d");
 
 ?>
@@ -56,19 +55,7 @@ $date = date("Y-m-d");
                  var action = sessionStorage.getItem("action")
                  loadmain(module1,action);
                 })
-             })
-            
-           
-            
-        } 
-
-       
+             })        
+        }       
     });
 </script>
-
-            <?php
-            
-            mysqli_close($con);
-            ?>
-
-     

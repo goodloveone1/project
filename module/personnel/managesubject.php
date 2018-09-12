@@ -1,6 +1,5 @@
 <?php
-   
-	include("../../function/db_function.php");
+   	include("../../function/db_function.php");
     $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
@@ -48,20 +47,16 @@
 <script>
      $('#tablebranch').DataTable();
     $(".editbrn").click(function( ){
-        var ideditsub =$(this).data("ideditsub");
+        var ideditsub = $(this).data("ideditsub");
         
         $.post("module/personnel/editsubject.php", { id : ideditsub }).done(function(data){
-        $('#loadeditsub').html(data);
-        $('#editsub').modal('show');
-        })
-        
-        
-        });
-       
-
-       
-        $(".delbrn").click(function(){
-            
+            $.when($('#loadeditsub').html(data)).done(function(){
+                 $('#editsub').modal('show');
+            }) 
+        })   
+    });      
+      
+        $(".delbrn").click(function(){            
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
 
@@ -76,10 +71,9 @@
             }
         })
         $("#addbrn").click(function( ){
-
-        $('#loadaddsub').load("module/personnel/addsubject.php",function(){
-            $('#addsub').modal('show');     
+            $('#loadaddsub').load("module/personnel/addsubject.php",function(){
+                $('#addsub').modal('show');     
             });
          });
        
-        </script>
+</script>

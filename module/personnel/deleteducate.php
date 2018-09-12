@@ -10,5 +10,6 @@ $sql = "DELETE FROM education WHERE ed_id = $ed_id";
 echo $sql;
 
 mysqli_query($con,$sql) or die ("error".mysqli_error($con));
+$con->close();
 }
 ?>

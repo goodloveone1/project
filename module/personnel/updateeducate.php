@@ -12,4 +12,6 @@ $sql = "UPDATE education SET  ed_name = '$ed_name',ed_loc = '$ed_loc',degree_id=
 //echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 
+$con->close();
+
 ?>
