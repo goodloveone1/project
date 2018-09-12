@@ -31,14 +31,27 @@
 <div class="row mt-5">
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="personnel" data-action="managesubject">
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
 				<div class="col-md">
 					<i class="fas fa-book-open fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class="col-md">จัดการสาขา </span>
+					<span class="col-md">  จัดการเกณฑ์การประเมิน TOR ส่วนที่ 3 </span>
 				</div>
 			</a>
+		
+	</div>
+	<div class="col-md">
+	
+			<a href="javascript:void(0)" class="text-center maninuser menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
+				<div class="col-md">
+					<i class="fas fa-book-open fa-7x mt-3"></i>
+				</div>
+				<div class="col-md">
+					<span class="col-md">  จัดการเกณฑ์การประเมิน TOR ส่วนที่ 4 </span>
+				</div>
+			</a>
+		
 	</div>
 	
 </div>

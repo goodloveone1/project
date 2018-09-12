@@ -1,7 +1,7 @@
 <?php
 include("../../function/db_function.php");
 include("../../function/fc_time.php");
-	$con=connect_db();
+$con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-md-2">
@@ -99,9 +99,6 @@ include("../../function/fc_time.php");
 			});
 			}
 		});
-
-
-
 
 	})
 </script>	

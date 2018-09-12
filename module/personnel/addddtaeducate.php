@@ -13,4 +13,5 @@ $sql = "INSERT INTO  education (ed_id,gen_id,degree_id,ed_name,ed_loc) VALUES ('
 
 echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
+$con->close();
 ?>

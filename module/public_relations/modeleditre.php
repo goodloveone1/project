@@ -5,17 +5,12 @@ $con=connect_db();
 $date = date("Y-m-d");
 
 $re_id = $_POST['reid'];
-
 $resultre = $con->query("SELECT re_title,re_detail,re_date,gen_id FROM relations");
-
 list($re_title,$re_detail,$re_date,$gen_id) = $resultre->fetch_row();
-
 
 $resultre->free_result();
 $con->close();
-
 ?>
-
 <form id="formeditre">
     <div class="modal fade" id="modelre" tabindex="-1" role="dialog" aria-labelledby="modelre" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
