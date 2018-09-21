@@ -4,13 +4,15 @@
     $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
-    <div class="col-sm-2" >
-       <a href=#> <button type="button" class="btn btn-block" id="backpage" data-modules="assessment" data-action="Criteria_manage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    <div class="col-md-2" >
+       <a href=#> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="assessment" data-action="Criteria_manage_tor1"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     
     <div class="col-md">
         <h2>ตัวชีวัดเกณฑ์การประเมิน</h2>
     </div>
+    <div class="col-md-2" ></div>
+    
 </div>
 <!-- <table  class="table" id="tablebranch" >
     <thead class="thead-light">
@@ -28,7 +30,7 @@
 
 
     for($i=1;$i<=$loop;$i++){
-    $re=mysqli_query($con,"SELECT *FROM conditions WHERE aca_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
+    $re=mysqli_query($con,"SELECT * FROM conditions WHERE aca_id='$i' GROUP BY e_name" ) or die("errorSQLselect".mysqli_error($con));
    
 
     $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
@@ -36,17 +38,31 @@
 
     $no=1;
     
-    echo "<table  class='table' id='tablebranch' >
+//     echo "<table  class='table' id='tablebranch' >
+//     <thead class='thead-light'>
+//         <hr>
+//          <h3>$post_name</h3>
+//          <tr>
+//             <th scope='col'>ลำดับ</th>
+//             <th scope='col'>ตำแหน่ง</th>
+//             <th scope='col'>ภาระงาน</th>
+//             <th scope='col'>ระดับ</th>
+//             <th scope='col'>เงื่อนไข</th>
+//             <th scope='col'>รายล่ะเอียด</th>
+//             <th scope='col'>แก้ไข</th>
+//         </tr>
+//     </thead>
+// <tbody>
+
+// ";
+      echo "<table  class='table' id='tablebranch' >
     <thead class='thead-light'>
         <hr>
          <h3>$post_name</h3>
          <tr>
             <th scope='col'>ลำดับ</th>
             <th scope='col'>ตำแหน่ง</th>
-            <th scope='col'>ภาระงาน</th>
-            <th scope='col'>ระดับ</th>
-            <th scope='col'>เงื่อนไข</th>
-            <th scope='col'>รายล่ะเอียด</th>
+            <th scope='col'>ภาระงาน</th>            
             <th scope='col'>แก้ไข</th>
         </tr>
     </thead>
@@ -60,20 +76,30 @@
         if($lv==0){
             $lv="-";
         }
+        // //echo"
+        //     <tr>
+        //         <td>$no</td>
+        //         <td>$aca_name</td>
+        //         <td>ด้านที่ $tit $tit_name</td>
+        //         <td>ระดับ $lv</td>
+        //         <td>$lue</td>
+        //         <td>$ex</td>
+        //         <td><a href='#'class='edit' data-ideditsub='$aca_id' data-idename='$tit' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+        //     </tr>";
+
         echo"
             <tr>
                 <td>$no</td>
                 <td>$aca_name</td>
                 <td>ด้านที่ $tit $tit_name</td>
-                <td>ระดับ $lv</td>
-                <td>$lue</td>
-                <td>$ex</td>
-                <td><a href='#'class='' data-ideditsub='$w_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-            </tr>";
+                
+                <td><a href='#'class='edit' data-ideditsub='$aca_id' data-idename='$tit' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+            </tr>";    
             
             $no++;     
     }
-    
+   echo " </tbody>" ;
+   echo " </table>" ;
    
 }
     mysqli_free_result($re);
@@ -83,29 +109,20 @@
     
     mysqli_close($con);
 ?>
- </tbody>
+
 <div id="loadeditsub"></div>
 
 <script>
      //$('#tablebranch').DataTable();
     $(".edit").click(function( ){
         var ideditsub =$(this).data("ideditsub");
+        var eid =$(this).data("idename");        
         
-        $.post("module/assessment/editwidght.php", { id : ideditsub }).done(function(data){
+        $.post("module/assessment/editevaluation.php", { id : ideditsub,id2 : eid }).done(function(data){
         $('#loadeditsub').html(data);
         $('#editsub').modal('show');
         })
-        
-        
-        });
-       
+                
+        });     
 
-        $("#backpage").click(function(event) {
-
-            var module1 = $(this).data('modules');
-            var action = $(this).data('action');
-			loadmain(module1,action)
-
-        })
-
-        </script>
+</script>
