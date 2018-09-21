@@ -158,7 +158,7 @@
 		<div class="col-md-12"> 		<!-- >ปริญญาตรี -->
 		<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
 			<div class="col-sm-12" >
-				<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญาตรี</label>
+				<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญา</label>
 			</div>
 			
 			<span class="col-md-12">
@@ -192,7 +192,7 @@
 
 
 		$(document).ready(function() {
-			var count =0;
+			var count = 0;
 			
 
 			$("button.re").click(function(){
@@ -215,6 +215,7 @@
 			var r = confirm("คณต้องการล้างใช่ไหม?");
 			if(r == true){
 					$('.loaddegree').html("");
+					count = 0;
 				}
 			});
 			$('.loaddegree').on('click', '.deldegree1', function(e) {
