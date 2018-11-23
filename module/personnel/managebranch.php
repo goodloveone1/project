@@ -62,7 +62,10 @@ $con=connect_db();
 
 <script>
     $('#tablebranch').DataTable();
-    $(".editbrn").click(function( ){
+
+    
+      
+     $("#tablebranch").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
         
         $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
@@ -72,7 +75,8 @@ $con=connect_db();
         
         
         });
-        $(".delbrn").click(function(){
+    
+        $("#tablebranch").on('click', '.delbrn', function(event) {
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
             var r = confirm("คณต้องการลบหลักสูตร "+branchname+" ใช่ไหม?");

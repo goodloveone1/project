@@ -48,7 +48,9 @@
 </table>
 <script>
      $('#tabldegree').DataTable();
-    $(".editbrn").click(function( ){
+
+      
+    $("#tabldegree").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
         
         $.post("module/personnel/editdegree.php", { id : ideditsub }).done(function(data){
@@ -60,7 +62,7 @@
         });
        
 
-        $(".delbrn").click(function(){
+       $("#tabldegree").on('click', '.delbrn', function(event) {
             
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");

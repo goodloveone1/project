@@ -198,7 +198,7 @@
 				<div class="col-md-30">
 					
 
-					<table class="table col-md display setdt" id="tbeucation">
+					<table class="table table-light col-md display setdt" id="tbeucation">
 					<thead>
 
 				
@@ -263,9 +263,6 @@
 	    } );
 	}
 
-	
-		
-			
 
 			selectsuj();
 

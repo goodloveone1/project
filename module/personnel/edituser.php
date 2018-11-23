@@ -270,11 +270,7 @@
 
 			selectsuj();
 
-			$("button.re").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				loadmain(module1,action);
-			});
+			
 
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');
