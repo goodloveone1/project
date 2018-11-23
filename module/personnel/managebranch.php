@@ -13,7 +13,7 @@ $con=connect_db();
         <a href='javascript:void(0)'><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มหลักสูตร</button></a>
     </div>
 </div>
-<table  class="table" id="tablebranch">
+<table  class="table" id="Datatable">
     <thead class="thead-light">
         <tr>
             <th scope="col">ลำดับ</th>
@@ -61,11 +61,11 @@ $con=connect_db();
 
 
 <script>
-    $('#tablebranch').DataTable();
-
     
-      
-     $("#tablebranch").on('click', '.editbrn', function(event) {
+
+    $.getScript('js/mydatatable.js', function(data, textStatus) {  // load datatable
+
+         $("#Datatable").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
         
         $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
@@ -76,7 +76,7 @@ $con=connect_db();
         
         });
     
-        $("#tablebranch").on('click', '.delbrn', function(event) {
+        $("#Datatable").on('click', '.delbrn', function(event) {
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
             var r = confirm("คณต้องการลบหลักสูตร "+branchname+" ใช่ไหม?");
@@ -88,6 +88,16 @@ $con=connect_db();
                     })
             }
         })
+    
+
+
+
+
+    });
+
+    
+      
+    
 
        
        $("#addbrn").click(function( ){
