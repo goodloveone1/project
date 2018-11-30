@@ -112,3 +112,22 @@ footer {
 .borderNon{
 	border: none;
 }
+.step{
+	display: inline-block;
+    padding: .25em .4em;
+    font-size: 110%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.step-color{
+    color: #fff;
+	background-color: #dc3545;
+}
+.step-normal{
+	color: #000;
+	border:#dc3545 solid 1px;
+}

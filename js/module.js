@@ -43,7 +43,7 @@ function modules(module1,action){
 				case "editwidght":break;
 				case "edituserall":break;
 				case "evaluation":break;
-				
+				case "test_tor_stepBystep":break;
 			   	default: action = "404";  
 			}
 

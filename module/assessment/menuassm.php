@@ -5,7 +5,7 @@
 <div class="row mt-5">
 	<div class="col-md">
 	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="formtea_agree" >
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="test_tor_stepBystep" >
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
