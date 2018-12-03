@@ -44,6 +44,7 @@ function modules(module1,action){
 				case "edituserall":break;
 				case "evaluation":break;
 				case "test_tor_stepBystep":break;
+				case "tor_t1":break;
 			   	default: action = "404";  
 			}
 
