@@ -27,9 +27,9 @@
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
 		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
 		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
+		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp; 
+		 <a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
     </div>
     <p></p>
 	<div class="row" >
