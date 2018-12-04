@@ -24,12 +24,12 @@
 <form class="p-2">  
     <div class="row">
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
-         <a href=#><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
-		 <span class="step step-normal">ส่วนที่ 2</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 3</span> &nbsp; 
+         <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
 		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp; 
 		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 6</span>
+		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
     </div>
     <p></p>
 	<div class="row" >
@@ -212,15 +212,15 @@
 	</div> -->
 	<div class="col-sm">
 					
-			<select id="No" class="form-control ">
+			<!-- <select id="No" class="form-control "> -->
 					<?php 
-						 $yNow=date("Y");
-						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
-						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
-						}
+						//  $yNow=date("Y");
+						// $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+						// while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+						// 	echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+						// }
 					?>
-					</select>
+					<!-- </select> -->
 	</div>
 </div>
 <div class="form-group row col-md">
@@ -420,7 +420,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ">
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" require>
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 
@@ -445,7 +445,7 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><button type="submit" class="" data-modules="assessment" data-action="tor_t1"> ต่อไป </button></p>
+		<p><input type="submit" class="next" value="ต่อไป"> </p>
 	</div>
 </div>
 
@@ -453,7 +453,7 @@
 
 
 
-<script>
+<script type="text/javascript">
 	
     $("#addbrn").click(function(e){
             e.preventDefault()
@@ -474,5 +474,8 @@
 		
 	 );
  })
+	
+
+
 
 </script>
