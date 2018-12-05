@@ -445,7 +445,7 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><input type="submit" class="next" value="ต่อไป"> </p>
+		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t1"><input type="submit" class="next" value="ต่อไป"></a> </p>
 	</div>
 </div>
 
@@ -475,7 +475,13 @@
 	 );
  })
 	
-
+ $(document).ready(function() {
+			$("a.next").click(function(){
+				var module1 = $(this).data('modules');
+				var action = $(this).data('action');
+				loadmain(module1,action)
+			});
+		});
 
 
 </script>

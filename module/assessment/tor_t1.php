@@ -30,6 +30,7 @@
 		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp; 
 		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp; 
 		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
+		 <br>
     </div>
 
 
@@ -113,3 +114,45 @@
 </div>
 </div>
 </form>
+
+<div class="row">
+	<div class="col-md-12 text-center mb-2" >
+		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+ $(document).ready(function() {
+			$("a.next").click(function(){
+				var module1 = $(this).data('modules');
+				var action = $(this).data('action');
+				loadmain(module1,action)
+			});
+		});
+
+
+	
+<?php
+	foreach ($titcheck as $tit) {
+?>
+$('#<?php echo $tit; ?>').on('click', 'input[name="<?php echo $tit; ?>"]:checked', function(event) {
+var sco = $(this).val();
+var wei = $("#wei<?php echo $tit; ?>").data('wei');
+$("#sco<?php echo $tit; ?>").html(sco);
+	if(wei==0){
+		var total = (sco/100);
+	}
+	else{
+		var total = (sco*wei/100);
+	}
+	
+$("#total<?php echo $tit; ?>").html(total);
+	var tot = total;
+	$("#tot").html(total);
+})
+
+	<?php } ?>
+
+</script>

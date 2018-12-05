@@ -45,6 +45,11 @@ function modules(module1,action){
 				case "evaluation":break;
 				case "test_tor_stepBystep":break;
 				case "tor_t1":break;
+				case "tor_t2":break;
+				case "tor_t3":break;
+				case "tor_t4":break;
+				case "tor_t5":break;
+				case "tor_t6":break;
 			   	default: action = "404";  
 			}
 
