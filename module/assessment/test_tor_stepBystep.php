@@ -31,6 +31,7 @@
 		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp; 
 		 <a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
     </div>
+	<br>
     <p></p>
 	<div class="row" >
 		<div class="col-md">
@@ -443,11 +444,13 @@
 	</div>	
 </div>
 <br>
+</form>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t1"><input type="submit" class="next" value="ต่อไป"></a> </p>
+		<p><a href="javascript:void(0)" class="text-center next btn re " data-modules="assessment" data-action="tor_t1" type="button">next</a> </p>
 	</div>
 </div>
+
 
 
 
@@ -479,6 +482,7 @@
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
+				alert(module1+ " "+ action )
 				loadmain(module1,action)
 			});
 		});

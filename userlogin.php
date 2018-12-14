@@ -224,11 +224,11 @@
 				});
 			/* END ANIMATION*/
 			
-			$(window).bind('beforeunload', function(e) {
-			var message = "Why are you leaving?";
-			e.returnValue = message;
-			return message;
-			});
+			// $(window).bind('beforeunload', function(e) {
+			// var message = "Why are you leaving?";
+			// e.returnValue = message;
+			// return message;
+			// });
 		
 			// FISTH LOAD PAGE
 			$(window).on('load', function(){

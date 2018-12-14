@@ -62,13 +62,11 @@
 			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
 			  <label class="form-check-label" for="defaultCheck1">
 			    มีความเห็นแตกต่าง  ดังนี้
-
 			  </label>
 		</div>
 		<div class="form-group">
 		    <textarea class="form-control" id="" rows="3" disabled="disabled"></textarea>
 		 </div>
-
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
@@ -90,7 +88,6 @@
 				</div>				
 		</div>
 	</div>
-
 </div>				
 </form>
 <br>
@@ -99,9 +96,6 @@
 		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t1"><input type="submit" class="next" value="ต่อไป"></a> </p>
 	</div>
 </div>
-
-
-
 
 <script type="text/javascript">
  	$(document).ready(function() {

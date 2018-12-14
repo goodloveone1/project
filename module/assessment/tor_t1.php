@@ -117,11 +117,9 @@
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p>
+	<p><a href="javascript:void(0)" class="text-center next btn re " data-modules="assessment" data-action="tor_t2" type="button">next</a> </p>
 	</div>
 </div>
-
-
 
 <script type="text/javascript">
  $(document).ready(function() {
@@ -131,9 +129,6 @@
 				loadmain(module1,action)
 			});
 		});
-
-
-	
 <?php
 	foreach ($titcheck as $tit) {
 ?>
@@ -152,7 +147,7 @@ $("#total<?php echo $tit; ?>").html(total);
 	var tot = total;
 	$("#tot").html(total);
 })
-
 	<?php } ?>
+
 
 </script>

@@ -3,8 +3,8 @@
 function loadmain(module1,action){ 
 
 
-						// sessionStorage.setItem("module1", module1);
-						// sessionStorage.setItem("action", action);
+						sessionStorage.setItem("module1", module1);
+						sessionStorage.setItem("action", action);
 
 						
 
