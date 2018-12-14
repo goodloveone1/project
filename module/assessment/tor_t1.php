@@ -32,7 +32,8 @@
 		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
 		 <br>
     </div>
-
+<p></p>
+<br>
 
 <div class="row ">
 	<div class="col-md">

@@ -21,7 +21,7 @@
 	mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
 ?>
-<form class="p-2">  
+<form class="p-2" metod="post">  
     <div class="row">
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
@@ -50,7 +50,8 @@
 		<div class="form-group row">
 			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-6">
-				<select id="inputState" class="form-control">
+				<input type="hidden" name="gen_id" value="GGGGGG" >
+				<select id="inputState" class="form-control" name="year">
 				<?php 
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
@@ -72,7 +73,7 @@
 			<div class="form-group  row">
 				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
 				<div class="col-sm">
-					<select id="inputNo" class="form-control ">
+					<select id="inputNo" class="form-control" name="no">
 					<?php 
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
@@ -313,7 +314,7 @@
 	<div class="col-md">
 	<div class="form-group row">
 
-		 	<label  class="col-sm-2 col-form-label"> ตำแหน่งบริหาร </label>
+		 	<label  class="col-sm-2 col-form-label">ตำแหน่งบริหาร</label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
 			  <select class="form-control" name="">
@@ -342,7 +343,7 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง">
+		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" require>
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
@@ -440,14 +441,14 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control" rows=4></textarea>
+		<textarea class="form-control" rows=4 require></textarea>
 	</div>	
 </div>
 <br>
 </form>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next btn re " data-modules="assessment" data-action="tor_t1" type="button">next</a> </p>
+		<p><a href="javascript:void(0)" class="text-center next btn re " data-modules="assessment" data-action="adddata_tor" type="submit">next</a> </p>
 	</div>
 </div>
 
