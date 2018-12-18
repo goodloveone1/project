@@ -7,8 +7,9 @@ $con=connect_db();
 $gen_id=$_SESSION['user_id'];
 
 echo $gen_id,"<br>";
+echo $_POST['year'],"<br>";
+echo $_POST['no'],"<br>";
 
-echo $_POST["year"];
 
 
 

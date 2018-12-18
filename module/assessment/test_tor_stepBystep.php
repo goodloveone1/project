@@ -21,7 +21,7 @@
 	mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
 ?>
-<form class="p-2" metod="post">  
+<form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
@@ -50,7 +50,7 @@
 		<div class="form-group row">
 			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-6">
-				<input type="hidden" name="gen_id" value="GGGGGG" >
+				<input type="hidden" name="gg" value="hidden" >
 				<select id="inputState" class="form-control" name="year">
 				<?php 
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
@@ -78,7 +78,7 @@
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
 						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+							echo "<option value='$y_no ", DateThai($y_s)," - ",DateThai($y_e),"'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 
 						}
 	
@@ -131,7 +131,7 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name">
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -445,13 +445,14 @@
 	</div>	
 </div>
 <br>
-</form>
+
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next btn re " data-modules="assessment" data-action="adddata_tor" type="submit">next</a> </p>
+		
+		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	</div>
 </div>
-
+</form>
 
 
 
@@ -479,14 +480,37 @@
 	 );
  })
 	
- $(document).ready(function() {
+ 
+
+$("#addtor").submit(function(){
+				
+				$check = $("#addtor").valid();
+
+				if($check == true){
+				var formData = new FormData(this);
+
+					    $.ajax({
+					        url: "module/assessment/adddata_tor.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+
+				loadmain("assessment","tor_t1")
+				
+			})	
+			$(document).ready(function() {
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
-				alert(module1+ " "+ action )
-				loadmain(module1,action)
+				//alert(module1+ " "+ action )
+				//loadmain(module1,action)
 			});
 		});
-
-
 </script>
