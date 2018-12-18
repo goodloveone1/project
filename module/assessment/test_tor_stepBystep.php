@@ -135,7 +135,7 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-		<select class="form-control" name="">
+		<select class="form-control" name="g_pos">
 		<?php 
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
@@ -149,7 +149,7 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $branchName?>">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $branchName?>" name="dept">
 		</div>
 	</div>
 </div>
@@ -159,11 +159,11 @@
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader">
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-		<select class="form-control" name="">
+		<select class="form-control" name="l_pos">
 		<?php 
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
@@ -296,7 +296,7 @@
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-			  <select class="form-control" name="">
+			  <select class="form-control" name="g_aca">
 			  <?php   
 			  	$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
 				  while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
@@ -331,7 +331,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>">
+		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>" name="salary">
 		    </div> 
 		    <label  class="col-sm-1 col-form-label">บาท </label> 
 	</div>
@@ -343,11 +343,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" require>
+		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" require>
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="สังกัด">
+		      <input type="text" class="form-control" id="" placeholder="สังกัด" value="<?php echo $branchName?>">
 		    </div>    
 	</div>
 	</div>	
@@ -358,11 +358,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด">
+		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff">
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ">
+		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves">
 		    </div>    
 	</div>
 	</div>	
@@ -373,7 +373,7 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)   ?>" readonly>
+		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)?>" name="st_work" readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
@@ -383,7 +383,7 @@
 				
 			 ?>
 			 
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>"readonly>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>" name="sum_work" readonly>
 		    </div>    
 	</div>
 	</div>	
@@ -422,7 +422,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" require>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" require>
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 
@@ -441,7 +441,7 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control" rows=4 require></textarea>
+		<textarea class="form-control" rows=4 name="punishment" require></textarea>
 	</div>	
 </div>
 <br>
@@ -453,9 +453,6 @@
 	</div>
 </div>
 </form>
-
-
-
 
 
 <script type="text/javascript">
@@ -480,8 +477,6 @@
 	 );
  })
 	
- 
-
 $("#addtor").submit(function(){
 				
 				$check = $("#addtor").valid();
