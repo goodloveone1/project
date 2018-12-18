@@ -55,7 +55,10 @@
 				<?php 
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
-					echo"<option value='$y_year'>$y_year</option>";
+					$y_thai=$y_year+543;
+					$yy=DATE('Y');
+					$select=$yy==$y_year?"selected":"";
+					echo"<option value='$y_year' $select>$y_thai</option>";
 				}
 				mysqli_free_result($sYears);
 			?>
@@ -78,10 +81,16 @@
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
 						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							echo "<option value='$y_no ", DateThai($y_s)," - ",DateThai($y_e),"'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
-
+							$m=DATE('m');
+							if($m<=9 && $m>3){
+								$sy_no= 2;
+							}else{
+								$sy_no= 1;
+								
+							}
+							$seNO=$sy_no==$y_no?"selected":"";
+							echo "<option value='$y_no ", DateThai($y_s)," - ",DateThai($y_e),"' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 						}
-	
 					?>
 						
 						
