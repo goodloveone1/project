@@ -3,7 +3,15 @@
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
-	
+	$yearbudget=DATE('Y');  //ปีปัจจุบัน
+
+	$m=DATE('m');
+	if($m<=9 && $m>3){
+    	$loop=2;
+	}else{
+    	$loop=1;
+	}
+
 
 	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
@@ -56,14 +64,16 @@
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
 					$y_thai=$y_year+543;
-					$yy=DATE('Y');
+
+					if($loop==2){
+						$yy-=1;
+						
+					}
 					$select=$yy==$y_year?"selected":"";
 					echo"<option value='$y_year' $select>$y_thai</option>";
 				}
 				mysqli_free_result($sYears);
-			?>
-						
-						
+			?>	
 				</select>
 			</div>
 		</div>
@@ -140,7 +150,7 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -168,7 +178,7 @@
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader" required>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -283,7 +293,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน">
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" required>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -300,7 +310,7 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>">
+		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" required>
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
@@ -340,7 +350,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>" name="salary">
+		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>" name="salary" required>
 		    </div> 
 		    <label  class="col-sm-1 col-form-label">บาท </label> 
 	</div>
@@ -352,7 +362,7 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" require>
+		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" required>
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
@@ -367,11 +377,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff">
+		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff" required>
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves">
+		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves" required>
 		    </div>    
 	</div>
 	</div>	
@@ -431,7 +441,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" require>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" required>
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 
@@ -450,7 +460,7 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control" rows=4 name="punishment" require></textarea>
+		<textarea class="form-control" rows=4 name="punishment" required></textarea>
 	</div>	
 </div>
 <br>
@@ -474,23 +484,24 @@
                 });
              });
 
- $("#inputState").change(function(){
-	 var years=$(this,"option:selected").val()
+ 	$("#inputState").change(function(){
+		 var years=$(this,"option:selected").val()
 	//  alert(years)
-	 $.post("module/assessment/loaddatayear.php",{year:years},
+	 	$.post("module/assessment/loaddatayear.php",{year:years},
 		 function (data, textStatus, jqXHR) {
 			// alert(data) 
 			$("#inputNo").html(data)
 		 }
 		
-	 );
- })
+	 	);
+ 	})
 	
-$("#addtor").submit(function(){
+	$("#addtor").submit(function(){
 				
 				$check = $("#addtor").valid();
 
 				if($check == true){
+					
 				var formData = new FormData(this);
 
 					    $.ajax({
@@ -505,9 +516,7 @@ $("#addtor").submit(function(){
 					        processData: false
 					    });
 				}
-
 				loadmain("assessment","tor_t1")
-				
 			})	
 			$(document).ready(function() {
 			$("a.next").click(function(){
