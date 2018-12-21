@@ -1,8 +1,8 @@
 <?php
-	session_start();
-	include("../../function/db_function.php");
-	include("../../function/fc_time.php");
-	$con=connect_db();
+	// session_start();
+	// include("../../function/db_function.php");
+	// include("../../function/fc_time.php");
+	// $con=connect_db();
 	$yearbudget=DATE('Y');  //ปีปัจจุบัน
 
 	$m=DATE('m');
@@ -99,7 +99,7 @@
 								
 							}
 							$seNO=$sy_no==$y_no?"selected":"";
-							echo "<option value='$y_no ", DateThai($y_s)," - ",DateThai($y_e),"' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+							echo "<option value='$y_no' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 						}
 					?>
 						
