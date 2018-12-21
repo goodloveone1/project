@@ -444,8 +444,6 @@
 		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" required>
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
-
-		 
 		</div>
 	<div class="col-md-2"></div>
 
@@ -475,7 +473,6 @@
 
 
 <script type="text/javascript">
-	
     $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
@@ -495,7 +492,6 @@
 		
 	 	);
  	})
-	
 	$("#addtor").submit(function(){
 				
 				$check = $("#addtor").valid();

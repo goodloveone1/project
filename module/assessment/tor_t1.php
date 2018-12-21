@@ -125,7 +125,7 @@
 
 <script type="text/javascript">
  $(document).ready(function() {
-			$("a.next").click(function(){
+			$("btn").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action)
