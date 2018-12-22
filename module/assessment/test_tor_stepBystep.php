@@ -86,7 +86,7 @@
 			<div class="form-group  row">
 				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
 				<div class="col-sm">
-					<select id="inputNo" class="form-control" name="no">
+					<select id="inputNo" class="form-control" name="a_no">
 					<?php 
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
@@ -99,7 +99,7 @@
 								
 							}
 							$seNO=$sy_no==$y_no?"selected":"";
-							echo "<option value='$y_no' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 						}
 					?>
 						
@@ -392,7 +392,9 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)?>" name="st_work" readonly>
+		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)?>" name="" readonly>
+			  <input type="hidden"   class="form-control" id="datethai" placeholder="" value="<?php echo $gen_startdate?>" name="st_work" readonly>
+
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
@@ -473,6 +475,7 @@
 
 
 <script type="text/javascript">
+$(document).ready(function() {
     $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
@@ -514,7 +517,6 @@
 				}
 				loadmain("assessment","tor_t1")
 			})	
-			$(document).ready(function() {
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
