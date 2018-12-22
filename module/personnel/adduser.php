@@ -3,6 +3,10 @@
 include("../../function/db_function.php");
 $con=connect_db();
 $imgname;
+$thai_year = DATE('Y')+543;
+
+
+
 if(!empty($_FILES['pic']['name'])){
 	$target_dir = "../../img/";
 
@@ -38,7 +42,8 @@ if(!empty($_FILES['pic']['name'])){
 }
 
 
- $sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
+
+$sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
 echo $sql;
 mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
 
