@@ -24,9 +24,9 @@
     $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'") or die("SQL_ERROR".mysqli_error($con));
         list($gen_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor);
         echo $gen_id,$tor_nameRe,"<br>";
-    
     if($tor_year==$y_id){
        echo "มีข้อมูลแล้ว";
+       include("edit_tor.php");
     }else{
         echo"<p>ยังไม่มีข้อมูล</p>";
         include("test_tor_stepBystep.php");
