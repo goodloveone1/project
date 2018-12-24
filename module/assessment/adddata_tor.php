@@ -65,7 +65,7 @@ echo $_POST['inspector'],"<br>";
 echo $_POST['punishment'],"<br>";
 
 $sql = "INSERT INTO  tor (tor_id,gen_id,tor_year,tor_nameRe,tor_pos,tor_department,tor_leader,tor_leader_pos,tor_aca,tor_salary,tor_acdCode,tor_affiliation,tor_leves,tor_startWork,tor_sumWork,inspector,tor_punishment) 
-VALUES ('$tor_id','$gen_id','$no','$name','$g_pos','$dept','$leader','$l_pos','$g_aca','$salary','$g_aca','$aff','$leves','$st_work','$sum_work','$inspector','$punishment')";
+VALUES ('$tor_id','$gen_id','$no','$name','$g_pos','$dept','$leader','$l_pos','$g_aca','$salary','$acd_no','$aff','$leves','$st_work','$sum_work','$inspector','$punishment')";
 echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 $con->close();
