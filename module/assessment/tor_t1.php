@@ -78,11 +78,11 @@
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
-									echo "<td><input type='radio' name='$tit' value='10'></td>";
-									echo "<td><input type='radio' name='$tit' value='20'></td>";
-									echo "<td><input type='radio' name='$tit' value='30'></td>";
-									echo "<td><input type='radio' name='$tit' value='40'></td>";
-									echo "<td><input type='radio' name='$tit' value='50'></td>";
+									echo "<td><input type='radio' name='$tit' value='1'></td>";
+									echo "<td><input type='radio' name='$tit' value='2'></td>";
+									echo "<td><input type='radio' name='$tit' value='3'></td>";
+									echo "<td><input type='radio' name='$tit' value='4'></td>";
+									echo "<td><input type='radio' name='$tit' value='5'></td>";
 									echo "<td id='sco$tit'></td>";
 									echo "<td id='wei$tit' data-wei='$weight'>$weight</td>";
 									echo "<td id='total$tit'></td>";

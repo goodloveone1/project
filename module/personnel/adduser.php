@@ -4,6 +4,11 @@ include("../../function/db_function.php");
 $con=connect_db();
 $imgname;
 $thai_year = DATE('Y')+543;
+$m = DATE('m');
+$y_id=substr($thai_year,2,4);
+$min=DATE('i');
+
+
 
 
 
@@ -40,10 +45,12 @@ if(!empty($_FILES['pic']['name'])){
 }else{
  $imgname="";
 }
+$sum_id = mysqli_query($con,"SELECT COUNT(gen_id) FROM general") or die ("mysql error=>>".mysql_error($con));
+list($sumID) = mysqli_fetch_row($sum_id);
+$gen_id=$y_id.$m.$min.$sumID+1;
 
 
-
-$sql = "INSERT INTO general VALUES ('','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
+$sql = "INSERT INTO general VALUES ('$gen_id','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
 echo $sql;
 mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
 
