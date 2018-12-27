@@ -63,7 +63,6 @@
 <?php
 	
 
-
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -118,19 +117,22 @@
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn " data-modules="assessment" data-action="tor_t2"> ต่อไป </button>
+
+	<!-- <button type="submit" class="btn " data-modules="assessment" data-action="tor_t2"> ต่อไป </button> -->
+	<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p>
 </div>
 </form>
 
 
 <script type="text/javascript">
  $(document).ready(function() {
-			$("btn").click(function(){
+
+	$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
+				alert(module1+ " "+ action )
 				loadmain(module1,action)
 			});
-		});
 <?php
 	foreach ($titcheck as $tit) {
 ?>
@@ -144,7 +146,6 @@ $("#sco<?php echo $tit; ?>").html(sco);
 	else{
 		var total = (sco*wei/100);
 	}
-	
 $("#total<?php echo $tit; ?>").html(total);
 	var tot = total;
 	$("#tot").html(total);
@@ -152,4 +153,6 @@ $("#total<?php echo $tit; ?>").html(total);
 	<?php } ?>
 
 
+
+});
 </script>

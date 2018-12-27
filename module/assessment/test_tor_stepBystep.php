@@ -428,7 +428,7 @@ $(document).ready(function() {
 				}
 				loadmain("assessment","tor_t1")
 			})	
-			$("a.next").click(function(){
+			$(".btn").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				//alert(module1+ " "+ action )
