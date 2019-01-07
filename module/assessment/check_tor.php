@@ -3,7 +3,6 @@
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
-    
     $mm=date('m');  //เดือนปัจจุบัน
     $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
     $m="$mm";
@@ -13,14 +12,12 @@
     }else{
         $loop=1;
     }
-    
     if($loop==2){
         $y-=1;
     }
     $y_id = $y.$loop;
     echo "<p> id = $y_id </p>";
     echo "$_SESSION[user_id]";
-
     $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'") or die("SQL_ERROR".mysqli_error($con));
         list($gen_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor);
         echo $gen_id,$tor_nameRe,"<br>";

@@ -254,7 +254,6 @@
 					$select=$pos_id==$gen_pos?"selected":"";
 					echo "<option value=$pos_id $select>$pos_name</option>";
 					}
-
 					mysqli_free_result($seaPos);
 				?>
 		</select>
@@ -267,7 +266,6 @@
 	</div>
 	</div>	
 </div>
-
 <div class="row ">
 	<div class="col-md">
 	<div class="form-group row">
@@ -303,7 +301,6 @@
 		 	<div class="col-sm">
 		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($gen_startdate)?>" name="" readonly>
 			  <input type="hidden"   class="form-control" id="datethai" placeholder="" value="<?php echo $gen_startdate?>" name="st_work" readonly>
-
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
 		 	<div class="col-sm">
@@ -351,7 +348,6 @@
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 		</div>
 	<div class="col-md-2"></div>
-
 </div>
 </div>
 
@@ -367,7 +363,6 @@
 	</div>	
 </div>
 <br>
-
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		
