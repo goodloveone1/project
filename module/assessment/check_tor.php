@@ -25,10 +25,10 @@
         list($gen_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor);
         echo $gen_id,$tor_nameRe,"<br>";
     if($tor_year==$y_id){
-       echo "มีข้อมูลแล้ว";
+       echo "<p style='color:blue;'>มีข้อมูลแล้ว</p>";
        include("edit_tor.php");
     }else{
-        echo"<p>ยังไม่มีข้อมูล</p>";
+        echo"<p style='color:red;'>ยังไม่มีข้อมูล</p>";
         include("test_tor_stepBystep.php");
     }
 ?>

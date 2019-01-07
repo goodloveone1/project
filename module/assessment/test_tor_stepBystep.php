@@ -383,18 +383,14 @@
 	</div>
 </div>
 </form>
-
-
 <script type="text/javascript">
 $(document).ready(function() {
     $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
                 $('#addsub').modal('show');   
-                
                 });
              });
-
  	$("#inputState").change(function(){
 		 var years=$(this,"option:selected").val()
 	//  alert(years)
@@ -428,7 +424,7 @@ $(document).ready(function() {
 				}
 				loadmain("assessment","tor_t1")
 			})	
-			$(".btn").click(function(){
+			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				//alert(module1+ " "+ action )
