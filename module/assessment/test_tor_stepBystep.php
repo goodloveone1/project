@@ -282,7 +282,6 @@
 	</div>
 	</div>	
 </div>
-
 <div class="row ">
 	<div class="col-md">
 	<div class="form-group row">
@@ -297,7 +296,6 @@
 	</div>
 	</div>	
 </div>
-
 <div class="row ">
 	<div class="col-md">
 	<div class="form-group row">
@@ -312,28 +310,22 @@
 			 <?php
 			 	// $birthdate = strtotime($gen_startdate);
 				//  $today = time();
-				
 			 ?>
-			 
 		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($gen_startdate,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>" name="sum_work" readonly>
 		    </div>    
 	</div>
 	</div>	
 </div>
-
-
-
 <div class="row ">
 	<div class="col-md">
 	<p>๓. บันทึกการมาปฏิบัติงาน</p>
-	</div>	
+	</div>
 </div>
 <div class="row">
 	<div class="col-md">	
 		<?php
 			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='1' AND idl_year='2018' ")or die(mysqli_error($con));
 			$idl=mysqli_fetch_assoc($reS);
-			
 			if(empty($idl)){
 				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
 			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
@@ -390,7 +382,7 @@ $(document).ready(function() {
             $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
                 $('#addsub').modal('show');   
                 });
-             });
+            });
  	$("#inputState").change(function(){
 		 var years=$(this,"option:selected").val()
 	//  alert(years)
@@ -399,11 +391,9 @@ $(document).ready(function() {
 			// alert(data) 
 			$("#inputNo").html(data)
 		 }
-		
 	 	);
  	})
 	$("#addtor").submit(function(){
-				
 				$check = $("#addtor").valid();
 
 				if($check == true){
