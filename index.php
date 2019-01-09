@@ -69,13 +69,16 @@
 			<div class="row">
 		<!-- banner-->
 				<header class="col-sm-12">
+				<br>
 				<!-- <img src="https://bala.rmutl.ac.th/assets/img/website-logo-th.jpg" alt="โลโก้เว็บไซต์ คณะบริหารธุรกิจและศิลปศาสตร์" class="img-fluid" style="margin:0;"> -->
-				<img src="img/banner-TEST.jpg" alt="โลโก้เว็บไซต์ คณะบริหารธุรกิจและศิลปศาสตร์" class="img-fluid" style="margin:0;>
+				<img src="img/banner-TEST.jpg" alt="โลโก้เว็บไซต์ คณะบริหารธุรกิจและศิลปศาสตร์" class="img-fluid" style="margin:0;">
+				
 				</header>
 				
 		<!--main -->
 
 				<div class="col-md-12">
+					<br>
 				<?php
 					if(empty($_GET['page'])){
 						$page="history"; 

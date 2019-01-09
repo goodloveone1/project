@@ -66,6 +66,7 @@
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
+	
 	while (list($tit,$weight)=mysqli_fetch_row($weights)) {
 		$titcheck[] = $tit;
 		$sql = "SELECT e_name FROM evaluation WHERE e_id='$tit'";
@@ -82,9 +83,10 @@
 									echo "<td><input type='radio' name='$tit' value='3'></td>";
 									echo "<td><input type='radio' name='$tit' value='4'></td>";
 									echo "<td><input type='radio' name='$tit' value='5'></td>";
-									echo "<td id='sco$tit'></td>";
-									echo "<td id='wei$tit' data-wei='$weight'>$weight</td>";
+									echo "<td ><input type='text' name='score$tit' value='' size='2'></td>";
+									echo "<td id='wei$tit' align='center' data-wei='$weight'><input type='text' value='$weight' size='1' name='wei$tit' readonly ></td>";
 									echo "<td id='total$tit'></td>";
+									
 		echo "</tr>";
 	}
 	mysqli_close($con);
@@ -93,7 +95,8 @@
 	<tr> 
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"> <?php echo $sumS ?> </td>
-		<td class="text-center" id="tot" data-tot="<?php $tot ?>"><?php echo empty($tot)?"ยังไม่คำนวณ":""?>  </td>
+	
+		<td class="text-center"><?php echo empty($tot)?"ยังไม่คำนวณ":""?>  </td>
 	</tr>
 	<tr> 
 		<td colspan="9" >
@@ -151,8 +154,10 @@ $("#total<?php echo $tit; ?>").html(total);
 	$("#tot").html(total);
 })
 	<?php } ?>
-
-
-
+	function doEvent1(){
+    var n1=score1.value;
+    var n2=wei1.value;
+    sumscore.value=n1+n2;
+	}
 });
 </script>
