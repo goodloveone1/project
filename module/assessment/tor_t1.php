@@ -21,7 +21,7 @@
 	mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
 ?>
-<form class="p-2"> 
+<form class="p-2" name="tor1"> 
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
@@ -44,7 +44,7 @@
 
 <div class="row ">
 	<div class="col-md">
-<table class="table table-bordered" >
+<table class="table table-bordered" id="table_score" >
 <tr>
 <th rowspan="2">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
 <th rowspan="2">(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
@@ -83,9 +83,9 @@
 									echo "<td><input type='radio' name='$tit' value='3'></td>";
 									echo "<td><input type='radio' name='$tit' value='4'></td>";
 									echo "<td><input type='radio' name='$tit' value='5'></td>";
-									echo "<td ><input type='text' name='score$tit' value='' size='2'></td>";
-									echo "<td id='wei$tit' align='center' data-wei='$weight'><input type='text' value='$weight' size='1' name='wei$tit' readonly ></td>";
-									echo "<td id='total$tit'></td>";
+									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2'></td>";
+									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
+									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
 									
 		echo "</tr>";
 	}
@@ -96,7 +96,7 @@
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"> <?php echo $sumS ?> </td>
 	
-		<td class="text-center"><?php echo empty($tot)?"ยังไม่คำนวณ":""?>  </td>
+		<td class="text-center"><input type="text" name="sumscwei" value=" <?php echo empty($tot)?"0":"";?> " size="2" readonly> </td>
 	</tr>
 	<tr> 
 		<td colspan="9" >
@@ -128,6 +128,21 @@
 
 
 <script type="text/javascript">
+function fncSum(){
+	var num = '';     
+	var sum = 0;
+	for(var i=0;i<document.tor1['scwei[]'].length;i++){
+	num = document.tor1['scwei[]'][i].value;
+	if(num!=""){
+		sum += parseFloat(num);
+		}
+	}
+	document.tor1.sumscwei.value = sum;         
+}
+
+
+
+
  $(document).ready(function() {
 
 	$("a.next").click(function(){
@@ -136,28 +151,29 @@
 				alert(module1+ " "+ action )
 				loadmain(module1,action)
 			});
-<?php
-	foreach ($titcheck as $tit) {
-?>
-$('#<?php echo $tit; ?>').on('click', 'input[name="<?php echo $tit; ?>"]:checked', function(event) {
-var sco = $(this).val();
-var wei = $("#wei<?php echo $tit; ?>").data('wei');
-$("#sco<?php echo $tit; ?>").html(sco);
-	if(wei==0){
-		var total = (sco/100);
-	}
-	else{
-		var total = (sco*wei/100);
-	}
-$("#total<?php echo $tit; ?>").html(total);
-	var tot = total;
-	$("#tot").html(total);
-})
-	<?php } ?>
-	function doEvent1(){
-    var n1=score1.value;
-    var n2=wei1.value;
-    sumscore.value=n1+n2;
-	}
+	
+			$("#table_score").on( "keyup", ".score", function() {
+  	//alert($(this).val())
+	//alert($(this).data("tit"))
+   var tit="wei"+$(this).data("tit")
+   var scwie="scwie"+$(this).data("tit")
+//    alert(tit)
+//    $("#wei")
+	// alert($("input[name='"+tit+"']").val())
+	// alert($("#"+scwie).val())
+	var sumswei = ($("input[name='"+tit+"']").val() * $(this).val())
+	// alert(sumswei)
+	$("#"+scwie).val(sumswei);
+	fncSum();
+
+
+});
+		
+
+	// function doEvent1(){
+    // var n1=score1.value;
+    // var n2=wei1.value;
+    // sumscore.value=n1+n2;
+	// }
 });
 </script>
