@@ -21,7 +21,7 @@
 	mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
 ?>
-<form class="p-2" name="tor1"> 
+<form method="POST" class="p-2" name="tor1" id="tor1"> 
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
@@ -78,12 +78,12 @@
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
-									echo "<td><input type='radio' name='$tit' value='1'></td>";
-									echo "<td><input type='radio' name='$tit' value='2'></td>";
-									echo "<td><input type='radio' name='$tit' value='3'></td>";
-									echo "<td><input type='radio' name='$tit' value='4'></td>";
-									echo "<td><input type='radio' name='$tit' value='5'></td>";
-									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2'></td>";
+									echo "<td><input type='radio' name='go$tit' value='1'></td>";
+									echo "<td><input type='radio' name='go$tit' value='2'></td>";
+									echo "<td><input type='radio' name='go$tit' value='3'></td>";
+									echo "<td><input type='radio' name='go$tit' value='4'></td>";
+									echo "<td><input type='radio' name='go$tit' value='5'></td>";
+									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' required></td>";
 									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
 									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
 									
@@ -95,8 +95,8 @@
 	<tr> 
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"> <?php echo $sumS ?> </td>
-	
-		<td class="text-center"><input type="text" name="sumscwei" value=" <?php echo empty($tot)?"0":"";?> " size="2" readonly> </td>
+		<td class="text-center"><input type="text" name="sumscwei"  size="2" readonly> </td>
+		
 	</tr>
 	<tr> 
 		<td colspan="9" >
@@ -106,13 +106,13 @@
 					สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  = 
 				</div>		
 				<div class="col-sm text-center">	
-					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = ๕  
+					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="" size="3" name="sumscweid" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = ๕  
 				</div>
 			</div>	
 		</td>
-		<td class="text-center">  </td>
+		<td class="text-center"><input type="text" name="sumall" size="3"></td>
 	</tr>
-</form>
+
 </table>
 </div>
 </div>
@@ -121,8 +121,8 @@
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 
-	<!-- <button type="submit" class="btn " data-modules="assessment" data-action="tor_t2"> ต่อไป </button> -->
-	<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p>
+	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+	<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 </div>
 </form>
 
@@ -137,20 +137,18 @@ function fncSum(){
 		sum += parseFloat(num);
 		}
 	}
-	document.tor1.sumscwei.value = sum;         
+	document.tor1.sumscwei.value = sum; 
+	document.tor1.sumscweid.value = sum;    
+	document.tor1.sumall.value = sum/5; 
 }
-
-
-
-
  $(document).ready(function() {
 
-	$("a.next").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				alert(module1+ " "+ action )
-				loadmain(module1,action)
-			});
+	// $("a.next").click(function(){
+	// 			var module1 = $(this).data('modules');
+	// 			var action = $(this).data('action');
+	// 			alert(module1+ " "+ action )
+	// 			loadmain(module1,action)
+	// 		});
 	
 			$("#table_score").on( "keyup", ".score", function() {
   	//alert($(this).val())
@@ -165,15 +163,24 @@ function fncSum(){
 	// alert(sumswei)
 	$("#"+scwie).val(sumswei);
 	fncSum();
-
-
-});
-		
-
-	// function doEvent1(){
-    // var n1=score1.value;
-    // var n2=wei1.value;
-    // sumscore.value=n1+n2;
-	// }
+	});
+	$("#tor1").submit(function(){
+				$check = $("#tor1").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor1.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				loadmain("assessment","tor_t1")
+			})	
 });
 </script>
