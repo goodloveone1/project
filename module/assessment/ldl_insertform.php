@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("../../function/db_function.php");
+    include("../../function/fc_time.php");
 	$con=connect_db();
 
     $seldlt=mysqli_query($con,"SELECT *FROM idlel_type")or die(mysqli_error($con));
@@ -22,12 +23,50 @@
                 </div>
                 <div class="modal-body">
                 <?php $years ="2018";  ?>
-                <input type="hidden"    value="<?php echo $years; ?>"  name="Y" size=40 require>
-                <SELECT name='no' >
-        
-                    <option value='1'>รอบที่1</option>
-                    <option value='2'>รอบที่2</option>
-                </SELECT>
+                <!-- <input type="hidden"    value="<?php echo $years; ?>"  name="Y" size=40 require> -->
+                <div class="col-sm" >
+                <div class="col-md form-group row">
+                <label for="" class="col-sm-3 col-form-label">ประจำปี งบประมาณ</label>
+			
+            
+				<input type="hidden" name="gg" value="hidden" class="col-md-2" >
+				<select id="inputState" class="custom-select col-md-2" name="year" readonly >
+				<?php 
+				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
+				while(list($y_year)=mysqli_fetch_row($sYears)){
+					$y_thai=$y_year+543;
+
+					if($loop==2){
+						$yy-=1;
+						
+					}
+					$select=$yy==$y_year?"selected":"";
+					echo"<option value='$y_year' $select>$y_thai</option>";
+				}
+				mysqli_free_result($sYears);
+			?>	
+
+				</select>
+                <!-- <div class="col-sm-1"></div> -->
+                <select id="inputNo" class="custom-select col-md" name="a_no" readonly >
+					<?php 
+						$yNow=date("Y");
+						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years ")or die(mysqli_error($con));
+						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+							$m=DATE('m');
+							if($m<=9 && $m>3){
+								$sy_no= 2;
+							}else{
+								$sy_no= 1;
+								
+							}
+							// $seNO=$sy_no==$y_no?"selected":"";
+							echo "<option value='$y_id' >รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+						}
+					?>
+					</select>
+                </div>
+            
                 <?php  for($i=0;$i<count($set);$i++){
                     $name="value";
                     $n=1 ?>
@@ -36,8 +75,8 @@
                         <!-- <input type="text"   class="form-control" value=""  name="i_no" size=10 > -->
                        <input type="text"   class="form-control col-sm" value=""  name="i_no<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > ครั้ง</label>
                        <input type="text"   class="form-control col-sm" value=""  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
-                       <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="<?php  ?>" size=40 require>
-                       <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 require>
+                       <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
+                       <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 >
                     </div>
                 <?php   }?>
                 </div>
@@ -68,8 +107,16 @@ $("#updatesu").click(function(event) {
         })
        
         
-    } 
-
-   
+    }   
 });
+$("#inputState").change(function(){
+		 var years=$(this,"option:selected").val()
+	//  alert(years)
+	 	$.post("module/assessment/loaddatayear.php",{year:years},
+		 function (data, textStatus, jqXHR) {
+			// alert(data) 
+			$("#inputNo").html(data)
+		 }
+	 	);
+ 	})
 </script>

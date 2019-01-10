@@ -321,8 +321,24 @@
 <div class="row">
 	<div class="col-md">	
 		<?php
-			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='1' AND idl_year='2018' ")or die(mysqli_error($con));
+		$mm=date('m');  //เดือนปัจจุบัน
+		$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+		$m="$mm";
+		$y="$yearbudget";
+		if($m<=9 && $m>3){
+			$loop=2;
+		}else{
+			$loop=1;
+		}
+		if($loop==2){
+			$y-=1;
+		}
+		$y_id = $y.$loop;
+			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$y_id' ")or die(mysqli_error($con));
 			$idl=mysqli_fetch_assoc($reS);
+
+			// print_r($idl);
+			// echo $y_id;
 			if(empty($idl)){
 				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
 			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";

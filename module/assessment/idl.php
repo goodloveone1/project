@@ -1,14 +1,24 @@
 <?php
 
-	$m = DATE('m');
-	if($m<=9 && $m>3){
-		$notest="2";
-	}else{
-		$notest="1";
-	}
-	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='$notest'")or die(mysqli_error($con));
+	
+	
+	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND year_id='$y_id'")or die(mysqli_error($con));
 	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
 
+	$mm=date('m');  //เดือนปัจจุบัน
+    $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+    $m="$mm";
+    $y="$yearbudget";
+    if($m<=9 && $m>3){
+        $loop=2;
+    }else{
+        $loop=1;
+    }
+    if($loop==2){
+        $y-=1;
+    }
+    $y_id = $y.$loop;
+	echo $y_id;
 	
 	// print_r($set1);	
 	// print_r($set2);				
@@ -18,11 +28,11 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th rowspan="2" class="text-center">ประเภท</th>
+				<!-- <th rowspan="2" class="text-center">ประเภท</th>
 				<th colspan="2">การประเมินรอบที่ <?php echo $notest ?></th>
 			
 				<th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">การประเมินรอบที่ <?php echo $notest ?></th>
+				<th colspan="2">การประเมินรอบที่ <?php echo $notest ?></th> -->
 		
 			</tr>
 			<tr>
