@@ -189,8 +189,6 @@
 </form>
 <script type="text/javascript">
 
-
-
 		$(document).ready(function() {
 			var count = 0;
 			
@@ -295,7 +293,7 @@
 
 					if($check == true ){
 
-						if( $text != ""){
+						if( $text == ""){
 						    e.preventDefault();
 
 						    var formData = new FormData(this);
@@ -305,20 +303,28 @@
 						        type: 'POST',
 						        data: formData,
 						        success: function (data) {
-						            alert(data)
+						        //    alert(data)
 						        },
 						        cache: false,
 						        contentType: false,
 						        processData: false
-						    });
+						    }).done(function() {
+
+						    	loadingpage("personnel","mangauser");	
+						    })
+
+						  
+
+
 						}else{
 							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
 						}
 					}				
 				})	// END edituser
 
-			$('input[name=uname]').change(function(event) {
+			$("input[name='uname']").change(function(event) {
 				var text = $(this).val();
+			
 				$.getJSON( "module/personnel/jsonnuser.php", function( data ) {
 				  var items = [];
 

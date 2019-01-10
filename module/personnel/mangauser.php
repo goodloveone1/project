@@ -19,7 +19,7 @@
 <div class="col-md-12 mt-2">
 <form  id="delall">
 <div class="table-responsive">	
-	<table class="table " id="showuser">
+	<table class="table " id="Datatable">
 	
 		<thead class="thead-light">
 			<tr>
@@ -126,10 +126,12 @@
             	}
         	})
 
-			$('#showuser').DataTable({
-				"ordering": false,
+        	 $.getScript('js/mydatatable.js') // dataTable
+
+			// $('#showuser').DataTable({
+			// 	"ordering": false,
 				
-			});
+			// });
 			
 			// ไมเลือกทั้งหมด
 			$(".select1").click(function(){

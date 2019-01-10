@@ -14,7 +14,7 @@
         <a href=#><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
     </div>
 </div>
-<table  class="table" id="tablebranch" >
+<table  class="table" id="Datatable" >
     <thead class="thead-light">
          <tr>
             <th scope="col">ลำดับ</th>
@@ -45,7 +45,12 @@
 <div id="loadaddsub"></div> 
 
 <script>
-     $('#tablebranch').DataTable();
+     $.getScript('js/mydatatable.js');
+
+
+//     $('#tablebranch').DataTable();
+
+
     $(".editbrn").click(function( ){
         var ideditsub = $(this).data("ideditsub");
         
