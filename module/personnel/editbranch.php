@@ -52,7 +52,7 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
 <script type="text/javascript">
 
     $("#updatesu").click(function(event) {
-        var r = confirm("Press a button!");
+        var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
         if (r == true) {
             $.post( "module/personnel/updatebranch.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
                  // alert(data);
