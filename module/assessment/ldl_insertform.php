@@ -4,6 +4,26 @@
     include("../../function/fc_time.php");
 	$con=connect_db();
 
+    $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+
+    $min=DATE('i');
+    $m=date('m');
+    $y="$yearbudget";
+    $yy=DATE('Y');
+if($m<=9 && $m>3){
+    $loop=2;
+}else{
+    $loop=1;
+}
+
+if($loop==2){
+    $y-=1;
+    $yy-=1;
+}
+$tor_id = $y.$loop;
+
+
+    
     $seldlt=mysqli_query($con,"SELECT *FROM idlel_type")or die(mysqli_error($con));
     for ($set = array (); $row = $seldlt->fetch_assoc(); $set[] = $row);
     //print_r($set);
@@ -30,16 +50,15 @@
 			
             
 				<input type="hidden" name="gg" value="hidden" class="col-md-2" >
-				<select id="inputState" class="custom-select col-md-2" name="year" readonly >
-				<?php 
+				<select id="inputState" class="custom-select col-md-2" name="year"  >
+                <?php 
+                
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
 					$y_thai=$y_year+543;
-
-					if($loop==2){
-						$yy-=1;
-						
-					}
+                    
+                    
+				
 					$select=$yy==$y_year?"selected":"";
 					echo"<option value='$y_year' $select>$y_thai</option>";
 				}
@@ -49,19 +68,13 @@
 				</select>
                 <!-- <div class="col-sm-1"></div> -->
                 <select id="inputNo" class="custom-select col-md" name="a_no" readonly >
-					<?php 
-						$yNow=date("Y");
-						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years ")or die(mysqli_error($con));
+                <?php 
+						// $yNow=date("Y");
+						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years")or die(mysqli_error($con));
 						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							$m=DATE('m');
-							if($m<=9 && $m>3){
-								$sy_no= 2;
-							}else{
-								$sy_no= 1;
-								
-							}
-							// $seNO=$sy_no==$y_no?"selected":"";
-							echo "<option value='$y_id' >รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+							
+							$seNO=$tor_id==$y_id?"selected":"";
+							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 						}
 					?>
 					</select>
@@ -89,34 +102,35 @@
     </div>
 </form>
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-     
-    var r = confirm("Press a button!");
-    if (r == true) {
-        $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            alert(data);
-         });
-         
-        $('#addsub').modal("hide");
-       
-        $('#addsub').on('hidden.bs.modal', function (e) {
-            var module1 = sessionStorage.getItem("module1")
-            var action = sessionStorage.getItem("action")
-            loadmain(module1,action);
-        })
-       
-        
-    }   
-});
-$("#inputState").change(function(){
-		 var years=$(this,"option:selected").val()
-	//  alert(years)
-	 	$.post("module/assessment/loaddatayear.php",{year:years},
-		 function (data, textStatus, jqXHR) {
-			// alert(data) 
-			$("#inputNo").html(data)
-		 }
-	 	);
- 	})
+    $(document).ready(function() {
+        $("#updatesu").click(function(event) {
+            
+            var r = confirm("Press a button!");
+            if (r == true) {
+                $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+                    alert(data);
+                });
+                
+                $('#addsub').modal("hide");
+            
+                $('#addsub').on('hidden.bs.modal', function (e) {
+                    var module1 = sessionStorage.getItem("module1")
+                    var action = sessionStorage.getItem("action")
+                    loadmain(module1,action);
+                })
+            
+                
+            }   
+        });
+        $("#inputState").change(function(){
+                var years=$(this,"option:selected").val()
+            //  alert(years)
+                $.post("module/assessment/loaddatayear.php",{year:years},
+                function (data, textStatus, jqXHR) {
+                    // alert(data) 
+                    $("#inputNo").html(data)
+                }
+                );
+            });
+        });
 </script>

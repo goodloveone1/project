@@ -12,6 +12,12 @@
     	$loop=1;
 	}
 
+	if($loop==2){
+		$y-=1;
+		
+	}
+
+	$y_id = $y.$loop;
 
 	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
@@ -64,11 +70,8 @@
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
 					$y_thai=$y_year+543;
-
-					if($loop==2){
-						$yy-=1;
-						
-					}
+					$yy=DATE('Y');
+				
 					$select=$yy==$y_year?"selected":"";
 					echo"<option value='$y_year' $select>$y_thai</option>";
 				}

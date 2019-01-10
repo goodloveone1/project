@@ -1,9 +1,20 @@
 
 
 <form class="p-2"> 
+
 <div class="row">
-	<div class="col-md">
-		<b><u>ส่วนที่ ๕  การรับทราบผลการประเมิน</u></b>
+	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
+      <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp; 
+		 <a href=#><span class="step step-color">ส่วนที่ 5</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
+		 <br>
+</div>
+<div class="row">
+	<div class="col-md">&nbsp;
+		<p><b><u>ส่วนที่ ๕  การรับทราบผลการประเมิน</u></b></p>
 	</div>
 </div>
 
