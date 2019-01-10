@@ -4,7 +4,7 @@
 ?>
 <div class="row headtitle p-2" >
 	<div class="col-md-2 text-center ">
-	<button type="button" class="btn re btn-block" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
+	<button type="button" class="btn re btn-block " data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
 	</div>
 	<div class="col-md text-center">
 		<h2> เพิ่มบุคลากร </h2>
@@ -177,19 +177,17 @@
 		</span>
 	</div>
 	</div> <!-- > END ปริญญาตรี -->
-	
-<div class="col-md-12 row">
-<div class="col-md-10">
-</div>
+	<br>
+<div class="col-md-12 row mt-2">
+<div class="col-md-5"></div>
 <div class="col-md">
-	<button type="submit" class="btn adduser ml-0" data-modules="personnel" data-action="updateuser"> ADD </button>
+	<button type="submit" class="btn adduser btn-success " data-modules="personnel" data-action="updateuser"> บันทึกข้อมูล </button>
 </div>
+<div class="col-md-5"></div>
 </div>
 </div>
 </form>
 <script type="text/javascript">
-
-
 
 		$(document).ready(function() {
 			var count = 0;
@@ -295,7 +293,7 @@
 
 					if($check == true ){
 
-						if( $text != ""){
+						if( $text == ""){
 						    e.preventDefault();
 
 						    var formData = new FormData(this);
@@ -305,20 +303,28 @@
 						        type: 'POST',
 						        data: formData,
 						        success: function (data) {
-						            alert(data)
+						        //    alert(data)
 						        },
 						        cache: false,
 						        contentType: false,
 						        processData: false
-						    });
+						    }).done(function() {
+
+						    	loadingpage("personnel","mangauser");	
+						    })
+
+						  
+
+
 						}else{
 							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
 						}
 					}				
 				})	// END edituser
 
-			$('input[name=uname]').change(function(event) {
+			$("input[name='uname']").change(function(event) {
 				var text = $(this).val();
+			
 				$.getJSON( "module/personnel/jsonnuser.php", function( data ) {
 				  var items = [];
 

@@ -77,7 +77,7 @@
 						?>
 					</select>
 				</div>
-		
+
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่งวิชาการ</label>
 				<div class="col-sm">
 					<select class="form-control"  name="ap">
@@ -103,25 +103,25 @@
 						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
 						 	$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
-							
-							$seP=$sub_id==$subject_ID?"selected":""; 
-						
+
+							$seP=$sub_id==$subject_ID?"selected":"";
+
 						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";
 
-						 	$branch->free_result();		
+						 	$branch->free_result();
 						 }
-						 $result->free_result();	
+						 $result->free_result();
 						?>
-					
+
 					</select>
-						
+
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
 				<div class="col-md">
 					<select class="form-control" id="selectbrn" name="brn">
-						
+
 					</select>
 				</div>
 			</div>
@@ -147,11 +147,11 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>" required>	
-					
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>" required>
+
 				</div>
 			</div>
-		
+
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
@@ -162,8 +162,8 @@
 					   แสดงรหัส
 					  </label>
 					</div>
-					
-				</div>	
+
+				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
@@ -175,7 +175,7 @@
 					   แสดงรหัส
 					  </label>
 					</div>
-				</div>	
+				</div>
 			</div>
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">ประเภทบุคลากร</label>
@@ -183,9 +183,9 @@
 					<select class="form-control"  name="permiss">
 						<?php
 							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
-							
+
 							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
-								$sePM=$permiss_id==$permissid?"selected":""; 
+								$sePM=$permiss_id==$permissid?"selected":"";
 								echo "<option value='".$permissid."'$sePM>$permissname</option>";
 							}
 							mysqli_free_result($permiss);
@@ -194,16 +194,16 @@
 				</div>
 			</div>
 			</div>
-			<div class="form-group col-md-12" >
-				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
+			<div class="form-group col-md-12 border rounded p-2" >
+				<label for="" class="col-md-2 col-form-label center">วุฒิการศึกษา</label>
 				<div class="col-md-30">
-					
+
 
 					<table class="table col-md display setdt" id="tbeucation">
 					<thead>
 
-				
-					<tr>	
+
+					<tr>
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
 							<th>สถานที่จบการศึกษา</th>
@@ -221,7 +221,7 @@
 
 				</div>
 			</div>
-		
+
 		</div>
 
 		<div class="col-md-12 text-center mb-2" >
@@ -237,11 +237,11 @@
 
 <script type="text/javascript">
 
-		
+
 		$(document).ready(function() {
-	
-	
-	
+
+
+
 	$("#tbeucation").DataTable({
 			 "ajax" : {
 			 	 "url": "module/personnel/loaddatadegree.php",
@@ -256,7 +256,7 @@
 	});
 
 	if ( $.fn.dataTable.isDataTable( '#tbeucation' ) ) {
-  
+
 	}
 	else {
 	    table = $('#tbeucation').DataTable( {
@@ -264,13 +264,13 @@
 	    } );
 	}
 
-	
-		
-			
+
+
+
 
 			selectsuj();
 
-			
+
 
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');
@@ -278,13 +278,13 @@
 				$("#selectbrn").html("<option value='"+$idbrn+"'>"+$nbrn+"</option>")
 			}
 
-			$("#selectsuj").change(function() {				
-				selectsuj();					
+			$("#selectsuj").change(function() {
+				selectsuj();
 			});
 
-			
+
 			$("#edituser").submit(function(){
-				
+
 				$check = $("#edituser").valid();
 
 				if($check == true){
@@ -304,10 +304,10 @@
 				}
 
 				loadmain("personnel","mangauser")
-				
-			})	
 
-					
+			})
+
+
 //เซ็ค PW CON
 $('#edituser').validate({ // initialize the plugin
 						        rules: {
@@ -331,60 +331,60 @@ $('#edituser').validate({ // initialize the plugin
 										minlength: "Your password must be at least 5 characters long",
 										equalTo: "Please enter the same password as above"
 									},
-									
+
 								}
 
 						    });
-		
+
 		$("#tbeucation").on('click', '.editbrn', function(event) {
 			event.preventDefault();
-	
+
         var iddegree =$(this).data("iddegree");
-        
+
 	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
 				// alert(data);
 	        $('#editD').html(data);
 	         $('#editsub').modal('show');
 	        })
-        
-        
-        });						
+
+
+        });
 
 $("#tbeucation").on('click', '.delbrn', function(event) {
 			event.preventDefault();
 	  // $(".delbrn").click(function(){
 		var ideditsub =$(this).data("iddegree");
 		var degreename =$(this).data("degreename");
-			
+
             var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
             if (r == true) {
-				
+
                 $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
 					alert(data);
 
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
-			 
+
 
                     })
 
-               
+
             }
-		
+
 	})
 
 $("#adddegree").on('click', function(event) {
 		event.preventDefault();
-        
+
 			var genids =$(this).data("genid");
-        
+
 	        $.post("module/personnel/formeducate.php", { genid : genids }).done(function(data){
 				//alert(data);
 	        $('#addsub').html(data);
 	         $('#addedu').modal('show');
-	        })	
-		
+	        })
 
-			
+
+
 		});
 	});
 //ดูรหัส
@@ -405,11 +405,6 @@ function chkpwcon() {
     }
 }
 
-       	
-		
+
+
 </script>
-
-
-
-
-

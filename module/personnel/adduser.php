@@ -72,7 +72,7 @@ if(!empty($_POST['degname']) && !empty($_POST['degaddes']) && !empty($_POST['deg
 
 	}
 
-	echo "<br>".$sqlder."<br>";
+	//echo "<br>".$sqlder."<br>";
 
 
 }

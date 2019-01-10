@@ -58,7 +58,7 @@
 					
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link my-2 my-lg-0" href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-user-tie" style="font-size:24px;"></i> เข้าสู่ระบบ</a>
+							<a class="nav-link my-2 my-lg-0" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-user-tie" style="font-size:24px;"></i> เข้าสู่ระบบ</a>
 						</li>
 					</ul>
 				</div>
