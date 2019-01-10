@@ -15,10 +15,11 @@
         $loop=1;
     }
     if($loop==2){
-        $y-=1;
-    }
+        $y-1;
+	}
+
     $y_id = $y.$loop;
-	echo $y_id;
+	//echo $y_id;
 	
 	// print_r($set1);	
 	// print_r($set2);				
@@ -28,11 +29,11 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<!-- <th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">การประเมินรอบที่ <?php echo $notest ?></th>
+				<th rowspan="2" class="text-center">ประเภท</th>
+				<th colspan="2">การประเมินรอบที่ <?php echo $loop," ปี ",$y  ?></th>
 			
 				<th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">การประเมินรอบที่ <?php echo $notest ?></th> -->
+				<th colspan="2">การประเมินรอบที่ <?php echo $loop," ปี ",$y ?></th> 
 		
 			</tr>
 			<tr>

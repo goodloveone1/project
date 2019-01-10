@@ -54,6 +54,7 @@ function modules(module1,action){
 				case "adddata_tor1":break;
 				case "check_tor":break;
 				case "edit_tor":break;
+				case "update_tor":break;
 			
 			   	default: action = "404";  
 			}

@@ -6,7 +6,9 @@
 	$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
 
     $m=DATE('m');
-    $y=$yearbudget;
+	$y=$yearbudget;
+	$Y=DATE('Y');
+	
 	if($m<=9 && $m>3){
     	$loop=2;
 	}else{
@@ -14,7 +16,9 @@
 	}
     
     if($loop==2){
-        $y-=1;
+		$y-=1;
+		$Y-=1;
+		
     }
     $y_id = $y.$loop;
 
@@ -22,6 +26,7 @@
     list($tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment)=mysqli_fetch_row($tor);
     // echo "<br>",$tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment;
    
+
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$tor_aca'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
@@ -64,14 +69,19 @@
 		<div class="form-group row">
 			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-6">
-				<input type="hidden" name="gg" value="hidden" >
+				<input type="hidden"  name="tor_id" value="<?php echo $tor_id  ?>" >
+				<?php 
+					$re_year=   mysqli_query($con,"SELECT y_year FROM years WHERE y_id='$tor_year'")or die("error".mysqli_error($con));
+					list($YY)=mysqli_fetch_row($re_year);
+					mysqli_free_result($re_year);
+				?>
 				<select id="inputState" class="form-control" name="year">
 				<?php 
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
 				while(list($y_year)=mysqli_fetch_row($sYears)){
 					$y_thai=$y_year+543;
 
-					$select=$tor_year==$y_year?"selected":"";
+					$select=$YY==$y_year?"selected":"";
 					echo"<option value='$y_year' $select>$y_thai</option>";
 				}
 				mysqli_free_result($sYears);
@@ -327,8 +337,21 @@
 <div class="row">
 	<div class="col-md">	
 		<?php
-			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]' AND idl_no='1' AND idl_year='2018' ")or die(mysqli_error($con));
-			$idl=mysqli_fetch_assoc($reS);
+			$mm=date('m');  //เดือนปัจจุบัน
+			$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+			$m="$mm";
+			$y="$yearbudget";
+			if($m<=9 && $m>3){
+				$loop=2;
+			}else{
+				$loop=1;
+			}
+			if($loop==2){
+				$y-=1;
+			}
+			$y_id = $y.$loop;
+				$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$y_id' ")or die(mysqli_error($con));
+				$idl=mysqli_fetch_assoc($reS);
 			
 			if(empty($idl)){
 				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
@@ -374,8 +397,7 @@
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		
-		<!-- <button type="submit" class="btn " data-modules="" data-action=""> ต่อไป </button> -->
+	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	</div>
 </div>
 </form>
@@ -411,7 +433,7 @@ $(document).ready(function() {
 				var formData = new FormData(this);
 
 					    $.ajax({
-					        url: "module/assessment/adddata_tor.php",
+					        url: "module/assessment/update_tor.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
@@ -422,7 +444,7 @@ $(document).ready(function() {
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t1")
+				loadmain("assessment","menuassm")
 			})	
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');

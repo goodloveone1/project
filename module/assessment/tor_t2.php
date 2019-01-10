@@ -25,7 +25,18 @@
 
 <form class="p-2"> 
 <div class="row">
+	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
+         <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
+		 <a href=#><span class="step step-color">ส่วนที่ 2</span></a> &nbsp; 
+		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
+		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp; 
+		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp; 
+		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
+		 <br>
+    </div>
+<div class="row">
 	<div class="col-md">
+		<br>
 		<b><u> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </u></b>
 	</div>
 	
