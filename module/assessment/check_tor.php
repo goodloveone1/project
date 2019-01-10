@@ -27,6 +27,7 @@
     }else{
         echo"<p style='color:red;'>ยังไม่มีข้อมูล</p>";
         include("test_tor_stepBystep.php");
+        unset($_SESSION['tor_id']);
     }
 ?>
 

@@ -22,6 +22,7 @@
 	mysqli_free_result($seexp);
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1"> 
+<input type="hidden" value="<?php echo $_SESSION["tor_id"]   ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
@@ -78,11 +79,11 @@
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
-									echo "<td><input type='radio' name='go$tit' value='1'></td>";
-									echo "<td><input type='radio' name='go$tit' value='2'></td>";
-									echo "<td><input type='radio' name='go$tit' value='3'></td>";
-									echo "<td><input type='radio' name='go$tit' value='4'></td>";
-									echo "<td><input type='radio' name='go$tit' value='5'></td>";
+									echo "<td><input type='radio' name='go$tit' value='1' required></td>";
+									echo "<td><input type='radio' name='go$tit' value='2' required></td>";
+									echo "<td><input type='radio' name='go$tit' value='3' required></td>";
+									echo "<td><input type='radio' name='go$tit' value='4' required></td>";
+									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
 									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' required></td>";
 									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
 									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
@@ -94,7 +95,7 @@
 ?>
 	<tr> 
 		<td colspan="8" class="text-center"> ผลรวม </td>
-		<td class="text-center"> <?php echo $sumS ?> </td>
+		<td class="text-center"><input type="text" name="sumwei" value="<?php echo $sumS ?> " size="3"></td>
 		<td class="text-center"><input type="text" name="sumscwei"  size="2" readonly> </td>
 		
 	</tr>
@@ -123,6 +124,8 @@
 
 	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
+
+	</div>
 </div>
 </form>
 
@@ -180,7 +183,7 @@ function fncSum(){
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t1")
+				loadmain("assessment","tor_t2")
 			})	
 });
 </script>

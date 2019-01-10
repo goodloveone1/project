@@ -68,6 +68,7 @@ $sql = "INSERT INTO  tor (tor_id,gen_id,tor_year,tor_nameRe,tor_pos,tor_departme
 VALUES ('$tor_id','$gen_id','$no','$name','$g_pos','$dept','$leader','$l_pos','$g_aca','$salary','$acd_no','$aff','$leves','$st_work','$sum_work','$inspector','$punishment')";
 echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
+$_SESSION['tor_id']=$tor_id;
 $con->close();
 
 ?>
