@@ -303,14 +303,14 @@
 						        type: 'POST',
 						        data: formData,
 						        success: function (data) {
-						        //    alert(data)
+						           alert(data)
 						        },
 						        cache: false,
 						        contentType: false,
 						        processData: false
 						    }).done(function() {
 
-						    	loadingpage("personnel","mangauser");	
+						    	//loadingpage("personnel","mangauser");	
 						    })
 
 						  
