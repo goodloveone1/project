@@ -50,9 +50,11 @@ list($sumID) = mysqli_fetch_row($sum_id);
 $gen_id=$y_id.$m.$min.$sumID+1;
 
 
+
 $sql = "INSERT INTO general (gen_id,gen_user,gen_pass,branch_id,subject_id,gen_code,gen_prefix,gen_fname,gen_lname,gen_salary,gen_acadeic,level_id,gen_startdate,permiss_id,gen_pos,gen_pict) VALUES ('$gen_id','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['brn']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."')";
+
 echo $sql;
-mysqli_query($con,$sql ) or  die ("mysql error=>>".mysql_error($con));
+mysqli_query($con,$sql ) or  die ("general error=>>".mysql_error($con));
 
 $result = mysqli_query($con,"SELECT MAX(gen_id) FROM general") or die ("mysql error=>>".mysql_error($con));
 list($genid) = mysqli_fetch_row($result);
