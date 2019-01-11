@@ -4,14 +4,14 @@
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-lg-2" >
-       <a href=#> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     
     <div class="col-lg">
         <h2>จัดการสาขา</h2>
     </div>
     <div class="col-lg-2">
-        <a href=#><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
+        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
     </div>
 </div>
 <table  class="table" id="Datatable" >
@@ -32,8 +32,8 @@
             <tr>
                 <td>$no</td>
                 <td>$branch_Name</td>
-                <td><a href='#'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-                <td><a href='#' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
     }

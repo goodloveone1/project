@@ -119,7 +119,7 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -137,7 +137,7 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $branchName?>" name="dept">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $branchName?>" name="dept">
 		</div>
 	</div>
 </div>
@@ -147,7 +147,7 @@
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="leader" required>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -207,7 +207,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" required>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="" required>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -224,7 +224,7 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" required>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" required>
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
@@ -263,7 +263,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $gen_salary  ?>" name="salary" required>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $gen_salary  ?>" name="salary" required>
 		    </div> 
 		    <label  class="col-sm-1 col-form-label">บาท </label> 
 	</div>
@@ -274,11 +274,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="acd_no" required>
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="สังกัด" value="<?php echo $branchName?>">
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $branchName?>">
 		    </div>    
 	</div>
 	</div>	
@@ -288,11 +288,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="aff" required>
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="leves" required>
 		    </div>    
 	</div>
 	</div>	
@@ -362,7 +362,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" required>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="" name="inspector" required>
 		    </div>
 			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
 		</div>

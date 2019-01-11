@@ -8,7 +8,7 @@
 
 	}
 
-	$basename = "http://localhost/project/";
+	// $basename = "http://localhost/project/";
 
 ?>
 <!DOCTYPE html>
@@ -17,17 +17,17 @@
 	<head>
 		<title>ระบบประเมิน</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="<?php echo $basename?>bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-		<link rel="stylesheet" href="<?php echo $basename?>fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
-		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>css/home.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>css/animate.css">
+		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
+		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo $basename?>js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
+		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
-		<script src="<?php echo $basename?>js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
-		<script src="<?php echo $basename?>js/menushow.js"></script> <!--FUNCTION MENU -->
-		<script src="<?php echo $basename?>js/functionjs.js"></script> <!--FUNCTION script -->
+		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
+		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
+		<script src="js/functionjs.js"></script> <!--FUNCTION script -->
 
 		<?php
 			require('function/menu.php');
@@ -157,12 +157,12 @@
 			<div id='picloading' style="display: none;"><img style='display: block;margin:12% auto; ' src='img/loading.svg'></div>
 		</div>
 		<script src="https://unpkg.com/popper.js"></script>
-		<script src="<?php echo $basename?>js/jquery-3.3.1.min.js"></script>
-		<script src="<?php echo $basename?>js/jquery.validate.min.js" ></script>
-		<script src="<?php echo $basename?>js/additional-methods.min.js" ></script>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/jquery.validate.min.js" ></script>
+		<script src="js/additional-methods.min.js" ></script>
 		<!-- <script src="bootstrap/js/bootstrap.bundle.min.js" ></script> -->
-		<script src="<?php echo $basename?>bootstrap/js/bootstrap.js" ></script>
-		<script type="text/javascript" src="<?php echo $basename?>js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
+		<script src="bootstrap/js/bootstrap.js" ></script>
+		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 
 
 		<?php
