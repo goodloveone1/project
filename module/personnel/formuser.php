@@ -34,7 +34,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="ชื่อ"  name="fname" required> 
+					<input type="text" class="form-control"  placeholder="ชื่อ"  name="fname" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -61,7 +61,7 @@
 						?>
 					</select>
 				</div>
-				
+
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่งวิชาการ</label>
 				<div class="col-sm">
 					<select class="form-control"  name="ap">
@@ -70,7 +70,7 @@
 							while(list($academic_id,$academic_name)=mysqli_fetch_row($result)){
 								echo "<option value='".$academic_id."' data-idbrn='".$academic_id."' data-nbrn='".$academic_name."'>$academic_name</option>";
 							}
-						?>					
+						?>
 					</select>
 				</div>
 			</div>
@@ -84,7 +84,7 @@
 						echo "<option value='".$branch_id."' data-idbrn='".$branch_id."' data-nbrn='".$branch_name."'>$branch_name</option>";
 						}
 						?>
-						
+
 					</select>
 				</div>
 			</div>
@@ -98,11 +98,11 @@
 						$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='1'") or die ("errorSQL".mysqli_error($con));
 						list($branch_name)=mysqli_fetch_row($branch);
 							echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";
-						mysql_free_result($branch);	
+						mysql_free_result($branch);
 						}
-						mysql_free_result($result);	
+						mysql_free_result($result);
 						?>
-						
+
 					</select>
 				</div>
 			</div>
@@ -153,17 +153,17 @@
 					</select>
 				</div>
 			</div>
-			
+
 		</div>
 		<div class="col-md-12"> 		<!-- >ปริญญาตรี -->
 		<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
 			<div class="col-sm-12" >
 				<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญา</label>
 			</div>
-			
+
 			<span class="col-md-12">
 				<div class='row'>
-					
+
 					<div class="col-md">
 						<button type="button" class="btn btn-secondary adddegree1 btn-block">เพิ่ม</button>
 					</div>
@@ -172,8 +172,8 @@
 					</div>
 				</div>
 				<ul class="loaddegree list-group"></ul>
-				
-			
+
+
 		</span>
 	</div>
 	</div> <!-- > END ปริญญาตรี -->
@@ -191,22 +191,22 @@
 
 		$(document).ready(function() {
 			var count = 0;
-			
+
 
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action);
 			});
-			
+
 			$("#selectbrn").change(function(event) {
 				var idbrn = $("#selectbrn option:selected").data("idbrn")
 				$.post('module/personnel/getdatesuj.php', {id: idbrn}, function(data, textStatus, xhr) {
 					$("#selectsuj").html(data);
 				});
-				
+
 			});
-		
+
 // ปริญญาตรี
 			$("button.cleardegree1").on("click",function(e) {
 				e.preventDefault();
@@ -247,7 +247,7 @@
 						text += "<div class='col'><button type='button' class='btn btn-danger btn-block deldegree1 '>ลบ</button></div></div>"
 						+ "</li>"
 
-				
+
 						$(".loaddegree").append(text);
 					}else{
 						alert("ไม่สามารเพื่มได้แล้ว");
@@ -278,16 +278,16 @@
 										minlength: "Your password must be at least 5 characters long",
 										equalTo: "Please enter the same password as above"
 									},
-									
+
 								}
 
 						    });
-		
-			
+
+
 			$("#edituser").submit(function(e){
 
 				e.preventDefault();
-				
+
 					$check = $("#edituser").valid();
 					$text  = $('#showtxtuser').val();
 
@@ -303,28 +303,28 @@
 						        type: 'POST',
 						        data: formData,
 						        success: function (data) {
-						        //    alert(data)
+						         alert(data)
 						        },
 						        cache: false,
 						        contentType: false,
 						        processData: false
 						    }).done(function() {
 
-						    	loadingpage("personnel","mangauser");	
+						    	loadingpage("personnel","mangauser");
 						    })
 
-						  
+
 
 
 						}else{
 							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
 						}
-					}				
+					}
 				})	// END edituser
 
 			$("input[name='uname']").change(function(event) {
 				var text = $(this).val();
-			
+
 				$.getJSON( "module/personnel/jsonnuser.php", function( data ) {
 				  var items = [];
 
@@ -333,22 +333,22 @@
 				    	$('#showtxtuser').html("<b>ชื่อผู้ใช้ถูกใช้แล้ว !!!!</b>");
 				    	 return false;
 				    }else{
-				    	$('#showtxtuser').html("");	
+				    	$('#showtxtuser').html("");
 				    }
 				  });
-				  
+
 				});
 			});
-		
+
 		})
 
-	
-	
-			
-				
-				
-		
 
-		
-		
+
+
+
+
+
+
+
+
 </script>
