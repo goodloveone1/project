@@ -17,6 +17,7 @@
 	<head>
 		<title>ระบบประเมิน</title>
 		<meta charset="utf-8">
+		<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-96x96.png"> 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
