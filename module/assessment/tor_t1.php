@@ -13,13 +13,12 @@
 	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
 	list($branchName)=mysqli_fetch_row($seBrench);
 
-	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// print_r($set);
+	
+	
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
-	mysqli_free_result($seexp);
+	
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1"> 
 <input type="hidden" value="<?php echo $_SESSION["tor_id"]   ?>" name="tor_id">

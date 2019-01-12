@@ -53,38 +53,42 @@
 			</tr>			
 			<tr>
 				<td> การมุ่งผลสัมฤทธิ์ </td>
-				<td><?php echo empty($set[0]['exp_score'])?"-":$set[0]['exp_score'] ?></td>	
-				
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['exp_score'])?"-":$set[0]['exp_score'] ?>" name="exp0" readonly ></td>	
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['tort2_subtit'] ?>" name="stit0">	
 				<div class="form-group">
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="" >
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go0" >
 					</div>
 				 </td>		
 			</tr>
 			<tr>
 				<td>บริการที่ดี </td>
-				<td> <?php echo empty($set[1]['exp_score'])?"-":$set[1]['exp_score'] ?></td>	
-					<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<td> <input type='text' size='3' class="borderNon form-control" value="<?php echo empty($set[1]['exp_score'])?"-":$set[1]['exp_score'] ?>" placeholder="ข้อมูล" name="exp1" readonly ></td>	
+					<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go1"> 
+					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['tort2_subtit'] ?>" placeholder="ข้อมูล" name="stit1" readonly >
 				</td>		
 			</tr>
 			<tr>
 				<td>การสั่งสมความเชี่ยวชาญในงานอาชีพ </td>
-				<td><?php echo empty($set[2]['exp_score'])?"-":$set[2]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[2]['exp_score'])?"-":$set[2]['exp_score'] ?>" name="exp2" readonly> </td>	
 				<td>
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['tort2_subtit'] ?>" name="stit2" readonly>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go2" >  
 				</td>		
 			</tr>
 			<tr>
 				<td>การยึดมั่นในความถูกต้องชอบธรรม  และจริยธรรม </td>
-				<td> <?php echo empty($set[3]['exp_score'])?"-":$set[3]['exp_score'] ?></td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[3]['exp_score'])?"-":$set[3]['exp_score'] ?>" name="exp3" readonly> </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['tort2_subtit'] ?>" name="stit3" readonly> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go3" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>การทำงานเป็นทีม </td>
-				<td><?php echo empty($set[4]['exp_score'])?"-":$set[4]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[4]['exp_score'])?"-":$set[4]['exp_score'] ?> " name="exp4" readonly> </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['tort2_subtit'] ?> " name="stit4" readonly> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go4" > 
 				</td>		
 			</tr>		
 		</table>
@@ -98,37 +102,42 @@
 			</tr>
 			<tr>
 				<td>ทักษะการสอนและการให้คำปรึกษาแก่นักศึกษา </td>
-				<td><?php echo empty($set[5]['exp_score'])?"-":$set[5]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[5]['exp_score'])?"-":$set[5]['exp_score'] ?> " name="exp5" readonly> </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['tort2_subtit'] ?> " name="stit5" readonly>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go5" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td><?php echo empty($set[6]['exp_score'])?"-":$set[6]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[6]['exp_score'])?"-":$set[6]['exp_score'] ?> " name="exp6" readonly > </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['tort2_subtit'] ?> " name="stit6" readonly >
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go6" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
-				<td><?php echo empty($set[7]['exp_score'])?"-":$set[7]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value=" <?php echo empty($set[7]['exp_score'])?"-":$set[7]['exp_score'] ?>" name="exp7" readonly > </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value=" <?php echo $set[7]['tort2_subtit'] ?>" name="stit7" readonly >
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" nsme="go7"> 
 				</td>		
 			</tr>
 			<tr>
 				<td>ความกระตือรือร้นและการเป็นแบบอย่างที่ดี </td>
-				<td> <?php echo empty($set[8]['exp_score'])?"-":$set[8]['exp_score'] ?></td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value=" <?php echo empty($set[8]['exp_score'])?"-":$set[8]['exp_score'] ?>" name="exp8" readonly > </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value=" <?php echo $set[8]['tort2_subtit'] ?>" name="stit8" readonly >
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go8"> 
 				</td>		
 			</tr>
 			<tr>
 				<td>ทำนุบำรุงศิลปวัฒนธรรม </td>
-				<td> <?php echo empty($set[9]['exp_score'])?"-":$set[9]['exp_score'] ?></td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[9]['exp_score'])?"-":$set[9]['exp_score'] ?>" name="exp9" readonly>  </td>	
 				<td>
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" >  
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[9]['tort2_subtit'] ?>" name="stit9" readonly> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go9" >  
 				</td>		
 			</tr>	
 		</table>
@@ -143,37 +152,42 @@
 			</tr>
 			<tr>
 				<td>สภาวะผู้นำ </td>
-				<td><?php echo empty($set[10]['exp_score'])?"-":$set[10]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[10]['exp_score'])?"-":$set[10]['exp_score'] ?>" name="exp10" readonly>  </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[10]['tort2_subtit'] ?>" name="stit10" readonly> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go10" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>วิสัยทัศน์ </td>
-				<td><?php echo empty($set[11]['exp_score'])?"-":$set[11]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[11]['exp_score'])?"-":$set[11]['exp_score'] ?>" name="exp11" readonly >  </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[11]['tort2_subtit'] ?>" name="stit11" readonly >
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go11" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>ศักยภาพเพื่อนำการปรับเปลี่ยน </td>
-				<td> <?php echo empty($set[12]['exp_score'])?"-":$set[12]['exp_score'] ?></td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[12]['exp_score'])?"-":$set[12]['exp_score'] ?>" name="exp12" readonly> </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[12]['tort2_subtit'] ?>" name="stit12" readonly>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go12" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>การสอนงานและการมอบหมายงาน </td>
-				<td><?php echo empty($set[13]['exp_score'])?"-":$set[13]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[13]['exp_score'])?"-":$set[13]['exp_score'] ?>" name="exp13" readonly>   </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo$set[13]['tort2_subtit'] ?>" name="stit13" readonly> 
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go13" > 
 				</td>		
 			</tr>
 			<tr>
 				<td>การควบคุมตนเอง </td>
-				<td><?php echo empty($set[14]['exp_score'])?"-":$set[14]['exp_score'] ?> </td>	
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[14]['exp_score'])?"-":$set[14]['exp_score'] ?>" name="exp14" readonly>  </td>	
 				<td> 
-					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" > 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[14]['tort2_subtit'] ?>" name="$stit14" readonly>
+					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go14" > 
 				</td>		
 			</tr>
 		</table>
@@ -194,27 +208,27 @@
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  สูงกว่าหรือเท่ากับ ระดับสมรรถนะที่คาดหวัง  ×  ๓ คะแนน</td>
-			<td></td>
-			<td></td>
-			<td></td>	
+			<td><input type='text' size='2' class="borderNon form-control" placeholder="ข้อมูล" name="sumgo1" > </td>
+			<td> <input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="x1" value="3" readonly> </td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="score[]" ></td>	
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๑  ระดับ    × ๒ คะแนน</td>
-			<td></td>
-			<td></td>
-			<td></td>	
+			<td><input type='text' size='2' class="borderNon form-control" placeholder="ข้อมูล" name="sumgo2" ></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="x2" value="2" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="score[]" ></td>	
 		</tr>	
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๒  ระดับ  ×  ๑  คะแนน  </td>
-			<td></td>
-			<td></td>
-			<td></td>	
+			<td><input type='text' size='2' class="borderNon form-control" placeholder="ข้อมูล" name="sumgo3" ></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="x3" value="1" readonly ></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="score[]" ></td>	
 		</tr>	
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๓  ระดับ   ×  ๐  คะแนน</td>
-			<td></td>
-			<td></td>
-			<td></td>	
+			<td><input type='text' size='2' class="borderNon form-control" placeholder="ข้อมูล" name="sumgo4" ></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="x3" value="0" readonly ></td>
+			<td><input type='text' size='5' class="borderNon form-control" placeholder="ข้อมูล" name="score[]" ></td>	
 		</tr>	
 		<tr>
 			<td colspan="3" class="text-right">ผลรวมคะแนน</td>
