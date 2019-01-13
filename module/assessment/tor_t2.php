@@ -444,7 +444,7 @@ function fncSum(){
 					        processData: false
 					    });
 				}
-				//loadmain("assessment","tor_t2")
+				loadmain("assessment","tor_t3")
 			})	
 
 });

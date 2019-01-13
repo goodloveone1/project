@@ -79,7 +79,7 @@ $tor=mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$_SESSION[user_id]'
  }
 
 ?>
-editbrn
+
 $(document).ready(function() {
   $("#addbrn").click(function( ){
     var x = "<?php echo $x ?>"
