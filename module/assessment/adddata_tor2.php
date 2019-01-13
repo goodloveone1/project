@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 session_start();
 
@@ -10,5 +10,5 @@ $con=connect_db();
 echo "ggg";
 
 ?>
-=======
->>>>>>> parent of 2564aec... upp
+
+
