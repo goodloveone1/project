@@ -8,7 +8,7 @@ function webmenu($id){
 	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
 </div>
 <div class="row d-flex mb-2">
-	<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ ผู้ดูแลระบบ์ </div>
+	<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ ผู้ดูแลระบบ</div>
 </div>
 
 			<ul class="list-group" id="menuaside">
@@ -103,7 +103,7 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-3x " ></i><span class="text">จัดการไฟล์หลักฐาน</span>
@@ -122,13 +122,13 @@ function webmenu($id){
 <?php
 			break;
 
-		case 3: /// หัวหน้าหลักสูตร MENU
+		case 3: /// หัวหน้าสาขา MENU
 ?>
 <div class="row ">
 	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
 </div>
 <div class="row d-flex mb-2">
-	<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าหลักสูตร </div>
+	<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าสาขา </div>
 </div>
 
 			<ul class="list-group" >
@@ -198,9 +198,15 @@ function webmenu($id){
 			</ul>
 <?php
 			break;
-			case "4": // อาจาทย์
+			case "4": // หัวหน้าลักสูตร MENU
 	?>
-			<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ อาจารย์</p>
+	<div class="row ">
+		<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+	</div>
+	<div class="row d-flex mb-2">
+		<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าลักสูตร </div>
+	</div>
+
 				<ul class="list-group" id="menuaside">
 					<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 						<button class="btn-block bt-color"  >
@@ -261,9 +267,15 @@ function webmenu($id){
 	<?php
 				break;
 
-			case 5: /// หัวหน้าหลักสูตร MENU
+			case 5: /// หัวหน้าคณะ MENU
 	?>
-					<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
+	<div class="row ">
+		<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+	</div>
+	<div class="row d-flex mb-2">
+		<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าคณะ </div>
+	</div>
+
 				<ul class="list-group" >
 					<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 						<button class="btn-block bt-color"  >
