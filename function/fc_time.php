@@ -30,4 +30,19 @@
         return $interval->format($differenceFormat);
         
         }
+    function chk_idtest(){
+        $mm=date('m');  //เดือนปัจจุบัน
+        $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+        $m="$mm";
+        $y="$yearbudget";
+        if($m<=9 && $m>3){
+            $loop=2;
+        }else{
+            $loop=1;
+        }
+        if($loop==2){
+            $y-=1;
+        }
+        return $y.$loop;
+    }
 ?>

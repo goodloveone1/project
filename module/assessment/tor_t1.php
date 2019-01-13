@@ -22,7 +22,30 @@
 	mysqli_free_result($seexp);
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1"> 
-<input type="hidden" value="<?php echo $_SESSION["tor_id"]   ?>" name="tor_id">
+<?php  
+
+$mm=date('m');  //เดือนปัจจุบัน
+$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+$m="$mm";
+$y="$yearbudget";
+if($m<=9 && $m>3){
+	$loop=2;
+}else{
+	$loop=1;
+}
+if($loop==2){
+	$y-=1;
+}
+$y_id = $y.$loop;
+		$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$y_id'";
+		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+		list($tor_ID)=mysqli_fetch_row($reChk);
+		//echo $tor_ID;
+		mysqli_free_result($reChk);
+
+?>
+
+<input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
@@ -162,7 +185,7 @@ function fncSum(){
 //    $("#wei")
 	// alert($("input[name='"+tit+"']").val())
 	// alert($("#"+scwie).val())
-	var sumswei = ($("input[name='"+tit+"']").val() * $(this).val())
+	var sumswei = (($("input[name='"+tit+"']").val() * $(this).val())/100)
 	// alert(sumswei)
 	$("#"+scwie).val(sumswei);
 	fncSum();
