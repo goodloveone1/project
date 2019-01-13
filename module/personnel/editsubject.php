@@ -27,12 +27,12 @@
                          <input type="text"   class="form-control" value="<?php echo $branch_name ?>"  name="branch_name" size=40 require>
                           <input type="hidden"    value="<?php echo $branch_id ?>"  name="branch_id" size=40 require>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
+                    <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-success" id="updatebsu">บันทึก</button>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@ $("#updatesu").click(function(event) {
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
            loadmain(module1,action);
-        })          
-    }   
+        })
+    }
 });
 </script>
