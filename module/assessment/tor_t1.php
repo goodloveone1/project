@@ -62,6 +62,8 @@
 <th >๕</th>
 </tr>
 <?php
+	
+
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -151,7 +153,7 @@ function fncSum(){
 	// 			loadmain(module1,action)
 	// 		});
 	
-	$("#table_score").on( "keyup", ".score", function() {
+			$("#table_score").on( "keyup", ".score", function() {
   	//alert($(this).val())
 	//alert($(this).data("tit"))
    var tit="wei"+$(this).data("tit")
