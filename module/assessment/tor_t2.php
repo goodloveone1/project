@@ -22,7 +22,7 @@
 ?>
 
 
-<form class="p-2" name="tort2"> 
+<form class="p-2" name="tort2" id="tort2"> 
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -300,7 +300,8 @@
 </form>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t3"><input type="submit" class="next" value="ต่อไป"></a> </p>
+	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t3"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 	</div>
 </div>
 
@@ -415,6 +416,26 @@ function fncSum(){
 		fncSum();
 
 	});
+
+	$("#tort2").submit(function(){
+				$check = $("#tor1").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor2.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				loadmain("assessment","tor_t2")
+			})	
+
 });
 
 </script>
