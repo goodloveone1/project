@@ -1,11 +1,11 @@
 <?php
 	include("../../function/db_function.php");
     $con=connect_db();
-    
+
     $dee = mysqli_query($con,"SELECT *FROM degree WHERE degree_id='$_POST[id]'") or die ("error".mysqli_error($con));
-    
+
     list($degree_id,$degree_name)=mysqli_fetch_row($dee);
-   
+
 ?>
 
 
@@ -20,17 +20,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                
+
                     <div class="form-group">
                         <label > วุฒิการศึกษา :</label>
                          <input type="text"   class="form-control" value="<?php echo $degree_name ?>"  name="degree_name" size=40 require>
                           <input type="hidden"    value="<?php echo $degree_id ?>"  name="degree_id" size=40 require>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
+                    <button type="button" class="btn btn-success" id="updatesu">บันทึกข้อมูล</button>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ $("#updatesu").click(function(event) {
     if (r == true) {
         $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
               alert(data);
-              
+
          });
         $('#editsub').modal("hide");
 
@@ -61,10 +61,10 @@ $("#updatesu").click(function(event) {
                     var action = sessionStorage.getItem("action");
                     loadmain(module1,action);
         })
-       
-        
-    } 
 
-   
+
+    }
+
+
 });
 </script>
