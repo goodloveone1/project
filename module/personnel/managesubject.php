@@ -6,12 +6,12 @@
     <div class="col-lg-2" >
        <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
-    
+
     <div class="col-lg">
         <h2>จัดการสาขา</h2>
     </div>
     <div class="col-lg-2">
-        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
+        <a href="javascript:void(0)"><button type="button" class="btn btn-block btn-light" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพื่มสาขา</button></a>
     </div>
 </div>
 <table  class="table" id="Datatable" >
@@ -42,7 +42,7 @@
 ?>
  </tbody>
 <div id="loadeditsub"></div>
-<div id="loadaddsub"></div> 
+<div id="loadaddsub"></div>
 
 <script>
      $.getScript('js/mydatatable.js');
@@ -53,15 +53,15 @@
 
     $(".editbrn").click(function( ){
         var ideditsub = $(this).data("ideditsub");
-        
+
         $.post("module/personnel/editsubject.php", { id : ideditsub }).done(function(data){
             $.when($('#loadeditsub').html(data)).done(function(){
                  $('#editsub').modal('show');
-            }) 
-        })   
-    });      
-      
-        $(".delbrn").click(function(){            
+            })
+        })
+    });
+
+        $(".delbrn").click(function(){
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
 
@@ -70,15 +70,15 @@
                 $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
-    
+
                     loadmain(module1,action);
                     })
             }
         })
         $("#addbrn").click(function( ){
             $('#loadaddsub').load("module/personnel/addsubject.php",function(){
-                $('#addsub').modal('show');     
+                $('#addsub').modal('show');
             });
          });
-       
+
 </script>

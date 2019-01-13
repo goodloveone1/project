@@ -1,15 +1,15 @@
 body{
 		font-family: kanit, sans-serif;
 	}
-		
 
-		
+
+
 @media screen and (max-width: 770px) {
 	.container {
 				max-width:100%;
 		}
 	}
-		
+
 .bg-Brown{
 	/*background-color: #513300;*/
 	background-color: #67441c;
@@ -51,8 +51,8 @@ footer {
 	text-indent: 10px;
 }
 .p_blank70px{
-	font-family: kanit; 
-	font-size: 16px; 
+	font-family: kanit;
+	font-size: 16px;
 	text-indent: 70px;
 }
 
@@ -72,7 +72,7 @@ footer {
 	border-radius: 4px;
 	opacity: 0.7;
   }
-  
+
   #myBtn:hover {
 	background-color: #744e11;
 	opacity: 1.4;
@@ -94,19 +94,19 @@ footer {
 /* Track */
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
- 
+
 
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888; 
-    
+    background: #888;
+
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
 
 .borderNon{
@@ -130,4 +130,8 @@ footer {
 .step-normal{
 	color: #000;
 	border:#dc3545 solid 1px;
+}
+/* BUTTON */
+.menuuser{
+  background-color: white;
 }

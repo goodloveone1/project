@@ -1,5 +1,5 @@
 <?php
-   
+
 	include("../../function/db_function.php");
     $con=connect_db();
 ?>
@@ -11,10 +11,10 @@
         <h2>จัดการวุฒิการศึกษา</h2>
     </div>
     <div class="col-lg-2">
-        <a href="javascript:void(0)"><button type="button" class="btn btn-block" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
+        <a href="javascript:void(0)"><button type="button" class="btn btn-block btn-light" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
     </div>
 </div>
-<table  class="table" id="tabldegree" >
+<table  class="table" id="Datatable" >
     <thead class="thead-light">
          <tr>
             <th scope="col">ลำดับ</th>
@@ -28,7 +28,7 @@
     $sedegree=mysqli_query($con,"SELECT *FROM degree") or die("errorSQLselect".mysqli_error($con));
     $no=1;
     while(list($D_id,$D_name)=mysqli_fetch_row($sedegree)){
-      
+
         echo"
             <tr>
                 <td>$no</td>
@@ -43,33 +43,34 @@
 ?>
  </tbody>
 <div id="loadeditsub"></div>
-<div id="loadaddsub"></div> 
-<div id="showdegree"></div> 
+<div id="loadaddsub"></div>
+<div id="showdegree"></div>
 </table>
 <script>
-     $('#tabldegree').DataTable();
 
-      
-    $("#tabldegree").on('click', '.editbrn', function(event) {
+     $.getScript('js/mydatatable.js');
+
+
+    $("#Datatable").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
-        
+
         $.post("module/personnel/editdegree.php", { id : ideditsub }).done(function(data){
         $('#loadeditsub').html(data);
         $('#editsub').modal('show');
         })
-        
-        
-        });
-       
 
-       $("#tabldegree").on('click', '.delbrn', function(event) {
-            
+
+        });
+
+
+       $("#Datatable").on('click', '.delbrn', function(event) {
+
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
 
             var r = confirm("ต้องการลบวุฒิ "+branchname+" ใช่หรือไม่?");
             if (r == true) {
-            
+
                 $.post( "module/personnel/deletedegree.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
@@ -81,8 +82,8 @@
         $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/personnel/adddegree.php",function(){
-                $('#addsub').modal('show');   
-                
+                $('#addsub').modal('show');
+
                 });
              });
 
@@ -92,7 +93,7 @@
                 $('#loadeditsub').html(data);
                 $('#showdegree').modal('show');
             })
-             
+
         });
-       
+
         </script>

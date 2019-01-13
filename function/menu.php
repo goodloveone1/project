@@ -3,8 +3,8 @@ function webmenu($id){
 
 	switch ($id) {
 		case "1":  // ADMIN MENU
-?>			
-	<p> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
+?>
+	<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
 			<ul class="list-group" id="menuaside">
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
@@ -51,13 +51,13 @@ function webmenu($id){
 					</button>
 				</a>
 		</ul>
-			
+
 <?php
 			break;
 
 		case "2": // อาจาทย์
 ?>
-		<p> ยินดีต้อนรับ อาจารย์</p>
+		<p> <i class="fas fa-user-circle fa-2x"> ยินดีต้อนรับ อาจารย์</p>
 			<ul class="list-group" id="menuaside">
 				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
@@ -106,7 +106,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-		
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
@@ -114,13 +114,13 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-			</ul>	
+			</ul>
 <?php
 			break;
 
 		case 3: /// หัวหน้าหลักสูตร MENU
 ?>
-				<p> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
+				<p> <i class="fas fa-user-circle fa-2x"> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
 			<ul class="list-group" >
 				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 					<button class="btn-block bt-color"  >
@@ -177,7 +177,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-		
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
@@ -185,7 +185,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-			</ul>	
+			</ul>
 <?php
 			break;
 

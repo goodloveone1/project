@@ -32,11 +32,11 @@ $con=connect_db();
                             ?>
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="addsu">บันทึก</button>
+                    <button type="button" class="btn btn-success" id="addsu"> เพื่มข้อมูล</button>
                 </div>
             </div>
         </div>
@@ -58,18 +58,16 @@ $con=connect_db();
               loadmain(module1,action);
                })
              })
-            
-           
-            
-        } 
 
-       
+
+
+        }
+
+
     });
 </script>
 
             <?php
-           
+
             mysqli_close($con);
             ?>
-
-     

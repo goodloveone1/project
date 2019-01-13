@@ -10,7 +10,7 @@ $con=connect_db();
         <h2>จัดการหลักสูตร</h2>
     </div>
     <div class="col-sm-2">
-        <a href='javascript:void(0)'><button type="button" class="btn btn-block" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มหลักสูตร</button></a>
+        <a href='javascript:void(0)'><button type="button" class="btn btn-block btn-light" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;เพื่มหลักสูตร</button></a>
     </div>
 </div>
 <table  class="table" id="Datatable">
@@ -43,39 +43,39 @@ $con=connect_db();
                 $i++;
                 }
                 mysqli_free_result($result);
-                
+
                 ?>
             </tbody>
         </table>
         <?php
         mysqli_close($con);
         ?>
-            
+
 
 </table>
 
 
 
-<div id="loadeditsub"></div> 
-<div id="loadaddsub"></div>     
+<div id="loadeditsub"></div>
+<div id="loadaddsub"></div>
 
 
 <script>
-    
+
 
     $.getScript('js/mydatatable.js', function(data, textStatus) {  // load datatable
 
          $("#Datatable").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
-        
+
         $.post("module/personnel/editbranch.php", { id : ideditsub }).done(function(data){
         $('#loadeditsub').html(data);
         $('#editsub').modal('show');
         })
-        
-        
+
+
         });
-    
+
         $("#Datatable").on('click', '.delbrn', function(event) {
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
@@ -88,7 +88,7 @@ $con=connect_db();
                     })
             }
         })
-    
+
 
 
 
@@ -96,10 +96,10 @@ $con=connect_db();
     });
        $("#addbrn").click(function( ){
             $('#loadaddsub').load("module/personnel/addbranch.php",function(){
-                $('#addsub').modal('show');     
+                $('#addsub').modal('show');
             });
          });
-       
-         
-       
+
+
+
         </script>

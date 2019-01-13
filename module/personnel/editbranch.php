@@ -39,11 +39,11 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                             ?>
                         </select>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
+                    <button type="button" class="btn btn-success" id="updatesu">บันทึกข้อมูล</button>
                 </div>
             </div>
         </div>
@@ -65,11 +65,11 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                 var action = sessionStorage.getItem("action");
                 loadmain(module1,action);
             })
-           
-            
-        } 
 
-       
+
+        }
+
+
     });
 </script>
 
@@ -77,5 +77,3 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
             mysqli_free_result($result);
             mysqli_close($con);
             ?>
-
-     

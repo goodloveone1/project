@@ -12,7 +12,7 @@
 
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-sm-2" >
-       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser"  data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser bg-white"  data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-md">
         <h2>แก้ไขบุคลากร</h2>
@@ -217,7 +217,7 @@
 
 					</tbody>
 					</table>
-					<button type='button' class='btn mx-auto' id='adddegree' data-genid='<?php echo $gen_id;?>' >เพิ่มวุฒิการศึกษา</button>
+					<button type='button' class='btn mx-auto bg-secondary text-white' id='adddegree' data-genid='<?php echo $gen_id;?>' >เพิ่มวุฒิการศึกษา</button>
 
 				</div>
 			</div>
@@ -225,7 +225,7 @@
 		</div>
 
 		<div class="col-md-12 text-center mb-2" >
-		<button type="submit" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
+		<button type="submit" class="btn updateuser bg-success text-white" data-modules="personnel" data-action="updateuser"> บันทึก </button>
 		</div>
 
 	</div>
