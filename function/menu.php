@@ -4,7 +4,13 @@ function webmenu($id){
 	switch ($id) {
 		case "1":  // ADMIN MENU
 ?>
-	<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ ผู้ดูแลระบบ</p>
+<div class="row ">
+	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+</div>
+<div class="row d-flex mb-2">
+	<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ ผู้ดูแลระบบ์ </div>
+</div>
+
 			<ul class="list-group" id="menuaside">
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
@@ -57,7 +63,13 @@ function webmenu($id){
 
 		case "2": // อาจาทย์
 ?>
-		<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ อาจารย์</p>
+		<div class="row ">
+			<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+		</div>
+		<div class="row d-flex mb-2">
+			<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ อาจารย์ </div>
+		</div>
+
 			<ul class="list-group" id="menuaside">
 				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
@@ -83,26 +95,18 @@ function webmenu($id){
 					</button>
 				</a>
 
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-check-square fa-3x " ></i><span class="text"> จัดการประเมิน</span>
+					</li>
+					</button>
+				</a>
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-3x " ></i><span class="text">จัดการไฟล์หลักฐาน</span>
-					</li>
-					</button>
-				</a>
-
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block bt-color">
-					<li class="list-group-item list-menu-user">
-						&nbsp;<i class="icon fas fa-info fa-3x " ></i><span class="text"> &nbsp;รับทราบข้อตกลง TOR</span>
-					</li>
-					</button>
-				</a>
-
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
-					<button class="btn-block bt-color">
-					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-check-square fa-3x " ></i><span class="text"> ประเมินตนเอง</span>
 					</li>
 					</button>
 				</a>
@@ -120,7 +124,13 @@ function webmenu($id){
 
 		case 3: /// หัวหน้าหลักสูตร MENU
 ?>
-				<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
+<div class="row ">
+	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+</div>
+<div class="row d-flex mb-2">
+	<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าหลักสูตร </div>
+</div>
+			
 			<ul class="list-group" >
 				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 					<button class="btn-block bt-color"  >

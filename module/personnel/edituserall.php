@@ -13,7 +13,7 @@
 
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-sm-2" >
-       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block" id="backpage" data-modules="personnel" data-action="home"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block btn-light" id="backpage" data-modules="personnel" data-action="home"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-md">
         <h2>แก้ไขข้อมูลส่วนตัว</h2>
@@ -195,13 +195,11 @@
 			</div>
 			<div class="form-group col-md-12 rounded" >
 				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
-				<div class="col-md-30">
+				<div class="col-md">
 
 
-					<table class="table table-light col-md display setdt" id="tbeucation">
+					<table class="table table-light display setdt" id="tbeucation">
 					<thead>
-
-
 					<tr>
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
@@ -216,7 +214,7 @@
 
 					</tbody>
 					</table>
-					<button type='button' class='btn mx-auto' id='adddegree' data-genid='<?php echo $gen_id;?>' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
+					<button type='button' class='btn mx-auto btn-secondary' id='adddegree' data-genid='<?php echo $gen_id;?>' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
 
 				</div>
 			</div>
@@ -224,7 +222,7 @@
 		</div>
 
 		<div class="col-md-12 text-center mb-2" >
-		<button type="submit" class="btn updateuser" data-modules="personnel" data-action="updateuser"> บันทึก </button>
+		<button type="submit" class="btn updateuser btn-success" data-modules="personnel" data-action="updateuser"> บันทึกข้อมูล </button>
 		</div>
 
 	</div>

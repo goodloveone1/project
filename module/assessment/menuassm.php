@@ -4,19 +4,34 @@
 </div>
 <div class="row mt-5">
 	<div class="col-md">
-	
+
 			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="check_tor" >
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>
 				<div class="col-md">
-					<span class=""> TOR </span>
+					<span class=""> ข้อตกลง TOR </span>
 				</div>
 			</a>
-	
+
 	</div>
 	<div class="col-md">
-	
+
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="" data-action="">
+				<div class="col-md">
+					<i class="fas fa-user-tie fa-7x mt-3"></i>
+				</div>
+				<div class="col-md">
+					<span class="col-md">ข้อตกลง อาจารย์ </span>
+				</div>
+			</a>
+	</div>
+
+</div>
+<div class="row mt-5">
+
+	<div class="col-md">
+
 			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="formreport_prm">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
@@ -25,21 +40,10 @@
 					<span class="col-md">  แบบรายงานผลการปฏิบัติงาน</span>
 				</div>
 			</a>
-		
+
 	</div>
-</div>
-<div class="row mt-5">
-	<div class="col-md">
-	
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="personnel" data-action="managesubject">
-				<div class="col-md">
-					<i class="fas fa-user-tie fa-7x mt-3"></i>
-				</div>
-				<div class="col-md">
-					<span class="col-md">จัดการสาขา </span>
-				</div>
-			</a>
-	</div>
+
+
 </div>
 <script type="text/javascript">
 		$(document).ready(function() {
