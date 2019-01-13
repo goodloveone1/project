@@ -190,7 +190,7 @@ function webmenu($id){
 			break;
 			case "4": // อาจาทย์
 	?>
-			<p> <i class="fas fa-user-circle fa-2x"> ยินดีต้อนรับ อาจารย์</p>
+			<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ อาจารย์</p>
 				<ul class="list-group" id="menuaside">
 					<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 						<button class="btn-block bt-color"  >
@@ -253,7 +253,7 @@ function webmenu($id){
 
 			case 5: /// หัวหน้าหลักสูตร MENU
 	?>
-					<p> <i class="fas fa-user-circle fa-2x"> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
+					<p> <i class="fas fa-user-circle fa-2x"></i> ยินดีต้อนรับ หัวหน้าหลักสูตร</p>
 				<ul class="list-group" >
 					<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 						<button class="btn-block bt-color"  >
