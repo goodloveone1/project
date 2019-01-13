@@ -5,7 +5,7 @@ $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-md-2">
-     
+
     </div>
     <div class="col-md">
         <h2>จัดการข้อมูลประชาสัมพันธ์</h2>
@@ -17,12 +17,12 @@ $con=connect_db();
 
 <div class="row">
 	<div class="col-md-12 mt-2">
-		<table class="table" id='relation'>
+		<table class="table" id='Datatable'>
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">รหัส</th>
 					<th scope="col">ชื่อเรื่อง</th>
-					
+
 					<th scope="col">วันที่อัปโหลด</th>
 					<th scope="col">ผู้อัปโหลด</th>
 					<th scope="col">แก้ไข</th>
@@ -41,7 +41,7 @@ $con=connect_db();
 						echo "<tr>";
 						echo "<td>$re_id</td>";
 						echo "<td><a href='javascript:void(0)' data-reid='$re_id' data-action='modelshowre.php' class='showre'> $re_title </a></td>";
-						
+
 						echo "<td>".DateThai($re_date)."</td>";
 						echo "<td>$name $lname</td>";
 						echo "<td><a href='javascript:void(0)' class='showre' data-reid='$re_id' data-action='modeleditre.php'><i class='fas fa-edit fa-2x '></i></a></td>";
@@ -61,13 +61,15 @@ $con=connect_db();
 <script type="text/javascript">
 	$( document ).ready(function(){
 
-		$("#relation").DataTable();
+
+ $.getScript('js/mydatatable.js') // dataTable
+
 
 
 		$("#addrela").click(function(event) {
-			event.preventDefault()	
-			  $('#loadmodel').load("module/public_relations/modeladdre.php",function(){			  	
-			  		$('#addre').modal('show');     
+			event.preventDefault()
+			  $('#loadmodel').load("module/public_relations/modeladdre.php",function(){
+			  		$('#addre').modal('show');
             });
 
 		});
@@ -81,7 +83,7 @@ $con=connect_db();
 			$.post('module/public_relations/'+action, {reid: re_id}).done(function(data,txtstuta){
 
 				$('#loadmodel').html(data);
-				$('#modelre').modal('show');  
+				$('#modelre').modal('show');
 			});
 
 		});
@@ -95,10 +97,10 @@ $con=connect_db();
 			$.post('module/public_relations/delre.php', {reid: re_id}).done(function(data,txtstuta){
 
 				loadingpage("public_relations","pr_manage");
-				
+
 			});
 			}
 		});
 
 	})
-</script>	
+</script>

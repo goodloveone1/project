@@ -8,33 +8,69 @@
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">ชื่อไฟล์</th>
-					<th scope="col">ลิงค์ดาวน์โหลด</th>
-					<th scope="col">level</th>
+					<th scope="col">การประเมินผลการปฏิบัติงานของบุคลากร สายวิชาการ </th>
+
+
 
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row">1</th>
-					<td>น้ำหนักความสำคัญของงาน</td>
-					<td>แก้ไข</td>
-					
-					
+
+					<td>
+						ผู้ช่วยศาสตราจารย์
+
+						<ul class="list-group">
+						  <li class="list-group-item">- TOR. ผศ</li>
+						  <li class="list-group-item">- ข้อตกลง ผู้ช่วยศาสตราจารย์</li>
+						  <li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
+					</ul>
+					</td>
+
+
+
 				</tr>
 				<tr>
-					<th scope="row">2</th>
-					<td>ตัวชีวัดเกณฑ์การประเมิน</td>
-					<td>แก้ไข</td>
-					
+					<td>
+							รองศาสตราจารย์
+
+						<ul class="list-group">
+							<li class="list-group-item">- TOR. รศ</li>
+							<li class="list-group-item">- ข้อตกลง รองศาสตราจารย์</li>
+							<li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
+					</ul>
+					</td>
+
 				</tr>
 				<tr>
-					<th scope="row">3</th>
-					<td>จัดการเกณฑ์ภาระงาน/กิจกรรม</td>
-					<td>แก้ไข</td>
-					
+
+					<td>
+							ศาสตราจารย์
+						<ul class="list-group">
+						  <li class="list-group-item">- TOR. ศ</li>
+						  <li class="list-group-item">- ข้อตกลง ศาสตราจารย์์</li>
+						  <li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
+					</ul>
+				</td>
+
+				</tr>
+				<tr>
+					<td>
+						ผู้ช่วยศาสตราจารย์
+						<ul class="list-group">
+							<li class="list-group-item">- TOR. ผศ</li>
+							<li class="list-group-item">- ข้อตกลง ผู้ช่วยศาสตราจารย์</li>
+							<li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
+					</ul>
+				</td>
+
 				</tr>
 			</tbody>
 		</table>
 	</div>
+
 </div>
+
+<script type="text/javascript">
+$.getScript('js/mydatatable.js')
+</script>
