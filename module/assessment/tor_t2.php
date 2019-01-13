@@ -22,7 +22,7 @@
 ?>
 
 
-<form class="p-2" name="tort2" id="tort2"> 
+<form  method="post" class="p-2" name="tort2" id="tort2"> 
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -53,7 +53,7 @@
 			<tr>
 				<td> การมุ่งผลสัมฤทธิ์ </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['exp_score'])?"0":$set[0]['exp_score'] ?>" name="exp[]" readonly ></td>	
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['tort2_subtit'] ?>" name="stit0">	
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['tort2_subtit']?>" name="stit0">	
 				<div class="form-group">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]"  onkeyup="fncNum();"  >
 					</div>
@@ -63,14 +63,14 @@
 				<td>บริการที่ดี </td>
 				<td> <input type='text' size='3' class="borderNon form-control" value="<?php echo empty($set[1]['exp_score'])?"0":$set[1]['exp_score'] ?>" placeholder="ข้อมูล" name="exp[]" readonly ></td>	
 					<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();"> 
-					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['tort2_subtit'] ?>" placeholder="ข้อมูล" name="stit1" readonly >
+					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['tort2_subtit']?>" placeholder="ข้อมูล" name="stit1" readonly >
 				</td>		
 			</tr>
 			<tr>
 				<td>การสั่งสมความเชี่ยวชาญในงานอาชีพ </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[2]['exp_score'])?"0":$set[2]['exp_score'] ?>" name="exp[]" readonly> </td>	
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['tort2_subtit'] ?>" name="stit2" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['tort2_subtit']?>" name="stit2" readonly>
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" >  
 				</td>		
 			</tr>
@@ -78,7 +78,7 @@
 				<td>การยึดมั่นในความถูกต้องชอบธรรม  และจริยธรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[3]['exp_score'])?"0":$set[3]['exp_score'] ?>" name="exp[]" readonly> </td>	
 				<td> 
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['tort2_subtit'] ?>" name="stit3" readonly> 
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['tort2_subtit']?>" name="stit3" readonly> 
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();"> 
 				</td>		
 			</tr>
@@ -86,7 +86,7 @@
 				<td>การทำงานเป็นทีม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[4]['exp_score'])?"0":$set[4]['exp_score'] ?>" name="exp[]" readonly> </td>	
 				<td> 
-				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['tort2_subtit'] ?> " name="stit4" readonly> 
+				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['tort2_subtit'] ?>" name="stit4" readonly> 
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();"> 
 				</td>		
 			</tr>		
@@ -103,7 +103,7 @@
 				<td>ทักษะการสอนและการให้คำปรึกษาแก่นักศึกษา </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[5]['exp_score'])?"0":$set[5]['exp_score'] ?>" name="exp[]" readonly> </td>	
 				<td> 
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['tort2_subtit'] ?> " name="stit5" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['tort2_subtit'] ?>" name="stit5" readonly>
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();"> 
 				</td>		
 			</tr>
@@ -111,7 +111,7 @@
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[6]['exp_score'])?"0":$set[6]['exp_score'] ?>" name="exp[]" readonly > </td>	
 				<td> 
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['tort2_subtit'] ?> " name="stit6" readonly >
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['tort2_subtit'] ?>" name="stit6" readonly >
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" > 
 				</td>		
 			</tr>
@@ -119,7 +119,7 @@
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[7]['exp_score'])?"0":$set[7]['exp_score'] ?>" name="exp[]" readonly > </td>	
 				<td> 
-					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value=" <?php echo $set[7]['tort2_subtit'] ?>" name="stit7" readonly >
+					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[7]['tort2_subtit']?>" name="stit7" readonly >
 					<input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();"> 
 				</td>		
 			</tr>
@@ -297,14 +297,14 @@
 	</div>
 </div>
 <br>
-</form>
+
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor2"> ต่อไป </button>
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t3"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 	</div>
 </div>
-
+</form>
 <script type="text/javascript">
 function fncSum(){
 	var num = '';     
@@ -418,7 +418,7 @@ function fncSum(){
 	});
 
 	$("#tort2").submit(function(){
-				$check = $("#tor1").valid();
+				$check = $("#tort2").valid();
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
@@ -433,7 +433,7 @@ function fncSum(){
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t2")
+				//loadmain("assessment","tor_t2")
 			})	
 
 });
