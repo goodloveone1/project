@@ -1,6 +1,21 @@
 
-
+<?php
+	session_start();
+	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$con=connect_db();
+	$yeartest=chk_idtest();
+?>
 <form class="p-2"> 
+<?php
+					$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+					list($tor_ID)=mysqli_fetch_row($reChk);
+					//echo $tor_ID;
+					mysqli_free_result($reChk);
+			
+				?>
+<input type="hidden" value="<?php echo $tor_ID?>" name="tor_id">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -29,7 +44,7 @@
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</td>
-				<td></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="" readonly></td>
 				<td>๗๐</td>
 				<td></td>
 			</tr>
@@ -92,13 +107,14 @@
 	</div>
 </div>
 <br>
-</form>
+
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
+	<!-- <button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor2"> ต่อไป </button> -->
 		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t4"><input type="submit" class="next" value="ต่อไป"></a> </p>
 	</div>
 </div>
-
+</form>
 
 
 
