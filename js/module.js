@@ -29,8 +29,10 @@ function modules(module1,action){
 			    case "formtea_agree":break; //
 			    case "formreport_prm":break; //
 			    case "main_assess":break;
-				case "manage_tor":break;
-				case "sum_assessment":break;
+					case "manage_tor":break;
+					case "sum_assessment":break;
+					case "manage_Evidence":break;
+					case "Indicator":break;
 			 /* END assessment */
 			 	case "download_manage":break;
 			    case "pr_manage":break;

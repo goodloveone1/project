@@ -1,122 +1,86 @@
 <?php
-	// session_start();
-	// include("../../function/db_function.php");
-	// include("../../function/fc_time.php");
-	// $con=connect_db();
-	$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+session_start();
+include("../../function/db_function.php");
+include("../../function/fc_time.php");
+$y_id = chk_idtest();
+$con=connect_db();
 
-    $m=DATE('m');
-	$y=$yearbudget;
-	$Y=DATE('Y');
-
-	if($m<=9 && $m>3){
-    	$loop=2;
-	}else{
-    	$loop=1;
-	}
-
-    if($loop==2){
-		$y-=1;
-		$Y-=1;
-
-    }
-    $y_id = $y.$loop;
-
-	$tor=mysqli_query($con,"SELECT *FROM tor WHERE tor_year='$y_id'AND gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-    list($tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment)=mysqli_fetch_row($tor);
-    // echo "<br>",$tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment;
-
-
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$tor_aca'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaName)=mysqli_fetch_row($seacaName);
+$tor=mysqli_query($con,"SELECT *FROM tor WHERE tor_year='$y_id'AND gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+list($tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment)=mysqli_fetch_row($tor);
+// echo "<br>",$tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment;
 
 
 
-	// $seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	// for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// print_r($set);
-	mysqli_free_result($tor);
-	mysqli_free_result($seacaName);
+$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$tor_aca'")or die("SQL_ERROR".mysqli_error($con));
+list($acaName)=mysqli_fetch_row($seacaName);
 
-	// mysqli_free_result($seexp);
-?>
-<form method="POST" id="addtor"  class="p-2" >
-    <div class="row">
-	    <span class="step step-color">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
-		 <a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
-    </div>
-	<br>
-    <p></p>
-	<div class="row" >
-		<div class="col-md">
-			<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ(ตำแหน่ง <?php echo $acaName ?>) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
-		</div>
-		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
-			<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
-			<u>เอกสารหมายเลข 1</u>
-		</div>
-    </div>
+ ?>
 
-	<br><br>
-	<div class="row text-center" >
-		<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
+<div class="row" >
+	<div class="col-md-2"></div>
+	<div class="col-md">
+		<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา
+		สายวิชาการ (ตำแหน่ง <?php echo $acaName ?>) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
+	</div>
+	<div class="col-md-2 text-center p-2" style="border:solid 1px " >
+		<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
+		<u>เอกสารหมายเลข 2</u>
+	</div>
+</div>
+<br>
+<br>
 
-		<div class="form-group row">
-			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
-			<div class="col-sm-6">
-				<input type="hidden"  name="tor_id" value="<?php echo $tor_id  ?>" >
-				<?php
-					$re_year=   mysqli_query($con,"SELECT y_year FROM years WHERE y_id='$tor_year'")or die("error".mysqli_error($con));
-					list($YY)=mysqli_fetch_row($re_year);
-					mysqli_free_result($re_year);
-				?>
-				<select id="inputState" class="form-control" name="year">
-				<?php
-				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
-				while(list($y_year)=mysqli_fetch_row($sYears)){
-					$y_thai=$y_year+543;
+<div class="row text-center" >
+	<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
 
-					$select=$YY==$y_year?"selected":"";
-					echo"<option value='$y_year' $select>$y_thai</option>";
-				}
-				mysqli_free_result($sYears);
+	<div class="form-group row">
+		<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
+		<div class="col-sm-6">
+			<input type="hidden"  name="tor_id" value="<?php echo $tor_id  ?>" >
+			<?php
+				$re_year=   mysqli_query($con,"SELECT y_year FROM years WHERE y_id='$tor_year'")or die("error".mysqli_error($con));
+				list($YY)=mysqli_fetch_row($re_year);
+				mysqli_free_result($re_year);
 			?>
+			<select id="inputState" class="form-control" name="year">
+			<?php
+			$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
+			while(list($y_year)=mysqli_fetch_row($sYears)){
+				$y_thai=$y_year+543;
+
+				$select=$YY==$y_year?"selected":"";
+				echo"<option value='$y_year' $select>$y_thai</option>";
+			}
+			mysqli_free_result($sYears);
+		?>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="col-md  ">
+	<div class="col-md-12 row">
+
+		<div class="form-group  row">
+
+			<div class="col-sm">
+				<select id="inputNo" class="form-control" name="a_no">
+				<?php
+					$yNow=date("Y");
+					$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+					while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+
+						$seNO=$tor_year==$y_no?"selected":"";
+						echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+					}
+				?>
 				</select>
 			</div>
 		</div>
 	</div>
-	<div class="col-md  ">
-		<div class="col-md-12 row">
-			<!-- <div class="form-check col-sm-1">
-				<input type="checkbox"  class="form-check-input" id="" value="">
-			</div> -->
-			<div class="form-group  row">
-				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
-				<div class="col-sm">
-					<select id="inputNo" class="form-control" name="a_no">
-					<?php
-						$yNow=date("Y");
-						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
-						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
 
-							$seNO=$tor_year==$y_no?"selected":"";
-							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
-						}
-					?>
-					</select>
-				</div>
-			</div>
-		</div>
-
-	</div>
 </div>
-
-<br>
+</div>
 <div class="row text-center">
 <div class="col-md">
 	<div class="form-group row">
@@ -168,7 +132,11 @@
 	</div>
 </div>
 </div>
-<div class="row">
+
+<br>
+<br>
+
+
 <div class="col-md">
 	<p><u><b>คำชี้แจง</b></u></p>
 	<div class="ml-5">
@@ -181,7 +149,10 @@
 	</div>
 </div>
 </div>
+
 <br>
+<br>
+
 <div class="row">
 <div class="col-md">
 	<p class="text-center" style="font-size: 20px"><b>ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา
@@ -327,8 +298,6 @@
 	</div>
 </div>
 
-
-
 <div class="row ">
 	<div class="col-md">
 	<p>๓. บันทึกการมาปฏิบัติงาน</p>
@@ -395,62 +364,57 @@
 </div>
 <br>
 
-<div class="row">
-	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+<div class="row ">
+	<div class="col-md">
+	<p>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</p>
 	</div>
 </div>
-</form>
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#addbrn").click(function(e){
-            e.preventDefault()
-            $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){
-                $('#addsub').modal('show');
-
-                });
-             });
-
- 	$("#inputState").change(function(){
-		 var years=$(this,"option:selected").val()
-	//  alert(years)
-	 	$.post("module/assessment/loaddatayear.php",{year:years},
-		 function (data, textStatus, jqXHR) {
-			// alert(data)
-			$("#inputNo").html(data)
-		 }
-
-	 	);
- 	})
-	$("#addtor").submit(function(){
-
-				$check = $("#addtor").valid();
-
-				if($check == true){
-
-				var formData = new FormData(this);
-
-					    $.ajax({
-					        url: "module/assessment/update_tor.php",
-					        type: 'POST',
-					        data: formData,
-					        success: function (data) {
-					            alert(data);
-					        },
-					        cache: false,
-					        contentType: false,
-					        processData: false
-					    });
-				}
-				loadmain("assessment","menuassm")
-			})
-			$("a.next").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				//alert(module1+ " "+ action )
-				//loadmain(module1,action)
-			});
-		});
-</script>
+<div class="row ">
+	<div class="col-md">
+	<table class='table'>
+		<thead>
+			<tr>
+				<th rowspan='2'>(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
+				<th rowspan='2'>(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
+				<th colspan="5">(๓) ระดับค่าเป้าหมาย</th>
+				<th rowspan='2'>(๔) ค่าคะแนนที่ได้</th>
+				<th rowspan='2'>(๕) น้ำหนัก (ความสำคัญ/   ยากง่ายของงาน)</th>
+				<th rowspan='2'>(๖) ค่าคะแนน   ถ่วงน้ำหนัก(๔) × (๕) / ๑๐๐ </th>
+		</tr>
+		<tr>
+			<th>๑</th>
+			<th>๒</th>
+			<th>๓</th>
+			<th>๔</th>
+			<th>๕</th>
+	</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>๑. ภาระงานด้านการเรียนการสอน
+ (ภาระงานขั้นต่ำ ๒๐ ชั่วโมงทำงาน/สัปดาห์)
+   ๑.๑ การสอนภาคทฤษฏีและปฏิบัติ
+    ๑.๒ การนิเทศนักศึกษา/สหกิจศึกษา/นักศึกษาฝึกสอน
+    ๑.๓ การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์
+    ๑.๔ การจัดประชุม สัมมนาฝึกอบรมและจัดนิทรรศการ
+    ๑.๕ การจัดการเรียนการสอนโดยวิธีอื่น ๆ
+				</td>
+				<td>ระดับที่ ๕. มีภาระงานมากกว่า ๒๔.๐๐ชั่วโมงทำงาน/สัปดาห์  มีแผนการสอนตาม มคอ.๓ มีการนำผลการประเมินไปปรับปรุง มีเอกสารประกอบการสอน/เอกสารคำสอน/ตำรา/สื่อการสอน/อุปกรณ์การสอน ทุกวิชาที่สอน และมีงานวิจัย
+ระดับที่ ๔. มีภาระงานระหว่าง ๒๒.๐๑-๒๔.๐๐ ชั่วโมงทำงาน/สัปดาห์มีแผนการสอนตาม มคอ.๓ และ มีเอกสารประกอบการสอน/เอกสารคำสอน/ตำรา/สื่อการสอน/อุปกรณ์การสอน ทุกวิชาที่สอน หรือ  มีภาระงานระหว่าง ๒๒.๐๑-๒๔.๐๐ ชั่วโมงทำงาน/สัปดาห์ มีแผนการสอนตาม มคอ.๓และมีงานวิจัย
+ระดับที่ ๓. มีภาระงานใกล้เคียงเกณฑ์ภาระงานขั้นต่ำ (ระหว่าง ๑๘.๐๐ –๒๒.๐๐ ชั่วโมงทำงาน/สัปดาห์) และมีแผนการสอนตาม มคอ.๓
+ระดับที่ ๒. มีภาระงานอยู่ระหว่าง ๑๖.๐๐ –๑๗.๙๙ ชั่วโมงทำงาน/สัปดาห์
+ระดับที่ ๑. มีภาระงานน้อยกว่า ๑๖ชั่วโมงทำงาน/สัปดาห์
+</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 <?php
-   
+
 	include("../../function/db_function.php");
     $con=connect_db();
 ?>
@@ -7,12 +7,12 @@
     <div class="col-md-2" >
        <a href=#> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="assessment" data-action="Criteria_manage_tor1"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
-    
+
     <div class="col-md">
         <h2>ตัวชีวัดเกณฑ์การประเมิน</h2>
     </div>
     <div class="col-md-2" ></div>
-    
+
 </div>
 <!-- <table  class="table" id="tablebranch" >
     <thead class="thead-light">
@@ -31,13 +31,13 @@
 
     for($i=1;$i<=$loop;$i++){
     $re=mysqli_query($con,"SELECT * FROM conditions WHERE aca_id='$i' GROUP BY e_name" ) or die("errorSQLselect".mysqli_error($con));
-   
+
 
     $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
     list($post_name)=mysqli_fetch_row($posi);
 
     $no=1;
-    
+
 //     echo "<table  class='table' id='tablebranch' >
 //     <thead class='thead-light'>
 //         <hr>
@@ -62,7 +62,7 @@
          <tr>
             <th scope='col'>ลำดับ</th>
             <th scope='col'>ตำแหน่ง</th>
-            <th scope='col'>ภาระงาน</th>            
+            <th scope='col'>ภาระงาน</th>
             <th scope='col'>แก้ไข</th>
         </tr>
     </thead>
@@ -92,21 +92,21 @@
                 <td>$no</td>
                 <td>$aca_name</td>
                 <td>ด้านที่ $tit $tit_name</td>
-                
+
                 <td><a href='#'class='edit' data-ideditsub='$aca_id' data-idename='$tit' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-            </tr>";    
-            
-            $no++;     
+            </tr>";
+
+            $no++;
     }
    echo " </tbody>" ;
    echo " </table>" ;
-   
+
 }
     mysqli_free_result($re);
     mysqli_free_result($sums);
     mysqli_free_result($posi);
-    
-    
+
+
     mysqli_close($con);
 ?>
 
@@ -116,13 +116,13 @@
      //$('#tablebranch').DataTable();
     $(".edit").click(function( ){
         var ideditsub =$(this).data("ideditsub");
-        var eid =$(this).data("idename");        
-        
+        var eid =$(this).data("idename");
+
         $.post("module/assessment/editevaluation.php", { id : ideditsub,id2 : eid }).done(function(data){
         $('#loadeditsub').html(data);
         $('#editsub').modal('show');
         })
-                
-        });     
+
+        });
 
 </script>
