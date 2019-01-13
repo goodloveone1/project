@@ -111,7 +111,7 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">  ผลการประเมิน</span>
@@ -130,7 +130,7 @@ function webmenu($id){
 <div class="row d-flex mb-2">
 	<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าหลักสูตร </div>
 </div>
-			
+
 			<ul class="list-group" >
 				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 					<button class="btn-block bt-color"  >

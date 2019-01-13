@@ -11,13 +11,13 @@ function modules(module1,action){
 			    case "download":break;
 			   	default: module1 = "404" ;
 			}
-		
+
 
 		switch (action){
 			  /* personnel */
 			    case "home":break;
 			    case "mangauser":break;
-			    case "edituser":break; 
+			    case "edituser":break;
 			    case "menumanage":break;
 			  /* END personnel */
 			  /* assessment */
@@ -28,7 +28,9 @@ function modules(module1,action){
 			    case "menuassm":break; // mainmenu
 			    case "formtea_agree":break; //
 			    case "formreport_prm":break; //
-			    case "main_assess":break; 
+			    case "main_assess":break;
+				case "manage_tor":break;
+				case "sum_assessment":break;
 			 /* END assessment */
 			 	case "download_manage":break;
 			    case "pr_manage":break;
@@ -56,8 +58,8 @@ function modules(module1,action){
 				case "check_tor":break;
 				case "edit_tor":break;
 				case "update_tor":break;
-			
-			   	default: action = "404";  
+
+			   	default: action = "404";
 			}
 
 		if(module1 == "404" || action == "404"){
@@ -65,15 +67,11 @@ function modules(module1,action){
 		}else{
 				Url = "module/"+module1+"/"+action+".php";
 		}
-			
+
 			return Url;
 	}else{
 		return "module/personnel/home.php";
 	}
 
-	
+
 	}
-
-
-
-	
