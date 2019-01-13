@@ -56,10 +56,9 @@
 				</tr>
 				<tr>
 					<td>
-						ผู้ช่วยศาสตราจารย์
 						<ul class="list-group">
-							<li class="list-group-item">- TOR. ผศ</li>
-							<li class="list-group-item">- ข้อตกลง ผู้ช่วยศาสตราจารย์</li>
+							<li class="list-group-item">- TOR. อาจารย์</li>
+							<li class="list-group-item">- ข้อตกลง อาจารย์</li>
 							<li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
 					</ul>
 				</td>
