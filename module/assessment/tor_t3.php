@@ -12,8 +12,17 @@
 					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 					list($tor_ID)=mysqli_fetch_row($reChk);
 					//echo $tor_ID;
+					$reSum1=mysqli_query($con,"SELECT sum_tort1 FROM sum_tort1 WHERE tor_id='$tor_ID'");
+					list($sum1)=mysqli_fetch_row($reSum1);
+
+				 $reSum2=mysqli_query($con,"SELECT sum_tor2asum FROM sum_tort2 WHERE tor_id='$tor_ID'");
+				 list($sum2)=mysqli_fetch_row($reSum2);
+				
+
+
 					mysqli_free_result($reChk);
-			
+					mysqli_free_result($reSum2);
+					mysqli_free_result($reSum1);
 				?>
 <input type="hidden" value="<?php echo $tor_ID?>" name="tor_id">
 <div class="row">
@@ -35,7 +44,7 @@
 
 <div class="row">
 	<div class="col-md">
-		<table class="table table-bordered text-center">
+		<table class="table table-bordered text-center sa">
 			<tr >
 				<th>องค์ประกอบการประเมิน</th>
 				<th>คะแนน (ก)</th>
@@ -44,26 +53,26 @@
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="" readonly></td>
-				<td>๗๐</td>
-				<td></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei1" value="70" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]"  readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  ๒ : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
-				<td></td>
-				<td>๓๐</td>
-				<td></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei2" value="30" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]" readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" ></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
 				<td>๑๐๐</td>
-				<td></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="" readonly></td>
 			</tr>	
 		</table>
 	</div>
@@ -125,6 +134,21 @@
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
+
+			$(".sa").on( "click", "input[name='sa[]']", function() {
+				//alert($(this).val())
+				//alert($("input[name='wei1']").val())
+			var s1=$("input[name='sum1']").val() * $("input[name='wei1']").val();
+			var s2=$("input[name='sum2']").val() * $("input[name='wei2']").val();
+			var s3=$("input[name='sum3']").val() * $("input[name='wei3']").val();
+      
+			var arr = [s1,s2,s3];
+			$("input[name='sa[]']").each(function($i){
+			$(this).val(arr[$i])
+		})
+			
+			})
+
 	});
 
 </script>
