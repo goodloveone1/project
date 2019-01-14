@@ -27,3 +27,5 @@ mysqli_query ($con,$sqli2) or die ("error2".mysqli_error($con));
 mysqli_close($con);
 echo"บันทึกสำเร็จแล้ว";
 ?>
+
+

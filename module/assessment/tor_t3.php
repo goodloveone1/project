@@ -6,7 +6,7 @@
 	$con=connect_db();
 	$yeartest=chk_idtest();
 ?>
-<form class="p-2"> 
+<form class="p-2" name="tort3"> 
 <?php
 					$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
 					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
@@ -55,24 +55,24 @@
 				<td class="text-left">องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei1" value="70" readonly></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]"  readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" onclick="fncSum();" value="<?php  ?>"  readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  ๒ : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei2" value="30" readonly></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" value="<?php ?>"  readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" ></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3"></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="คลิกเพื่อคำนวณ" name="sa[]"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" value="0"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3" value="0"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]"  readonly value="0"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
 				<td>๑๐๐</td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sumall" onkeyup="fncSum();" readonly></td>
 			</tr>	
 		</table>
 	</div>
@@ -128,14 +128,32 @@
 
 
 <script type="text/javascript">
+function fncSum(){
+	var num = '';     
+	var sum = 0;
+	for(var i=0;i<document.tort3['sa[]'].length;i++){
+	num = document.tort3['sa[]'][i].value;
+	if(num!=""){
+		sum += parseFloat(num);
+
+		document.tort3.sumall.value = sum.toFixed(2); 
+		}
+	}
+
+
+
+}
+
  	$(document).ready(function() {
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
-
-			$(".sa").on( "click", "input[name='sa[]']", function() {
+cal()
+			function cal() { 
+		
+			//$(".sa").on( "click", "input[name='sa[]']", function() {
 				//alert($(this).val())
 				//alert($("input[name='wei1']").val())
 			var s1=$("input[name='sum1']").val() * $("input[name='wei1']").val();
@@ -145,10 +163,31 @@
 			var arr = [s1,s2,s3];
 			$("input[name='sa[]']").each(function($i){
 			$(this).val(arr[$i])
-		})
-			
 			})
+					fncSum()
+	}
 
-	});
+	$(".sa").on( "keyup", "input[name='sum3']", function() {
+		   var wei3=$("input[name='wei3']").val()*$(this).val()
+			 $("input[name='sa[]']").each(function($i){
+				 if($i=="2"){
+					$(this).val(wei3)
+				 }
+			})
+			fncSum()	
+	})
+
+	$(".sa").on( "keyup", "input[name='wei3']", function() {
+		   var sum3=$("input[name='sum3']").val()*$(this).val()
+			 $("input[name='sa[]']").each(function($i){
+				 if($i=="2"){
+					$(this).val(sum3)
+				 }
+			})
+			fncSum()
+				
+	})
+
+});
 
 </script>
