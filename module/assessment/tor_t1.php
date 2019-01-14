@@ -45,7 +45,7 @@ $y_id = $y.$loop;
 
 ?>
 
-<input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
+<input type="text" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
