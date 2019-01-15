@@ -37,7 +37,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
         echo " <td><img src='img/default/user_default.svg' width='100px' height='100px'></td>";
     }
 
-    echo " <td>$gen_id</td>";
+    
     echo " <td>$gen_fname</td>";
     echo " <td>$gen_lname</td>";
 
