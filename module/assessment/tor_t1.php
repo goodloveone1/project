@@ -84,7 +84,6 @@ $y_id = $y.$loop;
 </tr>
 <?php
 	
-
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -105,10 +104,9 @@ $y_id = $y.$loop;
 									echo "<td><input type='radio' name='go$tit' value='3' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='4' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
-									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' required></td>";
+									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' redonly required></td>";
 									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
-									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
-									
+									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";			
 		echo "</tr>";
 	}
 	mysqli_close($con);
@@ -128,7 +126,7 @@ $y_id = $y.$loop;
 					สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  = 
 				</div>		
 				<div class="col-sm text-center">	
-					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="" size="3" name="sumscweid" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = ๕  
+					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="" size="3" name="sumscweid" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5  
 				</div>
 			</div>	
 		</td>
@@ -161,33 +159,39 @@ function fncSum(){
 		sum += parseFloat(num);
 		}
 	}
-	document.tor1.sumscwei.value = sum; 
-	document.tor1.sumscweid.value = sum;    
-	document.tor1.sumall.value = sum/5; 
+	document.tor1.sumscwei.value = sum.toFixed(2); 
+	document.tor1.sumscweid.value = sum.toFixed(2);    
+	document.tor1.sumall.value = (sum/5).toFixed(2); 
 }
- $(document).ready(function() {
+<?php
+foreach ($titcheck as $tit) {
+		$go="go";
+?>
+$('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', function(event){
+	// alert($(this).val())
+	var scsum = $(this).val()
+	var tit = <?php echo $tit-1; ?>;
+	//$("input[name='score[]")[tit].val(scsum)
+	document.tor1['score[]'][tit].value =scsum; 
 
-	// $("a.next").click(function(){
-	// 			var module1 = $(this).data('modules');
-	// 			var action = $(this).data('action');
-	// 			alert(module1+ " "+ action )
-	// 			loadmain(module1,action)
-	// 		});
+	// $("#table_score").on( "change", ".score", function() {
+
+	// var tit="wei"+$(this).data("tit")
+	// var scwie="scwie"+$(this).data("tit")
+	var tit2="wei"+ (tit+1);
+	var scwie="scwie"+(tit+1);
+
+var sumswei = (($("input[name='"+tit2+"']").val() *scsum)/100)
+// alert(sumswei)
+// $("#"+scwie).val(sumswei);
+document.tor1['scwei[]'][tit].value =sumswei.toFixed(2); ;
+fncSum();
+// });
+})
+
+<?php  } ?>
+ $(document).ready(function() {
 	
-			$("#table_score").on( "keyup", ".score", function() {
-  	//alert($(this).val())
-	//alert($(this).data("tit"))
-   var tit="wei"+$(this).data("tit")
-   var scwie="scwie"+$(this).data("tit")
-//    alert(tit)
-//    $("#wei")
-	// alert($("input[name='"+tit+"']").val())
-	// alert($("#"+scwie).val())
-	var sumswei = (($("input[name='"+tit+"']").val() * $(this).val())/100)
-	// alert(sumswei)
-	$("#"+scwie).val(sumswei);
-	fncSum();
-	});
 	$("#tor1").submit(function(){
 				$check = $("#tor1").valid();
 				if($check == true){
