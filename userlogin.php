@@ -99,21 +99,9 @@
 			</div>
 			<?php
 
-				switch ($_SESSION['user_level']) {
-					case '1':
-						webmenu("1");
-						break;
-					case '2':
-						webmenu("2");
-						break;
-					case '3':
-						webmenu("3");
-						break;
 
-					default:
-
-						break;
-				}
+	webmenu($_SESSION['user_level']);
+				
 
 			?>
 		</aside>
