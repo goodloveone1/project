@@ -1,12 +1,26 @@
 <?php
 session_start();
 	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
 	$con=connect_db();
+
+$gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=gen.gen_acadeic) FROM general as gen WHERE gen_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysql_error($con));
+list($aca_name)=mysqli_fetch_row($gen);
+
+echo $tor_id = empty($_POST['torid'])?'':$_POST['torid'];
+
+$tor=  mysqli_query($con,"SELECT tor_year FROM tor  WHERE tor_id='$tor_id' ") or  die("SQL Error1==>1".mysql_error($con));
+list($tor_year)=mysqli_fetch_row($tor);
+
+
+
+
+
 ?>
 
 <form class="p-2">
 	<div class="row">
-		<div class="col-sm-3"></div>
+		<div class="col-sm-3"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2">
 			<h5>แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
@@ -21,11 +35,11 @@ session_start();
 			<div class="form-group row">
 				<label  class="col-sm-1 col-form-label">ชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?>" id="" placeholder="">
+					<input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?>" id="" placeholder="" readonly>
 				</div>
 				<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="" placeholder="">
+					<input type="text" class="form-control" value="<?php echo $aca_name ?>" id="" placeholder="" readonly>
 				</div>
 			</div>
 		</div>
@@ -39,62 +53,28 @@ session_start();
 		<div class="col-sm-2"></div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md row text-center"> <!-- รอบที่ -->
-				<div class="form-check col-md-1">
-					<input type="checkbox"  class="form-check-input" id="" value="">
-				</div>
-				<div class="form-group row col-md">
-					<label for="inputState" class="col-md">รอบที่ 1  ต.ค  </label>
-					<div class="col-md">
-						<select id="inputState" class="form-control ">
-							<option selected>2561</option>
-							<option>2562</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row col-md">
-					<label for="inputState" class="col-md"> -  31 มี.ค </label>
-					<div class="col-md">
-						<select id="inputState" class="form-control">
-							<option selected>2561</option>
-							<option>2562</option>
-						</select>
-					</div>
-					<label for="inputState" class="col-md-1"> )</label>
-				</div>
-			</div>
-		<div class="col-md-2"></div>
-	</div>
+<?php
+
+$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_id='$tor_year'")or die(mysqli_error($con));
+list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
+	$m=DATE('m');
+	if($m<=9 && $m>3){
+		$sy_no= 2;
+	}else{
+		$sy_no= 1;
+
+	}
+
+ $yeardatail = "รอบที่ ". $y_no ." (". DateThai($y_s)." - ".DateThai($y_e).")";
+ ?>
+
 
 	<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md row text-center"> <!-- รอบที่ -->
-				<div class="form-check col-md-1">
-					<input type="checkbox"  class="form-check-input" id="" value="">
-				</div>
-				<div class="form-group row col-md">
-					<label for="inputState" class="col-md">รอบที่ 2  เม.ย  </label>
-					<div class="col-md">
-						<select id="inputState" class="form-control ">
-							<option selected>2561</option>
-							<option>2562</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row col-md">
-					<label for="inputState" class="col-md"> -  30 ก.ย  </label>
-					<div class="col-md">
-						<select id="inputState" class="form-control">
-							<option selected>2561</option>
-							<option>2562</option>
-						</select>
-					</div>
-					<label for="inputState" class="col-md-1"> )</label>
-				</div>
+		<div class="col-md-3"></div>
+			<div class="form-group col-md">
+					<input type="text" class="form-control" name="name" value="<?php echo  $yeardatail ?>" id="" placeholder="" readonly>
 			</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-3"></div>
 	</div>
 
 	<div class="row">

@@ -34,7 +34,7 @@ $con=connect_db();
 			    echo "<td> $year</td>";
 			    echo "<td> $rond</td>";
 				  echo "	<td> ยังไม่ได้อัปโหลดหลักฐาน </td>";
-			    echo "  <td class='text-center'> <b class='btn text-primary menuuser' data-modules='assessment' data-action='formreport_prm'><i class='far fa-plus-square fa-2x'> <b></i>";
+			    echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$tor_id' data-modules='assessment' data-action='formreport_prm'><i class='far fa-plus-square fa-2x'> <b></i>";
 			    echo " </tr>";
 
 	 } // END WHILE
@@ -44,5 +44,12 @@ $con=connect_db();
 </div>
 
 <script>
-
+  $(".addevd").click(function(){
+			var tor_id = $(this).data("torid");
+			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
+				sessionStorage.setItem("module1","assessment")
+				sessionStorage.setItem("action","formreport_prm")
+				$("#detail").html(data);
+			})
+	})
 </script>
