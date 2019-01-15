@@ -203,7 +203,6 @@ chk()
 			})
 			fncSum()	
 	})
-
 	$(".sa").on( "keyup", "input[name='wei3']", function() {
 		   var sum3=$("input[name='sum3']").val()*$(this).val()
 			 $("input[name='sa[]']").each(function($i){
@@ -229,7 +228,7 @@ chk()
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t3")
+				loadmain("assessment","tor_t4")
 			})	
 
 });

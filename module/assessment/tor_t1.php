@@ -84,7 +84,6 @@ $y_id = $y.$loop;
 </tr>
 <?php
 	
-
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -107,8 +106,7 @@ $y_id = $y.$loop;
 									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
 									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' redonly required></td>";
 									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
-									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
-									
+									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";			
 		echo "</tr>";
 	}
 	mysqli_close($con);
