@@ -11,7 +11,7 @@ $con=connect_db();
         <h2>จัดการข้อมูลประชาสัมพันธ์</h2>
     </div>
     <div class="col-md-2">
-       <button type="button" class="btn btn-block " id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button>
+       <button type="button" class="btn btn-block btn-light" id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button>
     </div>
 </div>
 

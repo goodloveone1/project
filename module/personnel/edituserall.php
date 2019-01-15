@@ -193,13 +193,16 @@
 				</div>
 			</div>
 			</div>
-			<div class="form-group col-md-12 rounded" >
-				<label for="" class="col-md-2 col-form-label">วุฒิการศึกษา</label>
-				<div class="col-md">
+
+			<div class="form-group col-md-12 border rounded p-2" >
+				<label for="" class="col-md-2 col-form-label center">วุฒิการศึกษา</label>
+				<div class="col-md-30">
 
 
-					<table class="table table-light display setdt" id="tbeucation">
+					<table class="table col-md display setdt" id="tbeucation">
 					<thead>
+
+
 					<tr>
 							<th>วุฒิการศึกษา</th>
 							<th>ชื่อวุฒิการศึกษา</th>
@@ -214,7 +217,7 @@
 
 					</tbody>
 					</table>
-					<button type='button' class='btn mx-auto btn-secondary' id='adddegree' data-genid='<?php echo $gen_id;?>' data-toggle='modal'>เพิ่มวุฒิการศึกษา</button>
+					<button type='button' class='btn mx-auto bg-secondary text-white' id='adddegree' data-genid='<?php echo $gen_id;?>' >เพิ่มวุฒิการศึกษา</button>
 
 				</div>
 			</div>
@@ -358,7 +361,7 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
             if (r == true) {
 
                 $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
-					alert(data);
+					//alert(data);
 
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
 

@@ -7,10 +7,10 @@ $data=array();
 						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
 							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
 							list($degree_name)=mysqli_fetch_row($deName);
-							$addarry = array($degree_name,$ed_name,$ed_loc, "<a href='#'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a>",
-										"<a href='#' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a>"
+							$addarry = array($degree_name,$ed_name,$ed_loc, "<a href='javascript:void(0)'class='editbrn' data-iddegree='$ed_id' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a>",
+										"<a href='javascript:void(0)' class='delbrn' data-degreename='$degree_name' data-iddegree='$ed_id'><i class='fas fa-trash-alt fa-2x'></i></a>"
 											);
-				
+
 							array_push($data,$addarry);
 							mysqli_free_result($deName);
 
@@ -20,5 +20,5 @@ $data=array();
 						mysqli_close($con);
 
 			echo	json_encode($data);
-	
+
 ?>
