@@ -444,7 +444,7 @@ $(document).ready(function() {
 					        processData: false
 					    });
 				}
-				loadmain("assessment","menuassm")
+				loadmain("assessment","tort1")
 			})
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');

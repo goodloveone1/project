@@ -14,14 +14,8 @@
 	list($branchName)=mysqli_fetch_row($seBrench);
 
 	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	
-	
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
 	// print_r($set);
-
-
- $sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score FROM tort1pre")
-
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
