@@ -6,7 +6,7 @@
 	$con=connect_db();
 	$yeartest=chk_idtest();
 ?>
-<form class="p-2" name="tort3"> 
+<form class="p-2" name="tort3" id="tort3"> 
 <?php
 					$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
 					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
@@ -52,19 +52,22 @@
 				<th>รวมคะแนน (ก)X(ข)</th>
 			</tr>
 			<tr>
-				<td class="text-left">องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</td>
+				<td class="text-left">องค์ประกอบที่  1 : ผลสัมฤทธิ์ของงาน</td>
+				<input type="hidden" name="name1" value="องค์ประกอบที่1 : ผลสัมฤทธิ์ของงาน">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei1" value="70" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" onclick="fncSum();" value="<?php  ?>"  readonly></td>
 			</tr>
 			<tr>
-				<td class="text-left">องค์ประกอบที่  ๒ : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
+				<td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
+				<input type="hidden" name="name2" value="องค์ประกอบที่2 : พฤติกรรมการปฏิบัติราชการ(สมรรถนะ)">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei2" value="30" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" value="<?php ?>"  readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
+				<input type="hidden" name="name3" value="องค์ประกอบอื่น">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" value="0"></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3" value="0"></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]"  readonly value="0"></td>
@@ -72,7 +75,7 @@
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
 				<td>100</td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sumall" onkeyup="fncSum();" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sumall" onkeyup="fncSum();chk();" readonly></td>
 			</tr>	
 		</table>
 	</div>
@@ -83,31 +86,32 @@
 		<b><u>ระดับผลการประเมิน</u></b>
 		<div style="padding-left: 100px ">	
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score" disabled="disabled">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดีเด่น  (90-100)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
+				
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck2" name="score"? disabled="disabled">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดีมาก (80-89)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck3" name="score" disabled="disabled">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ดี (70-79)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck4" name="score" disabled="disabled">
 			  <label class="form-check-label" for="defaultCheck1">
 			    พอใช้(60-69)
 			  </label>
 			</div>
 			<div class="form-check ">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck5" name="score" disabled="disabled">
 			  <label class="form-check-label" for="defaultCheck1">
 			    ต้องปรับปรุง (ต่ำกว่า 60)
 			  </label>
@@ -119,8 +123,8 @@
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<!-- <button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor2"> ต่อไป </button> -->
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t4"><input type="submit" class="next" value="ต่อไป"></a> </p>
+	 <button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor3"> ต่อไป </button>
+		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t4"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 	</div>
 </div>
 </form>
@@ -139,7 +143,33 @@ function fncSum(){
 		document.tort3.sumall.value = sum.toFixed(2); 
 		}
 	}
+	chk()
 }
+function chk(){
+		ptt = document.tort3['sumall'].value;
+		var pt = parseFloat(ptt);
+		if(pt>90 && pt<100){
+			// alert("ดีเด่น (90-100)");
+			$("#defaultCheck1").prop('checked',true);
+		}
+		else if(pt>80 && pt<90){
+			// alert("ดีมาก (80-89)")
+			$("#defaultCheck2").prop('checked',true);
+		}
+		else if(pt>70 && pt<80){
+			alert("ดี (70-79)");
+			$("#defaultCheck3").prop('checked',true);
+		}
+		else if(pt>60 && pt<70){
+			// alert("พอใช้(60-69)");
+			$("#defaultCheck4").prop('checked',true);
+
+		}
+		else{
+			// alert("ต้องปรับปรุง (ต่ำกว่า 60)")
+			$("#defaultCheck5").prop('checked',true);
+		}
+	}
 
  	$(document).ready(function() {
 			$("a.next").click(function(){
@@ -148,6 +178,7 @@ function fncSum(){
 				loadmain(module1,action)
 			});
 cal()
+chk()
 			function cal() { 
 			//$(".sa").on( "click", "input[name='sa[]']", function() {
 				//alert($(this).val())
@@ -161,6 +192,7 @@ cal()
 			})
 			fncSum()
 	}
+	
 
 	$(".sa").on( "keyup", "input[name='sum3']", function() {
 		   var wei3=$("input[name='wei3']").val()*$(this).val()
@@ -181,6 +213,24 @@ cal()
 			})
 			fncSum()
 	})
+	$("#tort3").submit(function(){
+				$check = $("#tort3").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor3.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				loadmain("assessment","tor_t3")
+			})	
 
 });
 
