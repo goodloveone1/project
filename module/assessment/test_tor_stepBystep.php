@@ -336,8 +336,9 @@
 		if($loop==2){
 			$y-=1;
 		}
-		$y_id = $y.$loop;
-			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$y_id' ")or die(mysqli_error($con));
+		$year_id = $y.$loop;
+			
+			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$year_id' ")or die(mysqli_error($con));
 			$idl=mysqli_fetch_assoc($reS);
 
 			// print_r($idl);

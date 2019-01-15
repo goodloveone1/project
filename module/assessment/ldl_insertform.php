@@ -21,7 +21,7 @@ if($loop==2){
     $yy-=1;
 }
 $tor_id = $y.$loop;
-
+echo $tor_id;
 
     
     $seldlt=mysqli_query($con,"SELECT *FROM idlel_type")or die(mysqli_error($con));
@@ -43,43 +43,8 @@ $tor_id = $y.$loop;
                 </div>
                 <div class="modal-body">
                 <?php $years ="2018";  ?>
-                <!-- <input type="hidden"    value="<?php echo $years; ?>"  name="Y" size=40 require> -->
+                <input type="hidden"  value="<?php echo $tor_id;; ?>"  name="a_no" size=40 >
                 <div class="col-sm" >
-                <div class="col-md form-group row">
-                <label for="" class="col-sm-3 col-form-label">ประจำปี งบประมาณ</label>
-			
-            
-				<input type="hidden" name="gg" value="hidden" class="col-md-2" >
-				<select id="inputState" class="custom-select col-md-2" name="year"  >
-                <?php 
-                
-				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
-				while(list($y_year)=mysqli_fetch_row($sYears)){
-					$y_thai=$y_year+543;
-                    
-                    
-				
-					$select=$yy==$y_year?"selected":"";
-					echo"<option value='$y_year' $select>$y_thai</option>";
-				}
-				mysqli_free_result($sYears);
-			?>	
-
-				</select>
-                <!-- <div class="col-sm-1"></div> -->
-                <select id="inputNo" class="custom-select col-md" name="a_no" readonly >
-                <?php 
-						// $yNow=date("Y");
-						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years")or die(mysqli_error($con));
-						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							
-							$seNO=$tor_id==$y_id?"selected":"";
-							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
-						}
-					?>
-					</select>
-                </div>
-            
                 <?php  for($i=0;$i<count($set);$i++){
                     $name="value";
                     $n=1 ?>

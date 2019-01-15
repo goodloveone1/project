@@ -25,7 +25,7 @@ $y_id = $y.$loop;
 // echo "<p> id = $y_id </p>";
 
  $tor=substr($yearbudget,2,4);
- $g_id=substr($gen_id,7,10);
+ $g_id=substr($gen_id,4,7);
  $tor_id=$tor.$loop.$min.$g_id;
 
 $year=$_POST['year'];

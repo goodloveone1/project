@@ -42,10 +42,8 @@ $y_id = $y.$loop;
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
 		mysqli_free_result($reChk);
-
 ?>
-
-<input type="text" value="<?php echo $tor_ID; ?>" name="tor_id">
+<input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 

@@ -71,7 +71,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
-				<td>๑๐๐</td>
+				<td>100</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sumall" onkeyup="fncSum();" readonly></td>
 			</tr>	
 		</table>
@@ -85,31 +85,31 @@
 			<div class="form-check">
 			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
-			    ดีเด่น  (๙๐-๑๐๐)
+			    ดีเด่น  (90-100)
 			  </label>
 			</div>
 			<div class="form-check ">
 			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
-			    ดีมาก (๘๐-๘๙)
+			    ดีมาก (80-89)
 			  </label>
 			</div>
 			<div class="form-check ">
 			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
-			    ดี (๗๐-๗๙)
+			    ดี (70-79)
 			  </label>
 			</div>
 			<div class="form-check ">
 			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
-			    พอใช้(๖๐-๖๙)
+			    พอใช้(60-69)
 			  </label>
 			</div>
 			<div class="form-check ">
 			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="score">
 			  <label class="form-check-label" for="defaultCheck1">
-			    ต้องปรับปรุง (ต่ำกว่า ๖๐)
+			    ต้องปรับปรุง (ต่ำกว่า 60)
 			  </label>
 			</div>
 		</div>	
@@ -139,9 +139,6 @@ function fncSum(){
 		document.tort3.sumall.value = sum.toFixed(2); 
 		}
 	}
-
-
-
 }
 
  	$(document).ready(function() {
@@ -152,19 +149,17 @@ function fncSum(){
 			});
 cal()
 			function cal() { 
-		
 			//$(".sa").on( "click", "input[name='sa[]']", function() {
 				//alert($(this).val())
 				//alert($("input[name='wei1']").val())
 			var s1=$("input[name='sum1']").val() * $("input[name='wei1']").val();
 			var s2=$("input[name='sum2']").val() * $("input[name='wei2']").val();
 			var s3=$("input[name='sum3']").val() * $("input[name='wei3']").val();
-      
 			var arr = [s1,s2,s3];
 			$("input[name='sa[]']").each(function($i){
 			$(this).val(arr[$i])
 			})
-					fncSum()
+			fncSum()
 	}
 
 	$(".sa").on( "keyup", "input[name='sum3']", function() {
@@ -185,7 +180,6 @@ cal()
 				 }
 			})
 			fncSum()
-				
 	})
 
 });
