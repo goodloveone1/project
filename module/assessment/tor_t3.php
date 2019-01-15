@@ -186,7 +186,7 @@ chk()
 			var s1=$("input[name='sum1']").val() * $("input[name='wei1']").val();
 			var s2=$("input[name='sum2']").val() * $("input[name='wei2']").val();
 			var s3=$("input[name='sum3']").val() * $("input[name='wei3']").val();
-			var arr = [s1,s2,s3];
+			var arr = [s1.toFixed(2),s2.toFixed(2),s3.toFixed(2)];
 			$("input[name='sa[]']").each(function($i){
 			$(this).val(arr[$i])
 			})
