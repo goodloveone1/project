@@ -50,6 +50,8 @@ function modules(module1,action){
 				case "edituserall":break;
 				case "evaluation":break;
 				case "test_tor_stepBystep":break;
+				case "pretest_tor":break;
+				case "tor1_pretest":break;
 				case "tor_t1":break;
 				case "tor_t2":break;
 				case "tor_t3":break;

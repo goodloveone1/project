@@ -21,14 +21,14 @@
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="" id="defaultCheck1" name="gagree">
 			  <label class="form-check-label" for="defaultCheck1">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="" id="defaultCheck1" name="gagree">
 			  <label class="form-check-label" for="defaultCheck1">
 			    มีความเห็นแตกต่าง  ดังนี้
 
@@ -63,14 +63,14 @@
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="0" id="defaultCheck1" name="uagree">
 			  <label class="form-check-label" for="defaultCheck1">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="uagree">
 			  <label class="form-check-label" for="defaultCheck1">
 			    มีความเห็นแตกต่าง  ดังนี้
 			  </label>
@@ -104,7 +104,7 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t4"><input type="submit" class="next" value="ต่อไป"></a> </p>
+		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p>
 	</div>
 </div>
 
