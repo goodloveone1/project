@@ -65,7 +65,7 @@ $con=connect_db();
 </div>
 </div>
 
-<div class="row" id='loaddataInasm'></div>
+<div class="col-auto" id='loaddataInasm'></div>
 
 <div class="row" id='loadging' style='display: none;'>
       <img class='mx-auto' id='img' src='img/loading.svg'>
@@ -78,6 +78,9 @@ $con=connect_db();
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
+
+  $.getScript('js/mydatatable.js')
+
   $("#inputState").change(function(){
     var years=$(this,"option:selected").val()
   //  alert(years)

@@ -9,9 +9,9 @@ $con=connect_db();
 	<h2 class="text-center col-xl "> จัดการหลักฐาน </h2>
 
 </div>
-
+<br>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table" id="Datatable">
     <thead>
       <tr>
         <th> รหัสประเมิน </th>
@@ -19,7 +19,7 @@ $con=connect_db();
         <th> รอบที่ </th>
 				<th> สถานะ </th>
         <th class="text-center"> จัดการหลักฐาน </th>
-      <tr>
+      </tr>
     </thead>
     <tbody>
 			<?php
@@ -44,6 +44,7 @@ $con=connect_db();
 </div>
 
 <script>
+$.getScript('js/mydatatable.js')
   $(".addevd").click(function(){
 			var tor_id = $(this).data("torid");
 			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){

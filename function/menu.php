@@ -142,7 +142,7 @@ function webmenu($id){
 				</a>
 
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
@@ -150,7 +150,7 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
@@ -158,7 +158,7 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
