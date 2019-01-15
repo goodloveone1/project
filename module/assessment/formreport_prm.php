@@ -1,9 +1,10 @@
 <?php
+session_start();
 	include("../../function/db_function.php");
 	$con=connect_db();
 ?>
 
-<form class="p-2"> 
+<form class="p-2">
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm pt-2">
@@ -20,11 +21,11 @@
 			<div class="form-group row">
 				<label  class="col-sm-1 col-form-label">ชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?>" id="" placeholder="">
 				</div>
 				<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" id="" placeholder="">
 				</div>
 			</div>
 		</div>
@@ -37,7 +38,7 @@
 		</div>
 		<div class="col-sm-2"></div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-2"></div>
 			<div class="col-md row text-center"> <!-- รอบที่ -->
@@ -143,7 +144,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-					</tr>	
+					</tr>
 					<tr>
 						<td >      1.5 การจัดการเรียนการสอนโดยวิธีอื่น ๆ</td>
 						<td></td>
@@ -190,7 +191,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-					</tr>	
+					</tr>
 
 					<tr>
 						<td colspan="2" class="text-center"> รวม  </td>
@@ -230,7 +231,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-					</tr>	
+					</tr>
 					<tr>
 						<td >  3.5 การให้บริการทางวิชาการในฐานะเป็นผู้เชี่ยวชาญ</td>
 						<td></td>
@@ -265,7 +266,7 @@
 						<td></td>
 						<td></td>
 					</tr>
-					
+
 					<tr>
 						<td colspan="2" class="text-center"> รวม  </td>
 						<td></td>
@@ -299,7 +300,7 @@
 						<td></td>
 						<td></td>
 					</tr>
-					
+
 					<tr>
 						<td colspan="2" class="text-center"> รวม  </td>
 						<td></td>
@@ -312,7 +313,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-					</tr>									
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -345,8 +346,8 @@
 		</div>
 		<div class="col-sm-6"></div>
    	</div>
-	
-	
+
+
 </form>
 
 
