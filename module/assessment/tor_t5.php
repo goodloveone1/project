@@ -1,7 +1,17 @@
+<?php
+	session_start();
+	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$con=connect_db();
+	$yeartest=chk_idtest();
 
+	$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+	list($tor_ID)=mysqli_fetch_row($reChk);
+?>
 
 <form class="p-2"> 
-
+<input type="hidden" name="tor_id" value="<?php echo $tor_ID  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
