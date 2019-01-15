@@ -7,7 +7,7 @@ session_start();
 $gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=gen.gen_acadeic) FROM general as gen WHERE gen_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysql_error($con));
 list($aca_name)=mysqli_fetch_row($gen);
 
-echo $tor_id = empty($_POST['torid'])?'':$_POST['torid'];
+ $tor_id = empty($_POST['torid'])?'':$_POST['torid'];
 
 $tor=  mysqli_query($con,"SELECT tor_year FROM tor  WHERE tor_id='$tor_id' ") or  die("SQL Error1==>1".mysql_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
@@ -84,216 +84,154 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 					<tr>
 						<th>ลำดับ</th>
 						<th>องค์ประกอบที่ใช้ประเมิน</th>
-						<th>ภาระงาน/กิจกรรม/โครงงาน/งาน</th>
-						<th>จำนวน(หน่วยชม./งาน/กิจกรรม)</th>
+
 						<th>หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
-						<th>ระดับคะแนนที่ได้</th>
+
 					</tr>
 				</thead>
 				<tbody>
 					<!-- 1.  งานสอน  -->
 					<tr>
-						<td rowspan="7">1</td>
+						<td rowspan="6">1</td>
 						<td >1.  งานสอน     </td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  1.1 การสอนภาคทฤษฏีระดับปริญญาตรี/โท....การสอนภาคปฏิบัติปริญญาตรี/โท.....</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td rowspan="6"></td>
+
 					</tr>
 					<tr>
 						<td >  1.2 การนิเทศนักศึกษา/สหกิจศึกษา/นักศึกษาฝึกสอน</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  1.3 การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  1.3 การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >      1.5 การจัดการเรียนการสอนโดยวิธีอื่น ๆ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 
-					<tr>
-						<td colspan="2" class="text-center"> รวม  </td>
-						<td></td>
-						<td></td>
-					</tr>
+
 					<!-- END 1.  งานสอน  -->
 					<!--  2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด  -->
 					<tr>
-						<td rowspan="6">2</td>
+						<td rowspan="5">2</td>
 						<td >2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด          </td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  2.1 งานวิจัยหรืองานสร้างสรรค์</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td rowspan="5"></td>
+
+
 					</tr>
 					<tr>
 						<td >  2.2 การเรียบเรียงตำรา หรือ หนังสือ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  2.3 บทความวิชาการ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  2.4 ผลงานวิชาการในลักษณะอื่น</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 
-					<tr>
-						<td colspan="2" class="text-center"> รวม  </td>
-						<td></td>
-						<td></td>
-					</tr>
+
 					<!-- END  2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด  -->
 					<tr>
-						<td rowspan="7">3</td>
+						<td rowspan="6">3</td>
 						<td >3. งานบริการทางวิชาการ     </td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  3.1 การเป็นอาจารย์พิเศษ/วิทยากร ภายในหรือภายนอกมหาวิทยาลัย</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td rowspan="6"></td>
+
 					</tr>
 					<tr>
 						<td >  3.2 การจัดประชุม สัมมนาฝึกอบรมและจัดนิทรรศการ แก่หน่วยงานภายนอก</td>
 						<td></td>
-						<td></td>
-						<td></td>
+						<
 					</tr>
 					<tr>
 						<td >   3.3 เป็นที่ปรึกษาโครงการวิจัย/วิทยานิพนธ์/เมธีวิจัย/ผู้เชี่ยวชาญ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  3.4 การรับงานที่มีรายได้เข้ามหาวิทยาลัยฯ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  3.5 การให้บริการทางวิชาการในฐานะเป็นผู้เชี่ยวชาญ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 
-					<tr>
-						<td colspan="2" class="text-center"> รวม  </td>
-						<td></td>
-						<td></td>
-					</tr>
+
 
 					<tr>
-						<td rowspan="4">4</td>
+						<td rowspan="3">4</td>
 						<td >4.  งานทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td > 4.1 การจัดโครงการหรือกิจกรรมทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td rowspan="3"></td>
+
 					</tr>
 					<tr>
 						<td >  4.2 เข้าร่วมโครงการหรือกิจกรรมทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 
-					<tr>
-						<td colspan="2" class="text-center"> รวม  </td>
-						<td></td>
-						<td></td>
-					</tr>
+
 
 					<tr>
 						<td rowspan="5">5</td>
 						<td >5.  งานพัฒนานักศึกษา งานที่ได้รับการแต่งตั้งให้ดำรงตำแหน่งและงานที่ได้รับมอบหมายอื่น ๆ </td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >  5.1 การเป็นอาจารย์ ที่ปรึกษา</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td rowspan="4"></td>
+
 					</tr>
 					<tr>
 						<td >  5.2 การปฏิบัติงานที่ได้รับการแต่งตั้งให้ดำรงตำแหน่ง</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 					<tr>
 						<td >   5.3 การปฏิบัติหน้าที่ ที่ได้รับมอบหมายอื่น ๆ</td>
 						<td></td>
-						<td></td>
-						<td></td>
+
 					</tr>
 
-					<tr>
-						<td colspan="2" class="text-center"> รวม  </td>
-						<td></td>
-						<td></td>
-					</tr>
 
-					<tr>
-						<td></td>
-						<td colspan="2" class="text-center"> รวมภาระงานทั้งสิ้น  </td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
 				</tbody>
 			</table>
 		</div>

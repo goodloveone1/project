@@ -7,7 +7,7 @@ $con=connect_db();
 $year = $_POST['year'];
 ?>
 
-<table class="table table-border">
+<table class="table table-border col-md" id="Datatable">
   <thead>
     <tr>
       <th>ลำดับ </th>
@@ -20,19 +20,23 @@ $year = $_POST['year'];
       <th> ประเมินบุคลากร </th>
     </tr>
   <thead>
+    <tbody>
     <?php
     if($_SESSION['user_level'] == 3){ // สาขา
-      $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general as WHERE branch_id='$_SESSION[branch_id]' AND permiss_id !='1'") or  die("SQL Error1==>1".mysql_error($con));
+
+      $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general  WHERE branch_id='$_SESSION[branch_id]' AND permiss_id != 1 AND gen_id != '$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     else if($_SESSION['user_level'] == 4){ // สาขา หลักสูตร
-      $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general WHERE subject_id='$_SESSION[subject_id]' AND permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
+
+      $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general WHERE subject_id='$_SESSION[subject_id]' AND permiss_id != 1 AND gen_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
+
     }
     $i=1;
 while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysqli_fetch_row($show)){
     echo "<tr>";
     echo " <td>$i</td>";
     if(!empty($gen_pict)){
-        echo " <td><img src='img/$gen_pict' width='100px' height='100px'></td>";
+        echo " <td><img src='img/$gen_pict' class='img-thumbnail' width='100px' height='100px'></td>";
     }else{
         echo " <td><img src='img/default/user_default.svg' width='100px' height='100px'></td>";
     }
@@ -53,7 +57,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
     list($tor_id)=mysqli_fetch_row($show2);
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินแล้ว </b> </td>";
-      echo " <td> <b class='text-success'><i class='fas fa-check'></i> ตรวจสอบ <b></td>";
+      echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></td>";
     }else{
       echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมิน </b></td>";
       echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></td>";
@@ -65,6 +69,9 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
 
      ?>
 
-  <tbody>
+
   </tbody>
 </table>
+<script>
+$.getScript('js/mydatatable.js')
+</script>

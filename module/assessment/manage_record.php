@@ -12,7 +12,7 @@ $con=connect_db();
 
 
 
-<table class="table table-border col-auto">
+<table class="table table-border col-auto" id="Datatable">
   <thead>
     <tr>
       <th> ปี </th>
@@ -74,6 +74,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
 <script>
 
 $(document).ready(function() {
+  $.getScript('js/mydatatable.js')
   $(".addbrn").click(function(e){
           e.preventDefault()
           var id =$(this).data("id");

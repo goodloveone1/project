@@ -41,9 +41,9 @@ if($loop==2){
       <a href='javascript:void(0)'><button type="button" class="btn btn-block btn-light" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;การประเมิน</button></a>
   </div>
 </div>
-
+<br>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table" id="Datatable">
     <thead>
       <th> รหัส TOR </th>
       <th> ปีการประเมิน </th>
@@ -64,7 +64,7 @@ $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id=
                 echo "<td><a href='javascript:void(0)'class='editbrn' data-tor_id='$tor_id'><i class='fas fa-edit fa-2x'></i></a></td>";
         }
        ?>
-      <td></td>
+
     <tbody>
   </table>
 </div>
@@ -81,6 +81,8 @@ $tor=mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$_SESSION[user_id]'
 ?>
 
 $(document).ready(function() {
+  $.getScript('js/mydatatable.js');
+
   $("#addbrn").click(function( ){
     var x = "<?php echo $x ?>"
     if(x == "0"){
