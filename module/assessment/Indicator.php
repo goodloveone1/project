@@ -372,7 +372,7 @@ list($acaName)=mysqli_fetch_row($seacaName);
 
 <div class="row ">
 	<div class="col-md">
-	<table class='table'>
+	<table class='table table-bordered'>
 		<thead>
 			<tr>
 				<th rowspan='2'>(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
@@ -391,29 +391,56 @@ list($acaName)=mysqli_fetch_row($seacaName);
 	</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>๑. ภาระงานด้านการเรียนการสอน
- (ภาระงานขั้นต่ำ ๒๐ ชั่วโมงทำงาน/สัปดาห์)
-   ๑.๑ การสอนภาคทฤษฏีและปฏิบัติ
-    ๑.๒ การนิเทศนักศึกษา/สหกิจศึกษา/นักศึกษาฝึกสอน
-    ๑.๓ การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์
-    ๑.๔ การจัดประชุม สัมมนาฝึกอบรมและจัดนิทรรศการ
-    ๑.๕ การจัดการเรียนการสอนโดยวิธีอื่น ๆ
-				</td>
-				<td>ระดับที่ ๕. มีภาระงานมากกว่า ๒๔.๐๐ชั่วโมงทำงาน/สัปดาห์  มีแผนการสอนตาม มคอ.๓ มีการนำผลการประเมินไปปรับปรุง มีเอกสารประกอบการสอน/เอกสารคำสอน/ตำรา/สื่อการสอน/อุปกรณ์การสอน ทุกวิชาที่สอน และมีงานวิจัย
-ระดับที่ ๔. มีภาระงานระหว่าง ๒๒.๐๑-๒๔.๐๐ ชั่วโมงทำงาน/สัปดาห์มีแผนการสอนตาม มคอ.๓ และ มีเอกสารประกอบการสอน/เอกสารคำสอน/ตำรา/สื่อการสอน/อุปกรณ์การสอน ทุกวิชาที่สอน หรือ  มีภาระงานระหว่าง ๒๒.๐๑-๒๔.๐๐ ชั่วโมงทำงาน/สัปดาห์ มีแผนการสอนตาม มคอ.๓และมีงานวิจัย
-ระดับที่ ๓. มีภาระงานใกล้เคียงเกณฑ์ภาระงานขั้นต่ำ (ระหว่าง ๑๘.๐๐ –๒๒.๐๐ ชั่วโมงทำงาน/สัปดาห์) และมีแผนการสอนตาม มคอ.๓
-ระดับที่ ๒. มีภาระงานอยู่ระหว่าง ๑๖.๐๐ –๑๗.๙๙ ชั่วโมงทำงาน/สัปดาห์
-ระดับที่ ๑. มีภาระงานน้อยกว่า ๑๖ชั่วโมงทำงาน/สัปดาห์
+<?php
+
+
+ $setit = mysqli_query($con,"SELECT e_id,e_name FROM evaluation") or die("SQL error".mysqli_error($con));
+//list($tit_name)=mysqli_fetch_row($setit);
+
+
+$user_level = $_SESSION['user_level'];
+
+$i=0;
+$num = ["๑.","๒.","๓.","๔.","๕."];
+ while(list($e_id,$tit_name)=mysqli_fetch_row($setit)){
+
+?>
+<tr>
+  <td>
+      <?php
+        echo "<u> $num[$i] $tit_name </u>";
+        $i++;
+      ?>
+  </td>
+
+	<td>
+<?php
+ $re=mysqli_query($con,"SELECT * FROM conditions WHERE aca_id='$user_level' AND e_name='$e_id' ORDER BY con_level DESC " ) or die("errorSQLselect".mysqli_error($con));
+ while(list($w_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
+
+ if($lv==0){
+     $lv="-";
+ }
+
+    echo "<p>$ex<p>" ;
+
+
+  }//END WHILE
+
+?>
 </td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+<?php
+
+} //END WHILE ?>
 		</tbody>
 	</table>
 	</div>

@@ -33,6 +33,7 @@ function modules(module1,action){
 					case "sum_assessment":break;
 					case "manage_Evidence":break;
 					case "Indicator":break;
+					case "manage_asmIn":break;
 			 /* END assessment */
 			 	case "download_manage":break;
 			    case "pr_manage":break;

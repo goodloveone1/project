@@ -11,8 +11,17 @@
 
 	include("function/db_function.php");
 	$con=connect_db();
-	$login=mysqli_query ($con,"SELECT gen_id,gen_user,gen_pass,permiss_id,gen_fname,gen_lname FROM  general WHERE gen_user='$user' AND gen_pass='$pw' " )or die ("erro=>".mysqli_error($con));
-	list($gen_id,$username,$passwd,$level,$fname,$lname) = mysqli_fetch_row($login);
+	$login=mysqli_query ($con,"SELECT gen_id,gen_user,gen_pass,permiss_id,gen_fname,gen_lname,branch_id,subject_id FROM  general WHERE gen_user='$user' AND gen_pass='$pw' " )or die ("erro=>".mysqli_error($con));
+	list($gen_id,$username,$passwd,$level,$fname,$lname,$branch_id,$subject_id) = mysqli_fetch_row($login);
+
+	$permiss=mysqli_query ($con,"SELECT permiss_decs FROM  permissions WHERE permiss_id='$level'" )or die (" permissions erro=> ".mysqli_error($con));
+	list($permiss_decs) = mysqli_fetch_row($permiss);
+
+	// $branch=mysqli_query ($con,"SELECT 	branch_name FROM  branch WHERE 	branch_id='$branch_id'" )or die (" permissions erro=> ".mysqli_error($con));
+	// list($branch_name) = mysqli_fetch_row($branch);
+	//
+	// $subject=mysqli_query ($con,"SELECT subject_name FROM  subjects WHERE subject_id='$subject_id'" )or die (" permissions erro=> ".mysqli_error($con));
+	// list($subject_name) = mysqli_fetch_row($subject);
 
 		if($user==$username && $pw==$passwd)
 		{
@@ -21,6 +30,9 @@
 				$_SESSION['user_level']=$level;
 				$_SESSION['user_fnaem']=$fname;
 				$_SESSION['user_lnaem']=$lname;
+				$_SESSION['permiss_decs']=$permiss_decs;
+				$_SESSION['branch_id']=$branch_id;
+				$_SESSION['subject_id']=$subject_id;
 
 
 				if($_SESSION['user_level']=="1")
@@ -56,6 +68,7 @@
 			 echo "<script>window.location='index.php?'</script>";
 			 }
 
+	mysqli_free_result($permiss);
 	mysqli_free_result($login);
 	mysqli_close($con);
 ?>
