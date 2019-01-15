@@ -14,9 +14,10 @@
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
 	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;
+$date = date("Y/m/d");
 ?>
 
-<form class="p-2"> 
+<form class="p-2" name="tort5" id="tort5"> 
 <input type="hidden" name="tor_id" value="<?php echo $tor_ID  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
@@ -38,9 +39,9 @@
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้รับการประเมิน :</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="ac">
 			  <label class="form-check-label" for="defaultCheck1">
-			    ได้รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
+			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
 			  </label>
 		</div>
@@ -50,19 +51,20 @@
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="" name="uname">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="" name="upos">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value=""  name="udate" readonly >
+					<input type="hidden" name="usdate" value="<?php  echo  $date; ?>">
 				</div>				
 		</div>
 	</div>
@@ -70,12 +72,12 @@
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้ประเมิน : :</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+			  <input class="form-check-input" type="checkbox" vlue="1" name="tappcetp" id="defaultCheck1">
 			  <label class="form-check-label" for="defaultCheck1">
-			   ได้แจ้งผลการประเมินและผู้รับการประเมินได้ลงนามรับทราบ
+			   แจ้งผลการประเมิน
 			  </label>
 		</div>
-		<div class="form-check">
+		<!-- <div class="form-check">
 			  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
 			  <label class="form-check-label" for="defaultCheck1">
 			   ได้แจ้งผลการประเมินเมื่อวันที่.............................................
@@ -84,52 +86,51 @@
 
 
 			  </label>
-		</div>
+		</div> -->
 
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_lname,"  ",$g_fname; ?>">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_lname,"  ",$g_fname; ?>" name="sname">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<?php     
 					$sqlspos ="SELECT pos_name FROM position WHERE pos_id='$g_pos'";
 					$sespos=mysqli_query($con,$sqlspos) or die("sePos".mysqli_error($con));
-					list($sname_pos)=mysqli_fetch_row($sespos);
-
-
-					
+					list($sname_pos)=mysqli_fetch_row($sespos);	
 				?>
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
 
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $sname_pos  ?>">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $sname_pos?>" name="t_pos">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-				<?php $date = date("Y-m-d")  ?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date)?>">
+			
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date)?>" name="" readonly>
+					<input type="hidden" value="<?php echo $date;  ?>" name="tdate">
 				</div>				
 		</div>
 	</div>
 
 </div>
-</form>	
+
 <br>
 
 
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p>
+		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
+		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor5"> ต่อไป </button>
 	</div>
 </div>
-
+</form>	
 
 
 
@@ -145,5 +146,23 @@
 			});
 
 	});
+	$("#tort5").submit(function(){
+				$check = $("#tort5").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor5.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				loadmain("assessment","tor_t5")
+			})	
 
 </script>

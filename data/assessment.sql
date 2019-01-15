@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2019 at 10:08 AM
+-- Generation Time: Jan 15, 2019 at 06:51 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -223,7 +223,9 @@ CREATE TABLE `education` (
 --
 
 INSERT INTO `education` (`ed_id`, `gen_id`, `ed_name`, `ed_loc`, `degree_id`) VALUES
-(42, 6201572, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1);
+(42, 6201572, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
+(43, 6201083, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
+(44, 1000000001, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -278,9 +280,9 @@ CREATE TABLE `general` (
 --
 
 INSERT INTO `general` (`gen_id`, `gen_user`, `gen_pass`, `branch_id`, `subject_id`, `gen_code`, `gen_prefix`, `gen_fname`, `gen_lname`, `gen_salary`, `gen_acadeic`, `level_id`, `gen_startdate`, `permiss_id`, `gen_pos`, `gen_pict`, `savetime`) VALUES
-(6201083, 'good', '12345', 1, 1, '1234567890123', 'นาย', 'จักรกรี', 'สำนวนไทย', 15000.00, 1, 0, '2017-06-04', 3, 1, '', '2019-01-12 05:08:08'),
+(6201083, 'good', '12345', 1, 1, '1234567890123', 'นาย', 'จักรกรี', 'สำนวนไทย', 15000.00, 1, 0, '2017-06-04', 4, 1, '', '2019-01-15 12:50:52'),
 (6201572, 'user122', '12345', 1, 1, '1234567890123', 'นางสาว', 'สุนารี', 'ราชสีมา', 15000.00, 1, 0, '2019-01-21', 2, 1, '', '2019-01-12 04:56:58'),
-(1000000001, 'admin', 'admin', 2, 19, '1234567890123', 'นาย', 'admin', 'admin', 99999.99, 4, 1, '2018-01-07', 1, 4, 'e810zihfvd_2344.jpg', '0000-00-00 00:00:00');
+(1000000001, 'admin', 'admin', 2, 1, '1234567890123', 'นาย', 'admin', 'admin', 99999.99, 4, 1, '2018-01-07', 1, 4, 'e810zihfvd_2344.jpg', '2019-01-13 11:55:02');
 
 -- --------------------------------------------------------
 
@@ -302,48 +304,13 @@ CREATE TABLE `idlel` (
 --
 
 INSERT INTO `idlel` (`idl_id`, `gen_id`, `year_id`, `idl_type`, `idl_num`, `idl_day`) VALUES
-(23, 1000000003, 25611, 1, 2, 3),
-(24, 1000000003, 25611, 2, 1, 2),
-(25, 1000000003, 25611, 3, 0, 0),
-(26, 1000000003, 25611, 4, 0, 0),
-(27, 1000000003, 25611, 5, 0, 0),
-(28, 1000000003, 25611, 6, 0, 0),
-(29, 1000000003, 25611, 7, 0, 0),
-(30, 1000000003, 25612, 1, 1, 1),
-(31, 1000000003, 25612, 2, 2, 2),
-(32, 1000000003, 25612, 3, 0, 0),
-(33, 1000000003, 25612, 4, 0, 0),
-(34, 1000000003, 25612, 5, 0, 0),
-(35, 1000000003, 25612, 6, 0, 0),
-(36, 1000000003, 25612, 7, 0, 0),
-(37, 1000000003, 25621, 1, 2, 4),
-(38, 1000000003, 25621, 2, 1, 2),
-(39, 1000000003, 25621, 3, 0, 0),
-(40, 1000000003, 25621, 4, 0, 0),
-(41, 1000000003, 25621, 5, 0, 0),
-(42, 1000000003, 25621, 6, 0, 0),
-(43, 1000000003, 25621, 7, 0, 0),
-(44, 1000000004, 25621, 1, 3, 5),
-(45, 1000000004, 25621, 2, 1, 1),
-(46, 1000000004, 25621, 3, 0, 0),
-(47, 1000000004, 25621, 4, 0, 0),
-(48, 1000000004, 25621, 5, 0, 0),
-(49, 1000000004, 25621, 6, 0, 0),
-(50, 1000000004, 25621, 7, 0, 0),
-(51, 1000000002, 25621, 1, 2, 5),
-(52, 1000000002, 25621, 2, 1, 5),
-(53, 1000000002, 25621, 3, 0, 0),
-(54, 1000000002, 25621, 4, 0, 0),
-(55, 1000000002, 25621, 5, 0, 0),
-(56, 1000000002, 25621, 6, 0, 0),
-(57, 1000000002, 25621, 7, 0, 0),
-(58, 6201572, 25621, 1, 2, 5),
-(59, 6201572, 25621, 2, 1, 1),
-(60, 6201572, 25621, 3, 0, 0),
-(61, 6201572, 25621, 4, 0, 0),
-(62, 6201572, 25621, 5, 0, 0),
-(63, 6201572, 25621, 6, 0, 0),
-(64, 6201572, 25621, 7, 0, 0);
+(93, 6201572, 25621, 1, 2, 4),
+(94, 6201572, 25621, 2, 1, 1),
+(95, 6201572, 25621, 3, 0, 0),
+(96, 6201572, 25621, 4, 0, 0),
+(97, 6201572, 25621, 5, 0, 0),
+(98, 6201572, 25621, 6, 0, 0),
+(99, 6201572, 25621, 7, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -432,11 +399,7 @@ CREATE TABLE `relations` (
 --
 
 INSERT INTO `relations` (`re_id`, `re_title`, `re_detail`, `re_date`, `gen_id`) VALUES
-(6, 'งานติดตั้งโปรเจคเตอร์ คณะวิทย์ ม.แมโจ้', 'fgdfgdfgfdgfdgdfgdfgf', '2018-08-28', 1000000001),
-(3, 'งานติดตั้งโปรเจคเตอร์ คณะวิทย์ ม.แมโจ้', 'อิ้อเดเดเ', '2018-08-28', 1000000001),
-(4, 'asdaweawe', 'sadasdasdasdasdasdasdasdasdsd', '2018-08-27', 1000000001),
-(5, 'ljkhklhjk', 'sfdsfdsf', '2018-08-28', 1000000001),
-(7, 'งานติดตั้งโปรเจคเตอร์ คณะวิทย์ ม.แมโจ้', 'fgdfgdfgfdgfdgdfgdfgf', '2018-08-28', 1000000001);
+(6, 'test_title', 'fgdfgdfgfdgfdgdfgdfgf', '2018-08-28', 1000000001);
 
 -- --------------------------------------------------------
 
@@ -477,11 +440,36 @@ INSERT INTO `subjects` (`subject_id`, `subject_name`, `branch_id`) VALUES
 
 CREATE TABLE `sum_tort1` (
   `sum_tor1id` int(11) NOT NULL,
-  `tort_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
   `sum_weight` float(7,2) NOT NULL,
   `sum_weighted` float(7,2) NOT NULL,
   `sum_tort1` float(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sum_tort2`
+--
+
+CREATE TABLE `sum_tort2` (
+  `sum_tor2id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `sum_tor2sum` decimal(7,2) NOT NULL,
+  `sum_tor2asum` decimal(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sum_tort3`
+--
+
+CREATE TABLE `sum_tort3` (
+  `tort3_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `tort3_sum` decimal(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -526,16 +514,33 @@ CREATE TABLE `tort1` (
   `tort1_weighted` float(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tort1`
+-- Table structure for table `tort1pre`
 --
 
-INSERT INTO `tort1` (`tort1_id`, `tor_id`, `title_name`, `tort1_Indicat`, `tort1_goal`, `tort1_score`, `tort1_weight`, `tort1_weighted`) VALUES
-(108, 62114, 1, '', 1, 5.00, 60.00, 300.00),
-(109, 62114, 2, '', 2, 5.00, 0.00, 0.00),
-(110, 62114, 3, '', 3, 5.00, 10.00, 50.00),
-(111, 62114, 4, '', 4, 5.00, 10.00, 50.00),
-(112, 62114, 5, '', 5, 5.00, 20.00, 100.00);
+CREATE TABLE `tort1pre` (
+  `tort1_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `title_name` tinyint(2) NOT NULL,
+  `tort1_Indicat` text COLLATE utf8_unicode_ci NOT NULL,
+  `tort1_goal` tinyint(1) NOT NULL,
+  `tort1_score` float(7,2) NOT NULL,
+  `tort1_weight` float(7,2) NOT NULL,
+  `tort1_weighted` float(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tort1pre`
+--
+
+INSERT INTO `tort1pre` (`tort1_id`, `tor_id`, `title_name`, `tort1_Indicat`, `tort1_goal`, `tort1_score`, `tort1_weight`, `tort1_weighted`) VALUES
+(27, 62101572, 1, '', 5, 5.00, 60.00, 3.00),
+(28, 62101572, 2, '', 5, 5.00, 0.00, 0.00),
+(29, 62101572, 3, '', 5, 5.00, 10.00, 0.50),
+(30, 62101572, 4, '', 5, 5.00, 10.00, 0.50),
+(31, 62101572, 5, '', 5, 5.00, 20.00, 1.00);
 
 -- --------------------------------------------------------
 
@@ -633,6 +638,20 @@ INSERT INTO `tort2_exp` (`exp_id`, `aca_id`, `tort2_subtit`, `exp_score`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tort2_skil`
+--
+
+CREATE TABLE `tort2_skil` (
+  `tort2s_id` int(10) NOT NULL,
+  `tort_id` int(10) NOT NULL,
+  `tort2s_skil` int(2) NOT NULL,
+  `tort2s_x` int(2) NOT NULL,
+  `tort2s_score` double(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tort2_subtit`
 --
 
@@ -682,6 +701,52 @@ INSERT INTO `tort2_title` (`tort2_til_id`, `tort2_til_name`) VALUES
 (1, 'สมรรถนะหลัก(ที่สภามหาวิทยาลัยกำหนด)\r\n'),
 (2, 'สมรรถนะเฉพาะตามลักษณะงานที่ปฏิบัติ(ที่สภามหาวิทยาลัยกำหนด)\r\n'),
 (3, 'สมรรถนะทางการบริหาร(ที่สภามหาวิทยาลัยกำหนด)\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tort3`
+--
+
+CREATE TABLE `tort3` (
+  `tort3_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `tort3_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tort3_weignt` decimal(7,2) NOT NULL,
+  `tort3_sum` decimal(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tort4`
+--
+
+CREATE TABLE `tort4` (
+  `tort4_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `tort4_know` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tort4_develop` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tort4_longtime` varchar(255) CHARACTER SET utf16 COLLATE utf16_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tort5`
+--
+
+CREATE TABLE `tort5` (
+  `tort5_id` int(10) NOT NULL,
+  `tor_id` int(10) NOT NULL,
+  `tot5_accept` tinyint(1) NOT NULL,
+  `tort5_sent` tinyint(1) NOT NULL,
+  `tort5_Nreport` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tort5_datereport` date NOT NULL,
+  `tort5_datewitn` date NOT NULL,
+  `tort5_assessor` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tort5_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -792,7 +857,8 @@ ALTER TABLE `general`
   ADD KEY `gen_pos` (`gen_pos`),
   ADD KEY `gen_acadeic` (`gen_acadeic`),
   ADD KEY `branch_id` (`branch_id`),
-  ADD KEY `subject_id` (`subject_id`);
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `permiss_id` (`permiss_id`);
 
 --
 -- Indexes for table `idlel`
@@ -800,13 +866,20 @@ ALTER TABLE `general`
 ALTER TABLE `idlel`
   ADD PRIMARY KEY (`idl_id`),
   ADD KEY `idl_type` (`idl_type`),
-  ADD KEY `year_id` (`year_id`);
+  ADD KEY `year_id` (`year_id`),
+  ADD KEY `gen_id` (`gen_id`);
 
 --
 -- Indexes for table `idlel_type`
 --
 ALTER TABLE `idlel_type`
   ADD PRIMARY KEY (`idl_type_id`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`permiss_id`);
 
 --
 -- Indexes for table `position`
@@ -826,7 +899,21 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `sum_tort1`
   ADD PRIMARY KEY (`sum_tor1id`),
-  ADD KEY `tort_id` (`tort_id`);
+  ADD KEY `tort_id` (`tor_id`);
+
+--
+-- Indexes for table `sum_tort2`
+--
+ALTER TABLE `sum_tort2`
+  ADD PRIMARY KEY (`sum_tor2id`),
+  ADD KEY `tor_id` (`tor_id`);
+
+--
+-- Indexes for table `sum_tort3`
+--
+ALTER TABLE `sum_tort3`
+  ADD PRIMARY KEY (`tort3_id`),
+  ADD KEY `tor_id` (`tor_id`);
 
 --
 -- Indexes for table `tor`
@@ -843,7 +930,15 @@ ALTER TABLE `tor`
 -- Indexes for table `tort1`
 --
 ALTER TABLE `tort1`
-  ADD PRIMARY KEY (`tort1_id`);
+  ADD PRIMARY KEY (`tort1_id`),
+  ADD KEY `tor_id` (`tor_id`);
+
+--
+-- Indexes for table `tort1pre`
+--
+ALTER TABLE `tort1pre`
+  ADD PRIMARY KEY (`tort1_id`),
+  ADD KEY `tor_id` (`tor_id`);
 
 --
 -- Indexes for table `tort2`
@@ -862,6 +957,13 @@ ALTER TABLE `tort2_exp`
   ADD KEY `tort2_subtit` (`tort2_subtit`);
 
 --
+-- Indexes for table `tort2_skil`
+--
+ALTER TABLE `tort2_skil`
+  ADD PRIMARY KEY (`tort2s_id`),
+  ADD KEY `tort_id` (`tort_id`);
+
+--
 -- Indexes for table `tort2_subtit`
 --
 ALTER TABLE `tort2_subtit`
@@ -873,6 +975,20 @@ ALTER TABLE `tort2_subtit`
 --
 ALTER TABLE `tort2_title`
   ADD PRIMARY KEY (`tort2_til_id`);
+
+--
+-- Indexes for table `tort3`
+--
+ALTER TABLE `tort3`
+  ADD PRIMARY KEY (`tort3_id`),
+  ADD KEY `tor_id` (`tor_id`);
+
+--
+-- Indexes for table `tort4`
+--
+ALTER TABLE `tort4`
+  ADD PRIMARY KEY (`tort4_id`),
+  ADD KEY `tort4_ibfk_1` (`tor_id`);
 
 --
 -- Indexes for table `years`
@@ -894,7 +1010,7 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `ed_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ed_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `general`
@@ -906,7 +1022,7 @@ ALTER TABLE `general`
 -- AUTO_INCREMENT for table `idlel`
 --
 ALTER TABLE `idlel`
-  MODIFY `idl_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `idl_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -918,13 +1034,55 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `sum_tort1`
 --
 ALTER TABLE `sum_tort1`
-  MODIFY `sum_tor1id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `sum_tor1id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `sum_tort2`
+--
+ALTER TABLE `sum_tort2`
+  MODIFY `sum_tor2id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `sum_tort3`
+--
+ALTER TABLE `sum_tort3`
+  MODIFY `tort3_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tort1`
 --
 ALTER TABLE `tort1`
-  MODIFY `tort1_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `tort1_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `tort1pre`
+--
+ALTER TABLE `tort1pre`
+  MODIFY `tort1_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `tort2`
+--
+ALTER TABLE `tort2`
+  MODIFY `tort2_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+
+--
+-- AUTO_INCREMENT for table `tort2_skil`
+--
+ALTER TABLE `tort2_skil`
+  MODIFY `tort2s_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `tort3`
+--
+ALTER TABLE `tort3`
+  MODIFY `tort3_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `tort4`
+--
+ALTER TABLE `tort4`
+  MODIFY `tort4_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -938,11 +1096,21 @@ ALTER TABLE `education`
   ADD CONSTRAINT `education_ibfk_2` FOREIGN KEY (`gen_id`) REFERENCES `general` (`gen_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `general`
+--
+ALTER TABLE `general`
+  ADD CONSTRAINT `general_ibfk_1` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`branch_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `general_ibfk_2` FOREIGN KEY (`gen_acadeic`) REFERENCES `academic` (`aca_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `general_ibfk_3` FOREIGN KEY (`gen_pos`) REFERENCES `position` (`pos_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `general_ibfk_4` FOREIGN KEY (`permiss_id`) REFERENCES `permissions` (`permiss_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `idlel`
 --
 ALTER TABLE `idlel`
   ADD CONSTRAINT `idlel_ibfk_1` FOREIGN KEY (`idl_type`) REFERENCES `idlel_type` (`idl_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `idlel_ibfk_2` FOREIGN KEY (`year_id`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `idlel_ibfk_2` FOREIGN KEY (`year_id`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `idlel_ibfk_3` FOREIGN KEY (`gen_id`) REFERENCES `general` (`gen_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subjects`
@@ -954,7 +1122,19 @@ ALTER TABLE `subjects`
 -- Constraints for table `sum_tort1`
 --
 ALTER TABLE `sum_tort1`
-  ADD CONSTRAINT `sum_tort1_ibfk_1` FOREIGN KEY (`tort_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sum_tort1_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sum_tort2`
+--
+ALTER TABLE `sum_tort2`
+  ADD CONSTRAINT `sum_tort2_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sum_tort3`
+--
+ALTER TABLE `sum_tort3`
+  ADD CONSTRAINT `sum_tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tor`
@@ -965,6 +1145,12 @@ ALTER TABLE `tor`
   ADD CONSTRAINT `tor_ibfk_3` FOREIGN KEY (`tor_pos`) REFERENCES `position` (`pos_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tor_ibfk_4` FOREIGN KEY (`tor_leader_pos`) REFERENCES `position` (`pos_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tor_ibfk_5` FOREIGN KEY (`gen_id`) REFERENCES `general` (`gen_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tort1`
+--
+ALTER TABLE `tort1`
+  ADD CONSTRAINT `tort1_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort2`
@@ -981,10 +1167,28 @@ ALTER TABLE `tort2_exp`
   ADD CONSTRAINT `tort2_exp_ibfk_2` FOREIGN KEY (`tort2_subtit`) REFERENCES `tort2_subtit` (`tort2_sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `tort2_skil`
+--
+ALTER TABLE `tort2_skil`
+  ADD CONSTRAINT `tort2_skil_ibfk_1` FOREIGN KEY (`tort_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tort2_subtit`
 --
 ALTER TABLE `tort2_subtit`
   ADD CONSTRAINT `tort2_subtit_ibfk_1` FOREIGN KEY (`tort2_tit_id`) REFERENCES `tort2_title` (`tort2_til_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tort3`
+--
+ALTER TABLE `tort3`
+  ADD CONSTRAINT `tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tort4`
+--
+ALTER TABLE `tort4`
+  ADD CONSTRAINT `tort4_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

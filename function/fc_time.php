@@ -15,7 +15,7 @@
         $strHour= date("H",strtotime($strDate));
         $strMinute= date("i",strtotime($strDate));
         $strSeconds= date("s",strtotime($strDate));
-        $strMonthCut = Array("","มกราคม.","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+        $strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
         $strMonthThai=$strMonthCut[$strMonth];
         return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
         }
@@ -30,6 +30,7 @@
         return $interval->format($differenceFormat);
         
         }
+        //เช็คปี รอบ งบประมาณ
     function chk_idtest(){
         $mm=date('m');  //เดือนปัจจุบัน
         $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
