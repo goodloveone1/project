@@ -1,6 +1,17 @@
 
+<?php
+	session_start();
+	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$con=connect_db();
+	$yeartest=chk_idtest();
 
+	$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+	list($tor_ID)=mysqli_fetch_row($reChk);
+?>
 <form class="p-2" name="tort4" id="tort4"> 
+<input type="hidden" name="tor_id" value="<?php echo $tor_ID  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -27,15 +38,15 @@
 					<th>ช่วงเวลาที่ต้องการพัฒนา</th>
 				</tr>
 				<tr>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value="" require></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value="" require></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value="" require></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value="" required></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value="" required></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value="" required></td>
 				</tr>
 
 				<tr>
 					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
 					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value=""></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt" value=""></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value=""></td>
 				</tr>
 				<tr>
 					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
@@ -81,7 +92,7 @@
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t4")
+				loadmain("assessment","tor_t5")
 			})	
 	});
 
