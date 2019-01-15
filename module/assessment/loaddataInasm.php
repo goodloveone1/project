@@ -55,13 +55,25 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
 
     $show2= mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$gen_id' AND tor_year='$year'") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($show2);
+
+    $show3= mysqli_query($con,"SELECT tort5_sent FROM tort5 WHERE tor_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
+    list($tor_idc2)=mysqli_fetch_row($show3);
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินแล้ว </b> </td>";
-      echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></td>";
+      
     }else{
       echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมิน </b></td>";
-      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></td>";
     }
+
+    if(empty($tor_idc2)){
+      echo " <td></a> <b class='text-danger'><a href=''> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></a></td>";
+    }
+    else{
+      echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบ  <b></td>";
+     
+    }
+    
+   
 
     echo "</tr>";
   $i++;
