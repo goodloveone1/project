@@ -282,10 +282,6 @@
 			}
 		}
 
-		$(".linkedit").click(function(){
-			alert();
-		})
-
 
 
 

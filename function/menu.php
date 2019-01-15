@@ -76,10 +76,10 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">จัดการภาระงานของตน</span>
+						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">บันทึกการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
