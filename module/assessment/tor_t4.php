@@ -1,6 +1,6 @@
 
 
-<form class="p-2"> 
+<form class="p-2" name="tort4" id="tort4"> 
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -27,32 +27,35 @@
 					<th>ช่วงเวลาที่ต้องการพัฒนา</th>
 				</tr>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value="" require></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value="" require></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value="" require></td>
+				</tr>
+
+				<tr>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value=""></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt" value=""></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value=""></td>
+					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value=""></td>
 				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+
 			</table>
 		</div>
 	</div>
-</form>
+
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t5"><input type="submit" class="next" value="ต่อไป"></a> </p>
+		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t5"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
+		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor4"> ต่อไป </button>
 	</div>
 </div>
 
-
+</form>
 
 
 <script type="text/javascript">
@@ -62,6 +65,24 @@
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
+			$("#tort4").submit(function(){
+				$check = $("#tort4").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor4.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+				loadmain("assessment","tor_t4")
+			})	
 	});
 
 </script>
