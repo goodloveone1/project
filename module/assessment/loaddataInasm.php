@@ -23,11 +23,13 @@ $year = $_POST['year'];
     <tbody>
     <?php
     if($_SESSION['user_level'] == 3){ // สาขา
+
       $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general  WHERE branch_id='$_SESSION[branch_id]' AND permiss_id != 1 AND gen_id != '$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     else if($_SESSION['user_level'] == 4){ // สาขา หลักสูตร
 
       $show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id,gen_pict FROM general WHERE subject_id='$_SESSION[subject_id]' AND permiss_id != 1 AND gen_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
+
     }
     $i=1;
 while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysqli_fetch_row($show)){
