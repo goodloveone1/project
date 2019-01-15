@@ -4,7 +4,7 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 	
-
+//เปลี่ยน sessionเป็น gen_id
 	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
@@ -20,7 +20,7 @@
 	// print_r($set);
 
 
- $sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score FROM tort1pre")
+ 
 
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
@@ -47,7 +47,15 @@ $y_id = $y.$loop;
 		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
+
+		//เพิ่มวันนี้
+		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score 
+		FROM tort1pre WHERE year_id='$y_id'");
+		list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
+
+
 		mysqli_free_result($reChk);
+		mysqli_free_result($sqltor1);
 ?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
