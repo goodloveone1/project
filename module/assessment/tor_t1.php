@@ -109,7 +109,6 @@ $y_id = $y.$loop;
 		list($e_name)=mysqli_fetch_row($eval);
 		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 		list($sumS)=mysqli_fetch_row($sum);
-
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
