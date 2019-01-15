@@ -50,7 +50,7 @@
 
 			<?php
 
-					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general ") or  die("SQL Error1==>1".mysql_error($con)); ;
+					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general ") or  die("SQL Error1==>1".mysql_error($con));
 					$i=1;
 
 

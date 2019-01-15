@@ -4,12 +4,7 @@ function webmenu($id){
 	switch ($id) {
 		case "1":  // ADMIN MENU
 ?>
-<div class="row ">
-	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
-</div>
-<div class="row d-flex mb-2">
-	<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ ผู้ดูแลระบบ</div>
-</div>
+
 
 			<ul class="list-group" id="menuaside">
 
@@ -63,12 +58,6 @@ function webmenu($id){
 
 		case "2": // อาจาทย์
 ?>
-		<div class="row ">
-			<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
-		</div>
-		<div class="row d-flex mb-2">
-			<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ อาจารย์ </div>
-		</div>
 
 			<ul class="list-group" id="menuaside">
 				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
@@ -124,15 +113,10 @@ function webmenu($id){
 
 		case 3: /// หัวหน้าสาขา MENU
 ?>
-<div class="row ">
-	<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
-</div>
-<div class="row d-flex mb-2">
-	<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าสาขา </div>
-</div>
+
 
 			<ul class="list-group" >
-				<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
+				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
@@ -140,7 +124,7 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
@@ -148,29 +132,15 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
+
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_asmIn">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;จัดการภาระงานของตน</span>
+						<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
 					</li>
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block bt-color">
-					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
-					</li>
-					</button>
-				</a>
-
-				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
-					<button class="btn-block bt-color">
-					<li class="list-group-item list-menu-user">
-						&nbsp;<i class="icon fas fa-info fa-3x " ></i><span class="text">&nbsp;รับทราบข้อตกลง TOR</span>
-					</li>
-					</button>
-				</a>
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
 					<button class="btn-block bt-color">
@@ -183,7 +153,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="staff" data-action="2">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินการบุคลากร</span>
+						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
 					</li>
 					</button>
 				</a>
@@ -200,12 +170,7 @@ function webmenu($id){
 			break;
 			case "4": // หัวหน้าลักสูตร MENU
 	?>
-	<div class="row ">
-		<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
-	</div>
-	<div class="row d-flex mb-2">
-		<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าลักสูตร </div>
-	</div>
+
 
 				<ul class="list-group" id="menuaside">
 					<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
@@ -269,13 +234,6 @@ function webmenu($id){
 
 			case 5: /// หัวหน้าคณะ MENU
 	?>
-	<div class="row ">
-		<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
-	</div>
-	<div class="row d-flex mb-2">
-		<div class="col-auto mx-auto flex-shrink-1 text-center">ยินดีต้อนรับ หัวหน้าคณะ </div>
-	</div>
-
 				<ul class="list-group" >
 					<a href="javascript:void(0)" class="menuuser " data-modules="staff" data-action="1" >
 						<button class="btn-block bt-color"  >

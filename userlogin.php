@@ -8,6 +8,7 @@
 
 	}
 
+
 	// $basename = "http://localhost/project/";
 
 ?>
@@ -89,6 +90,13 @@
 	</head>
 	<body id='idbody'>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
+
+			<div class="row ">
+				<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+			</div>
+			<div class="row d-flex mb-2">
+				<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ <?php echo $_SESSION['permiss_decs'] ?> </div>
+			</div>
 			<?php
 
 				switch ($_SESSION['user_level']) {
@@ -136,7 +144,7 @@
 						</button>
 
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink99">
-							<a class="dropdown-item" href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
+							<a class="dropdown-item menuuser" href="javascript:void(0)" data-modules="personnel" data-action="edituserall"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
 							<a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt  d-inline-block" ></i> ออกจากระบบ</a>
 						</div>
 					</li>
@@ -273,6 +281,10 @@
 				y.style.marginLeft = z.trim();
 			}
 		}
+
+		$(".linkedit").click(function(){
+			alert();
+		})
 
 
 
