@@ -37,7 +37,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
         echo " <td><img src='img/default/user_default.svg' width='100px' height='100px'></td>";
     }
 
-    
+
     echo " <td>$gen_fname</td>";
     echo " <td>$gen_lname</td>";
 
@@ -45,8 +45,9 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
     list($branch_name)=mysqli_fetch_row($ba);
     $sb= mysqli_query($con,"SELECT subject_name FROM subjects WHERE subject_id='$subject_id'  ") or  die("SQL Error1==>1".mysql_error($con));
     list($subject_id)=mysqli_fetch_row($sb);
-    echo " <td>$subject_id</td>";
+
     echo " <td>$branch_name</td>";
+    echo " <td>$subject_id</td>";
 
     $show2= mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$gen_id' AND tor_year='$year'") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($show2);
