@@ -162,7 +162,7 @@ $date = date("Y/m/d");
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t5")
+				loadmain("assessment","tor_t6")
 			})	
 
 </script>

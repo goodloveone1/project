@@ -427,7 +427,7 @@ $(document).ready(function() {
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t1")
+				loadmain("assessment","tor1_pretest")
 			})	
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');

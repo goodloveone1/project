@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md">
 
-			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="Indicator">
+			<a href="javascript:void(0)" class="text-center maninuser" data-modules="assessment" data-action="tor_t1">
 				<div class="col-md">
 					<i class="fas fa-user-tie fa-7x mt-3"></i>
 				</div>

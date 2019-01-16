@@ -4,7 +4,7 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 	
-//เปลี่ยน sessionเป็น gen_id
+
 	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
@@ -14,14 +14,8 @@
 	list($branchName)=mysqli_fetch_row($seBrench);
 
 	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	
-	
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
 	// print_r($set);
-
-
- 
-
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
@@ -47,22 +41,7 @@ $y_id = $y.$loop;
 		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
-
-		//เพิ่มวันนี้
-		$sqltor = mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$_SESSION[user_id]'AND tor_year='$y_id'") or die("torError".mysqli_error($con));
-		list($tor_ide)=mysqli_fetch_row($sqltor);
-		echo $tor_ide;
-//ค่าคะแนน จาก tor
-		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score 
-		FROM tort1pre WHERE year_id='$y_id' AND tor_id='$tor_ide'") or die(".mysqli($con");
-		 while (list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1)){
-			echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
-		 }
-		
-
-
 		mysqli_free_result($reChk);
-		//mysqli_free_result($sqltor1);
 ?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
@@ -116,6 +95,7 @@ $y_id = $y.$loop;
 		list($e_name)=mysqli_fetch_row($eval);
 		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 		list($sumS)=mysqli_fetch_row($sum);
+
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
 									echo "<td></td>";
