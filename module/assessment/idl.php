@@ -1,25 +1,29 @@
 <?php
+$mm=date('m');  //เดือนปัจจุบัน
+	$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+	$m="$mm";
+	$y="$yearbudget";
+	if($m<=9 && $m>3){
+			$loop=2;
+	}else{
+			$loop=1;
+	}
+	if($loop==2){
+			$y-1;
+}
 
-	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$genIdpost' AND year_id='$y_id'")or die(mysqli_error($con));
+	$y_id = $y.$loop;
+
+
+	$seldlt=mysqli_query($con,"SELECT * FROM idlel WHERE gen_id='$_SESSION[user_id]' AND year_id='$y_id'")or die(mysqli_error($con));
 	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
 
-	$mm=date('m');  //เดือนปัจจุบัน
-    $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
-    $m="$mm";
-    $y="$yearbudget";
-    if($m<=9 && $m>3){
-        $loop=2;
-    }else{
-        $loop=1;
-    }
-    if($loop==2){
-        $y-1;
-	}
 
-    $y_id = $y.$loop;
+
+
 	//echo $y_id;
 
-	// print_r($set1);
+	//print_r($set1);
 	// print_r($set2);
 ?>
 

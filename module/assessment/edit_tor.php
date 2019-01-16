@@ -22,6 +22,7 @@
     }
     $y_id = $y.$loop;
 
+
 	echo	$genIdpost = $_POST['genid'];
 	echo	$yearIdpost = $_POST['year'];
 
@@ -365,7 +366,7 @@
 			<div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;กรอกข้อมูล</button></a></div><br>
 			<?php
 			}else{
-				include("idl.php");
+				include("idl2.php");
 			}
 
 		?>

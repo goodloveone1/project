@@ -4,8 +4,8 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-	echo	$genIdpost = $_POST['genid'];
-	echo	$yearIdpost = $_POST['year'];
+	$genIdpost = $_POST['genid'];
+	$yearIdpost = $_POST['year'];
 
 
 //เปลี่ยน sessionเป็น gen_id
@@ -58,10 +58,7 @@ $y_id = $y.$loop;
 		list($tor_ide)=mysqli_fetch_row($sqltor);
 		echo $tor_ide;
 //ค่าคะแนน จาก tor
-		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score FROM tort1pre WHERE year_id='$yearIdpost' AND tor_id='$tor_ide'") or die("".mysqli_error($con));
-		 while (list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1)){
-			echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
-		 }
+
 
 
 
@@ -122,17 +119,41 @@ $y_id = $y.$loop;
 		list($e_name)=mysqli_fetch_row($eval);
 		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 		list($sumS)=mysqli_fetch_row($sum);
+
+		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score FROM tort1pre WHERE  year_id='$yearIdpost' AND tor_id='$tor_ide' AND title_name='$tit'") or die("".mysqli_error($con));
+		 list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
+			//echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
+
+
 		echo "<tr id='$tit'>";
-									echo "<td>$e_name</td>";
-									echo "<td></td>";
-									echo "<td><input type='radio' name='go$tit' value='1' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='2' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='3' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='4' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
-									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' readonly required></td>";
-									echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
-									echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
+		echo "<td>$e_name</td>";
+		echo "<td></td>";
+		$ch1= "" ;$ch2= "";$ch3= "";$ch4= "";$ch5 = "";
+			switch($tort1_goal){
+				case 1 :
+						$ch1="checked";
+				break;
+				case 2 :
+						$ch2="checked";
+				break;
+				case 3 :
+					$ch3="checked";
+				break;
+				case 4 :
+							$ch4="checked";
+				break;
+				case 5 :
+							$ch5="checked";
+				break;
+			}
+				echo "<td><input type='radio' name='go$tit' value='1' required $ch1></td>";
+				echo "<td><input type='radio' name='go$tit' value='2' required $ch2></td>";
+					echo "<td><input type='radio' name='go$tit' value='3' required $ch3></td>";
+					echo "<td><input type='radio' name='go$tit' value='4' required $ch4></td>";
+					echo "<td><input type='radio' name='go$tit' value='5' required $ch5></td>";
+				echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='$tort1_goal' size='2' readonly required></td>";
+				echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
+				echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' readonly></td>";
 		echo "</tr>";
 	}
 	mysqli_close($con);
@@ -234,7 +255,7 @@ fncSum();
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t2")
+				loadmain("assessment","manage_asmIn")
 			})
 });
 </script>
