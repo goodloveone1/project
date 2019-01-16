@@ -101,7 +101,7 @@
 
 
 	webmenu($_SESSION['user_level']);
-				
+
 
 			?>
 		</aside>
@@ -153,7 +153,7 @@
 			</div>
 			<div id='picloading' style="display: none;"><img style='display: block;margin:12% auto; ' src='img/loading.svg'></div>
 		</div>
-		<script src="https://unpkg.com/popper.js"></script>
+		<!-- <script src="https://unpkg.com/popper.js"></script> -->
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/jquery.validate.min.js" ></script>
 		<script src="js/additional-methods.min.js" ></script>

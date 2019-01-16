@@ -297,19 +297,21 @@
 					        data: formData,
 					        success: function (data) {
 					           // alert(data);
+										 	alert("บันทึกข้อมูลสำเร็จแล้ว")
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    }).done(function(){
-								alert("บันทึกข้อมูลสำเร็จแล้ว")
+					    })
+
 									//loadmain("personnel","edituserall")
-							});
-				}
+							}
+
+				})
 
 
 
-			})
+
 
 
 //เซ็ค PW CON
