@@ -30,6 +30,3 @@
         unset($_SESSION['tor_id']);
     }
 ?>
-
-
-
