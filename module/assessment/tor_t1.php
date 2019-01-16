@@ -49,13 +49,20 @@ $y_id = $y.$loop;
 		//echo $tor_ID;
 
 		//เพิ่มวันนี้
+		$sqltor = mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$_SESSION[user_id]'AND tor_year='$y_id'") or die("torError".mysqli_error($con));
+		list($tor_ide)=mysqli_fetch_row($sqltor);
+		echo $tor_ide;
+//ค่าคะแนน จาก tor
 		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score 
-		FROM tort1pre WHERE year_id='$y_id'");
-		list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
+		FROM tort1pre WHERE year_id='$y_id' AND tor_id='$tor_ide'") or die(".mysqli($con");
+		 while (list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1)){
+			echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
+		 }
+		
 
 
 		mysqli_free_result($reChk);
-		mysqli_free_result($sqltor1);
+		//mysqli_free_result($sqltor1);
 ?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
