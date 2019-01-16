@@ -296,15 +296,18 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+					           // alert(data);
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    });
+					    }).done(function(){
+								alert("บันทึกข้อมูลสำเร็จแล้ว")
+									//loadmain("personnel","edituserall")
+							});
 				}
 
-				loadmain("personnel","edituserall")
+
 
 			})
 
