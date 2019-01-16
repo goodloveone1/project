@@ -1,8 +1,8 @@
 <?php
-	// session_start();
-	// include("../../function/db_function.php");
-	// include("../../function/fc_time.php");
-	// $con=connect_db();
+	 session_start();
+	 include("../../function/db_function.php");
+	 include("../../function/fc_time.php");
+	 $con=connect_db();
 	$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
 
     $m=DATE('m');
@@ -22,7 +22,10 @@
     }
     $y_id = $y.$loop;
 
-	$tor=mysqli_query($con,"SELECT *FROM tor WHERE tor_year='$y_id'AND gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	echo	$genIdpost = $_POST['genid'];
+	echo	$yearIdpost = $_POST['year'];
+
+	$tor=mysqli_query($con,"SELECT *FROM tor WHERE tor_year='$yearIdpost'AND gen_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
     list($tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment)=mysqli_fetch_row($tor);
     // echo "<br>",$tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment;
 
@@ -40,7 +43,9 @@
 
 	// mysqli_free_result($seexp);
 ?>
-<form method="POST" id="addtor"  class="p-2" >
+<form method="POST" id="addtor"  class="p-2" action="javascript:void(0)" >
+
+	<input type="hidden" name="genid" value="<?php echo $genIdpost ?>">
     <div class="row">
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp;
@@ -350,7 +355,7 @@
 				$y-=1;
 			}
 			$y_id = $y.$loop;
-				$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$y_id' ")or die(mysqli_error($con));
+				$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$genIdpost'  AND year_id='$y_id' ")or die(mysqli_error($con));
 				$idl=mysqli_fetch_assoc($reS);
 
 			if(empty($idl)){
@@ -442,15 +447,17 @@ $(document).ready(function() {
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    });
+					    }).done(function(){
+								$.post("module/assessment/tor_t1.php",{genid:'<?php echo $genIdpost ?>',year:'<?php echo $yearIdpost ?>'}).done(function(data){
+									sessionStorage.setItem("module1","assessment");
+									sessionStorage.setItem("action","tor_t1");
+										$("#detail").html(data);
+								})
+							});
+
 				}
-				loadmain("assessment","tort1")
+
 			})
-			$("a.next").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				//alert(module1+ " "+ action )
-				//loadmain(module1,action)
-			});
+
 		});
 </script>

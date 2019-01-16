@@ -4,7 +4,8 @@ session_start();
 include("../../function/db_function.php");
 $con=connect_db();
 
-$gen_id=$_SESSION['user_id'];
+$gen_id=$_POST['genid'];
+
 $mm=date('m');  //เดือนปัจจุบัน
     $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
     $d=DATE('d');
@@ -43,13 +44,17 @@ $sum_work=$_POST['sum_work'];
 $inspector=$_POST['inspector'];
 $punishment=$_POST['punishment'];
 
-$sql="UPDATE tor SET tor_id = '$tor_id' , gen_id = '$gen_id',tor_year='$no',tor_nameRe='$name',tor_pos='$g_pos',tor_department='$dept',tor_leader='$leader',tor_leader_pos='$l_pos',tor_aca='$g_aca',tor_salary='$salary',tor_acdCode='$acd_no',tor_affiliation='$aff',tor_leves='$leves',
+$sql="UPDATE tor SET  gen_id = '$gen_id',tor_nameRe='$name',tor_pos='$g_pos',tor_department='$dept',tor_leader='$leader',tor_leader_pos='$l_pos',tor_aca='$g_aca',tor_salary='$salary',tor_acdCode='$acd_no',tor_affiliation='$aff',tor_leves='$leves',
 tor_startWork='$st_work',tor_sumWork='sum_work',inspector='$inspector',tor_punishment='$punishment' WHERE  tor_id = '$tor_id'";
-// $sql33 = "INSERT INTO  tor (tor_id,gen_id,tor_year,tor_nameRe,tor_pos,tor_department,tor_leader,tor_leader_pos,tor_aca,tor_salary,tor_acdCode,tor_affiliation,tor_leves,tor_startWork,tor_sumWork,inspector,tor_punishment) 
+
+// $sql33 = "INSERT INTO  tor1re (tor_id,gen_id,tor_year,tor_nameRe,tor_pos,tor_department,tor_leader,tor_leader_pos,tor_aca,tor_salary,tor_acdCode,tor_affiliation,tor_leves,tor_startWork,tor_sumWork,inspector,tor_punishment)" ;
 // VALUES ('$tor_id','$gen_id','$no','$name','$g_pos','$dept','$leader','$l_pos','$g_aca','$salary','$acd_no',
 //'$aff','$leves','$st_work','$sum_work','$inspector','$punishment')";
 
-$result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
+//$sql33 = "INSERT INTO  tort1 value('',$tor_id,'1')" ;
+
+$result=mysqli_query ($con,$sql) or die ("error sql1".mysqli_error($con));
+//mysqli_query($con,$sql33) or die ("error sql2".mysqli_error($con));
 echo $sql;
 $con->close();
 
