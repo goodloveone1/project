@@ -4,10 +4,12 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
+	echo	$genIdpost = $_POST['genid'];
+	echo	$yearIdpost = $_POST['year'];
 
 
 //เปลี่ยน sessionเป็น gen_id
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
@@ -21,8 +23,7 @@
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
 	// print_r($set);
 
-	echo	$genIdpost = $_POST['genid'];
-	echo	$yearIdpost = $_POST['year'];
+
 
 
 
