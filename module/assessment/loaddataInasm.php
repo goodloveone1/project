@@ -60,20 +60,20 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
     list($tor_idc2)=mysqli_fetch_row($show3);
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินแล้ว </b> </td>";
-      
+
     }else{
       echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมิน </b></td>";
     }
 
     if(empty($tor_idc2)){
-      echo " <td></a> <b class='text-danger'><a href=''> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></a></td>";
+      echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></a></td>";
     }
     else{
       echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบ  <b></td>";
-     
+
     }
-    
-   
+
+
 
     echo "</tr>";
   $i++;
@@ -86,4 +86,18 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_pict)=mysql
 </table>
 <script>
 $.getScript('js/mydatatable.js')
+$(".checktor").click(function(){
+  var gen_id = $(this).data("genid");
+  var year_id = $(this).data("year");
+
+  $.ajax({
+    url: "module/assessment/edit_tor.php",
+    data:{genid:gen_id,year:year_id},
+    type: "POST"
+  }).done(function(data){
+    $("#detail").html(data);
+  })
+
+})
+
 </script>

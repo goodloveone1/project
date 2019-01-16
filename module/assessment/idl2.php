@@ -1,6 +1,7 @@
 <?php
 
-	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$genIdpost' AND year_id='$y_id'")or die(mysqli_error($con));
+
+	$seldlt=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$genid' AND year_id='$y_id'")or die(mysqli_error($con));
 	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
 
 	$mm=date('m');  //เดือนปัจจุบัน
