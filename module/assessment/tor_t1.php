@@ -23,10 +23,6 @@
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
 	// print_r($set);
 
-
-
-
-
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
@@ -34,7 +30,6 @@
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1">
 <?php
-
 $mm=date('m');  //เดือนปัจจุบัน
 $yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
 $m="$mm";
@@ -58,13 +53,8 @@ $y_id = $y.$loop;
 		list($tor_ide)=mysqli_fetch_row($sqltor);
 		echo $tor_ide;
 //ค่าคะแนน จาก tor
-
-
-
-
 		mysqli_free_result($reChk);
 		//mysqli_free_result($sqltor1);
-
 
 ?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
@@ -80,7 +70,6 @@ $y_id = $y.$loop;
     </div>
 <p></p>
 <br>
-
 <div class="row ">
 	<div class="col-md">
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
@@ -107,7 +96,6 @@ $y_id = $y.$loop;
 <th >๕</th>
 </tr>
 <?php
-
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -137,13 +125,13 @@ $y_id = $y.$loop;
 						$ch2="checked";
 				break;
 				case 3 :
-					$ch3="checked";
+						$ch3="checked";
 				break;
 				case 4 :
-							$ch4="checked";
+						$ch4="checked";
 				break;
 				case 5 :
-							$ch5="checked";
+						$ch5="checked";
 				break;
 			}
 				echo "<td><input type='radio' name='go$tit' value='1' required $ch1></td>";
@@ -255,7 +243,7 @@ fncSum();
 					        processData: false
 					    });
 				}
-				loadmain("assessment","manage_asmIn")
+				loadmain("assessment","tor_t2");
 			})
 });
 </script>

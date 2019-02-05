@@ -5,15 +5,14 @@ $con=connect_db();
 ?>
 <div class="row">
 	<div class="col-md p-1">
-		<h2 class="headtitle p-2 text-center"> ข่าวประชาสัมพันธ์ </h2>
+		<h2 class="headtitle p-2 text-center">ข่าวประชาสัมพันธ์</h2>
 		<div class="list-group" id='testna'>
 			<?php
 				$re = mysqli_query($con,"SELECT re_title,re_detail,re_date,gen_id FROM relations ORDER BY 	re_date DESC");
 				$n=1;
 				while (list($re_title,$re_detail,$re_date,$gen_id)=mysqli_fetch_row($re)) {
-				$gen = mysqli_query($con,"SELECT gen_fname,gen_lname FROM general WHERE gen_id = '$gen_id'");
-				list($name,$lname) = mysqli_fetch_row($gen);
-					
+				$gen = mysqli_query($con,"SELECT fname,lname FROM staffs WHERE st_id = '$gen_id'");
+				list($name,$lname) = mysqli_fetch_row($gen);	
 				if($n <= 3){
 			?>
 			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -36,7 +35,7 @@ $con=connect_db();
 				<small><?php echo "เผยแพร่เมื่อ ".DateThai($re_date)." โดย $name $lname" ?>  </small>
 			</a>
 			<?php
-			}  // END IF
+			}   // END IF
 			$n++;
 			}   // END WHILE
 			mysqli_free_result($re);

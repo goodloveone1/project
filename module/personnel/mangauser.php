@@ -50,29 +50,26 @@
 
 			<?php
 
-					$show= mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,branch_id,subject_id FROM general WHERE permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
+					$show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id FROM staffs WHERE permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
 					$i=1;
-
-
-						while(list($gen_id,$gen_fname,$genlname,$branch_id,$subject_id)=mysqli_fetch_row($show)){
-							$Sbrach=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
-								list($Sbranch_id,$branch_name)=mysqli_fetch_row($Sbrach);
-							$subjects=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$subject_id'") or die ("mysql error=>>".mysql_error($con));
-							list($Ssubject_id,$subject_name,$branch_id)=mysqli_fetch_row($subjects);
+						while(list($st_id,$fname,$lname,$branch_id)=mysqli_fetch_row($show)){
+							$Sbrach=mysqli_query($con,"SELECT br_id,br_name,dept_id FROM branchs WHERE br_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
+							list($Sbranch_id,$branch_name,$dept_id)=mysqli_fetch_row($Sbrach);
+							$sdept=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die("dept_error".mysqli_error($con));
+							list($dept_name)=mysqli_fetch_row($sdept);
 						echo"
-							<tr>		<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$gen_id' $ch></div></td>
+							<tr>		<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$st_id' $ch></div></td>
 										<td>$i</td>
-										<td>$gen_fname</td>
-										<td>$genlname</td>
+										<td>$fname</td>
+										<td>$lname</td>
+										<td>$dept_name</td>
 										<td>$branch_name</td>
-										<td>$subject_name</td>
-										<td><a href='javascript:void(0)' class='managaedituser' data-modules='personnel' data-action='edituser' data-iduser='$gen_id'><i class='fas fa-edit fa-2x '></i></a></td>
-										<td><a href='javascript:void(0)'  class='deluser' data-iduser='$gen_id' data-nuser='$gen_fname $genlname'><i class='fa fa-trash fa-2x'</i></a></td>
+										<td><a href='javascript:void(0)' class='managaedituser' data-modules='personnel' data-action='edituser' data-iduser='$st_id'><i class='fas fa-edit fa-2x '></i></a></td>
+										<td><a href='javascript:void(0)'  class='deluser' data-iduser='$st_id' data-nuser='$fname $lname'><i class='fa fa-trash fa-2x'</i></a></td>
 									";
 							$i++;
 							$Sbrach->free_result();
-							$subjects->free_result();
-
+							
 							}
 							$show->free_result();
 							$con->close();
