@@ -45,8 +45,8 @@ else{
 
 //echo "รูปเดิม =", $_POST['old_pic'];
 //echo"รูปใหม่= $updete_photo";
-$update="UPDATE general SET gen_id='$_POST[gen_id]',gen_user='$_POST[uname]',gen_pass='$_POST[passwd]',branch_id='$_POST[brn]',subject_id='$_POST[suj]',gen_code='$_POST[codeid]',gen_prefix='$_POST[titlename]',gen_fname='$_POST[name]',gen_lname='$_POST[lname]',
-gen_salary=' $_POST[salary]',gen_acadeic='$_POST[ap]',level_id='$_POST[level_id]',gen_startdate='$_POST[gen_startdate]',permiss_id='$_POST[permiss]',gen_pos='$_POST[pos]'$updete_photo WHERE  gen_id='$_POST[gen_id]'";
+$update="UPDATE staffs SET st_id='$_POST[gen_id]',user='$_POST[uname]',pwd='$_POST[passwd]',branch_id='$_POST[brn]',code='$_POST[codeid]',prefix='$_POST[titlename]',fname='$_POST[name]',lname='$_POST[lname]',
+salary=' $_POST[salary]',acadeic='$_POST[ap]',levels='$_POST[level_id]',startdate='$_POST[gen_startdate]',permiss_id='$_POST[permiss]',position='$_POST[pos]'$updete_photo WHERE  st_id='$_POST[gen_id]'";
 
 echo $update;
 mysqli_query($con,$update)or die("SQL Error=>".mysqli_error($con));

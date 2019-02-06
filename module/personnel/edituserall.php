@@ -5,8 +5,8 @@
 
 
 	$gen_id=$_SESSION['user_id'];
-	$selectA=mysqli_query($con,"SELECT * FROM general WHERE gen_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
-	list($gen_id,$gen_user,$gen_pass,$branch_id,$sub_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
+	$selectA=mysqli_query($con,"SELECT * FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
+	list($gen_id,$gen_user,$gen_pass,$branch_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
 	$userphoto=empty($gen_pict)?"default/user_default.svg":$gen_pict;
 ?>
@@ -99,10 +99,10 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects ") or die ("error".mysqli_error($con));
+						$result=mysqli_query ($con,"SELECT  br_id,br_name,dept_id FROM branchs ") or die ("error".mysqli_error($con));
 
 						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
-						 	$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
+						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
 
 							$seP=$sub_id==$subject_ID?"selected":"";
