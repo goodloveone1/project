@@ -37,7 +37,7 @@ $con=connect_db();
         var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
         if (r == true) {
             $.post( "module/personnel/adddatasubject.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
-                //alert(data);
+                alert(data);
                 $('#addsub').modal("hide")
 
                 $('#addsub').on('hidden.bs.modal', function (e) {

@@ -25,10 +25,10 @@ $con=connect_db();
     </thead>
     <tbody>
         <?php
-        $result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
+        $result=mysqli_query ($con,"SELECT  br_id,br_name,dept_id FROM branchs") or die ("error1".mysqli_error($con));
         $i=1;
         while(list($subject_id,$subject_name,$branch)=mysqli_fetch_row($result)){
-        $branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch'") or die ("errorSQL".mysqli_error($con));
+        $branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$branch'") or die ("errorDept".mysqli_error($con));
         list($branch_name)=mysqli_fetch_row($branch);
         echo"
         <tr>
@@ -63,7 +63,7 @@ $con=connect_db();
 <script>
 
 
-    $.getScript('js/mydatatable.js', function(data, textStatus) {  // load datatable
+    $.getScript('js/mydatatable.js');
 
          $("#Datatable").on('click', '.editbrn', function(event) {
         var ideditsub =$(this).data("ideditsub");
@@ -93,7 +93,6 @@ $con=connect_db();
 
 
 
-    });
        $("#addbrn").click(function( ){
             $('#loadaddsub').load("module/personnel/addbranch.php",function(){
                 $('#addsub').modal('show');

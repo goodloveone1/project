@@ -6,7 +6,6 @@
     <div class="col-lg-2" >
        <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
-
     <div class="col-lg">
         <h2>จัดการสาขา</h2>
     </div>
@@ -25,14 +24,14 @@
     </thead>
 <tbody>
 <?php
-    $Sbranch=mysqli_query($con,"SELECT *FROM branch") or die("errorSQLselect".mysqli_error($con));
+    $Sbranch=mysqli_query($con,"SELECT *FROM departments") or die("errorSQLselect".mysqli_error($con));
     $no=1;
     while(list($branch_ID,$branch_Name)=mysqli_fetch_row($Sbranch)){
         echo"
             <tr>
                 <td>$no</td>
                 <td>$branch_Name</td>
-                <td><a href='javascript:void(0)'class='editbrn' data-ideditsub='$branch_ID' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)'class='edit' data-ideditsub='$branch_ID'  ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='javascript:void(0)' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
@@ -47,17 +46,13 @@
 <script>
      $.getScript('js/mydatatable.js');
 
-
-//     $('#tablebranch').DataTable();
-
-
-    $(".editbrn").click(function( ){
+     $("#Datatable").on('click', '.edit', function(event) {
         var ideditsub = $(this).data("ideditsub");
 
         $.post("module/personnel/editsubject.php", { id : ideditsub }).done(function(data){
-            $.when($('#loadeditsub').html(data)).done(function(){
+            $('#loadeditsub').html(data)
                  $('#editsub').modal('show');
-            })
+            
         })
     });
 
@@ -67,10 +62,11 @@
 
             var r = confirm("ต้องการลบสาขา "+branchname+" ใช่หรือไม่?");
             if (r == true) {
+               
                 $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
-
+                    alert(data)
                     loadmain(module1,action);
                     })
             }

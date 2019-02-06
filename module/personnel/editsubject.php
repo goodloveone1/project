@@ -5,7 +5,7 @@
 ?>
 
 <?php
-    $result=mysqli_query($con,"SELECT branch_id,branch_name FROM branch WHERE branch_id='$_POST[id]'") or die ("mysql error=>>".mysql_error($con));
+    $result=mysqli_query($con,"SELECT dept_id,dept_name FROM departments WHERE dept_id='$_POST[id]'") or die ("mysql error=>>".mysql_error($con));
     list($branch_id,$branch_name)=mysqli_fetch_row($result);
     mysqli_free_result($result);
     mysqli_close($con);
@@ -32,7 +32,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary text-white" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-success" id="updatebsu">บันทึก</button>
+                    <button type="button" class="btn btn-success" id="updatesu">บันทึก</button>
                 </div>
             </div>
         </div>
@@ -42,8 +42,8 @@
 <script type="text/javascript">
 
 $("#updatesu").click(function(event) {
-    var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
-    if (r == true) {
+    // var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
+    // if (r == true) {
         $.post( "module/personnel/updatesubject.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
             // alert(data);
          });
@@ -55,6 +55,6 @@ $("#updatesu").click(function(event) {
             var action = sessionStorage.getItem("action");
            loadmain(module1,action);
         })
-    }
+    //}
 });
 </script>

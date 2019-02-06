@@ -7,7 +7,7 @@ $con=connect_db();
 
 $s_id = empty($_POST['id'])?'':$_POST['id'];
 // echo "text s_id =".$s_id;
-$result=mysqli_query($con,"SELECT subject_id,subject_name,branch_id FROM subjects WHERE subject_id='$s_id'") or die ("mysql error=>>".mysql_error($con));
+$result=mysqli_query($con,"SELECT br_id,br_name,dept_id FROM branchs WHERE br_id='$s_id'") or die ("mysql error=>>".mysql_error($con));
 list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
 
 ?>
@@ -31,7 +31,7 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                         <label > ชื่อสาขาวิชา :</label>
                         <select class="form-control" name="branch">
                             <?php
-                                $selectB=mysqli_query($con,"SELECT branch_id,branch_name FROM branch") or die ("mysql error=>>".mysql_error($con));
+                                $selectB=mysqli_query($con,"SELECT  *FROM departments") or die ("Dept sql error=>>".mysql_error($con));
                                 while(list( $branch_ID,$branch_name)=mysqli_fetch_row($selectB)){
                                 $select=$branch_ID==$branch_id?"selected":"";
                                 echo "<option value=$branch_ID $select>$branch_name</option>";
