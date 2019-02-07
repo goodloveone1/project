@@ -75,33 +75,33 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
-				<div class="col-md">
-					<select class="form-control" id="selectbrn" name="brn" >
-						<?php
-						$result=mysqli_query($con,"SELECT * FROM branch ") or die ("errorSQL".mysqli_error($con));
-						while(list($branch_id,$branch_name)=mysqli_fetch_row($result)){
-						echo "<option value='".$branch_id."' data-idbrn='".$branch_id."' data-nbrn='".$branch_name."'>$branch_name</option>";
-						}
-						?>
-
-					</select>
-				</div>
-			</div>
-			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  subject_id,subject_name,branch_id FROM subjects") or die ("error".mysqli_error($con));
-						while(list($subject_id,$subject_name,$idbranch)=mysqli_fetch_row($result)){
-						$branch=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='1'") or die ("errorSQL".mysqli_error($con));
-						list($branch_name)=mysqli_fetch_row($branch);
-							echo "<option value='".$subject_id."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'>$subject_name</option>";
-						mysql_free_result($branch);
-						}
-						mysql_free_result($result);
+						$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
+
+						 while(list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result)){
+						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
+        					list($branch_name)=mysqli_fetch_row($branch);
+
+							$seP=$br_id ==$subject_ID?"selected":"";
+
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$dept_id."' data-nbrn='".$branch_name."'$seP>$subject_name </option>";
+
+						 	$branch->free_result();
+						 }
+						 $result->free_result();
 						?>
+
+					</select>
+						
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา  <?php  ?></label>
+				<div class="col-md">
+					<select class="form-control" id="selectbrn" name="brn">
 
 					</select>
 				</div>
@@ -315,12 +315,7 @@
 
 						    	loadingpage("personnel","mangauser");
 
-
 						    })
-
-
-
-
 						}else{
 							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
 						}
@@ -347,7 +342,19 @@
 
 		})
 
+		selectsuj();
 
+
+
+function selectsuj(){
+	var $idbrn = $("#selectsuj option:selected").data('idbrn');
+	var $nbrn = $("#selectsuj option:selected").data('nbrn');
+	$("#selectbrn").html("<option value='"+$idbrn+"'>"+$nbrn+"</option>")
+}
+
+$("#selectsuj").change(function() {
+	selectsuj();
+});
 
 
 

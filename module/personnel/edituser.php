@@ -5,7 +5,7 @@
 
 	$gen_id=$_POST['id'];
 	$selectA=mysqli_query($con,"SELECT * FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
-	list($gen_id,$gen_user,$gen_pass,$branch_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
+	list($gen_id,$gen_user,$gen_pass,$br_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
 
 	$userphoto=empty($gen_pict)?"default/user_default.svg":$gen_pict;
 ?>
@@ -41,7 +41,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
 					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $gen_pict ?>" hidden>
-					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $gen_prefix ?>" required>
+					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $gen_prefix ?>" id="staticEmail" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -98,15 +98,15 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  br_id,br_name,dept_id FROM branchs ") or die ("error".mysqli_error($con));
+						$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
 
-						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
-						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
+						 while(list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result)){
+						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
 
-							$seP=$sub_id==$subject_ID?"selected":"";
+							$seP=$br_id ==$subject_ID?"selected":"";
 
-						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$dept_id."' data-nbrn='".$branch_name."'$seP>$subject_name </option>";
 
 						 	$branch->free_result();
 						 }
@@ -114,11 +114,11 @@
 						?>
 
 					</select>
-
+						
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา  <?php  ?></label>
 				<div class="col-md">
 					<select class="form-control" id="selectbrn" name="brn">
 
@@ -168,7 +168,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required id="showconPW">
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>"  id="showconPW" required>
 					<div class="form-check">
 					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()">
 					  <label class="form-check-label" for="defaultCheck2">
@@ -263,15 +263,7 @@
 	        paging: false
 	    } );
 	}
-
-
-
-
-
 			selectsuj();
-
-
-
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');
 				var $nbrn = $("#selectsuj option:selected").data('nbrn');
@@ -281,7 +273,6 @@
 			$("#selectsuj").change(function() {
 				selectsuj();
 			});
-
 
 			$("#edituser").submit(function(){
 
@@ -301,15 +292,24 @@
 					        contentType: false,
 					        processData: false
 					    });
+						loadmain("personnel","mangauser")
 				}
 
-				loadmain("personnel","mangauser")
+			
 
 			})
-
+			$.extend($.validator.messages, {
+required: "This field is required.",
+remote: "Please fix this field.",
+name: "Please enter your name.",
+name: {
+required: "Please enter your name."
+}
+})
 
 //เซ็ค PW CON
 $('#edituser').validate({ // initialize the plugin
+								
 						        rules: {
 						            passwd: {
 						                required: true,
@@ -342,7 +342,7 @@ $('#edituser').validate({ // initialize the plugin
         var iddegree =$(this).data("iddegree");
 
 	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
-				// alert(data);
+				alert(data);
 	        $('#editD').html(data);
 	         $('#editsub').modal('show');
 	        })

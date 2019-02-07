@@ -1,4 +1,4 @@
-capacity<?php
+<?php
 	session_start();
 
 	$user = $_POST['user'];
@@ -17,14 +17,7 @@ capacity<?php
 	$permiss=mysqli_query ($con,"SELECT permiss_decs FROM  permissions WHERE permiss_id='$level'" )or die (" permissions erro=> ".mysqli_error($con));
 	list($permiss_decs) = mysqli_fetch_row($permiss);
 
-	// $branch=mysqli_query ($con,"SELECT 	branch_name FROM  branch WHERE 	branch_id='$branch_id'" )or die (" permissions erro=> ".mysqli_error($con));
-	// list($branch_name) = mysqli_fetch_row($branch);
-	//
-	// $subject=mysqli_query ($con,"SELECT subject_name FROM  subjects WHERE subject_id='$subject_id'" )or die (" permissions erro=> ".mysqli_error($con));
-	// list($subject_name) = mysqli_fetch_row($subject);
-
-		if($user==$username && $pw==$passwd)
-		{
+		if($user==$username && $pw==$passwd){
 				$_SESSION['user_id'] = $st_id;
 				$_SESSION['valid_user']=$username;
 				$_SESSION['user_level']=$level;
@@ -35,31 +28,32 @@ capacity<?php
 				// $_SESSION['subject_id']=$subject_id;
 
 
-				if($_SESSION['user_level']=="1")
-				{
-					echo "<script>window.location='userlogin'</script>";
-					//echo"admin";
-				}
-				elseif($_SESSION['user_level']=="2")
-				{
-					echo "<script>window.location='userlogin'</script>";
-					//echo"อาจารย์/บุคลากรทั้วไป";
-				}
-				elseif($_SESSION['user_level']=="3")
-				{
-					echo "<script>window.location='userlogin'</script>";
-					//echo"หัวหน้าหลักสูตร์";
-				}
-				elseif($_SESSION['user_level']=="4")
-				{
-					echo "<script>window.location='userlogin'</script>";
-					//echo"หน้าน้าสาขา";
-				}
-				elseif($_SESSION['user_level']=="5")
-				{
-					echo "<script>window.location='userlogin'</script>";
-				//	echo"หัวหน้าคณะ";
-				}
+				// if($_SESSION['user_level']=="1")
+				// {
+				// 	// echo "<script>window.location='userlogin'</script>";
+				// 	echo"admin";
+				// }
+				// elseif($_SESSION['user_level']=="2")
+				// {
+				// 	// echo "<script>window.location='userlogin'</script>";
+				// 	echo"อาจารย์/บุคลากรทั้วไป";
+				// }
+				// elseif($_SESSION['user_level']=="3")
+				// {
+				// 	// echo "<script>window.location='userlogin'</script>";
+				// 	echo"หัวหน้าหลักสูตร์";
+				// }
+				// elseif($_SESSION['user_level']=="4")
+				// {
+				// 	// echo "<script>window.location='userlogin'</script>";
+				// 	echo"หน้าน้าสาขา";
+				// }
+				// elseif($_SESSION['user_level']=="5")
+				// {
+				// 	// echo "<script>window.location='userlogin'</script>";
+				// 	echo"หัวหน้าคณะ";
+				// }
+				echo "<script>window.location='userlogin'</script>";
 		 }
 		 else
 			 {

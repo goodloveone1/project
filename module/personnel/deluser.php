@@ -9,7 +9,7 @@ if(!empty($_POST['id']))
 
    $gen_id = $_POST['id'];
     
-    $selecUser=mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,gen_pict FROM general WHERE gen_id='$gen_id'") or die("sqlError".mysqli_error($con));
+    $selecUser=mysqli_query($con,"SELECT st_id,fname,lname,picture FROM staffs WHERE st_id='$gen_id'") or die("sqlError".mysqli_error($con));
     list($gen_id,$gen_fname,$gen_lname,$gen_pict)=mysqli_fetch_row($selecUser);
     $msg="ลบข้อมูลบุคลากรชือ $gen_fname $gen_lname เรียบร้อยแล้ว";
 
@@ -21,7 +21,7 @@ if(!empty($_POST['id']))
 		
 		}
 
-  $sqldel = "DELETE FROM general WHERE gen_id = $gen_id";
+  $sqldel = "DELETE FROM staffs WHERE st_id = $gen_id";
   
   mysqli_query ($con,$sqldel) or die ("error".mysqli_error($con));
   echo $msg;
@@ -36,7 +36,7 @@ else{
   $del_id=$_POST['delid'];
   //print_r($del_id);
   foreach($del_id as $id ){
-    $selecUser=mysqli_query($con,"SELECT gen_id,gen_fname,gen_lname,gen_pict FROM general WHERE gen_id='$id'") or die("sqlError".mysqli_error($con));
+    $selecUser=mysqli_query($con,"SELECT st_id,fname,lname,picture FROM staffs WHERE st_id='$id'") or die("sqlError".mysqli_error($con));
     list($gen_id,$gen_fname,$gen_lname,$gen_pict)=mysqli_fetch_row($selecUser);
     
     if(!empty($gen_pict)){
@@ -48,7 +48,7 @@ else{
       }
   
       
-          $sql="DELETE FROM general WHERE gen_id='$id'";
+          $sql="DELETE FROM staffs WHERE st_id='$id'";
           mysqli_query($con,$sql)or die ("erroe=>".mysqli_error($con));
           $msg="ลบข้อมูลบุคลากรชือ $gen_fname $gen_lname เรียบร้อยแล้ว\n";
           echo $msg;

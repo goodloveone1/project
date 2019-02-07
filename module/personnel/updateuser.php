@@ -45,7 +45,7 @@ else{
 
 //echo "รูปเดิม =", $_POST['old_pic'];
 //echo"รูปใหม่= $updete_photo";
-$update="UPDATE staffs SET st_id='$_POST[gen_id]',user='$_POST[uname]',pwd='$_POST[passwd]',branch_id='$_POST[brn]',code='$_POST[codeid]',prefix='$_POST[titlename]',fname='$_POST[name]',lname='$_POST[lname]',
+$update="UPDATE staffs SET st_id='$_POST[gen_id]',user='$_POST[uname]',pwd='$_POST[passwd]',branch_id='$_POST[suj]',code='$_POST[codeid]',prefix='$_POST[titlename]',fname='$_POST[name]',lname='$_POST[lname]',
 salary=' $_POST[salary]',acadeic='$_POST[ap]',levels='$_POST[level_id]',startdate='$_POST[gen_startdate]',permiss_id='$_POST[permiss]',position='$_POST[pos]'$updete_photo WHERE  st_id='$_POST[gen_id]'";
 
 echo $update;
