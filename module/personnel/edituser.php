@@ -193,6 +193,7 @@
 					</select>
 				</div>
 			</div>
+			
 			</div>
 			<div class="form-group col-md-12 border rounded p-2" >
 				<label for="" class="col-md-2 col-form-label center">วุฒิการศึกษา</label>

@@ -19,13 +19,16 @@
 
 	$y_id = $y.$loop;
 
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	$seaca=mysqli_query($con,"SELECT acadeic,prefix,fname,lname,position,branch_id,salary,startdate FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
-	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
-	list($branchName)=mysqli_fetch_row($seBrench);
+	$seBrench=mysqli_query($con,"SELECT br_name,dept_id FROM branchs WHERE br_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
+	list($branchName,$dept_id)=mysqli_fetch_row($seBrench);
+
+	$seDept=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'")or die("DeptError".mysqli_error($con));
+	list($dept_name)=mysqli_fetch_row($seDept);
 
 	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
@@ -119,11 +122,11 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required readonly>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-		<select class="form-control" name="g_pos">
+		<select class="form-control" name="g_pos" disabled>
 		<?php 
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
@@ -137,7 +140,7 @@
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $branchName?>" name="dept">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $branchName?>" name="dept" readonly>
 		</div>
 	</div>
 </div>
@@ -146,17 +149,34 @@
 <div class="col-md">
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
+		<?php  
+			$led_name = "";
+			if($gen_pos == 1){
+				$led_pos = "2";
+				//$led_name="หัวหน้าหลักสูตร";
+			}
+			else if($gen_pos == 2){
+				$led_pos = "3";
+				//$led_name="หัวหน้าสาขา";
+			}
+			else {
+				$led_pos = "4";
+				//$led_name="หัวหน้าคณะ";
+			}
+			$re_leader = mysqli_query($con,"SELECT fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
+			list($led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
+		?>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="leader" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="leader" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-		<select class="form-control" name="l_pos">
+		<select class="form-control" name="l_pos" disabled >
 		<?php 
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
-			// $select=$pos_id==$gen_pos?"selected":"";
-			echo "<option value=$pos_id>$pos_name</option>";
+			$select=$pos_id==$led_post?"selected":"";
+			echo "<option value=$pos_id $select>$pos_name</option>";
 			}
 		?>
 		</select>
@@ -207,7 +227,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="" required>
+		      <input type="text" class="form-control" id="inputEmail3" value="คณะ<?php echo $dept_name   ?>" placeholder="" required readonly>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -224,12 +244,12 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" required>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" required readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-			  <select class="form-control" name="g_aca">
+			  <select class="form-control" name="g_aca" disabled>
 			  <?php   
 			  	$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
 				  while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
@@ -250,7 +270,7 @@
 		 	<label  class="col-sm-2 col-form-label">ตำแหน่งบริหาร</label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-			  <select class="form-control" name="">
+			  <select class="form-control" name="" disabled>
 				<?php 
 					$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 					while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
@@ -263,7 +283,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $gen_salary  ?>" name="salary" required>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $gen_salary  ?>" name="salary" required readonly>
 		    </div> 
 		    <label  class="col-sm-1 col-form-label">บาท </label> 
 	</div>
@@ -278,7 +298,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $branchName?>">
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $branchName?>" readonly>
 		    </div>    
 	</div>
 	</div>	

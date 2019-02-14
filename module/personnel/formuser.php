@@ -50,6 +50,13 @@
 				</div>
 			</div>
 			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label" >เลขที่ประจำตำแหน่ง</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"   placeholder="เลขที่ประจำตำแหน่ง"  name="aca_code" maxlength="13" required>
+				</div>
+			</div>
+			
+			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
 					<select class="form-control"  name="pos">
@@ -110,6 +117,19 @@
 				<label for="วันเริ่มทำงาน" class="col-md-2 col-form-label">วันเริ่มทำงาน</label>
 				<div class="col-md-10">
 					<input type="date" class="form-control" min="0"  placeholder="วันเริ่มทำงาน" name="startwork" required>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="วันเริ่มทำงาน" class="col-md-2 col-form-label">หน้าที่พิเศษ</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control"   placeholder="หน้าที่พิเศษ" name="leves" required>
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label for="salary" class="col-md-2 col-form-label">มาช่วยราชการจากที่ใด (ถ้ามี)</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control"   placeholder="มาช่วยราชการจากที่ใด (ถ้ามี)" name="other" required>
 				</div>
 			</div>
 			<div class="form-group row">
