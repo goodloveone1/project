@@ -19,8 +19,8 @@
 
 	$y_id = $y.$loop;
 
-	$seaca=mysqli_query($con,"SELECT acadeic,prefix,fname,lname,position,branch_id,salary,startdate FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
+	$seaca=mysqli_query($con,"SELECT acadeic,prefix,fname,lname,position,branch_id,salary,startdate,leves,aca_code,other FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate,$leves,$aca_code,$other)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
@@ -294,7 +294,7 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" name="acd_no" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="acd_no" value="<?php echo$aca_code ?>"  readonly>
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
@@ -308,11 +308,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" name="aff" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="leves" value="<?php echo $leves  ?>"  readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="" name="leves" required>
+		      <input type="text" class="form-control" id="" placeholder="" name="other" value="<?php echo $other?>" readonly>
 		    </div>    
 	</div>
 	</div>	

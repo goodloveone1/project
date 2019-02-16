@@ -51,7 +51,7 @@ $gen_id=$y_id.$m.$min.$sumID+1;
 
 
 
-$sql = "INSERT INTO staffs (st_id,user,pwd,branch_id,code,prefix,fname,lname,salary,acadeic,levels,startdate,permiss_id,position,picture,aca_code,other) VALUES ('$gen_id','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','$_POST[leves]','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."','$_POST[aca_code]','$_POST[other]')";
+$sql = "INSERT INTO staffs (st_id,user,pwd,branch_id,code,prefix,fname,lname,salary,acadeic,leves,startdate,permiss_id,position,picture,aca_code,other) VALUES ('$gen_id','".$_POST['uname']."','".$_POST['passwd']."','".$_POST['suj']."','".$_POST['codeid']."','".$_POST['titlename']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['salary']."','".$_POST['ap']."','$_POST[leves]','".$_POST['startwork']."','".$_POST['permiss']."','".$_POST['pos']."','".$imgname."','$_POST[aca_code]','$_POST[other]')";
 
 echo $sql;
 mysqli_query($con,$sql ) or  die ("staffs error=>>".mysql_error($con));
