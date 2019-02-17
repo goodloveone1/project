@@ -4,9 +4,9 @@
 	$con=connect_db();
 ?>
 <div class="row  p-2 headtitle">
-	<div class="col-md-2" style="display: block;"><button type="button" class="btn bg-white btn-block  menuuser"  data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button>
-
-</div>
+	<div class="col-md-2" style="display: block;">
+		<!-- <button type="button" class="btn bg-white btn-block  menuuser"  data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i> ย้อนกลับ</button> -->
+	</div>
 
 <div class="col-md text-center">
 	<h2> จัดการบุคลากร </h2>

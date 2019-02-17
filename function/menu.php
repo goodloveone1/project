@@ -8,7 +8,7 @@ function webmenu($id){
 
 			<ul class="list-group" id="menuaside">
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" data-toggle="tooltip" title="หน้าหลัก">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-lg" ></i><span class="text">  หน้าหลัก</span>
@@ -23,21 +23,21 @@ function webmenu($id){
 					</li>
 					</button>
 				</a> -->
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" data-toggle="tooltip" title="จัดการบุคลากร">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" >
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
 					</li>
 					</button>
 				</a> 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managesubject" data-toggle="tooltip" title="จัดการสาขา">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managesubject" >
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการสาขา</span>
 					</li>
 					</button>
 				</a> 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managebranch"  data-toggle="tooltip" title="จัดการหลักสูตร">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managebranch"  >
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการหลักสูตร</span>

@@ -4,13 +4,13 @@
     $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
-    <div class="col-lg-2" >
-       <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+    <div class="col-md-3" >
+       <!-- <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" id="backpage" data-modules="personnel" data-action="menumanage"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a> -->
     </div>
-    <div class="col-lg">
+    <div class="col-md">
         <h2>จัดการวุฒิการศึกษา</h2>
     </div>
-    <div class="col-lg-2">
+    <div class="col-md-3">
         <a href="javascript:void(0)"><button type="button" class="btn btn-block btn-light" id="addbrn" ><i class="fas fa-plus"></i>&nbsp;เพิ่มวุฒิการศึกษา</button></a>
     </div>
 </div>
