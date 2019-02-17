@@ -22,7 +22,7 @@ $con->close();
                     </button>
                 </div>
                 <div class="modal-body">
-                   
+
                     <div class="form-group">
                         <label > หัวเรื่อง :</label>
                          <input type="text"   class="form-control" value="<?php echo $re_title ?>" placeholder="หัวเรื่อง" name="title" size=40 require>
@@ -38,7 +38,7 @@ $con->close();
                     </div>
 
                     <input type="hidden" name="re_id" value="<?php echo $re_id ?>">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -51,7 +51,7 @@ $con->close();
 <script type="text/javascript">
 
     $("#addsu").click(function(event) {
-        var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
+        var r = confirm("คุณต้องการแก้ไขข้อมูลใช่ไหม?");
         if (r == true) {
             $.post( "module/public_relations/updatere.php", $("#formeditre").serialize()).done(function(data,txtstuta){
                 alert(data);
@@ -64,11 +64,11 @@ $con->close();
                  loadmain(module1,action);
                 })
              })
-            
-           
-            
-        } 
 
-       
+
+
+        }
+
+
     });
 </script>
