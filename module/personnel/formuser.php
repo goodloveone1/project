@@ -13,14 +13,21 @@
 </div>
 <form method="POST"  enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="card">
 				<img class="card-img-top img-thumbnail" src="img/default/user_default.svg" id="showpic" alt="Card image cap">
 
 				<div class="card-body text-center">
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<input type="file" name="pic" class="form-control  btn" >
-					</div>
+						
+					</div> -->
+					<div class="form-group row">
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" accept="image/*">
+						<label class="custom-file-label" name="pic" >เลือกรูปภาพ</label>
+						</div>
+					</div> 
 				</div>
 			</div>
 		</div>
@@ -139,20 +146,20 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-md-2 col-form-label">ชื่อผู้ใช้</label>
+				<label for="" class="col-md-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-md-10">
 					<input type="text" class="form-control"  placeholder="Username" name="uname" required >
 					<span id='showtxtuser'></span>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-md-2 col-form-label">รหัสผ่าน</label>
+				<label for="" class="col-md-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-md-10">
 					<input type="Password" class="form-control"  placeholder="Password" name="passwd" id="passwd" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-md-2 col-form-label">ยืนยันรหัสผ่าน</label>
+				<label for="" class="col-md-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-md-10">
 					<input type="Password" class="form-control"  placeholder="Password" name="passwdv" required>
 				</div>
@@ -164,40 +171,38 @@
 						<?php
 							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
 							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
-								echo "<option value='".$permissid."'>$permissname</option>";
+								echo "<option value='$permissid'>$permissname</option>";
 							}
 							mysqli_free_result($permiss);
 
-							mysql_close($con);
+						
 						?>
 					</select>
 				</div>
 			</div>
 
 		</div>
-		<div class="col-md-12"> 		<!-- >ปริญญาตรี -->
-		<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
-			<div class="col-sm-12" >
-				<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญา</label>
-			</div>
 
-			<span class="col-md-12">
-				<div class='row'>
-
-					<div class="col-md">
-						<button type="button" class="btn btn-secondary adddegree1 btn-block">เพิ่ม</button>
-					</div>
-					<div class="col-md">
-						<button type="button" class="btn btn-secondary cleardegree1 btn-block">CLEAR</button>
-					</div>
+		<div class="col-md-12"> 		<!--  ปริญญาตรี  -->
+			<div class="form-group row p-1 pb-2 m-1" style="border: solid 2px;border-radius: 25px;">
+				<div class="col-sm-12" >
+					<label for="staticEmail" class="col-sm-12 col-form-label">ปริญญา</label>
 				</div>
-				<ul class="loaddegree list-group"></ul>
-
-
-		</span>
-	</div>
-	</div> <!-- > END ปริญญาตรี -->
-	<br>
+				<span class="col-md-12">
+					<div class='row'>
+						<div class="col-md">
+							<button type="button" class="btn btn-secondary adddegree1 btn-block">เพิ่ม</button>
+						</div>
+						<div class="col-md">
+							<button type="button" class="btn btn-secondary cleardegree1 btn-block">CLEAR</button>
+						</div>
+					</div>
+					<ul class="loaddegree list-group"></ul>
+				</span>
+			</div>
+		</div>  <!--END ปริญญาตรี -->
+</div>
+	<br> 
 <div class="col-md-12 row mt-2">
 <div class="col-md-5"></div>
 <div class="col-md">
@@ -205,13 +210,23 @@
 </div>
 <div class="col-md-5"></div>
 </div>
-</div>
+
 </form>
+<?php
+						$text="";
+						$degree= mysqli_query($con,"SELECT * FROM degree") or die ("error".mysqli_error($con));
+							while(list($degree_id,$degree_name) = mysqli_fetch_row($degree)){
+								$text .= "<option value='".$degree_id."'>$degree_name</option>";
+							}
+							mysqli_free_result($degree);
+							mysqli_close($con);
+						?>
 <script type="text/javascript">
 
 		$(document).ready(function() {
 			var count = 0;
 
+			bsCustomFileInput.init() // TYPE file RENAME
 
 			$("button.re").click(function(){
 				var module1 = $(this).data('modules');
@@ -257,11 +272,7 @@
 
 						text += "<div class='col'><select class='form-control' name='degree[]'>"+
 						<?php
-						$degree = mysqli_query($con,"SELECT * FROM degree") or die ("error".mysqli_error($con));
-							while(list($degree_id,$degree_name) = mysqli_fetch_row($degree)){
-								echo "\"<option value='".$degree_id."'>$degree_name</option>\"+";
-							}
-							mysqli_free_result($degree);
+							echo "\"".$text."\"+" ;
 						?>
 						"<select></div>"
 						text += "<div class='col'><button type='button' class='btn btn-danger btn-block deldegree1 '>ลบ</button></div></div>"

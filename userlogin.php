@@ -27,11 +27,11 @@
 		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
 		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
 		<script src="js/functionjs.js"></script> <!--FUNCTION script -->
-		<!-- bootstrap -->
 		
+		<!-- bootstrap -->		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="bootstrap/js/bootstrap.js" ></script>
-
+		<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js" ></script>
 		<?php
 			require('function/menu.php');
 
@@ -106,6 +106,7 @@
 	
 		
 		<script src="js/jquery.validate.min.js" ></script>
+		
 		<script src="js/additional-methods.min.js" ></script>
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 
@@ -115,6 +116,8 @@
 		var action = sessionStorage.getItem("action");
 
 		$(document).ready(function() {
+
+			
 			$('[data-toggle="tooltip"]').tooltip();  
 
 			$("#menuaside li").hover(function() {
