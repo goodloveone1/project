@@ -7,17 +7,13 @@
 		echo "<script> window.location='index.php' </script>";
 
 	}
-
-
-	// $basename = "http://localhost/project/";
-
 ?>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<title>ระบบประเมิน</title>
 		<meta charset="utf-8">
+	
 		<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-96x96.png">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
@@ -26,73 +22,27 @@
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.4.0/cropper.min.js"></script> -->
+		
+		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
 		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
 		<script src="js/functionjs.js"></script> <!--FUNCTION script -->
+		<!-- bootstrap -->
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="bootstrap/js/bootstrap.js" ></script>
 
 		<?php
 			require('function/menu.php');
 
 		?>
-		<style type="text/css">
-		aside,  section#detail{
-			box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		}
-
-			aside {
-			height: 100%;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-			overflow-x: hidden;
-			padding-top: 10px;
-			border: none;
-			background-color: #513300;
-
-			}
-			aside p{
-				text-align: center;
-			}
-
-
-			#main2 {
-			border: none;
-			margin-left: 88px;
-			}
-
-			.list-group a{
-				text-decoration: none;
-			}
-			.list-group-item{
-				padding: 5px;
-				background:transparent;
-				border: none;
-				text-align: left;
-
-			}
-			.list-group-item .text{
-				text-indent: 1px;
-				font-size: 16px;
-			}
-
-
-			/* COLOR MEMU */
-			.bt-color{
-				/* background-color:#6c757d; */
-				background-color:#67441c;
-				color: #EEE;
-				border:none;
-				border-bottom: solid 1px #EEE;
-					}
-		</style>
+		
 	</head>
 	<body id='idbody'>
 		<aside class="text-light" id="mySidenav" style="width:220px;">
 
 			<div class="row ">
-				<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-2x"></i> </div>
+				<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-3x"></i> </div>
 			</div>
 			<div class="row d-flex mb-2">
 				<div class="col-auto mx-auto flex-shrink-1 text-center"> ยินดีต้อนรับ <?php echo $_SESSION['permiss_decs'] ?> </div>
@@ -153,25 +103,19 @@
 			</div>
 			<div id='picloading' style="display: none;"><img style='display: block;margin:12% auto; ' src='img/loading.svg'></div>
 		</div>
-		<!-- <script src="https://unpkg.com/popper.js"></script> -->
-		<script src="js/jquery-3.3.1.min.js"></script>
+	
+		
 		<script src="js/jquery.validate.min.js" ></script>
 		<script src="js/additional-methods.min.js" ></script>
-		<!-- <script src="bootstrap/js/bootstrap.bundle.min.js" ></script> -->
-		<script src="bootstrap/js/bootstrap.js" ></script>
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 
-
-		<?php
-			//$name="ทองดี สุขอิ่นใจ";
-		?>
 		<script>
-
 
 		var module1 = sessionStorage.getItem("module1");
 		var action = sessionStorage.getItem("action");
 
 		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();  
 
 			$("#menuaside li").hover(function() {
 

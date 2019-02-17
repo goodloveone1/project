@@ -8,7 +8,7 @@ function webmenu($id){
 
 			<ul class="list-group" id="menuaside">
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" data-toggle="tooltip" title="หน้าหลัก">
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-lg" ></i><span class="text">  หน้าหลัก</span>
@@ -16,20 +16,82 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="menumanage">
+				<!-- <a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="menumanage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
 					</li>
 					</button>
-				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="main_assess">
+				</a> -->
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" data-toggle="tooltip" title="จัดการบุคลากร">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการบุคลากร</span>
+					</li>
+					</button>
+				</a> 
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managesubject" data-toggle="tooltip" title="จัดการสาขา">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการสาขา</span>
+					</li>
+					</button>
+				</a> 
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managebranch"  data-toggle="tooltip" title="จัดการหลักสูตร">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการหลักสูตร</span>
+					</li>
+					</button>
+				</a> 
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managedegree">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">  จัดการวุฒิการศึกษา</span>
+					</li>
+					</button>
+				</a> 
+
+				<!-- <a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="main_assess">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการเกณฑ์การประเมิน</span>
 					</li>
 					</button>
-				</a>
+				</a> -->
+
+				
+					<button class="btn-block bt-color" id="flip" >
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการเกณฑ์การประเมิน</span>
+					</li>
+					</button>
+					<div id="panelassess" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor1">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> เกณฑ์การประเมินส่วนที่ 1</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> เกณฑ์การประเมินส่วนที่ 2</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip").click(function(){
+							$("#panelassess").slideToggle();
+						});
+						});
+					</script>
+			
+
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="public_relations" data-action="pr_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">

@@ -135,3 +135,60 @@ footer {
 .menuuser{
   background-color: white;
 }
+
+/* aside */
+
+aside,  section#detail{
+	box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+   
+
+	aside {
+	height: 100%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	padding-top: 10px;
+	border: none;
+	background-color: #513300;
+
+
+	}
+	aside p{
+		text-align: center;
+	}
+
+
+	#main2 {
+	border: none;
+	margin-left: 88px;
+	}
+
+	.list-group a{
+		text-decoration: none;
+	}
+	.list-group-item{
+		padding: 5px;
+		background:transparent;
+		border: none;
+		text-align: left;
+
+	}
+	.list-group-item .text{
+		text-indent: 1px;
+		font-size: 16px;
+	}
+
+
+	/* COLOR MEMU */
+	.bt-color{
+		background-color:#513315;		
+		color: #EEE;
+		border:none;
+		border-bottom: solid 1px #EEE;
+			}
+
+/* END aside  */

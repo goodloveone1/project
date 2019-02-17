@@ -6,7 +6,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 		<link rel="stylesheet" href="fontawesome/web-fonts-with-css/css/fontawesome-all.css" >
 		<link rel="stylesheet" type="text/css" href="css/home.css">
-
+		<script src="js/jquery-3.3.1.min.js"></script>
 	</head>
 	
 	<body>
@@ -140,7 +140,7 @@
 		</form>
 		<!-- END MODEL LOGIN  -->
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="bootstrap/js/bootstrap.min.js" ></script>
 
