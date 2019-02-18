@@ -18,7 +18,7 @@
     $y_id = $y.$loop;
     echo "<p> id = $y_id </p>";
     echo "$_SESSION[user_id]";
-    $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'") or die("SQL_ERROR".mysqli_error($con));
+    $tor=mysqli_query($con,"SELECT ass_id,year_id,staff FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'") or die("SQL_ERROR".mysqli_error($con));
         list($gen_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor);
         echo $gen_id,$tor_nameRe,"<br>";
     if($tor_year==$y_id){

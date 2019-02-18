@@ -8,7 +8,7 @@
 	 FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($st_id,$user,$pwd,$branch_id,$code,$prefix,$fname,$lname,$salary,$aca_code,$acadeic,$levels,$other,$startdate,$permiss_id,$position,$picture,$savetime)=mysqli_fetch_row($selectA);
 
-	$userphoto=empty($gen_pict)?"default/user_default.svg":$gen_pict;
+	$userphoto=empty($picture)?"default/user_default.svg":$picture;
 
 
 ?>
@@ -43,7 +43,7 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
-					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $gen_pict ?>" hidden>
+					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $picture ?>" hidden>
 					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $prefix ?>" id="staticEmail" required>
 				</div>
 			</div>

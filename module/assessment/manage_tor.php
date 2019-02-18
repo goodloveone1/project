@@ -53,7 +53,7 @@ if($loop==2){
     </thead>
     <tbody>
       <?php
-$tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'");
+$tor=mysqli_query($con,"SELECT ass_id,year_id,staff FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'");
         while(list($tor_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor)){
               echo "<td> $tor_id</td>";
               $tor=mysqli_query($con,"SELECT y_year,y_no FROM years WHERE y_id='$tor_year'");
@@ -70,7 +70,7 @@ $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id=
 </div>
 <script type="text/javascript">
   <?php
-$tor=mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'");
+$tor=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'");
  list($tors) =mysqli_fetch_row($tor);
  if(!empty($tors)){
    $x=0;
