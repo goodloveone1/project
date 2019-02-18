@@ -1,25 +1,26 @@
+
 <?php
-	session_start();
+	 session_start();
 	include("../../function/db_function.php");
 	$con=connect_db();
 
 
 	$gen_id=$_SESSION['user_id'];
-	
 	$selectA=mysqli_query($con,"SELECT st_id,user,pwd,branch_id,code,prefix,fname,lname,salary,aca_code,acadeic,leves,other,startdate,permiss_id,position,picture,savetime
 	 FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
 	list($st_id,$user,$pwd,$branch_id,$code,$prefix,$fname,$lname,$salary,$aca_code,$acadeic,$levels,$other,$startdate,$permiss_id,$position,$picture,$savetime)=mysqli_fetch_row($selectA);
 
-
 	$userphoto=empty($picture)?"default/user_default.svg":$picture;
+
+
 ?>
 
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-sm-2" >
-       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block btn-light" id="backpage" data-modules="personnel" data-action="home"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser bg-white"  data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
     </div>
     <div class="col-md">
-        <h2>แก้ไขข้อมูลส่วนตัว</h2>
+        <h2>แก้ไขบุคลากร</h2>
     </div>
      <div class="col-sm-2" >
 
@@ -45,7 +46,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
 					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $picture ?>" hidden>
-					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $prefix ?>" required>
+					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $prefix ?>" id="staticEmail" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -69,11 +70,11 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">เลขที่ประจำตำแหน่ง</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="เลขที่ประจำตำแหน่ง"  name="aca_code" value="<?php echo $aca_code  ?>"required>
+					<input type="text" class="form-control"  placeholder="เลขที่ประจำตำแหน่ง"  name="aca_code" value="<?php echo $aca_code; ?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง <?php echo $position ?></label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง </label>
 				<div class="col-sm">
 					<select class="form-control"  name="pos">
 					<?php
@@ -98,7 +99,7 @@
 							$seA=$aca_id==$acadeic?"selected":"";
 							echo "<option value=$aca_id $seA>$aca_name</option>";
 						 }
-
+						 $selectP->free_result();
 						?>
 					</select>
 				</div>
@@ -108,25 +109,27 @@
 				<div class="col-md">
 					<select class="form-control" id="selectsuj" name="suj">
 						<?php
-						$result=mysqli_query ($con,"SELECT  br_id,br_name,dept_id FROM branchs ") or die ("error".mysqli_error($con));
+						$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
 
-						 while(list($subject_ID,$subject_name,$idbranch)=mysqli_fetch_row($result)){
-						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
+						 while(list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result)){
+						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
 
 							$seP=$branch_id==$subject_ID?"selected":"";
 
-						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";
-						 }
+						 	echo "<option value='".$subject_ID."' data-idbrn='".$dept_id."' data-nbrn='".$branch_name."'$seP>$subject_name </option>";
 
+						 	$branch->free_result();
+						 }
+						 $result->free_result();
 						?>
 
 					</select>
-
+						
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา  <?php  ?></label>
 				<div class="col-md">
 					<select class="form-control" id="selectbrn" name="brn">
 
@@ -142,22 +145,21 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มทำงาน</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control"  placeholder="Wstert" name="startdate" value="<?php echo $startdate ?>" required>
+					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $startdate ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">หน้าที่พิเศษ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $levels ?>" required>
+					<input type="text" class="form-control"  placeholder="หน้าที่พิเศษ" name="level_id" value="<?php echo $levels ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">มาช่วยราชการจากที่ใด (ถ้ามี)</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="มาช่วยราชการจากที่ใด" name="other" value="<?php $other  ?>" required>
+					<input type="text" class="form-control"  placeholder="มาช่วยราชการจากที่ใด (ถ้ามี)" name="other" value="<?php echo $other;  ?>" required>
 				</div>
 			</div>
-			
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-sm-10">
@@ -182,7 +184,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $pwd ?>" required id="showconPW">
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $pwd ?>"  id="showconPW" required>
 					<div class="form-check">
 					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()">
 					  <label class="form-check-label" for="defaultCheck2">
@@ -196,7 +198,7 @@
 				<div class="col-md-10">
 					<select class="form-control"  name="permiss">
 						<?php
-							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions WHERE permiss_id NOT LIKE '%1%'") or die ("error".mysqli_error($con));
+							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
 
 							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
 								$sePM=$permiss_id==$permissid?"selected":"";
@@ -207,8 +209,8 @@
 					</select>
 				</div>
 			</div>
+			
 			</div>
-
 			<div class="form-group col-md-12 border rounded p-2" >
 				<label for="" class="col-md-2 col-form-label center">วุฒิการศึกษา</label>
 				<div class="col-md-30">
@@ -240,7 +242,7 @@
 		</div>
 
 		<div class="col-md-12 text-center mb-2" >
-		<button type="submit" class="btn updateuser btn-success" data-modules="personnel" data-action="updateuser"> บันทึกข้อมูล </button>
+		<button type="submit" class="btn updateuser bg-success text-white" data-modules="personnel" data-action="updateuser"> บันทึก </button>
 		</div>
 
 	</div>
@@ -278,16 +280,7 @@
 	        paging: false
 	    } );
 	}
-
-
 			selectsuj();
-
-			$("button.re").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				loadmain(module1,action);
-			});
-
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');
 				var $nbrn = $("#selectsuj option:selected").data('nbrn');
@@ -297,7 +290,6 @@
 			$("#selectsuj").change(function() {
 				selectsuj();
 			});
-
 
 			$("#edituser").submit(function(){
 
@@ -311,26 +303,23 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					           // alert(data);
-										 	alert("บันทึกข้อมูลสำเร็จแล้ว")
+					            alert(data);
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    })
+					    });
+						loadmain("personnel","mangauser")
+				}
 
-									//loadmain("personnel","edituserall")
-							}
+			
 
-				})
-
-
-
-
+			})
 
 
 //เซ็ค PW CON
 $('#edituser').validate({ // initialize the plugin
+								
 						        rules: {
 						            passwd: {
 						                required: true,
@@ -363,7 +352,7 @@ $('#edituser').validate({ // initialize the plugin
         var iddegree =$(this).data("iddegree");
 
 	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
-				// alert(data);
+				alert(data);
 	        $('#editD').html(data);
 	         $('#editsub').modal('show');
 	        })
@@ -381,7 +370,7 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
             if (r == true) {
 
                 $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
-					//alert(data);
+					alert(data);
 
 					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
 
@@ -425,5 +414,7 @@ function chkpwcon() {
         x.type = "password";
     }
 }
+
+
 
 </script>
