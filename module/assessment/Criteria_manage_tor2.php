@@ -2,71 +2,60 @@
 	include("../../function/db_function.php");
 	$con=connect_db();
 
-	$re = $con->query("SELECT * FROM tort2_title");
+	$academic = $con->query("SELECT * FROM academic ");
+
+		// 	$tor = $con->query("SELECT * FROM tort2_title");
+	
+
+			while(list($ac_id,$ac_name) = $academic->fetch_row()){
 
 ?>
-
-<div class="row p-2 headtitle">
-	 <div class="col-md-2" >
-       <a href='javascript:void(0)'> <button type="button" class="btn re btn-block menuuser"  data-modules="assessment" data-action="main_assess"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
-    </div>
-	<div class="col-md text-center">
-		<h3> จัดการเกณฑ์การประเมิน ส่วนที่ 2 พฤติกรรมการปฏิบัติงาน  </h3>
-	</div>
-	 <div class="col-md-2" >
-      
-    </div>
-</div>
-<div class="row p-2">
-	<div class="col-md-12 mt-2">
-		<table class="table table-bordered datatables" >
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">รหัส</th>
-					<th scope="col">เกณฑ์การประเมิน</th>
-					<th scope="col" class="text-center">จัดการหัวข้อย่อย</th>
-					
-
-				</tr>
-			</thead>
-			<tbody>
-				<?php 
-						while(list($id,$name) = $re->fetch_row()){
-
-				?>
-				<tr>
-					<th scope="row"><?php echo $id ?></th>
-					<td><?php echo $name ?></td>
-					<td class="text-center"><a href='javascript:void(0)' class='addtor2tit'  data-tor2id='<?php echo $id ?>'><i class='fas fa-plus fa-2x '></i></a></td>
-					
-					
-				</tr>
-
+			<div class='row mb-5'>
+			<div class='col-md-12 text-center'><h3  class="h3">ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</h3> </div> 
+				<div class='col-md-12'><h3 class='h3'> <?php echo $ac_id." " .$ac_name ?> </h3> </div>
 				
-				<?php
-					} // END WHILE
-
-					$re->free_result();
-					$con->close();
-
-				?>
-			</tbody >
-		</table>
-	</div>
-</div>
-
-<script type="text/javascript">
-	// $(".datatables").DataTable();
-
-	$('.addtor2tit').click(function(event) {
-		/* Act on the event */
-
-		 var id = $(this).data('tor2id');
-		 loadingpagepost("assessment","Criteria_manage_tor2sub",id);
-
-		// $(this).appendTo($(this).closest('tr')) icon ย้ายไปด้านหลัง
-		// $(this).parent().closest('tr').after('<tr style="display:none" id="test" ><td colspan=5 ><div class="p-5">TEST</div></td></tr>')
+				<?php 
+					$tit = $con->query("SELECT * FROM capacity ");
 	
-	});
-</script>
+					while(list($tit_id,$tit_name) = $tit->fetch_row()){
+						
+						echo "<div class='col-md-12'> ";	
+							
+					?>
+					<table class="table table-bordered">
+							<thead>
+								<tr class='' >
+									<th class='w-50'> <?php echo $tit_name ?></th>
+									<th class='text-center'> สมรรถนะที่คาดหวัง </th>
+									<th class='text-center'> แก้ไข </th>
+								</tr>
+					</thead>
+					<tbody>
+					<?php
+					$tor2_exp = $con->query("SELECT atb_id,subtit,sub_name,score FROM  aptitudes as exp INNER JOIN sub_capacity as sub ON exp.subtit = sub.sub_id WHERE aca_id='$ac_id' AND sub.cap_id = '$tit_id' ") or die($con->error);			
+					while($fettor2 = $tor2_exp->fetch_assoc()){
+						//print_r($fettor2);													
+						echo	"<tr>";
+						echo		"<td scope='row'> $fettor2[sub_name] </td>";
+						echo		"<td class='text-center'> $fettor2[score] </td>";
+						echo		"<td class='text-center'><a href='javascript:void(0)' class='managaedituser' data-idexp='$fettor2[atb_id]'><i class='fas fa-edit fa-2x '></i></a></td>";	
+						echo	"</tr>";
+						
+													
+					} 
+					echo  "</tbody>";
+					echo  "</table>";
+					echo "</div>";
 
+				} // END WHILE TOR2 title
+				
+					
+						
+				?>
+
+ 			</div>
+	 
+<?php	 
+				 } // END WHILE ตำแหน่งวิชาการ
+			?>
+			

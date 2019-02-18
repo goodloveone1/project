@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2019 at 09:58 AM
+-- Generation Time: Feb 18, 2019 at 07:15 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 5.6.36
 
@@ -25,6 +25,79 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `absence`
+--
+
+CREATE TABLE `absence` (
+  `ab_id` int(10) NOT NULL,
+  `staff` int(10) NOT NULL,
+  `year` smallint(6) NOT NULL,
+  `abt_name` tinyint(2) NOT NULL,
+  `ab_num` int(11) NOT NULL,
+  `abl_day` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `absence`
+--
+
+INSERT INTO `absence` (`ab_id`, `staff`, `year`, `abt_name`, `ab_num`, `abl_day`) VALUES
+(100, 6201083, 25621, 1, 1, 2),
+(101, 6201083, 25621, 2, 1, 4),
+(102, 6201083, 25621, 3, 0, 0),
+(103, 6201083, 25621, 4, 0, 0),
+(104, 6201083, 25621, 5, 0, 0),
+(105, 6201083, 25621, 6, 0, 0),
+(106, 6201083, 25621, 7, 0, 0),
+(107, 6201083, 25611, 1, 1, 2),
+(108, 6201083, 25611, 2, 0, 0),
+(109, 6201083, 25611, 3, 0, 0),
+(110, 6201083, 25611, 4, 0, 0),
+(111, 6201083, 25611, 5, 0, 0),
+(112, 6201083, 25611, 6, 0, 0),
+(113, 6201083, 25611, 7, 0, 0),
+(114, 6201554, 25612, 1, 2, 3),
+(115, 6201554, 25612, 2, 2, 3),
+(116, 6201554, 25612, 3, 0, 0),
+(117, 6201554, 25612, 4, 0, 0),
+(118, 6201554, 25612, 5, 0, 0),
+(119, 6201554, 25612, 6, 0, 0),
+(120, 6201554, 25612, 7, 0, 0),
+(121, 6201554, 25611, 1, 2, 3),
+(122, 6201554, 25611, 2, 1, 1),
+(123, 6201554, 25611, 3, 0, 0),
+(124, 6201554, 25611, 4, 0, 0),
+(125, 6201554, 25611, 5, 0, 0),
+(126, 6201554, 25611, 6, 0, 0),
+(127, 6201554, 25611, 7, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absence_type`
+--
+
+CREATE TABLE `absence_type` (
+  `abt_id` tinyint(2) NOT NULL,
+  `abt_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `absence_type`
+--
+
+INSERT INTO `absence_type` (`abt_id`, `abt_name`) VALUES
+(1, 'ลาป่วย'),
+(2, 'ลากิจ'),
+(3, 'มาสาย'),
+(4, 'ลาคลอดบุตร'),
+(5, 'ลาอุปสมบท'),
+(6, 'ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานานคราวเดียวหรือหลายคราวรวมกัน'),
+(7, 'ขาดราชการ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `academic`
 --
 
@@ -42,6 +115,38 @@ INSERT INTO `academic` (`aca_id`, `aca_name`) VALUES
 (2, 'ศาสตราจารย์(ศ.)'),
 (3, 'รองศาสตราจารย์(รศ.)'),
 (4, 'ผู้ช่วยศาสตราจารย์(ผศ.)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asessment_t1`
+--
+
+CREATE TABLE `asessment_t1` (
+  `asst1_id` int(10) NOT NULL,
+  `staff_id` int(10) NOT NULL,
+  `title_name` tinyint(2) NOT NULL,
+  `goal` tinyint(1) NOT NULL,
+  `score` float(7,2) NOT NULL,
+  `weight` float(7,2) NOT NULL,
+  `weighted` float(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessments`
+--
+
+CREATE TABLE `assessments` (
+  `ass_id` int(10) NOT NULL,
+  `staff` int(10) NOT NULL,
+  `year_id` int(11) NOT NULL,
+  `absence` int(11) NOT NULL,
+  `leader` int(10) NOT NULL,
+  `sumWork` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `punishment` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -233,7 +338,8 @@ CREATE TABLE `departments` (
 INSERT INTO `departments` (`dept_id`, `dept_name`) VALUES
 (1, 'บริหารธุรกิจ'),
 (2, 'ศิลปศาสตร์'),
-(3, 'การบัญชี');
+(3, 'การบัญชี'),
+(4, 'วิศวะคอม');
 
 -- --------------------------------------------------------
 
@@ -243,7 +349,7 @@ INSERT INTO `departments` (`dept_id`, `dept_name`) VALUES
 
 CREATE TABLE `education` (
   `ed_id` int(10) NOT NULL,
-  `gen_id` int(10) NOT NULL,
+  `staff_id` int(10) NOT NULL,
   `ed_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ed_loc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `degree_id` tinyint(1) NOT NULL
@@ -253,10 +359,8 @@ CREATE TABLE `education` (
 -- Dumping data for table `education`
 --
 
-INSERT INTO `education` (`ed_id`, `gen_id`, `ed_name`, `ed_loc`, `degree_id`) VALUES
-(42, 6201572, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
+INSERT INTO `education` (`ed_id`, `staff_id`, `ed_name`, `ed_loc`, `degree_id`) VALUES
 (43, 6201083, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
-(44, 1000000001, '', '', 1),
 (45, 1000000001, 'ระบบสาระสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
 (46, 6201554, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1),
 (47, 1000000001, 'ระบบสารสนเทศทางคอมพิวเตอร์', 'มหาวิทยาลัยราชมงคลล้านนา', 1);
@@ -282,86 +386,6 @@ INSERT INTO `evaluation` (`e_id`, `e_name`) VALUES
 (3, 'งานบริการทางวิชาการ\r\n'),
 (4, 'งานทำนุบำรุงศิลปะ วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม'),
 (5, 'งานพัฒนานักศึกษา งานที่ได้รับการแต่งตั้งให้ดำรงตำแหน่งและงานที่ได้รับมอบหมายอื่น ๆ\r\n');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `idlel`
---
-
-CREATE TABLE `idlel` (
-  `idl_id` int(10) NOT NULL,
-  `gen_id` int(10) NOT NULL,
-  `year_id` smallint(6) NOT NULL,
-  `idl_type` tinyint(2) NOT NULL,
-  `idl_num` int(11) NOT NULL,
-  `idl_day` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `idlel`
---
-
-INSERT INTO `idlel` (`idl_id`, `gen_id`, `year_id`, `idl_type`, `idl_num`, `idl_day`) VALUES
-(93, 6201572, 25621, 1, 2, 4),
-(94, 6201572, 25621, 2, 1, 1),
-(95, 6201572, 25621, 3, 0, 0),
-(96, 6201572, 25621, 4, 0, 0),
-(97, 6201572, 25621, 5, 0, 0),
-(98, 6201572, 25621, 6, 0, 0),
-(99, 6201572, 25621, 7, 0, 0),
-(100, 6201083, 25621, 1, 1, 2),
-(101, 6201083, 25621, 2, 1, 4),
-(102, 6201083, 25621, 3, 0, 0),
-(103, 6201083, 25621, 4, 0, 0),
-(104, 6201083, 25621, 5, 0, 0),
-(105, 6201083, 25621, 6, 0, 0),
-(106, 6201083, 25621, 7, 0, 0),
-(107, 6201083, 25611, 1, 1, 2),
-(108, 6201083, 25611, 2, 0, 0),
-(109, 6201083, 25611, 3, 0, 0),
-(110, 6201083, 25611, 4, 0, 0),
-(111, 6201083, 25611, 5, 0, 0),
-(112, 6201083, 25611, 6, 0, 0),
-(113, 6201083, 25611, 7, 0, 0),
-(114, 6201554, 25612, 1, 2, 3),
-(115, 6201554, 25612, 2, 2, 3),
-(116, 6201554, 25612, 3, 0, 0),
-(117, 6201554, 25612, 4, 0, 0),
-(118, 6201554, 25612, 5, 0, 0),
-(119, 6201554, 25612, 6, 0, 0),
-(120, 6201554, 25612, 7, 0, 0),
-(121, 6201554, 25611, 1, 2, 3),
-(122, 6201554, 25611, 2, 1, 1),
-(123, 6201554, 25611, 3, 0, 0),
-(124, 6201554, 25611, 4, 0, 0),
-(125, 6201554, 25611, 5, 0, 0),
-(126, 6201554, 25611, 6, 0, 0),
-(127, 6201554, 25611, 7, 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `idlel_type`
---
-
-CREATE TABLE `idlel_type` (
-  `idl_type_id` tinyint(2) NOT NULL,
-  `idl_type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `idlel_type`
---
-
-INSERT INTO `idlel_type` (`idl_type_id`, `idl_type_name`) VALUES
-(1, 'ลาป่วย'),
-(2, 'ลากิจ'),
-(3, 'มาสาย'),
-(4, 'ลาคลอดบุตร'),
-(5, 'ลาอุปสมบท'),
-(6, 'ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานานคราวเดียวหรือหลายคราวรวมกัน'),
-(7, 'ขาดราชการ');
 
 -- --------------------------------------------------------
 
@@ -410,6 +434,22 @@ INSERT INTO `position` (`pos_id`, `pos_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `preasessment_t1`
+--
+
+CREATE TABLE `preasessment_t1` (
+  `pret1_id` int(10) NOT NULL,
+  `staff_id` int(10) NOT NULL,
+  `title_name` tinyint(2) NOT NULL,
+  `goal` tinyint(1) NOT NULL,
+  `score` float(7,2) NOT NULL,
+  `weight` float(7,2) NOT NULL,
+  `weighted` float(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `relations`
 --
 
@@ -444,8 +484,10 @@ CREATE TABLE `staffs` (
   `fname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `lname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `salary` float(7,2) NOT NULL,
+  `aca_code` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `acadeic` tinyint(2) NOT NULL,
-  `level` tinyint(4) NOT NULL,
+  `leves` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `other` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `startdate` date NOT NULL,
   `permiss_id` tinyint(2) NOT NULL,
   `position` tinyint(2) NOT NULL,
@@ -457,14 +499,18 @@ CREATE TABLE `staffs` (
 -- Dumping data for table `staffs`
 --
 
-INSERT INTO `staffs` (`st_id`, `user`, `pwd`, `branch_id`, `code`, `prefix`, `fname`, `lname`, `salary`, `acadeic`, `level`, `startdate`, `permiss_id`, `position`, `picture`, `savetime`) VALUES
-(6201083, 'good', '12345', 3, '1234567890123', 'นาย', 'จักรกรี', 'สำนวนไทย', 15000.00, 1, 0, '2017-06-04', 2, 1, '', '2019-02-05 08:50:33'),
-(6201135, 'user01', '12345', 1, '1234567890123', 'นาย', 'สันติ', 'แซ่ลิ้ม', 15000.00, 1, 0, '2019-01-15', 2, 1, '', '2019-01-15 23:13:14'),
-(6201216, 'good2', '12345', 1, '1234567890123', 'นาย', 'ชาตรี', 'จำปาแก้ว', 15000.00, 1, 0, '2019-01-17', 4, 1, '', '2019-01-15 23:21:08'),
-(6201387, 'good3', '12345', 1, '1234567890123', 'นาย', 'สมยศ', 'จำปาดี', 15000.00, 1, 0, '2016-07-10', 3, 1, '', '2019-01-16 04:38:40'),
-(6201554, 'ีีuser1111', '12345', 1, '1234567890123', 'นาง', 'จริงใจ', 'สำนวนไทย', 15500.00, 2, 0, '2016-09-12', 2, 1, '', '2019-01-15 23:14:08'),
-(6201572, 'user122', '12345', 1, '1234567890123', 'นางสาว', 'สุนารี', 'ราชสีมา', 15000.00, 1, 0, '2019-01-21', 2, 1, '', '2019-01-12 04:56:58'),
-(1000000001, 'admin', 'admin', 2, '1234567890123', 'นาย', 'admin', 'admin', 99999.99, 4, 1, '2018-01-07', 1, 4, 'e810zihfvd_2344.jpg', '2019-01-13 11:55:02');
+INSERT INTO `staffs` (`st_id`, `user`, `pwd`, `branch_id`, `code`, `prefix`, `fname`, `lname`, `salary`, `aca_code`, `acadeic`, `leves`, `other`, `startdate`, `permiss_id`, `position`, `picture`, `savetime`) VALUES
+(6201083, 'good', '12345', 1, '1234567890123', 'นาย', 'จักรกรี', 'สำนวนไทย', 15000.00, 'acd233', 1, 'ที่ปรึกษานักศึกษาปีที่2', 'มหาวิทยาลัยเชียงใหม่', '2016-09-04', 2, 1, '', '2019-02-15 05:51:56'),
+(6201135, 'user01', '12345', 1, '1234567890123', 'นาย', 'สันติ', 'แซ่ลิ้ม', 15000.00, '', 1, '0', '', '2019-02-10', 1, 1, '', '2019-02-14 05:51:28'),
+(6201216, 'good2', '12345', 1, '1234567890123', 'นาย', 'ชาตรี', 'จำปาแก้ว', 15000.00, '', 1, '0', '', '2019-01-17', 4, 1, '', '2019-02-06 08:28:53'),
+(6201387, 'good3', '12345', 1, '1234567890123', 'นาย', 'สมยศ', 'จำปาดี', 15000.00, '', 1, '0', '', '2016-07-10', 3, 2, '', '2019-02-11 07:45:43'),
+(6201554, 'ีีuser1111', '12345', 2, '1234567890123', 'นาง', 'จริงใจ', 'สำนวนไทย', 15500.00, '', 2, '0', '', '2016-09-12', 2, 1, '', '2019-02-06 05:35:22'),
+(6202380, 'user99', '12345', 13, '1234567890123', 'นางสาว', 'สวยงามดี', 'กุลสตีเด่น', 15000.00, 'abc3444', 1, 'ไม่มี', 'ที่ปรึกษานักศึกษาชั้นปีที่1', '2019-02-03', 2, 1, '', '2019-02-14 08:47:49'),
+(6202399, 'test', '12345', 7, '1234567890123', 'นาย', 'สันติ', 'ราชสีมา', 15000.00, '', 1, '0', '', '2019-02-10', 1, 1, '', '2019-02-07 06:39:45'),
+(6202449, 'test2', '12345', 3, '1234567890123', 'นาง', 'สุพรรษา', 'เล่ายี่ปา', 15000.00, '', 1, '0', '', '2019-02-03', 5, 1, '', '2019-02-07 06:44:23'),
+(6202549, 'asd123', '12345', 5, '1234567890123', 'นางสาว', 'แสนสวย', 'รวยมาลัย', 99999.99, '', 1, '', '', '2019-02-16', 3, 1, '', '2019-02-14 05:54:07'),
+(62025311, 'user2222', '12345', 1, '1234567890123', 'นางสาว', 'fdfdfdf', 'ณ เชียงใหม่', 19999.55, 'weee123', 1, 'ที่ปรึกษานักศึกษาชั้นปีที่1', 'มหาวิทยาลัยเชียงใหม่', '2018-03-19', 3, 1, '', '2019-02-15 05:53:22'),
+(1000000001, 'admin', 'admin', 1, '1234567890123', 'นาย', 'admin', 'admin', 99999.99, '', 4, '0', '', '2018-01-07', 1, 4, 'e810zihfvd_2344.jpg', '2019-02-07 05:59:22');
 
 -- --------------------------------------------------------
 
@@ -504,48 +550,6 @@ CREATE TABLE `sum_tort3` (
   `tor_id` int(10) NOT NULL,
   `tort3_sum` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tor`
---
-
-CREATE TABLE `tor` (
-  `tor_id` int(10) NOT NULL,
-  `gen_id` int(10) NOT NULL,
-  `tor_year` smallint(6) NOT NULL,
-  `tor_nameRe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_pos` tinyint(2) NOT NULL,
-  `tor_department` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_leader` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_leader_pos` tinyint(2) NOT NULL,
-  `tor_aca` tinyint(2) NOT NULL,
-  `tor_salary` float(7,2) NOT NULL,
-  `tor_acdCode` char(20) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_affiliation` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_leves` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_startWork` date NOT NULL,
-  `tor_sumWork` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `inspector` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tor_punishment` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tort1`
---
-
-CREATE TABLE `tort1` (
-  `tort1_id` int(10) NOT NULL,
-  `tor_id` int(10) NOT NULL,
-  `title_name` tinyint(2) NOT NULL,
-  `tort1_goal` tinyint(1) NOT NULL,
-  `tort1_score` float(7,2) NOT NULL,
-  `tort1_weight` float(7,2) NOT NULL,
-  `tort1_weighted` float(7,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -851,10 +855,39 @@ INSERT INTO `years` (`y_id`, `y_year`, `y_no`, `y_start`, `y_end`) VALUES
 --
 
 --
+-- Indexes for table `absence`
+--
+ALTER TABLE `absence`
+  ADD PRIMARY KEY (`ab_id`),
+  ADD KEY `idl_type` (`abt_name`),
+  ADD KEY `year_id` (`year`),
+  ADD KEY `gen_id` (`staff`);
+
+--
+-- Indexes for table `absence_type`
+--
+ALTER TABLE `absence_type`
+  ADD PRIMARY KEY (`abt_id`);
+
+--
 -- Indexes for table `academic`
 --
 ALTER TABLE `academic`
   ADD PRIMARY KEY (`aca_id`);
+
+--
+-- Indexes for table `asessment_t1`
+--
+ALTER TABLE `asessment_t1`
+  ADD PRIMARY KEY (`asst1_id`),
+  ADD KEY `tor_id` (`staff_id`);
+
+--
+-- Indexes for table `assessments`
+--
+ALTER TABLE `assessments`
+  ADD PRIMARY KEY (`ass_id`),
+  ADD KEY `gen_id` (`staff`);
 
 --
 -- Indexes for table `branchs`
@@ -890,28 +923,13 @@ ALTER TABLE `departments`
 ALTER TABLE `education`
   ADD PRIMARY KEY (`ed_id`),
   ADD KEY `degree_id` (`degree_id`),
-  ADD KEY `gen_id` (`gen_id`);
+  ADD KEY `gen_id` (`staff_id`);
 
 --
 -- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
   ADD PRIMARY KEY (`e_id`);
-
---
--- Indexes for table `idlel`
---
-ALTER TABLE `idlel`
-  ADD PRIMARY KEY (`idl_id`),
-  ADD KEY `idl_type` (`idl_type`),
-  ADD KEY `year_id` (`year_id`),
-  ADD KEY `gen_id` (`gen_id`);
-
---
--- Indexes for table `idlel_type`
---
-ALTER TABLE `idlel_type`
-  ADD PRIMARY KEY (`idl_type_id`);
 
 --
 -- Indexes for table `permissions`
@@ -924,6 +942,13 @@ ALTER TABLE `permissions`
 --
 ALTER TABLE `position`
   ADD PRIMARY KEY (`pos_id`);
+
+--
+-- Indexes for table `preasessment_t1`
+--
+ALTER TABLE `preasessment_t1`
+  ADD PRIMARY KEY (`pret1_id`),
+  ADD KEY `tor_id` (`staff_id`);
 
 --
 -- Indexes for table `staffs`
@@ -954,24 +979,6 @@ ALTER TABLE `sum_tort2`
 --
 ALTER TABLE `sum_tort3`
   ADD PRIMARY KEY (`tort3_id`),
-  ADD KEY `tor_id` (`tor_id`);
-
---
--- Indexes for table `tor`
---
-ALTER TABLE `tor`
-  ADD PRIMARY KEY (`tor_id`),
-  ADD KEY `tor_year` (`tor_year`),
-  ADD KEY `tor_aca` (`tor_aca`),
-  ADD KEY `tor_pos` (`tor_pos`),
-  ADD KEY `tor_leader_pos` (`tor_leader_pos`),
-  ADD KEY `gen_id` (`gen_id`);
-
---
--- Indexes for table `tort1`
---
-ALTER TABLE `tort1`
-  ADD PRIMARY KEY (`tort1_id`),
   ADD KEY `tor_id` (`tor_id`);
 
 --
@@ -1057,6 +1064,18 @@ ALTER TABLE `years`
 --
 
 --
+-- AUTO_INCREMENT for table `absence`
+--
+ALTER TABLE `absence`
+  MODIFY `ab_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
+--
+-- AUTO_INCREMENT for table `asessment_t1`
+--
+ALTER TABLE `asessment_t1`
+  MODIFY `asst1_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `branchs`
 --
 ALTER TABLE `branchs`
@@ -1069,16 +1088,22 @@ ALTER TABLE `degree`
   MODIFY `degree_id` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `dept_id` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
   MODIFY `ed_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `idlel`
+-- AUTO_INCREMENT for table `preasessment_t1`
 --
-ALTER TABLE `idlel`
-  MODIFY `idl_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+ALTER TABLE `preasessment_t1`
+  MODIFY `pret1_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `staffs`
@@ -1103,12 +1128,6 @@ ALTER TABLE `sum_tort2`
 --
 ALTER TABLE `sum_tort3`
   MODIFY `tort3_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tort1`
---
-ALTER TABLE `tort1`
-  MODIFY `tort1_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tort1pre`
@@ -1157,6 +1176,14 @@ ALTER TABLE `tort6`
 --
 
 --
+-- Constraints for table `absence`
+--
+ALTER TABLE `absence`
+  ADD CONSTRAINT `absence_ibfk_1` FOREIGN KEY (`abt_name`) REFERENCES `absence_type` (`abt_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `absence_ibfk_2` FOREIGN KEY (`year`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `absence_ibfk_3` FOREIGN KEY (`staff`) REFERENCES `staffs` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `branchs`
 --
 ALTER TABLE `branchs`
@@ -1167,15 +1194,13 @@ ALTER TABLE `branchs`
 --
 ALTER TABLE `education`
   ADD CONSTRAINT `education_ibfk_1` FOREIGN KEY (`degree_id`) REFERENCES `degree` (`degree_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `education_ibfk_2` FOREIGN KEY (`gen_id`) REFERENCES `staffs` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `education_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `idlel`
+-- Constraints for table `preasessment_t1`
 --
-ALTER TABLE `idlel`
-  ADD CONSTRAINT `idlel_ibfk_1` FOREIGN KEY (`idl_type`) REFERENCES `idlel_type` (`idl_type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `idlel_ibfk_2` FOREIGN KEY (`year_id`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `idlel_ibfk_3` FOREIGN KEY (`gen_id`) REFERENCES `staffs` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `preasessment_t1`
+  ADD CONSTRAINT `preasessment_t1_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `staffs`
@@ -1190,48 +1215,32 @@ ALTER TABLE `staffs`
 -- Constraints for table `sum_tort1`
 --
 ALTER TABLE `sum_tort1`
-  ADD CONSTRAINT `sum_tort1_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sum_tort1_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sum_tort2`
 --
 ALTER TABLE `sum_tort2`
-  ADD CONSTRAINT `sum_tort2_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sum_tort2_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sum_tort3`
 --
 ALTER TABLE `sum_tort3`
-  ADD CONSTRAINT `sum_tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tor`
---
-ALTER TABLE `tor`
-  ADD CONSTRAINT `tor_ibfk_1` FOREIGN KEY (`tor_year`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tor_ibfk_2` FOREIGN KEY (`tor_aca`) REFERENCES `academic` (`aca_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tor_ibfk_3` FOREIGN KEY (`tor_pos`) REFERENCES `position` (`pos_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tor_ibfk_4` FOREIGN KEY (`tor_leader_pos`) REFERENCES `position` (`pos_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tor_ibfk_5` FOREIGN KEY (`gen_id`) REFERENCES `staffs` (`st_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tort1`
---
-ALTER TABLE `tort1`
-  ADD CONSTRAINT `tort1_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sum_tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort1pre`
 --
 ALTER TABLE `tort1pre`
-  ADD CONSTRAINT `tort1pre_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tort1pre_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tort1pre_ibfk_2` FOREIGN KEY (`year_id`) REFERENCES `years` (`y_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort2`
 --
 ALTER TABLE `tort2`
-  ADD CONSTRAINT `tort2_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tort2_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tort2_ibfk_2` FOREIGN KEY (`tort2_sub_id`) REFERENCES `tort2_subtit` (`tort2_sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1245,7 +1254,7 @@ ALTER TABLE `tort2_exp`
 -- Constraints for table `tort2_skil`
 --
 ALTER TABLE `tort2_skil`
-  ADD CONSTRAINT `tort2_skil_ibfk_1` FOREIGN KEY (`tort_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tort2_skil_ibfk_1` FOREIGN KEY (`tort_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort2_subtit`
@@ -1257,25 +1266,25 @@ ALTER TABLE `tort2_subtit`
 -- Constraints for table `tort3`
 --
 ALTER TABLE `tort3`
-  ADD CONSTRAINT `tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tort3_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort4`
 --
 ALTER TABLE `tort4`
-  ADD CONSTRAINT `tort4_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tort4_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort5`
 --
 ALTER TABLE `tort5`
-  ADD CONSTRAINT `tort5_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tort5_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tort6`
 --
 ALTER TABLE `tort6`
-  ADD CONSTRAINT `tort6_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `tor` (`tor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tort6_ibfk_1` FOREIGN KEY (`tor_id`) REFERENCES `assessments` (`ass_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

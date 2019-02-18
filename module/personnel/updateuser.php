@@ -23,7 +23,7 @@ else{
        echo "ไม่มีรูปเก่า";
    }
    
-    $updete_photo=",gen_pict='$pic_user'";
+    $updete_photo=",picture='$pic_user'";
  }
 
 //เช็คค่า

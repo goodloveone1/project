@@ -3,7 +3,7 @@ include("../../function/db_function.php");
 $con=connect_db();
 $gen_id = $_POST['getid'];
 $data=array();
-						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE gen_id='$gen_id'") or die ("error".mysqli_error($con));
+						$degree = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE staff_id='$gen_id'") or die ("error".mysqli_error($con));
 						while(list($ed_id,$degree_id,$ed_name,$ed_loc)=mysqli_fetch_row($degree)){
 							$deName = mysqli_query($con,"SELECT degree_name FROM degree WHERE degree_id='$degree_id'")or die("errorSQL".mysqli_error($con));
 							list($degree_name)=mysqli_fetch_row($deName);

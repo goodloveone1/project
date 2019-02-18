@@ -40,7 +40,7 @@
                         <?php
     $no=1;
     while(list($ed_id,$gen_id,$ed_name,$ed_loc,$id_degree)=mysqli_fetch_row($sedegree)){
-        $re_genname = mysqli_query($con,"SELECT  gen_prefix,gen_fname,gen_lname,branch_id,subject_id,gen_acadeic FROM general WHERE gen_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
+        $re_genname = mysqli_query($con,"SELECT  prefix,fname,lname,branch_id,acadeic FROM staffs WHERE staff_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
         list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_acadeic)=mysqli_fetch_row($re_genname);
         $br = mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'") or die("SQL_Error".mysqli_error($con));
         list($branch_name)=mysqli_fetch_row($br);
