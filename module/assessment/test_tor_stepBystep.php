@@ -30,13 +30,13 @@
 	$seDept=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'")or die("DeptError".mysqli_error($con));
 	list($dept_name)=mysqli_fetch_row($seDept);
 
-	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// print_r($set);
+	// $seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+	// for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
+	// // print_r($set);
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
-	mysqli_free_result($seexp);
+	// mysqli_free_result($seexp);
 ?>
 <form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
@@ -358,7 +358,7 @@
 		}
 		$year_id = $y.$loop;
 			
-			$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$_SESSION[user_id]'  AND year_id='$year_id' ")or die(mysqli_error($con));
+			$reS=mysqli_query($con,"SELECT *FROM absence WHERE staff='$_SESSION[user_id]'  AND year='$year_id' ")or die(mysqli_error($con));
 			$idl=mysqli_fetch_assoc($reS);
 
 			// print_r($idl);

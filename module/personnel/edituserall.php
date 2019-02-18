@@ -5,10 +5,13 @@
 
 
 	$gen_id=$_SESSION['user_id'];
-	$selectA=mysqli_query($con,"SELECT * FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
-	list($gen_id,$gen_user,$gen_pass,$branch_id,$gen_code,$gen_prefix,$gen_fname,$gen_lname,$gen_salary,$gen_acadeic,$level_id,$gen_startdate,$permiss_id,$gen_pos,$gen_pict)=mysqli_fetch_row($selectA);
+	
+	$selectA=mysqli_query($con,"SELECT st_id,user,pwd,branch_id,code,prefix,fname,lname,salary,aca_code,acadeic,leves,other,startdate,permiss_id,position,picture,savetime
+	 FROM staffs WHERE st_id='$gen_id'")or die("SQL ERROR =>".mysqli_error($con));
+	list($st_id,$user,$pwd,$branch_id,$code,$prefix,$fname,$lname,$salary,$aca_code,$acadeic,$levels,$other,$startdate,$permiss_id,$position,$picture,$savetime)=mysqli_fetch_row($selectA);
 
-	$userphoto=empty($gen_pict)?"default/user_default.svg":$gen_pict;
+
+	$userphoto=empty($picture)?"default/user_default.svg":$picture;
 ?>
 
 <div class=" headtitle text-center p-2 row mb-2 row">
@@ -41,37 +44,43 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" placeholder="id" name="gen_id" value="<?php echo $gen_id ?>" hidden>
-					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $gen_pict ?>" hidden>
-					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $gen_prefix ?>" required>
+					<input type="text" class="form-control" placeholder="id" name="old_pic" value="<?php echo $picture ?>" hidden>
+					<input type="text" class="form-control"  placeholder="คำนำหน้า"  name="titlename" value="<?php echo $prefix ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name" value="<?php echo $gen_fname ?>"required>
+					<input type="text" class="form-control"  placeholder="ชื่อ"  name="name" value="<?php echo $fname ?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สกุล</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="สกุล"  name="lname" value="<?php echo $gen_lname ?>"required>
+					<input type="text" class="form-control"  placeholder="สกุล"  name="lname" value="<?php echo $lname ?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label" maxlength="13" >รหัสประชาชน</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo$gen_code?>"required>
+					<input type="text" class="form-control"  placeholder="รหัสประชาชน"  name="codeid" value="<?php echo$code?>"required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">เลขที่ประจำตำแหน่ง</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="เลขที่ประจำตำแหน่ง"  name="aca_code" value="<?php echo $aca_code  ?>"required>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง <?php echo $position ?></label>
 				<div class="col-sm">
 					<select class="form-control"  name="pos">
 					<?php
 						$selectP=mysqli_query ($con,"SELECT  *FROM position ") or die ("error".mysqli_error($con));
 
 						 while(list($pos_id,$pos_name)=mysqli_fetch_row($selectP)){
-							$select=$pos_id==$gen_pos?"selected":"";
+							$select=$pos_id==$position?"selected":"";
 							echo "<option value=$pos_id $select>$pos_name</option>";
 						 }
 
@@ -86,7 +95,7 @@
 						$selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
 
 						 while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
-							$seA=$aca_id==$gen_acadeic?"selected":"";
+							$seA=$aca_id==$acadeic?"selected":"";
 							echo "<option value=$aca_id $seA>$aca_name</option>";
 						 }
 
@@ -105,7 +114,7 @@
 						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$idbranch'") or die ("errorSQL".mysqli_error($con));
         					list($branch_name)=mysqli_fetch_row($branch);
 
-							$seP=$sub_id==$subject_ID?"selected":"";
+							$seP=$branch_id==$subject_ID?"selected":"";
 
 						 	echo "<option value='".$subject_ID."' data-idbrn='".$idbranch."' data-nbrn='".$branch_name."'$seP>$subject_name</option>";
 						 }
@@ -127,26 +136,32 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">เงินเดือน</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $gen_salary ?>" required>
+				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $salary ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มทำงาน</label>
 				<div class="col-sm-10">
-					<input type="date" class="form-control"  placeholder="Wstert" name="gen_startdate" value="<?php echo $gen_startdate ?>" required>
+					<input type="date" class="form-control"  placeholder="Wstert" name="startdate" value="<?php echo $startdate ?>" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword" class="col-sm-2 col-form-label">หมายเหตุ</label>
+				<label for="inputPassword" class="col-sm-2 col-form-label">หน้าที่พิเศษ</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $level_id ?>" required>
+					<input type="text" class="form-control"  placeholder="level" name="level_id" value="<?php echo $levels ?>" required>
 				</div>
 			</div>
-			<hr>
+			<div class="form-group row">
+				<label for="inputPassword" class="col-sm-2 col-form-label">มาช่วยราชการจากที่ใด (ถ้ามี)</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control"  placeholder="มาช่วยราชการจากที่ใด" name="other" value="<?php $other  ?>" required>
+				</div>
+			</div>
+			
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ชื่อผู้ใช้</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $gen_user ?>" required>
+					<input type="text" class="form-control"  placeholder="Username" name="uname" value="<?php echo $user ?>" required>
 
 				</div>
 			</div>
@@ -154,7 +169,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $gen_pass ?>" required id="showpw">
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $pwd ?>" required id="showpw">
 					<div class="form-check">
 					 <input class="form-check-input " type="checkbox" onclick="chkpw()">
 					  <label class="form-check-label" for="defaultCheck2">
@@ -167,7 +182,7 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $gen_pass ?>" required id="showconPW">
+					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $pwd ?>" required id="showconPW">
 					<div class="form-check">
 					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()">
 					  <label class="form-check-label" for="defaultCheck2">
