@@ -309,7 +309,7 @@
 					        contentType: false,
 					        processData: false
 					    });
-						loadmain("personnel","mangauser")
+						loadmain("personnel","home")
 				}
 
 			
