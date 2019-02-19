@@ -4,8 +4,6 @@ function webmenu($id){
 	switch ($id) {
 		case "1":  // ADMIN MENU
 ?>
-
-
 			<ul class="list-group" id="menuaside">
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
@@ -113,6 +111,17 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
+				<a href="logout.php" >
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
+					</li>
+					</button>
+				</a>
+
+
+
+				
 		</ul>
 
 <?php
@@ -166,6 +175,13 @@ function webmenu($id){
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">  ผลการประเมิน</span>
+					</li>
+					</button>
+				</a>
+				<a href="logout.php" >
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
 					</li>
 					</button>
 				</a>
@@ -235,6 +251,13 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
+				<a href="logout.php" >
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
+					</li>
+					</button>
+				</a>
 			</ul>
 <?php
 			break;
@@ -298,6 +321,13 @@ function webmenu($id){
 			</li>
 			</button>
 		</a>
+		<a href="logout.php" >
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
+					</li>
+					</button>
+				</a>
 	</ul>
 	<?php
 				break;
@@ -364,6 +394,13 @@ function webmenu($id){
 			</li>
 			</button>
 		</a>
+		<a href="logout.php" >
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
+					</li>
+					</button>
+				</a>
 	</ul>
 	<?php
 

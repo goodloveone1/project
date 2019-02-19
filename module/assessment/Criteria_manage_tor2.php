@@ -38,7 +38,7 @@
 						echo	"<tr>";
 						echo		"<td scope='row'> $fettor2[sub_name] </td>";
 						echo		"<td class='text-center'> $fettor2[score] </td>";
-						echo		"<td class='text-center'><a href='javascript:void(0)' class='managaedituser' data-idexp='$fettor2[atb_id]'><i class='fas fa-edit fa-2x '></i></a></td>";	
+						echo		"<td class='text-center'><a href='javascript:void(0)' class='edit' data-idexp='$fettor2[atb_id]' data-subname='$fettor2[sub_name]' data-score='$fettor2[score]' ><i class='fas fa-edit fa-2x '></i></a></td>";	
 						echo	"</tr>";
 						
 													
@@ -49,7 +49,6 @@
 
 				} // END WHILE TOR2 title
 				
-					
 						
 				?>
 
@@ -57,5 +56,29 @@
 	 
 <?php	 
 				 } // END WHILE ตำแหน่งวิชาการ
+
+				 $academic->free_result();
+				 $tit->free_result();
+				 $tor2_exp->free_result();
+				 $con->close();
 			?>
-			
+
+<div id="loademodel"></div>
+
+<script>
+     //$('#tablebranch').DataTable();
+    $(".edit").click(function( ){
+        
+        
+        $.post("module/assessment/Criteria_tor2_model.php", { atbid : $(this).data("idexp"),subname : $(this).data("subname"),score : $(this).data("score") }).done(function(data){
+        $('#loademodel').html(data);
+        $('#editsub').modal('show');
+        })
+        
+        
+        });
+       
+
+ 
+
+        </script>			
