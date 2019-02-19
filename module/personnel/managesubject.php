@@ -31,7 +31,7 @@
             <tr>
                 <td>$no</td>
                 <td>$branch_Name</td>
-                <td><a href='javascript:void(0)'class='edit' data-ideditsub='$branch_ID'  ><i class='fas fa-edit fa-2x'></i></a></td>
+                <td><a href='javascript:void(0)'class='edit' data-branchname='$branch_Name' data-ideditsub='$branch_ID'  ><i class='fas fa-edit fa-2x'></i></a></td>
                 <td><a href='javascript:void(0)' class='delbrn' data-branchname='$branch_Name' data-ideditsub='$branch_ID'><i class='fas fa-trash-alt fa-2x'></i></a></td>
             </tr>";
             $no++;
@@ -47,12 +47,9 @@
      $.getScript('js/mydatatable.js');
 
      $("#Datatable").on('click', '.edit', function(event) {
-        var ideditsub = $(this).data("ideditsub");
-
-        $.post("module/personnel/editsubject.php", { id : ideditsub }).done(function(data){
+        $.post("module/personnel/editsubject.php", { id : $(this).data("ideditsub") ,branchname : $(this).data("branchname")}).done(function(data){
             $('#loadeditsub').html(data)
                  $('#editsub').modal('show');
-            
         })
     });
 

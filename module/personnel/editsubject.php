@@ -1,15 +1,7 @@
 <?php
     session_start();
 	include("../../function/db_function.php");
-    $con=connect_db();
-?>
-
-<?php
-    $result=mysqli_query($con,"SELECT dept_id,dept_name FROM departments WHERE dept_id='$_POST[id]'") or die ("mysql error=>>".mysql_error($con));
-    list($branch_id,$branch_name)=mysqli_fetch_row($result);
-    mysqli_free_result($result);
-    mysqli_close($con);
-
+   
 ?>
 <form id="foreditbrc">
  <div class="modal fade" id="editsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
@@ -24,8 +16,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label > ชื่อสาขาวิชา :</label>
-                         <input type="text"   class="form-control" value="<?php echo $branch_name ?>"  name="branch_name" size=40 require>
-                          <input type="hidden"    value="<?php echo $branch_id ?>"  name="branch_id" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $_POST['branchname'] ?>"  name="branch_name" size=40 require>
+                          <input type="hidden"    value="<?php echo $_POST['id'] ?>"  name="branch_id" size=40 require>
                     </div>
 
 
