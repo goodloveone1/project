@@ -4,7 +4,7 @@
 ?>
 <div class="row headtitle p-2" >
 	<div class="col-md-2 text-center ">
-	<button type="button" class="btn re btn-block menuuser" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
+	<button type="button" class="btn  btn-block menuuser" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
 	</div>
 	<div class="col-md text-center">
 		<h2> เพิ่มบุคลากร </h2>
@@ -228,11 +228,7 @@
 
 			bsCustomFileInput.init() // TYPE file RENAME
 
-			$("button.re").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				loadmain(module1,action);
-			});
+		
 
 			$("#selectbrn").change(function(event) {
 				var idbrn = $("#selectbrn option:selected").data("idbrn")

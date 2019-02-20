@@ -112,10 +112,19 @@
 
 		<script>
 
-		var module1 = sessionStorage.getItem("module1");
-		var action = sessionStorage.getItem("action");
+		
 
 		$(document).ready(function() {
+
+			if(sessionStorage.getItem("module1")=="" || sessionStorage.getItem("action")=="" ){
+				var module1 = "personnel"
+				var action = "home"
+			}else{
+				var module1 = sessionStorage.getItem("module1");
+				var action = sessionStorage.getItem("action");
+			}
+
+			
 
 			
 			$('[data-toggle="tooltip"]').tooltip();  

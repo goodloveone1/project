@@ -20,7 +20,6 @@
 <form  id="delall">
 <div class="table-responsive">
 	<table class="table " id="Datatable">
-
 		<thead class="thead-light">
 			<tr>
 				<?php
@@ -91,7 +90,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 
-
+			$.getScript('js/mydatatable.js') // dataTable	
 
 			$(".managaedituser").click(function(){
 
@@ -123,7 +122,7 @@
             	}
         	})
 
-        	 $.getScript('js/mydatatable.js') // dataTable
+        	
 
 			// $('#showuser').DataTable({
 			// 	"ordering": false,
