@@ -14,9 +14,9 @@ for($i=0;$i<5;$i++){
     $go = $gold.$no;
    
 
-$sql="INSERT INTO tort1pre(tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score) 
-VALUES('','$_POST[tor_id]','$_POST[y_id]','$no','$_POST[$go]','$score[$i]') ";
-//echo $sql;
+$sql="INSERT INTO preasessment_t1(pret1_id,ass_id,title_name,goal,score) 
+VALUES('','$_POST[tor_id]','$no','$_POST[$go]','$score[$i]') ";
+echo $sql;
 mysqli_query ($con,$sql) or die ("error1".mysqli_error($con));
 }
 

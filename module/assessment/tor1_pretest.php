@@ -5,21 +5,20 @@
 	$con=connect_db();
 	
 
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	$seaca=mysqli_query($con,"SELECT acadeic,prefix,fname,lname,position,branch_id,salary,startdate FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
-	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
-	list($branchName)=mysqli_fetch_row($seBrench);
+	// $seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
+	// list($branchName)=mysqli_fetch_row($seBrench);
 
-	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
+
 	// print_r($set);
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
-	mysqli_free_result($seBrench);
-	mysqli_free_result($seexp);
+	// mysqli_free_result($seBrench);
+
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1"> 
 <?php  
@@ -37,7 +36,7 @@ if($loop==2){
 	$y-=1;
 }
 $y_id = $y.$loop;
-		$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$y_id'";
+		$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$_SESSION[user_id]'AND year_id='$y_id'";
 		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
@@ -47,12 +46,8 @@ $y_id = $y.$loop;
 <input type="hidden" value="<?php echo $y_id ?>" name="y_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp; 
-		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
+         <a href="javascript:void(0)"><span class="step step-color ">การประเมิน</span></a>&nbsp; 
+	
 		 <br>
     </div>
 <p></p>
@@ -69,8 +64,8 @@ $y_id = $y.$loop;
 	<div class="col-md">
 <table class="table table-bordered" id="table_score" >
 <tr>
-<th rowspan="2">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
-<th rowspan="2">(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
+<th rowspan="2" class="w-25">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
+<th rowspan="2" class="w-50">(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
 <th colspan="5">(๓) ระดับค่าเป้าหมาย</th>
 <th rowspan="2">(๔) ค่าคะแนน ที่ได้ </th>
 
@@ -83,21 +78,24 @@ $y_id = $y.$loop;
 <th >๕</th>
 </tr>
 <?php
-	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
+	$sql = "SELECT e_id,e_name FROM evaluation";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
-	
-	while (list($tit,$weight)=mysqli_fetch_row($weights)) {
+	while (list($tit,$e_name)=mysqli_fetch_row($weights)) {
 		$titcheck[] = $tit;
-		$sql = "SELECT e_name FROM evaluation WHERE e_id='$tit'";
-		$eval = mysqli_query($con,$sql) or die(mysqli_error($con));
-		list($e_name)=mysqli_fetch_row($eval);
-		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-		list($sumS)=mysqli_fetch_row($sum);
-
+		$sql_con="SELECT e_name,con_level,con_con,con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit' ";
+		$re_con=mysqli_query($con,$sql_con) or die("condintion-error".mysqli_error($con));
 		echo "<tr id='$tit'>";
 									echo "<td>$e_name</td>";
-									echo "<td></td>";
+?>
+									<td>
+											<?php
+												while(list($e_na,$con_level,$con_con,$con_ex )=mysqli_fetch_row($re_con)){
+													echo "<P>",$con_ex,"</P>";
+												}
+											?>
+									</td>
+<?php
 									echo "<td><input type='radio' name='go$tit' value='1' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='2' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='3' required></td>";

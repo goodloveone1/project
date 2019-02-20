@@ -19,8 +19,8 @@
 
 	$y_id = $y.$loop;
 
-	$seaca=mysqli_query($con,"SELECT acadeic,prefix,fname,lname,position,branch_id,salary,startdate,leves,aca_code,other FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate,$leves,$aca_code,$other)=mysqli_fetch_row($seaca);
+	$seaca=mysqli_query($con,"SELECT st_id,acadeic,prefix,fname,lname,position,branch_id,salary,startdate,leves,aca_code,other FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	list($staff_id,$gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate,$leves,$aca_code,$other)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	list($acaName)=mysqli_fetch_row($seacaName);
 	
@@ -67,7 +67,6 @@
 		<div class="form-group row">
 			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-6">
-				<input type="hidden" name="gg" value="hidden" >
 				<select id="inputState" class="form-control" name="year">
 				<?php 
 				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
@@ -123,6 +122,7 @@
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required readonly>
+			<input type="hidden" name="staff_id" value="<?php  echo $staff_id  ?>" >
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -163,11 +163,12 @@
 				$led_pos = "4";
 				//$led_name="หัวหน้าคณะ";
 			}
-			$re_leader = mysqli_query($con,"SELECT fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
-			list($led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
+			$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
+			list($leader_id,$led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
 		?>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="leader" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
+			<input type="hidden" name="leader_id" value="<?php echo $leader_id ?>">
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -358,16 +359,16 @@
 		}
 		$year_id = $y.$loop;
 			
-			$reS=mysqli_query($con,"SELECT *FROM absence WHERE staff='$_SESSION[user_id]'  AND year='$year_id' ")or die(mysqli_error($con));
+			$reS=mysqli_query($con,"SELECT *FROM absence WHERE staff='$_SESSION[user_id]'  AND year_id='$year_id' ")or die(mysqli_error($con));
 			$idl=mysqli_fetch_assoc($reS);
 
 			// print_r($idl);
 			// echo $y_id;
 			if(empty($idl)){
-				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
+				echo "<p style='color:red;' align='center'>เจ้าหน้าที่ยังไม่ได้กรอกข้อมูล</p>";
 			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
 			 ?>
-			<div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;กรอกข้อมูล</button></a></div><br>
+			<!-- <div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;ขอข้อมูลจากเจ้าน้าที่</button></a></div><br> -->
 			<?php	
 			}else{
 				include("idl.php");
@@ -377,7 +378,7 @@
 		<div id="loadaddsub"></div> 
 	</div>
 </div>
-<div class="row">
+<!-- <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md">
 		 <div class="form-group row">
@@ -389,7 +390,7 @@
 		</div>
 	<div class="col-md-2"></div>
 </div>
-</div>
+</div> -->
 
 <div class="row ">
 	<div class="col-md">
