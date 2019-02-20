@@ -13,7 +13,7 @@
 </div>
 <form method="POST"  enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<div class="card">
 				<img class="card-img-top img-thumbnail" src="img/default/user_default.svg" id="showpic" alt="Card image cap">
 
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md mt-2">
+		<div class="col-lg mt-2">
 			<div class="form-group row">
 				<label for="staticEmail" class="col-sm-2 col-form-label">คำนำหน้า</label>
 				<div class="col-sm-10">
@@ -173,14 +173,11 @@
 							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
 								echo "<option value='$permissid'>$permissname</option>";
 							}
-							mysqli_free_result($permiss);
-
-						
+							mysqli_free_result($permiss);		
 						?>
 					</select>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="col-md-12"> 		<!--  ปริญญาตรี  -->

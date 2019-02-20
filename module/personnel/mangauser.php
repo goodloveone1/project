@@ -122,13 +122,7 @@
             	}
         	})
 
-        	
-
-			// $('#showuser').DataTable({
-			// 	"ordering": false,
-
-			// });
-
+      
 			// ไมเลือกทั้งหมด
 			$(".select1").click(function(){
 				$.get("module/personnel/mangauser.php",{se : ""}).done(function(data,txtstuta){

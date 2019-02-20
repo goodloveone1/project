@@ -8,11 +8,11 @@ $date = date("Y-m-d");
 
 $re_id = $_POST['reid'];
 
-$resultre = $con->query("SELECT re_title,re_detail,re_date,gen_id FROM relations");
+$resultre = $con->query("SELECT re_title,re_detail,re_date,staff_id FROM relations") or die($con->error);
 
 list($re_title,$re_detail,$re_date,$gen_id) = $resultre->fetch_row();
 
-$resultre = $con->query("SELECT gen_fname,gen_lname FROM general WHERE gen_id = $gen_id");
+$resultre = $con->query("SELECT fname,lname FROM staffs WHERE st_id = $gen_id");
 
 list($gen_fname,$gen_lname) = $resultre->fetch_row();
 

@@ -28,13 +28,16 @@
 
 <form method="POST" enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">
-		<div class="col-lg-3">
+		<div class="col-lg-4">
 			<div class="card">
 				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
-						<input type="file" name="pic_u" class="form-control  btn" >
-					</div>
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" accept="image/*">
+							<label class="custom-file-label" name="pic" >เลือกรูปภาพ</label>
+						</div>
+					</div> 
 				</div>
 			</div>
 		</div>
@@ -209,11 +212,13 @@
 			</div>
 			
 			</div>
-			<div class="form-group col-md-12 border rounded p-2" >
-				<label for="" class="col-md-2 col-form-label center">วุฒิการศึกษา</label>
-				<div class="col-md-30">
-
-
+	</div>		
+			<div class="row " >
+				<div class="col-md-12">
+					<h4 class='h4'>วุฒิการศึกษา</h4>
+				</div>	
+				<div class="col-md">
+				<div class="table-responsive">
 					<table class="table col-md display setdt" id="tbeucation">
 					<thead>
 
@@ -235,15 +240,17 @@
 					<button type='button' class='btn mx-auto bg-secondary text-white' id='adddegree' data-genid='<?php echo $gen_id;?>' >เพิ่มวุฒิการศึกษา</button>
 
 				</div>
+				</div>
 			</div>
 
-		</div>
-
+	
+	<div class="row " >
 		<div class="col-md-12 text-center mb-2" >
 		<button type="submit" class="btn updateuser bg-success text-white" data-modules="personnel" data-action="updateuser"> บันทึก </button>
 		</div>
-
 	</div>
+
+
 </form>
 <div id="addsub"></div>
 <div id="editD"></div>
@@ -270,14 +277,7 @@
     	   }
 	});
 
-	if ( $.fn.dataTable.isDataTable( '#tbeucation' ) ) {
-
-	}
-	else {
-	    table = $('#tbeucation').DataTable( {
-	        paging: false
-	    } );
-	}
+	
 			selectsuj();
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');

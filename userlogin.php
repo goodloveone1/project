@@ -24,7 +24,6 @@
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
 		
 		<script src="js/jquery-3.3.1.min.js"></script>
-		<script src="js/loadmain.js" ></script> <!--FUNCTION LOAD MAIN -->
 		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
 		<script src="js/functionjs.js"></script> <!--FUNCTION script -->
 		
@@ -116,6 +115,9 @@
 
 		$(document).ready(function() {
 
+			
+			
+
 			if(sessionStorage.getItem("module1")=="" || sessionStorage.getItem("action")=="" ){
 				var module1 = "personnel"
 				var action = "home"
@@ -123,6 +125,9 @@
 				var module1 = sessionStorage.getItem("module1");
 				var action = sessionStorage.getItem("action");
 			}
+
+			checksceen(); /* MENU SIDE CHECK*/
+			loadmain(module1,action);
 
 			
 
@@ -142,13 +147,7 @@
 					e.preventDefault();
 					module1 = $(this).data('modules');
 					action = $(this).data('action');
-					id = $(this).data('dataid');
-
-					if(id==undefined){
-						id=null
-					}
-
-
+				
 					loadingpage(module1,action); //code local functionjs.js
 
 				});
@@ -184,13 +183,7 @@
 			// return message;
 			// });
 
-			// FISTH LOAD PAGE
-			$(window).on('load', function(){
-
-				checksceen(); /* MENU SIDE CHECK*/
-				loadmain(module1,action);
-
-			});
+		
 			/* script HOVER MENU  COVER CSS .bg-color*/
 				$(".bt-color").hover(function() {
 					/* Stuff to do when the mouse enters the element */

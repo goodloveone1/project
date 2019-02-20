@@ -35,7 +35,7 @@ $con=connect_db();
 
 					while (list($re_id,$re_title,$re_detail,$re_date,$gen_id)=mysqli_fetch_row($re)) {
 
-						$gen = mysqli_query($con,"SELECT gen_fname,gen_lname FROM general WHERE gen_id = '$gen_id'");
+						$gen = mysqli_query($con,"SELECT fname,lname FROM staffs WHERE st_id = '$gen_id'") or die($con->error);
 						list($name,$lname) = mysqli_fetch_row($gen);
 						mysqli_free_result($gen);
 						echo "<tr>";

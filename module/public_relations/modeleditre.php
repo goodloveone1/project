@@ -5,7 +5,7 @@ $con=connect_db();
 $date = date("Y-m-d");
 
 $re_id = $_POST['reid'];
-$resultre = $con->query("SELECT re_title,re_detail,re_date,gen_id FROM relations");
+$resultre = $con->query("SELECT re_title,re_detail,re_date,staff_id FROM relations");
 list($re_title,$re_detail,$re_date,$gen_id) = $resultre->fetch_row();
 
 $resultre->free_result();

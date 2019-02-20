@@ -8,11 +8,12 @@ $con=connect_db();
 		<h2 class="headtitle p-2 text-center">ข่าวประชาสัมพันธ์</h2>
 		<div class="list-group" id='testna'>
 			<?php
-				$re = mysqli_query($con,"SELECT re_title,re_detail,re_date,gen_id FROM relations ORDER BY 	re_date DESC");
+				$re = mysqli_query($con,"SELECT re_title,re_detail,re_date,staff_id FROM relations ORDER BY 	re_date DESC");
 				$n=1;
 				while (list($re_title,$re_detail,$re_date,$gen_id)=mysqli_fetch_row($re)) {
 				$gen = mysqli_query($con,"SELECT fname,lname FROM staffs WHERE st_id = '$gen_id'");
-				list($name,$lname) = mysqli_fetch_row($gen);	
+				list($name,$lname) = mysqli_fetch_row($gen);
+				mysqli_free_result($gen);	
 				if($n <= 3){
 			?>
 			<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -39,7 +40,7 @@ $con=connect_db();
 			$n++;
 			}   // END WHILE
 			mysqli_free_result($re);
-			mysqli_free_result($gen);
+			
 			mysqli_close($con);
 			?>
 		</div>

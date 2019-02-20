@@ -27,7 +27,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                    <table class ="table" id="tabldegree">
+                    <div class='table-responsive'>
+                    <table class ="table" id="Datatable" >
                         <thead class="thead-light">
                              <tr>
                                 <th scope="col">ลำดับ</th>
@@ -40,12 +41,12 @@
                         <?php
     $no=1;
     while(list($ed_id,$gen_id,$ed_name,$ed_loc,$id_degree)=mysqli_fetch_row($sedegree)){
-        $re_genname = mysqli_query($con,"SELECT  prefix,fname,lname,branch_id,acadeic FROM staffs WHERE staff_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
-        list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$subject_id,$gen_acadeic)=mysqli_fetch_row($re_genname);
-        $br = mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'") or die("SQL_Error".mysqli_error($con));
+        $re_genname = mysqli_query($con,"SELECT  prefix,fname,lname,branch_id,acadeic FROM staffs WHERE st_id = '$gen_id'") or die("SQL_Error".mysqli_error($con));
+        list($gen_prefix,$gen_fname,$gen_lname,$branch_id,$gen_acadeic)=mysqli_fetch_row($re_genname);
+        $br = mysqli_query($con,"SELECT br_name FROM branchs WHERE br_id='$branch_id'") or die("SQL_Error".mysqli_error($con));
         list($branch_name)=mysqli_fetch_row($br);
-        $sub = mysqli_query($con,"SELECT subject_name FROM subjects WHERE subject_id='$subject_id'") or die("SQL_Error".mysqli_error($con));
-        list($subject_name)=mysqli_fetch_row($sub);
+        // $sub = mysqli_query($con,"SELECT subject_name FROM branchs WHERE de_id='$subject_id'") or die("SQL_Error".mysqli_error($con));
+        // list($subject_name)=mysqli_fetch_row($sub);
         echo"
             <tr>
                 <td>$no</td>
@@ -61,6 +62,7 @@
 
                     </table>
                     </div>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -74,7 +76,10 @@
         mysqli_close($con);
     ?>
 <script type="text/javascript">
-$('#tabldegree').DataTable();
+
+$.getScript('js/mydatatable.js') // dataTable	
+
+
 $("#updatesu").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
