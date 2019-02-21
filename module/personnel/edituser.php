@@ -34,8 +34,8 @@
 				<div class="card-body text-center">
 					<div class="form-group row">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" accept="image/*">
-							<label class="custom-file-label" name="pic" >เลือกรูปภาพ</label>
+							<input type="file" class="custom-file-input " name="pic_u" accept="image/*">
+							<label class="custom-file-label"  >เลือกรูปภาพ</label>
 						</div>
 					</div> 
 				</div>
@@ -262,6 +262,7 @@
 
 		$(document).ready(function() {
 
+			bsCustomFileInput.init() // TYPE file RENAME
 
 
 	$("#tbeucation").DataTable({

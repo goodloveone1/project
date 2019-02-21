@@ -34,6 +34,7 @@
 
 				echo"
 				<th scope='col'>ลำดับ</th>
+				<th scope='col' width='10%' class='text-center'>รูปภาพ </th>
 				<th scope='col'>ชื่อ </th>
 				<th scope='col'>นามสกุล</th>
 				<th scope='col'>สาขา</th>
@@ -49,16 +50,20 @@
 
 			<?php
 
-					$show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id FROM staffs WHERE permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
+					$show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture FROM staffs WHERE permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
 					$i=1;
-						while(list($st_id,$fname,$lname,$branch_id)=mysqli_fetch_row($show)){
+						while(list($st_id,$fname,$lname,$branch_id,$picture)=mysqli_fetch_row($show)){
 							$Sbrach=mysqli_query($con,"SELECT br_id,br_name,dept_id FROM branchs WHERE br_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
 							list($Sbranch_id,$branch_name,$dept_id)=mysqli_fetch_row($Sbrach);
 							$sdept=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die("dept_error".mysqli_error($con));
 							list($dept_name)=mysqli_fetch_row($sdept);
+
+							$userphoto=empty($picture)?"default/user_default.svg":$picture;
 						echo"
-							<tr>		<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$st_id' $ch></div></td>
+							<tr>	
+								<td><div class='form-check ml-2'><input class='form-check-input' type='checkbox' name='delid[]' value='$st_id' $ch></div></td>
 										<td>$i</td>
+										<td><img src='img/$userphoto' alt='Responsive image' class='img-fluid' ></td>
 										<td>$fname</td>
 										<td>$lname</td>
 										<td>$dept_name</td>

@@ -103,10 +103,13 @@
 			<div id='picloading' style="display: none;"><img style='display: block;margin:12% auto; ' src='img/loading.svg'></div>
 		</div>
 	
-		
-		<script src="js/jquery.validate.min.js" ></script>
-		
-		<script src="js/additional-methods.min.js" ></script>
+		<?php //validate ?>
+		<script src="js/validate/jquery.validate.min.js" ></script>
+		<script src="js/validate/additional-methods.min.js" ></script>
+		<script src="js/validate/localization/messages_th.min.js" ></script>
+		<script src="js/validateSetdef.js" ></script> 
+		<?php //END validate ?>
+
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
 
 		<script>

@@ -1,4 +1,4 @@
-<div class='row p-2 headtitle mb-5'>
+<div class='row p-2 headtitle mb-3'>
 <div class='col-md text-center'><h3  class="h3">ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</h3> </div> 
 </div>
 <?php
@@ -13,8 +13,7 @@
 			while(list($ac_id,$ac_name) = $academic->fetch_row()){
 
 ?>
-		
-			<div class='row mb-5 '>
+				<div class='row mb-3 '>
 			
 				<div class='col-md-12'><h3 class='h3'> <?php echo $ac_id." " .$ac_name ?> </h3> </div>
 				

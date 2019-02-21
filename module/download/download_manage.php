@@ -48,7 +48,7 @@
 							ศาสตราจารย์
 						<ul class="list-group">
 						  <li class="list-group-item">- TOR. ศ</li>
-						  <li class="list-group-item">- ข้อตกลง ศาสตราจารย์์</li>
+						  <li class="list-group-item">- ข้อตกลง ศาสตราจารย์</li>
 						  <li class="list-group-item">- แบบรายงานผลการปฏิบัติราชการ</li>
 					</ul>
 				</td>

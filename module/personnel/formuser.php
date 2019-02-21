@@ -24,10 +24,10 @@
 					</div> -->
 					<div class="form-group row">
 					<div class="custom-file">
-						<input type="file" class="custom-file-input" accept="image/*">
-						<label class="custom-file-label" name="pic" >เลือกรูปภาพ</label>
+						<input type="file" class="custom-file-input" name="pic" id='formid' accept="image/*">
+						<label class="custom-file-label"  >เลือกรูปภาพ</label>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</div>
@@ -155,13 +155,13 @@
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-md-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwd" id="passwd" required>
+					<input type="Password" class="form-control"  placeholder="Password" name="passwd" id="passwd" >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-md-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwdv" required>
+					<input type="Password" class="form-control"  placeholder="Password" name="passwdv" id="passwdv" >
 				</div>
 			</div>
 			<div class="form-group row">
@@ -278,34 +278,30 @@
 							}
 					}
 // END ปริญญาตรี
-
-
-			$('#edituser').validate({ // initialize the plugin
-						        rules: {
-						            passwd: {
-						                required: true,
-						                minlength:5
+		
+			 $('#edituser').validate({ // initialize the plugin
+			 			        rules: {
+			 			            passwd: {
+			 			                required: true,
+			 			                minlength:5
 						            },
 						            passwdv: {
 						                required: true,
-						                minlength:5,
+										minlength:5	,
 						                equalTo: "#passwd"
 						            }
-						        },
-								messages: {
-									password: {
-										required: "Please provide a password",
-										minlength: "Your password must be at least 5 characters long"
-									},
-									confirm_password: {
-										required: "Please provide a password",
-										minlength: "Your password must be at least 5 characters long",
-										equalTo: "Please enter the same password as above"
-									},
-
-								}
-
-						    });
+								},
+                onfocusout: function(element) {
+                    this.element(element); // triggers validation
+                },
+                onkeyup: function(element, event) {
+                    this.element(element); // triggers validation
+                }
+							
+							});
+							
+	
+			
 
 
 			$("#edituser").submit(function(e){
