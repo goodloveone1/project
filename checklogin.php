@@ -11,8 +11,11 @@
 
 	include("function/db_function.php");
 	$con=connect_db();
-	$login=mysqli_query ($con,"SELECT st_id,user,pwd,permiss_id,fname,lname FROM  staffs WHERE user='$user' AND pwd='$pw' " )or die ("erro=>".mysqli_error($con));
-	list($st_id,$username,$passwd,$level,$fname,$lname) = mysqli_fetch_row($login);
+	$login=mysqli_query ($con,"SELECT st_id,user,pwd,permiss_id,fname,lname,branch_id FROM  staffs WHERE user='$user' AND pwd='$pw' " )or die ("erro=>".mysqli_error($con));
+	list($st_id,$username,$passwd,$level,$fname,$lname,$branch_id) = mysqli_fetch_row($login);
+
+	$re_dept = mysqli_query($con,"SELECT dept_id FROM branchs WHERE br_id='$branch_id'")or die("dept_sqlError".mysqli_error($con));
+	list($dept_id)=mysqli_fetch_row($re_dept);
 
 	$permiss=mysqli_query ($con,"SELECT permiss_decs FROM  permissions WHERE permiss_id='$level'" )or die (" permissions erro=> ".mysqli_error($con));
 	list($permiss_decs) = mysqli_fetch_row($permiss);
@@ -24,10 +27,10 @@
 				$_SESSION['user_fnaem']=$fname;
 				$_SESSION['user_lnaem']=$lname;
 				$_SESSION['permiss_decs']=$permiss_decs;
-				// $_SESSION['branch_id']=$branch_id;
-				// $_SESSION['subject_id']=$subject_id;
+				$_SESSION['branch']=$branch_id;
+				$_SESSION['department']=$dept_id;
 
-
+				
 				// if($_SESSION['user_level']=="1")
 				// {
 				// 	// echo "<script>window.location='userlogin'</script>";
