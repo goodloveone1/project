@@ -26,21 +26,15 @@
 	echo	$genIdpost = $_POST['genid'];
 	echo	$yearIdpost = $_POST['year'];
 
-	$tor=mysqli_query($con,"SELECT *FROM tor WHERE tor_year='$yearIdpost'AND gen_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
-    list($tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment)=mysqli_fetch_row($tor);
-    // echo "<br>",$tor_id,$gen_id,$tor_year,$tor_nameRe,$tor_pos,$tor_department,$tor_leader,$tor_leader_pos,$tor_aca,$tor_salary,$tor_acdCode,$tor_affiliation,$tor_leves,$tor_startWork,$tor_sumWork,$inspector,$tor_punishment;
+	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+    list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);
+    
 
 
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$tor_aca'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaName)=mysqli_fetch_row($seacaName);
-
-
-
-	// $seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	// for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// print_r($set);
 	mysqli_free_result($tor);
-	mysqli_free_result($seacaName);
+	
+	
+	// mysqli_free_result($seacaName);
 
 	// mysqli_free_result($seexp);
 ?>
