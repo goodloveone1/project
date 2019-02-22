@@ -32,7 +32,7 @@ $year = $_POST['year'];
 SELECT  staffs.st_id,staffs.fname,staffs.lname,branchs.dept_id,staffs.picture
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
-WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1'") or  die("SQL Error1==>1".mysqli_error($con));
+WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
 
     }
     else //คณะ

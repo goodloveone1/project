@@ -8,9 +8,9 @@
 	$yearIdpost = $_POST['year'];
 
 
-//เปลี่ยน sessionเป็น gen_id
-	 $seaca=mysqli_query($con,"SELECT acadeic FROM staffs WHERE st_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
-	 list($gen_acadeic)=mysqli_fetch_row($seaca);
+//ผู้รับการประเมิน
+	 $seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+	 list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca);
 	// $seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	// list($acaName)=mysqli_fetch_row($seacaName);
 
@@ -45,7 +45,7 @@ $y_id = $y.$loop;
 		//เพิ่มวันนี้
 		$sqltor = mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$genIdpost'AND year_id='$yearIdpost'") or die("torError".mysqli_error($con));
 		list($tor_ide)=mysqli_fetch_row($sqltor);
-		echo $tor_ide;
+		// echo $tor_ide;
 //ค่าคะแนน จาก tor
 		mysqli_free_result($reChk);
 		//mysqli_free_result($sqltor1);
@@ -62,15 +62,16 @@ $y_id = $y.$loop;
 		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
 		 <br>
     </div>
-<p></p>
-<br>
 <div class="row ">
 	<div class="col-md">
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
 	</div>
 </div>
-
-
+<div class="row ">
+	<div class="col-md">
+<p></p><?php  echo " ผู้รับการประเมิน : ",$fname," ",$lname;  ?></p>
+	</div>
+</div>
 <div class="row ">
 	<div class="col-md">
 <table class="table table-bordered" id="table_score" >
@@ -210,7 +211,7 @@ $('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', f
 	var tit2="wei"+ (tit+1);
 	var scwie="scwie"+(tit+1);
 
-var sumswei = (($("input[name='"+tit2+"']").val() *scsum)/100)
+    var sumswei = (($("input[name='"+tit2+"']").val() *scsum)/100)
 // alert(sumswei)
 // $("#"+scwie).val(sumswei);
 document.tor1['scwei[]'][tit].value =sumswei.toFixed(2); ;
