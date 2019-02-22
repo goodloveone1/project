@@ -28,10 +28,22 @@
 
 	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
     list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);
-    
+  
+	$re_staff=mysqli_query($con,"SELECT fname,lname,branch_id,salary,aca_code,acadeic,leves,other,startdate,position FROM staffs WHERE st_id='$staff_id'") or die("Staff_SQL-error".mysqli_error($con));
+		list( $fname,$lname,$branch_id,$salary,$aca_code,$acadeie,$leves,$other,$startdate,$position)=mysqli_fetch_row($re_staff);
+	
+	$re_leader = mysqli_query($con,"SELECT fname,lname,branch_id,salary,aca_code,acadeic,leves,other,startdate,position FROM staffs WHERE st_id='$leader_id'") or die("Leader_SQL-error".mysqli_error($con));
+		list( $l_fname,$l_lname,$l_branch_id,$l_salary,$l_aca_code,$l_acadeie,$l_leves,$l_other,$l_startdate,$l_position)=mysqli_fetch_row($re_leader);
+		
+$re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadeie'") or die("ACA_SQL-error".mysqli_error($re_aca));
+		list($acaName)=mysqli_fetch_row($re_aca);
+
 
 
 	mysqli_free_result($tor);
+	mysqli_free_result($re_staff);
+	mysqli_free_result($re_leader);
+	mysqli_free_result($re_aca);
 	
 	
 	// mysqli_free_result($seacaName);
@@ -67,21 +79,17 @@
 		<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
 
 		<div class="form-group row">
-			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
+			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ <?php echo $year_id  ?></label>
 			<div class="col-sm-6">
 				<input type="hidden"  name="tor_id" value="<?php echo $tor_id  ?>" >
+				
+				<select id="inputState" class="form-control" name="year" disabled>
 				<?php
-					$re_year=   mysqli_query($con,"SELECT y_year FROM years WHERE y_id='$tor_year'")or die("error".mysqli_error($con));
-					list($YY)=mysqli_fetch_row($re_year);
-					mysqli_free_result($re_year);
-				?>
-				<select id="inputState" class="form-control" name="year">
-				<?php
-				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
-				while(list($y_year)=mysqli_fetch_row($sYears)){
+				$sYears=mysqli_query($con,"SELECT DISTINCT  y_id,y_year FROM years")or die(mysqli_error($con));
+				while(list($y_id,$y_year)=mysqli_fetch_row($sYears)){
 					$y_thai=$y_year+543;
 
-					$select=$YY==$y_year?"selected":"";
+					$select=$year_id==$y_id?"selected":"";
 					echo"<option value='$y_year' $select>$y_thai</option>";
 				}
 				mysqli_free_result($sYears);
@@ -98,13 +106,13 @@
 			<div class="form-group  row">
 				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
 				<div class="col-sm">
-					<select id="inputNo" class="form-control" name="a_no">
+					<select id="inputNo" class="form-control" name="a_no" disabled>
 					<?php
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
 						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
 
-							$seNO=$tor_year==$y_no?"selected":"";
+							$seNO=$year_id==$y_id?"selected":"";
 							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 						}
 					?>
@@ -122,25 +130,34 @@
 	<div class="form-group row">
 		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo $tor_nameRe; ?>" name="name" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo $fname," ",$lname; ?>" name="name" required readonly>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
+
 		<div class="col-sm">
-		<select class="form-control" name="g_pos">
+		<select class="form-control" name="g_pos" disabled>
 		<?php
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
-			$select=$pos_id==$tor_pos?"selected":"";
+			$select=$pos_id==$position?"selected":"";
 			echo "<option value=$pos_id $select>$pos_name</option>";
 			}
 			mysqli_free_result($seaPos);
 		?>
 		</select>
-			<!-- <input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>"> -->
+		
 		</div>
 		<label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $tor_department?>" name="dept">
+		<?php 
+			$re_branch=mysqli_query($con,"SELECT br_name,dept_id FROM branchs WHERE br_id='$branch_id'") or die("position-sqlError".mysqli_error($con));
+			list($branch_name,$dept_id)=mysqli_fetch_row($re_branch);
+				$re_dept=mysqli_query($con,"SELECT dept_name FROM departments	WHERE dept_id='$dept_id'") or die("dept-sqlError".mysqli_error($con));
+				list($dept_name)=mysqli_fetch_row($re_dept);
+
+			mysqli_free_result($re_branch)
+		?>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $dept_name?>" name="dept" readonly>
 		</div>
 	</div>
 </div>
@@ -150,15 +167,15 @@
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
 		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader" value="<?php echo $tor_leader ?>" required>
+			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้บังคับบัญชา" name="leader" value="<?php echo $l_fname," ",$l_lname ?>" readonly>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
-		<select class="form-control" name="l_pos">
+		<select class="form-control" name="l_pos" disabled >
 		<?php
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 			while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
-			  $select=$pos_id==$tor_leader_pos?"selected":"";
+			  $select=$pos_id==$l_position?"selected":"";
 			echo "<option value='$pos_id' $select>$pos_name</option>";
 			}
 		?>
@@ -210,7 +227,7 @@
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" value="<?php echo $tor_department?>" required>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" value="คณะ<?php echo $dept_name?>" readonly>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -227,16 +244,16 @@
 
 		 	<label  class="col-sm-2 col-form-label">๑.  ชื่อ สกุล </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo $tor_nameRe; ?>" required>
+		      <input type="text" class="form-control" id="" placeholder="ชื่อ สกุล" value="<?php echo $fname," ",$lname; ?>" readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">ประเภทตำแหน่งวิชาการ </label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-			  <select class="form-control" name="g_aca">
+			  <select class="form-control" name="g_aca" disabled>
 			  <?php
 			  	$seaPos=mysqli_query($con,"SELECT aca_id,aca_name FROM academic")or die("SQL_ERROR".mysqli_error($con));
 				  while(list( $aca_id,$aca_name)=mysqli_fetch_row($seaPos)){
-				  $select=$aca_id==$tor_aca?"selected":"";
+				  $select=$aca_id==$acadeie?"selected":"";
 				  echo "<option value='$aca_id' $select>$aca_name</option>";
 				  }
 				  mysqli_free_result($seaPos);
@@ -253,11 +270,11 @@
 		 	<label  class="col-sm-2 col-form-label">ตำแหน่งบริหาร</label>
 		 	<div class="col-sm">
 		      <!-- <input type="text" class="form-control" id="" placeholder=""> -->
-			  <select class="form-control" name="">
+			  <select class="form-control" name="" disabled>
 				<?php
 					$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
 					while(list( $pos_id,$pos_name)=mysqli_fetch_row($seaPos)){
-					$select=$pos_id==$tor_pos?"selected":"";
+					$select=$pos_id==$position?"selected":"";
 					echo "<option value=$pos_id $select>$pos_name</option>";
 					}
 
@@ -267,7 +284,7 @@
 		    </div>
 			<label  class="col-sm-1 col-form-label">เงินเดือน </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $tor_salary  ?>" name="salary" required>
+		      <input type="text" class="form-control" id="" placeholder="เงินเดือน" value="<?php echo $salary  ?>" name="salary" readonly>
 		    </div>
 		    <label  class="col-sm-1 col-form-label">บาท </label>
 	</div>
@@ -279,11 +296,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> เลขที่ประจำตำแหน่ง </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" value="<?php echo $tor_acdCode ?>" required >
+		      <input type="text" class="form-control" id="" placeholder="เลขที่ประจำตำแหน่ง" name="acd_no" value="<?php echo $aca_code ?>" readonly >
 		    </div>
 			<label  class="col-sm-1 col-form-label">สังกัด </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="สังกัด" value="<?php echo $tor_department?>">
+		      <input type="text" class="form-control" id="" placeholder="สังกัด" value="<?php echo $branch_name?>" readonly>
 		    </div>
 	</div>
 	</div>
@@ -294,11 +311,11 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> มาช่วยราชการจากที่ใด (ถ้ามี) </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff" value="<?php echo $tor_affiliation ?>" required>
+		      <input type="text" class="form-control" id="" placeholder="มาช่วยราชการจากที่ใด" name="aff" value="<?php echo $other ?>" readonly>
 		    </div>
 			<label  class="col-sm-2 col-form-label">หน้าที่พิเศษ </label>
 		 	<div class="col-sm">
-		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves" value="<?php echo $tor_leves   ?>" required>
+		      <input type="text" class="form-control" id="" placeholder="หน้าที่พิเศษ" name="leves" value="<?php echo $leves   ?>" readonly>
 		    </div>
 	</div>
 	</div>
@@ -309,8 +326,8 @@
 	<div class="form-group row">
 		 	<label  class="col-sm-3 col-form-label"> ๒. เริ่มรับราชการเมื่อวันที่ </label>
 		 	<div class="col-sm">
-		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($tor_startWork)?>" name="" readonly>
-			  <input type="hidden"   class="form-control" id="datethai" placeholder="" value="<?php echo $tor_startWork?>" name="st_work" readonly>
+		      <input type="text"   class="form-control" id="datethai" placeholder="" value="<?php echo DateThai($startdate)?>" name="" readonly>
+			  <input type="hidden"   class="form-control" id="datethai" placeholder="" value="<?php echo $startdate?>" name="st_work" readonly>
 
 		    </div>
 			<label  class="col-sm-2 col-form-label">รวมเวลารับราชการ </label>
@@ -321,12 +338,11 @@
 
 			 ?>
 
-		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo dateDifference($tor_startWork,date("Y/m/d"),'%y ปี %m เดือน %d วัน'); ?>" name="sum_work" readonly>
+		      <input type="text" class="form-control" id="" placeholder="" value="<?php echo $sumwork ?>" name="sum_work" readonly>
 		    </div>
 	</div>
 	</div>
 </div>
-
 
 
 <div class="row ">
@@ -335,51 +351,40 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md">
+	<div class="col-md">	
 		<?php
-			$mm=date('m');  //เดือนปัจจุบัน
-			$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
-			$m="$mm";
-			$y="$yearbudget";
-			if($m<=9 && $m>3){
-				$loop=2;
-			}else{
-				$loop=1;
-			}
-			if($loop==2){
-				$y-=1;
-			}
-			$y_id = $y.$loop;
-				$reS=mysqli_query($con,"SELECT *FROM idlel WHERE gen_id='$genIdpost'  AND year_id='$y_id' ")or die(mysqli_error($con));
-				$idl=mysqli_fetch_assoc($reS);
+		$mm=date('m');  //เดือนปัจจุบัน
+		$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
+		$m="$mm";
+		$y="$yearbudget";
+		if($m<=9 && $m>3){
+			$loop=2;
+		}else{
+			$loop=1;
+		}
+		if($loop==2){
+			$y-=1;
+		}
+		$year_id = $y.$loop;
+			
+			$reS=mysqli_query($con,"SELECT *FROM absence WHERE staff='$_SESSION[user_id]'  AND year_id='$year_id' ")or die(mysqli_error($con));
+			$idl=mysqli_fetch_assoc($reS);
 
+			// print_r($idl);
+			// echo $y_id;
 			if(empty($idl)){
-				echo "<p style='color:red;' align='center'>ยังไม่ได้กรอกข้อมูล</p>";
+				echo "<p style='color:red;' align='center'>เจ้าหน้าที่ยังไม่ได้กรอกข้อมูล</p>";
 			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
 			 ?>
-			<div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;กรอกข้อมูล</button></a></div><br>
-			<?php
+			<!-- <div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;ขอข้อมูลจากเจ้าน้าที่</button></a></div><br> -->
+			<?php	
 			}else{
-				include("idl2.php");
+				include("idl.php");
 			}
-
+			
 		?>
-		<div id="loadaddsub"></div>
+		<div id="loadaddsub"></div> 
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-2"></div>
-	<div class="col-md">
-		 <div class="form-group row">
-		 	<label  class="col-sm-1 col-form-label"> ลงชื่อ</label>
-		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="ลงชื่อ" name="inspector" value="<?php echo $inspector  ?>" required>
-		    </div>
-			<label  class="col-sm col-form-label">ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน </label>
-		</div>
-	<div class="col-md-2"></div>
-
-</div>
 </div>
 
 <div class="row ">
@@ -390,7 +395,7 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control" rows=4 name="punishment" required><?php echo  $tor_punishment  ?></textarea>
+		<textarea class="form-control" rows=4 name="punishment" required><?php echo  $punishment  ?></textarea>
 	</div>
 </div>
 <br>
