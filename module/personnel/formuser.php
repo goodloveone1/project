@@ -155,13 +155,13 @@
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">รหัสผ่าน</label>
 				<div class="col-md-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwd" id="passwd" >
+					<input type="password" class="form-control"  placeholder="Password" name="passwd" id="passwd" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">ยืนยันรหัสผ่าน</label>
 				<div class="col-md-10">
-					<input type="Password" class="form-control"  placeholder="Password" name="passwdv" id="passwdv" >
+					<input type="password" class="form-control"  placeholder="Password" name="passwdv" id="passwdv" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -203,7 +203,7 @@
 <div class="col-md-12 row mt-2">
 <div class="col-md-5"></div>
 <div class="col-md">
-	<button type="submit" class="btn adduser btn-success " data-modules="personnel" data-action="updateuser"> บันทึกข้อมูล </button>
+	<button type="sumbit" class="btn adduser btn-success " data-modules="personnel" data-action="updateuser"> บันทึกข้อมูล </button>
 </div>
 <div class="col-md-5"></div>
 </div>
@@ -279,25 +279,19 @@
 					}
 // END ปริญญาตรี
 		
-			 $('#edituser').validate({ // initialize the plugin
+			var vform = $('#edituser').validate({ // initialize the plugin
 			 			        rules: {
 			 			            passwd: {
-			 			                required: true,
-			 			                minlength:5
+			 			                
+										 minlength : 5  
 						            },
 						            passwdv: {
-						                required: true,
-										minlength:5	,
+						               
+										minlength : 5,
 						                equalTo: "#passwd"
 						            }
-								},
-                onfocusout: function(element) {
-                    this.element(element); // triggers validation
-                },
-                onkeyup: function(element, event) {
-                    this.element(element); // triggers validation
-                }
-							
+								}
+
 							});
 							
 	
@@ -306,14 +300,15 @@
 
 			$("#edituser").submit(function(e){
 
-				e.preventDefault();
+				
+					e.preventDefault();
 
-					$check = $("#edituser").valid();
+		
 					$text  = $('#showtxtuser').val();
 
-					if($check == true ){
+					if(vform.valid()){
 
-						if( $text == ""){
+						if($text==""){
 						    e.preventDefault();
 
 						    var formData = new FormData(this);
@@ -339,11 +334,16 @@
 						}else{
 							alert("ชื่อผู้ใช้ถูกใช้แล้ว กรณาเปลี่ยนด้วยครับ")
 						}
+					
 					}
+
 				})	// END edituser
+				
 
 			$("input[name='uname']").change(function(event) {
 				var text = $(this).val();
+
+				if(text!=""){
 
 				$.getJSON( "module/personnel/jsonnuser.php", function( data ) {
 				  var items = [];
@@ -358,6 +358,7 @@
 				  });
 
 				});
+				}
 			});
 
 		})

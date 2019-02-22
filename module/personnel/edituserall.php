@@ -318,29 +318,14 @@
 $('#edituser').validate({ // initialize the plugin
 								
 						        rules: {
-						            passwd: {
-						                required: true,
+						            passwd: { 
 						                minlength:5
 						            },
 						            conPW: {
-						                required: true,
 						                minlength:5,
 						                equalTo: "#showpw"
 						            }
-						        },
-								messages: {
-									password: {
-										required: "Please provide a password",
-										minlength: "Your password must be at least 5 characters long"
-									},
-									confirm_password: {
-										required: "Please provide a password",
-										minlength: "Your password must be at least 5 characters long",
-										equalTo: "Please enter the same password as above"
-									},
-
-								}
-
+						        }
 						    });
 
 		$("#tbeucation").on('click', '.editbrn', function(event) {
