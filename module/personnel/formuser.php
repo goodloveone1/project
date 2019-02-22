@@ -293,10 +293,6 @@
 								}
 
 							});
-							
-	
-			
-
 
 			$("#edituser").submit(function(e){
 

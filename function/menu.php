@@ -111,7 +111,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				<a href="logout.php" >
+				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
@@ -178,7 +178,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				<a href="logout.php" >
+				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
@@ -251,7 +251,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				<a href="logout.php" >
+				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
@@ -321,7 +321,7 @@ function webmenu($id){
 			</li>
 			</button>
 		</a>
-		<a href="logout.php" >
+		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
@@ -394,7 +394,7 @@ function webmenu($id){
 			</li>
 			</button>
 		</a>
-		<a href="logout.php" >
+		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">   ออกจากระบบ</span>
