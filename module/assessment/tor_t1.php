@@ -9,24 +9,18 @@
 
 
 //เปลี่ยน sessionเป็น gen_id
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
-	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaName)=mysqli_fetch_row($seacaName);
-
-	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
-	list($branchName)=mysqli_fetch_row($seBrench);
-
-	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+	 $seaca=mysqli_query($con,"SELECT acadeic FROM staffs WHERE st_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+	 list($gen_acadeic)=mysqli_fetch_row($seaca);
+	// $seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
+	// list($acaName)=mysqli_fetch_row($seacaName);
 
 
-	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// print_r($set);
+	
 
 	mysqli_free_result($seaca);
-	mysqli_free_result($seacaName);
-	mysqli_free_result($seBrench);
-	mysqli_free_result($seexp);
+	// mysqli_free_result($seacaName);
+	
+	
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1">
 <?php
@@ -43,13 +37,13 @@ if($loop==2){
 	$y-=1;
 }
 $y_id = $y.$loop;
-		$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$genIdpost'AND tor_year='$yearIdpost'";
+		$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
 
 		//เพิ่มวันนี้
-		$sqltor = mysqli_query($con,"SELECT tor_id FROM tor WHERE gen_id='$genIdpost'AND tor_year='$yearIdpost'") or die("torError".mysqli_error($con));
+		$sqltor = mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$genIdpost'AND year_id='$yearIdpost'") or die("torError".mysqli_error($con));
 		list($tor_ide)=mysqli_fetch_row($sqltor);
 		echo $tor_ide;
 //ค่าคะแนน จาก tor
@@ -108,8 +102,8 @@ $y_id = $y.$loop;
 		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 		list($sumS)=mysqli_fetch_row($sum);
 
-		$sqltor1=mysqli_query($con,"SELECT tort1_id,tor_id,year_id,title_name,tort1_goal,tort1_score FROM tort1pre WHERE  year_id='$yearIdpost' AND tor_id='$tor_ide' AND title_name='$tit'") or die("".mysqli_error($con));
-		 list($tort1_id,$tor_id,$year_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
+		$sqltor1=mysqli_query($con,"SELECT pret1_id,ass_id,title_name,goal,score FROM preasessment_t1 WHERE  ass_id='$tor_ide' AND title_name='$tit'") or die("".mysqli_error($con));
+		 list($tort1_id,$tor_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
 			//echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
 
 
