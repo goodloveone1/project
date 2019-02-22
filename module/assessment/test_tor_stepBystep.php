@@ -153,17 +153,20 @@
 			$led_name = "";
 			if($gen_pos == 1){
 				$led_pos = "2";
+				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
 				//$led_name="หัวหน้าหลักสูตร";
 			}
 			else if($gen_pos == 2){
 				$led_pos = "3";
+				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
 				//$led_name="หัวหน้าสาขา";
 			}
 			else {
 				$led_pos = "4";
+				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
 				//$led_name="หัวหน้าคณะ";
 			}
-			$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
+			
 			list($leader_id,$led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
 		?>
 		<div class="col-sm">
