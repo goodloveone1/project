@@ -23,7 +23,7 @@ $con=connect_db();
     </thead>
     <tbody>
 			<?php
-					  $asm= mysqli_query($con,"SELECT tor_id,tor_year FROM tor ORDER BY tor_year DESC") or  die("SQL Error1==>".mysql_error($con));
+					  $asm= mysqli_query($con,"SELECT tort1_id,year_id FROM tort1pre ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
 						while(list($tor_id,$tor_year) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
