@@ -323,7 +323,7 @@
 						        processData: false
 						    }).done(function() {
 
-
+									alert("บันทึกข้อมูลสำเร็จ");
 						    	loadingpage("personnel","mangauser");
 
 						    })

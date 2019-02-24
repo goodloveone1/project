@@ -4,13 +4,13 @@ include("../../function/fc_time.php");
 $con=connect_db();
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
-    <div class="col-md-2">
+    <div class="col-md-3">
 
     </div>
     <div class="col-md">
         <h2>จัดการข้อมูลประชาสัมพันธ์</h2>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
        <button type="button" class="btn btn-block btn-light" id="addrela" data-action='modeladdre.php'><i class="fas fa-plus"></i>&nbsp;เพื่มประชาสัมพันธ์</button>
     </div>
 </div>

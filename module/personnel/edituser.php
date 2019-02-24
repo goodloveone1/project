@@ -290,8 +290,8 @@
 				selectsuj();
 			});
 
-			$("#edituser").submit(function(){
-
+			$("#edituser").submit(function(e){
+				e.preventDefault();
 				$check = $("#edituser").valid();
 
 				if($check == true){
@@ -302,13 +302,15 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+								//alert(data);
+								alert("บันทึกข้อมูลสำเร็จ" );
+								loadmain("personnel","mangauser")
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
 					    });
-						loadmain("personnel","mangauser")
+						
 				}
 
 			

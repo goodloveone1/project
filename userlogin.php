@@ -66,7 +66,7 @@
 				<!-- BAND CENTER -->
 				<ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item">
-						<a class="navbar-brand mx-auto" href="javascript:void(0)">ระบบจัดการบริหารการประเมินผลการปฏิบัติงาน</a>
+						<a class="navbar-brand mx-auto" href="javascript:void(0)" id='nameMain'>ระบบจัดการบริหารการประเมินผลการปฏิบัติงาน</a>
 					</li>
 				</ul>
 				<!-- END BAND CENTER -->
@@ -207,6 +207,7 @@
 		window.addEventListener("resize", function() {
 
 			checksceen();
+			checkMainname()
 
 		});
 		function openNav(){
@@ -218,6 +219,16 @@
 				if (z != undefined) {
 				x.style.width = z.trim();
 				y.style.marginLeft = z.trim();
+			}
+		}
+
+
+		function checkMainname(){
+			if(window.innerWidth*window.devicePixelRatio <= 800 ){
+				
+				$("#nameMain").text("ระบบการประเมินผล");
+			}else{
+				$("#nameMain").text("ระบบจัดการบริหารการประเมินผลการปฏิบัติงาน");
 			}
 		}
 

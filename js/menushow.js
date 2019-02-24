@@ -8,10 +8,12 @@
 	var iconsizasmall2 = " fa-sm";
 
 
+
 	function checksceen(){
 			var x = document.getElementById("mySidenav");
 			var y = document.getElementById("main2");
 			if(window.innerWidth*window.devicePixelRatio <= 770 ){
+				
 				if(x.style.width = "0px"){
 					x.style.width = maxside2;
 					y.style.marginLeft = maxside2;
@@ -23,6 +25,7 @@
 				}
 				
 			}else{
+		
 				if(x.style.width == maxside){
 					x.style.width = minside;
 					y.style.marginLeft = minside;
@@ -102,7 +105,7 @@
 					}
 						
 				}else if(x.style.width == minside && y.style.marginLeft == minside || x.style.width == minside2 && y.style.marginLeft == minside2){
-					
+				
 					$(".icon").removeClass(iconsizabig1.trim());
 					$(".icon").removeClass(iconsizabig2.trim());
 					$(".icon").addClass(iconsizasmall1.trim());
