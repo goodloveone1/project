@@ -4,20 +4,27 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-	$seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
-	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
-	list($acaName)=mysqli_fetch_row($seacaName);
+	echo	$genIdpost = $_POST['genid'];
+	echo	$yearIdpost = $_POST['year'];
 
-	$seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
-	list($branchName)=mysqli_fetch_row($seBrench);
+	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+	list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);
+	
+	// $seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
+	// list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
+	// $seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
+	// list($acaName)=mysqli_fetch_row($seacaName);
 
-	$seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
+	// $seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
+	// list($branchName)=mysqli_fetch_row($seBrench);
+
+	$seexp=mysqli_query($con,"SELECT * FROM aptitudes WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
+	
 	// print_r($set);
-	mysqli_free_result($seaca);
-	mysqli_free_result($seacaName);
-	mysqli_free_result($seBrench);
+	// mysqli_free_result($seaca);
+	// mysqli_free_result($seacaName);
+	// mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
 
 	$yeartest=chk_idtest();
