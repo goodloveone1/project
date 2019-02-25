@@ -222,50 +222,33 @@ fncSum();
 <?php  } ?>
  $(document).ready(function() {
 
-	// $("#tor1").submit(function(){
-	// 			$check = $("#tor1").valid();
-	// 			if($check == true){
-	// 			var formData = new FormData(this);
-	// 				    $.ajax({
-	// 				        url: "module/assessment/adddata_tor1.php",
-	// 				        type: 'POST',
-	// 				        data: formData,
-	// 				        success: function (data) {
-	// 				            alert(data);
-	// 				        },
-	// 				        cache: false,
-	// 				        contentType: false,
-	// 				        processData: false
-	// 				    });
-	// 			}
-	// 			loadmain("assessment","tor_t2");
-	// 		})
+	$("#tor1").submit(function(e){
+		      e.preventDefault();
+				$check = $("#tor1").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor1.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+								$.post( "module/assessment/tor_t2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+							{
+    							alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","tor_t2");
+								$("#detail").html(data);
+  							});
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    })
+				}
+				
+			})
 
-$("#tor1").submit(function(){
-	$check = $("#tor1").valid();
-	if($check == true){
-	var formData = new FormData(this);
-		$.ajax({
-			url: "module/assessment/adddata_tor1.php",
-			type: 'POST',
-			data: formData,
-			success: function (data) {
-				alert(data);
-			},
-			cache: false,
-			contentType: false,
-			processData: false
-		}).done(function(){
-				$.post("module/assessment/tor_t2.php",{genid:'<?php echo $genIdpost ?>',year:'<?php echo $yearIdpost ?>'}).done(function(data){
-					sessionStorage.setItem("module1","assessment");
-					sessionStorage.setItem("action","tor_t2");
-						$("#detail").html(data);
-				})
-			});
-
-		}
-
-	})
 });
 
 </script>
