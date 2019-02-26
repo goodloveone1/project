@@ -8,14 +8,18 @@
 ?>
 <form class="p-2" name="tort3" id="tort3"> 
 <?php
-					$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+
+  echo $genIdpost = $_POST['gen_id'];
+	echo $yearIdpost = $_POST['year_id'];
+
+					$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 					list($tor_ID)=mysqli_fetch_row($reChk);
 					//echo $tor_ID;
-					$reSum1=mysqli_query($con,"SELECT sum_tort1 FROM sum_tort1 WHERE tor_id='$tor_ID'");
+					$reSum1=mysqli_query($con,"SELECT sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$tor_ID'") or die("SQL_sum1Error".mysqli_error($con));
 					list($sum1)=mysqli_fetch_row($reSum1);
 
-				 $reSum2=mysqli_query($con,"SELECT sum_tor2asum FROM sum_tort2 WHERE tor_id='$tor_ID'");
+				 $reSum2=mysqli_query($con,"SELECT sum_asst2 FROM sum_score_assessment_t2 WHERE ass_id='$tor_ID'") or die("SQL_sum2Error".mysqli_error($con)) ;
 				 list($sum2)=mysqli_fetch_row($reSum2);
 				
 

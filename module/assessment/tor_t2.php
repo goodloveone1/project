@@ -4,8 +4,8 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-	echo	$genIdpost = $_POST['gen_id'];
-	echo	$yearIdpost = $_POST['year_id'];
+	$genIdpost = $_POST['gen_id'];
+	$yearIdpost = $_POST['year_id'];
 
 	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
 	list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);
@@ -79,7 +79,7 @@
 				?>
 				<input type="hidden" value="<?php echo $tor_id?>" name="tor_id">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['score'])?"0":$set[0]['score'] ?>" name="exp[]" readonly ></td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['tort2_subtit']?>" name="stit0">
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['subcap_id']?>" name="stit0">
 				<div class="form-group">
 				<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]"  onkeyup="fncNum();" onchange="fncNum();" required  >
 					</div>
@@ -89,14 +89,14 @@
 				<td>บริการที่ดี </td>
 				<td> <input type='text' size='3' class="borderNon form-control" value="<?php echo empty($set[1]['score'])?"0":$set[1]['score'] ?>" placeholder="ข้อมูล" name="exp[]" readonly ></td>
 					<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
-					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['tort2_subtit']?>" placeholder="ข้อมูล" name="stit1" readonly >
+					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['subcap_id']?>" placeholder="ข้อมูล" name="stit1" readonly >
 				</td>
 			</tr>
 			<tr>
 				<td>การสั่งสมความเชี่ยวชาญในงานอาชีพ </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[2]['score'])?"0":$set[2]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['tort2_subtit']?>" name="stit2" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['subcap_id']?>" name="stit2" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required >
 				</td>
 			</tr>
@@ -104,7 +104,7 @@
 				<td>การยึดมั่นในความถูกต้องชอบธรรม  และจริยธรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[3]['score'])?"0":$set[3]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['tort2_subtit']?>" name="stit3" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['subcap_id']?>" name="stit3" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -112,7 +112,7 @@
 				<td>การทำงานเป็นทีม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[4]['score'])?"0":$set[4]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
-				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['tort2_subtit'] ?>" name="stit4" readonly>
+				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['subcap_id'] ?>" name="stit4" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -129,7 +129,7 @@
 				<td>ทักษะการสอนและการให้คำปรึกษาแก่นักศึกษา </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[5]['score'])?"0":$set[5]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['tort2_subtit'] ?>" name="stit5" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['subcap_id'] ?>" name="stit5" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -137,7 +137,7 @@
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[6]['score'])?"0":$set[6]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['tort2_subtit'] ?>" name="stit6" readonly >
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['subcap_id'] ?>" name="stit6" readonly >
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required >
 				</td>
 			</tr>
@@ -145,7 +145,7 @@
 				<td>ทักษะด้านบริการวิชาการ การวิจัยและนวัตกรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[7]['score'])?"0":$set[7]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
-					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[7]['tort2_subtit']?>" name="stit7" readonly >
+					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[7]['subcap_id']?>" name="stit7" readonly >
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -153,7 +153,7 @@
 				<td>ความกระตือรือร้นและการเป็นแบบอย่างที่ดี </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[8]['score'])?"0":$set[8]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[8]['tort2_subtit'] ?>" name="stit8" readonly >
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[8]['subcap_id'] ?>" name="stit8" readonly >
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -161,7 +161,7 @@
 				<td>ทำนุบำรุงศิลปวัฒนธรรม </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[9]['score'])?"0":$set[9]['score'] ?>" name="exp[]" readonly>  </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[9]['tort2_subtit'] ?>" name="stit9" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[9]['subcap_id'] ?>" name="stit9" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required >
 				</td>
 			</tr>
@@ -179,7 +179,7 @@
 				<td>สภาวะผู้นำ </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[10]['score'])?"0":$set[10]['score'] ?>" name="exp[]" readonly>  </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[10]['tort2_subtit'] ?>" name="stit10" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[10]['subcap_id'] ?>" name="stit10" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -187,7 +187,7 @@
 				<td>วิสัยทัศน์ </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[11]['score'])?"0":$set[11]['score'] ?>" name="exp[]" readonly >  </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[11]['tort2_subtit'] ?>" name="stit11" readonly >
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[11]['subcap_id'] ?>" name="stit11" readonly >
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -195,7 +195,7 @@
 				<td>ศักยภาพเพื่อนำการปรับเปลี่ยน </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[12]['score'])?"0":$set[12]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[12]['tort2_subtit'] ?>" name="stit12" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[12]['subcap_id'] ?>" name="stit12" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -203,7 +203,7 @@
 				<td>การสอนงานและการมอบหมายงาน </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[13]['score'])?"0":$set[13]['score'] ?>" name="exp[]" readonly>   </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo$set[13]['tort2_subtit'] ?>" name="stit13" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo$set[13]['subcap_id'] ?>" name="stit13" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -211,7 +211,7 @@
 				<td>การควบคุมตนเอง </td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[14]['score'])?"0":$set[14]['score'] ?>" name="exp[]" readonly>  </td>
 				<td>
-				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[14]['tort2_subtit'] ?>" name="$stit14" readonly>
+				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[14]['subcap_id'] ?>" name="stit14" readonly>
 					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" required>
 				</td>
 			</tr>
@@ -447,28 +447,9 @@ function fncSum(){
 	});
 	
 
-	// $("#tort2").submit(function(){
-	// 			$check = $("#tort2").valid();
-	// 			if($check == true){
-	// 			var formData = new FormData(this);
-	// 				    $.ajax({
-	// 				        url: "module/assessment/adddata_tor2.php",
-	// 				        type: 'POST',
-	// 				        data: formData,
-	// 				        success: function (data) {
-	// 				            alert(data);
-	// 				        },
-	// 				        cache: false,
-	// 				        contentType: false,
-	// 				        processData: false
-	// 				    });
-	// 			}
-	// 			loadmain("assessment","manage_asmIn");
-	// 		})
-
-	$("#tor2").submit(function(e){
-		      e.preventDefault();
-				$check = $("#tor2").valid();
+	$("#tort2").submit(function(e){
+				e.preventDefault();
+				$check = $("#tort2").valid();
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
@@ -477,21 +458,46 @@ function fncSum(){
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
-							{
-    							alert( "Data Loaded: " + data );
+								$.post( "module/assessment/tor_t3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+    							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
 								sessionStorage.setItem("action","tor_t3");
 								$("#detail").html(data);
-  							});
+  								});
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    })
+					    });
 				}
-				
 			})
+
+	// $("#tor2").submit(function(e){
+	// 	      e.preventDefault();
+	// 			$check = $("#tor2").valid();
+	// 			if($check == true){
+	// 			var formData = new FormData(this);
+	// 				    $.ajax({
+	// 				        url: "module/assessment/adddata_tor2.php",
+	// 				        type: 'POST',
+	// 				        data: formData,
+	// 				        success: function (data) {
+	// 				            alert(data);
+	// 							$.post( "module/assessment/tor_t3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+	// 						{
+    // 							alert( "Data Loaded: " + data );
+	// 							sessionStorage.setItem("module1","assessment");
+	// 							sessionStorage.setItem("action","tor_t3");
+	// 							$("#detail").html(data);
+  	// 						});
+	// 				        },
+	// 				        cache: false,
+	// 				        contentType: false,
+	// 				        processData: false
+	// 				    })
+	// 			}
+				
+	// 		})
 
 });
 
