@@ -235,7 +235,7 @@ fncSum();
 					            alert(data);
 								$.post( "module/assessment/tor_t2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
-    							alert( "Data Loaded: " + data );
+    							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
 								sessionStorage.setItem("action","tor_t2");
 								$("#detail").html(data);
