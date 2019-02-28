@@ -161,7 +161,7 @@ function chk(){
 			$("#defaultCheck2").prop('checked',true);
 		}
 		else if(pt>70 && pt<80){
-			alert("ดี (70-79)");
+		//	alert("ดี (70-79)");
 			$("#defaultCheck3").prop('checked',true);
 		}
 		else if(pt>60 && pt<70){
@@ -216,7 +216,26 @@ chk()
 			})
 			fncSum()
 	})
-	$("#tort3").submit(function(){
+	// $("#tort3").submit(function(){
+	// 			$check = $("#tort3").valid();
+	// 			if($check == true){
+	// 			var formData = new FormData(this);
+	// 				    $.ajax({
+	// 				        url: "module/assessment/adddata_tor3.php",
+	// 				        type: 'POST',
+	// 				        data: formData,
+	// 				        success: function (data) {
+	// 				            alert(data);
+	// 				        },
+	// 				        cache: false,
+	// 				        contentType: false,
+	// 				        processData: false
+	// 				    });
+	// 			}
+	// 			loadmain("assessment","tor_t4")
+	// 		})	
+			$("#tort3").submit(function(e){
+				e.preventDefault();
 				$check = $("#tort3").valid();
 				if($check == true){
 				var formData = new FormData(this);
@@ -226,15 +245,19 @@ chk()
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
+								$.post( "module/assessment/tor_t4.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+    							//alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","tor_t4");
+								$("#detail").html(data);
+  								});
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t4")
-			})	
-
+			})
 });
 
 </script>
