@@ -4,9 +4,13 @@
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
-	$yeartest=chk_idtest();
+	//$yeartest=chk_idtest();
 
-	$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+
+	$genIdpost = $_POST['gen_id'];
+	$yearIdpost = $_POST['year_id'];
+
+	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 	list($tor_ID)=mysqli_fetch_row($reChk);
 ?>
@@ -76,7 +80,26 @@
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
-			$("#tort4").submit(function(){
+			// $("#tort4").submit(function(){
+			// 	$check = $("#tort4").valid();
+			// 	if($check == true){
+			// 	var formData = new FormData(this);
+			// 		    $.ajax({
+			// 		        url: "module/assessment/adddata_tor4.php",
+			// 		        type: 'POST',
+			// 		        data: formData,
+			// 		        success: function (data) {
+			// 		            alert(data);
+			// 		        },
+			// 		        cache: false,
+			// 		        contentType: false,
+			// 		        processData: false
+			// 		    });
+			// 	}
+			// 	loadmain("assessment","tor_t5")
+			// })
+			$("#tort4").submit(function(e){
+				e.preventDefault();
 				$check = $("#tort4").valid();
 				if($check == true){
 				var formData = new FormData(this);
@@ -86,13 +109,18 @@
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
+								$.post( "module/assessment/tor_t5.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+    							//alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","tor_t5");
+								$("#detail").html(data);
+  								});
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t5")
 			})	
 	});
 

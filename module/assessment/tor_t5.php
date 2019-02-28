@@ -3,14 +3,17 @@
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
-	$yeartest=chk_idtest();
+	//$yeartest=chk_idtest();
+	$genIdpost = $_POST['gen_id'];
+	$yearIdpost = $_POST['year_id'];
 
-	$sqlyesr="SELECT tor_id FROM tor WHERE gen_id ='$_SESSION[user_id]'AND tor_year='$yeartest'";
+
+	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
 	list($tor_ID)=mysqli_fetch_row($reChk);
 
 
-	$sql="SELECT  gen_prefix,gen_lname,gen_fname,gen_pos FROM general WHERE gen_id ='$_SESSION[user_id]'";
+	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
 	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;

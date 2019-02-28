@@ -9,8 +9,8 @@
 <form class="p-2" name="tort3" id="tort3"> 
 <?php
 
-  echo $genIdpost = $_POST['gen_id'];
-	echo $yearIdpost = $_POST['year_id'];
+  $genIdpost = $_POST['gen_id'];
+	$yearIdpost = $_POST['year_id'];
 
 					$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
@@ -152,7 +152,7 @@ function fncSum(){
 function chk(){
 		ptt = document.tort3['sumall'].value;
 		var pt = parseFloat(ptt);
-		if(pt>90 && pt<100){
+		if(pt>90 && pt<=100){
 			// alert("ดีเด่น (90-100)");
 			$("#defaultCheck1").prop('checked',true);
 		}
@@ -216,24 +216,6 @@ chk()
 			})
 			fncSum()
 	})
-	// $("#tort3").submit(function(){
-	// 			$check = $("#tort3").valid();
-	// 			if($check == true){
-	// 			var formData = new FormData(this);
-	// 				    $.ajax({
-	// 				        url: "module/assessment/adddata_tor3.php",
-	// 				        type: 'POST',
-	// 				        data: formData,
-	// 				        success: function (data) {
-	// 				            alert(data);
-	// 				        },
-	// 				        cache: false,
-	// 				        contentType: false,
-	// 				        processData: false
-	// 				    });
-	// 			}
-	// 			loadmain("assessment","tor_t4")
-	// 		})	
 			$("#tort3").submit(function(e){
 				e.preventDefault();
 				$check = $("#tort3").valid();
