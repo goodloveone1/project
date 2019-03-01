@@ -4,8 +4,15 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-	$genIdpost = $_POST['genid'];
-	$yearIdpost = $_POST['year'];
+	if(empty($_POST['genid']) && empty($_POST['year']) ){
+		$genIdpost=$_SESSION['genIdpost'];
+		$yearIdpost=$_SESSION['yearIdpost'];
+
+	}else{
+		$genIdpost = $_POST['genid'];
+		$yearIdpost = $_POST['year'];
+	}
+	
 
 
 //ผู้รับการประเมิน

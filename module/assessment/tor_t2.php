@@ -4,8 +4,14 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-	$genIdpost = $_POST['gen_id'];
-	$yearIdpost = $_POST['year_id'];
+	if(empty($_POST['genid']) && empty($_POST['year']) ){
+		$genIdpost=$_SESSION['genIdpost'];
+		$yearIdpost=$_SESSION['yearIdpost'];
+
+	}else{
+		$genIdpost = $_POST['genid'];
+		$yearIdpost = $_POST['year'];
+	}
 
 	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
 	list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);

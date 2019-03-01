@@ -23,8 +23,11 @@
     $y_id = $y.$loop;
 
 
-	echo	$genIdpost = $_POST['genid'];
-	echo	$yearIdpost = $_POST['year'];
+	$genIdpost = $_POST['genid'];
+	$yearIdpost = $_POST['year'];
+
+	$_SESSION['genIdpost']=$genIdpost;
+	$_SESSION['yearIdpost']=$yearIdpost;
 
 	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
     list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);

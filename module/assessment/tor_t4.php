@@ -7,8 +7,14 @@
 	//$yeartest=chk_idtest();
 
 
-	$genIdpost = $_POST['gen_id'];
-	$yearIdpost = $_POST['year_id'];
+	if(empty($_POST['genid']) && empty($_POST['year']) ){
+		$genIdpost=$_SESSION['genIdpost'];
+		$yearIdpost=$_SESSION['yearIdpost'];
+
+	}else{
+		$genIdpost = $_POST['genid'];
+		$yearIdpost = $_POST['year'];
+	}
 
 	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
