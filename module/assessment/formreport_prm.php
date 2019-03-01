@@ -4,12 +4,12 @@ session_start();
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-$gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=gen.gen_acadeic) FROM general as gen WHERE gen_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysql_error($con));
+$gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=staffs.acadeic) FROM staffs  WHERE st_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
 list($aca_name)=mysqli_fetch_row($gen);
 
  $tor_id = empty($_POST['torid'])?'':$_POST['torid'];
 
-$tor=  mysqli_query($con,"SELECT tor_year FROM tor  WHERE tor_id='$tor_id' ") or  die("SQL Error1==>1".mysql_error($con));
+$tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$tor_id' ") or  die("SQL Error1==>2".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
 
 

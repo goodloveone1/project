@@ -35,7 +35,7 @@
 					</thead>
 					<tbody>
 					<?php
-					$tor2_exp = $con->query("SELECT atb_id,subtit,sub_name,score FROM  aptitudes as exp INNER JOIN sub_capacity as sub ON exp.subtit = sub.sub_id WHERE aca_id='$ac_id' AND sub.cap_id = '$tit_id' ") or die($con->error);			
+					$tor2_exp = $con->query("SELECT atb_id,sub_name,score FROM  aptitudes as exp INNER JOIN sub_capacity as sub ON exp.subcap_id = sub.sub_id WHERE aca_id='$ac_id' AND sub.cap_id = '$tit_id' ") or die($con->error);			
 					while($fettor2 = $tor2_exp->fetch_assoc()){
 						//print_r($fettor2);													
 						echo	"<tr>";
