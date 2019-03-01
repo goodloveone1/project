@@ -13,9 +13,9 @@ if(empty($tor_id)){
 //echo $tor_id;
 
 
-    $seldlt=mysqli_query($con,"SELECT *FROM idlel_type")or die(mysqli_error($con));
+    $seldlt=mysqli_query($con,"SELECT *FROM absence_type")or die(mysqli_error($con));
     for ($set = array (); $row = $seldlt->fetch_assoc(); $set[] = $row);
-    //print_r($set);
+    print_r($set);
 
    // echo $set[0]['idl_type_name'];
 ?>
@@ -38,11 +38,11 @@ if(empty($tor_id)){
                     $name="value";
                     $n=1 ?>
                     <div class="col-md form-group row" >
-                        <label class="col-sm col-form-label" > <?php echo $set[$i]['idl_type_name']; ?> :</label>
+                        <label class="col-sm col-form-label" > <?php echo $set[$i]['abt_name']; ?> :</label>
                         <!-- <input type="text"   class="form-control" value=""  name="i_no" size=10 > -->
                        <input type="number" min='0' max='999'  class="form-control col-sm" value=""  name="i_no<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > ครั้ง</label>
                        <input type="number" min='0' max='999'  class="form-control col-sm" value=""  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
-                       <input type="hidden"    value="<?php echo $set[$i]['idl_type_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
+                       <input type="hidden"    value="<?php echo $set[$i]['abt_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
                        <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 >
                     </div>
                 <?php   }?>

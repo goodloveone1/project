@@ -46,7 +46,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     }
     echo " <td>", DateThai($y_start)," - ",DateThai($y_end),"</td>";
 
-    $idl= mysqli_query($con,"SELECT year_id FROM idlel WHERE gen_id='$_SESSION[user_id]' AND year_id='$y_id' ") or  die("SQL Error1==>1".mysql_error($con));
+    $idl= mysqli_query($con,"SELECT year_id FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id' ") or  die("SQL Error1==>1".mysql_error($con));
     list($year_id1)=mysqli_fetch_row($idl);
     if(!empty($year_id1)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
