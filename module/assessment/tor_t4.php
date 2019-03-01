@@ -86,24 +86,7 @@
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
-			// $("#tort4").submit(function(){
-			// 	$check = $("#tort4").valid();
-			// 	if($check == true){
-			// 	var formData = new FormData(this);
-			// 		    $.ajax({
-			// 		        url: "module/assessment/adddata_tor4.php",
-			// 		        type: 'POST',
-			// 		        data: formData,
-			// 		        success: function (data) {
-			// 		            alert(data);
-			// 		        },
-			// 		        cache: false,
-			// 		        contentType: false,
-			// 		        processData: false
-			// 		    });
-			// 	}
-			// 	loadmain("assessment","tor_t5")
-			// })
+			
 			$("#tort4").submit(function(e){
 				e.preventDefault();
 				$check = $("#tort4").valid();

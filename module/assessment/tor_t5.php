@@ -22,6 +22,8 @@
 	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
 	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
+
+	mysqli_free_result($genchk);
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;
 $date = date("Y/m/d");
 ?>
@@ -40,7 +42,7 @@ $date = date("Y/m/d");
 </div>
 <div class="row">
 	<div class="col-md">&nbsp;
-		<p><b><u>ส่วนที่ ๕  การรับทราบผลการประเมิน</u></b></p>
+		<p><b><u>ส่วนที่ ๕ แจ้งผลการประเมิน</u></b></p>
 	</div>
 </div>
 
@@ -48,7 +50,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้รับการประเมิน :</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="ac">
+			  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="ac" disabled>
 			  <label class="form-check-label" for="defaultCheck1">
 			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
@@ -58,15 +60,21 @@ $date = date("Y/m/d");
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
+				<label  class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="" name="uname">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_lname,"  ",$g_fname; ?>" name="uname" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
+				<?php     
+					$sqlspos ="SELECT pos_name FROM position WHERE pos_id='$g_pos'";
+					$sespos=mysqli_query($con,$sqlspos) or die("sePos".mysqli_error($con));
+					list($sname_pos)=mysqli_fetch_row($sespos);	
+					mysqli_free_result($sespos);
+				?>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="" name="upos">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $sname_pos?>" name="upos" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
@@ -79,9 +87,9 @@ $date = date("Y/m/d");
 	</div>
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
-		<p>ผู้ประเมิน : :</p>
+	<p>ผู้ประเมิน :</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" vlue="1" name="tappcetp" id="defaultCheck1">
+			  <input class="form-check-input" type="checkbox" vlue="1" name="tappcetp" id="defaultCheck1" required>
 			  <label class="form-check-label" for="defaultCheck1">
 			   แจ้งผลการประเมิน
 			  </label>
@@ -99,21 +107,28 @@ $date = date("Y/m/d");
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
+		<?php  
+				$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$_SESSION[user_id]'";
+				$Lchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
+				list($Lprefix,$Llname,$Lfname,$Lposition)=mysqli_fetch_row($Lchk);
+			
+				mysqli_free_result($Lchk);
+		?>
+				<label  class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_lname,"  ",$g_fname; ?>" name="sname">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Lprefix,$Lfname," ",$Llname ?>" name="sname" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
-				<?php     
-					$sqlspos ="SELECT pos_name FROM position WHERE pos_id='$g_pos'";
-					$sespos=mysqli_query($con,$sqlspos) or die("sePos".mysqli_error($con));
-					list($sname_pos)=mysqli_fetch_row($sespos);	
-				?>
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
-
+				<?php     
+					$sqlLpos ="SELECT pos_name FROM position WHERE pos_id='$Lposition'";
+					$sesLpos=mysqli_query($con,$sqlLpos) or die("sePos".mysqli_error($con));
+					list($Lname_pos)=mysqli_fetch_row($sesLpos);	
+					mysqli_free_result($sesLpos);
+				?>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $sname_pos?>" name="t_pos">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Lname_pos;  ?>" name="t_pos" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
@@ -140,7 +155,7 @@ $date = date("Y/m/d");
 </div>
 </form>	
 
-
+<?php  mysqli_close($con); ?>
 
 <script type="text/javascript">
 
@@ -154,7 +169,28 @@ $date = date("Y/m/d");
 			});
 
 	});
-	$("#tort5").submit(function(){
+	// $("#tort5").submit(function(){
+	// 			$check = $("#tort5").valid();
+	// 			if($check == true){
+	// 			var formData = new FormData(this);
+	// 				    $.ajax({
+	// 				        url: "module/assessment/adddata_tor5.php",
+	// 				        type: 'POST',
+	// 				        data: formData,
+	// 				        success: function (data) {
+	// 				            alert(data);
+	// 				        },
+	// 				        cache: false,
+	// 				        contentType: false,
+	// 				        processData: false
+	// 				    });
+	// 			}
+	// 			loadmain("assessment","tor_t6")
+	// 		})	
+
+	
+	$("#tort5").submit(function(e){
+				e.preventDefault();
 				$check = $("#tort5").valid();
 				if($check == true){
 				var formData = new FormData(this);
@@ -164,13 +200,18 @@ $date = date("Y/m/d");
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
+								$.post( "module/assessment/tor_t6.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+    							//alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","tor_t6");
+								$("#detail").html(data);
+  								});
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
 					    });
 				}
-				loadmain("assessment","tor_t6")
 			})	
 
 </script>

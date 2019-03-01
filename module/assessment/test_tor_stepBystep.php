@@ -40,6 +40,28 @@
 ?>
 <form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
+
+		<?php  //ผู้บังคบบัญชาเหนือขึ้นไป
+						// $hleader_id = "";
+						// if($gen_pos == 1){
+						// 	$hleader_id = "3";
+						// 	$re_hleader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$hleader_id' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
+							///$led_name="หัวหน้าหลักสูตร";
+						//}
+						// else if($gen_pos == 2){
+						// 	$hleader_id = "4";
+						// 	$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$hleader_id' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
+						// 	//$led_name="หัวหน้าสาขา";
+						// }
+						// else {
+						// 	$hleader_id = "5";
+						// 	$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$hleader_id'") or die("lead_nameERR".mysqli_error($con));
+						// 	//$led_name="หัวหน้าคณะ";
+						// }
+						// list($hld_id,$hled_fname,$hled_lname,$hled_post)=mysqli_fetch_row($re_hleader);
+						// echo $hled_fname,$hled_lname,$hled_post;
+
+		?>
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
 		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
@@ -146,25 +168,25 @@
 <div class="col-md">
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
-		<?php  
-			$led_name = "";
-			if($gen_pos == 1){
-				$led_pos = "2";
-				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
-				//$led_name="หัวหน้าหลักสูตร";
-			}
-			else if($gen_pos == 2){
-				$led_pos = "3";
-				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
-				//$led_name="หัวหน้าสาขา";
-			}
-			else {
-				$led_pos = "4";
-				$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
-				//$led_name="หัวหน้าคณะ";
-			}
-			
-			list($leader_id,$led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
+		<?php  //ผู้บังคบบัญชา
+						$led_name = "";
+						if($gen_pos == 1){
+							$led_pos = "2";
+							$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
+							//$led_name="หัวหน้าหลักสูตร";
+						}
+						else if($gen_pos == 2){
+							$led_pos = "3";
+							$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos' AND branch_id='$branch_id'") or die("lead_nameERR".mysqli_error($con));
+							//$led_name="หัวหน้าสาขา";
+						}
+						else {
+							$led_pos = "4";
+							$re_leader = mysqli_query($con,"SELECT st_id,fname,lname,position FROM staffs WHERE position='$led_pos'") or die("lead_nameERR".mysqli_error($con));
+							//$led_name="หัวหน้าคณะ";
+						}
+						
+						list($leader_id,$led_fname,$led_lname,$led_post)=mysqli_fetch_row($re_leader);
 		?>
 		<div class="col-sm">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
