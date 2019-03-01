@@ -85,12 +85,9 @@
 	</div>
 	<div class="col-md  ">
 		<div class="col-md-12 row">
-			<!-- <div class="form-check col-sm-1">
-				<input type="checkbox"  class="form-check-input" id="" value="">
-			</div> -->
+
 			<div class="form-group  row">
-				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
-				<div class="col-sm">
+				<div class="col-sm-16">
 					<select id="inputNo" class="form-control" name="a_no">
 					<?php 
 						$yNow=date("Y");
