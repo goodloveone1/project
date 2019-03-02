@@ -29,7 +29,7 @@ $year = $_POST['year'];
     else if($_SESSION['user_level'] == 4){ // สาขา
 
       $show= mysqli_query($con,"
-SELECT  staffs.st_id,staffs.fname,staffs.lname,branchs.dept_id,staffs.picture
+SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
 WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
@@ -67,18 +67,18 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row(
     $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
     list($tor_idc2)=mysqli_fetch_row($show3);
     if(!empty($tor_id)){
-      echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินแล้ว </b> </td>";
+      echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
       if(empty($tor_idc2)){
         echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
       }
       else{
-        echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
+        echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ประเมิน  <b></td>";
 
       }
 
     }else{
-      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมิน </b></td>";
-      echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถตรวจสอบได้ </b></a></td>";
+      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมินตนเอง </b></td>";
+      echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถประเมินได้ </b></a></td>";
     }
 
 
