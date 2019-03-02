@@ -20,8 +20,8 @@ list($tor_year)=mysqli_fetch_row($tor);
 
 <form class="p-2">
 	<div class="row">
-		<div class="col-sm-3"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
-		<div class="col-sm pt-2">
+		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
+		<div class="col-sm pt-2 text-center">
 			<h5>แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
 		<div class="col-sm-2 text-center pt-2" style="border:solid 1px;">
@@ -81,156 +81,42 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		<div class="col-md">
 			<table class="table table-bordered">
 				<thead class="thead-light">
-					<tr>
+					<tr class="text-center">
 						<th>ลำดับ</th>
-						<th>องค์ประกอบที่ใช้ประเมิน</th>
+						<th class='w-50'>องค์ประกอบที่ใช้ประเมิน</th>
 
-						<th>หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
+						<th >หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
 
 					</tr>
 				</thead>
 				<tbody>
 					<!-- 1.  งานสอน  -->
+					<?php 
+							$ev=  mysqli_query($con,"SELECT e_id,e_name, (SELECT count(se_id) FROM sub_evaluation as sev where sev.e_id = ev.e_id ) FROM evaluation as ev ") or  die("SQL Error1==>1".mysqli_error($con));
+							while(list($e_id,$e_name,$count)=mysqli_fetch_row($ev)){
+					?>
 					<tr>
-						<td rowspan="6">1</td>
-						<td >1.  งานสอน     </td>
+						<td rowspan="<?php echo $count+1 ?>"> <?php echo $e_id ?> </td>
+						<td ><?php echo $e_id.". ".$e_name ?>    </td>
 						<td></td>
 
 					</tr>
-					<tr>
-						<td >  1.1 การสอนภาคทฤษฏีระดับปริญญาตรี/โท....การสอนภาคปฏิบัติปริญญาตรี/โท.....</td>
-						<td></td>
+					<?php
+								$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
+								while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
+									echo "<tr>";
+									echo	"<td >  $sub_name </td>";
+									echo	"<td></td>";
+									echo "</tr>";
 
-					</tr>
-					<tr>
-						<td >  1.2 การนิเทศนักศึกษา/สหกิจศึกษา/นักศึกษาฝึกสอน</td>
-						<td></td>
+								}
+							}
 
-					</tr>
-					<tr>
-						<td >  1.3 การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  1.3 การเป็นที่ปรึกษาวิชาปัญหาพิเศษ โครงการ/โครงงาน วิทยานิพนธ์ การศึกษาเฉพาะเรื่อง/สารนิพนธ์/การค้นคว้าอิสระ/ปริญญานิพนธ์</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >      1.5 การจัดการเรียนการสอนโดยวิธีอื่น ๆ</td>
-						<td></td>
-
-					</tr>
+					
+					?>
 
 
-					<!-- END 1.  งานสอน  -->
-					<!--  2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด  -->
-					<tr>
-						<td rowspan="5">2</td>
-						<td >2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด          </td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  2.1 งานวิจัยหรืองานสร้างสรรค์</td>
-						<td></td>
-
-
-					</tr>
-					<tr>
-						<td >  2.2 การเรียบเรียงตำรา หรือ หนังสือ</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  2.3 บทความวิชาการ</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  2.4 ผลงานวิชาการในลักษณะอื่น</td>
-						<td></td>
-
-					</tr>
-
-
-					<!-- END  2.  งานที่ปรากฏเป็น  ผลงานทางวิชาการตามหลักเกณฑ์ที่ก.พ.อ.กำหนด  -->
-					<tr>
-						<td rowspan="6">3</td>
-						<td >3. งานบริการทางวิชาการ     </td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  3.1 การเป็นอาจารย์พิเศษ/วิทยากร ภายในหรือภายนอกมหาวิทยาลัย</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  3.2 การจัดประชุม สัมมนาฝึกอบรมและจัดนิทรรศการ แก่หน่วยงานภายนอก</td>
-						<td></td>
-						<
-					</tr>
-					<tr>
-						<td >   3.3 เป็นที่ปรึกษาโครงการวิจัย/วิทยานิพนธ์/เมธีวิจัย/ผู้เชี่ยวชาญ</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  3.4 การรับงานที่มีรายได้เข้ามหาวิทยาลัยฯ</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  3.5 การให้บริการทางวิชาการในฐานะเป็นผู้เชี่ยวชาญ</td>
-						<td></td>
-
-					</tr>
-
-
-
-					<tr>
-						<td rowspan="3">4</td>
-						<td >4.  งานทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td > 4.1 การจัดโครงการหรือกิจกรรมทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  4.2 เข้าร่วมโครงการหรือกิจกรรมทำนุบำรุงศิลป วัฒนธรรมและอนุรักษ์สิ่งแวดล้อม</td>
-						<td></td>
-
-					</tr>
-
-
-
-					<tr>
-						<td rowspan="5">5</td>
-						<td >5.  งานพัฒนานักศึกษา งานที่ได้รับการแต่งตั้งให้ดำรงตำแหน่งและงานที่ได้รับมอบหมายอื่น ๆ </td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  5.1 การเป็นอาจารย์ ที่ปรึกษา</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >  5.2 การปฏิบัติงานที่ได้รับการแต่งตั้งให้ดำรงตำแหน่ง</td>
-						<td></td>
-
-					</tr>
-					<tr>
-						<td >   5.3 การปฏิบัติหน้าที่ ที่ได้รับมอบหมายอื่น ๆ</td>
-						<td></td>
-
-					</tr>
-
+				
 
 				</tbody>
 			</table>
