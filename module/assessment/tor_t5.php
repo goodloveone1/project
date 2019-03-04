@@ -169,24 +169,7 @@ $date = date("Y/m/d");
 			});
 
 	});
-	// $("#tort5").submit(function(){
-	// 			$check = $("#tort5").valid();
-	// 			if($check == true){
-	// 			var formData = new FormData(this);
-	// 				    $.ajax({
-	// 				        url: "module/assessment/adddata_tor5.php",
-	// 				        type: 'POST',
-	// 				        data: formData,
-	// 				        success: function (data) {
-	// 				            alert(data);
-	// 				        },
-	// 				        cache: false,
-	// 				        contentType: false,
-	// 				        processData: false
-	// 				    });
-	// 			}
-	// 			loadmain("assessment","tor_t6")
-	// 		})	
+	
 
 	
 	$("#tort5").submit(function(e){

@@ -1,6 +1,28 @@
+<?php
+	session_start();
+	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$con=connect_db();
+	//$yeartest=chk_idtest();
+	if(empty($_POST['genid']) && empty($_POST['year']) ){
+		$genIdpost=$_SESSION['genIdpost'];
+		$yearIdpost=$_SESSION['yearIdpost'];
 
+	}else{
+		$genIdpost = $_POST['genid'];
+		$yearIdpost = $_POST['year'];
+	}
+	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
+	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+	list($tor_ID)=mysqli_fetch_row($reChk);
+
+	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
+	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
+	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
+
+	mysqli_free_result($genchk);
+	?>
 <form class="p-2"> 
-
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -20,16 +42,16 @@
 <div class="row">
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
-		<div class="form-check">
-			  <input class="form-check-input" type="radio" value="" id="defaultCheck1" name="gagree">
-			  <label class="form-check-label" for="defaultCheck1">
+		<div class="custom-control custom-radio">
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="customRadio" checked>
+			  <label class="custom-control-label" for="customRadio1">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
-		<div class="form-check">
-			  <input class="form-check-input" type="radio" value="" id="defaultCheck1" name="gagree">
-			  <label class="form-check-label" for="defaultCheck1">
+		<div class="custom-control custom-radio">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="customRadio">
+			  <label class="custom-control-label" for="customRadio2">
 			    มีความเห็นแตกต่าง  ดังนี้
 
 			  </label>
@@ -62,16 +84,16 @@
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
-		<div class="form-check">
-			  <input class="form-check-input" type="radio" value="0" id="defaultCheck1" name="uagree">
-			  <label class="form-check-label" for="defaultCheck1">
+		<div class="custom-control custom-radio">
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" checked>
+			  <label class="custom-control-label" for="customRadio3">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
-		<div class="form-check">
-			  <input class="form-check-input" type="radio" value="1" id="defaultCheck1" name="uagree">
-			  <label class="form-check-label" for="defaultCheck1">
+		<div class="custom-control custom-radio">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree">
+			  <label class="custom-control-label" for="customRadio4">
 			    มีความเห็นแตกต่าง  ดังนี้
 			  </label>
 		</div>

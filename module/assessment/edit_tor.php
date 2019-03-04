@@ -29,8 +29,8 @@
 	$_SESSION['genIdpost']=$genIdpost;
 	$_SESSION['yearIdpost']=$yearIdpost;
 
-	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
-    list($tor_id,$staff_id,$year_id,$leader_id,$sumwork,$punishment)=mysqli_fetch_row($tor);
+	$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+    list($tor_id,$staff_id,$year_id,$leader_id,$hleader,$sleader,$sumwork,$punishment)=mysqli_fetch_row($tor);
   
 	$re_staff=mysqli_query($con,"SELECT fname,lname,branch_id,salary,aca_code,acadeic,leves,other,startdate,position FROM staffs WHERE st_id='$staff_id'") or die("Staff_SQL-error".mysqli_error($con));
 		list( $fname,$lname,$branch_id,$salary,$aca_code,$acadeie,$leves,$other,$startdate,$position)=mysqli_fetch_row($re_staff);
@@ -41,8 +41,6 @@
 $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadeie'") or die("ACA_SQL-error".mysqli_error($re_aca));
 		list($acaName)=mysqli_fetch_row($re_aca);
 
-
-
 	mysqli_free_result($tor);
 	mysqli_free_result($re_staff);
 	mysqli_free_result($re_leader);
@@ -50,7 +48,6 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 	
 	
 	// mysqli_free_result($seacaName);
-
 	// mysqli_free_result($seexp);
 ?>
 <form method="POST" id="addtor"  class="p-2" action="javascript:void(0)" >
@@ -108,8 +105,8 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 			</div> -->
 			<div class="form-group  row">
 				<!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
-				<div class="col-sm">
-					<select id="inputNo" class="form-control" name="a_no" disabled>
+				<div class="col-sm-15">
+					<select id="inputNo" class="form-control" name="a_no" disabled >
 					<?php
 						$yNow=date("Y");
 						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
