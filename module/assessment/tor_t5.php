@@ -88,9 +88,9 @@ $date = date("Y/m/d");
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
 	<p>ผู้ประเมิน :</p>
-		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" vlue="1" name="tappcetp" id="defaultCheck1" required>
-			  <label class="form-check-label" for="defaultCheck1">
+		<div class="custom-control custom-checkbox">
+			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" required>
+			  <label class="custom-control-label" for="customCheck1" >
 			   แจ้งผลการประเมิน
 			  </label>
 		</div>
