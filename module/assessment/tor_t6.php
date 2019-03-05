@@ -57,7 +57,7 @@
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" id="" rows="3" disabled="disabled"></textarea>
+		    <textarea class="form-control" id="text1" rows="3" disabled required></textarea>
 		 </div>
 
 	</div>
@@ -98,7 +98,7 @@
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" id="" rows="3" disabled="disabled"></textarea>
+		    <textarea class="form-control" id="text2" rows="3" disabled required></textarea>
 		 </div>
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
@@ -126,7 +126,8 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p>
+		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
+		<button type="submit" class="btn " data-modules="assessment" data-action="tor_t6"> ต่อไป </button>
 	</div>
 </div>
 
@@ -137,6 +138,34 @@
 				var action = $(this).data('action');
 				loadmain(module1,action)
 			});
+			$('#customRadio1').click(function() {
+					if ($(this).is(':checked')) {
+						$("#text1").prop('disabled', true);
+						$('#text1').val("");
+					}
+			});
+			$('#customRadio2').click(function() {
+				if ($(this).is(':checked')) {
+					$("#text1").prop('disabled', false);
+				
+				}
+			});
+
+			$('#customRadio3').click(function() {
+					if ($(this).is(':checked')) {
+						$("#text2").prop('disabled', true);
+						$('#text2').val("");
+					}
+			});
+			$('#customRadio4').click(function() {
+				if ($(this).is(':checked')) {
+					$("#text2").prop('disabled', false);
+				
+				}
+			});
+  
 	});
+	
+
 
 </script>
