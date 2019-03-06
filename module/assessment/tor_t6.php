@@ -12,9 +12,9 @@
 		$genIdpost = $_POST['genid'];
 		$yearIdpost = $_POST['year'];
 	}
-	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
+	$sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
 	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-	list($tor_ID)=mysqli_fetch_row($reChk);
+	list($tor_ID,$hleader,$sleader)=mysqli_fetch_row($reChk);
 
 	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
@@ -64,20 +64,32 @@
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
+			
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+				<?php
+					 $sehleader=mysqli_query($con,"SELECT prefix,fname,lname,position FROM staffs WHERE st_id='$hleader'")or die("SQL.hleaderError".mysqli_error($con));
+					 list($hl_prefix,$hl_name,$hl_fname,$hl_position)=mysqli_fetch_row($sehleader);
+					 mysqli_free_result($sehleader);
+				?>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $hl_prefix,$hl_name," ",$hl_fname   ?>">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+				<?php
+						$se_hlpostion = mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id ='$hl_position'") or die("SQL.posHL_ERRor".mysqli_error($con));
+						list($hl_posName)=mysqli_fetch_row($se_hlpostion);
+
+				?>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $hl_posName  ?>">
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+				<?php $date= date("Y/m/d")  ?>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php  echo  DateThai($date)    ?>" >
 				</div>				
 		</div>
 	</div>
@@ -117,7 +129,7 @@
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="">
 				</div>				
 		</div>
 	</div>
@@ -147,7 +159,6 @@
 			$('#customRadio2').click(function() {
 				if ($(this).is(':checked')) {
 					$("#text1").prop('disabled', false);
-				
 				}
 			});
 
@@ -160,7 +171,6 @@
 			$('#customRadio4').click(function() {
 				if ($(this).is(':checked')) {
 					$("#text2").prop('disabled', false);
-				
 				}
 			});
   
