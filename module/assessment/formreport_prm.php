@@ -24,7 +24,7 @@ list($tor_year)=mysqli_fetch_row($tor);
 
 ?>
 
-<form class="p-2" id='fmreport'>
+<form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2 text-center">
@@ -101,8 +101,8 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 1.  งานสอน  -->
 						<?php 
+								$countfile=1;
 								$ev=  mysqli_query($con,"SELECT e_id,e_name, (SELECT count(se_id) FROM sub_evaluation as sev where sev.e_id = ev.e_id ) FROM evaluation as ev ") or  die("SQL Error1==>1".mysqli_error($con));
 								while(list($e_id,$e_name,$count)=mysqli_fetch_row($ev)){
 						?>
@@ -115,6 +115,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						<?php
 									$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
 									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
+						
 										echo "<tr>";
 										echo	"<td >  $sub_name </td>";
 										echo "<td ><div class='form-group'>
@@ -122,9 +123,12 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 									  </div></td >";
 									  echo	"<td class='text-center'> <div class='form-group'>
 										<label class='text-danger'>**อัปโหลดเฉพาะไฟล์ PDF DOC เท่านั้น</label>
-										<input type='file' class='form-control-file filecheck' name='fileimg[]'  multiple>
-									</div></td>";
+										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple>
+									</div>
+									<input type='hidden'  name='se_id[]' value='$sub_id'>
+									</td>";
 										echo "</tr>";
+										$countfile++;
 
 									}
 								}
@@ -169,7 +173,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
    	</div>
 <div class="row">
 	<div class='col text-center'>
-	<button type="submit" class="btn btn-primary">Submit</button>
+	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
 	</div>
 <div>
 
@@ -185,19 +189,39 @@ $( document ).ready(function() {
 
 	$vform = $( "#fmreport");
 	$vform.validate();
-	
 
-	$vform.validate();
 	$( "#fmreport" ).submit(function(e){
 		e.preventDefault() 
 
 			if($vform.valid()){
 				$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
 				if($conf==true){
-				alert("COMPLI !!!");
-			}
+					var formData = new FormData(this);
+
+						$.ajax({
+							url: "module/assessment/addevidence.php",
+							type: 'POST',
+							data: formData,
+							success: function (data) {
+
+							alert(data)
+
+							},
+							cache: false,
+							contentType: false,
+							processData: false
+						}).done(function(data) {
+
+								alert("บันทึกข้อมูลสำเร็จ");
+							//loadingpage("personnel","mangauser");
+							$("#detail").html(data);
+
+						})
 		}
-	})
+	}
+	
+	});
+
 });
 </script>
 
