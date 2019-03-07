@@ -25,7 +25,7 @@ list($tor_year)=mysqli_fetch_row($tor);
 ?>
 
 <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
-<input type='text' name="ass_id" value='<?php echo $ass_id ?>'>
+<input type='hidden' name="ass_id" value='<?php echo $ass_id ?>'>
 	<div class="row">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2 text-center">
