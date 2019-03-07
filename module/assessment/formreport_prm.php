@@ -7,15 +7,15 @@ session_start();
 $gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=staffs.acadeic) FROM staffs  WHERE st_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
 list($aca_name)=mysqli_fetch_row($gen);
 
-$tor_id = empty($_POST['torid'])?"":$_POST['torid'];
-if(empty($tor_id)){
+$ass_id = empty($_POST['torid'])?"":$_POST['torid'];
+if(empty($ass_id)){
 	echo "<script> 
 	    alert('!!!!!');
 		loadmain('assessment','manage_Evidence') 
 		</script>";
 }
 
-$tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$tor_id' ") or  die("SQL Error1==>2".mysqli_error($con));
+$tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
 
 
@@ -25,6 +25,7 @@ list($tor_year)=mysqli_fetch_row($tor);
 ?>
 
 <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
+<input type='text' name="ass_id" value='<?php echo $ass_id ?>'>
 	<div class="row">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2 text-center">
@@ -121,9 +122,12 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										echo "<td ><div class='form-group'>
 										<textarea class='form-control' rows='3' name='text[]'></textarea>
 									  </div></td >";
-									  echo	"<td class='text-center'> <div class='form-group'>
-										<label class='text-danger'>**อัปโหลดเฉพาะไฟล์ PDF DOC เท่านั้น</label>
-										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple>
+										echo	"<td class='text-center'> 
+										<div class='form-group'>
+										<label class=''></label>
+										<small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC PNG JPG  เท่านั้น</small>
+										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple aria-describedby='fileHelpInline'>
+										
 									</div>
 									<input type='hidden'  name='se_id[]' value='$sub_id'>
 									</td>";
@@ -154,9 +158,18 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		<div class="col-sm-6"></div>
 		<div class="col-sm text-center">
 			<p>ลงชื่อผู้รายงานผลปฏิบัติงาน</p>
-			<p></p>
-			<p>(              )</p>
-			<p>วันที่ เดือน  พ.ศ. </p>
+
+			<p><?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?></p>
+			<p>(                                           )</p>
+								
+								
+			
+					
+		
+				
+						
+	
+			<p>วันที่ <?php echo date("j") ?> เดือน <?php echo date("n") ?> พ.ศ. <?php echo (date("Y")+543) ?> </p>
 		</div>
 		<div class="col-sm-1"></div>
    	</div>
@@ -183,7 +196,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 $( document ).ready(function() {
 
 	jQuery.validator.addClassRules("filecheck", {
-	extension: "pdf|doc"
+	extension: "pdf|doc|png|jpg"
 });
 
 
