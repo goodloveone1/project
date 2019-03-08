@@ -63,24 +63,24 @@ if(empty($_POST['genid']) && empty($_POST['year']) ){
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  1 : ผลสัมฤทธิ์ของงาน</td>
-				<input type="hidden" name="name1" value="องค์ประกอบที่1 : ผลสัมฤทธิ์ของงาน">
+				<input type="hidden" name="name1" value="1">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei1" value="70" readonly></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" onclick="fncSum();" value="<?php  ?>"  readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" onclick="fncSum();"   readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
-				<input type="hidden" name="name2" value="องค์ประกอบที่2 : พฤติกรรมการปฏิบัติราชการ(สมรรถนะ)">
+				<input type="hidden" name="name2" value="2">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei2" value="30" readonly></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" value="<?php ?>"  readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]"   readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
-				<input type="hidden" name="name3" value="องค์ประกอบอื่น">
+				<input type="hidden" name="name3" value="3">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" value="0"></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3" value="0"></td>
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]"  readonly value="0"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder=" " name="sa[]"  readonly ></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
@@ -133,7 +133,7 @@ if(empty($_POST['genid']) && empty($_POST['year']) ){
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	 <button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor3"> ต่อไป </button>
+	 <button type="submit" class="btn " data-modules="assessment" data-action=""> ต่อไป </button>
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t4"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 	</div>
 </div>

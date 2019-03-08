@@ -152,9 +152,14 @@ if(!empty($ass_id)){
 	<div class="col-md">
     <P>
       <?php   
-            $se_All=mysqli_query($con,"SELECT sum_score FROM sum_score_assessment_t3 WHERE ass_id='$ass_id'") or die("SumAll-SQL.error".mysqli_error($con));
+            $se_All=mysqli_query($con,"SELECT name,score,weignt,sum FROM asessment_t3 WHERE ass_id='$ass_id'") or die("SumAll-SQL.error".mysqli_error($con));
             for ($sum = array (); $row = $se_All->fetch_assoc(); $sum[] = $row);
-      print_r($sum);
+
+            $sumScore=mysqli_query($con,"SELECT sum_score FROM sum_score_assessment_t3 WHERE ass_id='$ass_id'") or die("AAA-SQL.error".mysqli_error($con));
+            list($total)=mysqli_fetch_row($sumScore);
+     //print_r($sum);
+           // echo $total;
+            mysqli_free_result($se_All);
       ?>
     </P>
     <p><b>สรุปการประเมินผลการปฏิบัติราชการ</b></p>
@@ -167,32 +172,54 @@ if(!empty($ass_id)){
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  1 : ผลสัมฤทธิ์ของงาน</td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><?php  echo $sum[0]['score']?></td>
+				<td><?php  echo $sum[0]['weignt']?></td>
+				<td><?php  echo $sum[0]['sum']?></td>
 			</tr>
 			<tr>
-				<td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
-				<td></td>
-				<td></td>
-				<td></td>
+      <td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
+				<td><?php  echo $sum[1]['score']?></td>
+				<td><?php  echo $sum[1]['weignt']?></td>
+        <td><?php  echo $sum[1]['sum']?></td>
 			</tr>
 			<tr>
-				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
-				<td></td>
-				<td></td>
-				<td></td>
+			<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
+				<td><?php  echo $sum[2]['score']?></td>
+				<td><?php  echo $sum[2]['weignt']?></td>
+        <td><?php  echo $sum[2]['sum']?></td>
 			</tr>
 			<tr>
-				<td colspan="2" class="text-right">รวม</td>
+				<td colspan="2" class="text-right"><b>รวม</b></td>
 				<td>100</td>
-				<td></td>
+				<td style="color:blue;"><?php echo $total; ?></td>
 			</tr>	
 		</table>
 	</div>
 </div>	
 
+<div class="row">
+   <div class="col-md">
+   <p><b>ระดับผลการประเมิน</b></p>
+      <?php
+          if($total>90 && $total<=100){
+            echo"<p style='color:blue'>ดีเด่น (90-100)</p>";
+          }
+          else if($total>80 && $total<90){
+            echo"<p style='color:green'>ดีมาก (80-89)</p>";
+          }
+          else if($total>70 && $total<80){
+          echo"<p style='color:DarkOrange '>ดี (70-79) </p>";
+          }
+          else if($total>60 && $total<70){
+            echo"<p style='colre:orange'>พอใช้(60-69)</p>";
+          }
+          else{
+           echo"<p style='color:red'>***ต้องปรับปรุง (ต่ำกว่า 60)</p>";
+          }
+      ?>
 
+   </div>
+</div>
 
 
 
