@@ -17,10 +17,23 @@ if(empty($ass_id)){
 
 $tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
+
+$evd=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
+list($tor_year)=mysqli_fetch_row($tor);
 ?>
 
+<style>
 
-<input type='hidden' name="ass_id" value='<?php echo $ass_id ?>'>
+.fileedit {
+		font-size:16px;
+		transition: 0.2s; /* Animation */
+}
+.fileedit:hover {
+	font-size:16.5px;
+	color:red;
+	
+}
+</style>
 	<div class="row">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2 text-center">
@@ -104,8 +117,9 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						?>
 						<tr>
 							<td rowspan="<?php echo $count+1 ?>"> <?php echo $e_id ?> </td>
-							<td ><?php echo $e_id.". ".$e_name ?>    </td>
-							<td></td>
+							<td colspan='3'><?php echo $e_id.". ".$e_name ?>    </td>
+							
+						
 
 						</tr>
 						<?php
@@ -116,18 +130,26 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
                                         list($evd_text_id,$evd_id,$evd_text_name)=mysqli_fetch_row($evd_text) ;   
 
 										echo "<tr>";
-										echo	"<td >  $sub_name </td>";
-										echo "<td >
-                                            $evd_text_name 
-                                        </td >";
+										echo	"<td >  $sub_name  </td>";
+
+										if (!empty($evd_text_id)){
+										echo "<td class='text-center'>
+										<div class='form-group textedit' data-evdidtext='$evd_text_id' data-evdtext='$evd_text_name'>
+										<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
+									  	</div>
+
+										</td >";
+									}else{
+										echo "<td class='text-center'>
+											<div class='form-group textedit2' data-evdid='$_POST[evdid]' data-seid='$sub_id'>
+											<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
+											</div>
+											$evd_id
+										</td >";	
+									}
 										echo	"<td class='text-center'> 
-										<div class='form-group'>
-										<label class=''></label>
-										<small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC PNG JPG  เท่านั้น</small>
-										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple aria-describedby='fileHelpInline'>
 										
-									</div>
-									<input type='hidden'  name='se_id[]' value='$sub_id'>
+									<b class='fileedit text-secondary'><i class='fas fa-file fa-2x'></i> <br>จัดการไฟล์ </br> 
 									</td>";
 										echo "</tr>";
 										$countfile++;
@@ -185,47 +207,29 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 
 </form>
 
+<div id='loadedittext'></div>
+<div id='loadeditfile'></div>
+
 <script>
 $( document ).ready(function() {
 
-	jQuery.validator.addClassRules("filecheck", {
-	extension: "pdf|doc|png|jpg"
-});
-
-
-	$vform = $( "#fmreport");
-	$vform.validate();
-
-	$( "#fmreport" ).submit(function(e){
-		e.preventDefault() 
-
-			if($vform.valid()){
-				$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-				if($conf==true){
-					var formData = new FormData(this);
-
-						$.ajax({
-							url: "module/assessment/addevidence.php",
-							type: 'POST',
-							data: formData,
-							success: function (data) {
-
-							alert(data)
-
-							},
-							cache: false,
-							contentType: false,
-							processData: false
-						}).done(function(data) {
-
-								alert("บันทึกข้อมูลสำเร็จ");
-							//loadingpage("personnel","mangauser");
-							$("#detail").html(data);
-
-						})
-		}
-	}
+	$(".textedit").click(function(e) {
+		e.preventDefault(); 
+		alert($(this).data("evdidtext"));
+        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext")}).done(function(data){
+            $('#loadedittext').html(data);
+                 $('#edittext').modal('show');
+        })
+	});
 	
+
+	$(".textedit2").click(function(e) {
+		e.preventDefault(); 
+		alert($(this).data("evdid"));
+        $.post("module/assessment/edit_text_evd.php", { evdid : $(this).data("evdid"),seid : $(this).data("seid") }).done(function(data){
+            $('#loadedittext').html(data);
+                 $('#edittext').modal('show');
+        })
 	});
 
 });

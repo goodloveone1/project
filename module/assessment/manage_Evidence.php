@@ -35,28 +35,29 @@ $con=connect_db();
 			    echo "<td> $rond</td>";
 
 
-					$evd= mysqli_query($con,"SELECT evd_status FROM evidence");
-					list($evd_status) = mysqli_fetch_row($evd);
+					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence");
+					list($evd_id,$evd_status) = mysqli_fetch_row($evd);
+					
 
 					if(empty($evd_status)){
 							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
-							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' data-modules='assessment' data-action='formreport_prm'><i class='far fa-plus-square fa-2x'></i> </b></td>";
+							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
 						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-modules='assessment' data-action='editformreport_prm'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
-					}
-
-					
-					
-
-			   
+							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
+					}			   
 			    echo " </tr>";
 
 	 } // END WHILE
+
+	 mysqli_free_result($evd);
+	 mysqli_free_result($asm);
+	 mysqli_close($con);
 ?>
     </tbody>
   </table>
 </div>
+
 
 <script>
 $.getScript('js/mydatatable.js')
@@ -73,7 +74,7 @@ $.getScript('js/mydatatable.js')
 	$(".editevd").click(function(){
 			var tor_id = $(this).data("torid");
 			$("#detail").html("");
-			$.post("module/assessment/editformreport_prm.php",{ torid:tor_id}).done(function(data){
+			$.post("module/assessment/editformreport_prm.php",{ torid:tor_id ,evdid: $(this).data("evdid") }).done(function(data){
 				sessionStorage.setItem("module1","assessment")
 				sessionStorage.setItem("action","editformreport_prm")
 				$("#detail").html(data);
