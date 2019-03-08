@@ -40,10 +40,10 @@ $con=connect_db();
 
 					if(empty($evd_status)){
 							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
-							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' data-modules='assessment' data-action='formreport_prm'><i class='far fa-plus-square fa-2x'> </b></i>";
+							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' data-modules='assessment' data-action='formreport_prm'><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
 						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-modules='assessment' data-action='editformreport_prm'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i>";
+							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-modules='assessment' data-action='editformreport_prm'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
 					}
 
 					
@@ -73,9 +73,9 @@ $.getScript('js/mydatatable.js')
 	$(".editevd").click(function(){
 			var tor_id = $(this).data("torid");
 			$("#detail").html("");
-			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
+			$.post("module/assessment/editformreport_prm.php",{ torid:tor_id}).done(function(data){
 				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","formreport_prm")
+				sessionStorage.setItem("action","editformreport_prm")
 				$("#detail").html(data);
 			})
 	})

@@ -19,7 +19,7 @@ $tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id
 list($tor_year)=mysqli_fetch_row($tor);
 ?>
 
-<form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
+
 <input type='hidden' name="ass_id" value='<?php echo $ass_id ?>'>
 	<div class="row">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
@@ -111,12 +111,15 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						<?php
 									$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
 									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
-						
+                                        
+                                        $evd_text =  mysqli_query($con,"SELECT evd_text_id,evd_id,evd_text_name FROM evidence_text WHERE se_id='$sub_id' ") or  die("SQL Error1==>1".mysqli_error($con));
+                                        list($evd_text_id,$evd_id,$evd_text_name)=mysqli_fetch_row($evd_text) ;   
+
 										echo "<tr>";
 										echo	"<td >  $sub_name </td>";
-										echo "<td ><div class='form-group'>
-										<textarea class='form-control' rows='3' name='text[]'></textarea>
-									  </div></td >";
+										echo "<td >
+                                            $evd_text_name 
+                                        </td >";
 										echo	"<td class='text-center'> 
 										<div class='form-group'>
 										<label class=''></label>
@@ -173,6 +176,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		</div>
 		<div class="col-sm-6"></div>
    	</div>
+       <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
 <div class="row">
 	<div class='col text-center'>
 	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
