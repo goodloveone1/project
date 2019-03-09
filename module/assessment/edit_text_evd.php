@@ -2,7 +2,7 @@
     session_start();
     include("../../function/db_function.php");
     
- if(empty($_POST['evdid'])) {   ///// 1
+ if(empty($_POST['evdid2'])) {   ///// 1
    
 ?>
 <form id="foredittext">
@@ -50,7 +50,13 @@ $("#updatesu").click(function(event) {
 
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
-           loadmain(module1,action);
+            $.post( "module/"+module1+"/"+action+".php", { torid: <?php echo $_POST['torid'] ?> ,evdid: <?php echo $_POST['evdid'] ?> }).done(function(data,txtstuta){
+
+            alert("บันทึกสำเร็จแล้ว?");
+
+            $("#detail").html(data);
+         });
+          // loadmain(module1,action);
         })
     //}
 });
@@ -76,7 +82,7 @@ $("#updatesu").click(function(event) {
                           <textarea class="form-control" name="evd_textname" id="" rows="3" require></textarea>
                
                         
-                          <input type="hidden"    value="<?php echo $_POST['evdid'] ?>"  name="evd_id" size=40 require>
+                          <input type="hidden"    value="<?php echo $_POST['evdid2'] ?>"  name="evd_id" size=40 require>
                           <input type="hidden"    value="<?php echo $_POST['seid'] ?>"  name="se_id" size=40 require>
                     </div>
 
@@ -97,7 +103,7 @@ $("#updatesu").click(function(event) {
     // var r = confirm("คุณต้องการแก้ไขข้อความใช่หรือไหม?");
     // if (r == true) {
         $.post( "module/assessment/update_evd_text.php", $( "#foredittext" ).serialize()).done(function(data,txtstuta){
-            //alert(data);
+            alert(data);
          });
         $('#edittext').modal("hide");
 
@@ -105,7 +111,12 @@ $("#updatesu").click(function(event) {
 
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
-           loadmain(module1,action);
+            $.post( "module/"+module1+"/"+action+".php", { torid: <?php echo $_POST['torid'] ?> ,evdid: <?php echo $_POST['evdid2'] ?> }).done(function(data,txtstuta){
+
+            alert("บันทึกสำเร็จแล้ว");
+
+            $("#detail").html(data);
+            });
         })
     //}
 });

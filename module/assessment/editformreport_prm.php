@@ -1,19 +1,18 @@
 <?php
 session_start();
+
+$ass_id = empty($_POST['torid'])?"":$_POST['torid'];
+$evd_id = empty($_POST['evdid'])?"":$_POST['evdid'];
+
+if(!empty($ass_id) AND  !empty($ass_id)){
+
+
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
 $gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=staffs.acadeic) FROM staffs  WHERE st_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
 list($aca_name)=mysqli_fetch_row($gen);
-
-$ass_id = empty($_POST['torid'])?"":$_POST['torid'];
-if(empty($ass_id)){
-	echo "<script> 
-	    alert('!!!!!');
-		loadmain('assessment','manage_Evidence') 
-		</script>";
-}
 
 $tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
@@ -25,12 +24,13 @@ list($tor_year)=mysqli_fetch_row($tor);
 <style>
 
 .fileedit {
-		font-size:16px;
+		border-style: hidden;
+		color:#6c757F;
 		transition: 0.2s; /* Animation */
 }
 .fileedit:hover {
-	font-size:16.5px;
-	color:red;
+	color:#6c757F;
+	border-bottom: dotted 1px;
 	
 }
 </style>
@@ -98,7 +98,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 					<thead class="thead-light">
 						<tr class="text-center">
 							<th rowspan='2'>ลำดับ <br><br></th>
-							<th rowspan='2'class='w-50'>องค์ประกอบที่ใช้ประเมิน <br><br></th>
+							<th rowspan='2'class=''>องค์ประกอบที่ใช้ประเมิน <br><b></th>
 
 							<th class='' colspan='2'>หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
 
@@ -126,8 +126,8 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 									$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
 									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
                                         
-                                        $evd_text =  mysqli_query($con,"SELECT evd_text_id,evd_id,evd_text_name FROM evidence_text WHERE se_id='$sub_id' ") or  die("SQL Error1==>1".mysqli_error($con));
-                                        list($evd_text_id,$evd_id,$evd_text_name)=mysqli_fetch_row($evd_text) ;   
+                                        $evd_text =  mysqli_query($con,"SELECT evd_text_id,evd_text_name FROM evidence_text WHERE se_id='$sub_id' AND evd_id='$evd_id' ") or  die("SQL Error1==>1".mysqli_error($con));
+                                        list($evd_text_id,$evd_text_name)=mysqli_fetch_row($evd_text) ;   
 
 										echo "<tr>";
 										echo	"<td >  $sub_name  </td>";
@@ -141,16 +141,24 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										</td >";
 									}else{
 										echo "<td class='text-center'>
-											<div class='form-group textedit2' data-evdid='$_POST[evdid]' data-seid='$sub_id'>
+											<div class='form-group textedit2' data-evdid='$evd_id' data-seid='$sub_id'>
 											<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
 											</div>
-											$evd_id
+										
 										</td >";	
 									}
-										echo	"<td class='text-center'> 
+										echo 	"<td class='text-center'> ";
+										echo   		"<table class='table table-striped'>";
 										
-									<b class='fileedit text-secondary'><i class='fas fa-file fa-2x'></i> <br>จัดการไฟล์ </br> 
-									</td>";
+										// $evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evd_id' ") or  die("SQL Error1==>1".mysqli_error($con));
+										// $i=1;
+										// while(list($evd_file_id,$evd_file_name)=mysqli_fetch_row($evd_file)){
+										// 	echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_file_name</a></td></tr> ";
+										// 	$i++;		
+										// }
+										echo   		"</table>";
+										echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> จัดการไฟล์ </b>";
+										echo	"</td>";
 										echo "</tr>";
 										$countfile++;
 
@@ -159,9 +167,6 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 
 						
 						?>
-
-
-					
 
 					</tbody>
 				</table>
@@ -216,7 +221,7 @@ $( document ).ready(function() {
 	$(".textedit").click(function(e) {
 		e.preventDefault(); 
 		alert($(this).data("evdidtext"));
-        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext")}).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : <?php echo $evd_id ?>,torid: <?php echo $ass_id ?> } ).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
         })
@@ -226,9 +231,18 @@ $( document ).ready(function() {
 	$(".textedit2").click(function(e) {
 		e.preventDefault(); 
 		alert($(this).data("evdid"));
-        $.post("module/assessment/edit_text_evd.php", { evdid : $(this).data("evdid"),seid : $(this).data("seid") }).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdid2 : <?php echo $evd_id ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
+        })
+	});
+
+
+	$(".fileedit").click(function(e) {
+		e.preventDefault(); 
+        $.post("module/assessment/edit_file_evd.php", { evdid : <?php echo $evd_id ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
+            $('#loadeditfile').html(data);
+                 $('#editfile').modal('show');
         })
 	});
 
@@ -238,4 +252,15 @@ $( document ).ready(function() {
 
 <?php
 	mysqli_close($con);
+
+
+
+	
+
+}else{
+	echo "<script> 
+	    alert('!!!!!');
+		loadmain('assessment','manage_Evidence') 
+		</script>";
+} ///END IF $ass_id
 ?>

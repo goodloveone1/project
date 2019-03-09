@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 include("../../function/db_function.php");
 $con=connect_db();
@@ -21,7 +20,6 @@ if(empty($_POST['evd_id'])){
     
     $result=mysqli_query ($con,$sql) or die ("error sql1".mysqli_error($con));
 }
-
 
 
 
