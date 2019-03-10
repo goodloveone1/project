@@ -1,24 +1,27 @@
 <?php
 session_start();
 
-$ass_id = empty($_POST['torid'])?"":$_POST['torid'];
-$evd_id = empty($_POST['evdid'])?"":$_POST['evdid'];
 
-if(!empty($ass_id) AND  !empty($ass_id)){
+
+$evdid = empty($_POST['evdid'])?"":$_POST['evdid'];
+
+if(!empty($evdid)){
 
 
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
 
-$gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=staffs.acadeic) FROM staffs  WHERE st_id='$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
-list($aca_name)=mysqli_fetch_row($gen);
+$evd =  mysqli_query($con,"SELECT ass_id,st_id,st_date FROM evidence  WHERE evd_id='$evdid' ") or  die("SQL Error evd ==>2".mysqli_error($con));
+list($ass_id,$st_id,$st_date)=mysqli_fetch_row($evd);
 
-$tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
+$gen=  mysqli_query($con,"SELECT (SELECT aca_name FROM academic WHERE aca_id=staffs.acadeic),prefix,fname,lname FROM staffs WHERE st_id='$st_id' ") or  die("SQL Error gen==>1".mysqli_error($con));
+list($aca_name,$prefix,$fname,$lname)=mysqli_fetch_row($gen);
+
+$tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>tor".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
 
-$evd=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>2".mysqli_error($con));
-list($tor_year)=mysqli_fetch_row($tor);
+
 ?>
 
 <style>
@@ -126,7 +129,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 									$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
 									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
                                         
-                                        $evd_text =  mysqli_query($con,"SELECT evd_text_id,evd_text_name FROM evidence_text WHERE se_id='$sub_id' AND evd_id='$evd_id' ") or  die("SQL Error1==>1".mysqli_error($con));
+                                        $evd_text =  mysqli_query($con,"SELECT evd_text_id,evd_text_name FROM evidence_text WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
                                         list($evd_text_id,$evd_text_name)=mysqli_fetch_row($evd_text) ;   
 
 										echo "<tr>";
@@ -144,7 +147,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										</td >";
 									}else{
 										echo "<td class='text-center'>
-											<div class='form-group textedit2' data-evdid='$evd_id' data-seid='$sub_id'>
+											<div class='form-group textedit2' data-evdid='$evdid' data-seid='$sub_id'>
 											<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
 											<small id='fileHelpInline' class='form-text text-muted '>**สามารถคลิกที่กล่องข้อความเพื่อแก้ไขข้อมูลได้ </small>
 											</div>
@@ -188,20 +191,37 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		<div class="col-sm text-center">
 			<p>ลงชื่อผู้รายงานผลปฏิบัติงาน</p>
 
-			<p><?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?></p>
-			<p>( <?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?> )</p>
+			<p><?php echo "$prefix $fname $lname" ?></p>
+			<p>( <?php echo "$fname $lname "?> )</p>
 								
 
-			<p>วันที่ <?php echo date("j") ?> เดือน <?php echo date("n") ?> พ.ศ. <?php echo (date("Y")+543) ?> </p>
+			<p>วันที่ <?php 
+				$datethai = DateThai($st_date);
+				$datethai = explode(" ",$datethai);
+
+				echo $datethai[0]." เดือน ".$datethai[1]." พ.ศ ".$datethai[2];
+			
+			
+				?> 
+			</p>
 		</div>
 		<div class="col-sm-1"></div>
    	</div>
-       <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
-<div class="row">
-	<div class='col text-center'>
-	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
-	</div>
-<div>
+<form class="p-2" id='formstatus'  method="POST" >
+	<div class="row">
+		<div class='col text-center'>
+					<div class="custom-control custom-checkbox">
+					<input type="hidden"  name='evdid' value='<?php echo $evdid ?>'>
+			<input type="checkbox" class="custom-control-input" name='check' id="customCheck1" value="2" >
+				<label class="custom-control-label" for="customCheck1">ยืนยันการตรวจสอบข้อมูลหลักฐาน <b class='text-danger'>(*เมื่อยืนยันข้อมูลหลักฐานแล้วจะไม่สามารถแก้ไข)</b></label>
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary" id="btnsubmit" style="display:none">ยืนยัน</button>
+		
+			
+			
+		</div>
+	<div>
 
 </form>
 
@@ -214,7 +234,7 @@ $( document ).ready(function() {
 	$(".textedit").click(function(e) {
 		e.preventDefault(); 
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : <?php echo $evd_id ?>,torid: <?php echo $ass_id ?> } ).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : <?php echo $evdid ?>,torid: <?php echo $ass_id ?> } ).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
         })
@@ -224,7 +244,7 @@ $( document ).ready(function() {
 	$(".textedit2").click(function(e) {
 		e.preventDefault(); 
 		//alert($(this).data("evdid"));
-        $.post("module/assessment/edit_text_evd.php", { evdid2 : <?php echo $evd_id ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdid2 : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
         })
@@ -233,11 +253,50 @@ $( document ).ready(function() {
 
 	$(".fileedit").click(function(e) {
 		e.preventDefault(); 
-        $.post("module/assessment/edit_file_evd.php", { evdid : <?php echo $evd_id ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
+        $.post("module/assessment/edit_file_evd.php", { evdid : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
             $('#loadeditfile').html(data);
                  $('#editfile').modal('show');
         })
 	});
+
+	$('#customCheck1').click(function(){
+            if($(this).prop("checked") == true){
+                $("#btnsubmit").css("display","");
+            }
+            else if($(this).prop("checked") == false){
+				$("#btnsubmit").css("display","none");
+            }
+		});
+		
+		$( "#formstatus" ).submit(function(e){
+		e.preventDefault() 
+
+				$conf = confirm("คุณต้องการยืนยันข้อมูลใช่ไหม?");
+				if($conf==true){
+					var formData = new FormData(this);
+
+						$.ajax({
+							url: "module/assessment/update_status_evd.php",
+							type: 'POST',
+							data: formData,
+							success: function (data) {
+
+                            alert(data)
+
+							},
+							cache: false,
+							contentType: false,
+							processData: false
+						}).done(function(data) {
+
+                           loadingpage("assessment","manage_Evidence");
+
+						})
+		}
+
+	
+	});
+
 
 });
 </script>
