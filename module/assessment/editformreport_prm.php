@@ -98,13 +98,13 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 					<thead class="thead-light">
 						<tr class="text-center">
 							<th rowspan='2'>ลำดับ <br><br></th>
-							<th rowspan='2'class=''>องค์ประกอบที่ใช้ประเมิน <br><b></th>
+							<th rowspan='2'class='w-50'>องค์ประกอบที่ใช้ประเมิน <br><b></th>
 
 							<th class='' colspan='2'>หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
 
 						</tr>
 						<tr class="text-center">
-							<th class=''>ข้อความ</th>
+							<th class='w-25'>ข้อความ</th>
 							<th class=''>ไฟล์หลักฐาน</th>
 
 						</tr>
@@ -136,13 +136,17 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										echo "<td class='text-center'>
 										<div class='form-group textedit' data-evdidtext='$evd_text_id' data-evdtext='$evd_text_name'>
 										<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
-									  	</div>
+										<small id='fileHelpInline' class='form-text text-muted '>**สามารถคลิกที่กล่องข้อความเพื่อแก้ไขข้อมูลได้ </small>
+										</div>
+										  
+
 
 										</td >";
 									}else{
 										echo "<td class='text-center'>
 											<div class='form-group textedit2' data-evdid='$evd_id' data-seid='$sub_id'>
 											<textarea class='form-control'  rows='3'  disabled>$evd_text_name </textarea>
+											<small id='fileHelpInline' class='form-text text-muted '>**สามารถคลิกที่กล่องข้อความเพื่อแก้ไขข้อมูลได้ </small>
 											</div>
 										
 										</td >";	
@@ -185,23 +189,12 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 			<p>ลงชื่อผู้รายงานผลปฏิบัติงาน</p>
 
 			<p><?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?></p>
-			<p>(                                           )</p>
+			<p>( <?php echo $_SESSION['user_fnaem']." ".$_SESSION['user_lnaem'] ?> )</p>
 								
 
 			<p>วันที่ <?php echo date("j") ?> เดือน <?php echo date("n") ?> พ.ศ. <?php echo (date("Y")+543) ?> </p>
 		</div>
 		<div class="col-sm-1"></div>
-   	</div>
-
-   	<div class="row">
-   		<div class="col-sm text-center">
-			<p>   ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรอง</p>
-			<p>ลงชื่อ </p>
-			<p>(              )</p>
-			<p> ตำแหน่ง </p>
-			<p>วันที่ เดือน  พ.ศ. </p>
-		</div>
-		<div class="col-sm-6"></div>
    	</div>
        <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
 <div class="row">
@@ -220,7 +213,7 @@ $( document ).ready(function() {
 
 	$(".textedit").click(function(e) {
 		e.preventDefault(); 
-		alert($(this).data("evdidtext"));
+		//alert($(this).data("evdidtext"));
         $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : <?php echo $evd_id ?>,torid: <?php echo $ass_id ?> } ).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
@@ -230,7 +223,7 @@ $( document ).ready(function() {
 
 	$(".textedit2").click(function(e) {
 		e.preventDefault(); 
-		alert($(this).data("evdid"));
+		//alert($(this).data("evdid"));
         $.post("module/assessment/edit_text_evd.php", { evdid2 : <?php echo $evd_id ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
