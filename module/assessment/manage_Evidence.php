@@ -23,7 +23,7 @@ $con=connect_db();
     </thead>
     <tbody>
 			<?php
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
+					  $asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments WHERE staff='$_SESSION[user_id]' ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
 						while(list($ass_id,$tor_year) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
@@ -50,10 +50,10 @@ $con=connect_db();
 							echo "  <td class='text-center'> <i class='fas fa-clock fa-2x'></i></i></td>";
 					}				   
 			    echo " </tr>";
-
+					mysqli_free_result($evd);
 	 } // END WHILE
 
-	 mysqli_free_result($evd);
+	 
 	 mysqli_free_result($asm);
 	 mysqli_close($con);
 ?>
