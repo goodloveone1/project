@@ -185,7 +185,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 $( document ).ready(function() {
 
 	jQuery.validator.addClassRules("filecheck", {
-	extension: "pdf|doc|png|jpg"
+	extension: "pdf|doc|png|jpg|docx"
 });
 
 

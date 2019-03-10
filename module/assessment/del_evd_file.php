@@ -3,10 +3,6 @@
 include("../../function/db_function.php");
 $con=connect_db();
 
-
-
-
-
     $sql="DELETE FROM evidence_file WHERE evd_file_id='$_POST[evdidfile]'";
 
     echo $sql;
