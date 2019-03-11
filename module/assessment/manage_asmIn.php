@@ -2,6 +2,9 @@
   session_start();
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
+
+  unset($_SESSION['genIdpost']);
+  unset($_SESSION['yearIdpost']);
 $con=connect_db();
  ?>
 <div class="row  p-2 headtitle">
