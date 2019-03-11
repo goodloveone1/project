@@ -137,18 +137,8 @@ $(document).ready(function() {
         
         }, 2000);
 
-        
       })
-
-
-      $(document).ajaxSend(function(event, xhr, settings) {
-        // stuff to do before an AJAX request is sent
-         // $("#img").css('display','');
-      })
-
-      $("#loaddataInasm").ajaxComplete(function(event, xhr, settings) {
-       // $("#img").css('display','none');
-      })
+   
     }
 
   }) // document ready

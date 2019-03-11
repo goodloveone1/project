@@ -244,7 +244,7 @@ function webmenu($id){
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานในหลักสูตร</span>

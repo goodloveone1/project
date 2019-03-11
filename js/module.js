@@ -68,6 +68,7 @@ function modules(module1,action){
 				case "edit_tor":break;
 				case "update_tor":break;
 				case "editformreport_prm":break;
+				case "manage_Evidence_course":break;
 
 			   	default: action = "404";
 			}

@@ -6,7 +6,7 @@ $con=connect_db();
 ?>
 <div class="row  p-2 headtitle">
 
-	<h2 class="text-center col-xl "> จัดการหลักฐาน </h2>
+	<h2 class="text-center col-xl "> จัดการหลักฐานของตนเอง </h2>
 
 </div>
 <br>
