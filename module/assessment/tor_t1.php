@@ -141,13 +141,13 @@ $y_id = $y.$loop;
 					echo "<td><input type='radio' name='go$tit' value='3' required $ch3></td>";
 					echo "<td><input type='radio' name='go$tit' value='4' required $ch4></td>";
 					echo "<td><input type='radio' name='go$tit' value='5' required $ch5></td>";
-				echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='$tort1_goal' size='2' readonly required></td>";
-				echo "<td id='wei$tit'  align='center' data-wei='$weight'><input type='text' value='$weight' size='2' name='wei$tit' readonly ></td>";
+				echo "<td class='text-center' ><input type='text' class='borderNon'  data-tit='$tit' name='score[]' id='score[]' class='score' value='$tort1_goal' size='2' readonly required></td>";
+				echo "<td id='wei$tit' class='text-center' data-wei='$weight'><input type='text' class='borderNon' value='$weight' size='2' name='wei$tit' readonly ></td>";
 				$sumA=($tort1_goal*$weight)/100;
 				$total+=$sumA;
 				$a=number_format($sumA,2,'.','');
 				$t=number_format($sumA,2,'.','');
-				echo "<td id='total$tit'><input type='text' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' value='$a' readonly></td>";
+				echo "<td id='total$tit' class='text-center'><input type='text' class=' borderNon' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' value='$a' readonly></td>";
 		echo "</tr>";
 	}
 	mysqli_close($con);
@@ -155,8 +155,8 @@ $y_id = $y.$loop;
 ?>
 	<tr>
 		<td colspan="8" class="text-center"> ผลรวม </td>
-		<td class="text-center"><input type="text" name="sumwei" value="<?php echo $sumS ?> " size="3"></td>
-		<td class="text-center"><input type="text" name="sumscwei"  size="2" value="<?php echo $t  ?>" readonly> </td>
+		<td class="text-center"><input type="text" class=" borderNon" name="sumwei" value="<?php echo $sumS ?> " size="3" readonly></td>
+		<td class="text-center"><input type="text" class=" borderNon" name="sumscwei"  size="2" value="<?php echo $t  ?>" readonly> </td>
 
 	</tr>
 	<tr>
@@ -167,11 +167,11 @@ $y_id = $y.$loop;
 					สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  =
 				</div>
 				<div class="col-sm text-center">
-					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="" size="3" name="sumscweid" value="<?php echo $t  ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
+					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="text" class="borderNon" size="3" name="sumscweid" value="<?php echo $t  ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
 				</div>
 			</div>
 		</td>
-		<td class="text-center"><input type="text" name="sumall" size="3" value="<?php echo number_format($total/5,2,'.','') ; ?>"></td>
+		<td class="text-center"><input type="text" class="borderNon" name="sumall" size="3" value="<?php echo number_format($total/5,2,'.','') ; ?>"></td>
 	</tr>
 
 </table>

@@ -101,7 +101,7 @@ $y_id = $y.$loop;
 									echo "<td><input type='radio' name='go$tit' value='3' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='4' required></td>";
 									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
-									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score' value='' size='2' readonly required></td>";						
+									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score borderNon form-control'  value='' size='2' readonly required></td>";						
 		echo "</tr>";
 	}
 	mysqli_close($con);
