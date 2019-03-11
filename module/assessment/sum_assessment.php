@@ -60,9 +60,9 @@ $con=connect_db();
       </div>
     </div>
 </div>
-<div class="col-md  ">
+<!-- <div class="col-md  ">
     <button type='button' class="btn btn-block btn-success" id="btnOk"> ตกลง </button>
-</div>
+</div> -->
 </div>
 
 <div class="col-auto" id='loaddataInasm'></div>
@@ -88,33 +88,68 @@ $(document).ready(function() {
     function (data, textStatus, jqXHR) {
      // alert(data)
      $("#inputNo").html(data)
+     loadsunass()
     }
    );
+   
   })
 
-  $("#btnOk").click(function(){
+  loadsunass() // โหลดครั้งแรก
 
-    var years = $("#inputNo").val();
+//   $("#btnOk").click(function(){
+//     var years = $("#inputNo").val();
 
-    $.ajax({
-      url: "module/assessment/load_sum_ass.php",
-      data:{year:years},
-      type: "POST"
-    }).done(function(data){
-      $("#loaddataInasm").html(data)
-    })
+// $.ajax({
+//   url: "module/assessment/load_sum_ass.php",
+//   data:{year:years},
+//   type: "POST"
+// }).done(function(data){
+//   $("#loaddataInasm").html(data)
+// })
 
 
-    $(document).ajaxSend(function(event, xhr, settings) {
-      // stuff to do before an AJAX request is sent
-        $("#img").css('display','block');
-    })
+// $(document).ajaxSend(function(event, xhr, settings) {
+//   // stuff to do before an AJAX request is sent
+//     $("#img").css('display','block');
+// })
 
-    $("#loaddataInasm").ajaxComplete(function(event, xhr, settings) {
-    //  $("#img").css('display','none');
-    })
+// $("#loaddataInasm").ajaxComplete(function(event, xhr, settings) {
+// //  $("#img").css('display','none');
+// })
+    
+//     });
 
-    });
+    function loadsunass(){
+      var years = $("#inputNo").val();
+
+      $("#loaddataInasm").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/assessment/load_sum_ass.php",
+        data:{year:years},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataInasm").html(data)
+        
+        }, 2000);
+
+        
+      })
+
+
+      $(document).ajaxSend(function(event, xhr, settings) {
+        // stuff to do before an AJAX request is sent
+         // $("#img").css('display','');
+      })
+
+      $("#loaddataInasm").ajaxComplete(function(event, xhr, settings) {
+       // $("#img").css('display','none');
+      })
+    }
 
   }) // document ready
 
