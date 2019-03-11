@@ -46,8 +46,8 @@ $con=connect_db();
 						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
 							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
 					}else if($evd_status == 2){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาได้พิจารณา </b></td>"; 
-							echo "  <td class='text-center'> <i class='fas fa-clock fa-2x'></i></i></td>";
+						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
+							echo "  <td class='text-center text-info '> <i class='fas fa-clock fa-2x'></i></i></td>";
 					}				   
 			    echo " </tr>";
 					mysqli_free_result($evd);

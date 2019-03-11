@@ -15,7 +15,7 @@ if(empty($tor_id)){
 
     $seldlt=mysqli_query($con,"SELECT *FROM absence_type")or die(mysqli_error($con));
     for ($set = array (); $row = $seldlt->fetch_assoc(); $set[] = $row);
-    print_r($set);
+    //print_r($set);
 
    // echo $set[0]['idl_type_name'];
 ?>
