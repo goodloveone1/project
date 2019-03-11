@@ -69,10 +69,10 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row(
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
       if(empty($tor_idc2)){
-        echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
+        echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อประเมิน'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ประเมิน </b></a></td>";
       }
       else{
-        echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ประเมิน  <b></td>";
+        echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ประเมินเรียบร้อยแล้ว  <b></td>";
 
       }
 
