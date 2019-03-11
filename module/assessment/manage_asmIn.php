@@ -21,13 +21,13 @@ $con=connect_db();
       <input type="hidden" name="gg" value="hidden" >
       <select id="inputState" class="form-control" name="year">
       <?php
-      $sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
-      while(list($y_year)=mysqli_fetch_row($sYears)){
+      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year FROM years")or die(mysqli_error($con));
+      while(list($y_no,$y_year)=mysqli_fetch_row($sYears)){
         $y_thai=$y_year+543;
         $yy=DATE('Y');
 
         $select=$yy==$y_year?"selected":"";
-        echo"<option value='$y_year' $select>$y_thai</option>";
+        echo"<option value='$y_year' $select>$y_no/$y_thai</option>";
       }
       mysqli_free_result($sYears);
     ?>
@@ -43,7 +43,7 @@ $con=connect_db();
     <div class="form-group  row">
       <!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
       <div class="col-md">
-        <select id="inputNo" class="form-control" name="a_no">
+        <select id="inputNo" class="form-control" name="a_no" disabled>
         <?php
           $yNow=date("Y");
           $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));

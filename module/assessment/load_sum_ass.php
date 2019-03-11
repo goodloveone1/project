@@ -231,7 +231,7 @@ if(!empty($asst1_id)){
 
 <?php 
 }else{
-   echo"<p style='color:red;' align='center'>***ยังไม่มีผลการประเมิน***</p>";
+   echo"<p style='color:red;' align='center'>***ไม่มีผลการประเมิน***</p>";
 }
 
 
