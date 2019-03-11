@@ -9,7 +9,12 @@ $year = $_POST['year'];
 $se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$year' ") or die("ASS_SQLerror".mysqli_error($con));
 list($ass_id)=mysqli_fetch_row($se_ass);
 mysqli_free_result($se_ass);
-if(!empty($ass_id)){
+
+$se_ass1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id'") or die("ASS_SQLerror".mysqli_error($con));
+list($asst1_id,$ass_id1,$title_name,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_ass1);
+mysqli_free_result($se_ass1);
+
+if(!empty($asst1_id)){
 ?>
 <div class="row ">
   <div class="col-md">
@@ -226,7 +231,7 @@ if(!empty($ass_id)){
 
 <?php 
 }else{
-   echo"<p style='color:red;' align='center'>***ยังไม่ผลการประเมิน***</p>";
+   echo"<p style='color:red;' align='center'>***ยังไม่มีผลการประเมิน***</p>";
 }
 
 

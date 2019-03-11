@@ -150,7 +150,7 @@ $date = date("Y/m/d");
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
-		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor5"> ต่อไป </button>
+		<button type="submit" class="btn " data-modules="assessment" data-action="manage_asmIn"> ต่อไป </button>
 	</div>
 </div>
 </form>	
@@ -183,10 +183,10 @@ $date = date("Y/m/d");
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t6.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+								$.post( "module/assessment/manage_asmIn.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","tor_t6");
+								sessionStorage.setItem("action","manage_asmIn");
 								$("#detail").html(data);
   								});
 					        },

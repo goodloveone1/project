@@ -48,7 +48,7 @@ for($j=0;$j< $num;$j++){
 
         if($typefile[1]=='msword'){
             $typefile[1]="doc";
-        }}else if($typefile[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
+        }else if($typefile[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
             $typefile[1] = "docx";
         }
 
@@ -64,13 +64,13 @@ for($j=0;$j< $num;$j++){
         echo "filename -->".$filename." "."<br>";
         echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
        
-        //copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
+        copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
     }
     
    
 }
 echo "---------------------------- <br>";
-}
+
 
 
 
