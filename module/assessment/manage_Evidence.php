@@ -35,9 +35,10 @@ $con=connect_db();
 			    echo "<td> $rond</td>";
 
 
-					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence");
+					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$ass_id'");
 					list($evd_id,$evd_status) = mysqli_fetch_row($evd);
 					
+					if(chk_idtest() ==  $tor_year)	{
 
 					if(empty($evd_status)){
 							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
@@ -46,9 +47,25 @@ $con=connect_db();
 						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
 							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
 					}else if($evd_status == 2){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
+						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
 							echo "  <td class='text-center text-info '> <i class='fas fa-clock fa-2x'></i></i></td>";
-					}				   
+					}	
+	
+				}	else{
+						if(empty($evd_status)){
+							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+							echo "  <td class='text-center'> </td>";
+					}else if($evd_status == 1){
+						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
+							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
+					}else if($evd_status == 2){
+						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
+							echo "  <td class='text-center text-info '> <i class='fas fa-clock fa-2x'></i></i></td>";
+					}	
+				}
+
+					
+					
 			    echo " </tr>";
 					mysqli_free_result($evd);
 	 } // END WHILE
