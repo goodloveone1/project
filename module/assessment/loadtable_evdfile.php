@@ -48,7 +48,7 @@ $(document).ready(function() {
          var r = confirm("คุณต้องลบไฟล์ใช่หรือไหม?");
          if (r == true) {
         $.post("module/assessment/del_evd_file.php", { evdidfile : $(this).data("evdfileid") ,url: $(this).data("url") }).done(function(data){
-           alert(data);
+           //alert(data);
            alert("ลบไฟล์สำเร็จแล้ว");
            loadtablefile(<?php echo $_POST['torid'] ?>,<?php echo $_POST['seid'] ?>,<?php echo $_POST['evdid'] ?>)
         })

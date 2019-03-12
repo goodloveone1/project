@@ -12,8 +12,8 @@ $con=connect_db();
         <th> รหัสประเมิน </th>
         <th> ปีการประเมิน </th>
         <th> รอบที่ </th>
-				<th> ชื่อ </th>
-				<th> สกุล </th>
+				<th> ชื่อ - สกุล</th>
+		
 				<th> สาขา </th>
 				<th> หลักสูตร </th>
 				<th> สถานะ </th>
@@ -26,8 +26,15 @@ $con=connect_db();
 						list($br_name,$dept_name) = mysqli_fetch_row($dept);
 						mysqli_free_result($dept);
 
+						if($_SESSION['user_level'] == 3){ //  หลักสูตร
 
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.position = '1' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						
+						}else if($_SESSION['user_level'] == 4){ // สาขา
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '3' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						}else if($_SESSION['user_level'] == 5){ // คณะ
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '4' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						}	
 						while(list($ass_id,$tor_year,$st_id,$st_name,$st_lname) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
@@ -37,8 +44,8 @@ $con=connect_db();
 							$rond = substr($tor_year,4,4);
 			    echo "<td> $year</td>";
 					echo "<td> $rond</td>";
-					echo "<td> $st_name</td>";
-					echo "<td> $st_lname</td>";
+					echo "<td> $st_name $st_lname</td>";
+
 					echo "<td> $dept_name</td>";
 					echo "<td>   $br_name</td>";
 					
@@ -108,7 +115,17 @@ $.getScript('js/mydatatable.js')
 			$("#detail").html("");
 			$.post("module/assessment/editformreport_prm_check.php",{evdid: $(this).data("evdid") }).done(function(data){
 				sessionStorage.setItem("module1","assessment")
+				<?php 
+					if($_SESSION['user_level'] == 2){ // อาจารย์
+				?>
+				sessionStorage.setItem("action","manage_Evidence")
+				<?php 
+					}else { // หลักสูตร
+				?>
 				sessionStorage.setItem("action","manage_Evidence_course")
+				<?php 
+					}
+				?>
 				$("#detail").html(data);
 			})
 	})

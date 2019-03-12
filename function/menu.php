@@ -339,7 +339,7 @@ function webmenu($id){
 		</a>
 
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
+		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_tor">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
 				<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
@@ -347,13 +347,35 @@ function webmenu($id){
 			</button>
 		</a>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
-			</li>
-			</button>
-		</a>
+
+		<button class="btn-block bt-color" id="flip" >
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการไฟล์หลักฐาน</span>
+					</li>
+					</button>
+					<div id="panelassess" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> ตรวจสอบหลักฐานบุคลากร</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip").click(function(){
+							$("#panelassess").slideToggle();
+						});
+						});
+					</script>
 
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
 			<button class="btn-block bt-color">
@@ -412,7 +434,7 @@ function webmenu($id){
 		</a>
 
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="menuassm">
+		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_tor">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
 				<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>

@@ -217,9 +217,6 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary" id="btnsubmit" style="display:none">ยืนยัน</button>
-		
-			
-			
 		</div>
 	<div>
 
@@ -293,21 +290,13 @@ $( document ).ready(function() {
 
 						})
 		}
-
-	
 	});
-
-
 });
 </script>
 
 
 <?php
 	mysqli_close($con);
-
-
-
-	
 
 }else{
 	echo "<script> 
