@@ -185,7 +185,7 @@ $('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', f
 					        processData: false
 					    });
 				}
-				loadmain("assessment","menuassm")
+				loadmain("assessment","manage_tor")
 			})	
 });
 </script>

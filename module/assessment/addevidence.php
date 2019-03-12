@@ -27,11 +27,11 @@ if (!file_exists($url)) {    // CHECK folder มีหรือยัง
 for($i=1;$i< count($_FILES);$i++){
   
 $rename="fileimg".$i;
-echo "ข้อความ -->".$_POST['text'][$i]."<br>";
+echo "ข้อความ -->".$_POST['text'][($i-1)]."<br>";
 $num = count($_FILES[$rename]['name']);
 
 $se_id = $_POST['se_id'][($i-1)];
-$text = $_POST['text'][$i];
+$text = $_POST['text'][($i-1)];
 
 if(!empty($text)){
 

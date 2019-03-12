@@ -143,7 +143,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		</div>
 	</div>
 	<br>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-sm text-center">ข้าพเจ้าขอรับรองว่าได้ปฏิบัติงานตามที่รายงานผลการปฏิบัติงานจริง  หากต่อมาภายหลังตรวจสอบแล้วว่าไม่เป็นความจริง  ข้าพเจ้าจะเป็นผู้รับผิดชอบ
 		ทุกประการ
 		</div>
@@ -173,11 +173,12 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		</div>
 		<div class="col-sm-6"></div>
    	</div>
+		  -->
 <div class="row">
 	<div class='col text-center'>
 	<button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
 	</div>
-<div>
+</div>
 
 </form>
 

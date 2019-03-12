@@ -51,7 +51,7 @@ $con=connect_db();
 							echo "  <td class='text-center text-info '> <i class='fas fa-clock fa-2x'></i></i></td>";
 					}else if($evd_status == 3){
 						echo "<td><b class='text-success'> <b><i class='fas fa-check-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
-							echo "  <td class='text-center text-success '> <i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน</td>";
+							echo "  <td class='text-center text-success '> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน </b></td>";
 					}	else if($evd_status == 4){
 						echo "<td><b class='text-danger'> <b><i class='fas fa-times-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วไม่ให้การรับรอง </b></td>"; 
 						echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
@@ -109,6 +109,16 @@ $.getScript('js/mydatatable.js')
 			$.post("module/assessment/editformreport_prm.php",{evdid: $(this).data("evdid") }).done(function(data){
 				sessionStorage.setItem("module1","assessment")
 				sessionStorage.setItem("action","editformreport_prm")
+				$("#detail").html(data);
+			})
+	})
+
+	$(".checkevd").click(function(){
+			var tor_id = $(this).data("torid");
+			$("#detail").html("");
+			$.post("module/assessment/editformreport_prm_check.php",{evdid: $(this).data("evdid") }).done(function(data){
+				sessionStorage.setItem("module1","assessment")
+				sessionStorage.setItem("action","manage_Evidence")
 				$("#detail").html(data);
 			})
 	})
