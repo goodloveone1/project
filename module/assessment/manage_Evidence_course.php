@@ -99,7 +99,7 @@ $(document).ready(function() {
     function loadasmin(){
 
       var years = $("#inputNo").val();
-
+     
       $("#loaddataevd").html("")
       $("#loadging").css('display','')
 

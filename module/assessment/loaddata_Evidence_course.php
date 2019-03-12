@@ -22,12 +22,12 @@ $con=connect_db();
     </thead>
     <tbody>
 			<?php
-						$asm= mysqli_query($con,"SELECT br_name,(SELECT dept_name FROM departments WHERE dept_id=branchs.dept_id ) FROM branchs WHERE br_id='$_SESSION[branch]'" ) or  die("SQL Error==> ".mysqli_error($con));
-						list($br_name,$dept_name) = mysqli_fetch_row($asm);
-						mysqli_free_result($asm);
+						$dept= mysqli_query($con,"SELECT br_name,(SELECT dept_name FROM departments WHERE dept_id=branchs.dept_id ) FROM branchs WHERE br_id='$_SESSION[branch]'" ) or  die("SQL Error==> ".mysqli_error($con));
+						list($br_name,$dept_name) = mysqli_fetch_row($dept);
+						mysqli_free_result($dept);
 
 
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.position = '1' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+					  $asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.position = '1' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						while(list($ass_id,$tor_year,$st_id,$st_name,$st_lname) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";

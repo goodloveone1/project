@@ -210,9 +210,9 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 <form class="p-2" id='formstatus'  method="POST" >
 	<div class="row">
 		<div class='col text-center'>
-					<div class="custom-control custom-checkbox">
-					<input type="hidden"  name='evdid' value='<?php echo $evdid ?>'>
-			<input type="checkbox" class="custom-control-input" name='check' id="customCheck1" value="2" >
+			<div class="custom-control custom-checkbox">
+				<input type="hidden"  name='evdid' value='<?php echo $evdid ?>'>
+				<input type="checkbox" class="custom-control-input" name='check' id="customCheck1" value="2" >
 				<label class="custom-control-label" for="customCheck1">ยืนยันการตรวจสอบข้อมูลหลักฐาน <b class='text-danger'>(*เมื่อยืนยันข้อมูลหลักฐานแล้วจะไม่สามารถแก้ไข)</b></label>
 			</div>
 			<br>
