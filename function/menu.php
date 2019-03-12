@@ -377,13 +377,38 @@ function webmenu($id){
 						});
 					</script>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
-			</li>
-			</button>
-		</a>
+	
+						<button class="btn-block bt-color" id="flip2" >
+							<li class="list-group-item list-menu-user">
+								<i class="icon fas fa-calendar-check fa-lg "></i> <span class="text">  ผลการประเมิน</span>
+							</li>
+							</button>
+							<div id="panelassess2" style='display:none'>
+								<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
+									<button class="btn-block bt-color">
+									<li class="list-group-item list-menu-user">
+									<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของตนเอง</span>
+									</li>
+									</button>
+								</a>
+								<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="">
+									<button class="btn-block bt-color">
+									<li class="list-group-item list-menu-user">
+									<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของบุคลากร</span>
+									</li>
+									</button>
+								</a>
+							</div>
+							<script> 
+								$(document).ready(function(){
+								$("#flip2").click(function(){
+									$("#panelassess2").slideToggle();
+								});
+								});
+							</script>		
+
+
+
 		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
@@ -442,21 +467,65 @@ function webmenu($id){
 			</button>
 		</a>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
-			</li>
-			</button>
-		</a>
+		<button class="btn-block bt-color" id="flip" >
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-edit fa-lg " ></i><span class="text">  จัดการไฟล์หลักฐาน</span>
+					</li>
+					</button>
+					<div id="panelassess" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> ตรวจสอบหลักฐานบุคลากร</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip").click(function(){
+							$("#panelassess").slideToggle();
+						});
+						});
+					</script>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
-			</li>
-			</button>
-		</a>
+		
+<button class="btn-block bt-color" id="flip2" >
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-calendar-check fa-lg "></i> <span class="text">  ผลการประเมิน</span>
+					</li>
+					</button>
+					<div id="panelassess2" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของตนเอง</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของบุคลากร</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip2").click(function(){
+							$("#panelassess2").slideToggle();
+						});
+						});
+					</script>		
+					
 		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
