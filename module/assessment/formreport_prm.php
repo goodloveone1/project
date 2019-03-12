@@ -215,8 +215,8 @@ $( document ).ready(function() {
 						}).done(function(data) {
 
 								alert("บันทึกข้อมูลสำเร็จ");
-							//loadingpage("personnel","mangauser");
-							$("#detail").html(data);
+							loadingpage("assessment","manage_Evidence");
+							//$("#detail").html(data);
 
 						})
 		}

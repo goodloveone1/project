@@ -6,7 +6,7 @@ $con=connect_db();
 ?>
 <div class="row  p-2 headtitle">
 
-	<h2 class="text-center col-xl "> จัดการหลักฐานของตนเอง </h2>
+	<h2 class="text-center col-xl "> จัดการหลักฐานของในหลักสูตร </h2>
 
 </div>
 <br>
@@ -18,13 +18,13 @@ $con=connect_db();
         <th> ปีการประเมิน </th>
         <th> รอบที่ </th>
 				<th> สถานะ </th>
-        <th class="text-center"> จัดการหลักฐาน </th>
+        <th class="text-center"> จัดการหลักฐาน</th>
       </tr>
     </thead>
     <tbody>
 			<?php
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments WHERE staff='$_SESSION[user_id]' ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
-						while(list($ass_id,$tor_year) = mysqli_fetch_row($asm)){
+					  $asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.position = '1' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						while(list($ass_id,$tor_year,$st_id) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
 					echo " <td> $ass_id </td>";
@@ -35,7 +35,7 @@ $con=connect_db();
 			    echo "<td> $rond</td>";
 
 
-					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$ass_id'");
+					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$st_id' AND ass_id='$ass_id'");
 					list($evd_id,$evd_status) = mysqli_fetch_row($evd);
 					
 					if(chk_idtest() ==  $tor_year)	{

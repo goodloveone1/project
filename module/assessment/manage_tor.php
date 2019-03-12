@@ -34,7 +34,7 @@ if($loop==2){
 
 <div class="row  p-2 headtitle">
   <div class="col-xl-2">
-      <a href='javascript:void(0)'><button type="button" class="btn btn-block menuuser" id="backpage" data-modules="assessment" data-action="menuassm"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+     
   </div>
 	<h2 class="text-center col-xl "> จัดการ TOR </h2>
   <div class="col-xl-2 ">
