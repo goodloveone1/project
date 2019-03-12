@@ -81,7 +81,7 @@
 					<br>
 				<?php
 					if(empty($_GET['page'])){
-						$page="history"; 
+						$page="news"; 
 					}else{
 						$page=$_GET['page']; 
 					}
