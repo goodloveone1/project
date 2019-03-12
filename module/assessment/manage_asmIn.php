@@ -21,13 +21,13 @@ $con=connect_db();
       <input type="hidden" name="gg" value="hidden" >
       <select id="inputState" class="form-control" name="year">
       <?php
-      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year FROM years")or die(mysqli_error($con));
-      while(list($y_no,$y_year)=mysqli_fetch_row($sYears)){
+      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
+      while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
         $y_thai=$y_year+543;
-        $yy=DATE('Y');
+        //$yy=DATE('Y');
 
-        $select=$yy==$y_year?"selected":"";
-        echo"<option value='$y_year' $select>$y_no/$y_thai</option>";
+        $select=chk_idtest()==$y_id?"selected":"";
+        echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
       }
       mysqli_free_result($sYears);
     ?>
@@ -63,9 +63,6 @@ $con=connect_db();
       </div>
     </div>
 </div>
-<!-- <div class="col-md  ">
-    <button type='button' class="btn btn-block btn-success" id="btnOk"> ตกลง </button>
-</div> -->
 </div>
 
 <div class="col-auto" id='loaddataInasm'></div>
@@ -86,7 +83,7 @@ $(document).ready(function() {
 
   $("#inputState").change(function(){
     var years=$(this,"option:selected").val()
-  //  alert(years)
+   //alert(years)
    $.post("module/assessment/loaddatayear.php",{year:years},
     function (data, textStatus, jqXHR) {
      // alert(data)
@@ -97,30 +94,6 @@ $(document).ready(function() {
   })
 
   loadasmin() //  โหลดครั้งแรก
-
-  // $("#btnOk").click(function(){
-
-  //   var years = $("#inputNo").val();
-
-  //   $.ajax({
-  //     url: "module/assessment/loaddataInasm.php",
-  //     data:{year:years},
-  //     type: "POST"
-  //   }).done(function(data){
-  //     $("#loaddataInasm").html(data)
-  //   })
-
-
-  //   $(document).ajaxSend(function(event, xhr, settings) {
-  //     // stuff to do before an AJAX request is sent
-  //       $("#img").css('display','block');
-  //   })
-
-  //   $("#loaddataInasm").ajaxComplete(function(event, xhr, settings) {
-  //   //  $("#img").css('display','none');
-  //   })
-
-  //   });
 
     function loadasmin(){
 

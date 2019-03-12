@@ -2,114 +2,124 @@
   session_start();
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
+
+  unset($_SESSION['genIdpost']);
+  unset($_SESSION['yearIdpost']);
 $con=connect_db();
-?>
+ ?>
 <div class="row  p-2 headtitle">
-
-	<h2 class="text-center col-xl "> จัดการหลักฐานของในหลักสูตร </h2>
-
+	<h2 class="text-center col-md "> ตรวจหลักฐานของบุคลากรในหลักสูตร </h2>
 </div>
 <br>
-<div class="table-responsive">
-  <table class="table" id="Datatable">
-    <thead>
-      <tr>
-        <th> รหัสประเมิน </th>
-        <th> ปีการประเมิน </th>
-        <th> รอบที่ </th>
-				<th> สถานะ </th>
-        <th class="text-center"> จัดการหลักฐาน</th>
-      </tr>
-    </thead>
-    <tbody>
-			<?php
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.position = '1' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
-						while(list($ass_id,$tor_year,$st_id) = mysqli_fetch_row($asm)){
 
-					echo "<tr>";
-					echo " <td> $ass_id </td>";
+<div class="row text-center" >
+  <div class="col-md "> <!--ประจำปี งบประมาณ -->
 
-							$year = substr($tor_year,0,4);
-							$rond = substr($tor_year,4,4);
-			    echo "<td> $year</td>";
-			    echo "<td> $rond</td>";
+  <div class="form-group row">
+    <label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
+    <div class="col-sm-6">
+      <input type="hidden" name="gg" value="hidden" >
+      <select id="inputState" class="form-control" name="year">
+      <?php
+      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
+      while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
+        $y_thai=$y_year+543;
+        //$yy=DATE('Y');
 
+        $select=chk_idtest()==$y_id?"selected":"";
+        echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
+      }
+      mysqli_free_result($sYears);
+    ?>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="col-md  ">
 
-					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$st_id' AND ass_id='$ass_id'");
-					list($evd_id,$evd_status) = mysqli_fetch_row($evd);
-					
-					if(chk_idtest() ==  $tor_year)	{
+    <!-- <div class="form-check col-sm-1">
+      <input type="checkbox"  class="form-check-input" id="" value="">
+    </div> -->
+    <div class="form-group  row">
+      <!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
+      <div class="col-md">
+        <select id="inputNo" class="form-control" name="a_no" disabled>
+        <?php
+          $yNow=date("Y");
+          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+          while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+            $m=DATE('m');
+            if($m<=9 && $m>3){
+              $sy_no= 2;
+            }else{
+              $sy_no= 1;
 
-					if(empty($evd_status)){
-							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
-							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
-					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
-					}else if($evd_status == 2){
-						echo "<td><b class='text-info'> <b><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
-							echo "  <td class='text-center text-info '> <i class='fas fa-clock fa-2x'></i></i></td>";
-					}else if($evd_status == 3){
-						echo "<td><b class='text-success'> <b><i class='fas fa-check-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
-							echo "  <td class='text-center text-success '> <i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน</td>";
-					}	else if($evd_status == 4){
-						echo "<td><b class='text-danger'> <b><i class='fas fa-times-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วไม่ให้การรับรอง </b></td>"; 
-						echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
-					}		
-	
-				}	else{
-						if(empty($evd_status)){
-							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
-							echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
-					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
-					}else if($evd_status == 2){
-						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
-						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
-					}else if($evd_status == 3){
-						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
-						echo "  <td class='text-center text-success '> <i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน</td>";
-					}else if($evd_status == 4){
-						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
-							echo "  <td class='text-center text-info '></td>";
-					}		
-				}
+            }
+            $seNO=$sy_no==$y_no?"selected":"";
+            echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+          }
+        ?>
+        </select>
+      </div>
+    </div>
+</div>
+</div>
 
-					
-					
-			    echo " </tr>";
-					mysqli_free_result($evd);
-	 } // END WHILE
+<div class="col-auto" id='loaddataevd'></div>
 
-	 
-	 mysqli_free_result($asm);
-	 mysqli_close($con);
-?>
-    </tbody>
-  </table>
+<div class="row" id='loadging' style='display: none;'>
+      <img class='mx-auto' id='img' src='img/loading.svg'>
 </div>
 
 
-<script>
-$.getScript('js/mydatatable.js')
-  $(".addevd").click(function(){
-			var tor_id = $(this).data("torid");
-			$("#detail").html("");
-			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
-				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","formreport_prm")
-				$("#detail").html(data);
-			})
-	})
 
-	$(".editevd").click(function(){
-			var tor_id = $(this).data("torid");
-			$("#detail").html("");
-			$.post("module/assessment/editformreport_prm.php",{evdid: $(this).data("evdid") }).done(function(data){
-				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","editformreport_prm")
-				$("#detail").html(data);
-			})
-	})
+<?php
+ mysqli_free_result($sY_No);
+ mysqli_close($con);
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $.getScript('js/mydatatable.js')
+
+  $("#inputState").change(function(){
+    var years=$(this,"option:selected").val()
+   //alert(years)
+   $.post("module/assessment/loaddatayear.php",{year:years},
+    function (data, textStatus, jqXHR) {
+     // alert(data)
+     $("#inputNo").html(data)
+     loadasmin()
+    }
+   );
+  })
+
+  loadasmin() //  โหลดครั้งแรก
+
+    function loadasmin(){
+
+      var years = $("#inputNo").val();
+
+      $("#loaddataevd").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/assessment/loaddata_Evidence_course.php",
+        data:{year:years},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataevd").html(data)
+        
+        }, 2000);
+
+      })
+    }
+
+  }) // document ready
+
+  
+
 </script>

@@ -18,13 +18,13 @@ $con=connect_db();
       <input type="hidden" name="gg" value="hidden" >
       <select id="inputState" class="form-control" name="year">
       <?php
-      $sYears=mysqli_query($con,"SELECT  y_no,y_year FROM years")or die(mysqli_error($con));
-      while(list($y_no,$y_year)=mysqli_fetch_row($sYears)){
+      $sYears=mysqli_query($con,"SELECT  y_no,y_year,y_id FROM years")or die(mysqli_error($con));
+      while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
         $y_thai=$y_year+543;
-        $yy=DATE('Y');
+       // $yy=DATE('Y');
 
-        $select=$yy==$y_year?"selected":"";
-        echo"<option value='$y_year' $select>$y_no/$y_thai</option>";
+        $select=chk_idtest()==$y_id?"selected":"";
+        echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
       }
       mysqli_free_result($sYears);
     ?>
