@@ -2,10 +2,13 @@
   session_start();
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
+
+  unset($_SESSION['genIdpost']);
+  unset($_SESSION['yearIdpost']);
 $con=connect_db();
  ?>
 <div class="row  p-2 headtitle">
-	<h4 class="text-center col-md "> ผลการประเมิน </h4>
+	<h2 class="text-center col-md "> ผลประเมินของบุคลากรของตนเอง </h2>
 </div>
 <br>
 
@@ -18,10 +21,10 @@ $con=connect_db();
       <input type="hidden" name="gg" value="hidden" >
       <select id="inputState" class="form-control" name="year">
       <?php
-      $sYears=mysqli_query($con,"SELECT  y_no,y_year,y_id FROM years")or die(mysqli_error($con));
+      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
       while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
         $y_thai=$y_year+543;
-       // $yy=DATE('Y');
+        //$yy=DATE('Y');
 
         $select=chk_idtest()==$y_id?"selected":"";
         echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
@@ -60,12 +63,10 @@ $con=connect_db();
       </div>
     </div>
 </div>
-<!-- <div class="col-md  ">
-    <button type='button' class="btn btn-block btn-success" id="btnOk"> ตกลง </button>
-</div> -->
 </div>
 
-<div class="col-auto" id='loaddataInasm'></div>
+  <div class="col-auto" id='loaddataInasm'></div>
+
 
 <div class="row" id='loadging' style='display: none;'>
       <img class='mx-auto' id='img' src='img/loading.svg'>
@@ -83,27 +84,27 @@ $(document).ready(function() {
 
   $("#inputState").change(function(){
     var years=$(this,"option:selected").val()
-  //  alert(years)
+   //alert(years)
    $.post("module/assessment/loaddatayear.php",{year:years},
     function (data, textStatus, jqXHR) {
      // alert(data)
      $("#inputNo").html(data)
-     loadsunass()
+     loadasmin()
     }
    );
-   
   })
 
-  loadsunass() // โหลดครั้งแรก
+  loadasmin() //  โหลดครั้งแรก
 
-    function loadsunass(){
+    function loadasmin(){
+
       var years = $("#inputNo").val();
 
       $("#loaddataInasm").html("")
       $("#loadging").css('display','')
 
       $.ajax({
-        url: "module/assessment/load_sum_ass.php",
+        url: "module/assessment/loaddataInasm2.php",
         data:{year:years},
         type: "POST"
       }).done(function(data){
@@ -115,9 +116,10 @@ $(document).ready(function() {
         }, 2000);
 
       })
-   
     }
 
   }) // document ready
+
+  
 
 </script>
