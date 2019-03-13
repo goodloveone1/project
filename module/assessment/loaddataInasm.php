@@ -16,6 +16,7 @@ $year = $_POST['year'];
       <th> สกุล </th>
       <th> หลักสูตร </th>
       <th> สาขา </th>
+      <th> ตำแหน่ง </th>
       <th> สถานะการประเมิน </th>
       <th> ประเมินบุคลากร </th>
     </tr>
@@ -24,12 +25,12 @@ $year = $_POST['year'];
     <?php
     if($_SESSION['user_level'] == 3){ // หลักสูตร
 
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND position='1' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND position='1' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     else if($_SESSION['user_level'] == 4){ // สาขา
 
       $show= mysqli_query($con,"
-SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture
+SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
 WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
@@ -37,10 +38,10 @@ WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND sta
     }
     else //คณะ
     {
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture FROM staffs WHERE  position='3' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs WHERE  position='3' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     $i=1;
-while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row($show)){
+while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
     echo "<tr>";
     echo " <td>$i</td>";
     if(!empty($gen_pict)){
@@ -55,17 +56,27 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row(
 
     $ba= mysqli_query($con,"SELECT br_name,dept_id FROM branchs WHERE br_id='$branch_id'  ") or  die("SQL Error1==>1".mysql_error($con));
     list($branch_name,$dept_id)=mysqli_fetch_row($ba);
+    mysqli_free_result($ba);
     $sb= mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'  ") or  die("SQL Error1==>1".mysql_error($con));
     list($dept_name)=mysqli_fetch_row($sb);
+    mysqli_free_result($sb);
 
     echo " <td>$branch_name</td>";
     echo " <td>$dept_name</td>";
 
+    $pos= mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$position'  ") or  die("SQL Error1==>1".mysql_error($con));
+    list($pos_name)=mysqli_fetch_row($pos);
+    mysqli_free_result($pos);
+
+    echo "<td>$pos_name</td>";
+
     $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year'") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($show2);
+    mysqli_free_result($show2);
 
     $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
     list($tor_idc2)=mysqli_fetch_row($show3);
+    mysqli_free_result($show3);
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
       if(empty($tor_idc2)){
@@ -88,7 +99,8 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row(
     echo "</tr>";
   $i++;
 }
-
+mysqli_free_result($show);
+mysqli_close($con);
      ?>
 
 

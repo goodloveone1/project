@@ -45,26 +45,4 @@
 
 <script type="text/javascript">
 
-$("#updatesu").click(function(event) {
-    var r = confirm("Press a button!");
-    if (r == true) {
-        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-              alert(data);
-
-         });
-        $('#editsub').modal("hide");
-
-        $('#editsub').on('hidden.bs.modal', function (e) {
-            $('#tbeucation').DataTable().ajax.reload();
-
-             var module1 = sessionStorage.getItem("module1");
-                    var action = sessionStorage.getItem("action");
-                    loadmain(module1,action);
-        })
-
-
-    }
-
-
-});
 </script>

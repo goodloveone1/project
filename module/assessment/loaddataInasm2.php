@@ -99,7 +99,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict)=mysqli_fetch_row(
 </table>
 <br><br><br>
 
-<div id="loadsumass"></div>
+<div id="loadmodel"></div>
 
 <script>
 
@@ -107,24 +107,30 @@ $(document).ready(function() {
 
 $.getScript('js/mydatatable.js')
 
-$(".showsumass").click(function(){
+$(".showsumass").click(function(e){
+  e.preventDefault();
 
-  $("#loadsumass").html("")
-      $("#loadging").css('display','')
+  $.post("module/assessment/modelsumass.php", { year: $(this).data("year"),stid: $(this).data("stid") }).done(function(data){
+                $('#loadmodel').html(data);
+                $('#showsumass').modal('show');
+            })
 
-      $.ajax({
-        url: "module/assessment/load_sum_ass2.php",
-        data:{year: $(this).data("year"),stid: $(this).data("stid") },
-        type: "POST"
-      }).done(function(data){
+  // $("#loadsumass").html("")
+  //     $("#loadging").css('display','')
 
-        setTimeout(function(){ 
-          $("#loadging").css('display','none');
-          $("#loadsumass").html(data)
+  //     $.ajax({
+  //       url: "module/assessment/load_sum_ass2.php",
+  //       data:{year: $(this).data("year"),stid: $(this).data("stid") },
+  //       type: "POST"
+  //     }).done(function(data){
+
+  //       setTimeout(function(){ 
+  //         $("#loadging").css('display','none');
+  //         $("#loadsumass").html(data)
         
-        }, 2000);
+  //       }, 2000);
 
-      })
+  //     })
 
 })
 
