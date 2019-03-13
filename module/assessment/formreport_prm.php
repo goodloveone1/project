@@ -185,9 +185,38 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 <script>
 $( document ).ready(function() {
 
+	$.validator.addMethod('filesize', function (value, element, arg) {
+            var minsize=1000; // min 1kb
+            if((value>minsize)&&(value<=arg)){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+      
+
 	jQuery.validator.addClassRules("filecheck", {
-	extension: "pdf|doc|png|jpg|docx"
+	extension: "pdf|doc|png|jpg|docx",
+	filesize : 2000000,
+
+	messages:{
+								 fileimg[] :{filesize:" file size must be less than 200 KB."}
+							}
+
 });
+
+
+
+      
+
+// $(".filecheck").click(function(){
+
+// 	if($(this)[0].files[0].size != ""){
+// 		alert($(this)[0].files[0].size);
+// 	}
+	
+// })
 
 
 	$vform = $( "#fmreport");
