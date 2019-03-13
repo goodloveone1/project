@@ -16,6 +16,7 @@ $con=connect_db();
 		
 				<th> สาขา </th>
 				<th> หลักสูตร </th>
+				<th> ตำแหน่ง </th>
 				<th> สถานะ </th>
         <th class="text-center"> จัดการหลักฐาน</th>
       </tr>
@@ -28,14 +29,14 @@ $con=connect_db();
 
 						if($_SESSION['user_level'] == 3){ //  หลักสูตร
 
-						$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						
 						}else if($_SESSION['user_level'] == 4){ // สาขา
-							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '3' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '3' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						}else if($_SESSION['user_level'] == 5){ // คณะ
-							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '4' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '4' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						}	
-						while(list($ass_id,$tor_year,$st_id,$st_name,$st_lname) = mysqli_fetch_row($asm)){
+						while(list($ass_id,$tor_year,$st_id,$st_name,$st_lname,$position) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
 					echo " <td> $ass_id </td>";
@@ -48,7 +49,12 @@ $con=connect_db();
 
 					echo "<td> $dept_name</td>";
 					echo "<td>   $br_name</td>";
-					
+
+					$pos= mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$position'  ") or  die("SQL Error1==>1".mysql_error($con));
+					list($pos_name)=mysqli_fetch_row($pos);
+					mysqli_free_result($pos);
+
+    			echo "<td>$pos_name</td>";
 
 
 					$evd= mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$st_id' AND ass_id='$ass_id'");

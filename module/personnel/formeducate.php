@@ -80,7 +80,12 @@ $("#addedus").click(function(e) {
                             $('#addedu').modal("hide");
 
                             $('#addedu').on('hidden.bs.modal', function (e) {
-                                $('#tbeucation').DataTable().ajax.reload();
+                                $.post( "module/personnel/loaddatadegree2.php", { genid : <?php echo $genid;?> })
+                                .done(function( data ) {
+                                    //alert(data)
+                                    alert("บันทึกข้อมูลสำเร็จ")
+                                    $("#loadtabledegree").html(data);
+                                });
                             })
 
 

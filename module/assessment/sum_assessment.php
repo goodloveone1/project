@@ -55,6 +55,7 @@ $con=connect_db();
             $seNO=$sy_no==$y_no?"selected":"";
             echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
           }
+          mysqli_free_result($sY_No);
         ?>
         </select>
       </div>
@@ -74,7 +75,7 @@ $con=connect_db();
 
 
 <?php
-
+mysqli_close($con);
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
