@@ -2,9 +2,9 @@
 	include("../../function/db_function.php");
     $con=connect_db();
     
-    $dee = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc FROM education WHERE ed_id='$_POST[id]'") or die ("error".mysqli_error($con));
+    $dee = mysqli_query($con,"SELECT  ed_id,degree_id,ed_name,ed_loc,staff_id FROM education WHERE ed_id='$_POST[id]'") or die ("error".mysqli_error($con));
     
-    list($ed_iD,$degree_iD,$ed_name,$ed_Locate)=mysqli_fetch_row($dee);
+    list($ed_iD,$degree_iD,$ed_name,$ed_Locate,$staff_id)=mysqli_fetch_row($dee);
    
 ?>
 
@@ -70,18 +70,21 @@
 <script type="text/javascript">
 
 $("#updateedu").click(function(event) {
-    var r = confirm("Press a button!");
+    var r = confirm("คุณต้องการแก้ไขวุฒิการศึกษาใช่ไหม");
     if (r == true) {
 
- 
         $.post( "module/personnel/updateeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+             //alert(data);
 
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-             $('#tbeucation').DataTable().ajax.reload();
+            $.post( "module/personnel/loaddatadegree2.php", { genid : <?php echo $staff_id;?> })
+            .done(function( data ) {
+                alert("บันทึกข้อมูลสำเร็จ")
+                $("#loadtabledegree").html(data);
+            });
         })
        
         

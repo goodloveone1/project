@@ -213,36 +213,8 @@
 			
 			</div>
 	</div>		
-			<div class="row " >
-				<div class="col-md-12">
-					<h4 class='h4'>วุฒิการศึกษา</h4>
-				</div>	
-				<div class="col-md">
-				<div class="table-responsive">
-					<table class="table col-md display setdt" id="tbeucation">
-					<thead>
-
-
-					<tr>
-							<th>วุฒิการศึกษา</th>
-							<th>ชื่อวุฒิการศึกษา</th>
-							<th>สถานที่จบการศึกษา</th>
-							<th>แก้ไข</th>
-							<th>ลบ</th>
-					</tr>
-					</thead>
-					<tbody>
-
-
-
-					</tbody>
-					</table>
-					<button type='button' class='btn mx-auto bg-secondary text-white' id='adddegree' data-genid='<?php echo $gen_id;?>' >เพิ่มวุฒิการศึกษา</button>
-
-				</div>
-				</div>
-			</div>
-
+		
+	<div id='loadtabledegree'></div>						
 	
 	<div class="row " >
 		<div class="col-md-12 text-center mb-2" >
@@ -265,18 +237,19 @@
 			bsCustomFileInput.init() // TYPE file RENAME
 
 
-	$("#tbeucation").DataTable({
-			 "ajax" : {
-			 	 "url": "module/personnel/loaddatadegree.php",
-			 	 "data" : {getid: <?php echo $gen_id;?>},
-			 	 "type": "POST",
-				 "dataSrc":""
-			 },
-			 "language": {
-    		"search":         "ค้นหาข้อมูล:",
-    		 "zeroRecords": "ไม่พบข้มมูล",
-    	   }
-	});
+
+	// $("#tbeucation").DataTable({
+	// 		 "ajax" : {
+	// 		 	 "url": "module/personnel/loaddatadegree.php",
+	// 		 	 "data" : {getid: <?php echo $gen_id;?>},
+	// 		 	 "type": "POST",
+	// 			 "dataSrc":""
+	// 		 },
+	// 		 "language": {
+    // 		"search":         "ค้นหาข้อมูล:",
+    // 		 "zeroRecords": "ไม่พบข้มมูล",
+    // 	   }
+	// });
 
 	
 			selectsuj();
@@ -333,13 +306,24 @@ $('#edituser').validate({ // initialize the plugin
 								
 						    });
 
-		$("#tbeucation").on('click', '.editbrn', function(event) {
+/// =================================   degree =======================
+	loaddatadegree(); // โหลดครั้งแรก		 
+	function loaddatadegree(){  // FUNCTION loaddatadegree
+		$.post( "module/personnel/loaddatadegree2.php", { genid : <?php echo $gen_id;?> })
+		.done(function( data ) {
+			//alert(data)
+			$("#loadtabledegree").html(data);
+		});
+
+	}									
+
+		$("#loadtabledegree").on('click', '.editbrn', function(event) { // ปุ่มแก้ไข
 			event.preventDefault();
 
         var iddegree =$(this).data("iddegree");
 
 	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
-				alert(data);
+				//alert(data);
 	        $('#editD').html(data);
 	         $('#editsub').modal('show');
 	        })
@@ -347,7 +331,7 @@ $('#edituser').validate({ // initialize the plugin
 
         });
 
-$("#tbeucation").on('click', '.delbrn', function(event) {
+$("#loadtabledegree").on('click', '.delbrn', function(event) {
 			event.preventDefault();
 	  // $(".delbrn").click(function(){
 		var ideditsub =$(this).data("iddegree");
@@ -357,11 +341,9 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
             if (r == true) {
 
                 $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
-					alert(data);
-
-					 $('#tbeucation').DataTable().ajax.reload();// NEW LOAD DATA
-
-
+					//alert(data);
+					alert("ลบข้อมูลสำเร็จ")	
+					loaddatadegree();
                     })
 
 
@@ -369,7 +351,7 @@ $("#tbeucation").on('click', '.delbrn', function(event) {
 
 	})
 
-$("#adddegree").on('click', function(event) {
+$("#loadtabledegree").on('click', '#adddegree', function(event) {
 		event.preventDefault();
 
 			var genids =$(this).data("genid");
@@ -379,11 +361,10 @@ $("#adddegree").on('click', function(event) {
 	        $('#addsub').html(data);
 	         $('#addedu').modal('show');
 	        })
-
-
-
 		});
-	});
+	/// =================================  END  degree  =======================
+	
+	}); // END document
 //ดูรหัส
 function chkpw() {
     var x = document.getElementById("showpw");

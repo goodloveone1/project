@@ -8,7 +8,7 @@
 $con=connect_db();
  ?>
 <div class="row  p-2 headtitle">
-	<h2 class="text-center col-md "> ตรวจหลักฐานของบุคลากรในหลักสูตร </h2>
+	<h2 class="text-center col-md "> ตรวจหลักฐานของบุคลากร </h2>
 </div>
 <br>
 
