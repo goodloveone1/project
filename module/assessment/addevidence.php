@@ -44,29 +44,35 @@ for($j=0;$j< $num;$j++){
 
     if(!empty($_FILES[$rename]['name'][$j])){
 
-        $type = $_FILES[$rename]["type"][$j];
+        try {
+    
+            $type = $_FILES[$rename]["type"][$j];
 
-        $typefile = explode("/",$type);
+            $typefile = explode("/",$type);
 
-        if($typefile['1']=='msword'){
-            $typefile['1']="doc";
-        }else if($typefile['1'] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
-            $typefile['1'] = "docx";
-        }
+            if($typefile['1']=='msword'){
+                $typefile['1']="doc";
+            }else if($typefile['1'] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
+                $typefile['1'] = "docx";
+            }
 
+            
+            $filename =$_POST['se_id'][($i-1)].'-'.str_shuffle(date("dmythi"));
+
+            $filename = substr($filename,0,10);
+
+            $filename .= ".".$typefile['1'];
+
+            mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$filename')");
+
+            echo "filename -->".$filename." "."<br>";
+            echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
         
-        $filename =$_POST['se_id'][($i-1)].'-'.str_shuffle(date("dmythi"));
+            copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
 
-        $filename = substr($filename,0,10);
-
-        $filename .= ".".$typefile['1'];
-
-        mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$filename')");
-
-        echo "filename -->".$filename." "."<br>";
-        echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
-       
-        copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
+         } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
     }
     
    

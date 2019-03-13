@@ -120,7 +120,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										echo	"<td class='text-center'> 
 										<div class='form-group'>
 										<label class=''></label>
-										<small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC PNG JPG  เท่านั้น</small>
+										<small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small>
 										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple aria-describedby='fileHelpInline'>
 										
 									</div>
@@ -185,38 +185,31 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 <script>
 $( document ).ready(function() {
 
-	$.validator.addMethod('filesize', function (value, element, arg) {
-            var minsize=1000; // min 1kb
-            if((value>minsize)&&(value<=arg)){
-                return true;
-            }else{
-                return false;
-            }
-        });
-
-      
+	
+		$.validator.addMethod('filesize', function (value, element, param) {
+			// alert( element.files.length)
+			 var count = element.files.length;
+			 var check;
+			 if(count != 0){
+				for(var i=0;i < count ;i++){
+					if(this.optional(element) || (element.files[i].size <= param)){
+						check = true;
+					}else{
+						check = false;
+						break;
+					}
+				}
+			 }else{
+				check = true;
+			 }	
+			 return check
+		}, jQuery.validator.format("ไฟล์เกินกำหนด 2 MB") );
+		
 
 	jQuery.validator.addClassRules("filecheck", {
-	extension: "pdf|doc|png|jpg|docx",
-	filesize : 2000000,
-
-	messages:{
-								 fileimg[] :{filesize:" file size must be less than 200 KB."}
-							}
-
-});
-
-
-
-      
-
-// $(".filecheck").click(function(){
-
-// 	if($(this)[0].files[0].size != ""){
-// 		alert($(this)[0].files[0].size);
-// 	}
-	
-// })
+		extension: "pdf|doc|png|jpg|docx",
+		filesize : 2000000, // MAX 2 MB
+	});
 
 
 	$vform = $( "#fmreport");

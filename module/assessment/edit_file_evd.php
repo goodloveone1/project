@@ -61,10 +61,28 @@ $(document).ready(function() {
         })
     }
 
-    jQuery.validator.addClassRules("filecheck", {
-        extension: "pdf|doc|png|jpg|docx",
+    $.validator.addMethod('filesize', function (value, element, param) {
+			// alert( element.files.length)
+			 var count = element.files.length;
+			 var check;
+			 for(var i=0;i < count ;i++){
+				if(this.optional(element) || (element.files[i].size <= param)){
+					check = true;
+				}else{
+					check = false;
+					break;
+				}
+			 }
+			 return check
+		}, jQuery.validator.format("ไฟล์เกินกำหนด 2 MB") );
+		
+
+	jQuery.validator.addClassRules("filecheck", {
+		extension: "pdf|doc|png|jpg|docx",
+        filesize : 2000000, // MAX 2 MB
         required: true
-    });
+	});
+
 
     $vform = $( "#formupload");
 	$vform.validate();
