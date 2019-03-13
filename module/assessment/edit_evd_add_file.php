@@ -3,10 +3,16 @@
 include("../../function/db_function.php");
 $con=connect_db();
 
+print_r($_FILES['addfile']);
 
     if(!empty($_FILES['addfile'])){
 
         $url = '../../file/'.$_POST['torid'];
+
+        
+        if (!file_exists($url)) {    // CHECK folder มีหรือยัง
+            mkdir($url, 0777, true);  // สร้าง folder
+        }
 
          echo  $num = count($_FILES['addfile']['name']);
 
