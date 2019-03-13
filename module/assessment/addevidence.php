@@ -44,7 +44,9 @@ for($j=0;$j< $num;$j++){
 
     if(!empty($_FILES[$rename]['name'][$j])){
 
-        $typefile = explode("/",$_FILES[$rename]["type"][$j]);
+        $type = $_FILES[$rename]["type"][$j];
+
+        $typefile = explode("/",$type);
 
         if($typefile['1']=='msword'){
             $typefile['1']="doc";

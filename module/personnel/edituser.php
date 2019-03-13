@@ -345,10 +345,7 @@ $("#loadtabledegree").on('click', '.delbrn', function(event) {
 					alert("ลบข้อมูลสำเร็จ")	
 					loaddatadegree();
                     })
-
-
             }
-
 	})
 
 $("#loadtabledegree").on('click', '#adddegree', function(event) {

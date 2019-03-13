@@ -12,14 +12,14 @@ $con=connect_db();
 
         if( $num == 1 ){
 
-            echo $_FILES['addfile']["type"][0];
+            echo $_FILES['addfile']["type"]['0'];
 
-            $typefile = explode("/",$_FILES['addfile']["type"][0]);
+            $typefile = explode("/",$_FILES['addfile']["type"]['0']);
 
-            if($typefile[1] == 'msword'){
-                $typefile[1] = "doc";
-            }else if($typefile[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
-                $typefile[1] = "docx";
+            if($typefile['1'] == 'msword'){
+                $typefile['1'] = "doc";
+            }else if($typefile['1'] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
+                $typefile['1'] = "docx";
             }
     
             
@@ -33,7 +33,7 @@ $con=connect_db();
     
            mysqli_query($con,$sql) or die(mysqli_error($con));
 
-           copy($_FILES['addfile']['tmp_name'][0],$url."/".$filename);
+           copy($_FILES['addfile']['tmp_name']['0'],$url."/".$filename);
 
         }else{
 
