@@ -46,10 +46,10 @@ for($j=0;$j< $num;$j++){
 
         $typefile = explode("/",$_FILES[$rename]["type"][$j]);
 
-        if($typefile[1]=='msword'){
-            $typefile[1]="doc";
-        }else if($typefile[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
-            $typefile[1] = "docx";
+        if($typefile['1']=='msword'){
+            $typefile['1']="doc";
+        }else if($typefile['1'] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
+            $typefile['1'] = "docx";
         }
 
         
@@ -57,7 +57,7 @@ for($j=0;$j< $num;$j++){
 
         $filename = substr($filename,0,10);
 
-        $filename .= ".".$typefile[1];
+        $filename .= ".".$typefile['1'];
 
         mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$filename')");
 
