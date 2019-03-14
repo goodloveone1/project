@@ -92,13 +92,13 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="download" data-action="download_manage">
+				<!-- <a href="javascript:void(0)" class="menuuser" data-modules="download" data-action="download_manage">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-arrow-circle-down fa-lg " ></i><span class="text">&nbsp;จัดการไฟล์ดาวโหลด</span>
 					</li>
 					</button>
-				</a>
+				</a> -->
 				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
