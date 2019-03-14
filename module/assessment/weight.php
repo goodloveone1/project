@@ -5,7 +5,7 @@
 ?>
 <div class=" headtitle text-center p-2 row mb-2 row">
     <div class="col-lg-2" >
-       <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" data-modules="assessment" data-action="Criteria_manage_tor1"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a>
+       <!-- <a href="javascript:void(0)"> <button type="button" class="btn btn-block menuuser" data-modules="assessment" data-action="Criteria_manage_tor1"><i class="fas fa-chevron-left"></i>&nbsp;ย้อนกลับ</button></a> -->
     </div>
     
     <div class="col-lg">

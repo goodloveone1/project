@@ -56,17 +56,24 @@ function webmenu($id){
 					</li>
 					</button>
 					<div id="panelassess" style='display:none'>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor1">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="weight">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text">&nbsp;เกณฑ์การประเมินส่วนที่ 1</span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text">น้ำหนักความสำคัญของงาน</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="evaluation">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text">ตัวชีวัด/เกณฑ์การประเมิน</span>
 							</li>
 							</button>
 						</a>
 						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text">&nbsp;เกณฑ์การประเมินส่วนที่ 2</span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text">พฤติกรรมการปฏิบัติงาน</span>
 							</li>
 							</button>
 						</a>
