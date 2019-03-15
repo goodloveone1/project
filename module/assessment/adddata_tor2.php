@@ -32,7 +32,7 @@ for($i=0;$i<4;$i++){
 
 $sql3 = "INSERT INTO sum_score_assessment_t2(sum_asst2id,ass_id,sumscore,sum_asst2)
 VALUES('','$_POST[tor_id]','$_POST[sumscore]','$_POST[sumAllscore]')";
-echo $sql3;
+//echo $sql3;
 mysqli_query ($con,$sql3) or die ("error3".mysqli_error($con));
 
 

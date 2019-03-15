@@ -43,12 +43,8 @@
 
 	
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp; 
-		 <a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
+         <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ผลสัมฤทธิ์ของงาน</span></a>&nbsp; 
+				 <a href=#><span class="step step-normal">พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</span></a> &nbsp;
     </div>
 	<br>
     <p></p>
@@ -505,11 +501,6 @@ $(document).ready(function() {
 				}
 				loadmain("assessment","tor1_pretest")
 			})	
-			$("a.next").click(function(){
-				var module1 = $(this).data('modules');
-				var action = $(this).data('action');
-				//alert(module1+ " "+ action )
-				//loadmain(module1,action)
-			});
+
 		});
 </script>

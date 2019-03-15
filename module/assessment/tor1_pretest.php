@@ -41,12 +41,13 @@ $y_id = $y.$loop;
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
 		mysqli_free_result($reChk);
+		$_SESSION['yearIdpost']=$tor_ID;
 ?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
 <input type="hidden" value="<?php echo $y_id ?>" name="y_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-color ">การประเมิน</span></a>&nbsp; 
+         <a href="javascript:void(0)"><span class="step step-color ">ผลสัมฤทธิ์ของงาน</span></a>&nbsp; 
 	
 		 <br>
     </div>
@@ -169,7 +170,27 @@ $('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', f
 <?php  } ?>
  $(document).ready(function() {
 	
-	$("#tor1").submit(function(){
+	// $("#tor1").submit(function(){
+	// 			$check = $("#tor1").valid();
+	// 			if($check == true){
+	// 			var formData = new FormData(this);
+	// 				    $.ajax({
+	// 				        url: "module/assessment/adddata_tor1pretest.php",
+	// 				        type: 'POST',
+	// 				        data: formData,
+	// 				        success: function (data) {
+	// 				            alert(data);
+	// 				        },
+	// 				        cache: false,
+	// 				        contentType: false,
+	// 				        processData: false
+	// 				    });
+	// 			}
+	// 			loadmain("assessment","manage_tor")
+	// 		})
+			
+			$("#tor1").submit(function(e){
+		      e.preventDefault();
 				$check = $("#tor1").valid();
 				if($check == true){
 				var formData = new FormData(this);
@@ -179,13 +200,20 @@ $('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', f
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
+								$.post( "module/assessment/tor2_pretest.php", { year_id: "<?php echo $tor_ID  ?>" }).done(function( data ) 
+							{
+    							//alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","tor2_pretest");
+								$("#detail").html(data);
+  							});
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    });
+					    })
 				}
-				loadmain("assessment","manage_tor")
-			})	
+				
+			})
 });
 </script>
