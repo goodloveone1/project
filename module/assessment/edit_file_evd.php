@@ -108,9 +108,8 @@ $(document).ready(function() {
 							contentType: false,
 							processData: false
 						}).done(function(data) {
-
+                            $('.filecheck').val("");
                             loadtablefile(<?php echo $_POST['torid'] ?>,<?php echo $_POST['seid'] ?>,<?php echo $_POST['evdid'] ?>)
-
 						})
 		}
 	}

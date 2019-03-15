@@ -85,14 +85,14 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 					<thead class="thead-light">
 						<tr class="text-center">
 							<th rowspan='2'>ลำดับ <br><br></th>
-							<th rowspan='2'class='w-50'>องค์ประกอบที่ใช้ประเมิน <br><br></th>
+							<th rowspan='2'class=''>องค์ประกอบที่ใช้ประเมิน <br><br></th>
 
 							<th class='' colspan='2'>หลักฐาน  ร่อยรอย การปฏิบัติงาน</th>
 
 						</tr>
 						<tr class="text-center">
-							<th class=''>ข้อความ</th>
-							<th class=''>ไฟล์หลักฐาน</th>
+							<th class='w-25'>ข้อความ</th>
+							<th class='w-25'>ไฟล์หลักฐาน</th>
 
 						</tr>
 					</thead>
@@ -118,14 +118,14 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										<textarea class='form-control' rows='3' name='text[]'></textarea>
 									  </div></td >";
 										echo	"<td class='text-center'> 
-										<div class='form-group'>
-										<label class=''></label>
-										<small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small>
-										<input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple aria-describedby='fileHelpInline'>
-										
-									</div>
-									<input type='hidden'  name='se_id[]' value='$sub_id'>
-									</td>";
+										<select class='custom-select selfile' data-countfile='$countfile' data-subid='$sub_id'>
+											<option value='1' selected >อัปโหลดไฟล์แบบกลุ่ม</option>
+											<option value='2' >อัปโหลดไฟล์ทีละไฟล์ </option>
+										</select>
+										<div id='fileupload$countfile'></div>
+
+												
+										</td>";
 										echo "</tr>";
 										$countfile++;
 
@@ -211,6 +211,51 @@ $( document ).ready(function() {
 		filesize : 2000000, // MAX 2 MB
 	});
 
+	//var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg".$countfile."[]'  multiple aria-describedby='fileHelpInline'></div><input type='hidden'  name='se_id[]' value='$sub_id'></div>");
+	
+
+	firthload()
+ function firthload(){
+	$(".selfile").each(function(){
+		
+		var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div><input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>");
+		var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
+
+		$(fileupload).html(filemuti);
+
+	})
+
+ }
+
+
+	$(".selfile").change(function(){
+
+	//	alert($(this,"option:selected").val())
+	//	alert($(this,"option:selected").data("countfile"))
+ 
+		if($(this,"option:selected").val()==1){
+		
+			var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'><input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>");
+			var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
+		//	alert(fileupload)
+			$(fileupload).html(filemuti);
+
+		}else{
+			
+			var filemuti = "<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small>"
+			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"1'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"2'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"3'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"4'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"5'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>";
+			var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
+		//	alert(fileupload)
+			$(fileupload).html(filemuti);
+		}
+
+	})
+
 
 	$vform = $( "#fmreport");
 	$vform.validate();
@@ -229,7 +274,7 @@ $( document ).ready(function() {
 							data: formData,
 							success: function (data) {
 
-							alert(data)
+						
 
 							},
 							cache: false,
@@ -237,8 +282,10 @@ $( document ).ready(function() {
 							processData: false
 						}).done(function(data) {
 
-								alert("บันทึกข้อมูลสำเร็จ");
-							loadingpage("assessment","manage_Evidence");
+							alert(data)
+
+						//		alert("บันทึกข้อมูลสำเร็จ");
+						//	loadingpage("assessment","manage_Evidence");
 							//$("#detail").html(data);
 
 						})
