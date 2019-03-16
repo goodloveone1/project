@@ -1,100 +1,124 @@
 <?php
-session_start();
-include("../../function/db_function.php");
-include("../../function/fc_time.php");
+  session_start();
+  include("../../function/db_function.php");
+  include("../../function/fc_time.php");
 $con=connect_db();
-$mm=date('m');  //เดือนปัจจุบัน
-$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
-$m="$mm";
-$y="$yearbudget";
-if($m<=9 && $m>3){
-    $loop=2;
-}else{
-    $loop=1;
-}
-if($loop==2){
-    $y-=1;
-}
- $y_id = $y.$loop;
-// echo "<p> id = $y_id </p>";
-// echo "$_SESSION[user_id]";
-// $tor=mysqli_query($con,"SELECT tor_id,tor_year,tor_nameRe FROM tor WHERE gen_id='$_SESSION[user_id]' AND tor_year='$y_id'") or die("SQL_ERROR".mysqli_error($con));
-//     list($tor_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor);
-//     echo $tor_id,$tor_nameRe,"<br>";
-// if($tor_year==$y_id){
-//    echo "<p style='color:blue;'>มีข้อมูลแล้ว</p>";
-//    //include("edit_tor.php");
-// }else{
-//     echo"<p style='color:red;'>ยังไม่มีข้อมูล</p>";
-//    include("test_tor_stepBystep.php");
-  //  unset($_SESSION['tor_id']);
-//}
-
-?>
-
+ ?>
 <div class="row  p-2 headtitle">
-  <div class="col-xl-2">
-     
-  </div>
-	<h2 class="text-center col-xl "> จัดการ TOR </h2>
-  <div class="col-xl-2 ">
-      <a href='javascript:void(0)'><button type="button" class="btn btn-block btn-light" id="addbrn" data-toggle='modal'><i class="fas fa-plus"></i>&nbsp;การประเมิน</button></a>
-  </div>
+	<h4 class="text-center col-md ">การประเมิน </h4>
 </div>
 <br>
-<div class="table-responsive">
-  <table class="table" id="Datatable">
-    <thead>
-      <th> รหัส TOR </th>
-      <th> ปีการประเมิน </th>
-      <th> รอบที่ </th>
-      <th> แก้ไข </th>
 
-    </thead>
-    <tbody>
+<div class="row text-center" >
+  <div class="col-md "> <!--ประจำปี งบประมาณ -->
+
+  <div class="form-group row">
+    <label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
+    <div class="col-sm-6">
+      <input type="hidden" name="gg" value="hidden" >
+      <select id="inputState" class="form-control" name="year">
       <?php
-$tor=mysqli_query($con,"SELECT ass_id,year_id,staff FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'");
-        while(list($tor_id,$tor_year,$tor_nameRe)=mysqli_fetch_row($tor)){
-              echo "<td> $tor_id</td>";
-              $tor=mysqli_query($con,"SELECT y_year,y_no FROM years WHERE y_id='$tor_year'");
-              list( $y_year,$y_no)=mysqli_fetch_row($tor);
+      $sYears=mysqli_query($con,"SELECT  y_no,y_year,y_id FROM years")or die(mysqli_error($con));
+      while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
+        $y_thai=$y_year+543;
+       // $yy=DATE('Y');
 
-              echo "<td> $y_year</td>";
-              echo "<td> $y_no</td>";
-                echo "<td><a href='javascript:void(0)'class='editbrn' data-tor_id='$tor_id'><i class='fas fa-edit fa-2x'></i></a></td>";
-        }
-       ?>
-
-    <tbody>
-  </table>
+        $select=chk_idtest()==$y_id?"selected":"";
+        echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
+      }
+      mysqli_free_result($sYears);
+    ?>
+      </select>
+    </div>
+  </div>
 </div>
-<script type="text/javascript">
-  <?php
-$tor=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'");
- list($tors) =mysqli_fetch_row($tor);
- if(!empty($tors)){
-   $x=0;
- }else{
-   $x=1;
- }
- mysqli_close($con);
+<div class="col-md  ">
+
+    <!-- <div class="form-check col-sm-1">
+      <input type="checkbox"  class="form-check-input" id="" value="">
+    </div> -->
+    <div class="form-group  row">
+      <!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
+      <div class="col-md">
+        <select id="inputNo" class="form-control" name="a_no" disabled>
+        <?php
+          $yNow=date("Y");
+          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+          while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+            $m=DATE('m');
+            if($m<=9 && $m>3){
+              $sy_no= 2;
+            }else{
+              $sy_no= 1;
+
+            }
+            $seNO=$sy_no==$y_no?"selected":"";
+            echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+          }
+          mysqli_free_result($sY_No);
+        ?>
+        </select>
+      </div>
+    </div>
+</div>
+<!-- <div class="col-md  ">
+    <button type='button' class="btn btn-block btn-success" id="btnOk"> ตกลง </button>
+</div> -->
+</div>
+
+<div class="col-auto" id='loaddataInasm'></div>
+
+<div class="row" id='loadging' style='display: none;'>
+      <img class='mx-auto' id='img' src='img/loading.svg'>
+</div>
+
+
+
+<?php
+mysqli_close($con);
 ?>
-
+<script type="text/javascript">
 $(document).ready(function() {
-  $.getScript('js/mydatatable.js');
 
-  $("#addbrn").click(function( ){
-    var x = "<?php echo $x ?>"
-    if(x == "0"){
-      alert("คุณได้ทำการประเมินแล้ว");
-    }else{
-        loadmain("assessment","check_tor");
+  $.getScript('js/mydatatable.js')
+
+  $("#inputState").change(function(){
+    var years=$(this,"option:selected").val()
+  //  alert(years)
+   $.post("module/assessment/loaddatayear.php",{year:years},
+    function (data, textStatus, jqXHR) {
+     // alert(data)
+     $("#inputNo").html(data)
+     loadsunass()
     }
+   );
+   
   })
 
-  $("#editbrn").click(function(){
-        loadmain("assessment","check_tor");
+  loadsunass() // โหลดครั้งแรก
+
+    function loadsunass(){
+      var years = $("#inputNo").val();
+
+      $("#loaddataInasm").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/assessment/load_tor.php",
+        data:{year:years},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataInasm").html(data)
+        
+        }, 2000);
+
       })
-})
+   
+    }
+
+  }) // document ready
 
 </script>

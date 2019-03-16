@@ -48,7 +48,7 @@ $y_id = $y.$loop;
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ผลสัมฤทธิ์ของงาน</span></a>&nbsp; 
-		 <a href=#><span class="step step-color">พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</span></a> &nbsp;
+		 <a href=#><span class="step step-normal">พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</span></a> &nbsp;
 		 <br>
     </div>
 <p></p>

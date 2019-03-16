@@ -25,12 +25,14 @@ $y_id = $y.$loop;
 
  $tor=substr($yearbudget,2,4);
  $g_id=substr($gen_id,4,7);
- $tor_id="TOR".$tor.$loop.$min.$g_id;
+ $tor_id="PRE".$tor.$loop.$min.$g_id;
 $sql = "INSERT INTO  assessments (ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment)
 VALUES('$tor_id','$_SESSION[user_id]','$_POST[a_no]','$_POST[leader_id]','$_POST[hleader_id]','$_POST[stleader_id]','$_POST[sum_work]','$_POST[punishment]')";
 //echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 // $_SESSION['tor_id']=$tor_id;
+
+echo "บันทึกเสร็จแล้ว";
 $con->close();
 
 ?>

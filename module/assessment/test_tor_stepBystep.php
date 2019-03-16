@@ -1,24 +1,10 @@
 <?php
-	// session_start();
-	// include("../../function/db_function.php");
-	// include("../../function/fc_time.php");
-	// $con=connect_db();
-	$yearbudget=DATE('Y');  //ปีปัจจุบัน
+	session_start();
+	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$con=connect_db();
 
-	$m=DATE('m');
-	if($m<=9 && $m>3){
-    	$loop=2;
-	}else{
-    	$loop=1;
-	}
-
-	if($loop==2){
-		$y-=1;
-		
-	}
-
-	$y_id = $y.$loop;
-
+  
 	$seaca=mysqli_query($con,"SELECT st_id,acadeic,prefix,fname,lname,position,branch_id,salary,startdate,leves,aca_code,other FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	list($staff_id,$gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate,$leves,$aca_code,$other)=mysqli_fetch_row($seaca);
 	$seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
@@ -30,13 +16,11 @@
 	$seDept=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'")or die("DeptError".mysqli_error($con));
 	list($dept_name)=mysqli_fetch_row($seDept);
 
-	// $seexp=mysqli_query($con,"SELECT * FROM tort2_exp WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
-	// for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	// // print_r($set);
+
 	mysqli_free_result($seaca);
 	mysqli_free_result($seacaName);
 	mysqli_free_result($seBrench);
-	// mysqli_free_result($seexp);
+
 ?>
 <form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
@@ -60,57 +44,27 @@
   
 	<br><br>
 	<div class="row text-center" >
-		<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
+		<div class="col-md "> <!--ประจำปี งบประมาณ -->
 		
 		<div class="form-group row">
-			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
-			<div class="col-sm-6">
-				<select id="inputState" class="form-control" name="year">
-				<?php 
-				$sYears=mysqli_query($con,"SELECT DISTINCT  y_year FROM years")or die(mysqli_error($con));
-				while(list($y_year)=mysqli_fetch_row($sYears)){
-					$y_thai=$y_year+543;
-					$yy=DATE('Y');
-				
-					$select=$yy==$y_year?"selected":"";
-					echo"<option value='$y_year' $select>$y_thai</option>";
-				}
-				mysqli_free_result($sYears);
-			?>	
-				</select>
-			</div>
-		</div>
-	</div>
-	<div class="col-md  ">
-		<div class="col-md-12 row">
-
-			<div class="form-group  row">
-				<div class="col-sm-16">
-					<select id="inputNo" class="form-control" name="a_no">
-					<?php 
-						$yNow=date("Y");
-						$sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
-						while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-							$m=DATE('m');
-							if($m<=9 && $m>3){
-								$sy_no= 2;
-							}else{
-								$sy_no= 1;
-								
-							}
-							$seNO=$sy_no==$y_no?"selected":"";
-							echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
-						}
-					?>
-					</select>
-				</div>
-			</div>
-		</div>
+			<label for="" class="col-sm-3 col-form-label">ประจำปี งบประมาณ</label>
+			<div class="col-sm-3">
+			<?php $se_year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end FROM years WHERE y_id='$_POST[year]'")or die("SQLerror.Year".mysqli_error($con));
+					list($y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($se_year);
+					// echo $y_year,$y_no,$y_start,$y_end;
+					mysqli_free_result($se_year);
+				?>
 		
+						<input type="text" name="YearB" value="<?php echo $y_year+543;  ?>" class="form-control" readonly>
+			</div>
+			<div class="col-sm-5">
+			<input type="text" name="y_id" value="<?php  echo "รอบที่",$y_no," ( ",DateThai($y_start),"-",DateThai($y_end) ?>" class="form-control" readonly>
+			<input type="hidden" name="a_no" value="<?php echo $_POST['year'] ?>">
+			</div>
+		</div>
 	</div>
 </div>
-</div>
-<br>
+
 <div class="row text-center">
 <div class="col-md">
 	<div class="form-group row">
