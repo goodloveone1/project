@@ -35,9 +35,10 @@ function modules(module1,action){
 					case "Indicator":break;
 					case "manage_asmIn":break;
 					case "manage_record":break;
+					case "manage_record_ad":break;
 			 /* END assessment */
 			 	case "download_manage":break;
-			    case "pr_manage":break;
+			  case "pr_manage":break;
 				case "managebranch":break;
 				case "managesubject":break;
 				case "editbranch":break;
