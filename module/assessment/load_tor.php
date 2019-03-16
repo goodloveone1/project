@@ -36,11 +36,20 @@ $con=connect_db();
     <tr>
         <td><?php echo $PER_id  ?></td>
         <td>ข้อตกลง</td>
-        <td></td>
+        <td>
+        <?php
+              if(empty($PER_id)){
+                echo  "<b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b>";
+              }else{
+                echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
+              }
+               
+            ?>
+        </td>
         <td>
             <?php
               if(empty($PER_id)){
-                echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล</a>";
+                echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
               }else{
                 echo "ทำการประเมินแล้ว";
               }
@@ -51,14 +60,27 @@ $con=connect_db();
     <tr>
         <td><?php echo $TOR_id ?></td>
         <td>TOR</td>
-        <td></td>
+        <td>
+        <?php
+              if(empty($PER_id)){
+                echo "<b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b>";
+              }else{
+                  if(empty($TOR_id)){
+                    echo "<b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b>";
+                  }else{
+                    echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
+                  }
+              }
+               
+            ?>
+        </td>
         <td>
         <?php
               if(empty($PER_id)){
                 echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำข้อตกลงก่อน</p>";
               }else{
                   if(empty($TOR_id)){
-                    echo "ประเมินได้";
+                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
                   }else{
                     echo "ประเมินเสร็จแล้ว";
                   }
