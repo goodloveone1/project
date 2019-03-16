@@ -23,4 +23,5 @@ if(!empty($know[0])){
     echo"บันทึกสำเร็จแล้ว";
     //echo $sql2;
 }
+mysqli_close($con);
 ?>

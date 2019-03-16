@@ -27,6 +27,6 @@ if(!empty($_POST['check'])){
     echo "ยืนยันข้อมูลหลักฐานเรียบร้อยแล้ว";
 
 }
-
+mysqli_close($con);
 
 ?>

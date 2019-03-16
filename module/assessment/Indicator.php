@@ -440,7 +440,11 @@ $num = ["๑.","๒.","๓.","๔.","๕."];
 
 <?php
 
-} //END WHILE ?>
+
+} //END WHILE
+
+mysqli_close($con);
+?>
 		</tbody>
 	</table>
 	</div>

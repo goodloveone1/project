@@ -29,4 +29,5 @@
         include("test_tor_stepBystep.php");
         // unset($_SESSION['tor_id']);
     }
+    mysqli_close($con);
 ?>

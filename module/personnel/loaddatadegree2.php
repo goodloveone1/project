@@ -39,7 +39,7 @@ $con=connect_db();
 
 							echo "</td>";
 						}
-
+						mysqli_close($con);
 					?>
 
 

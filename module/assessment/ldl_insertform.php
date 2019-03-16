@@ -55,6 +55,10 @@ if(empty($tor_id)){
         </div>
     </div>
 </form>
+<?php
+mysqli_close($con);
+
+?>
 <script type="text/javascript">
     $(document).ready(function() {
         $("#updatesu").click(function(event) {

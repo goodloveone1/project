@@ -28,5 +28,6 @@ mysqli_close($con);
 unset($_SESSION['genIdpost']);
 unset($_SESSION['yearIdpost']);
 echo"บันทึกสำเร็จแล้ว";
+mysqli_close($con);
 ?>
 

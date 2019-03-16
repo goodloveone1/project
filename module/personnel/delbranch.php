@@ -8,4 +8,5 @@ $sql = "DELETE FROM subjects WHERE subject_id = $subject_id";
 // echo $sql;
 mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 }
+mysqli_close($con);
 ?>

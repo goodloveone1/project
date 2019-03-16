@@ -75,7 +75,7 @@ $con=connect_db();
 
 
 <?php
-
+mysqli_close($con);
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
