@@ -26,10 +26,10 @@ try{
         mkdir($url, 0777, true);  // สร้าง folder
     }
 
-    for($i=1;$i< count($_POST['se_id']);$i++){
+    for($i=1;$i<= count($_POST['se_id']);$i++){
     
     $rename="fileimg".$i;
-    ////echo "ข้อความ -->".$_POST['text'][($i-1)]."<br>";
+    //echo "ข้อความ -->".$_POST['text'][($i-1)]."<br>";
 
 
     $num = empty($_FILES[$rename]['name'])?'0':count($_FILES[$rename]['name']);
@@ -74,16 +74,16 @@ try{
                     $filename .= ".".$typefile['1'];
 
 
-                //  echo "filename -->".$filename." "."<br>";
+                  //echo "filename m -->".$filename." "."<br>";
 
                 
 
-                mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
+               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
 
                 //  $filename = iconv('UTF-8','windows-874',$filename);  // แปลง file name ไทย
-                /// echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
+                // / echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
                 
-                copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
+               copy($_FILES[$rename]['tmp_name'][$j],$url."/".$filename);
 
             }
             
@@ -98,7 +98,7 @@ try{
             if(!empty($_FILES[$rename]['name'])){
 
                 $oldname = $_FILES[$rename]['name'];
-            /// echo "filename2 -->".$_FILES[$rename]['name']." "."<br>";
+            /// echo "filename o -->".$_FILES[$rename]['name']." "."<br>";
 
             $type = $_FILES[$rename]["type"];
 
@@ -117,11 +117,11 @@ try{
 
             $filename .= ".".$typefile['1'];
 
-                //echo "filename -->".$filename." "."<br>";
+             ///   echo "filename -->".$filename." "."<br>";
 
-                mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
+               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
 
-                copy($_FILES[$rename]['tmp_name'],$url."/".$filename);
+               copy($_FILES[$rename]['tmp_name'],$url."/".$filename);
 
 
             }

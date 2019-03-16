@@ -273,9 +273,6 @@ $( document ).ready(function() {
 							type: 'POST',
 							data: formData,
 							success: function (data) {
-
-						
-
 							},
 							cache: false,
 							contentType: false,
@@ -283,10 +280,8 @@ $( document ).ready(function() {
 						}).done(function(data) {
 
 							alert(data)
-
-						//		alert("บันทึกข้อมูลสำเร็จ");
-						loadingpage("assessment","manage_Evidence");
-							//$("#detail").html(data);
+					//	loadingpage("assessment","manage_Evidence");
+						//	$("#detail").html(data);
 
 						})
 		}

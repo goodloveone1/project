@@ -104,7 +104,7 @@ $(document).ready(function() {
       $("#loadging").css('display','')
 
       $.ajax({
-        url: "module/assessment/loaddata_record2.php",
+        url: "module/assessment/loaddata_record.php",
         data:{year:years},
         type: "POST"
       }).done(function(data){

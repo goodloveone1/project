@@ -30,25 +30,9 @@ list($tor_year)=mysqli_fetch_row($tor);
 
 mysqli_free_result($evd);
 mysqli_free_result($gen);
-
 mysqli_free_result($tor);
 
 ?>
-
-<style>
-
-.fileedit {
-		border-style: hidden;
-		color:#6c757F;
-		transition: 0.2s; /* Animation */
-}
-.fileedit:hover {
-	color:#6c757F;
-	border-bottom: dotted 1px;
-	
-}
-</style>
-
 	<div class="row pt-2">
 	<?php
 		if($_SESSION['user_level']==2){
@@ -174,16 +158,24 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										</td >";	
 									}
 										echo 	"<td class='text-center'> ";
-										echo   		"<table class='table table-striped'>";
-										
+										//echo   		"<table class='table table-striped'>";
 										// $evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evd_id' ") or  die("SQL Error1==>1".mysqli_error($con));
 										// $i=1;
 										// while(list($evd_file_id,$evd_file_name)=mysqli_fetch_row($evd_file)){
 										// 	echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_file_name</a></td></tr> ";
 										// 	$i++;		
 										// }
-										echo   		"</table>";
-										echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> แสดงไฟล์ </b>";
+										//echo   		"</table>";
+										//echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> แสดงไฟล์ </b>";
+										$evd_file =  mysqli_query($con,"SELECT count(evd_file_id) FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
+										 list($countfileevd)=mysqli_fetch_row($evd_file);
+										 mysqli_free_result($evd_file);
+										 $countfileevd = empty($countfileevd)?"0":$countfileevd;
+										?>
+										<button type="button" class="btn btn-info mt-4 fileedit" data-seid='<?php echo $sub_id ?>'>
+										<i class='fas fa-file fa-lg'></i> แสดงไฟล์ <span class="badge badge-pill badge-secondary"> <?php echo $countfileevd ?></span>
+										</button>
+										<?php
 										echo	"</td>";
 										echo "</tr>";
 										$countfile++;
@@ -309,7 +301,7 @@ $( document ).ready(function() {
 
 	$(".fileedit").click(function(e) {
 		e.preventDefault(); 
-        $.post("module/assessment/show_file_evd.php", { evdid : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: <?php echo $ass_id ?> }).done(function(data){
+        $.post("module/assessment/show_file_evd.php", { evdid : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: "<?php echo $ass_id ?>" }).done(function(data){
             $('#loadeditfile').html(data);
                  $('#editfile').modal('show');
         })
@@ -342,24 +334,12 @@ $( document ).ready(function() {
 
 						})
 		}
-
-	
 		});
-
-	
-
-
 });
 </script>
 
-
 <?php
 	mysqli_close($con);
-
-
-
-	
-
 }else{
 	echo "<script> 
 	    alert('!!!!!');

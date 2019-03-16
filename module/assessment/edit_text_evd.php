@@ -103,7 +103,7 @@ $("#updatesu").click(function(event) {
     // var r = confirm("คุณต้องการแก้ไขข้อความใช่หรือไหม?");
     // if (r == true) {
         $.post( "module/assessment/update_evd_text.php", $( "#foredittext" ).serialize()).done(function(data,txtstuta){
-            alert(data);
+            ///alert(data);
          });
         $('#edittext').modal("hide");
 
@@ -111,7 +111,7 @@ $("#updatesu").click(function(event) {
 
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
-            $.post( "module/"+module1+"/"+action+".php", { torid: <?php echo $_POST['torid'] ?> ,evdid: <?php echo $_POST['evdid2'] ?> }).done(function(data,txtstuta){
+            $.post( "module/"+module1+"/"+action+".php", { torid: "<?php echo $_POST['torid'] ?>" ,evdid: <?php echo $_POST['evdid2'] ?> }).done(function(data,txtstuta){
 
             alert("บันทึกสำเร็จแล้ว");
 

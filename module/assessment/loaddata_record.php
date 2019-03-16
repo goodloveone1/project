@@ -34,14 +34,14 @@ echo "<tr>";
       if(!empty($year_id1)){
         echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
         if($yearnow == $year_id1){
-          echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$year_id1'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
+          echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$year_id1' data-staff='$st_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
         }else{
-            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='showdata' data-id='$year_id1'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
+            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='showdata' data-id='$year_id1' data-staff='$st_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
         }
 
       }else{
         echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการบันทึกการมาปฏิบัติงาน </b></td>";
-        echo " <td> <b class='text-primary'><a href='javascript:void(0)' class='addbrn' data-id='$year_id1'><i class='fas fa-plus fa-2x'></i>&nbsp;กรอกข้อมูล</a></b></td>";
+        echo " <td> <b class='text-primary'><a href='javascript:void(0)' class='addbrn' data-id='$year_id1' data-staff='$st_id'><i class='fas fa-plus fa-2x'></i>&nbsp;กรอกข้อมูล</a></b></td>";
       }
 
     echo "</tr>";
@@ -61,7 +61,7 @@ $(document).ready(function() {
   $(".addbrn").click(function(e){
           e.preventDefault()
           var id =$(this).data("id");
-          $.post( "module/assessment/ldl_insertform.php", { yearid: id  } ).done(function(data){
+          $.post( "module/assessment/ldl_insertform2.php", { yearid: id, stid : $(this).data("staff") } ).done(function(data){
               $("#loadaddsub").html(data);
               $('#addsub').modal('show');
           })
@@ -70,7 +70,7 @@ $(document).ready(function() {
 $(".editbrn").click(function(e){
         e.preventDefault()
         var id =$(this).data("id");
-        $.post( "module/assessment/ldl_insertformedit.php", { yearid: id  } ).done(function(data){
+        $.post( "module/assessment/ldl_insertformedit2.php", { yearid: id , stid : $(this).data("staff") } ).done(function(data){
             $("#loadaddsub").html(data);
             $('#addsub').modal('show');
         })

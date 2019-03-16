@@ -71,8 +71,10 @@
     while(list($w_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
         $seac = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca_id'" ) or die("SQL error".mysqli_error($con));
         list($aca_name)=mysqli_fetch_row($seac);
+        mysqli_free_result($seac);
         $setit = mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$tit'") or die("SQL error".mysqli_error($con));
         list($tit_name)=mysqli_fetch_row($setit);
+        mysqli_free_result($setit);
         if($lv==0){
             $lv="-";
         }
