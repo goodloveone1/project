@@ -2,97 +2,124 @@
   session_start();
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
+
+  unset($_SESSION['genIdpost']);
+  unset($_SESSION['yearIdpost']);
 $con=connect_db();
-  $yearnow = chk_idtest();
  ?>
 <div class="row  p-2 headtitle">
 	<h2 class="text-center col-md "> จัดการการมาปฏิบัติงาน </h2>
 </div>
 <br>
 
+<div class="row text-center" >
+  <div class="col-md "> <!--ประจำปี งบประมาณ -->
 
+  <div class="form-group row">
+    <label for="" class="col-sm col-form-label">ประจำปี งบประมาณ</label>
+    <div class="col-sm-6">
+      <input type="hidden" name="gg" value="hidden" >
+      <select id="inputState" class="form-control" name="year">
+      <?php
+      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
+      while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
+        $y_thai=$y_year+543;
+        //$yy=DATE('Y');
 
-<table class="table table-border col-auto" id="Datatable">
-  <thead>
-    <tr>
-      <th> ปี </th>
-      <th> รอบที่ </th>
-      <th> วันที่ </th>
-      <th> สถานะ </th>
-      <th> จัดการ </th>
-
-
-    </tr>
-  <thead>
-  <tbody>
-    <?php
-
-    $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_year DESC") or  die("SQL Error1==>1".mysql_error($con));
-
-
-
-
-$i=1;
-while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
-    echo "<tr>";
-    echo " <td>".($y_year+543)."</td>";
-    echo " <td>$y_no</td>";
-    $m=DATE('m');
-    if($m<=9 && $m>3){
-      $sy_no= 2;
-    }else{
-      $sy_no= 1;
-
-    }
-    echo " <td>", DateThai($y_start)," - ",DateThai($y_end),"</td>";
-
-    $idl= mysqli_query($con,"SELECT year_id FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id' ") or  die("SQL Error1==>1".mysql_error($con));
-    list($year_id1)=mysqli_fetch_row($idl);
-    if(!empty($year_id1)){
-      echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
-      if($yearnow == $year_id1){
-        echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$y_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
-      }else{
-          echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='showdata' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
+        $select=chk_idtest()==$y_id?"selected":"";
+        echo"<option value='$y_id' $select>$y_no/$y_thai</option>";
       }
+      mysqli_free_result($sYears);
+    ?>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="col-md  ">
 
-    }else{
-      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการบันทึกการมาปฏิบัติงาน </b></td>";
-      echo " <td> <b class='text-primary'><a href='javascript:void(0)' class='addbrn' data-id='$y_id'><i class='fas fa-plus fa-2x'></i>&nbsp;กรอกข้อมูล</a></b></td>";
+    <!-- <div class="form-check col-sm-1">
+      <input type="checkbox"  class="form-check-input" id="" value="">
+    </div> -->
+    <div class="form-group  row">
+      <!-- <label for="inputState" class="col-sm">รอบที่  ๑  (๑ ต.ค.</label> -->
+      <div class="col-md">
+        <select id="inputNo" class="form-control" name="a_no" disabled>
+        <?php
+          $yNow=date("Y");
+          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+          while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
+            $m=DATE('m');
+            if($m<=9 && $m>3){
+              $sy_no= 2;
+            }else{
+              $sy_no= 1;
+
+            }
+            $seNO=$sy_no==$y_no?"selected":"";
+            echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
+          }
+        ?>
+        </select>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="col-auto" id='loaddataevd'></div>
+
+<div class="row" id='loadging' style='display: none;'>
+      <img class='mx-auto' id='img' src='img/loading.svg'>
+</div>
+
+
+
+<?php
+ mysqli_free_result($sY_No);
+ mysqli_close($con);
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $.getScript('js/mydatatable.js')
+
+  $("#inputState").change(function(){
+    var years=$(this,"option:selected").val()
+   //alert(years)
+   $.post("module/assessment/loaddatayear.php",{year:years},
+    function (data, textStatus, jqXHR) {
+     // alert(data)
+     $("#inputNo").html(data)
+     loadasmin()
+    }
+   );
+  })
+
+  loadasmin() //  โหลดครั้งแรก
+
+    function loadasmin(){
+
+      var years = $("#inputNo").val();
+     
+      $("#loaddataevd").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/assessment/loaddata_record2.php",
+        data:{year:years},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataevd").html(data)
+        
+        }, 2000);
+
+      })
     }
 
+  }) // document ready
 
+  
 
-    echo "</tr>";
-}
-mysqli_close($con);
-    ?>
-
-  <tbody>
-  </tbody>
-</table>
-<div id="loadaddsub"></div>
-<script>
-
-$(document).ready(function() {
-  $.getScript('js/mydatatable.js')
-  $(".addbrn").click(function(e){
-          e.preventDefault()
-          var id =$(this).data("id");
-          $.post( "module/assessment/ldl_insertform.php", { yearid: id  } ).done(function(data){
-              $("#loadaddsub").html(data);
-              $('#addsub').modal('show');
-          })
-});
-
-$(".editbrn").click(function(e){
-        e.preventDefault()
-        var id =$(this).data("id");
-        $.post( "module/assessment/ldl_insertformedit.php", { yearid: id  } ).done(function(data){
-            $("#loadaddsub").html(data);
-            $('#addsub').modal('show');
-        })
-});
-
-});// ready
 </script>
