@@ -14,14 +14,14 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record_ad">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
-				
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" >
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
