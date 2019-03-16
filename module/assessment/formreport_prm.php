@@ -122,6 +122,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 											<option value='1' selected >อัปโหลดไฟล์แบบกลุ่ม</option>
 											<option value='2' >อัปโหลดไฟล์ทีละไฟล์ </option>
 										</select>
+										<input type='hidden'  name='se_id[]' value='$sub_id'>
 										<div id='fileupload$countfile'></div>
 
 												
@@ -218,7 +219,7 @@ $( document ).ready(function() {
  function firthload(){
 	$(".selfile").each(function(){
 		
-		var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div><input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>");
+		var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
 		var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
 
 		$(fileupload).html(filemuti);
@@ -235,7 +236,7 @@ $( document ).ready(function() {
  
 		if($(this,"option:selected").val()==1){
 		
-			var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'><input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>");
+			var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
 			var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
 		//	alert(fileupload)
 			$(fileupload).html(filemuti);
@@ -248,7 +249,6 @@ $( document ).ready(function() {
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"3'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"4'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"5'   aria-describedby='fileHelpInline'>"
-			filemuti += "<input type='hidden'  name='se_id[]' value='"+$(this,"option:selected").data("subid")+"'></div>";
 			var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
 		//	alert(fileupload)
 			$(fileupload).html(filemuti);
@@ -285,7 +285,7 @@ $( document ).ready(function() {
 							alert(data)
 
 						//		alert("บันทึกข้อมูลสำเร็จ");
-						//	loadingpage("assessment","manage_Evidence");
+						loadingpage("assessment","manage_Evidence");
 							//$("#detail").html(data);
 
 						})
