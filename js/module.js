@@ -52,6 +52,8 @@ function modules(module1,action){
 				case "evaluation":break;
 				case "test_tor_stepBystep":break;
 				case "pretest_tor":break;
+				case "ass_form":break;
+				case "ass_t1":break;
 				case "tor1_pretest":break;
 				case "tor2_pretest":break;
 				case "tor3_pretest":break;
@@ -63,6 +65,7 @@ function modules(module1,action){
 				case "tor_t4":break;
 				case "tor_t5":break;
 				case "tor_t6":break;
+				case "addtata_ass":break;
 				case "adddata_tor":break;
 				case "adddata_tor1":break;
 				case "adddata_tor2":break;

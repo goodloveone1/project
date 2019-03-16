@@ -80,7 +80,7 @@ $con=connect_db();
                 echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำข้อตกลงก่อน</p>";
               }else{
                   if(empty($TOR_id)){
-                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
+                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
                   }else{
                     echo "ประเมินเสร็จแล้ว";
                   }
@@ -116,6 +116,20 @@ $con=connect_db();
         $("#detail").html(data);
     })
 })
+
+$(".addtor").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_form.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+
 
 
 </script>
