@@ -77,7 +77,7 @@ $tor=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[us
  }else{
    $x=1;
  }
-
+ mysqli_close($con);
 ?>
 
 $(document).ready(function() {

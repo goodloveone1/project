@@ -476,3 +476,7 @@ function fncSum(){
 });
 
 </script>
+
+<?php
+mysqli_close($con);
+?>

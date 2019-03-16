@@ -140,7 +140,7 @@ try{
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }  
 
-
+mysqli_close($con);
 
 
 

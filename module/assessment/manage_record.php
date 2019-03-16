@@ -65,6 +65,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
 
     echo "</tr>";
 }
+mysqli_close($con);
     ?>
 
   <tbody>

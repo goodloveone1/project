@@ -1,6 +1,6 @@
 <?php
     session_start();
-	include("../../function/db_function.php");
+	///include("../../function/db_function.php");
    
 ?>
 <form id="foreditbrc">

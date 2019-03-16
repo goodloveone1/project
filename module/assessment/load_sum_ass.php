@@ -234,7 +234,7 @@ if(!empty($asst1_id)){
    echo"<p style='color:red;' align='center'>***ไม่มีผลการประเมิน***</p>";
 }
 
-
+mysqli_close($con);
 
 
 ?>

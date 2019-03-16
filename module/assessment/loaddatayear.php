@@ -7,5 +7,5 @@ $con=connect_db();
 		echo "<option value='$y_id'>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
 
 	}
-	
+mysqli_close($con);	
 ?>

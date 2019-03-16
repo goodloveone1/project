@@ -33,6 +33,7 @@
                         <?php
                         $i++;
                         } // END WHILE
+                        mysqli_close($con);
                         ?>
                         </tbody>
 </table>

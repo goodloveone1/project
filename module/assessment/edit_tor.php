@@ -461,3 +461,7 @@ $(document).ready(function() {
 
 		});
 </script>
+
+<?php
+mysqli_close($con);
+?>
