@@ -37,13 +37,16 @@ list($tor_year)=mysqli_fetch_row($tor);
 	
 }
 </style>
-	<div class="row">
+<br>
+	<div class="row pt-2">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
-		<div class="col-sm pt-2 text-center">
+		<div class="col-sm pt-1 text-center">
 			<h5>ตรวจสอบ แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
-		<div class="col-sm-2 text-center pt-2" style="border:solid 1px;">
-			<p>สายวิชาการ (ทุกราย)</p>
+		<div class="col-sm-2 text-center " >
+			<div class="text-wrap btn border border-dark">
+			สายวิชาการ <br>(ทุกราย)
+			</div>
 		</div>
 	</div>
 	<br>

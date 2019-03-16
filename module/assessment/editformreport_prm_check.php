@@ -48,7 +48,8 @@ mysqli_free_result($tor);
 	
 }
 </style>
-	<div class="row">
+
+	<div class="row pt-2">
 	<?php
 		if($_SESSION['user_level']==2){
 			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence'>ย้อนกลับ </button></div>";
@@ -57,12 +58,13 @@ mysqli_free_result($tor);
 		}
 		
 	?>
-		
 		<div class="col-sm pt-2 text-center">
 			<h5>ตรวจสอบ แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
-		<div class="col-sm-2 text-center pt-2" style="border:solid 1px;">
-			<p>สายวิชาการ (ทุกราย)</p>
+		<div class="col-sm-2 text-center" >
+			<div class="text-wrap btn border border-dark">
+				สายวิชาการ <br>(ทุกราย)
+			</div>
 		</div>
 	</div>
 	<br>
@@ -181,7 +183,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										// 	$i++;		
 										// }
 										echo   		"</table>";
-										echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> จัดการไฟล์ </b>";
+										echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> แสดงไฟล์ </b>";
 										echo	"</td>";
 										echo "</tr>";
 										$countfile++;
@@ -228,7 +230,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		</div>
 		<div class="col-sm-1"></div>
    	</div>
-<form class="p-2" id='formstatus'  method="POST" >
+<!-- <form class="p-2" id='formstatus'  method="POST" >
 	<div class="row">
 	<div class='col-4'> </div>
 		<div class='col'>
@@ -248,7 +250,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		<div class='col-3'> </div>
 	<div>
 
-</form>
+</form> -->
 <?php
 } // END IF
 else{
