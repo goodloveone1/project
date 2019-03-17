@@ -31,7 +31,7 @@
 	// echo $yearIdpost,"--->",$TOR_id;
 ?>
 <form method="POST" id="addtor"  class="p-2" >  
-    <div class="row"></div>
+    <div class="row">
 				<span class="step step-color">TOR</span> &nbsp;
 						<a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp;
 				<a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
@@ -39,9 +39,11 @@
 				<a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
 				<a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
 				<a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
-				<p></p>
+				<br>
+			</div>
 	<div class="row" >
 		<div class="col-md">
+		<br>
 			<h5 class="text-center">ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบันอุดมศึกษา สายวิชาการ(ตำแหน่ง <?php echo $acaName ?>) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
 		</div>
 		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
@@ -183,7 +185,7 @@
 			<input type="hidden" name="hleader_id" value="<?php echo $hleader_id ?>">
 			<input type="hidden" name="stleader_id" value="<?php echo $stleader_id?>">
 			<input type="hidden" name="staff_id" value="<?php  echo $staff_id  ?>" >
-			<input type="้hidden" name="pre" value="<?php echo $TOR_id;?>" >
+			<input type="hidden" name="pre" value="<?php echo $TOR_id;?>" >
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
 		<div class="col-sm">
@@ -421,7 +423,7 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn " data-modules="assessment" data-action="addtata_ass"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="addtata_ass"> ต่อไป </button>
 	</div>
 </div>
 </form>

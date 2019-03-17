@@ -319,7 +319,7 @@
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn" data-modules="assessment" data-action="adddata_tor2"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="adddata_tor2"> ต่อไป </button>
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t3"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 	</div>
 </div>
