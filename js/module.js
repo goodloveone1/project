@@ -65,7 +65,7 @@ function modules(module1,action){
 				case "tor4_pretest":break;
 				
 				case "edit_tor1":break;
-				case "tor_t2":break;
+				case "edit_tor2":break;
 				case "tor_t3":break;
 				case "tor_t4":break;
 				case "tor_t5":break;
@@ -80,6 +80,7 @@ function modules(module1,action){
 				case "check_tor":break;
 				case "edit_tor":break;
 				case "update_tor":break;
+				case "update_tor2":break;
 				case "editformreport_prm":break;
 				case "manage_Evidence_course":break;
 				case "sum_asmIn":break;

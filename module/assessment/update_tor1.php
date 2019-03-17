@@ -32,13 +32,10 @@ mysqli_free_result($se_sumAss1);
 $sqlli2="UPDATE sum_score_assessment_t1 
 SET sum_weight='$_POST[sumwei]',sum_weighted='$_POST[sumscwei]',sum_asst1='$_POST[sumall]'
 WHERE sum_asst1_id ='$sum_asst1_id' ";
-// $sqli2="INSERT INTO sum_score_assessment_t1(sum_asst1_id,ass_id,sum_weight,sum_weighted,sum_asst1) 
-// VALUES('','$tor_id','$_POST[sumscwei]','$_POST[sumwei]','$_POST[sumall]')";
-//echo $sqlli2;
 mysqli_query ($con,$sqlli2) or die ("error2".mysqli_error($con));
 
 mysqli_close($con);
-// echo"บันทึกสำเร็จแล้ว";
+echo"บันทึกสำเร็จแล้ว";
 ?>
 
 

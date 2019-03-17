@@ -217,11 +217,11 @@ fncSum();
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/edit_tor1.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+								$.post( "module/assessment/edit_tor2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","edit_tor1");
+								sessionStorage.setItem("action","edit_tor2");
 								$("#detail").html(data);
   							});
 					        },
