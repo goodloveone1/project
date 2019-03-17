@@ -30,34 +30,7 @@
 	
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1">
-<?php
-$mm=date('m');  //เดือนปัจจุบัน
-$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
-$m="$mm";
-$y="$yearbudget";
-if($m<=9 && $m>3){
-	$loop=2;
-}else{
-	$loop=1;
-}
-if($loop==2){
-	$y-=1;
-}
-$y_id = $y.$loop;
-		$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
-		$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-		list($tor_ID)=mysqli_fetch_row($reChk);
-		//echo $tor_ID;
 
-		//เพิ่มวันนี้
-		$sqltor = mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$genIdpost'AND year_id='$yearIdpost'") or die("torError".mysqli_error($con));
-		list($tor_ide)=mysqli_fetch_row($sqltor);
-		// echo $tor_ide;
-//ค่าคะแนน จาก tor
-		mysqli_free_result($reChk);
-		//mysqli_free_result($sqltor1);
-
-?>
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
@@ -98,6 +71,7 @@ $y_id = $y.$loop;
 <th >๕</th>
 </tr>
 <?php
+	
 	$sql = "SELECT tit,weights FROM weights WHERE aca_id='$gen_acadeic'";
 	$weights = mysqli_query($con,$sql) or die(mysqli_error($con));
 	$titcheck;
@@ -110,14 +84,12 @@ $y_id = $y.$loop;
 		$sum=mysqli_query($con,"SELECT SUM(weights) FROM weights WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 		list($sumS)=mysqli_fetch_row($sum);
 
-		$sqltor1=mysqli_query($con,"SELECT pret1_id,ass_id,title_name,goal,score FROM preasessment_t1 WHERE  ass_id='$tor_ide' AND title_name='$tit'") or die("".mysqli_error($con));
-		 list($tort1_id,$tor_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
-			//echo $tort1_id,"--",$tor_id,"--",$year_id,"--",$title_name,"--",$tort1_goal,"-",$tort1_score;
-
-
+		$sqltor1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score FROM asessment_t1 WHERE  ass_id='$yearIdpost' AND title_name='$tit'") or die("".mysqli_error($con));
+		 list($asst1_id,$tor_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
+		
 		echo "<tr id='$tit'>";
 		echo "<td>$e_name</td>";
-		echo "<td></td>";
+		echo "<td><input type='hidden' name='id[]' value='$asst1_id'></td>";
 		$ch1= "" ;$ch2= "";$ch3= "";$ch4= "";$ch5 = "";
 			switch($tort1_goal){
 				case 1 :

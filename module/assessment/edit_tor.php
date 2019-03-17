@@ -26,10 +26,11 @@
 	$genIdpost = $_POST['genid'];
 	$yearIdpost = $_POST['year'];
 
+	echo $yearIdpost;
 	$_SESSION['genIdpost']=$genIdpost;
 	$_SESSION['yearIdpost']=$yearIdpost;
 
-	$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE year_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+	$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE ass_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
     list($tor_id,$staff_id,$year_id,$leader_id,$hleader,$sleader,$sumwork,$punishment)=mysqli_fetch_row($tor);
   
 	$re_staff=mysqli_query($con,"SELECT fname,lname,branch_id,salary,aca_code,acadeic,leves,other,startdate,position FROM staffs WHERE st_id='$staff_id'") or die("Staff_SQL-error".mysqli_error($con));
@@ -448,9 +449,9 @@ $(document).ready(function() {
 					        contentType: false,
 					        processData: false
 					    }).done(function(){
-								$.post("module/assessment/tor_t1.php",{genid:'<?php echo $genIdpost ?>',year:'<?php echo $yearIdpost ?>'}).done(function(data){
+								$.post("module/assessment/edit_tor1.php",{genid:'<?php echo $genIdpost ?>',year:'<?php echo $yearIdpost ?>'}).done(function(data){
 									sessionStorage.setItem("module1","assessment");
-									sessionStorage.setItem("action","tor_t1");
+									sessionStorage.setItem("action","edit_tor1");
 										$("#detail").html(data);
 								})
 							});

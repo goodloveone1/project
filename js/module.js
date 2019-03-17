@@ -64,7 +64,7 @@ function modules(module1,action){
 				case "tor3_pretest":break;
 				case "tor4_pretest":break;
 				
-				case "tor_t1":break;
+				case "edit_tor1":break;
 				case "tor_t2":break;
 				case "tor_t3":break;
 				case "tor_t4":break;
