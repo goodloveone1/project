@@ -15,8 +15,7 @@
           "zeroRecords":    "ไม่พบข้อมูล",
       },
   
-    },
-    "ordering": false,
+    }
     
   
   } );

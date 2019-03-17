@@ -21,7 +21,11 @@
 		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 
-		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>  <!-- DATATABLE  CSS -->
+		<!-- DATATABLE  CSS -->
+		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
+		<link rel="stylesheet" type="text/css" href="js/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"/>
+		<link rel="stylesheet" type="text/css" href="js/DataTables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.min.css"/>
+		<link rel="stylesheet" type="text/css" href="js/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css"/>  
 		
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
@@ -109,11 +113,14 @@
 		<script src="js/validateSetdef.js" ></script> 
 		<?php //END validate ?>
 
-		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script> <!-- DATATABLE  JS -->
+		<!-- DATATABLE -->
+		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+		<script type="text/javascript" src="js/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
+		<script type="text/javascript" src="js/DataTables/FixedColumns-3.2.5/js/fixedColumns.bootstrap4.min.js"></script>
+		<script type="text/javascript" src="js/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js"></script>
+
 
 		<script>
-
-		
 
 		$(document).ready(function() {
 

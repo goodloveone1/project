@@ -6,7 +6,7 @@ $con=connect_db();
 
 $year = $_POST['year'];
 ?>
-
+<div class="table-responsive">
 <table class="table table-border col-md" id="Datatable">
   <thead>
     <tr>
@@ -92,33 +92,33 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     // mysqli_free_result($show3);
 
     if(empty($PRE_id)){
-      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
     }else{
         if(empty($tor_id)){
-          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
         }else{
           if(empty($evd_id)){
-            echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-            echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-            echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-            echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
           }else{
             if($evd_status ==1){
-              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-              echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
             }else if($evd_status ==2){
-              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
+              echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
             }
             
           }
@@ -179,6 +179,8 @@ mysqli_close($con);
 
   </tbody>
 </table>
+</div> 
+<div id="loadmodel"></div>
 <script>
 $.getScript('js/mydatatable.js')
 $(".checktor").click(function(){
@@ -194,5 +196,15 @@ $(".checktor").click(function(){
   })
 
 })
+
+$(".showpre").click(function(e) {
+		e.preventDefault(); 
+    //alert("TTEST");
+		//alert($(this).data("evdidtext"));
+        $.post("module/assessment/loaddetail_pretest.php", { id:'1' } ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelpre').modal('show');
+        })
+	});
 
 </script>

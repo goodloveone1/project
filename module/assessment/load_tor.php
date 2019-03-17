@@ -60,7 +60,7 @@ unset($_SESSION['pre_id']);
               if(empty($PER_id)){
                 echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
               }else{
-                echo "ทำข้อตกลงแล้ว";
+                echo "<b class='text-success'>ทำข้อตกลงแล้ว<b>";
               }
                
             ?>
@@ -91,7 +91,7 @@ unset($_SESSION['pre_id']);
                   if(empty($TOR_id)){
                     echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
                   }else{
-                    echo "ประเมินเสร็จแล้ว";
+                    echo "<b class='text-success'>ประเมินเสร็จแล้ว<b>";
                   }
               }
                
@@ -106,7 +106,7 @@ unset($_SESSION['pre_id']);
         <?php
               if(empty($PER_id)){
                 echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                echo "<td><p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำข้อตกลงก่อน</p></td>";
+                echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
               }else{
                   if(empty($TOR_id)){
                     echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
