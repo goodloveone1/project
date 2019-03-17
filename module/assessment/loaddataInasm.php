@@ -70,17 +70,19 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo "<td>$pos_name</td>";
 
-    $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year'") or  die("SQL Error1==>1".mysql_error($con));
+    $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($show2);
     mysqli_free_result($show2);
+    echo $tor_id,"-->",$gen_fname,$gen_lname;
+    
 
-    $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
+    $show3= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE'TOR%' ") or  die("SQL Error1==>3".mysql_error($con));
     list($tor_idc2)=mysqli_fetch_row($show3);
     mysqli_free_result($show3);
     if(!empty($tor_id)){
       echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
-      if(empty($tor_idc2)){
-        echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
+      if(!empty($tor_idc2)){
+        echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_idc2' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
       }
       else{
         echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
