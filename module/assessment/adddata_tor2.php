@@ -13,7 +13,10 @@ $Pscore = $_POST['score'];
 $st="stit";
 $x="x";
 $sg="sumgo";
-for($i=0;$i<15;$i++){
+
+$max=$_POST['max'];
+
+for($i=0;$i<$max;$i++){
     $tit_sub=$st.$i;
     $sql="INSERT INTO asessment_t2(asst2_id,ass_id,subcap_id,goal,score) 
     VALUES('','$_POST[tor_id]','$_POST[$tit_sub]','$exp[$i]','$scr[$i]')";

@@ -21,24 +21,21 @@
 	list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca); 
 
 	mysqli_free_result($seaca);
-	//echo $gen_acadeic,$fname,$lname;
-
-	// $seaca=mysqli_query($con,"SELECT gen_acadeic,gen_prefix,gen_fname,gen_lname,gen_pos,branch_id,gen_salary,gen_startdate FROM general WHERE gen_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
-	// list($gen_acadeic,$gen_prefix,$gen_fname,$gen_lname,$gen_pos,$branch_id,$gen_salary,$gen_startdate)=mysqli_fetch_row($seaca);
-	// $seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
-	// list($acaName)=mysqli_fetch_row($seacaName);
-
-	// $seBrench=mysqli_query($con,"SELECT branch_name FROM branch WHERE branch_id='$branch_id'")or die("SQL_ERROR".mysqli_error($con));
-	// list($branchName)=mysqli_fetch_row($seBrench);
+	
 
 	$seexp=mysqli_query($con,"SELECT * FROM aptitudes WHERE aca_id='$gen_acadeic'")or die(mysqli_error($con));
 	for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
-	
-	//print_r($set);
-	// mysqli_free_result($seaca);
-	// mysqli_free_result($seacaName);
-	// mysqli_free_result($seBrench);
 	mysqli_free_result($seexp);
+	if( empty($set[10]['score'])){
+		$com_s ="<!--";
+		$com_e="-->";
+		$max=10;
+	}else{
+		$com_s =" ";
+		$com_e=" ";
+		$max=15;
+	}
+ 
 
 	$yeartest=chk_idtest();
 ?>
@@ -71,15 +68,9 @@
 			</tr>
 			<tr>
 				<td> การมุ่งผลสัมฤทธิ์ </td>
-				<?php
-					// $sqlyesr="SELECT ass_id FROM tor WHERE gen_id ='$genIdpost'AND tor_year='$yeartest'";
-					// $reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-					// list($tor_ID)=mysqli_fetch_row($reChk);
-					// //echo $tor_ID;
-					// mysqli_free_result($reChk);
-
-				?>
+				
 				<input type="hidden" value="<?php echo $yearIdpost?>" name="tor_id">
+				<input type="text" value="<?php echo $max?>" name="max">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['score'])?"0":$set[0]['score'] ?>" name="exp[]" readonly ></td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['subcap_id']?>" name="stit0">
 				<div class="form-group">
@@ -169,7 +160,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="col-md">
+<?php  echo $com_s; ?>	<div class="col-md">
 		<table class="table table-bordered tscore">
 
 			<tr>
@@ -218,7 +209,7 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div> <?php echo $com_e  ?>
 </div>
 
 <div class="row">

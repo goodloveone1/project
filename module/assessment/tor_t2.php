@@ -84,6 +84,7 @@
 
 				?>
 				<input type="hidden" value="<?php echo $tor_id?>" name="tor_id">
+				<input type="text" value="<?php echo $max?>" name="max">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['score'])?"0":$set[0]['score'] ?>" name="exp[]" readonly ></td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['subcap_id']?>" name="stit0">
 				<div class="form-group">
