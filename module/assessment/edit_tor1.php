@@ -20,10 +20,6 @@
 	 list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca);
 	// $seacaName=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$gen_acadeic'")or die("SQL_ERROR".mysqli_error($con));
 	// list($acaName)=mysqli_fetch_row($seacaName);
-
-
-	
-
 	mysqli_free_result($seaca);
 	// mysqli_free_result($seacaName);
 	
@@ -31,7 +27,7 @@
 ?>
 <form method="POST" class="p-2" name="tor1" id="tor1">
 
-<input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
+<input type="hidden" value="<?php echo $yearIdpost; ?>" name="tor_id">
    <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp;
@@ -122,13 +118,18 @@
 				echo "<td id='total$tit' class='text-center'><input type='text' class=' borderNon' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' value='$a' readonly></td>";
 		echo "</tr>";
 	}
-	mysqli_close($con);
+
+$se_sumAss1 = mysqli_query($con,
+"SELECT sum_weighted FROM sum_score_assessment_t1 WHERE ass_id='$_SESSION[yearIdpost]'")or  die("SQL-error.sumAsst1".mysqli_error($con));
+list($sum_weighted)=mysqli_fetch_row($se_sumAss1);
+mysqli_free_result($se_sumAss1);
+mysqli_close($con);
 
 ?>
 	<tr>
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"><input type="text" class=" borderNon" name="sumwei" value="<?php echo $sumS ?> " size="3" readonly></td>
-		<td class="text-center"><input type="text" class=" borderNon" name="sumscwei"  size="2" value="<?php echo $t  ?>" readonly> </td>
+		<td class="text-center"><input type="text" class=" borderNon" name="sumscwei"  size="2" value="<?php echo $sum_weighted  ?>" readonly> </td>
 
 	</tr>
 	<tr>
@@ -139,7 +140,7 @@
 					สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  =
 				</div>
 				<div class="col-sm text-center">
-					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="text" class="borderNon" size="3" name="sumscweid" value="<?php echo $t  ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
+					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="text" class="borderNon" size="3" name="sumscweid" value="<?php echo $sum_weighted ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
 				</div>
 			</div>
 		</td>
@@ -211,16 +212,16 @@ fncSum();
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
-					        url: "module/assessment/adddata_tor1.php",
+					        url: "module/assessment/update_tor1.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+								$.post( "module/assessment/edit_tor1.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","tor_t2");
+								sessionStorage.setItem("action","edit_tor1");
 								$("#detail").html(data);
   							});
 					        },
