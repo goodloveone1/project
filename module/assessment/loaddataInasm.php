@@ -71,24 +71,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo "<td>$pos_name</td>";
 
-<<<<<<< HEAD
-    $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
-    list($tor_id)=mysqli_fetch_row($show2);
-    mysqli_free_result($show2);
-    echo $tor_id,"-->",$gen_fname,$gen_lname;
-    
 
-    $show3= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE'TOR%' ") or  die("SQL Error1==>3".mysql_error($con));
-    list($tor_idc2)=mysqli_fetch_row($show3);
-    mysqli_free_result($show3);
-    if(!empty($tor_id)){
-      echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
-      if(!empty($tor_idc2)){
-        echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_idc2' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
-      }
-      else{
-        echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
-=======
     // ข้อตกลง
     $pre= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
     list($PRE_id)=mysqli_fetch_row($pre);
@@ -98,7 +81,6 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     $tor= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($tor);
     mysqli_free_result($tor);
->>>>>>> c643b56aafdb70208df76984475e8d7151dd913e
 
      // เช็ค EVD
      $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$gen_id' AND ass_id='$tor_id'") or die("SQL-error".mysqli_error($con));
