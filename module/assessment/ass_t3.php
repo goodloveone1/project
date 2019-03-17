@@ -31,13 +31,14 @@ if(empty($_POST['tor']) || empty($_POST['year'])){
 				 $reSum2=mysqli_query($con,"SELECT sum_asst2 FROM sum_score_assessment_t2 WHERE ass_id='$tor_ID'") or die("SQL_sum2Error".mysqli_error($con)) ;
 				 list($sum2)=mysqli_fetch_row($reSum2);
 				
-
-
 					mysqli_free_result($reChk);
 					mysqli_free_result($reSum2);
 					mysqli_free_result($reSum1);
+
+					$ctor=substr($TOR_id,3,11);
+					$Ass_id="TOR".$ctor;
 				?>
-<input type="hidden" value="<?php echo $tor_ID?>" name="tor_id">
+<input type="hidden" value="<?php echo $Ass_id?>" name="tor_id">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -236,10 +237,10 @@ chk()
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t4.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+								$.post( "module/assessment/ass_t4.php", { tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","tor_t4");
+								sessionStorage.setItem("action","ass_t4");
 								$("#detail").html(data);
   								});
 					        },

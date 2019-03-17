@@ -56,6 +56,8 @@ function modules(module1,action){
 				case "ass_t1":break;
 				case "ass_t2":break;
 				case "ass_t3":break;
+				case "ass_t4":break;
+				case "ass_t5":break;
 				case "tor1_pretest":break;
 				case "tor2_pretest":break;
 				case "tor3_pretest":break;

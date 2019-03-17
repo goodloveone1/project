@@ -51,7 +51,7 @@ $con=connect_db();
               if(empty($PER_id)){
                 echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
               }else{
-                echo "ทำการประเมินแล้ว";
+                echo "ทำข้อตกลงแล้ว";
               }
                
             ?>
@@ -92,9 +92,9 @@ $con=connect_db();
   </tbody>
         <?php        
           }else if($year<$year_now){
-            echo "<p align='center' style='color:red;'>***หมดเวลาประเมินแล้ว</p>";
+            echo "<p align='center' style='color:red;'>***หมดเวลาประเมินแล้ว กรุณาตรวจสอบปีการประเมิน</p>";
           }else{
-            echo "<p align='center' style='color:blue;'>***ยังไม่ถึงเวลาประเมิน</p>";
+            echo "<p align='center' style='color:blue;'>***ยังไม่ถึงเวลาประเมิน กรุณาตรวจสอบปีการประเมิน</p>";
           }
 
 

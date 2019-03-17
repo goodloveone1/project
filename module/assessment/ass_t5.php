@@ -4,37 +4,35 @@
 	include("../../function/fc_time.php");
 	$con=connect_db();
 	//$yeartest=chk_idtest();
-	if(empty($_POST['tor']) || empty($_POST['year'])){
-		$genIdpost =$_SESSION['user_id'];
-		$yearIdpost=$_SESSION['yearIdpost'];
-		$TOR_id = $_SESSION['pre_id'];
-
-}else{
-		$genIdpost = $_SESSION['user_id'];
-		$yearIdpost = $_POST['year'];
-		$TOR_id = $_POST['tor'];
-
-}
-
-$ctor=substr($TOR_id,3,11);
-$Ass_id="TOR".$ctor;
-
-	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
-	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-	list($tor_ID)=mysqli_fetch_row($reChk);
-
-
+    if(empty($_POST['tor']) || empty($_POST['year'])){
+        $genIdpost =$_SESSION['user_id'];
+        $yearIdpost=$_SESSION['yearIdpost'];
+        $TOR_id = $_SESSION['pre_id'];
+    
+    }else{
+        $genIdpost = $_SESSION['user_id'];
+        $yearIdpost = $_POST['year'];
+        $TOR_id = $_POST['tor'];
+    
+    }
+    
+    $ctor=substr($TOR_id,3,11);
+    $Ass_id="TOR".$ctor;
+ 
+    $select_tor=mysqli_query($con,"SELECT leader FROM assessments WHERE ass_id='$Ass_id'") or die("SQL-error.SelectTor".mysqli_error($con));
+    list($hleader)=mysqli_fetch_row($select_tor);
+        //echo $hleader;
+    mysqli_free_result($select_tor);
 	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
 	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
-
 	mysqli_free_result($genchk);
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;
 $date = date("Y/m/d");
 ?>
 
 <form class="p-2" name="tort5" id="tort5"> 
-<input type="hidden" name="tor_id" value="<?php echo $tor_ID  ?>">
+<input type="hidden" name="tor_id" value="<?php echo $Ass_id  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -67,7 +65,7 @@ $date = date("Y/m/d");
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_lname,"  ",$g_fname; ?>" name="uname" readonly>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $tle_g,$g_fname,"  ",$g_lname; ?>" name="uname" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
@@ -113,7 +111,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border   border-dark p-3">
 		<div class="form-group row">
 		<?php  
-				$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$_SESSION[user_id]'";
+				$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$hleader'";
 				$Lchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
 				list($Lprefix,$Llname,$Lfname,$Lposition)=mysqli_fetch_row($Lchk);
 			
@@ -140,8 +138,8 @@ $date = date("Y/m/d");
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
 			
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date)?>" name="" readonly>
-					<input type="hidden" value="<?php echo $date;  ?>" name="tdate">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="" name="" readonly>
+					<input type="hidden" value="" name="tdate">
 				</div>				
 		</div>
 	</div>

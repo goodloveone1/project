@@ -86,18 +86,18 @@
 				<td> การมุ่งผลสัมฤทธิ์ </td>
 		
 				<input type="hidden" value="<?php echo $Ass_id?>" name="tor_id">
-				<input type="text" value="<?php echo $max?>" name="max">
+				<input type="hidden" value="<?php echo $max?>" name="max">
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[0]['score'])?"0":$set[0]['score'] ?>" name="exp[]" readonly ></td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[0]['subcap_id']?>" name="stit0">
 				<div class="form-group">
-				<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]"  onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[0]['score'])?" ":$ass2[0]['score'] ?>" required  >
+				<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]"  onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[0]['score'])?"0":$ass2[0]['score'] ?>" required  >
 					</div>
 				 </td>
 			</tr>
 			<tr>
 				<td>บริการที่ดี </td>
 				<td> <input type='text' size='3' class="borderNon form-control" value="<?php echo empty($set[1]['score'])?"0":$set[1]['score'] ?>" placeholder="ข้อมูล" name="exp[]" readonly ></td>
-					<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();"value="<?php echo empty($ass2[1]['score'])?" ":$ass2[1]['score'] ?>" required>
+					<td><input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();"value="<?php echo empty($ass2[1]['score'])?"0":$ass2[1]['score'] ?>" required>
 					<input type='hidden' size='3' class="borderNon form-control" value="<?php echo $set[1]['subcap_id']?>" placeholder="ข้อมูล" name="stit1" readonly >
 				</td>
 			</tr>
@@ -106,7 +106,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[2]['score'])?"0":$set[2]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[2]['subcap_id']?>" name="stit2" readonly>
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[2]['score'])?" ":$ass2[2]['score'] ?>" required >
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[2]['score'])?"0":$ass2[2]['score'] ?>" required >
 				</td>
 			</tr>
 			<tr>
@@ -114,7 +114,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[3]['score'])?"0":$set[3]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[3]['subcap_id']?>" name="stit3" readonly>
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[3]['score'])?" ":$ass2[3]['score'] ?>" required>
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[3]['score'])?"0":$ass2[3]['score'] ?>" required>
 				</td>
 			</tr>
 			<tr>
@@ -122,7 +122,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[4]['score'])?"0":$set[4]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
 				     <input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[4]['subcap_id'] ?>" name="stit4" readonly>
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[4]['score'])?" ":$ass2[4]['score'] ?>" required>
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[4]['score'])?"0":$ass2[4]['score'] ?>" required>
 				</td>
 			</tr>
 		</table>
@@ -139,7 +139,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[5]['score'])?"0":$set[5]['score'] ?>" name="exp[]" readonly> </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[5]['subcap_id'] ?>" name="stit5" readonly>
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[5]['score'])?" ":$ass2[5]['score'] ?>" required>
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[5]['score'])?"0":$ass2[5]['score'] ?>" required>
 				</td>
 			</tr>
 			<tr>
@@ -147,7 +147,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[6]['score'])?"0":$set[6]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[6]['subcap_id'] ?>" name="stit6" readonly >
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[6]['score'])?" ":$ass2[6]['score'] ?>" required >
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[6]['score'])?"0":$ass2[6]['score'] ?>" required >
 				</td>
 			</tr>
 			<tr>
@@ -155,7 +155,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[7]['score'])?"0":$set[7]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
 					<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[7]['subcap_id']?>" name="stit7" readonly >
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[7]['score'])?" ":$ass2[7]['score'] ?>" required>
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[7]['score'])?"0":$ass2[7]['score'] ?>" required>
 				</td>
 			</tr>
 			<tr>
@@ -163,7 +163,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[8]['score'])?"0":$set[8]['score'] ?>" name="exp[]" readonly > </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[8]['subcap_id'] ?>" name="stit8" readonly >
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[8]['score'])?" ":$ass2[8]['score'] ?>" required>
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[8]['score'])?"0":$ass2[8]['score'] ?>" required>
 				</td>
 			</tr>
 			<tr>
@@ -171,7 +171,7 @@
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo empty($set[9]['score'])?"0":$set[9]['score'] ?>" name="exp[]" readonly>  </td>
 				<td>
 				<input type='hidden' size='3' class="borderNon form-control" placeholder="ข้อมูล" value="<?php echo $set[9]['subcap_id'] ?>" name="stit9" readonly>
-					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[9]['score'])?" ":$ass2[9]['score'] ?>" required >
+					<input type='number' min='0' max='5' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="go[]" onkeyup="fncNum();" onchange="fncNum();" value="<?php echo empty($ass2[9]['score'])?"0":$ass2[9]['score'] ?>" required >
 				</td>
 			</tr>
 		</table>
@@ -245,7 +245,7 @@
 	WHERE ass_id='$TOR_id'") or die("SQL-error.seSumAss2".mysqli_error($con));
 	list($sumscore_asst2,$sum_asst2_tot)=mysqli_fetch_row($se_SumAss2);
 	mysqli_free_result($se_SumAss2);
-	echo $sumscore_asst2,$sum_asst2_tot;
+	//echo $sumscore_asst2,$sum_asst2_tot;
 
 	
 ?>
