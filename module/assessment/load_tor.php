@@ -21,7 +21,7 @@ $con=connect_db();
 
        // เช็ค EVD
        $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
-       list($evd_id)=mysqli_fetch_row($se_EVD);
+       list($evd_id,$evd_status)=mysqli_fetch_row($se_EVD);
        mysqli_free_result($se_EVD);
  
 
@@ -114,8 +114,14 @@ $con=connect_db();
                       echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
                       echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$TOR_id' title='คลิกเพื่อทำการอัปโหลดหลักฐาน'>อัปโหลดหลักฐาน</a></td>";
                     }else{
-                      echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-                      echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
+                      if($evd_status ==1){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$TOR_id' title='คลิกเพื่อทำการตรวจสอบหลักฐาน'>ตรวจสอบหลักฐาน</a></td>";
+                      }else if($evd_status ==2){
+                        echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                        echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
+                      }
+                      
                     }
                   }
               }
@@ -167,12 +173,15 @@ $(".addtor").click(function(){
 
 $(".addevd").click(function(){
 			var tor_id = $(this).data("torid");
-			$("#detail").html("");
-			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
-				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","formreport_prm")
-				$("#detail").html(data);
-			})
+			//$("#detail").html("");
+			// $.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
+			// 	sessionStorage.setItem("module1","assessment")
+			// 	sessionStorage.setItem("action","formreport_prm")
+			// 	$("#detail").html(data);
+			// })
+      sessionStorage.setItem("module1","assessment")
+			sessionStorage.setItem("action","manage_Evidence")
+      loadingpage("assessment","manage_Evidence")
 	})
 
 

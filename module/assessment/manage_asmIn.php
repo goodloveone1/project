@@ -71,8 +71,6 @@ $con=connect_db();
       <img class='mx-auto' id='img' src='img/loading.svg'>
 </div>
 
-
-
 <?php
 mysqli_close($con);
 ?>
@@ -118,7 +116,4 @@ $(document).ready(function() {
     }
 
   }) // document ready
-
-  
-
 </script>
