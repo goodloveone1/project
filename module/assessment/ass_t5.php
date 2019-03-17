@@ -8,6 +8,8 @@
         $genIdpost =$_SESSION['user_id'];
         $yearIdpost=$_SESSION['yearIdpost'];
         $TOR_id = $_SESSION['pre_id'];
+
+        echo $_SESSION['user_id'];
     
     }else{
         $genIdpost = $_SESSION['user_id'];
@@ -92,7 +94,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border border-dark p-3">
 	<p>ผู้ประเมิน :</p>
 		<div class="custom-control custom-checkbox">
-			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" required>
+			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" disabled>
 			  <label class="custom-control-label" for="customCheck1" >
 			   แจ้งผลการประเมิน
 			  </label>
@@ -186,10 +188,10 @@ $date = date("Y/m/d");
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/manage_asmIn.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+								$.post( "module/assessment/ass_t6.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","manage_asmIn");
+								sessionStorage.setItem("action","ass_t6");
 								$("#detail").html(data);
   								});
 					        },

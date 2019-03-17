@@ -94,7 +94,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border border-dark p-3">
 	<p>ผู้ประเมิน :</p>
 		<div class="custom-control custom-checkbox">
-			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" required>
+			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" disabled  >
 			  <label class="custom-control-label" for="customCheck1" >
 			   แจ้งผลการประเมิน
 			  </label>

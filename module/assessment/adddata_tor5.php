@@ -22,11 +22,11 @@ $sql="INSERT INTO asessment_t5(asst5_id,ass_id,accept,inform,date_inform)
 
 
 
-mysqli_close($con); 
+
  
 
-unset($_SESSION['genIdpost']);
-unset($_SESSION['yearIdpost']);
+// unset($_SESSION['genIdpost']);
+// unset($_SESSION['yearIdpost']);
 echo"บันทึกสำเร็จแล้ว";
 mysqli_close($con);
 ?>
