@@ -73,7 +73,7 @@
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t5"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
-		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor4"> ต่อไป </button>
+		<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="adddata_tor4"> ต่อไป </button>
 	</div>
 </div>
 

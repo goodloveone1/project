@@ -3,6 +3,9 @@ session_start();
 include("../../function/db_function.php");
 include("../../function/fc_time.php"); 
 $con=connect_db();
+unset($_SESSION['yearIdpost']);
+unset($_SESSION['pre_id']);
+
 ?>
 <div class="row">
     <div class="col-md">

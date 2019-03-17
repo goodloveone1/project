@@ -28,8 +28,10 @@
 
 	mysqli_free_result($genchk);
 	?>
-<form class="p-2"> 
+<form class="p-2" name="tort6" id="tort6"> 
+
 <div class="row">
+<input type="hidden" name="tor_id" value="<?php echo $Ass_id?>">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
 		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
@@ -151,15 +153,15 @@
 		</div>
 	</div>
 </div>				
-</form>
+
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
-		<button type="submit" class="btn " data-modules="assessment" data-action="tor_t6"> ต่อไป </button>
+		<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="tor_t6"> ต่อไป </button>
 	</div>
 </div>
-
+</form>
 <script type="text/javascript">
  	$(document).ready(function() {
 			$("a.next").click(function(){
@@ -189,14 +191,35 @@
 				if ($(this).is(':checked')) {
 					$("#text2").prop('disabled', false);
 				}
-			});
-  
+        
+            });
+        
+	$("#tort6").submit(function(e){
+				e.preventDefault();
+				$check = $("#tort6").valid();
+				if($check == true){
+				var formData = new FormData(this);
+					    $.ajax({
+					        url: "module/assessment/adddata_tor6.php",
+					        type: 'POST',
+					        data: formData,
+					        success: function (data) {
+					            alert(data);
+								$.post( "module/assessment/manage_tor.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+    							//alert( "Data Loaded: " + data );
+								sessionStorage.setItem("module1","assessment");
+								sessionStorage.setItem("action","manage_tor");
+								$("#detail").html(data);
+  								});
+					        },
+					        cache: false,
+					        contentType: false,
+					        processData: false
+					    });
+				}
+			})
 	});
-	
-
-
 </script>
-
 <?php
 mysqli_close($con);
 ?>

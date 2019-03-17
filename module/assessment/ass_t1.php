@@ -1,5 +1,4 @@
-<div class="row">
-	<div class="col-md">
+
 <?php
 	session_start();
 	include("../../function/db_function.php");
@@ -10,12 +9,12 @@
 		if(empty($_POST['tor']) || empty($_POST['year'])){
 			$yearIdpost=$_SESSION['yearIdpost'];
 			$TOR_id = $_SESSION['pre_id'];
-			echo "SASSION",$TOR_id,$yearIdpost;
+			//echo "SASSION",$TOR_id,$yearIdpost;
 		
 		}else{
 			$yearIdpost = $_POST['year'];
 			$TOR_id = $_POST['tor'];
-			echo "POST",$TOR_id,$yearIdpost;
+			//echo "POST",$TOR_id,$yearIdpost;
 		}
 //ผู้รับการประเมิน
 	 $seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
@@ -25,13 +24,9 @@
 	// echo "$gen_acadeic,$fname,$lname","GGGGGGGGGGGGGGGG";
 	
 ?>
-	</>
-</div>
-<form method="POST" class="p-2" name="tor1" id="tor1">
 
-<input type="hidden" value="<?php echo $TOR_id; ?>" name="tor_id">
+<form method="POST" class="p-2" name="tor1" id="tor1">
    <div class="row">
-		<div class="col-md">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp;
 		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
@@ -39,11 +34,11 @@
 		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp;
 		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp;
 		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
-		 </div>
-		 <br>
     </div>
 <div class="row ">
+<input type="hidden" value="<?php echo $TOR_id; ?>" name="tor_id">
 	<div class="col-md">
+	<br>
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
 	</div>
 </div>
@@ -155,7 +150,7 @@
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 
-	<button type="submit" class="btn" data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 
 	</div>
