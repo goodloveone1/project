@@ -44,7 +44,7 @@ $con=connect_db();
 							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
 							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
+						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอตรวจสอบหลักฐานอีกคร้ง </b></td>"; 
 							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
 					}else if($evd_status == 2){
 						echo "<td><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i> ยืนยันหลักฐานแล้ว </b></td>"; 
@@ -86,7 +86,7 @@ $.getScript('js/mydatatable.js')
 			$("#detail").html("");
 			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
 				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","manage_tor")
+				sessionStorage.setItem("action","formreport_prm")
 				$("#detail").html(data);
 			})
 	})

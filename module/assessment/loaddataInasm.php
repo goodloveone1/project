@@ -10,14 +10,16 @@ $year = $_POST['year'];
 <table class="table table-border col-md" id="Datatable">
   <thead>
     <tr>
-      <th>ลำดับ </th>
+  
       <th> รูปภาพ </th>
       <th> ชื่อ </th>
       <th> สกุล </th>
       <th> หลักสูตร </th>
       <th> สาขา </th>
       <th> ตำแหน่ง </th>
-      <th> สถานะการประเมิน </th>
+      <th> สถานะข้อตกลง </th>
+      <th> สถานะประเมิน </th>
+      <th> สถานะหลักฐาน </th>
       <th> ประเมินบุคลากร </th>
     </tr>
   <thead>
@@ -43,7 +45,6 @@ WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND sta
     $i=1;
 while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
     echo "<tr>";
-    echo " <td>$i</td>";
     if(!empty($gen_pict)){
         echo " <td><img src='img/$gen_pict' class='img-thumbnail' width='100px' height='100px'></td>";
     }else{
@@ -70,6 +71,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo "<td>$pos_name</td>";
 
+<<<<<<< HEAD
     $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($show2);
     mysqli_free_result($show2);
@@ -86,17 +88,105 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       }
       else{
         echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
+=======
+    // ข้อตกลง
+    $pre= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
+    list($PRE_id)=mysqli_fetch_row($pre);
+    mysqli_free_result($pre);
 
-      }
+    // TOR
+    $tor= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or  die("SQL Error1==>1".mysql_error($con));
+    list($tor_id)=mysqli_fetch_row($tor);
+    mysqli_free_result($tor);
+>>>>>>> c643b56aafdb70208df76984475e8d7151dd913e
 
+     // เช็ค EVD
+     $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$gen_id' AND ass_id='$tor_id'") or die("SQL-error".mysqli_error($con));
+     list($evd_id,$evd_status)=mysqli_fetch_row($se_EVD);
+     mysqli_free_result($se_EVD);
+
+
+    // $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
+    // list($tor_idc2)=mysqli_fetch_row($show3);
+    // mysqli_free_result($show3);
+
+    if(empty($PRE_id)){
+      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
     }else{
-      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมินตนเอง </b></td>";
-      echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังตรวจสอบไม่ได้ </b></a></td>";
+        if(empty($tor_id)){
+          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+        }else{
+          if(empty($evd_id)){
+            echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+            echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+            echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+            echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          }else{
+            if($evd_status ==1){
+              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+              echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+            }else if($evd_status ==2){
+              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+              echo "<td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
+            }
+            
+          }
+        }
     }
 
+    // if(empty($PRE_id)){
+    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    // }else{
+    //     if(empty($tor_id)){
+    //       echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    //       echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
+    //     }else{
+
+    //       if(empty($evd_id)){
+    //         echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+    //         echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$tor_id' title='คลิกเพื่อทำการอัปโหลดหลักฐาน'>อัปโหลดหลักฐาน</a></td>";
+    //       }else{
+    //         if($evd_status ==1){
+    //           echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+    //           echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$tor_id' title='คลิกเพื่อทำการตรวจสอบหลักฐาน'>ตรวจสอบหลักฐาน</a></td>";
+    //         }else if($evd_status ==2){
+    //           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+    //           echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
+    //         }
+            
+    //       }
+    //     }
+    // }
 
 
 
+    // if(!empty($tor_id)){
+    //   echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
+    //   if(empty($tor_idc2)){
+    //     echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
+    //   }
+    //   else{
+    //     echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
+
+    //   }
+
+    // }else{
+    //   echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมินตนเอง </b></td>";
+    //   echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังตรวจสอบไม่ได้ </b></a></td>";
+    // }
 
     echo "</tr>";
   $i++;

@@ -11,7 +11,7 @@ $ass_id = empty($_POST['torid'])?"":$_POST['torid'];
 if(empty($ass_id)){
 	echo "<script> 
 	    alert('!!!!!');
-		loadmain('assessment','manage_tor') 
+	loadmain('assessment','manage_Evidence') 
 		</script>";
 }
 
@@ -22,7 +22,7 @@ list($tor_year)=mysqli_fetch_row($tor);
 <form class="p-2" id='fmreport'  method="POST"  enctype="multipart/form-data">
 <input type='hidden' name="ass_id" value='<?php echo $ass_id ?>'>
 	<div class="row">
-		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_tor">ย้อนกลับ </button></div>
+		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
 		<div class="col-sm pt-2 text-center">
 			<h5>แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
