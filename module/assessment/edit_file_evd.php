@@ -25,7 +25,7 @@
                                         <input type="hidden"  name='seid' value='<?php echo $_POST['seid'] ?>'>
                                         <input type="hidden"  name='evdid' value='<?php echo $_POST['evdid'] ?>'>
                                         <input type="file" class="form-control-file filecheck" name='addfile[]' multiple>
-                                        <small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG  เท่านั้น</small>
+                                        <small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP  เท่านั้น</small>
                                     </div>
                                 <div class="col-sm-2"> <button type='submit' class='btn btn-secondary' ><i class="fas fa-file-medical fa-lg"></i> อัปโหลดรูปภาพ </button> </div>
                            </div>
@@ -78,7 +78,7 @@ $(document).ready(function() {
 		
 
 	jQuery.validator.addClassRules("filecheck", {
-		extension: "pdf|doc|png|jpg|docx",
+		extension: "pdf|doc|png|jpg|docx|rar|zip",
         filesize : 2000000, // MAX 2 MB
         required: true
 	});

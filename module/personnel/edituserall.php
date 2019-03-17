@@ -75,70 +75,97 @@
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่ง </label>
 				<div class="col-sm">
-					<select class="form-control"  name="pos">
+				<?php 
+					$selectP=mysqli_query ($con,"SELECT  * FROM position WHERE pos_id='$position' ") or die ("error".mysqli_error($con));
+					list($pos_id,$pos_name)=mysqli_fetch_row($selectP)
+				?>
+				<input type="hidden"  name="pos" value="<?php echo $pos_id ?>">
+				<input type="text" class="form-control"   value="<?php echo $pos_name; ?>" disabled>
+					<!-- <select class="form-control"  name="pos" disabled>
 					<?php
-						$selectP=mysqli_query ($con,"SELECT  *FROM position ") or die ("error".mysqli_error($con));
+						// $selectP=mysqli_query ($con,"SELECT  *FROM position ") or die ("error".mysqli_error($con));
 
-						 while(list($pos_id,$pos_name)=mysqli_fetch_row($selectP)){
-							$select=$pos_id==$position?"selected":"";
-							echo "<option value=$pos_id $select>$pos_name</option>";
-						 }
+						//  while(list($pos_id,$pos_name)=mysqli_fetch_row($selectP)){
+						// 	$select=$pos_id==$position?"selected":"";
+						// 	echo "<option value=$pos_id $select>$pos_name</option>";
+						//  }
 
 						?>
-					</select>
+					</select>  -->
 				</div>
 
 				<label for="inputPassword" class="col-sm-2 col-form-label">ตำแหน่งวิชาการ</label>
 				<div class="col-sm">
-					<select class="form-control"  name="ap">
+				<?php 
+					$selectP=mysqli_query ($con,"SELECT * FROM academic  WHERE aca_id='$acadeic' ") or die ("error".mysqli_error($con));
+					list($aca_id,$aca_name)=mysqli_fetch_row($selectP);
+					$selectP->free_result();
+				?>
+				<input type="hidden"  name="ap" value="<?php echo $aca_id ?>">
+				<input type="text" class="form-control"   value="<?php echo $aca_name; ?>" disabled>
+					<!-- <select class="form-control"  name="ap" disabled>
 					<?php
-						$selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
+						// $selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
 
-						 while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
-							$seA=$aca_id==$acadeic?"selected":"";
-							echo "<option value=$aca_id $seA>$aca_name</option>";
-						 }
-						 $selectP->free_result();
-						?>
-					</select>
+						//  while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
+						// 	$seA=$aca_id==$acadeic?"selected":"";
+						// 	echo "<option value=$aca_id $seA>$aca_name</option>";
+						//  }
+						//  $selectP->free_result();
+						// ?>
+					</select> -->
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
 				<div class="col-md">
-					<select class="form-control" id="selectsuj" name="suj">
+				<?php 
+					$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
+					list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result);
+					$result->free_result();
+				?>
+				<input type="hidden"  name="suj" value="<?php echo $subject_ID ?>">
+				<input type="text" class="form-control"   value="<?php echo $subject_name; ?>" disabled>
+
+					<!-- <select class="form-control" id="selectsuj" name="suj" disabled>
 						<?php
-						$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
+						// $result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
+						//  while(list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result)){
+						//  	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
+        				// 	list($branch_name)=mysqli_fetch_row($branch);
 
-						 while(list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result)){
-						 	$branch=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
-        					list($branch_name)=mysqli_fetch_row($branch);
+						// 	$seP=$branch_id==$subject_ID?"selected":"";
 
-							$seP=$branch_id==$subject_ID?"selected":"";
+						//  	echo "<option value='".$subject_ID."' data-idbrn='".$dept_id."' data-nbrn='".$branch_name."'$seP>$subject_name </option>";
 
-						 	echo "<option value='".$subject_ID."' data-idbrn='".$dept_id."' data-nbrn='".$branch_name."'$seP>$subject_name </option>";
-
-						 	$branch->free_result();
-						 }
-						 $result->free_result();
+						//  	$branch->free_result();
+						//  }
+						//  $result->free_result();
 						?>
 
-					</select>
+					</select> -->
 						
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">สาขาวิชา  <?php  ?></label>
 				<div class="col-md">
-					<select class="form-control" id="selectbrn" name="brn">
+				<?php
+				$det=mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id='$dept_id'") or die ("errorSQL".mysqli_error($con));
+				list($detname)=mysqli_fetch_row($det);
+				$det->free_result();
+				?>
+				<input type="text" class="form-control"   value="<?php echo $detname; ?>" disabled>
+					<!-- <select class="form-control" id="selectbrn" name="brn" disabled>
 
-					</select>
+					</select> -->
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputPassword" class="col-sm-2 col-form-label">เงินเดือน</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $salary ?>" required>
+				<input type="hidden" class="form-control"  placeholder="salary" name="salary" value="<?php echo $salary ?>">
+				<input type="text" class="form-control"  placeholder="salary" name="salary" value="<?php echo $salary ?>" disabled>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -195,17 +222,25 @@
 			<div class="form-group row">
 				<label for="" class="col-md-2 col-form-label">ประเภทบุคลากร</label>
 				<div class="col-md-10">
-					<select class="form-control"  name="permiss">
-						<?php
-							$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
+				<?php 
+					$permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions WHERE permiss_id='$permiss_id'") or die ("error".mysqli_error($con));
+					list($permissid,$permissname) = mysqli_fetch_row($permiss);
+					$permiss->free_result();
+				?>
+				<input type="hidden"  name="permiss" value="<?php echo $permissid ?>">
+				<input type="text" class="form-control"   value="<?php echo $permissname; ?>" disabled>
 
-							while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
-								$sePM=$permiss_id==$permissid?"selected":"";
-								echo "<option value='".$permissid."'$sePM>$permissname</option>";
-							}
-							mysqli_free_result($permiss);
+					<!-- <select class="form-control"  name="permiss" disabled>
+						<?php
+							// $permiss = mysqli_query($con,"SELECT  permiss_id,permiss_decs FROM permissions") or die ("error".mysqli_error($con));
+
+							// while(list($permissid,$permissname) = mysqli_fetch_row($permiss)){
+							// 	$sePM=$permiss_id==$permissid?"selected":"";
+							// 	echo "<option value='".$permissid."'$sePM>$permissname</option>";
+							// }
+							// mysqli_free_result($permiss);
 						?>
-					</select>
+					</select> -->
 				</div>
 			</div>
 			
@@ -259,7 +294,7 @@
 					        success: function (data) {
 								//alert(data);
 								alert("บันทึกข้อมูลสำเร็จ" );
-								loadmain("personnel","home")
+								loadingpage("personnel","edituserall")
 					        },
 					        cache: false,
 					        contentType: false,

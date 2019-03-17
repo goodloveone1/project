@@ -286,15 +286,11 @@ $( document ).ready(function() {
 							success: function (data) {
 
                             alert(data)
-
+							loadingpage("assessment","manage_Evidence");		
 							},
 							cache: false,
 							contentType: false,
 							processData: false
-						}).done(function(data) {
-
-                           loadingpage("assessment","manage_Evidence");
-
 						})
 		}
 	});

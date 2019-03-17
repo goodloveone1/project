@@ -32,6 +32,10 @@ try{
                     $typefile['1'] = "doc";
                 }else if($typefile['1'] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
                     $typefile['1'] = "docx";
+                }else if($typefile['1'] == "octet-stream"){
+                    $typefile['1'] = "rar";
+                }else if($typefile['1'] == "x-zip-compressed"){
+                    $typefile['1'] = "zip";
                 }
         
                 
@@ -70,6 +74,10 @@ try{
                         $typefile[1] = "doc";
                     }else if($typefile[1] == "vnd.openxmlformats-officedocument.wordprocessingml.document"){
                         $typefile[1] = "docx";
+                    }else if($typefile['1'] == "octet-stream"){
+                        $typefile['1'] = "rar";
+                    }else if($typefile['1'] == "x-zip-compressed"){
+                        $typefile['1'] = "zip";
                     }
             
                     

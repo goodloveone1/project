@@ -208,7 +208,7 @@ $( document ).ready(function() {
 		
 
 	jQuery.validator.addClassRules("filecheck", {
-		extension: "pdf|doc|png|jpg|docx",
+		extension: "pdf|doc|png|jpg|docx|rar|zip",
 		filesize : 2000000, // MAX 2 MB
 	});
 
@@ -280,7 +280,7 @@ $( document ).ready(function() {
 						}).done(function(data) {
 
 							alert(data)
-					//	loadingpage("assessment","manage_Evidence");
+						loadingpage("assessment","manage_Evidence");
 						//	$("#detail").html(data);
 
 						})
