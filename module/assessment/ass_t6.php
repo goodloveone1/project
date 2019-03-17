@@ -49,21 +49,21 @@
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="customRadio" disabled  >
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="apc" disabled  >
 			  <label class="custom-control-label" for="customRadio1">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="customRadio" disabled>
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" disabled>
 			  <label class="custom-control-label" for="customRadio2">
 			    มีความเห็นแตกต่าง  ดังนี้
 
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" id="text1" rows="3" disabled required></textarea>
+		    <textarea class="form-control" name="hcompt" id="text1" rows="3" disabled required></textarea>
 		 </div>
 
 	</div>
@@ -127,7 +127,7 @@
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" id="text2" rows="3" disabled required></textarea>
+		    <textarea class="form-control" name="scompt" id="text2" rows="3" disabled required></textarea>
 		 </div>
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
