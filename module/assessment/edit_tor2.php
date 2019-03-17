@@ -243,12 +243,12 @@
 	<div class="col-md">
 <?php  
 	$se_sumSkAss2 = mysqli_query($con,
-	"SELECT score_skil,score_x,score 
+	"SELECT asst2_skid,score_skil,score_x,score 
 	FROM assessment_t2_skill 
 	WHERE ass_id='$yearIdpost'
 	ORDER BY score_x DESC")or die("SQL-error.sumSkAss2".mysqli_error($con));
 	for ($skilA = array (); $row = $se_sumSkAss2->fetch_assoc(); $skilA[] = $row);
-	//print_r($skilA);
+	print_r($skilA);
 	mysqli_free_result($se_sumSkAss2);
 
 	$se_SumAss2 =mysqli_query($con,
@@ -280,7 +280,9 @@
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  สูงกว่าหรือเท่ากับ ระดับสมรรถนะที่คาดหวัง  ×  ๓ คะแนน</td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo1"  data-sumgo="1" id="sumgo" value="<?php echo empty($skilA[0]['score_skil'])?"0":$skilA[0]['score_skil'] ?>" readonly > </td>
 			<td> <input type='text' size='5' class="borderNon form-control" placeholder="0" name="x1" value="3" data-x="1" readonly  > </td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='1' id="score" value="<?php echo empty($skilA[0]['score'])?"0":$skilA[0]['score'] ?>" readonly ></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='1' id="score" value="<?php echo empty($skilA[0]['score'])?"0":$skilA[0]['score'] ?>" readonly >
+			<input type="hidden" name="skill_id[]" value="<?php echo empty($skilA[0]['asst2_skid'])?"0":$skilA[0]['asst2_skid'] ?>" >
+			</td>
 
 
 		</tr>
@@ -288,19 +290,23 @@
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๑  ระดับ    × ๒ คะแนน</td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo2" data-sumgo="2" id="sumgo" value="<?php echo empty($skilA[1]['score_skil'])?"0":$skilA[1]['score_skil'] ?>" readonly ></td>
 			<td><input type='text' size='5' class="borderNon form-control" placeholder="0" name="x2" value="2" data-x="2" readonly ></td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();"  onchange="fncNum();" data-score='2' id="score" value="<?php echo empty($skilA[1]['score'])?"0":$skilA[1]['score'] ?>" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();"  onchange="fncNum();" data-score='2' id="score" value="<?php echo empty($skilA[1]['score'])?"0":$skilA[1]['score'] ?>" readonly>
+			<input type="hidden" name="skill_id[]" value="<?php echo empty($skilA[1]['asst2_skid'])?"0":$skilA[1]['asst2_skid'] ?>" ></td>
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๒  ระดับ  ×  ๑  คะแนน  </td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo3" data-sumgo="3" id="sumgo" value="<?php echo empty($skilA[2]['score_skil'])?"0":$skilA[2]['score_skil'] ?>" readonly  ></td>
 			<td><input type='text' size='5' class="borderNon form-control" placeholder="0" name="x3" value="1" data-x="3" readonly ></td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='3' id="score" value="<?php echo empty($skilA[2]['score_skil'])?"0":$skilA[2]['score_skil'] ?>" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='3' id="score" value="<?php echo empty($skilA[2]['score'])?"0":$skilA[2]['score'] ?>" readonly>
+			<input type="hidden" name="skill_id[]" value="<?php echo empty($skilA[2]['asst2_skid'])?"0":$skilA[2]['asst2_skid'] ?>" ></td>
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๓  ระดับ   ×  ๐  คะแนน</td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo4" data-sumgo="4" id="sumgo" value="<?php echo empty($skilA[3]['score_skil'])?"0":$skilA[3]['score_skil'] ?>" readonly ></td>
 			<td><input type='text' size='5' class="borderNon form-control" placeholder="0" name="x4" value="0"  data-x="4" readonly ></td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='4' id="score" value="<?php echo empty($skilA[3]['score_skil'])?"0":$skilA[3]['score_skil'] ?>" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='4' id="score" value="<?php echo empty($skilA[3]['score'])?"0":$skilA[3]['score'] ?>" readonly>
+			<input type="hidden" name="skill_id[]" value="<?php echo empty($skilA[3]['asst2_skid'])?"0":$skilA[3]['asst2_skid'] ?>" ></td>
+
 		</tr>
 		<tr>
 			<td colspan="3" class="text-right">ผลรวมคะแนน</td>
@@ -489,7 +495,7 @@ function fncSum(){
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/edit_tor2.php", { tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+								$.post( "module/assessment/edit_tor2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
 								sessionStorage.setItem("module1","assessment");
 								sessionStorage.setItem("action","edit_tor2");
