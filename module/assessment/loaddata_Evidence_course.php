@@ -29,12 +29,12 @@ $con=connect_db();
 
 						if($_SESSION['user_level'] == 3){ //  หลักสูตร
 
-						$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+						$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						
 						}else if($_SESSION['user_level'] == 4){ // สาขา
-							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '3' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						}else if($_SESSION['user_level'] == 5){ // คณะ
-							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '4' AND year_id='$_POST[year]' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
+							$asm= mysqli_query($con,"SELECT ass_id,year_id,st.st_id,st.fname,st.lname,st.position FROM assessments AS ass INNER JOIN staffs AS st ON ass.staff = st.st_id WHERE ass.staff != '$_SESSION[user_id]' AND st.branch_id='$_SESSION[branch]' AND st.permiss_id = '2' AND year_id='$_POST[year]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==> ".mysqli_error($con));
 						}	
 						while(list($ass_id,$tor_year,$st_id,$st_name,$st_lname,$position) = mysqli_fetch_row($asm)){
 

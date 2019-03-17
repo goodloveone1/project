@@ -120,7 +120,7 @@
 				<label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
 				<div class="col-md">
 				<?php 
-					$result=mysqli_query ($con,"SELECT *FROM branchs ") or die ("error".mysqli_error($con));
+					$result=mysqli_query ($con,"SELECT * FROM branchs WHERE br_id='$branch_id' ") or die ("error".mysqli_error($con));
 					list($subject_ID,$subject_name,$dept_id)=mysqli_fetch_row($result);
 					$result->free_result();
 				?>

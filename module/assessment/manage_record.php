@@ -3,7 +3,7 @@
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
 $con=connect_db();
-  $yearnow = chk_idtest();
+$yearnow = chk_idtest();
  ?>
 <div class="row  p-2 headtitle">
 	<h2 class="text-center col-md "> จัดการการมาปฏิบัติงาน </h2>
@@ -27,7 +27,7 @@ $con=connect_db();
   <tbody>
     <?php
 
-    $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_year DESC") or  die("SQL Error1==>1".mysql_error($con));
+    $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_id DESC") or  die("SQL Error1==>1".mysql_error($con));
 
 
 
@@ -49,7 +49,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     $idl= mysqli_query($con,"SELECT year_id FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id' ") or  die("SQL Error1==>1".mysql_error($con));
     list($year_id1)=mysqli_fetch_row($idl);
     
-    if($yearnow==$year_id1){
+    if($yearnow==$y_id){
         if(!empty($year_id1)){
           echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
           if($yearnow == $year_id1){
@@ -67,9 +67,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
       echo " <td> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> อยู่นอกระยะทำการ</td>";
     }
 
-
-
-    echo "</tr>";
+   echo "</tr>";
 }
 mysqli_close($con);
     ?>
