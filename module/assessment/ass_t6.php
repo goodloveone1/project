@@ -101,6 +101,17 @@
 	</div>
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
+               <?php
+                     $seSleader=mysqli_query($con,
+                     "SELECT staffs.prefix,staffs.fname,staffs.lname,position.pos_name
+                     FROM staffs
+                     INNER JOIN position
+                     ON staffs.position=position.pos_id
+                     WHERE st_id='$sleader'")or die("SQL.hleaderError".mysqli_error($con));
+					 list($Sl_prefix,$Sl_name,$Sl_fname,$Sl_position)=mysqli_fetch_row($seSleader);
+					 mysqli_free_result($seSleader);
+				?>
+
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="custom-control custom-radio">
 			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" disabled >
@@ -123,13 +134,13 @@
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" readonly>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Sl_prefix,$Sl_name," ",$Sl_fname ?>" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" readonly>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Sl_position  ?>" readonly>
 				</div>				
 		</div>
 		<div class="form-group row">
