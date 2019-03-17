@@ -49,7 +49,7 @@ $(document).ready(function() {
         $.post("module/assessment/del_evd_file.php", { evdidfile : $(this).data("evdfileid") ,url: $(this).data("url") }).done(function(data){
            //alert(data);
            alert("ลบไฟล์สำเร็จแล้ว");
-           loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,<?php echo $_POST['evdid'] ?>)
+           loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,'<?php echo $_POST['evdid'] ?>')
         })
         }
     })

@@ -22,7 +22,6 @@
                             <th scope="col">ลำดับ</th>
                             <th >ชื่อไฟล์</th>
                             <th >ประเภทไฟล์</th>
-                            <th >ขนาด</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +41,6 @@
                             <th scope="row"><?php echo $i ?></th>
                             <td><?php echo "<a href='$url' target='_blank'> $evd_file_name </a>"; ?></td>
                             <td><?php echo pathinfo($url,PATHINFO_EXTENSION)?></td>
-                            <td><?php echo filesize("../../".$url). ' bytes' ?></td> 
                             </tr>
                         <?php
                         $i++;

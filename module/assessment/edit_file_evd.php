@@ -50,7 +50,7 @@ mysqli_close($con);
 
 $(document).ready(function() {
 
-    loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,<?php echo $_POST['evdid'] ?>)
+    loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,'<?php echo $_POST['evdid'] ?>')
 
     function loadtablefile(torids,seids,evdids){
 
@@ -109,7 +109,7 @@ $(document).ready(function() {
 							processData: false
 						}).done(function(data) {
                             $('.filecheck').val("");
-                            loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,<?php echo $_POST['evdid'] ?>)
+                            loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,'<?php echo $_POST['evdid'] ?>')
 						})
 		}
 	}

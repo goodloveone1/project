@@ -229,7 +229,7 @@ $( document ).ready(function() {
 	$(".textedit").click(function(e) {
 		e.preventDefault(); 
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : <?php echo $evdid ?>,torid: '<?php echo $ass_id ?>' } ).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdidtext : $(this).data("evdidtext") ,evdtext : $(this).data("evdtext"), evdid : '<?php echo $evdid ?>',torid: '<?php echo $ass_id ?>' } ).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
         })
@@ -239,7 +239,7 @@ $( document ).ready(function() {
 	$(".textedit2").click(function(e) {
 		e.preventDefault(); 
 		//alert($(this).data("evdid"));
-        $.post("module/assessment/edit_text_evd.php", { evdid2 : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: '<?php echo $ass_id ?>' }).done(function(data){
+        $.post("module/assessment/edit_text_evd.php", { evdid2 : '<?php echo $evdid ?>' ,seid : $(this).data("seid") ,torid: '<?php echo $ass_id ?>' }).done(function(data){
             $('#loadedittext').html(data);
                  $('#edittext').modal('show');
         })
@@ -248,7 +248,7 @@ $( document ).ready(function() {
 
 	$(".fileedit").click(function(e) {
 		e.preventDefault(); 
-        $.post("module/assessment/edit_file_evd.php", { evdid : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: '<?php echo $ass_id ?>' }).done(function(data){
+        $.post("module/assessment/edit_file_evd.php", { evdid : '<?php echo $evdid ?>' ,seid : $(this).data("seid") ,torid: '<?php echo $ass_id ?>' }).done(function(data){
             $('#loadeditfile').html(data);
                  $('#editfile').modal('show');
         })
@@ -257,7 +257,7 @@ $( document ).ready(function() {
 	$('#loadeditfile').on('hidden.bs.modal','#editfile', function () {
 		var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
-            $.post( "module/"+module1+"/"+action+".php", { torid: "<?php echo $ass_id ?>" ,evdid: <?php echo $evdid ?> }).done(function(data,txtstuta){
+            $.post( "module/"+module1+"/"+action+".php", { torid: "<?php echo $ass_id ?>" ,evdid: '<?php echo $evdid ?>' }).done(function(data,txtstuta){
 
             $("#detail").html(data);
 			})

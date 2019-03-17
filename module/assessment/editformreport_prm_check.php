@@ -301,7 +301,7 @@ $( document ).ready(function() {
 
 	$(".fileedit").click(function(e) {
 		e.preventDefault(); 
-        $.post("module/assessment/show_file_evd.php", { evdid : <?php echo $evdid ?> ,seid : $(this).data("seid") ,torid: "<?php echo $ass_id ?>" }).done(function(data){
+        $.post("module/assessment/show_file_evd.php", { evdid : '<?php echo $evdid ?>' ,seid : $(this).data("seid") ,torid: "<?php echo $ass_id ?>" }).done(function(data){
             $('#loadeditfile').html(data);
                  $('#editfile').modal('show');
         })

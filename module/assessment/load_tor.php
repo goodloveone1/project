@@ -19,6 +19,12 @@ $con=connect_db();
           list($TOR_id)=mysqli_fetch_row($se_TOR);
           mysqli_free_result($se_TOR);
 
+       // เช็ค EVD
+       $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
+       list($evd_id)=mysqli_fetch_row($se_EVD);
+       mysqli_free_result($se_EVD);
+ 
+
 
           if($year==$year_now){
               // echo $year,$year_now;
@@ -34,7 +40,7 @@ $con=connect_db();
   <thead>
   <tbody>
     <tr>
-        <td><?php echo $PER_id  ?></td>
+        <td><?php echo empty($PER_id)?"-":$PER_id;  ?></td>
         <td>ข้อตกลง</td>
         <td>
         <?php
@@ -58,7 +64,7 @@ $con=connect_db();
         </td>
     </tr>
     <tr>
-        <td><?php echo $TOR_id ?></td>
+        <td><?php echo empty($TOR_id)?"-":$TOR_id; ?></td>
         <td>TOR</td>
         <td>
         <?php
@@ -88,6 +94,35 @@ $con=connect_db();
                
             ?>
         </td>
+    </tr>
+    <!-- EVD -->
+    <tr> 
+        <td><?php echo  empty($evd_id)?"-":$evd_id; ?></td>
+        <td>หลักฐาน</td>
+        
+        <?php
+              if(empty($PER_id)){
+                echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                echo "<td><p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำข้อตกลงก่อน</p></td>";
+              }else{
+                  if(empty($TOR_id)){
+                    echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                    echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
+                  }else{
+
+                    if(empty($evd_id)){
+                      echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$TOR_id' title='คลิกเพื่อทำการอัปโหลดหลักฐาน'>อัปโหลดหลักฐาน</a></td>";
+                    }else{
+                      echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                      echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
+                    }
+                  }
+              }
+               
+            ?>
+        
+        
     </tr>
   </tbody>
         <?php        
@@ -129,6 +164,16 @@ $(".addtor").click(function(){
         $("#detail").html(data);
     })
 })
+
+$(".addevd").click(function(){
+			var tor_id = $(this).data("torid");
+			$("#detail").html("");
+			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
+				sessionStorage.setItem("module1","assessment")
+				sessionStorage.setItem("action","formreport_prm")
+				$("#detail").html(data);
+			})
+	})
 
 
 

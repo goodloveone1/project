@@ -86,7 +86,7 @@ $.getScript('js/mydatatable.js')
 			$("#detail").html("");
 			$.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
 				sessionStorage.setItem("module1","assessment")
-				sessionStorage.setItem("action","formreport_prm")
+				sessionStorage.setItem("action","manage_tor")
 				$("#detail").html(data);
 			})
 	})

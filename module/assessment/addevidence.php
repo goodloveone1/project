@@ -9,14 +9,19 @@ $con=connect_db();
 //print_r($_FILES);
 
 try{
+    $tor=$_POST['ass_id'];
+    $ctor=substr($tor,3,11);
+    $tor_id="EVD".$ctor;
 
-    $sql = "INSERT INTO evidence VALUES ('','$_POST[ass_id]','$_SESSION[user_id]','".date("Y-m-d")."','','','1')";
+ 
+
+    $sql = "INSERT INTO evidence VALUES ('$tor_id','$_POST[ass_id]','$_SESSION[user_id]','".date("Y-m-d")."','','','1')";
     mysqli_query($con,$sql);
 
-    $remaxid = mysqli_query($con,"SELECT max(evd_id) FROM evidence");
+    // $remaxid = mysqli_query($con,"SELECT max(evd_id) FROM evidence");
 
-    list($maxevid) = mysqli_fetch_row($remaxid);
-    mysqli_free_result($remaxid);
+    // list($maxevid) = mysqli_fetch_row($remaxid);
+    // mysqli_free_result($remaxid);
 
 
     $url = '../../file/'.$_POST['ass_id']; // ตำแหน่ง folder
@@ -43,7 +48,7 @@ try{
 
     if(!empty($text)){
 
-    mysqli_query($con,"INSERT INTO evidence_text VALUES ('','$maxevid','$se_id','$text')") or die("ERROR text ->".mysqli_error($con));
+    mysqli_query($con,"INSERT INTO evidence_text VALUES ('','$tor_id','$se_id','$text')") or die("ERROR text ->".mysqli_error($con));
 
     }
 
@@ -82,7 +87,7 @@ try{
 
                 
 
-               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
+               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$tor_id','$se_id','$oldname','$filename')");
 
                 //  $filename = iconv('UTF-8','windows-874',$filename);  // แปลง file name ไทย
                 // / echo "name ->". $_FILES[$rename]['name'][$j]."<br>";
@@ -127,7 +132,7 @@ try{
 
              ///   echo "filename -->".$filename." "."<br>";
 
-               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$maxevid','$se_id','$oldname','$filename')");
+               mysqli_query($con,"INSERT INTO evidence_file VALUES ('','$tor_id','$se_id','$oldname','$filename')");
 
                copy($_FILES[$rename]['tmp_name'],$url."/".$filename);
 
