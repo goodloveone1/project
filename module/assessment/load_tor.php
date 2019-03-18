@@ -26,6 +26,11 @@ unset($_SESSION['pre_id']);
        $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
        list($evd_id,$evd_status)=mysqli_fetch_row($se_EVD);
        mysqli_free_result($se_EVD);
+
+       // เช็ค assid 5
+      $se_ass5=mysqli_query($con,"SELECT asst5_id,accept,date_accept,inform,date_inform FROM asessment_t5 WHERE ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
+      list($asst5_id,$accept,$date_accept,$inform,$date_inform)=mysqli_fetch_row($se_ass5);
+      mysqli_free_result($se_ass5);
  
 
 
@@ -125,6 +130,7 @@ unset($_SESSION['pre_id']);
                         echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
                       }
                       
+                      
                     }
                   }
               }
@@ -133,6 +139,53 @@ unset($_SESSION['pre_id']);
         
         
     </tr>
+    <!-- ASS 5 -->
+    <tr> 
+        <td> - </td>
+        <td> หัวหน้าตรวจสอบการประเมิน </td>
+        
+        <?php
+                   if($evd_status == 2){
+                      if(empty($asst5_id)){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td> รอหัวหน้าตรวจสอบการประเมิน </td>";
+                        }else if($inform == 1){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td> หัวหน้าตรวจสอบการประเมินแล้ว </td>";
+                        }
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'>ยังไม่ได้อัปโหลดหลักฐานได้</p></td>";
+                    }        
+            ?>
+        
+        
+    </tr>
+    <tr> 
+        <td> - </td>
+        <td> รับทราบการประเมิน </td>
+        <?php          
+                if($evd_status == 2){
+                      if(empty($asst5_id)){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'> รอหัวหน้าตรวจสอบการประเมิน </p></td>";
+                      }else if($inform == 1 || $accept == 0){
+                          echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
+                          echo "<td><a href='javascript:void(0)' class=''  data-torid='$TOR_id' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
+                      }else if($inform == 1 || $accept == 1){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td>รับทราบการประเมินแล้ว</td>";
+                      }  
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'>ยังไม่ได้อัปโหลดหลักฐานได้</p></td>";
+                    }            
+            ?>
+        
+        
+    </tr>
+
+   
   </tbody>
         <?php        
           }else if($year<$year_now){

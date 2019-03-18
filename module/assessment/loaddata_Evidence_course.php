@@ -17,7 +17,7 @@ $con=connect_db();
 				<th> สาขา </th>
 				<th> หลักสูตร </th>
 				<th> ตำแหน่ง </th>
-				<th> สถานะ </th>
+				<th class='text-center'> สถานะ </th>
         <th class="text-center"> จัดการหลักฐาน</th>
       </tr>
     </thead>
@@ -69,15 +69,15 @@ $con=connect_db();
 					if(chk_idtest() ==  $tor_year)	{
 
 					if(empty($evd_status)){
-							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
-							echo "<td class='text-center'> <b class='btn text-info'><i class='far fa-clock fa-2x'></i> รอบุคลากรอัปโหลดหลักฐาน </b></td>";
+							echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+							echo "<td class='text-center'> <b class='btn text-info'><i class='far fa-clock fa-2x'></i><br>รอบุคลากรอัปโหลดหลักฐาน </br></td>";
 					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-info' ><i class='far fa-clock fa-2x'></i> รอบุคลากรยืนยันหลักฐาน </b></td>";
+						echo "<td class='text-center'><b class='text-danger'><i class='far fa-clock fa-2x'></i><br>รอยืนยันอีกครั้ง </b></td>"; 
+							echo "  <td class='text-center'> <b class='btn text-info' ><i class='far fa-clock fa-2x'></i><br>รอบุคลากรยืนยันหลักฐาน </b></td>";
 					}else if($evd_status == 2){
 						
-						echo "<td> <b class='btn text-success'><i class='fas fa-check-circle fa-2x'></i> บุคลากรยืนยันหลักฐานแล้ว </b></td>"; 
-						echo "  <td class='text-center '> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน </b></td>";
+						echo "<td class='text-center'> <b class='btn text-success'><i class='fas fa-check-circle fa-2x'></i><br>บุคลากรยืนยันหลักฐานแล้ว </br></td>"; 
+						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
 					}
 					// else if($evd_status == 3){
 					// 	echo "<td><b class='text-success'> <b><i class='fas fa-check-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
@@ -97,13 +97,13 @@ $con=connect_db();
 					}else if($evd_status == 2){
 						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
 						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
-					}else if($evd_status == 3){
-						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
-						echo "  <td class='text-center text-success '> <i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน</td>";
-					}else if($evd_status == 4){
-						echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
-							echo "  <td class='text-center text-info '></td>";
-					}		
+					// }else if($evd_status == 3){
+					// 	echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 
+					// 	echo "  <td class='text-center text-success '> <i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน</td>";
+					// }else if($evd_status == 4){
+					// 	echo "<td><b class='text-info'><i class='far fa-clock fa-2x'></i> รอผู้บังคับบัญชาพิจารณา </b></td>"; 
+					// 		echo "  <td class='text-center text-info '></td>";
+					 }		
 				}
 
 					

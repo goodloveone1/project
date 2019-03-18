@@ -87,6 +87,12 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
      list($evd_id,$evd_status)=mysqli_fetch_row($se_EVD);
      mysqli_free_result($se_EVD);
 
+      // เช็ค assid 5
+    
+      $se_ass5=mysqli_query($con,"SELECT asst5_id,accept,date_accept,inform,date_inform FROM asessment_t5 WHERE ass_id='$tor_id'") or die("SQL-error".mysqli_error($con));
+      list($asst5_id,$accept,$date_accept,$inform,$date_inform)=mysqli_fetch_row($se_ass5);
+      mysqli_free_result($se_ass5);
+
 
     // $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
     // list($tor_idc2)=mysqli_fetch_row($show3);
@@ -121,7 +127,13 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
               echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
             }
-            
+            // if(empty($asst5_id)){
+            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>หัวหน้ายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถรับทราบการประเมิน</b></td>";
+            // }else{
+            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>หัวหน้ายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถรับทราบการประเมิน</b></td>";
+            // } 
           }
         }
     }
