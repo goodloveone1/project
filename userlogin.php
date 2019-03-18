@@ -35,6 +35,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="bootstrap/js/bootstrap.js" ></script>
 		<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js" ></script>
+		<!--  CKEDTIL4 -->
+		<script src="js/ckeditor/ckeditor.js" ></script> 
 		<?php
 			require('function/menu.php');
 		?>
@@ -112,6 +114,9 @@
 		<script src="js/validate/localization/messages_th.min.js" ></script>
 		<script src="js/validateSetdef.js" ></script> 
 		<?php //END validate ?>
+
+	
+		
 
 		<!-- DATATABLE -->
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script>

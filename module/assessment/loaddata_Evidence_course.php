@@ -77,7 +77,7 @@ $con=connect_db();
 					}else if($evd_status == 2){
 						
 						echo "<td class='text-center'> <b class='btn text-success'><i class='fas fa-check-circle fa-2x'></i><br>บุคลากรยืนยันหลักฐานแล้ว </br></td>"; 
-						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
+						echo "  <td class='text-center text-info'> <a href='javascript:void(0)' class='checkevd' data-evdid='$evd_id'><b> <i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b> </a></td>";
 					}
 					// else if($evd_status == 3){
 					// 	echo "<td><b class='text-success'> <b><i class='fas fa-check-circle fa-2x'></i> ผู้บังคับบัญชาได้พิจารณาแล้วให้การรับรองแล้ว </b></td>"; 

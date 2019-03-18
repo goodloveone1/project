@@ -17,14 +17,14 @@ $con=connect_db();
         <th> รหัสประเมิน </th>
         <th> ปีการประเมิน </th>
         <th> รอบที่ </th>
-				<th> สถานะ </th>
+				<th class="text-center"> สถานะ </th>
         <th class="text-center"> จัดการหลักฐาน </th>
       </tr>
     </thead>
     <tbody>
 			<?php
-					  $asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments WHERE staff='$_SESSION[user_id]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
-						while(list($ass_id,$tor_year) = mysqli_fetch_row($asm)){
+					$asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments WHERE staff='$_SESSION[user_id]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
+					while(list($ass_id,$tor_year) = mysqli_fetch_row($asm)){
 
 					echo "<tr>";
 					echo " <td> $ass_id </td>";
@@ -41,26 +41,26 @@ $con=connect_db();
 					if(chk_idtest() ==  $tor_year)	{
 
 					if(empty($evd_status)){
-							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+							echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</br></td>";
 							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอตรวจสอบหลักฐานอีกคร้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i>ตรวจสอบหลักอีกครั้ง </b></i></td>";
+						echo "<td class='text-center'><b class='text-danger'><i class='far fa-clock fa-2x'></i><br>รอตรวจสอบหลักฐานอีกคร้ง </b></td>"; 
+							echo "  <td class='text-center'> <b class='btn text-primary editevd' data-torid='$ass_id' data-evdid='$evd_id'><i class='fas fa-check fa-2x'></i><br>ตรวจสอบหลักอีกครั้ง </b></i></td>";
 					}else if($evd_status == 2){
-						echo "<td><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i> ยืนยันหลักฐานแล้ว </b></td>"; 
-						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน </b></td>";
+						echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ยืนยันหลักฐานแล้ว </b></td>"; 
+						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
 					}
 	
 				}	else{
 						if(empty($evd_status)){
-							echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่ได้อัปโหลดหลักฐาน </b></td>";
-							echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
+							echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน </br></td>";
+							echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i><br>อยู่นอกระยะการประเมิน </b> </td>";
 					}else if($evd_status == 1){
-						echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i> รอยืนยันอีกครั้ง </b></td>"; 
-						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i> อยู่นอกระยะการประเมิน </b> </td>";
+						echo "<td class='text-center'><b class='text-danger'><i class='far fa-clock fa-2x'></i><br> รอยืนยันอีกครั้ง </b></td>"; 
+						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i><br>อยู่นอกระยะการประเมิน </b> </td>";
 					}else if($evd_status == 2){
-						echo "<td><b class='text-success'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i> ยืนยันหลักฐานแล้ว </b></td>"; 
-						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i> รายละเอียดหลักฐาน </b></td>";
+						echo "<td class='text-center'><b class='text-success'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ยืนยันหลักฐานแล้ว </b></td>"; 
+						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
 					}
 				}
 

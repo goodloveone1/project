@@ -122,10 +122,17 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>รอยืนยันอัปโหลดหลักฐาน</b></td>";
               echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
             }else if($evd_status ==2){
+              if(empty($inform == 1 && $accept == 0)){
               echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
               echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
+              }else if($inform == 1 && $accept == 1 ){
+                echo "<td class='text-center'><b><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></b></td>";
+                echo "<td class='text-center'><b><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></b></td>";
+                echo "<td class='text-center'><b><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></b></td>";
+                echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ตรวจสอบการประเมินแล้ว</b></td>";
+              }
             }
             // if(empty($asst5_id)){
             //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>หัวหน้ายังไม่ได้ตรวจสอบการประเมิน</b></td>";

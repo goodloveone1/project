@@ -127,10 +127,9 @@ unset($_SESSION['pre_id']);
                         echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$TOR_id' title='คลิกเพื่อทำการตรวจสอบหลักฐาน'>ตรวจสอบหลักฐาน</a></td>";
                       }else if($evd_status ==2){
                         echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-                        echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
+                        echo "<td><p class='text-success'><b>อัปโหลดหลักฐานแล้วเสร็จแล้ว <b></p></td>";
                       }
-                      
-                      
+
                     }
                   }
               }
@@ -146,12 +145,12 @@ unset($_SESSION['pre_id']);
         
         <?php
                    if($evd_status == 2){
-                      if(empty($asst5_id)){
+                      if($inform == 0){
                         echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
-                        echo "<td> รอหัวหน้าตรวจสอบการประเมิน </td>";
+                        echo "<td> <p style='color:red;'><b>  รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
                         }else if($inform == 1){
                           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-                          echo "<td> หัวหน้าตรวจสอบการประเมินแล้ว </td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าตรวจสอบการประเมินแล้ว</b></p> </td>";
                         }
                     }else{
                       echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
@@ -166,15 +165,15 @@ unset($_SESSION['pre_id']);
         <td> รับทราบการประเมิน </td>
         <?php          
                 if($evd_status == 2){
-                      if(empty($asst5_id)){
+                      if($inform == 0){
                         echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
-                        echo "<td><p style='color:red;'> รอหัวหน้าตรวจสอบการประเมิน </p></td>";
-                      }else if($inform == 1 || $accept == 0){
+                        echo "<td><p style='color:red;'><b> รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
+                      }else if($inform == 1 && $accept == 0){
                           echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
                           echo "<td><a href='javascript:void(0)' class=''  data-torid='$TOR_id' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
-                      }else if($inform == 1 || $accept == 1){
+                      }else if($inform == 1 && $accept == 1){
                           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-                          echo "<td>รับทราบการประเมินแล้ว</td>";
+                          echo "<td><p class='text-success'><b>รับทราบการประเมินแล้ว </b></p></td>";
                       }  
                     }else{
                       echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";

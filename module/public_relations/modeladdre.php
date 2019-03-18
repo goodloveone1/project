@@ -5,7 +5,13 @@ $date = date("Y-m-d");
 
 ?>
 
-<form id="formaddbrc">
+<style>
+.ck-editor__editable {
+    min-height: 400px !important;
+}
+</style>
+
+<form id="formaddbrc" enctype="multipart/form-data">
     <div class="modal fade" id="addre" tabindex="-1" role="dialog" aria-labelledby="addre" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -24,7 +30,7 @@ $date = date("Y-m-d");
                     <div class="form-group">
                         <label > รายละเอียด :</label>
 
-                          <textarea class="form-control" id="" rows="3" require name="detail"></textarea >
+                          <textarea class="" id="editor" rows="20" require name="detail"></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
@@ -34,28 +40,53 @@ $date = date("Y-m-d");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="addsu">บันทึก</button>
+                    <button type="submit" class="btn btn-primary" id="addsu">บันทึก</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
 <script type="text/javascript">
 
-    $("#addsu").click(function(event) {
+
+ CKEDITOR.replace('editor')
+
+
+    $("#formaddbrc").submit(function(event) {
         var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
         if (r == true) {
-            $.post( "module/public_relations/insertre.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
-                //alert(data);
-                $('#addre').modal("hide")
 
-                $('#addre').on('hidden.bs.modal', function (e) {
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
+            
+            var formData = new FormData(this);
 
-                 var module1 = sessionStorage.getItem("module1")
-                 var action = sessionStorage.getItem("action")
-                 loadmain(module1,action);
-                })
-             })        
-        }       
+						    $.ajax({
+						        url: "module/public_relations/insertre.php",
+						        type: 'POST',
+						        data: formData,
+						        success: function (data) {
+                                    alert(data);
+						        },
+						        cache: false,
+						        contentType: false,
+						        processData: false
+						    }).done(function() {
+                                
+                               
+								$('#addre').modal("hide")
+
+                                $('#addre').on('hidden.bs.modal', function (e) {
+
+                                var module1 = sessionStorage.getItem("module1")
+                                var action = sessionStorage.getItem("action")
+                                loadmain(module1,action);
+
+						        })
+  
+                             })   
+        }                  
     });
 </script>
