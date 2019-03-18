@@ -16,12 +16,17 @@
 		$yearIdpost = $_POST['year'];
 	}
 
-	$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
-	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-	list($tor_ID)=mysqli_fetch_row($reChk);
+	// $sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
+	// $reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
+	// list($tor_ID)=mysqli_fetch_row($reChk);
+
+	
+
 ?>
+
+
 <form class="p-2" name="tort4" id="tort4"> 
-<input type="hidden" name="tor_id" value="<?php echo $tor_ID  ?>">
+<input type="hidden" name="tor_id" value="<?php echo $yearIdpost  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -43,27 +48,22 @@
 		<div class="col-md">
 			<table class="table table-bordered">
 				<tr>
+					
 					<th>ความรู้/ทักษะ/สมรรถนะ ที่ต้องได้รับการพัฒนา </th>
 					<th>วิธีการพัฒนา</th>
 					<th>ช่วงเวลาที่ต้องการพัฒนา</th>
 				</tr>
-				<tr>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value="" required></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value="" required></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value="" required></td>
+			
+					<?php $se_Asst4 = mysqli_query($con,
+						 "SELECT knowledge,develop,longtime FROM asessment_t4 WHERE  ass_id='$yearIdpost'")or die("SQL-error.asst4".mysqli_error($con)); 
+						 while(list($knowledge,$develop,$longtime)=mysqli_fetch_row($se_Asst4)){
+						 ?>
+					<tr>
+					<td><?php echo $knowledge ?></td>
+					<td><?php echo $develop?></td>
+					<td><?php echo $longtime ?></td>
 				</tr>
-
-				<tr>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value=""></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value=""></td>
-				</tr>
-				<tr>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="know[]" value=""></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="devp[]" value=""></td>
-					<td><input type='text'  class="borderNon form-control" placeholder="ข้อมูล" name="lt[]" value=""></td>
-				</tr>
-
+						 <?php }?>
 			</table>
 		</div>
 	</div>
@@ -93,15 +93,15 @@
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
-					        url: "module/assessment/adddata_tor4.php",
+					        url: "module/assessment/update_tor4.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t5.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+								$.post( "module/assessment/edit_tor5.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","tor_t5");
+								sessionStorage.setItem("action","edit_tor5");
 								$("#detail").html(data);
   								});
 					        },

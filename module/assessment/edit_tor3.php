@@ -18,23 +18,21 @@ if(empty($_POST['genid']) && empty($_POST['year']) ){
 	$yearIdpost = $_POST['year'];
 }
 
-					$sqlyesr="SELECT ass_id FROM assessments WHERE staff ='$genIdpost'AND year_id='$yearIdpost'";
-					$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-					list($tor_ID)=mysqli_fetch_row($reChk);
-					//echo $tor_ID;
-					$reSum1=mysqli_query($con,"SELECT sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$tor_ID'") or die("SQL_sum1Error".mysqli_error($con));
-					list($sum1)=mysqli_fetch_row($reSum1);
+				$reSum1=mysqli_query($con,"SELECT sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$yearIdpost'") or die("SQL_sum1Error".mysqli_error($con));
+				list($sum1)=mysqli_fetch_row($reSum1);
 
-				 $reSum2=mysqli_query($con,"SELECT sum_asst2 FROM sum_score_assessment_t2 WHERE ass_id='$tor_ID'") or die("SQL_sum2Error".mysqli_error($con)) ;
+				 $reSum2=mysqli_query($con,"SELECT sum_asst2 FROM sum_score_assessment_t2 WHERE ass_id='$yearIdpost'") or die("SQL_sum2Error".mysqli_error($con)) ;
 				 list($sum2)=mysqli_fetch_row($reSum2);
 				
+				 $reSum3=mysqli_query($con,"SELECT asst3_id,score,weignt,sum FROM asessment_t3 WHERE ass_id ='$yearIdpost'") or die("SQL-error.Sum3".mysqli_error($con));
+				 for ($asst3 = array (); $row = $reSum3->fetch_assoc(); $asst3[] = $row);
+				 //print_r($asst3);
 
-
-					mysqli_free_result($reChk);
+				
 					mysqli_free_result($reSum2);
 					mysqli_free_result($reSum1);
 				?>
-<input type="hidden" value="<?php echo $tor_ID?>" name="tor_id">
+<input type="hidden" value="<?php echo $yearIdpost?>" name="tor_id">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -64,27 +62,33 @@ if(empty($_POST['genid']) && empty($_POST['year']) ){
 			<tr>
 				<td class="text-left">องค์ประกอบที่  1 : ผลสัมฤทธิ์ของงาน</td>
 				<input type="hidden" name="name1" value="1">
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum1" value="<?php echo $sum1  ?>" readonly>
+				<input type="hidden" name="asst3_id[]" value="<?php echo empty($asst3[0]['asst3_id'])?"0":$asst3[0]['asst3_id'] ?>">
+				</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei1" value="70" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]" onclick="fncSum();"   readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
 				<input type="hidden" name="name2" value="2">
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum2" value="<?php  echo $sum2 ?>" readonly>
+				<input type="hidden" name="asst3_id[]" value="<?php echo empty($asst3[1]['asst3_id'])?"0":$asst3[1]['asst3_id'] ?>">
+				</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei2" value="30" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sa[]"   readonly></td>
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
 				<input type="hidden" name="name3" value="3">
-				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" value="0"></td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="sum3" value="0">
+				<input type="hidden" name="asst3_id[]" value="<?php echo empty($asst3[2]['asst3_id'])?"0":$asst3[2]['asst3_id'] ?>">
+				</td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="wei3" value="0"></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder=" " name="sa[]"  readonly ></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right">รวม</td>
-				<td>100</td>
+				<td><input type='text' size='3' class="borderNon form-control" placeholder="ข้อมูล" name="totwei" value="100" readonly></td>
 				<td><input type='text' size='3' class="borderNon form-control" placeholder="" name="sumall" onkeyup="fncSum();chk();" readonly></td>
 			</tr>	
 		</table>
@@ -189,6 +193,7 @@ function chk(){
 			});
 cal()
 chk()
+fctotwei()
 			function cal() { 
 			//$(".sa").on( "click", "input[name='sa[]']", function() {
 				//alert($(this).val())
@@ -202,25 +207,39 @@ chk()
 			})
 			fncSum()
 	}
+	function fctotwei(){
+		var t1 = $("input[name='wei1']").val();
+		var t2 = $("input[name='wei2']").val();
+		var t3 = $("input[name='wei3']").val();
+		var twei =[t1,t2,t3];
+		var towei = 0;
+	for (var i = 0; i < twei.length; i++) {
+	towei += twei[i] << 0;
+	}
+//	alert(towei)
+	$("input[name='totwei']").val(towei);
+}
 	
 
 	$(".sa").on( "keyup", "input[name='sum3']", function() {
 		   var wei3=$("input[name='wei3']").val()*$(this).val()
 			 $("input[name='sa[]']").each(function($i){
 				 if($i=="2"){
-					$(this).val(wei3)
+					$(this).val(wei3.toFixed(2))
 				 }
 			})
 			fncSum()	
+			fctotwei()
 	})
 	$(".sa").on( "keyup", "input[name='wei3']", function() {
 		   var sum3=$("input[name='sum3']").val()*$(this).val()
 			 $("input[name='sa[]']").each(function($i){
 				 if($i=="2"){
-					$(this).val(sum3)
+					$(this).val(sum3.toFixed(2))
 				 }
 			})
 			fncSum()
+			fctotwei()
 	})
 			$("#tort3").submit(function(e){
 				e.preventDefault();
@@ -228,15 +247,15 @@ chk()
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
-					        url: "module/assessment/adddata_tor3.php",
+					        url: "module/assessment/update_tor3.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/tor_t4.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
+								$.post( "module/assessment/edit_tor4.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","tor_t4");
+								sessionStorage.setItem("action","edit_tor4");
 								$("#detail").html(data);
   								});
 					        },
