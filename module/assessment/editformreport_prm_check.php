@@ -13,7 +13,7 @@ if($checkshowfile == 1){
 	$tab = "<div class='col-sm-2'></div>";
 }else{
 	$com= "";
-	$com= "";
+	$come= "";
 	$tab = "";
 }
 

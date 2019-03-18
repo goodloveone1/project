@@ -119,7 +119,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
-              echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
+              echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
             }
             
           }
@@ -187,6 +187,8 @@ $.getScript('js/mydatatable.js')
 $(".checktor").click(function(){
   var gen_id = $(this).data("genid");
   var year_id = $(this).data("year");
+  sessionStorage.setItem("module1","assessment")
+	sessionStorage.setItem("action","edit_tor")
 
   $.ajax({
     url: "module/assessment/edit_tor.php",
