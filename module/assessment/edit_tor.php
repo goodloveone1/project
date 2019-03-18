@@ -22,13 +22,18 @@
     }
     $y_id = $y.$loop;
 
-
-	$genIdpost = $_POST['genid'];
-	$yearIdpost = $_POST['year'];
-
+		if(empty($_POST['genid']) && empty($_POST['year']) ){
+			$genIdpost=$_SESSION['genIdpost'];
+			$yearIdpost=$_SESSION['yearIdpost'];
+	
+		}else{
+			$genIdpost = $_POST['genid'];
+			$yearIdpost = $_POST['year'];
+			$_SESSION['genIdpost']=$genIdpost;
+			$_SESSION['yearIdpost']=$yearIdpost;
+		}
 	echo $yearIdpost;
-	$_SESSION['genIdpost']=$genIdpost;
-	$_SESSION['yearIdpost']=$yearIdpost;
+
 
 	$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE ass_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
     list($tor_id,$staff_id,$year_id,$leader_id,$hleader,$sleader,$sumwork,$punishment)=mysqli_fetch_row($tor);

@@ -248,7 +248,7 @@
 	WHERE ass_id='$yearIdpost'
 	ORDER BY score_x DESC")or die("SQL-error.sumSkAss2".mysqli_error($con));
 	for ($skilA = array (); $row = $se_sumSkAss2->fetch_assoc(); $skilA[] = $row);
-	print_r($skilA);
+	//print_r($skilA);
 	mysqli_free_result($se_sumSkAss2);
 
 	$se_SumAss2 =mysqli_query($con,

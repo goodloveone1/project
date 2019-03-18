@@ -114,7 +114,7 @@
 				$sumA=($tort1_goal*$weight)/100;
 				$total+=$sumA;
 				$a=number_format($sumA,2,'.','');
-				$t=number_format($sumA,2,'.','');
+				$t=number_format($total,2,'.','');
 				echo "<td id='total$tit' class='text-center'><input type='text' class=' borderNon' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' value='$a' readonly></td>";
 		echo "</tr>";
 	}
@@ -129,7 +129,7 @@ mysqli_close($con);
 	<tr>
 		<td colspan="8" class="text-center"> ผลรวม </td>
 		<td class="text-center"><input type="text" class=" borderNon" name="sumwei" value="<?php echo $sumS ?> " size="3" readonly></td>
-		<td class="text-center"><input type="text" class=" borderNon" name="sumscwei"  size="2" value="<?php echo $sum_weighted  ?>" readonly> </td>
+		<td class="text-center"><input type="text" class=" borderNon" name="sumscwei"  size="2" value="<?php echo $t  ?>" readonly> </td>
 
 	</tr>
 	<tr>
@@ -140,7 +140,7 @@ mysqli_close($con);
 					สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  =
 				</div>
 				<div class="col-sm text-center">
-					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="text" class="borderNon" size="3" name="sumscweid" value="<?php echo $sum_weighted ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
+					ผลรวมของค่าคะแนนถ่วงน้ำหนัก <input type="text" class="borderNon" size="3" name="sumscweid" value="<?php echo $t ?>" readonly> <hr style="border-width: 3px;"> จำนวนระดับค่าเป้าหมาย = 5
 				</div>
 			</div>
 		</td>
