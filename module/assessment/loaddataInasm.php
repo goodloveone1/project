@@ -27,7 +27,7 @@ $year = $_POST['year'];
     <?php
     if($_SESSION['user_level'] == 3){ // หลักสูตร
 
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND position='1' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND permiss_id='2' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     else if($_SESSION['user_level'] == 4){ // สาขา
 
@@ -93,32 +93,32 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     // mysqli_free_result($show3);
 
     if(empty($PRE_id)){
-      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำข้อตกลง</b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTORได้</b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
     }else{
         if(empty($tor_id)){
-          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำข้อตกลงแล้ว</b></b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTORได้</b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+          echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
         }else{
           if(empty($evd_id)){
-            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำข้อตกลงแล้ว</b></td>";
+            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>";
+            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</b></td>";
+            echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
           }else{
             if($evd_status ==1){
-              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำข้อตกลงแล้ว</b></td>";
+              echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>";
+              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>รอยืนยันอัปโหลดหลักฐาน</b></td>";
+              echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
             }else if($evd_status ==2){
               echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
-              echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
-              echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
               echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
             }
             
@@ -203,6 +203,16 @@ $(".showpre").click(function(e) {
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
         $.post("module/assessment/loaddetail_pretest.php", { id:'1' } ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelpre').modal('show');
+        })
+  });
+  
+  $(".showevd").click(function(e) {
+		e.preventDefault(); 
+    //alert("TTEST");
+		//alert($(this).data("evdidtext"));
+        $.post("module/assessment/loaddetail_evd.php", { evdid: $(this).data("evdid") , checkshowfile: 1 } ).done(function(data){
             $('#loadmodel').html(data);
                  $('#showmodelpre').modal('show');
         })

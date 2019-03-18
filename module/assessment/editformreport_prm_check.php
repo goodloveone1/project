@@ -5,12 +5,27 @@ session_start();
 
 $evdid = empty($_POST['evdid'])?"":$_POST['evdid'];
 
+$checkshowfile = empty($_POST['checkshowfile'])?0:$_POST['checkshowfile']; // ส่งมาจาก loaddataInasm.php เพื่อดูไฟล์
+
+if($checkshowfile == 1){
+	$com = "<!--";
+	$come = "-->";
+	$tab = "<div class='col-sm-2'></div>";
+}else{
+	$com= "";
+	$com= "";
+	$tab = "";
+}
+
+
 if(!empty($evdid)){
 
 
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
+
+
 
 $evd =  mysqli_query($con,"SELECT ass_id,st_id,st_date,comman_id,com_date,evd_status FROM evidence  WHERE evd_id='$evdid' ") or  die("SQL Error evd ==>2".mysqli_error($con));
 list($ass_id,$st_id,$st_date,$comman_id,$com_date,$evd_status)=mysqli_fetch_row($evd);
@@ -35,15 +50,18 @@ mysqli_free_result($tor);
 ?>
 	<div class="row pt-2">
 	<?php
+		echo $tab;
+		echo $com;
 		if($_SESSION['user_level']==2){
 			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence'>ย้อนกลับ </button></div>";
 		}else if($_SESSION['user_level']==3){
 			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence_course'>ย้อนกลับ </button></div>";
 		}
+		echo $come;
 		
 	?>
 		<div class="col-sm pt-2 text-center">
-			<h5>ตรวจสอบ แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
+			<h5>แสดงแบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h5>
 		</div>
 		<div class="col-sm-2 text-center" >
 			<div class="text-wrap btn border border-dark">
@@ -158,28 +176,34 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										</td >";	
 									}
 										echo 	"<td class='text-center'> ";
-										//echo   		"<table class='table table-striped'>";
-										// $evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evd_id' ") or  die("SQL Error1==>1".mysqli_error($con));
-										// $i=1;
-										// while(list($evd_file_id,$evd_file_name)=mysqli_fetch_row($evd_file)){
-										// 	echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_file_name</a></td></tr> ";
-										// 	$i++;		
-										// }
-										//echo   		"</table>";
-										//echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> แสดงไฟล์ </b>";
-										$evd_file =  mysqli_query($con,"SELECT count(evd_file_id) FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
-										 list($countfileevd)=mysqli_fetch_row($evd_file);
-										 mysqli_free_result($evd_file);
-										 $countfileevd = empty($countfileevd)?"0":$countfileevd;
-										?>
-										<button type="button" class="btn btn-info mt-4 fileedit" data-seid='<?php echo $sub_id ?>'>
-										<i class='fas fa-file fa-lg'></i> แสดงไฟล์ <span class="badge badge-pill badge-secondary"> <?php echo $countfileevd ?></span>
-										</button>
-										<?php
-										echo	"</td>";
-										echo "</tr>";
-										$countfile++;
-
+											if($checkshowfile == 1){
+												echo   		"<table class='table table-striped'>";
+												$evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
+												$i=1;
+												if($evd_file->num_rows != 0){
+													while(list($evd_file_id,$evd_file_name)=mysqli_fetch_row($evd_file)){
+														echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_file_name</a></td></tr> ";
+														$i++;		
+													}
+												}else{
+													echo  	"<tr><td class='text-center text-danger'> ไม่พบไฟล์หลักฐาน </td></tr> ";
+												}	
+												echo   "</table>";
+												//echo			"<b class='fileedit' data-seid='$sub_id'><i class='fas fa-file fa-lg'></i> แสดงไฟล์ </b>";	
+											}else{
+												$evd_file =  mysqli_query($con,"SELECT count(evd_file_id) FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
+												list($countfileevd)=mysqli_fetch_row($evd_file);
+												mysqli_free_result($evd_file);
+												$countfileevd = empty($countfileevd)?"0":$countfileevd;
+											   ?>
+											   <button type="button" class="btn btn-info mt-4 fileedit" data-seid='<?php echo $sub_id ?>'>
+											   <i class='fas fa-file fa-lg'></i> แสดงไฟล์ <span class="badge badge-pill badge-secondary"> <?php echo $countfileevd ?></span>
+											   </button>
+											   <?php
+											   echo	"</td>";
+											   echo "</tr>";
+											   $countfile++;
+											}									
 									}
 								}
 
