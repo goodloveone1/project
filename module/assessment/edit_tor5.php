@@ -25,10 +25,29 @@
 	mysqli_free_result($genchk);
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;
 $date = date("Y/m/d");
+
+$seAss5 =mysqli_query($con,
+"SELECT asst5_id,accept,inform,date_accept,date_inform
+FROM asessment_t5
+WHERE ass_id='$yearIdpost' " )or die("SQL-error.asAss5".mysqli_error($con));
+list($asst5_id,$accept,$inform,$date_accept,$date_inform)=mysqli_fetch_row($seAss5);
+
+if($inform==1){
+	$chk_inform = "checked";
+}else{
+	$chk_inform = "";
+}
+if($accept==1){
+	$chk_accept = "checked";
+}else{
+	$chk_accept = "";
+}
+//echo $asst5_id,$accept,$inform,$date_accept,$date_inform;
 ?>
 
 <form class="p-2" name="tort5" id="tort5"> 
 <input type="hidden" name="tor_id" value="<?php echo $yearIdpost  ?>">
+<input type="hidden" name="asst5_id" value="<?php echo $asst5_id  ?>">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
       <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
@@ -49,7 +68,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้รับการประเมิน :</p>
 		<div class="form-check">
-			  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="ac" disabled>
+			  <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="ac" disabled <?php echo $chk_accept?>>
 			  <label class="form-check-label" for="defaultCheck1">
 			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
@@ -88,7 +107,7 @@ $date = date("Y/m/d");
 	<div class="col-md-6 border border-dark p-3">
 	<p>ผู้ประเมิน :</p>
 		<div class="custom-control custom-checkbox">
-			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1">
+			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" <?php echo $chk_inform?> required>
 			  <label class="custom-control-label" for="customCheck1" >
 			   แจ้งผลการประเมิน
 			  </label>
@@ -135,7 +154,7 @@ $date = date("Y/m/d");
 				<div class="col-sm">
 			
 					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date)?>" name="" readonly>
-					<input type="hidden" value="<?php $date ?>" name="tdate">
+					<input type="hidden" value="<?php echo $date ?>" name="tdate">
 				</div>				
 		</div>
 	</div>
@@ -177,15 +196,15 @@ $date = date("Y/m/d");
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
-					        url: "module/assessment/adddata_tor5.php",
+					        url: "module/assessment/update_tor5.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/ass_t6.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>}).done(function( data ){
+								$.post( "module/assessment/edit_tor6.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","ass_t6");
+								sessionStorage.setItem("action","edit_tor6");
 								$("#detail").html(data);
   								});
 					        },

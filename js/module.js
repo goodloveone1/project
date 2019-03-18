@@ -69,7 +69,7 @@ function modules(module1,action){
 				case "edit_tor3":break;
 				case "edit_tor4":break;
 				case "edit_tor5":break;
-				case "tor_t6":break;
+				case "edit_tor6":break;
 				case "addtata_ass":break;
 				case "adddata_tor":break;
 				case "adddata_tor1":break;
