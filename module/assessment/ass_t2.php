@@ -282,13 +282,13 @@
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๒  ระดับ  ×  ๑  คะแนน  </td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo3" data-sumgo="3" id="sumgo" value="<?php echo empty($skilA[2]['score_skil'])?"0":$skilA[2]['score_skil'] ?>" readonly  ></td>
 			<td><input type='text' size='5' class="borderNon form-control" placeholder="0" name="x3" value="1" data-x="3" readonly ></td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='3' id="score" value="<?php echo empty($skilA[2]['score_skil'])?"0":$skilA[2]['score_skil'] ?>" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='3' id="score" value="<?php echo empty($skilA[2]['score'])?"0":$skilA[2]['score'] ?>" readonly></td>
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๓  ระดับ   ×  ๐  คะแนน</td>
 			<td><input type='text' size='2' class="borderNon form-control sumgo" placeholder="0" name="sumgo4" data-sumgo="4" id="sumgo" value="<?php echo empty($skilA[3]['score_skil'])?"0":$skilA[3]['score_skil'] ?>" readonly ></td>
 			<td><input type='text' size='5' class="borderNon form-control" placeholder="0" name="x4" value="0"  data-x="4" readonly ></td>
-			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='4' id="score" value="<?php echo empty($skilA[3]['score_skil'])?"0":$skilA[3]['score_skil'] ?>" readonly></td>
+			<td><input type='text' size='5' class="borderNon form-control score" placeholder="0" name="score[]" onkeyup="fncSum();" onchange="fncNum();" data-score='4' id="score" value="<?php echo empty($skilA[3]['score'])?"0":$skilA[3]['score'] ?>" readonly></td>
 		</tr>
 		<tr>
 			<td colspan="3" class="text-right">ผลรวมคะแนน</td>

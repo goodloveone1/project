@@ -42,11 +42,11 @@
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
 	</div>
 </div>
-<div class="row ">
+<!-- <div class="row ">
 	<div class="col-md">
 <p></p><?php  echo " ผู้รับการประเมิน : ",$fname," ",$lname;  ?></p>
 	</div>
-</div>
+</div> -->
 <div class="row ">
 	<div class="col-md">
 <table class="table table-bordered" id="table_score" >
@@ -85,7 +85,13 @@
 
 		echo "<tr id='$tit'>";
 		echo "<td>$e_name</td>";
-		echo "<td></td>";
+		echo "<td>";
+$se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
+while(list($con_ex)=mysqli_fetch_row($se_condition)){
+	   echo "<p>$con_ex</p>";
+}
+		
+		echo "</td>";
 		$ch1= "" ;$ch2= "";$ch3= "";$ch4= "";$ch5 = "";
 			switch($tort1_goal){
 				case 1 :
@@ -114,11 +120,14 @@
 				$sumA=($tort1_goal*$weight)/100;
 				$total+=$sumA;
 				$a=number_format($sumA,2,'.','');
-				$t=number_format($sumA,2,'.','');
+				$t=number_format($total,2,'.','');
 				echo "<td id='total$tit' class='text-center'><input type='text' class=' borderNon' id='scwie$tit' name='scwei[]' size='2' onkeyup='fncSum();' value='$a' readonly></td>";
 		echo "</tr>";
 	}
-	mysqli_close($con);
+	
+mysqli_close($con);
+
+	
 
 ?>
 	<tr>

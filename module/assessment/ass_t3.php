@@ -221,7 +221,7 @@ chk()
 		   var sum3=$("input[name='sum3']").val()*$(this).val()
 			 $("input[name='sa[]']").each(function($i){
 				 if($i=="2"){
-					$(this).val(sum3)
+					$(this).val(sum3.toFixed(2))
 				 }
 			})
 			fncSum()
