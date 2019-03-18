@@ -53,12 +53,12 @@
   <form  method="post" class="p-2" name="tort2" id="tort2"> 
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp;
-		 <a href=#><span class="step step-color">ส่วนที่ 2</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
+        <span class="step step-normal ">ส่วนที่ 1</span>&nbsp;
+		<span class="step step-color">ส่วนที่ 2</span> &nbsp;
+		 <span class="step step-normal">ส่วนที่ 3</span> &nbsp;
+		<span class="step step-normal">ส่วนที่ 4</span> &nbsp;
+		<span class="step step-normal">ส่วนที่ 5</span> &nbsp;
+		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
 		 <br>
     </div>
 <div class="row">
@@ -458,32 +458,6 @@ function fncSum(){
 		fncSum();
 
 	});
-	
-
-	// $("#tort2").submit(function(e){
-	// 			e.preventDefault();
-	// 			$check = $("#tort2").valid();
-	// 			if($check == true){
-	// 			var formData = new FormData(this);
-	// 				    $.ajax({
-	// 				        url: "module/assessment/adddata_tor2.php",
-	// 				        type: 'POST',
-	// 				        data: formData,
-	// 				        success: function (data) {
-	// 				            alert(data);
-	// 							$.post( "module/assessment/tor_t3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ){
-    // 							//alert( "Data Loaded: " + data );
-	// 							sessionStorage.setItem("module1","assessment");
-	// 							sessionStorage.setItem("action","tor_t3");
-	// 							$("#detail").html(data);
-  	// 							});
-	// 				        },
-	// 				        cache: false,
-	// 				        contentType: false,
-	// 				        processData: false
-	// 				    });
-	// 			}
-	// 		})
     $("#tort2").submit(function(e){
 		      e.preventDefault();
 				$check = $("#tort2").valid();
@@ -495,10 +469,10 @@ function fncSum(){
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/edit_tor2.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
+								$.post( "module/assessment/edit_tor3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","edit_tor2");
+								sessionStorage.setItem("action","edit_tor3");
 								$("#detail").html(data);
   							});
 					        },
