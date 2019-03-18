@@ -35,8 +35,8 @@ $yearnow = chk_idtest();
 $i=1;
 while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     echo "<tr>";
-    echo " <td>".($y_year+543)."</td>";
     echo " <td>$y_no</td>";
+    echo " <td>".($y_year+543)."</td>";
     $m=DATE('m');
     if($m<=9 && $m>3){
       $sy_no= 2;
