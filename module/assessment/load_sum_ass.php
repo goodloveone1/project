@@ -6,15 +6,20 @@ $con=connect_db();
 
 $year = $_POST['year'];
 
-$se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$year' ") or die("ASS_SQLerror".mysqli_error($con));
+$se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$year' AND ass_id LIKE'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
 list($ass_id)=mysqli_fetch_row($se_ass);
 mysqli_free_result($se_ass);
 
-$se_ass1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id'") or die("ASS_SQLerror".mysqli_error($con));
-list($asst1_id,$ass_id1,$title_name,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_ass1);
-mysqli_free_result($se_ass1);
+// $se_ass1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id'") or die("ASS_SQLerror".mysqli_error($con));
+// list($asst1_id,$ass_id1,$title_name,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_ass1);
+// mysqli_free_result($se_ass1);
 
-if(!empty($asst1_id)){
+$se_inform=mysqli_query($con,"SELECT inform FROM asessment_t5 WHERE ass_id ='$ass_id'")or die("SQL-se_informError".mysqli_error($con));
+list($inform)=mysqli_fetch_row($se_inform);
+
+mysqli_free_result($se_inform);
+// echo $inform;
+if(!empty($inform==1)){
 ?>
 <div class="row ">
   <div class="col-md">

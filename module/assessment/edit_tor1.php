@@ -85,7 +85,14 @@
 		
 		echo "<tr id='$tit'>";
 		echo "<td>$e_name</td>";
-		echo "<td><input type='hidden' name='id[]' value='$asst1_id'></td>";
+		echo "<td>";
+		echo "<input type='hidden' name='id[]' value='$asst1_id'>";
+		$se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
+while(list($con_ex)=mysqli_fetch_row($se_condition)){
+	   echo "<p>$con_ex</p>";
+}
+	   echo "</td>";
+	
 		$ch1= "" ;$ch2= "";$ch3= "";$ch4= "";$ch5 = "";
 			switch($tort1_goal){
 				case 1 :
@@ -155,7 +162,7 @@ mysqli_close($con);
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 
-	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 
 	</div>

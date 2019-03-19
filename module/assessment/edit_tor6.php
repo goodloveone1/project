@@ -201,10 +201,10 @@
 					        data: formData,
 					        success: function (data) {
 					            alert(data);
-								$.post( "module/assessment/manage_tor.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
+								$.post( "module/assessment/manage_asmIn.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","manage_tor");
+								sessionStorage.setItem("action","manage_asmIn");
 								$("#detail").html(data);
   								});
 					        },
