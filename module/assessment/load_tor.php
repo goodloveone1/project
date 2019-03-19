@@ -170,7 +170,7 @@ unset($_SESSION['pre_id']);
                         echo "<td><p style='color:red;'><b> รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
                       }else if($inform == 1 && $accept == 0){
                           echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
-                          echo "<td><a href='javascript:void(0)' class=''  data-torid='$TOR_id' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
+                          echo "<td><a href='javascript:void(0)' class='loadsum_assessment' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
                       }else if($inform == 1 && $accept == 1){
                           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
                           echo "<td><p class='text-success'><b>รับทราบการประเมินแล้ว </b></p></td>";
@@ -238,6 +238,22 @@ $(".addevd").click(function(){
 			sessionStorage.setItem("action","manage_Evidence")
       loadingpage("assessment","manage_Evidence")
 	})
+
+  $(".loadsum_assessment").click(function(){
+			//var tor_id = $(this).data("torid");
+			//$("#detail").html("");
+			// $.post("module/assessment/formreport_prm.php",{ torid:tor_id}).done(function(data){
+			// 	sessionStorage.setItem("module1","assessment")
+			// 	sessionStorage.setItem("action","formreport_prm")
+			// 	$("#detail").html(data);
+			// })
+      sessionStorage.setItem("module1","assessment")
+			sessionStorage.setItem("action","sum_assessment")
+      loadingpage("assessment","sum_assessment")
+	})
+
+
+  
 
 
 
