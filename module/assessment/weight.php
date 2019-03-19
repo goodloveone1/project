@@ -66,7 +66,6 @@
         echo"
             <tr>
                 <td>$no</td>
-               
                 <td>$aca_name</td>
                 <td>$tit_name</td>
                 <td>$weighs</td>
