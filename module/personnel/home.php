@@ -21,7 +21,7 @@ $con=connect_db();
 					<h5 class="mb-1"><?php echo $re_title; ?> <span class="badge badge-danger">New</span></h5>
 					<!-- <small>3 days ago</small> -->
 				</div>
-				<p class="mb-1"><?php echo $re_detail; ?></p>
+				<p class="mb-1"><?php //echo substr($re_detail,0,20)."......"; ?></p>
 				<small><?php echo "เผยแพร่เมื่อ ".DateThai($re_date)." โดย $name $lname" ?>  </small>
 			</a>
 			<?php
@@ -32,7 +32,7 @@ $con=connect_db();
 					<h5 class="mb-1"><?php echo $re_title; ?> </h5>
 					<!-- <small>3 days ago</small> -->
 				</div>
-				<p class="mb-1"><?php echo $re_detail; ?></p>
+				<p class="mb-1"><?php // echo $re_detail; ?></p>
 				<small><?php echo "เผยแพร่เมื่อ ".DateThai($re_date)." โดย $name $lname" ?>  </small>
 			</a>
 			<?php

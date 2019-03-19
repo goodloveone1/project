@@ -30,7 +30,7 @@ $con->close();
                     <div class="form-group">
                         <label > รายละเอียด :</label>
 
-                          <textarea class="form-control" id="" rows="3" require name="detail"><?php echo $re_detail ?></textarea >
+                          <textarea class="form-control" id="editor" rows="3" require name="detail"><?php echo $re_detail ?></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
@@ -50,9 +50,19 @@ $con->close();
 </form>
 <script type="text/javascript">
 
+CKEDITOR.replace('editor')
+
+CKEDITOR.config.height = 500;
+
     $("#addsu").click(function(event) {
         var r = confirm("คุณต้องการแก้ไขข้อมูลใช่ไหม?");
         if (r == true) {
+
+              for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }    
+
+
             $.post( "module/public_relations/updatere.php", $("#formeditre").serialize()).done(function(data,txtstuta){
                 alert(data);
                 $('#modelre').modal("hide")
