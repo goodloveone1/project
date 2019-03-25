@@ -73,6 +73,13 @@ function webmenu($id){
 							</li>
 							</button>
 						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="min_hour_work">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text">ภาระงานขั้นต่ำ</span>
+							</li>
+							</button>
+						</a>
 						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
