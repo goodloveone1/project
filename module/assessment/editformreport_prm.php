@@ -6,8 +6,6 @@ session_start();
 $evdid = empty($_POST['evdid'])?"":$_POST['evdid'];
 
 if(!empty($evdid)){
-
-
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
