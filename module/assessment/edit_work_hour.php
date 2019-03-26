@@ -36,7 +36,7 @@
                         ?>
                         <label ><b>ตำแหน่งงาน :</b> <?php echo $aca_name ?></label><br>
                         <label ><b>ภาระงาน :</b> <?php echo $e_name ?></label>
-                         <input type="text"   class="form-control" value="<?php echo $minWork;  ?>"  name="wid" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $minWork;  ?>"  name="minwork" size=40 require>
                           <input type="hidden"    value="<?php echo $i ?>"  name="id" size=40 require>
                     </div>
                     
@@ -59,21 +59,13 @@
 <script type="text/javascript">
 
 $("#updatesu").click(function(event) {
-    var r = confirm("Press a button!");
-    if (r == true) {
-        $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+        $.post( "module/assessment/update_minhourWork.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+            // alert(data);
          });
         $('#editsub').modal("hide");
 
-        $('#editsub').on('hidden.bs.modal', function (e) {
-            
-           loadmain("assessment","weight");
+        $('#editsub').on('hidden.bs.modal', function (e) { 
+           loadmain("assessment","min_hour_work");
         })
-       
-        
-    } 
-
-   
 });
 </script>
