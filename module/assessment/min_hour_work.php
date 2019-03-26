@@ -21,7 +21,7 @@
     INNER JOIN evaluation
     ON work_hour.e_id=evaluation.e_id  
     WHERE work_hour.aca_id='$ACA_ID'
-    ORDER BY work_hour.aca_id ASC")
+    ORDER BY work_hour.hw_id ASC")
    or die("SQL.se_hourError".mysqli_error($con));  
 ?>
 <br>
@@ -58,7 +58,7 @@
     $(".edit").click(function( ){
         var ideditsub =$(this).data("ideditsub");
         
-        $.post("module/assessment/editwidght.php", { id : ideditsub }).done(function(data){
+        $.post("module/assessment/edit_work_hour.php", { id : ideditsub }).done(function(data){
         $('#loadeditsub').html(data);
             $('#editsub').modal('show');
         })    
