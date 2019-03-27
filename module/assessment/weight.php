@@ -72,7 +72,7 @@
 
             $no++;     
     }
-    echo"<tr><td colspan=3 align=right>รวม</td><td colspan=2 style='color:red;'>$sumW</td></tr>";
+    echo"<tr><td colspan=3 align=right>รวม</td><td colspan=2 style='color:blue;'>$sumW</td></tr>";
     echo "</tbody>";
 }
  echo "</table>";
