@@ -8,7 +8,7 @@ $date = date("Y-m-d");
 
 $re_id = $_POST['reid'];
 
-$resultre = $con->query("SELECT re_title,re_detail,re_date,staff_id FROM relations") or die($con->error);
+$resultre = $con->query("SELECT re_title,re_detail,re_date,staff_id FROM relations WHERE re_id='$re_id'") or die($con->error);
 
 list($re_title,$re_detail,$re_date,$gen_id) = $resultre->fetch_row();
 
@@ -38,7 +38,7 @@ list($gen_fname,$gen_lname) = $resultre->fetch_row();
                     <div class="form-group">
                         <label > รายละเอียด :</label>
 
-                          <textarea class="form-control" id="" rows="3"  name="detail" disabled><?php echo $re_detail ?></textarea >
+                          <textarea class="form-control" id="editor" rows="3"  name="detail" disabled><?php echo $re_detail ?></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
@@ -64,5 +64,11 @@ list($gen_fname,$gen_lname) = $resultre->fetch_row();
             mysqli_free_result($resultre);
             mysqli_close($con);
             ?>
+<script type="text/javascript">
+$( document ).ready(function() {
 
+CKEDITOR.replace('editor')
+})
+
+</script>
      

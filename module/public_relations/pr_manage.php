@@ -40,11 +40,11 @@ $con=connect_db();
 						mysqli_free_result($gen);
 						echo "<tr>";
 						echo "<td>$re_id</td>";
-						echo "<td><a href='javascript:void(0)' data-reid='$re_id' data-action='modelshowre.php' class='showre'> $re_title </a></td>";
+						echo "<td><a href='javascript:void(0)' data-reid='$re_id' data-action='modelshowre.php' class='showdetail'> $re_title </a></td>";
 
 						echo "<td>".DateThai($re_date)."</td>";
 						echo "<td>$name $lname</td>";
-						echo "<td><a href='javascript:void(0)' class='showre' data-reid='$re_id' data-action='modeleditre.php'><i class='fas fa-edit fa-2x '></i></a></td>";
+						echo "<td><a href='javascript:void(0)' class='showre' data-reid='$re_id' data-action='editpr.php'><i class='fas fa-edit fa-2x '></i></a></td>";
 						echo "<td><a href='javascript:void(0)'  class='delre' data-reid='$re_id' data-retit='$re_title' ><i class='fa fa-trash fa-2x'</i></a></td>";
 						echo "</tr>";
 					}
@@ -68,9 +68,7 @@ $con=connect_db();
 
 		$("#addrela").click(function(event) {
 			event.preventDefault()
-			  $('#loadmodel').load("module/public_relations/modeladdre.php",function(){
-			  		$('#addre').modal('show');
-            });
+			  $('#detail').load("module/public_relations/addpr.php");
 
 		});
 
@@ -82,9 +80,25 @@ $con=connect_db();
 			var action = $(this).data('action')
 			$.post('module/public_relations/'+action, {reid: re_id}).done(function(data,txtstuta){
 
-				$('#loadmodel').html(data);
-				$('#modelre').modal('show');
+				
+				$('#detail').html(data);
+			
 			});
+
+		});
+
+		$(".showdetail").click(function(event) {
+
+		event.preventDefault()
+
+		var re_id = $(this).data('reid')
+		var action = $(this).data('action')
+		$.post('module/public_relations/'+action, {reid: re_id}).done(function(data,txtstuta){
+
+			$('#loadmodel').html(data);
+			$('#modelre').modal('show');
+
+		});
 
 		});
 
