@@ -60,7 +60,7 @@ $("#updatesu").click(function(event) {
    // var r = confirm("Press a button!");
    //if (r == true) {
         $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+            // alert(data);
          });
         $('#editsub').modal("hide");
 
