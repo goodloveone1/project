@@ -81,6 +81,10 @@ footer {
 .headtitle{
 	background-color:#846737  !important;
 	color:#FFF;
+	
+}
+.headtitle h2{
+	font-size: 28px;
 }
 
 /* scrollbar */
