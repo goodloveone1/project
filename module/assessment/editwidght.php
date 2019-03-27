@@ -57,8 +57,8 @@
 <script type="text/javascript">
 
 $("#updatesu").click(function(event) {
-    var r = confirm("Press a button!");
-    if (r == true) {
+   // var r = confirm("Press a button!");
+   //if (r == true) {
         $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
          });
@@ -70,7 +70,7 @@ $("#updatesu").click(function(event) {
         })
        
         
-    } 
+  //  } 
 
    
 });
