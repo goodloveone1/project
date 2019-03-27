@@ -15,7 +15,9 @@
 ?>
 				<div class='row mb-3 '>
 			
-				<div class='col-md-12'><h3 class='h3'> <?php echo $ac_id." " .$ac_name ?> </h3> </div>
+				<div class='col-md-12'>
+				<p style='color:blue;'> <?php echo $ac_name ?> </p> 
+				</div>
 				
 				<?php 
 					$tit = $con->query("SELECT * FROM capacity ");
@@ -41,7 +43,7 @@
 						echo	"<tr>";
 						echo		"<td scope='row'> $fettor2[sub_name] </td>";
 						echo		"<td class='text-center'> $fettor2[score] </td>";
-						echo		"<td class='text-center'><a href='javascript:void(0)' class='edit' data-idexp='$fettor2[atb_id]' data-subname='$fettor2[sub_name]' data-score='$fettor2[score]' ><i class='fas fa-edit fa-2x '></i></a></td>";	
+						echo		"<td class='text-center'><a href='javascript:void(0)' class='edit' data-idexp='$fettor2[atb_id]' data-subname='$fettor2[sub_name]' data-score='$fettor2[score]' data-aca='$ac_name' ><i class='fas fa-edit fa-2x '></i></a></td>";	
 						echo	"</tr>";
 						
 													
@@ -73,11 +75,11 @@
     $(".edit").click(function( ){
         
         
-        $.post("module/assessment/Criteria_tor2_model.php", { atbid : $(this).data("idexp"),subname : $(this).data("subname"),score : $(this).data("score") }).done(function(data){
+        $.post("module/assessment/Criteria_tor2_model.php", { atbid : $(this).data("idexp"),subname : $(this).data("subname"),score : $(this).data("score"),aca:$(this).data("aca") }).done(function(data){
         $('#loademodel').html(data);
         $('#editsub').modal('show');
         })
-        
+		
         
         });
        

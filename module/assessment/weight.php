@@ -36,12 +36,10 @@
     list($sumW)=mysqli_fetch_row($aca_sum);
     $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
     list($post_name)=mysqli_fetch_row($posi);
-
     $no=1;
-    
-    echo "<table  class='table' id='tablebranch' >
-    <thead class='thead-light'>
-         <h3>$post_name</h3>
+    echo "<table  class='table table-bordered' id='tablebranch' >
+    <thead>
+         <p style='color:blue;'>$post_name</p>
          <tr>
             <th scope='col'>ลำดับ</th>
            
@@ -75,8 +73,9 @@
             $no++;     
     }
     echo"<tr><td colspan=3 align=right>รวม</td><td colspan=2 style='color:red;'>$sumW</td></tr>";
-    echo "<hr>";
+    echo "</tbody>";
 }
+ echo "</table>";
     mysqli_free_result($re);
     mysqli_free_result($sums);
     mysqli_free_result($aca_sum);
@@ -85,7 +84,7 @@
     
     mysqli_close($con);
 ?>
- </tbody>
+ 
 <div id="loadeditsub"></div>
 
 <script>

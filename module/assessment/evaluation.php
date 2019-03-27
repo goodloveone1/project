@@ -14,16 +14,7 @@
     <div class="col-md-2" ></div>
 
 </div>
-<!-- <table  class="table" id="tablebranch" >
-    <thead class="thead-light">
-         <tr>
-            <th scope="col">ลำดับ</th>
-            <th scope="col">ตำแหน่ง</th>
-            <th scope="col">ภาระงาน</th>
-            <th scope="col">น้ำหนัก</th>
-        </tr>
-    </thead>
-<tbody> -->
+
 <?php
     $sums=mysqli_query($con,"SELECT COUNT(aca_id) FROM academic")or die("sqlError".mysqli_error($con));
     list($loop)=mysqli_fetch_row($sums);
@@ -38,27 +29,9 @@
 
     $no=1;
 
-//     echo "<table  class='table' id='tablebranch' >
-//     <thead class='thead-light'>
-//         <hr>
-//          <h3>$post_name</h3>
-//          <tr>
-//             <th scope='col'>ลำดับ</th>
-//             <th scope='col'>ตำแหน่ง</th>
-//             <th scope='col'>ภาระงาน</th>
-//             <th scope='col'>ระดับ</th>
-//             <th scope='col'>เงื่อนไข</th>
-//             <th scope='col'>รายล่ะเอียด</th>
-//             <th scope='col'>แก้ไข</th>
-//         </tr>
-//     </thead>
-// <tbody>
-
-// ";
-      echo "<table  class='table' id='tablebranch' >
-    <thead class='thead-light'>
-        <hr>
-         <h3>$post_name</h3>
+      echo "<table  class='table table-bordered' id='tablebranch' >
+    <thead>
+         <p style='color:blue;'>$post_name</p>
          <tr>
             <th scope='col'>ลำดับ</th>
             <th scope='col'>ตำแหน่ง</th>
@@ -78,17 +51,6 @@
         if($lv==0){
             $lv="-";
         }
-        // //echo"
-        //     <tr>
-        //         <td>$no</td>
-        //         <td>$aca_name</td>
-        //         <td>ด้านที่ $tit $tit_name</td>
-        //         <td>ระดับ $lv</td>
-        //         <td>$lue</td>
-        //         <td>$ex</td>
-        //         <td><a href='#'class='edit' data-ideditsub='$aca_id' data-idename='$tit' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-        //     </tr>";
-
         echo"
             <tr>
                 <td>$no</td>

@@ -14,9 +14,11 @@
                 </div>
                 <div class="modal-body">
                 <input type="hidden"  name="atbid" value='<?php echo $_POST['atbid'] ?>'>
+              
                  <div class="form-group">
-                   <label for=""> <?php echo $_POST['subname'] ?></label>
-                   <input type="text"
+                  <p><label for=""> <b>สมรรถนะ: </b> <?php echo $_POST['subname'] ?></label></p> 
+                  <p><label for=""> <b>ตำแหน่ง:</b> <?php echo $_POST['aca'] ?></label></p>
+                   <input type="number" max = "5" min="0"
                      class="form-control" name="score" value='<?php echo $_POST['score'] ?>'>
                  </div>
                 </div>
@@ -31,11 +33,11 @@
 <script type="text/javascript">
 
 $("#updatesu").click(function(event) {
-    var r = confirm("คุณต้องการแก้้ไขข้อมูลหรือไม่?");
-    if (r == true) {
+    
+    
         $.post( "module/assessment/updateCriteria.php", $( "#formedit_tor2" ).serialize()).done(function(data,txtstuta){
             // alert(data);
-            alert("ับันทึกข้อมูลสำเร๊จ");
+           // alert("ับันทึกข้อมูลสำเร๊จ");
             $('#editsub').modal("hide");
 
             $('#editsub').on('hidden.bs.modal', function (e) {
@@ -43,6 +45,6 @@ $("#updatesu").click(function(event) {
             loadmain("assessment","Criteria_manage_tor2");
             })
         });
-    }  
+    
 });
 </script>
