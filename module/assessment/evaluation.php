@@ -16,59 +16,63 @@
 </div>
 
 <?php
-    $sums=mysqli_query($con,"SELECT COUNT(aca_id) FROM academic")or die("sqlError".mysqli_error($con));
-    list($loop)=mysqli_fetch_row($sums);
+    $se_acaCon=mysqli_query($con,
+    "SELECT DISTINCT conditions.aca_id,academic.aca_name
+    FROM conditions
+    INNER JOIN academic
+    ON academic.aca_id=conditions.aca_id")or die("sqlError".mysqli_error($con));
+    while(list($aca_id,$aca_name)=mysqli_fetch_row($se_acaCon)){
 
-
-    for($i=1;$i<=$loop;$i++){
-    $re=mysqli_query($con,"SELECT * FROM conditions WHERE aca_id='$i' GROUP BY e_name" ) or die("errorSQLselect".mysqli_error($con));
-
-
-    $posi=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$i'") or die("SQLerror".mysqli_error($con));
-    list($post_name)=mysqli_fetch_row($posi);
+    $re=mysqli_query($con,"SELECT * FROM conditions WHERE aca_id='$aca_id' GROUP BY e_name" ) or die("errorSQLselect".mysqli_error($con));
 
     $no=1;
 
       echo "<table  class='table table-bordered' id='tablebranch' >
     <thead>
-         <p style='color:blue;'>$post_name</p>
+         <p style='color:blue;'>$aca_name</p>
          <tr>
-            <th scope='col'>ลำดับ</th>
-            <th scope='col'>ตำแหน่ง</th>
+            
             <th scope='col'>ภาระงาน</th>
+            <th>เกณฑ์การประเมิน</th>
             <th scope='col'>แก้ไข</th>
         </tr>
     </thead>
 <tbody>
 ";
-    while(list($w_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
-        $seac = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca_id'" ) or die("SQL error".mysqli_error($con));
-        list($aca_name)=mysqli_fetch_row($seac);
-        mysqli_free_result($seac);
+    while(list($con_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
+       // echo "<p>$tit</p>";
+    
         $setit = mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$tit'") or die("SQL error".mysqli_error($con));
         list($tit_name)=mysqli_fetch_row($setit);
         mysqli_free_result($setit);
         if($lv==0){
             $lv="-";
         }
-        echo"
+        ?>
             <tr>
-                <td>$no</td>
-                <td>$aca_name</td>
-                <td>ด้านที่ $tit $tit_name</td>
+                <td><?php echo " $tit_name"?></td>
+                <td>
+                    <?php  
+                        $se_ex=mysqli_query($con,"SELECT con_ex FROM conditions WHERE e_name='$tit' AND aca_id='$aca_id'")or die("SQL.error".mysqli_error($con));
+                        while(list($ex)=mysqli_fetch_row($se_ex)){
+                        
+                        echo "<p>$ex</p>";
+                        echo "<hr>";
+                        }
+                        mysqli_free_result($se_ex);
+                    ?>
+                </td>
+                <td><a href='#'class='edit' data-ideditsub='<?php echo $aca_id ?>' data-idename='<?php echo $tit ?>' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
+            </tr>
 
-                <td><a href='#'class='edit' data-ideditsub='$aca_id' data-idename='$tit' data-toggle='modal' ><i class='fas fa-edit fa-2x'></i></a></td>
-            </tr>";
-
-            $no++;
+<?php      $no++;
     }
    echo " </tbody>" ;
    echo " </table>" ;
 
 }
     mysqli_free_result($re);
-    mysqli_free_result($sums);
-    mysqli_free_result($posi);
+    mysqli_free_result($se_acaCon);
 
 
     mysqli_close($con);
