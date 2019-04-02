@@ -45,17 +45,10 @@ $con=connect_db();
       <div class="col-md">
         <select id="inputNo" class="form-control" name="a_no" disabled>
         <?php
-          $yNow=date("Y");
-          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+          $yNow=chk_idtest();
+          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_id='$yNow'")or die(mysqli_error($con));
           while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-            $m=DATE('m');
-            if($m<=9 && $m>3){
-              $sy_no= 2;
-            }else{
-              $sy_no= 1;
-
-            }
-            $seNO=$sy_no==$y_no?"selected":"";
+            $seNO=$yNow==$y_id?"selected":"";
             echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
           }
         ?>

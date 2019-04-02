@@ -100,8 +100,7 @@ $y_id = $y.$loop;
 		while(list($se_name)=mysqli_fetch_row($re_sub_e)){
 			echo "<p style='color:blue;'>&nbsp;&nbsp;&nbsp;$se_name</p>";
 		}
-		mysqli_free_result($re_sub_e);
-								
+		mysqli_free_result($re_sub_e);					
 						 echo "</td>";
 ?>
 									<td>

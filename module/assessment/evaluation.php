@@ -33,7 +33,7 @@
          <tr>
             
             <th scope='col'>ภาระงาน</th>
-            <th>เกณฑ์การประเมิน</th>
+            <th>เกณฑ์การประเมิน ตำแหน่ง $aca_name</th>
             <th scope='col'>แก้ไข</th>
         </tr>
     </thead>
@@ -69,7 +69,7 @@
     }
    echo " </tbody>" ;
    echo " </table>" ;
-
+   echo "<br>";
 }
     mysqli_free_result($re);
     mysqli_free_result($se_acaCon);

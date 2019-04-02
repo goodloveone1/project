@@ -81,10 +81,20 @@
 		$sqltor1=mysqli_query($con,"SELECT pret1_id,ass_id,title_name,goal,score FROM preasessment_t1 WHERE  ass_id='$TOR_id' AND title_name='$tit'") or die("".mysqli_error($con));
 		 list($tort1_id,$tor_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
 	   // echo$tort1_id,$tor_id,$title_name,$tort1_goal,$tort1_score;
-
+	   $re_hourmin=mysqli_query($con,"SELECT min_hour FROM work_hour WHERE aca_id='$gen_acadeic' AND e_id='$tit'")or die("SQL.Error-minhour".mysqli_error($con));
+	   list($min_hour)=mysqli_fetch_row($re_hourmin);
+	   mysqli_free_result($re_hourmin);
 
 		echo "<tr id='$tit'>";
-		echo "<td>$e_name</td>";
+		echo "<td>";
+			echo"<p>$e_name</p>";
+			echo "<p style='color:red;'>&nbsp;&nbsp;&nbsp;$min_hour</p>";
+			$re_sub_e=mysqli_query($con,"SELECT se_name FROM sub_evaluation WHERE e_id='$tit'")or die("SQL.Error-minhour".mysqli_error($con));
+		while(list($se_name)=mysqli_fetch_row($re_sub_e)){
+			echo "<p style='color:blue;'>&nbsp;&nbsp;&nbsp;$se_name</p>";
+		}
+		mysqli_free_result($re_sub_e);			
+		echo "</td>";
 		echo "<td>";
 $se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
 while(list($con_ex)=mysqli_fetch_row($se_condition)){

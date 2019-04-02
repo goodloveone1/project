@@ -12,6 +12,9 @@ unset($_SESSION['pre_id']);
         <?php
             $year = $_POST['year'];
             $year_now=chk_idtest();
+
+          //  echo" NOw : $year_now<br>";
+          //  echo " postID : $year";
       // เช็ค PRE
             $se_PRE=mysqli_query($con,"SELECT  ass_id FROM assessments WHERE staff='$_SESSION[user_id]'AND year_id='$year' AND ass_id LIKE'PRE%'") or die("SQL-error".mysqli_error($con));
             list($PER_id)=mysqli_fetch_row($se_PRE);
