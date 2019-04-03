@@ -39,26 +39,31 @@
                 <div class="modal-body">
 
                     <?php
-                        while(list($w_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
+                        while(list($con_id,$aca_id,$tit,$lv,$lue,$ex)=mysqli_fetch_row($re)){
                                              
-                        if($lv==0){
-                            $lv="-";
-                        }
+                        // if($lv==0){
+                        //     $lv="-";
+                        // }
                     ?>                 
 
                      <div class="form-row">
                         <div class="col-md mb-3">
-                          <label for="validationCustom03"><h5><?php echo "ระดับ ".$lv ?></h5></label>
+                          <label for="validationCustom03">ระดับคะแนน</label>
+                          <input type="hidden" name="id[]" class="form-control"  required value="<?php echo $con_id ?>">
+                        <div class="col-md mb-3">
+                            <input type="text" name="level[]" class="form-control"  required value="<?php echo $lv ?>">
+                        </div>
                          
                        
                         <div class="col-md mb-3">
                           <label for="validationCustom04">เงื่อนไข  </label>
-                          <input type="text" class="form-control"  required value="<?php echo $lue ?>">
+                          <!-- <input type="text" name="condition[]" class="form-control"  required value="<?php echo $lue ?>"> -->
+                          <textarea name="condition[]" class="form-control" rows=5 required ><?php echo $lue ?></textarea>
                           
                         </div>
                         <div class="col-md mb-3">
                           <label for="validationCustom05">รายล่ะเอียด</label>
-                          <textarea class="form-control" rows=5 required ><?php echo $ex ?></textarea>
+                          <textarea name="disc[]" class="form-control" rows=5 required ><?php echo $ex ?></textarea>
                         
                         </div>
                      </div>
@@ -71,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>
+                    <button type="button" class="btn btn-primary" id="update">บันทึก</button>
                 </div>
             </div>
         </div>
@@ -86,17 +91,17 @@
 
 <script type="text/javascript">
 
-$("#").click(function(event) {
+$("#update").click(function(event) {
     var r = confirm("Press a button!");
     if (r == true) {
-        $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/assessment/update_evaluation.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              alert(data);
-         });
+         })
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
             
-           loadmain("assessment","weight");
+           loadmain("assessment","evaluation");
         })
        
         
