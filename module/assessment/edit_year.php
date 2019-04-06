@@ -60,7 +60,7 @@ $("#updatesu").click(function(event) {
 
         $('#editsub').on('hidden.bs.modal', function (e) {
             
-           loadmain("assessment","weight");
+           loadmain("assessment","year");
         })
        
         
