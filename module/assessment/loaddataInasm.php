@@ -5,6 +5,10 @@ include("../../function/fc_time.php");
 $con=connect_db();
 
 $year = $_POST['year'];
+$year_now=chk_idtest();
+
+
+if($year==$year_now){
 ?>
 <div class="table-responsive">
 <table class="table table-border col-md" id="Datatable">
@@ -128,67 +132,18 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
                 echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
                 echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
                 }
-              if($inform == 1 && $accept == 0){
+              else if($inform == 1 && $accept == 0 || $inform == 1 && $accept == 1){
               echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class=' text-success'  data-torid='$tor_id' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
-              echo "<td class='text-center'></a> <b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ตราจสอบเสร็จแล้ว </br></td>";
+              echo "<td class='text-center'></a> <b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ตรวจสอบเสร็จแล้ว </br></td>";
               }
+             
             }
-            // if(empty($asst5_id)){
-            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>หัวหน้ายังไม่ได้ตรวจสอบการประเมิน</b></td>";
-            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถรับทราบการประเมิน</b></td>";
-            // }else{
-            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>หัวหน้ายังไม่ได้ตรวจสอบการประเมิน</b></td>";
-            //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถรับทราบการประเมิน</b></td>";
-            // } 
+
           }
         }
     }
-
-    // if(empty($PRE_id)){
-    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    //   echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    // }else{
-    //     if(empty($tor_id)){
-    //       echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    //       echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
-    //     }else{
-
-    //       if(empty($evd_id)){
-    //         echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-    //         echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$tor_id' title='คลิกเพื่อทำการอัปโหลดหลักฐาน'>อัปโหลดหลักฐาน</a></td>";
-    //       }else{
-    //         if($evd_status ==1){
-    //           echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
-    //           echo "<td><a href='javascript:void(0)' class='addevd'  data-torid='$tor_id' title='คลิกเพื่อทำการตรวจสอบหลักฐาน'>ตรวจสอบหลักฐาน</a></td>";
-    //         }else if($evd_status ==2){
-    //           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
-    //           echo "<td>อัปโหลดหลักฐานแล้วเสร็จแล้ว</td>";
-    //         }
-            
-    //       }
-    //     }
-    // }
-
-
-
-    // if(!empty($tor_id)){
-    //   echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
-    //   if(empty($tor_idc2)){
-    //     echo " <td></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$year' title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ตรวจสอบ </b></a></td>";
-    //   }
-    //   else{
-    //     echo " <td> <b class='text-success'><i class='fas fa-check fa-2x'></i> ตรวจสอบแล้ว  <b></td>";
-
-    //   }
-
-    // }else{
-    //   echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมินตนเอง </b></td>";
-    //   echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังตรวจสอบไม่ได้ </b></a></td>";
-    // }
 
     echo "</tr>";
   $i++;
@@ -241,3 +196,11 @@ $(".showpre").click(function(e) {
 	});
 
 </script>
+
+<?php 
+    }else if($year<$year_now){
+      echo "<p align='center' style='color:red;'>***หมดเวลาประเมินแล้ว กรุณาตรวจสอบปีการประเมิน</p>";
+    }else{
+      echo "<p align='center' style='color:blue;'>***ยังไม่ถึงเวลาประเมิน กรุณาตรวจสอบปีการประเมิน</p>";
+    }
+?>
