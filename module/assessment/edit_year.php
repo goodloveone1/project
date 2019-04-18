@@ -1,6 +1,7 @@
 <?php
     session_start();
-	include("../../function/db_function.php");
+    include("../../function/db_function.php");
+    include("../../function/fc_time.php");
     $con=connect_db();
 ?>
 
@@ -9,8 +10,10 @@
         $_POST['id']="";
     }
     $i=$_POST['id'];
-     $re=mysqli_query($con,"SELECT *FROM weights WHERE w_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
-     list($w_id,$aca_id,$tit,$weighs)=mysqli_fetch_row($re);
+     $re=mysqli_query($con,"SELECT *FROM years WHERE y_id='$i'" ) or die("errorSQLselect".mysqli_error($con));
+     list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($re);
+     $thai_y=$y_year+543;
+    //  echo $y_id,$y_year,$y_no,$y_start,$y_end;
 
 ?>
 <form id="foreditbrc">
@@ -18,7 +21,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header headtitle">
-                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขปีงบประมาณ <?php  ?></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขปีงบประมาณ <?php  ?> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <!-- <span aria-hidden="true">&times;</span> -->
                     <i class="fas fa-times" aria-hidden="true"></i>
@@ -26,12 +29,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label >ภาระงาน : <?php ?></label>
-                         <input type="text"   class="form-control" value="<?php ?>"  name="wid" size=40 require>
-                          <input type="hidden"    value="<?php echo $w_id ?>"  name="w_id" size=40 require>
+                        <label >ปีงบประมาณ : </label>
+                         <input type="hidden" name="y_id" value="<?php echo $y_id ?>">
+                         <input type="number"   class="form-control"  max="3030" min="2017"  value="<?php echo $thai_y  ?>"  name="year" size=40 require>  
                     </div>
-                    
-                    
+                    <div class="form-group">
+                        <label >รอบที่ : <?php ?></label>
+                         <input type="number"   class="form-control" max="2" min="1" value="<?php echo $y_no ?>"  name="no" size=40 require>  
+                    </div>
+                    <div class="form-group">
+                        <label >วันที่เริ่ม : <?php ?></label>
+                         <input type="date"   class="form-control" value="<?php echo $y_start ?>"  name="start" size=40 require>  
+                    </div>
+                    <div class="form-group">
+                       
+                        <label >วันที่สิ้นสุด : <?php ?></label>
+                         <input type="date"   class="form-control" value="<?php echo $y_end ?>"  name="end" size=40 require>  
+                    </div> 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -53,7 +67,7 @@
 $("#updatesu").click(function(event) {
    // var r = confirm("Press a button!");
    //if (r == true) {
-        $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+        $.post( "module/assessment/update_year.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
             alert(data);
          });
         $('#editsub').modal("hide");
@@ -61,9 +75,7 @@ $("#updatesu").click(function(event) {
         $('#editsub').on('hidden.bs.modal', function (e) {
             
            loadmain("assessment","year");
-        })
-       
-        
+        }) 
   //  } 
 
    
