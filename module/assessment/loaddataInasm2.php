@@ -17,8 +17,8 @@ $year = $_POST['year'];
       <th> หลักสูตร </th>
       <th> สาขา </th>
       <th> ตำแหน่ง </th>
-      <th> ข้อตกลง </th>
       <th> TOR </th>
+      <th> หลักฐาน </th>
       <th> แสดงความเห็น </th>
     </tr>
   <thead>
@@ -71,29 +71,31 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo "<td>$pos_name</td>";
 
-    $pre= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
-    list($PRE_id)=mysqli_fetch_row($pre);
-    mysqli_free_result($pre);
-    // echo $PRE_id;
+   
     // TOR
     $tor= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or  die("SQL Error1==>1".mysql_error($con));
     list($tor_id)=mysqli_fetch_row($tor);
     mysqli_free_result($tor);
 
+    $evd= mysqli_query($con,"SELECT evd_id FROM evidence WHERE ass_id='$tor_id'") or  die("SQL Error1==>1".mysql_error($con));
+    list($evd_id)=mysqli_fetch_row($evd);
+    mysqli_free_result($evd);
+    // echo $PRE_id;
     
-
-
-    if(empty($PRE_id)){
-      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำข้อตกลง</b></td>";
-    }else{
-      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำข้อตกลงแล้ว</b></td>";
-    }
 
     if(empty($tor_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTORได้</b></td>";
     }else{
       echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>"; 
     }
+
+    if(empty($evd_id)){
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัพโหลดหลักฐาน</b></td>";
+    }else{
+      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>อัพโหลดหลักฐานแล้ว</b></td>";
+    }
+
+ 
     
     if(empty($tor_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTOR</b></td>";
@@ -104,6 +106,8 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       if($position=='1'){
           if($leader_comt==0){
             echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้แสดงความเห็น </br></a></td>";
+          }else{
+            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>"; 
           }
       }else if($position=='2'){
         echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
