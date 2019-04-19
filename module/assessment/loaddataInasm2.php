@@ -34,7 +34,7 @@ $year = $_POST['year'];
 SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
-WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
+WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.permiss_id !='1' AND st_id != '$_SESSION[user_id]' AND staffs.permiss_id !='5'") or  die("SQL Error1==>1".mysqli_error($con));
 
     }
     else //คณะ
@@ -71,30 +71,45 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo "<td>$pos_name</td>";
 
-    $show2= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year'") or  die("SQL Error1==>1".mysql_error($con));
-    list($tor_id)=mysqli_fetch_row($show2);
-    mysqli_free_result($show2);
+    $pre= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'PRE%' ") or  die("SQL Error1==>1".mysql_error($con));
+    list($PRE_id)=mysqli_fetch_row($pre);
+    mysqli_free_result($pre);
+    // echo $PRE_id;
+    // TOR
+    $tor= mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$gen_id' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or  die("SQL Error1==>1".mysql_error($con));
+    list($tor_id)=mysqli_fetch_row($tor);
+    mysqli_free_result($tor);
 
-    $show3= mysqli_query($con,"SELECT ass_id FROM asessment_t1 WHERE ass_id='$tor_id' ") or  die("SQL Error1==>3".mysql_error($con));
-    list($tor_idc2)=mysqli_fetch_row($show3);
-    mysqli_free_result($show3);
-    if(!empty($tor_id)){
-      echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ทำการประเมินตนเองแล้ว </b> </td>";
-      if(empty($tor_idc2)){
-        echo " <td></a> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ประเมิน </b></a></td>";
-        echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถแสดงผลการประเมินได้   <b></td>";
-      }
-      else{
-        echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> ประเมินเรียบร้อยแล้ว  <b></td>";
-        echo " <td> <b class='text-success'><a href='#loadsumass' class='showsumass' data-year='$year' data-stid='$gen_id'> <i class='fas fa-check-circle fa-2x'></i> แสดงผลการประเมินได้  </a> <b></td>";
-      }
+    
 
+
+    if(empty($PRE_id)){
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำข้อตกลง</b></td>";
     }else{
-      echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการประเมินตนเอง </b></td>";
-      echo " <td></a> <b class='text-danger'><i class='fas fa-times-circle fa-2x '></i> ยังไม่สามารถประเมินได้ </b></a></td>";
-      echo " <td> <b class='text-danger'><i class='fas fa-times-circle fa-2x'></i> ยังไม่สามารถแสดงผลการประเมินได้  <b></td>";
+      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำข้อตกลงแล้ว</b></td>";
     }
 
+    if(empty($tor_id)){
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTORได้</b></td>";
+    }else{
+      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>"; 
+    }
+    
+    if(empty($tor_id)){
+      echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำTOR</b></td>";
+    }else{
+      $comment=mysqli_query($con,"SELECT *FROM asessment_t6 WHERE ass_id='$tor_id'")or die("SQL.error".mysqli_error($con));
+      list($ass6_id,$ass_id,$leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($comment);
+      mysqli_free_result($comment);
+      if($position=='1'){
+          if($leader_comt==0){
+            echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้แสดงความเห็น </br></a></td>";
+          }
+      }else if($position=='2'){
+        echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
+      }
+    }
+    
 
 
 
