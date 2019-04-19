@@ -92,10 +92,10 @@
 <script type="text/javascript">
 
 $("#update").click(function(event) {
-    var r = confirm("Press a button!");
-    if (r == true) {
+    var r = confirm("บันทึกสำเร็จแล้ว");
+    // if (r == true) {
         $.post( "module/assessment/update_evaluation.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             alert(data);
+            // alert(data);
          })
         $('#editsub').modal("hide");
 
@@ -105,7 +105,7 @@ $("#update").click(function(event) {
         })
        
         
-    } 
+    // } 
 
    
 });

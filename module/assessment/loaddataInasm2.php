@@ -10,16 +10,16 @@ $year = $_POST['year'];
 <table class="table table-border col-md" id="Datatable">
   <thead>
     <tr>
-      <th>ลำดับ </th>
+      <!-- <th>ลำดับ </th> -->
       <th> รูปภาพ </th>
       <th> ชื่อ </th>
       <th> สกุล </th>
       <th> หลักสูตร </th>
       <th> สาขา </th>
       <th> ตำแหน่ง </th>
-      <th> สถานะการประเมิน </th>
-      <th> ประเมินบุคลากร </th>
-      <th> ผลการประเมินบุคลากร </th>
+      <th> ข้อตกลง </th>
+      <th> TOR </th>
+      <th> แสดงความเห็น </th>
     </tr>
   <thead>
     <tbody>
@@ -34,7 +34,7 @@ $year = $_POST['year'];
 SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
-WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
+WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
 
     }
     else //คณะ
@@ -44,7 +44,7 @@ WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND sta
     $i=1;
 while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
     echo "<tr>";
-    echo " <td>$i</td>";
+    // echo " <td>$i</td>";
     if(!empty($gen_pict)){
         echo " <td><img src='img/$gen_pict' class='img-thumbnail' width='100px' height='100px'></td>";
     }else{

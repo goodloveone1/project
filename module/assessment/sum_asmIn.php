@@ -8,7 +8,7 @@
 $con=connect_db();
  ?>
 <div class="row  p-2 headtitle">
-	<h2 class="text-center col-md "> ผลประเมินของบุคลากรของตนเอง </h2>
+	<h2 class="text-center col-md "> ผลประเมินของบุคลากร </h2>
 </div>
 <br>
 
@@ -21,7 +21,7 @@ $con=connect_db();
       <input type="hidden" name="gg" value="hidden" >
       <select id="inputState" class="form-control" name="year">
       <?php
-      $sYears=mysqli_query($con,"SELECT DISTINCT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
+      $sYears=mysqli_query($con,"SELECT  y_no,y_year,y_id FROM years ")or die(mysqli_error($con));
       while(list($y_no,$y_year,$y_id)=mysqli_fetch_row($sYears)){
         $y_thai=$y_year+543;
         //$yy=DATE('Y');
@@ -45,19 +45,14 @@ $con=connect_db();
       <div class="col-md">
         <select id="inputNo" class="form-control" name="a_no" disabled>
         <?php
-          $yNow=date("Y");
-          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_year='$yNow'")or die(mysqli_error($con));
+          $yNow=chk_idtest();
+          $sY_No=mysqli_query($con,"SELECT y_id,y_no,y_start,y_end FROM years WHERE y_id='$yNow'")or die(mysqli_error($con));
           while(list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No)){
-            $m=DATE('m');
-            if($m<=9 && $m>3){
-              $sy_no= 2;
-            }else{
-              $sy_no= 1;
-
-            }
-            $seNO=$sy_no==$y_no?"selected":"";
+            
+            $seNO=$yNow==$y_id?"selected":"";
             echo "<option value='$y_id' $seNO>รอบที่ $y_no  (", DateThai($y_s)," - ",DateThai($y_e),")</option>";
           }
+          mysqli_free_result($sY_No);
         ?>
         </select>
       </div>
