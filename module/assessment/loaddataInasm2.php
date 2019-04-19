@@ -105,7 +105,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       mysqli_free_result($comment);
       if($position=='1'){
           if($leader_comt==0){
-            echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้แสดงความเห็น </br></a></td>";
+            echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้แสดงความเห็น </br></a></td>";
           }else{
             echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>"; 
           }
@@ -136,34 +136,17 @@ mysqli_close($con);
 
 $(document).ready(function() {
 
-$.getScript('js/mydatatable.js')
+  $(".showtor").click(function(e) {
+		e.preventDefault(); 
+		//alert($(this).data("evdidtext"));
+        var gen_id =$(this).data("genid");
+        var tor_id =$(this).data("year");
 
-$(".showsumass").click(function(e){
-  e.preventDefault();
-
-  $.post("module/assessment/modelsumass.php", { year: $(this).data("year"),stid: $(this).data("stid") }).done(function(data){
-                $('#loadmodel').html(data);
-                $('#showsumass').modal('show');
-            })
-
-  // $("#loadsumass").html("")
-  //     $("#loadging").css('display','')
-
-  //     $.ajax({
-  //       url: "module/assessment/load_sum_ass2.php",
-  //       data:{year: $(this).data("year"),stid: $(this).data("stid") },
-  //       type: "POST"
-  //     }).done(function(data){
-
-  //       setTimeout(function(){ 
-  //         $("#loadging").css('display','none');
-  //         $("#loadsumass").html(data)
-        
-  //       }, 2000);
-
-  //     })
-
-})
+        $.post("module/assessment/load_hleadcomment.php", { user_id:gen_id,tor_id:tor_id } ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelpre').modal('show');
+        })
+  });
 
 
 }) // END document
