@@ -55,13 +55,10 @@
         var ideditsub =$(this).data("ideditsub");
 
         $.post("module/personnel/editdegree.php", { id : ideditsub }).done(function(data){
-        $('#loadeditsub').html(data);
-        $('#editsub').modal('show');
-        })
-
-
+            $('#loadeditsub').html(data);
+            $('#editde').modal('show');
+            })
         });
-
 
        $("#Datatable").on('click', '.delbrn', function(event) {
 
@@ -79,6 +76,7 @@
                     })
             }
         })
+
         $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/personnel/adddegree.php",function(){

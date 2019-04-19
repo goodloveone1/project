@@ -25,9 +25,9 @@ $con=connect_db();
                         <label > ชื่อสาขาวิชา :</label>
                         <select class="form-control" name="branch">
                             <?php
-                                $selectB=mysqli_query($con,"SELECT branch_id,branch_name FROM branch") or die ("mysql error=>>".mysql_error($con));
-                                while(list( $branch_ID,$branch_name)=mysqli_fetch_row($selectB)){
-                                echo "<option value=$branch_ID>$branch_name</option>";
+                                $selectB=mysqli_query($con,"SELECT dept_id,dept_name FROM departments") or die ("mysql error=>>".mysql_error($con));
+                                while(list( $dept_id,$dept_name)=mysqli_fetch_row($selectB)){
+                                echo "<option value='$dept_id'>$dept_name</option>";
                                 }
                             ?>
                         </select>
