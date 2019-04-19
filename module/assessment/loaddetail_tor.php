@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">แสดงข้อตกลง</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">แสดงผลการประเมิน</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -32,7 +32,7 @@ $( document ).ready(function() {
   loadpretest();
 
   function loadpretest(){
-    $.post( "module/assessment/load_sum_ass_pre.php", { year: "<?php echo $year ?>", stid: "<?php echo $stid ?>" })
+    $.post( "module/assessment/load_sum_ass2.php", { year: "<?php echo $year ?>", stid: "<?php echo $stid ?>" })
   .done(function( data ) {
      $("#loadpretest").html(data)
   });

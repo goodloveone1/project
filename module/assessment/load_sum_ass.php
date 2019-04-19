@@ -482,8 +482,11 @@ if(!empty($inform==1)){
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-				<?php $date= date("Y/m/d")  ?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($leader_compt_date)  ?> " readonly >
+				<?php 
+					$date= date("Y/m/d"); 
+					$leader_compt_date = $leader_compt_date==0?"":DateThai($leader_compt_date);		
+				?>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $leader_compt_date  ?> " readonly >
 				</div>				
 		</div>
 	</div>
@@ -534,7 +537,8 @@ if(!empty($inform==1)){
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai ($supervisor_comt_date) ?>" readonly>
+				<?php $supervisor_comt_date = $supervisor_comt_date==0?"":DateThai($supervisor_comt_date);	 ?>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $supervisor_comt_date ?>" readonly>
 				</div>				
 		</div>
 	</div>

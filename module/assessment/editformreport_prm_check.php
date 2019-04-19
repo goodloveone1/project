@@ -178,11 +178,11 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										echo 	"<td class='text-center'> ";
 											if($checkshowfile == 1){
 												echo   		"<table class='table table-striped'>";
-												$evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
+												$evd_file =  mysqli_query($con,"SELECT evd_file_id,evd_file_name,evd_name_thai FROM evidence_file WHERE se_id='$sub_id' AND evd_id='$evdid' ") or  die("SQL Error1==>1".mysqli_error($con));
 												$i=1;
 												if($evd_file->num_rows != 0){
-													while(list($evd_file_id,$evd_file_name)=mysqli_fetch_row($evd_file)){
-														echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_file_name</a></td></tr> ";
+													while(list($evd_file_id,$evd_file_name,$evd_name_thai)=mysqli_fetch_row($evd_file)){
+														echo  	"<tr><td> $i </td> <td><a href='file/$ass_id/$evd_file_name' target='_blank'>$evd_name_thai</a></td></tr> ";
 														$i++;		
 													}
 												}else{

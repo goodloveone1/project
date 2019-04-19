@@ -46,16 +46,17 @@ $("#updatesu").click(function(event) {
     var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
     if (r == true) {
         $.post( "module/personnel/adddatadegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-             
+            alert("บันทึกข้อมูลสำเร๊จ")
+            $('#addsub').modal("hide");
+
+            $('#addsub').on('hidden.bs.modal', function (e) {
+                var module1 = sessionStorage.getItem("module1")
+                var action = sessionStorage.getItem("action")
+                loadmain(module1,action);
+            })  
          });
          
-        $('#addsub').modal("hide");
-
-        $('#addsub').on('hidden.bs.modal', function (e) {
-            var module1 = sessionStorage.getItem("module1")
-            var action = sessionStorage.getItem("action")
-            loadmain(module1,action);
-        })  
+       
     } 
 });
 </script>
