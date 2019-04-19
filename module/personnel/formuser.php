@@ -7,7 +7,7 @@
 	<button type="button" class="btn  btn-block menuuser" data-modules="personnel" data-action="mangauser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
 	</div>
 	<div class="col-md text-center">
-		<h2> เพิ่มบุคลากร </h2>
+		<h2> เพิ่มข้อมูลบุคลากร </h2>
 	</div>
 	<div class="col-md-2"></div>
 </div>

@@ -9,7 +9,7 @@
 	</div>
 
 <div class="col-md text-center">
-	<h2> จัดการบุคลากร </h2>
+	<h2> จัดการข้อมูลบุคลากร </h2>
 </div>
 <div class="col-md-2" style="display: block;"><button type="button"  class="managaedituser btn btn-block bg-white text-center" data-modules='personnel' data-action='formuser'><i class="fas fa-plus"></i> เพิ่มบุคลากร </button>
 
@@ -20,7 +20,7 @@
 <form  id="delall">
 <div class="table-responsive">
 	<table class="table " id="Datatable">
-		<thead class="thead-light">
+		<thead class="">
 			<tr>
 				<?php
 					if(!empty($_GET['se'])){

@@ -10,7 +10,7 @@
 
 
 <form id="foreditbrc">
- <div class="modal fade" id="editsub" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
+ <div class="modal fade" id="editde" tabindex="-1" role="dialog" aria-labelledby="editsub" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header headtitle">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-success" id="updatesu">บันทึกข้อมูล</button>
+                    <button type="button" class="btn btn-success" id="updatede">บันทึกข้อมูล</button>
                 </div>
             </div>
         </div>
@@ -44,5 +44,20 @@
 
 
 <script type="text/javascript">
-
+$("#updatede").click(function(event) {
+    var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
+    if (r == true) {
+        $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){        
+            $('#editde').modal("hide");
+            alert("บันทึกข้อมูลสำเร๊จ");
+            $('#editde').on('hidden.bs.modal', function (e) {
+                var module1 = sessionStorage.getItem("module1")
+                var action = sessionStorage.getItem("action")
+                loadmain(module1,action);
+            })  
+         });
+         
+        
+    } 
+});
 </script>
