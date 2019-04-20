@@ -30,33 +30,31 @@ mysqli_free_result($se_ass);
       <th>ภาระงาน/กิจกรรม/โครงการ/งาน</th>
       <th> ค่าระดับเป้าหมาย </th>
       <th> ค่าคะแนนที่ได้  </th>
-      <th> น้ำหนัก(น้ำหนักความยากง่ายของงาน) </th>
-      <th> ค่าคะแนนถ่วงน้ำหนัก </th>
+      <!-- <th> น้ำหนัก(น้ำหนักความยากง่ายของงาน) </th>
+      <th> ค่าคะแนนถ่วงน้ำหนัก </th> -->
     </tr>
   <thead>
   <tbody>
 <?php
-    $se_sumAss=mysqli_query($con,"SELECT sum_weight,sum_weighted,sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$ass_id'")or die("sumAss-error".mysqli_error($con));
-    list($sum_weight,$sum_weighted,$sum_asst1)=mysqli_fetch_row($se_sumAss);
+   // $se_sumAss=mysqli_query($con,"SELECT sum_weight,sum_weighted,sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$ass_id'")or die("sumAss-error".mysqli_error($con));
+   //list($sum_weight,$sum_weighted,$sum_asst1)=mysqli_fetch_row($se_sumAss);
 
-    $se_a1=mysqli_query($con,"SELECT title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id' ") or die("ASS_SQLerror".mysqli_error($con));
-   while(list($title_id,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_a1)){
-       $se_tlt=mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$title_id'") or die("TLT-error".mysqli_error($con));
+
+
+    $se_a1=mysqli_query($con,"SELECT title_name,goal,score FROM preasessment_t1 WHERE ass_id='$ass_id' ") or die("ASS_SQLerror".mysqli_error($con));
+   while(list($title_name,$goal,$score)=mysqli_fetch_row($se_a1)){
+       $se_tlt=mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$title_name'") or die("TLT-error".mysqli_error($con));
        list($tlt_name)=mysqli_fetch_row($se_tlt);
        mysqli_free_result($se_tlt);
     echo "<tr>";
         echo"<td>$tlt_name</td>";
         echo"<td>$goal</td>";
         echo"<td>$score</td>";
-        echo"<td>$weight</td>";
-        echo"<td>$weighted</td>";
+        // echo"<td>$weight</td>";
+        // echo"<td>$weighted</td>";
     echo "</tr>";
 
    }
-   echo "<tr>";
-        echo"<td colspan='4' align='right' ><b>ผลรวมองค์ประกอบที่ ๑</b></td>";
-        echo"<td>$sum_asst1</td>";
-   echo "</tr>";
  echo "</tbody>";
     mysqli_free_result($se_a1);
 ?>

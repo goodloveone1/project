@@ -130,13 +130,13 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
                 echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'   data-genid='$gen_id' data-yearid='$year'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
                 echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
                 echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
-                echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
+                echo "<td class='text-center'> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
                 }
               else if($inform == 1 && $accept == 0 || $inform == 1 && $accept == 1){
               echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-genid='$gen_id' data-yearid='$year'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
               echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
-              echo "<td class='text-center'></a> <b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ตรวจสอบเสร็จแล้ว </br></td>";
+              echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ตรวจสอบเสร็จแล้ว </br></td>";
               }
              
             }

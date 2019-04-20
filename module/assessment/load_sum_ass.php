@@ -558,8 +558,9 @@ mysqli_close($con);
 				
 					if($(this).prop("checked") == true){
 						$.post( "module/assessment/update_ac.php", {tor_id: "<?php echo $asst5_id ?>", ac: "1"}).done(function( data ){
-									//alert(data);
-						var d = "<?php $date ?>";
+									alert("รับทราบผลการประเมินแล้ว");
+									loadingpage("assessment","sum_assessment");
+						//var d = "<?php $date ?>";
 							
   						});
             }

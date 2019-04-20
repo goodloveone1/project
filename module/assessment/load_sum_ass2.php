@@ -7,7 +7,7 @@ $con=connect_db();
 $year = $_POST['year'];
 $stid = $_POST['stid'];
 
-$se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$stid' AND year_id='$year' AND ass_id LIKE'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
+$se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$stid' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
 list($ass_id)=mysqli_fetch_row($se_ass);
 mysqli_free_result($se_ass);
 
@@ -20,7 +20,7 @@ list($inform)=mysqli_fetch_row($se_inform);
 
 mysqli_free_result($se_inform);
 // echo $inform;
-if(!empty($inform==1)){
+
 ?>
 <div class="row ">
   <div class="col-md">
@@ -546,9 +546,7 @@ if(!empty($inform==1)){
 </div>
 
 <?php 
-}else{
-   echo"<p style='color:red;' align='center'>***ไม่มีผลการประเมิน***</p>";
-}
+
 
 mysqli_close($con);
 
