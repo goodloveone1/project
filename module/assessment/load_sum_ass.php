@@ -5,6 +5,7 @@ include("../../function/fc_time.php");
 $con=connect_db();
 
 $year = $_POST['year'];
+$asst5_id="";
 
 $se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$_SESSION[user_id]' AND year_id='$year' AND ass_id LIKE'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
 list($ass_id)=mysqli_fetch_row($se_ass);
@@ -260,6 +261,7 @@ if(!empty($inform==1)){
   <p><b>ส่วนที่ ๕ แจ้งผลการประเมิน</b></p>
   <p>
       <?php
+				
      
         $select_tor=mysqli_query($con,"SELECT leader FROM assessments WHERE ass_id='$ass_id'") or die("SQL-error.SelectTor".mysqli_error($con));
     list($hleader)=mysqli_fetch_row($select_tor);
@@ -270,7 +272,7 @@ if(!empty($inform==1)){
 	list($tle_g,$g_lname,$g_fname,$g_pos)=mysqli_fetch_row($genchk);
 	mysqli_free_result($genchk);
   
-
+	  		
     $seAss5 =mysqli_query($con,
     "SELECT asst5_id,accept,inform,date_accept,date_inform
     FROM asessment_t5

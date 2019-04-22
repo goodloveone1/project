@@ -31,12 +31,12 @@ if($year==$year_now){
     <?php
     if($_SESSION['user_level'] == 3){ // หลักสูตร
 
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND permiss_id='2' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"SELECT st_id,prefix,fname,lname,branch_id,picture,position FROM staffs  WHERE branch_id='$_SESSION[branch]' AND permiss_id != 1 AND st_id != '$_SESSION[user_id]'AND permiss_id='2' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     else if($_SESSION['user_level'] == 4){ // สาขา
 
       $show= mysqli_query($con,"
-SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
+SELECT  staffs.st_id,staffs.prefix,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
 FROM staffs
 INNER JOIN branchs ON staffs.branch_id = branchs.br_id
 WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND staffs.st_id !='1' AND st_id != '$_SESSION[user_id]'") or  die("SQL Error1==>1".mysqli_error($con));
@@ -44,10 +44,10 @@ WHERE staffs.position = '2' AND branchs.dept_id ='$_SESSION[department]' AND sta
     }
     else //คณะ
     {
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs WHERE  position='3' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"SELECT st_id,prefix,fname,lname,branch_id,picture,position FROM staffs WHERE  position='3' ") or  die("SQL Error1==>1".mysqli_error($con));
     }
     $i=1;
-while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
+while(list($gen_id,$prefix,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
     echo "<tr>";
     if(!empty($gen_pict)){
         echo " <td><img src='img/$gen_pict' class='img-thumbnail' width='100px' height='100px'></td>";
@@ -58,6 +58,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
 
     echo " <td>$gen_fname</td>";
     echo " <td>$gen_lname</td>";
+    $fullname = $prefix." ".$gen_fname." ".$gen_lname;
 
     $ba= mysqli_query($con,"SELECT br_name,dept_id FROM branchs WHERE br_id='$branch_id'  ") or  die("SQL Error1==>1".mysql_error($con));
     list($branch_name,$dept_id)=mysqli_fetch_row($ba);
@@ -127,15 +128,15 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่สามารถประเมินได้</b></td>";
             }else if($evd_status ==2){
               if($inform == 0 && $accept == 0){
-                echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'   data-genid='$gen_id' data-yearid='$year'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
-                echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
-                echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
+                echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'   data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
+                echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
+                echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' data-fullname='$fullname' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
                 echo "<td class='text-center'> <b class='text-danger'><a href='javascript:void(0)' class='checktor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ตรวจสอบ </br></a></td>";
                 }
               else if($inform == 1 && $accept == 0 || $inform == 1 && $accept == 1){
-              echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-genid='$gen_id' data-yearid='$year'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
-              echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
-              echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class='showpre text-success'  data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname'  title='คลิกเพื่อแสดงข้อตกลง'><i class='fas fa-check-circle fa-2x'></i><br>แสดงข้อตกลง</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname' title='คลิกเพื่อแสดงการประเมิน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการประเมิน</a></td>";
+              echo "<td class='text-center'><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' data-fullname='$fullname' title='คลิกเพื่อแสดงการหลักฐาน'><i class='fas fa-check-circle fa-2x'></i><br>แสดงการหลักฐาน</a></td>";
               echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ตรวจสอบเสร็จแล้ว </br></td>";
               }
              
@@ -180,7 +181,7 @@ $(".showpre").click(function(e) {
 		e.preventDefault(); 
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/loaddetail_pretest.php", { stid: $(this).data('genid') , year: $(this).data('yearid') } ).done(function(data){
+        $.post("module/assessment/loaddetail_pretest.php", { stid: $(this).data('genid') , year: $(this).data('yearid') , fullname: $(this).data('fullname') } ).done(function(data){
             $('#loadmodel').html(data);
                  $('#showmodelpre').modal('show');
         })
@@ -190,7 +191,7 @@ $(".showtor").click(function(e) {
 		e.preventDefault(); 
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/loaddetail_tor.php", { stid: $(this).data('genid') , year: $(this).data('yearid') } ).done(function(data){
+        $.post("module/assessment/loaddetail_tor.php", { stid: $(this).data('genid') , year: $(this).data('yearid') , fullname: $(this).data('fullname') } ).done(function(data){
             $('#loadmodel').html(data);
                  $('#showmodelpre').modal('show');
         })
@@ -200,7 +201,7 @@ $(".showtor").click(function(e) {
 		e.preventDefault(); 
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/loaddetail_evd.php", { evdid: $(this).data("evdid") , checkshowfile: 1 } ).done(function(data){
+        $.post("module/assessment/loaddetail_evd.php", { evdid: $(this).data("evdid") , checkshowfile: 1 , fullname: $(this).data('fullname')} ).done(function(data){
             $('#loadmodel').html(data);
                  $('#showmodelpre').modal('show');
         })
