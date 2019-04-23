@@ -64,7 +64,6 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		$sy_no= 2;
 	}else{
 		$sy_no= 1;
-
 	}
 
  $yeardatail = "รอบที่ ". $y_no ." (". DateThai($y_s)." - ".DateThai($y_e).")";
@@ -110,8 +109,7 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						</tr>
 						<?php
 									$sev=  mysqli_query($con,"SELECT se_id,se_name FROM sub_evaluation WHERE e_id='$e_id' ") or  die("SQL Error1==>1".mysqli_error($con));
-									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){
-						
+									while(list($sub_id,$sub_name)=mysqli_fetch_row($sev)){					
 										echo "<tr>";
 										echo	"<td >  $sub_name </td>";
 										echo "<td ><div class='form-group'>
@@ -123,22 +121,14 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 											<option value='2' >อัปโหลดไฟล์ทีละไฟล์ </option>
 										</select>
 										<input type='hidden'  name='se_id[]' value='$sub_id'>
-										<div id='fileupload$countfile'></div>
-
-												
+										<div id='fileupload$countfile'></div>		
 										</td>";
 										echo "</tr>";
 										$countfile++;
 
 									}
-								}
-
-						
+								}	
 						?>
-
-
-					
-
 					</tbody>
 				</table>
 		</div>
@@ -208,7 +198,7 @@ $( document ).ready(function() {
 		
 
 	jQuery.validator.addClassRules("filecheck", {
-		extension: "pdf|doc|png|jpg|docx|rar|zip",
+		extension: "pdf|doc|png|jpg|docx|rar|zip|xlsx|xls",
 		filesize : 2000000, // MAX 2 MB
 	});
 
@@ -219,7 +209,7 @@ $( document ).ready(function() {
  function firthload(){
 	$(".selfile").each(function(){
 		
-		var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
+		var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP XLSX XLS เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
 		var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
 
 		$(fileupload).html(filemuti);
@@ -236,14 +226,13 @@ $( document ).ready(function() {
  
 		if($(this,"option:selected").val()==1){
 		
-			var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
+			var filemuti = jQuery.trim("<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP XLSX XLS เท่านั้น และ ขนาดไม่เกิน 2 MB</small><input type='file' class='form-control-file filecheck' name='fileimg"+ $(this,"option:selected").data("countfile") +"[]'  multiple aria-describedby='fileHelpInline'></div>");
 			var fileupload = "#fileupload"+$(this,"option:selected").data("countfile")
 		//	alert(fileupload)
 			$(fileupload).html(filemuti);
 
 		}else{
-			
-			var filemuti = "<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP เท่านั้น และ ขนาดไม่เกิน 2 MB</small>"
+			var filemuti = "<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP XLSX XLS เท่านั้น และ ขนาดไม่เกิน 2 MB</small>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"1'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"2'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"3'   aria-describedby='fileHelpInline'>"

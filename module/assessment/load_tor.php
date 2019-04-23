@@ -52,7 +52,7 @@ unset($_SESSION['pre_id']);
   <tbody>
     <tr>
         <td><?php echo empty($PER_id)?"-":$PER_id;  ?></td>
-        <td>ข้อตกลง</td>
+        <td>TOR</td>
         <td>
         <?php
               if(empty($PER_id)){
@@ -68,7 +68,7 @@ unset($_SESSION['pre_id']);
               if(empty($PER_id)){
                 echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
               }else{
-                echo "<b class='text-success'>ทำข้อตกลงแล้ว<b>";
+                echo "<b class='text-success'>ทำTORแล้ว<b>";
               }
                
             ?>
@@ -76,7 +76,7 @@ unset($_SESSION['pre_id']);
     </tr>
     <tr>
         <td><?php echo empty($TOR_id)?"-":$TOR_id; ?></td>
-        <td>TOR</td>
+        <td>ข้อตกลงการประเมิน</td>
         <td>
         <?php
               if(empty($PER_id)){
@@ -94,7 +94,7 @@ unset($_SESSION['pre_id']);
         <td>
         <?php
               if(empty($PER_id)){
-                echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำข้อตกลงก่อน</p>";
+                echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
               }else{
                   if(empty($TOR_id)){
                     echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
@@ -114,11 +114,11 @@ unset($_SESSION['pre_id']);
         <?php
               if(empty($PER_id)){
                 echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
+                echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำข้อตกลงก่อน</p></td>";
               }else{
                   if(empty($TOR_id)){
                     echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                    echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำ TOR ก่อน</p></td>";
+                    echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำข้อตกลงก่อน</p></td>";
                   }else{
 
                     if(empty($evd_id)){

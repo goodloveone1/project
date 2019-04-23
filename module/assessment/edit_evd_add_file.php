@@ -1,17 +1,12 @@
 <?php
-
 include("../../function/db_function.php");
 $con=connect_db();
-
 //print_r($_FILES['addfile']);
-
 try{
-
     if(!empty($_FILES['addfile'])){
 
         $url = '../../file/'.$_POST['torid'];
 
-        
         if (!file_exists($url)) {    // CHECK folder มีหรือยัง
             mkdir($url, 0777, true);  // สร้าง folder
         }
@@ -36,6 +31,10 @@ try{
                     $typefile['1'] = "rar";
                 }else if($typefile['1'] == "x-zip-compressed"){
                     $typefile['1'] = "zip";
+                }else if($typefile['1'] == "vnd.ms-excel"){
+                    $typefile['1'] = "xls";
+                }else if($typefile['1'] == "vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
+                    $typefile['1'] = "xlsx";
                 }
         
                 
@@ -86,10 +85,7 @@ try{
                     $filename = substr($filename,0,10);
             
                     $filename .= ".".$typefile[1];
-
-
-                  
-                       
+         
                     $sql = "INSERT INTO evidence_file VALUES ('','$_POST[evdid]','$_POST[seid]','$oldname','$filename')";
             
                     mysqli_query($con,$sql) or die(mysqli_error($con));
@@ -98,23 +94,15 @@ try{
 
                     copy($_FILES['addfile']['tmp_name'][$i],$url."/".$filename);
 
-                 
-
-
                 }
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
-
         }
-
     }
     echo 'อัปโหลดไฟล์สำเร็จ ';   
-
 }  catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }  
-
 $con->close();
-
 ?>
