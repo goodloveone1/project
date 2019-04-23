@@ -8,6 +8,7 @@ $con=connect_db();
 //print_r($_FILES['fileimg1']);
 //print_r($_FILES);
 
+
 try{
     $tor=$_POST['ass_id'];
     $ctor=substr($tor,3,11);
@@ -57,8 +58,6 @@ try{
 
             if(!empty($_FILES[$rename]['name'][$j])){
 
-        
-
                     $oldname = $_FILES[$rename]['name'][$j];
             
                     $type = $_FILES[$rename]["type"][$j];
@@ -73,6 +72,10 @@ try{
                         $typefile['1'] = "rar";
                     }else if($typefile['1'] == "x-zip-compressed"){
                         $typefile['1'] = "zip";
+                    }else if($typefile['1'] == "vnd.ms-excel"){
+                        $typefile['1'] = "xls";
+                    }else if($typefile['1'] == "vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
+                        $typefile['1'] = "xlsx";
                     }
 
                     
@@ -121,6 +124,10 @@ try{
                 $typefile['1'] = "rar";
             }else if($typefile['1'] == "x-zip-compressed"){
                 $typefile['1'] = "zip";
+            }else if($typefile['1'] == "vnd.ms-excel"){
+                $typefile['1'] = "xls";
+            }else if($typefile['1'] == "vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
+                $typefile['1'] = "xlsx";
             }
 
             

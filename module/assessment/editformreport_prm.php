@@ -18,10 +18,7 @@ list($aca_name,$prefix,$fname,$lname)=mysqli_fetch_row($gen);
 
 $tor=  mysqli_query($con,"SELECT year_id FROM assessments  WHERE ass_id='$ass_id' ") or  die("SQL Error1==>tor".mysqli_error($con));
 list($tor_year)=mysqli_fetch_row($tor);
-
-
 ?>
-
 <br>
 	<div class="row pt-2">
 		<div class="col-sm-2"> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules="assessment" data-action="manage_Evidence">ย้อนกลับ </button></div>
@@ -68,13 +65,9 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 		$sy_no= 2;
 	}else{
 		$sy_no= 1;
-
 	}
-
  $yeardatail = "รอบที่ ". $y_no ." (". DateThai($y_s)." - ".DateThai($y_e).")";
  ?>
-
-
 	<div class="row">
 		<div class="col-md-3"></div>
 			<div class="form-group col-md">
@@ -109,8 +102,6 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 						<tr>
 							<td rowspan="<?php echo $count+1 ?>"> <?php echo $e_id ?> </td>
 							<td colspan='3'><?php echo $e_id.". ".$e_name ?>    </td>
-							
-						
 
 						</tr>
 						<?php
@@ -130,8 +121,6 @@ list($y_id,$y_no,$y_s,$y_e)=mysqli_fetch_row($sY_No);
 										<small id='fileHelpInline' class='form-text text-muted '>**สามารถคลิกที่กล่องข้อความเพื่อแก้ไขข้อมูลได้ </small>
 										</div>
 										  
-
-
 										</td >";
 									}else{
 										echo "<td class='text-center'>
