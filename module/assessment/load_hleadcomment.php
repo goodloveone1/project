@@ -11,7 +11,7 @@
 
 ?>
 
-<<!-- Modal -->
+<!-- Modal -->
 <div class="modal fade bd-example-modal-xl" id="showmodelpre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -390,6 +390,7 @@
    </div>
   </div>
 </div>
+<form  class="hform" method="post" >
 <div class="row">
 	 <div class="col-md">
 				<br>
@@ -401,20 +402,24 @@
 							list($tor_ID,$hightL,$supterL)=mysqli_fetch_row($reChk);
 							mysqli_free_result($reChk);
 
-							$sqlA6="SELECT leader_comt,leader_comt_disc,leader_compt_date,supervisor_comt,supervisor_comtdisc,supervisor_comt_date FROM asessment_t6 WHERE  ass_id='$ass_id'";
+							$sqlA6="SELECT ass6_id,leader_comt,leader_comt_disc,leader_compt_date,supervisor_comt,supervisor_comtdisc,supervisor_comt_date FROM asessment_t6 WHERE  ass_id='$ass_id'";
 							$seAss6 = mysqli_query($con,"$sqlA6") or die("seAss6".mysqli_error($con));
-							list($leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($seAss6);
+							list($ass6_id,$leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($seAss6);
 							mysqli_free_result($seAss6);
 						//echo $leader_comt,">>",$leader_comt_disc,"<<<",$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date;
-							if($leader_comt==1){
-									$apc0="";
+							if($leader_comt==1 ){
 									$apc1="checked";
-							}else if($leader_comt==0){
-								$apc0="";
+									$apc2="";
+									$dis="disabled"
+							}else if($leader_comt==2){
 								$apc1="";
+								$apc2="checked";
+								$dis="disabled"
 							}else{
-								$apc0="checked";
 								$apc1="";
+								$apc2="";
+								$dis=""
+
 							}
 
 							
@@ -427,7 +432,8 @@
 						}else{
 							$uagree0="checked";
 							$uagree1="";
-            }
+						}
+						
             if($hightL==$_SESSION['user_id']){
                 $disables="";
             }else{
@@ -440,20 +446,22 @@
 <div class=row>
 <div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
-		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="apc" <?php echo $apc0," ",$disables ?>   >
+		<input type="hidden" name="id" value="<?php echo $ass6_id ?>">
+		<div class="custom-control custom-radio ">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio1" name="ap" <?php echo $apc1," ",$disables ?> required <?php echo $dis?>  >&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio1">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" <?php echo $apc1," ",$disables?>  >
+			  <input class="custom-control-input" type="radio" value="2" id="customRadio2" name="ap" <?php echo $apc2," ",$disables?> required  >&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio2">
 			    มีความเห็นแตกต่าง  ดังนี้
 
 			  </label>
 		</div>
+		
 		<div class="form-group">
 		    <textarea class="form-control" name="hcompt" id="text1" rows="3"  disabled required><?php echo $leader_comt_disc ?></textarea>
 		 </div>
@@ -487,14 +495,16 @@
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
 				<?php 
+
 					$date= date("Y/m/d"); 
-					$leader_compt_date = $leader_compt_date==0?"":DateThai($leader_compt_date);		
+					$leader_compt_date = $leader_compt_date=='0000-00-00'?"":DateThai($leader_compt_date);		
 				?>
+					<input type="hidden" name="date" value="<?php echo $date?>">
 					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $leader_compt_date  ?> " readonly >
 				</div>				
 		</div>
 	</div>
-
+	</form>
 	<div class="col-md-6 border border-dark p-3">
                <?php
                      $seSleader=mysqli_query($con,
@@ -509,14 +519,14 @@
 
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?> disabled >
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?> disabled >&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio3">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> disabled>
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> disabled>&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio4">
 			    มีความเห็นแตกต่าง  ดังนี้
 			  </label>
@@ -550,13 +560,14 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button type="button" id="save" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+$(document).ready(function(){
   	$('#customRadio1').click(function() {
 					if ($(this).is(':checked')) {
 						$("#text1").prop('disabled', true);
@@ -580,4 +591,30 @@
 					$("#text2").prop('disabled', false);
 				}
       });
+
+			$("#save").click(function(event) {
+				$( ".hform" ).submit()
+      
+});
+
+$( ".hform" ).submit(function(e) {
+
+	e.preventDefault();
+	var chack=$( this ).valid()
+	if(chack==true){
+		$.post( "module/assessment/update_hleader_momment.php", $( ".hform" ).serialize()).done(function(data,txtstuta){
+            alert(data);
+         });
+        $('#showmodelpre').modal("hide");
+        $('#showmodelpre').on('hidden.bs.modal', function (e) { 
+           loadmain("assessment","sum_asmIn");
+        }) 	
+	}
+
+})
+
+
+
+
+})
 </script>

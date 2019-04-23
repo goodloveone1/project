@@ -107,7 +107,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
           if($leader_comt==0){
             echo "<td class='text-center'></a> <b class='text-danger'><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้แสดงความเห็น </br></a></td>";
           }else{
-            echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ทำTORแล้ว</b></td>"; 
+            echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i></a><br>ทำTORแล้ว</b></td>"; 
           }
       }else if($position=='2'){
         echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 

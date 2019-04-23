@@ -7,7 +7,7 @@ jQuery.validator.setDefaults({
         jQuery(element).closest('.form-control').removeClass('is-invalid');
     },
     errorElement: 'span',
-    errorClass: 'valid-feedback',
+    errorClass: 'valid-feedback d-block',
     errorPlacement: function(error, element) {
         if(element.parent('.input-group').length) {
             error.insertAfter(element.parent());
