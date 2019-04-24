@@ -24,8 +24,8 @@
 		<!-- DATATABLE  CSS -->
 		<link rel="stylesheet" type="text/css" href="js/DataTables/datatables.min.css"/>
 		<link rel="stylesheet" type="text/css" href="js/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css"/>
-		<link rel="stylesheet" type="text/css" href="js/DataTables/FixedColumns-3.2.5/css/fixedColumns.bootstrap4.min.css"/>
-		<link rel="stylesheet" type="text/css" href="js/DataTables/FixedHeader-3.1.4/css/fixedHeader.bootstrap4.min.css"/>  
+	
+		
 		
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/menushow.js"></script> <!--FUNCTION MENU -->
@@ -113,24 +113,16 @@
 		<script src="js/validate/additional-methods.min.js" ></script>
 		<script src="js/validate/localization/messages_th.min.js" ></script>
 		<script src="js/validateSetdef.js" ></script> 
-		<?php //END validate ?>
-
-	
-		
+		<?php //END validate ?>	
 
 		<!-- DATATABLE -->
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
 		<script type="text/javascript" src="js/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
-		<script type="text/javascript" src="js/DataTables/FixedColumns-3.2.5/js/fixedColumns.bootstrap4.min.js"></script>
-		<script type="text/javascript" src="js/DataTables/FixedHeader-3.1.4/js/fixedHeader.bootstrap4.min.js"></script>
-
+	
+		
 
 		<script>
-
 		$(document).ready(function() {
-
-			
-			
 
 			if(sessionStorage.getItem("module1")=="" || sessionStorage.getItem("action")=="" ){
 				var module1 = "personnel"
@@ -143,9 +135,6 @@
 			checksceen(); /* MENU SIDE CHECK*/
 			loadmain(module1,action);
 
-			
-
-			
 			$('[data-toggle="tooltip"]').tooltip();  
 
 			$("#menuaside li").hover(function() {
@@ -153,6 +142,7 @@
 			}, function() {
 				/* Stuff to do when the mouse leaves the element */
 			});
+			
 			$("#usermenu").click(function(){
 				openNav();
 			});
@@ -191,13 +181,7 @@
 				});
 			/* END ANIMATION*/
 
-			// $(window).bind('beforeunload', function(e) {
-			// var message = "Why are you leaving?";
-			// e.returnValue = message;
-			// return message;
-			// });
 
-		
 			/* script HOVER MENU  COVER CSS .bg-color*/
 				$(".bt-color").hover(function() {
 					/* Stuff to do when the mouse enters the element */
@@ -234,7 +218,6 @@
 			}
 		}
 
-
 		function checkMainname(){
 			if(window.innerWidth*window.devicePixelRatio <= 800 ){
 				
@@ -244,10 +227,7 @@
 			}
 		}
 
-
-
-
 		</script>
 
-	</body>
+</body>
 </html>

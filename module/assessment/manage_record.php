@@ -79,7 +79,9 @@ mysqli_close($con);
 <script>
 
 $(document).ready(function() {
+  
   $.getScript('js/mydatatable.js')
+
   $(".addbrn").click(function(e){
           e.preventDefault()
           var id =$(this).data("id");
