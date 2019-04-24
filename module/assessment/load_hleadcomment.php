@@ -548,7 +548,7 @@
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" name="comt" id="text2" rows="3" disabled required><?php echo $supervisor_comtdisc ?></textarea>
+		    <textarea class="form-control" name="comt" id="text2" rows="3" required disabled></textarea>
 		 </div>
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
