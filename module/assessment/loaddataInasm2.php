@@ -46,7 +46,12 @@ WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.permiss_id !='1' AND 
     }
     else //คณะ
     {
-      $show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture,position FROM staffs WHERE  position='3' ") or  die("SQL Error1==>1".mysqli_error($con));
+      $show= mysqli_query($con,"
+      SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
+      FROM staffs
+      INNER JOIN branchs ON staffs.branch_id = branchs.br_id
+      WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.permiss_id !='1' AND st_id != '$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
+      
     }
     $i=1;
 while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_fetch_row($show)){
@@ -110,21 +115,28 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       $comment=mysqli_query($con,"SELECT *FROM asessment_t6 WHERE ass_id='$tor_id'")or die("SQL.error".mysqli_error($con));
       list($ass6_id,$ass_id,$leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($comment);
       mysqli_free_result($comment);
-      if($position=='1'){
-          if($leader_comt==0){
-            echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
-          }else{
-            echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
-          }
-      }else if($position=='2'){
-        echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
+      if($_SESSION['user_level']==4){
+          if($position=='1'){
+            if($leader_comt==0){
+              echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
+            }else{
+              echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
+            }
+        }else if($position=='2'){
+          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
+        }
+      }else if($_SESSION['user_level']==5){
+          if($position=='1'){
+            if($supervisor_comt==0){
+              echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
+            }else{
+              echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
+            }
+        }else if($position=='3'){
+          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
+        }
       }
     }
-    
-
-
-
-
     echo "</tr>";
   $i++;
 }

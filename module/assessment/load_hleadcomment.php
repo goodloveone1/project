@@ -390,8 +390,9 @@
    </div>
   </div>
 </div>
-<form  class="hform" method="post" >
+
 <div class="row">
+	  
 	 <div class="col-md">
 				<br>
 				<p><b>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</b></p>
@@ -423,27 +424,36 @@
 							}
 
 							
-							if($supervisor_comt==1){
-								$uagree0="";
-								$uagree1="checked";
-						}else if($supervisor_comt==0){
+						if($supervisor_comt==1){
+								$uagree0="checked";
+								$uagree1="";
+						}else if($supervisor_comt==2){
 							$uagree0="";
-							$uagree1="";
+							$uagree1="checked";
 						}else{
-							$uagree0="checked";
+							$uagree0="";
 							$uagree1="";
 						}
 						
-            if($hightL==$_SESSION['user_id']){
+            if($_SESSION['user_level']==4){
                 $disables="";
             }else{
               $disables="disabled";
-            }
+						}
+
+						if($_SESSION['user_level']==5){
+							$sdis="";
+					}else{
+						$sdis="disabled";
+					}
+						
 					?>
 				</p>
 	 </div>
 </div>
+<form  class="hform" method="post" >
 <div class=row>
+
 <div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 		<input type="hidden" name="id" value="<?php echo $ass6_id ?>">
@@ -504,8 +514,13 @@
 				</div>				
 		</div>
 	</div>
+	
+	</div>
 	</form>
+	<form  class="sform" method="post">
+	<div class="row">
 	<div class="col-md-6 border border-dark p-3">
+	
                <?php
                      $seSleader=mysqli_query($con,
                      "SELECT staffs.prefix,staffs.fname,staffs.lname,position.pos_name
@@ -515,24 +530,25 @@
                      WHERE st_id='$supterL'")or die("SQL.hleaderError".mysqli_error($con));
 					 list($Sl_prefix,$Sl_name,$Sl_fname,$Sl_position)=mysqli_fetch_row($seSleader);
 					 mysqli_free_result($seSleader);
+					 
 				?>
-
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?> disabled >&nbsp;&nbsp;&nbsp;&nbsp;
+		    <input type="hidden" name="id" value="<?php echo $ass6_id ?>">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio3" name="uagree" <?php echo $uagree0  ?>required <?php echo $sdis ?>  >&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio3">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> disabled>&nbsp;&nbsp;&nbsp;&nbsp;
+			  <input class="custom-control-input" type="radio" value="2" id="customRadio4" name="uagree"<?php echo $uagree1," " ?>required <?php echo $sdis ?> >&nbsp;&nbsp;&nbsp;&nbsp;
 			  <label class="custom-control-label" for="customRadio4">
 			    มีความเห็นแตกต่าง  ดังนี้
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" name="scompt" id="text2" rows="3" disabled required><?php echo $supervisor_comtdisc ?></textarea>
+		    <textarea class="form-control" name="comt" id="text2" rows="3" disabled required><?php echo $supervisor_comtdisc ?></textarea>
 		 </div>
 	</div>
 	<div class="col-md-6 border   border-dark p-3">
@@ -553,14 +569,25 @@
 				<div class="col-sm">
 				<?php $supervisor_comt_date = $supervisor_comt_date==0?"":DateThai($supervisor_comt_date);	 ?>
 					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $supervisor_comt_date ?>" readonly>
+					<input type="hidden" name="date" value="<?php echo $date?>">
 				</div>				
 		</div>
 	</div>
 </div>
+</form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<?php 
+						if($_SESSION['user_level']==4){
+				?>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" id="save" class="btn btn-primary">Save changes</button>
+						<?php } ?>
+				<?php if($_SESSION['user_level']==5){?>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" id="supersave" class="btn btn-primary">Save changes</button>
+				<?php } ?>
+
       </div>
     </div>
   </div>
@@ -593,12 +620,13 @@ $(document).ready(function(){
       });
 
 			$("#save").click(function(event) {
-				$( ".hform" ).submit()
-      
-});
+				$( ".hform" ).submit()    
+      });
+			$("#supersave").click(function(event) {
+				$( ".sform" ).submit()    
+      });
 
 $( ".hform" ).submit(function(e) {
-
 	e.preventDefault();
 	var chack=$( this ).valid()
 	if(chack==true){
@@ -610,7 +638,19 @@ $( ".hform" ).submit(function(e) {
            loadmain("assessment","sum_asmIn");
         }) 	
 	}
-
+})
+$( ".sform" ).submit(function(e) {
+	e.preventDefault();
+	var chack=$( this ).valid()
+	if(chack==true){
+		$.post( "module/assessment/update_sleader_comment.php", $( ".sform" ).serialize()).done(function(data,txtstuta){
+            alert(data);
+         });
+        $('#showmodelsum').modal("hide");
+        $('#showmodelsum').on('hidden.bs.modal', function (e) { 
+           loadmain("assessment","sum_asmIn");
+        }) 	
+	}
 })
 
 
