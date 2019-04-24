@@ -22,6 +22,10 @@
 	mysqli_free_result($seBrench);
 
 ?>
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
+<br>
 <form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
 
@@ -412,7 +416,7 @@
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		
-		<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+		<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	</div>
 </div>
 </form>

@@ -20,6 +20,10 @@
 	// mysqli_free_result($seBrench);
 
 ?>
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
+<br>
 <form method="POST" class="p-2" name="tor1" id="tor1"> 
 <?php  
 
@@ -43,6 +47,7 @@ $y_id = $y.$loop;
 		mysqli_free_result($reChk);
 		$_SESSION['yearIdpost']=$tor_ID;
 ?>
+
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">
 <input type="hidden" value="<?php echo $y_id ?>" name="y_id">
    <div class="row">
@@ -52,7 +57,6 @@ $y_id = $y.$loop;
 		 <br>
     </div>
 <p></p>
-<br>
 
 <div class="row ">
 	<div class="col-md">
@@ -133,7 +137,7 @@ $y_id = $y.$loop;
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 
-	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor1pretest"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white " data-modules="assessment" data-action="adddata_tor1pretest"> ต่อไป </button>
 	<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t2"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
 
 	</div>
