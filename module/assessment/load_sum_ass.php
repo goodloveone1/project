@@ -409,17 +409,29 @@ if(!empty($inform==1)){
 							list($leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($seAss6);
 							mysqli_free_result($seAss6);
 						//echo $leader_comt,">>",$leader_comt_disc,"<<<",$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date;
-							if($leader_comt==1){
-									$apc0="";
-									$apc1="checked";
-							}else if($leader_comt==0){
-								$apc0="";
-								$apc1="";
-							}else{
-								$apc0="checked";
-								$apc1="";
-							}
+							// if($leader_comt==1){
+							// 		$apc0="";
+							// 		$apc1="checked";
+							// }else if($leader_comt==0){
+							// 	$apc0="";
+							// 	$apc1="";
+							// }else{
+							// 	$apc0="checked";
+							// 	$apc1="";
+							// }
+							if($leader_comt==1 ){
+								$apc1="checked";
+								$apc2="";
+								
+						}else if($leader_comt==2){
+							$apc1="";
+							$apc2="checked";
+						
+						}else{
+							$apc1="";
+							$apc2="";
 
+						}
 							
 							if($supervisor_comt==1){
 								$uagree0="";
@@ -439,21 +451,21 @@ if(!empty($inform==1)){
 <div class="col-md-6 border border-dark p-3">
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="apc" <?php echo $apc0; ?> disabled  >
-			  <label class="custom-control-label" for="customRadio1">
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="apc" <?php echo $apc1; ?>   >
+			  <label class="custom-control-label" for="">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" <?php echo $apc1; ?>  disabled>
-			  <label class="custom-control-label" for="customRadio2">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" <?php echo $apc2; ?>  >
+			  <label class="custom-control-label" for="">
 			    มีความเห็นแตกต่าง  ดังนี้
 
 			  </label>
 		</div>
 		<div class="form-group">
-		    <textarea class="form-control" name="hcompt" id="text1" rows="3"  disabled required><?php echo $leader_comt_disc ?></textarea>
+		    <textarea class="form-control" name="hcompt" id="text1" rows="3"  readonly ><?php echo $leader_comt_disc ?></textarea>
 		 </div>
 
 	</div>
