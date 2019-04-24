@@ -24,7 +24,7 @@
       <div class="modal-body">
         <div class="row">
         <div class="col-md">
-        <p><b>ชื่อ : </b> <?php echo $prefix,$fname," ",$lname  ?></p>
+        <p><b>ผลการประเมิน : </b> <?php echo $prefix,$fname," ",$lname  ?></p>
         <hr>
 <p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>
 <table class="table table-bordered ">
@@ -434,11 +434,7 @@
 							$uagree1="";
 						}
 						
-            if($hightL==$_SESSION['user_id']){
-                $disables="";
-            }else{
-              $disables="disabled";
-            }
+           
 					?>
 				</p>
 	 </div>
@@ -448,15 +444,15 @@
 		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 		<input type="hidden" name="id" value="<?php echo $ass6_id ?>">
 		<div class="custom-control custom-radio ">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio1" name="ap" <?php echo $apc1," ",$disables ?> required <?php echo $dis?>  >&nbsp;&nbsp;&nbsp;&nbsp;
-			  <label class="custom-control-label" for="customRadio1">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio1" name="ap" <?php echo $apc1?> required  >&nbsp;&nbsp;&nbsp;&nbsp;
+			  <label class="custom-control-label" for="">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="2" id="customRadio2" name="ap" <?php echo $apc2," ",$disables?> required  <?php echo $dis?> >&nbsp;&nbsp;&nbsp;&nbsp;
-			  <label class="custom-control-label" for="customRadio2">
+			  <input class="custom-control-input" type="radio" value="2" id="customRadio2" name="ap" <?php echo $apc2?> required  >&nbsp;&nbsp;&nbsp;&nbsp;
+			  <label class="custom-control-label" for="">
 			    มีความเห็นแตกต่าง  ดังนี้
 
 			  </label>

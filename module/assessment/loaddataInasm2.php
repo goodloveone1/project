@@ -93,7 +93,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     if(empty($tor_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำการประเมิน</b></td>";
     }else{
-      echo "<td class='text-center'><b class='text-success'><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id' title='คลิกเพื่อแสดงการประเมิน'> <i class='fas fa-check-circle fa-2x'></i><br>ดูผลการประเมิน</a></b></td>"; 
+      echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>"; 
     }
 
     if(empty($evd_id)){
