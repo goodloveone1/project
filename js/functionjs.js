@@ -4,7 +4,6 @@ function urlwrite(module1,action){
 	
 }
 
-
 function loadmain(module1,action){ 
 
 	sessionStorage.setItem("module1", module1);
@@ -17,16 +16,8 @@ function loadmain(module1,action){
 		  .done(function( data ) {
 
 			  $("#detail").html(data);
-
-	
 	  });
-
-
 	})
-		
-			  
-
-
 }
 
 function loadingpage(module1,action){
@@ -38,7 +29,6 @@ function loadingpage(module1,action){
 	        		// $("#detail").hide();
 	        		// $("#footers").hide();
 	        		
-	        			
 	        			setTimeout(function(){
 						  urlwrite(module1,action);
 						  loadmain(module1,action);
@@ -46,9 +36,7 @@ function loadingpage(module1,action){
 		        	  	// $("#detail").show();
 		        	  	// $("#footers").show();
 		        	  	$("#contramain").show();
-		        	  	},1500)	
-				
-						
+		        	  	},1500)										
 	
 }
 

@@ -12,7 +12,6 @@ if(empty($tor_id)){
 
 //echo $tor_id;
 
-
   //  $seldlt=mysqli_query($con,"SELECT *FROM idlel_type")or die(mysqli_error($con));
 
   $seldlt=mysqli_query($con,"SELECT ab_id,staff,year_id,(SELECT abt_name FROM absence_type WHERE abt_id=d1.abt_name) as idl_type_name,abt_name,ab_num,abl_day FROM absence as d1 WHERE staff='$_SESSION[user_id]' AND year_id='$tor_id'")or die(mysqli_error($con));
@@ -68,18 +67,14 @@ mysqli_close($con);
             var r = confirm("คุณต้องการบันทึกใช่หรือไม่?");
             if (r == true) {
                 $.post( "module/assessment/ldl_update.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-                    alert(data);
+                    alert("บันทึกข้อมูลสำเร๊จ");
+                    $('#addsub').modal("hide");
+                    $('#addsub').on('hidden.bs.modal', function (e) {
+                        var module1 = sessionStorage.getItem("module1")
+                        var action = sessionStorage.getItem("action")
+                        loadmain(module1,action);
+                    })
                 });
-
-                $('#addsub').modal("hide");
-
-                $('#addsub').on('hidden.bs.modal', function (e) {
-                    var module1 = sessionStorage.getItem("module1")
-                    var action = sessionStorage.getItem("action")
-                    loadmain(module1,action);
-                })
-
-
             }
         });
         $("#inputState").change(function(){
