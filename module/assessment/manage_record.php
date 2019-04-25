@@ -9,9 +9,6 @@ $yearnow = chk_idtest();
 	<h2 class="text-center col-md "> จัดการการมาปฏิบัติงาน </h2>
 </div>
 <br>
-
-
-
 <table class="table table-border col-auto" id="Datatable">
   <thead>
     <tr>
@@ -21,17 +18,13 @@ $yearnow = chk_idtest();
       <th> สถานะ </th>
       <th> จัดการ </th>
 
-
     </tr>
   <thead>
   <tbody>
     <?php
 
     $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_id DESC") or  die("SQL Error1==>1".mysql_error($con));
-
-
-
-
+    
 $i=1;
 while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     echo "<tr>";
