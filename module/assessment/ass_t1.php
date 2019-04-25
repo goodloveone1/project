@@ -1,29 +1,24 @@
-
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	session_start();
 	include("../../function/db_function.php");
 	include("../../function/fc_time.php");
 	$con=connect_db();
-	
-	
 		if(empty($_POST['tor']) || empty($_POST['year'])){
 			$yearIdpost=$_SESSION['yearIdpost'];
 			$TOR_id = $_SESSION['pre_id'];
-			//echo "SASSION",$TOR_id,$yearIdpost;
-		
 		}else{
 			$yearIdpost = $_POST['year'];
 			$TOR_id = $_POST['tor'];
-			//echo "POST",$TOR_id,$yearIdpost;
 		}
-//ผู้รับการประเมิน
 	 $seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));
 	 list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca);
 	 mysqli_free_result($seaca);
-	
-	// echo "$gen_acadeic,$fname,$lname","GGGGGGGGGGGGGGGG";
-	
 ?>
+
+
 
 <form method="POST" class="p-2" name="tor1" id="tor1">
    <div class="row">

@@ -1,4 +1,6 @@
-
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	session_start();
 	include("../../function/db_function.php");
@@ -21,6 +23,7 @@
     $ctor=substr($TOR_id,3,11);
     $Ass_id="TOR".$ctor;
 ?>
+
 <form class="p-2" name="tort4" id="tort4"> 
 <input type="hidden" name="tor_id" value="<?php echo $Ass_id  ?>">
 <div class="row">

@@ -30,9 +30,13 @@
   // echo	$_SESSION['yearIdpost'];
 	// echo $yearIdpost,"--->",$TOR_id;
 ?>
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
+<br>
 <form method="POST" id="addtor"  class="p-2" >  
     <div class="row">
-				<span class="step step-color">TOR</span> &nbsp;
+				<span class="step step-color">การประเมิน</span> &nbsp;
 						<a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp;
 				<a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
 				<a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
@@ -417,7 +421,11 @@
 
 <div class="row ">
 	<div class="col-md">
-		<textarea class="form-control" rows=4 name="punishment" required></textarea>
+		<?php
+				$selAss = mysqli_query($con,"SELECT punishment FROM assessments WHERE ass_id='$TOR_id'")or die("SQL.error".mysqli_error($con));
+				list($punishment)=mysqli_fetch_row($selAss);
+		?>
+		<textarea class="form-control" rows=4 name="punishment" required><?php echo $punishment  ?></textarea>
 	</div>	
 </div>
 <br>

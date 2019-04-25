@@ -9,7 +9,7 @@
         $yearIdpost=$_SESSION['yearIdpost'];
         $TOR_id = $_SESSION['pre_id'];
 
-        echo $_SESSION['user_id'];
+       // echo $_SESSION['user_id'];
     
     }else{
         $genIdpost = $_SESSION['user_id'];
@@ -32,7 +32,10 @@
 	//echo $gen_prefix,$gen_lname,$gen_fname,$gen_pos;
 $date = date("Y/m/d");
 ?>
-
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
+<br>
 <form class="p-2" name="tort5" id="tort5"> 
 <input type="hidden" name="tor_id" value="<?php echo $Ass_id  ?>">
 <div class="row">

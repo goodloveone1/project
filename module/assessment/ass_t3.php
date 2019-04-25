@@ -1,4 +1,6 @@
-
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	session_start();
 	include("../../function/db_function.php");
@@ -38,6 +40,7 @@ if(empty($_POST['tor']) || empty($_POST['year'])){
 					$ctor=substr($TOR_id,3,11);
 					$Ass_id="TOR".$ctor;
 				?>
+
 <input type="hidden" value="<?php echo $Ass_id?>" name="tor_id">
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;

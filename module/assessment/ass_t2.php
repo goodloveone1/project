@@ -54,6 +54,10 @@
 	$Ass_id="TOR".$ctor;
 
 ?>
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
+<br>
   <form  method="post" class="p-2" name="tort2" id="tort2"> 
 <div class="row">
 	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
