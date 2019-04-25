@@ -30,7 +30,7 @@
     <div class="row">
 
 	
-	    <span class="step step-color">ข้อตกลง</span> &nbsp;
+	    <span class="step step-color">TOR</span> &nbsp;
          <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ผลสัมฤทธิ์ของงาน</span></a>&nbsp; 
 				 <a href=#><span class="step step-normal">พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</span></a> &nbsp;
     </div>
