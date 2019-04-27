@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include("function/db_function.php");
@@ -31,124 +32,107 @@ $mpdf = new \Mpdf\Mpdf([
             'R' => 'THSarabun.ttf',
         ]
     ],
-    'default_font' => 'th_sarabun',
+		'default_font' => 'th_sarabun',
+		['format' => 'utf-8',
+		 [190, 236]]
     
 ]);
 
-$mpdf->WriteHTML("<h2 align='center'>แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ</h2>");
-$mpdf->Output();
+$fullname = "<h2 align='center'> แบบรายงานผลการปฏิบัติงาน ของบุคลากรสายวิชาการ </h2>";
+$fullname .= "<h3 align='center'> ชื่อ  $prefix $fname $lname ";
+$fullname .= " ตำแหน่ง $aca_name </h3>";
+$fullname .= "<h3 align='center'> สังกัด คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </h3>";
 
 
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="bootstrap/js/bootstrap.js" ></script>
-    
-</head>
-<body class="container-fluid">
-
-
-<h5 class='text-center'>
-    <div class="row">
-        <div class='col-md text-right'>ชื่อ <?php echo $prefix." ".$fname." ".$lname?> </div>
-        <div class='col-md text-left' >ตำแหน่ง <?php echo $aca_name ?></div>
-    </div>
-</h5>
-<h5 class='text-center'>สังกัด คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h5>
-
-<div class="row text-center" >
-		<div class="col-md "> <!--ประจำปี งบประมาณ -->
-
-			<?php $se_year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end FROM years WHERE y_id='$year'")or die("SQLerror.Year".mysqli_error($con));
+	 $se_year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end FROM years WHERE y_id='$year'")or die("SQLerror.Year".mysqli_error($con));
 					list($y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($se_year);
 					// echo $y_year,$y_no,$y_start,$y_end;
 					mysqli_free_result($se_year);
-				?>
 
-           <h5 class='text-center'><?php  echo "รอบที่ ",$y_no," (",DateThai($y_start),"-",DateThai($y_end)." )" ?></h5>
 
-        </div>
-</div>
-<br>
+ $daten =  "<h3 align='center'> รอบที่ $y_no (". DateThai($y_start)." - ".DateThai($y_end).")</h3>";
+ $fullname .= $daten;
+$mpdf->WriteHTML($fullname);
 
-    
-<?php
-// $year = $_GET['year'];
-// $stid = $_GET['stid'];
 
+$mpdf->WriteHTML("<p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>");
 
 
 $se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$stid' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
 list($ass_id)=mysqli_fetch_row($se_ass);
 mysqli_free_result($se_ass);
 
-// $se_ass1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id'") or die("ASS_SQLerror".mysqli_error($con));
-// list($asst1_id,$ass_id1,$title_name,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_ass1);
-// mysqli_free_result($se_ass1);
+
 
 $se_inform=mysqli_query($con,"SELECT inform FROM asessment_t5 WHERE ass_id ='$ass_id'")or die("SQL-se_informError".mysqli_error($con));
 list($inform)=mysqli_fetch_row($se_inform);
 
-mysqli_free_result($se_inform);
-// echo $inform;
+$se_sumAss=mysqli_query($con,"SELECT sum_weight,sum_weighted,sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$ass_id'")or die("sumAss-error".mysqli_error($con));
+list($sum_weight,$sum_weighted,$sum_asst1)=mysqli_fetch_row($se_sumAss);
 
-?>
-<div class="row ">
-  <div class="col-md">
-<p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>
-<table class="table table-bordered ">
-<thead>
-    <tr>
+$se_a1=mysqli_query($con,"SELECT title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id' ") or die("ASS_SQLerror".mysqli_error($con));
+
+
+
+$tableh1 ='
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+@page {
+	size: 8.5in 11in; 
+	margin: 10%; 
+	            
+	margin-header: 1px; 
+	margin-footer: 5mm; 
+	
+}
+</style>
+<table style="border-collapse: collapse;border:1px solid" width="100%">
+
+    <tr style="border:1px solid">
       <th>ภาระงาน/กิจกรรม/โครงการ/งาน</th>
       <th> ค่าระดับเป้าหมาย </th>
       <th> ค่าคะแนนที่ได้  </th>
       <th> น้ำหนัก(น้ำหนักความยากง่ายของงาน) </th>
       <th> ค่าคะแนนถ่วงน้ำหนัก </th>
     </tr>
-  <thead>
-  <tbody>
-<?php
-    $se_sumAss=mysqli_query($con,"SELECT sum_weight,sum_weighted,sum_asst1 FROM sum_score_assessment_t1 WHERE ass_id='$ass_id'")or die("sumAss-error".mysqli_error($con));
-    list($sum_weight,$sum_weighted,$sum_asst1)=mysqli_fetch_row($se_sumAss);
 
-    $se_a1=mysqli_query($con,"SELECT title_name,goal,score,weight,weighted FROM asessment_t1 WHERE ass_id='$ass_id' ") or die("ASS_SQLerror".mysqli_error($con));
-   while(list($title_id,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_a1)){
-       $se_tlt=mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$title_id'") or die("TLT-error".mysqli_error($con));
-       list($tlt_name)=mysqli_fetch_row($se_tlt);
-       mysqli_free_result($se_tlt);
-    echo "<tr>";
-        echo"<td>$tlt_name</td>";
-        echo"<td>$goal</td>";
-        echo"<td>$score</td>";
-        echo"<td>$weight</td>";
-        echo"<td>$weighted</td>";
-    echo "</tr>";
+	';
 
-   }
-   echo "<tr>";
-        echo"<td colspan='4' align='right' ><b>ผลรวมองค์ประกอบที่ ๑</b></td>";
-        echo"<td>$sum_asst1</td>";
-   echo "</tr>";
- echo "</tbody>";
-    mysqli_free_result($se_a1);
-?>
-  </table>
-  </div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	while(list($title_id,$goal,$score,$weight,$weighted)=mysqli_fetch_row($se_a1)){
+		$se_tlt=mysqli_query($con,"SELECT e_name FROM evaluation WHERE e_id='$title_id'") or die("TLT-error".mysqli_error($con));
+		list($tlt_name)=mysqli_fetch_row($se_tlt);
+		mysqli_free_result($se_tlt);
+$tableh1 .="
+	<tr>
+		<td>$tlt_name</td>
+			<td align='center'>$goal</td>
+			<td align='center'>$score</td>
+			<td align='center'>$weight</td>
+			<td align='center'>$weighted</td>
+</tr>
+";
+ }
 
-<div class="row ">
-   <div class="col-md">
-   <p><b>องค์ประกอบที่  ๒ :  พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</b></p>
-   <table class="table table-bordered ">
+ $tableh1 .="
+<tr>
+			<td colspan='4' align='right' ><b>ผลรวมองค์ประกอบที่ ๑ </b></td>
+			<td align='center'>$sum_asst1</td>
+</tr>
+
+</table>
+";
+	mysqli_free_result($se_a1);
+	
+$mpdf->WriteHTML($tableh1);
+
+$mpdf->WriteHTML("<p><b>องค์ประกอบที่  ๒ :  พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</b></p>");
+
+$tableh2 ='
+<table style="border-collapse: collapse;border:1px solid" width="100%">
    <thead>
     <tr>
       <th>สมรรถนะ</th>
@@ -156,8 +140,9 @@ mysqli_free_result($se_inform);
       <th> ระดับสมรรถนะที่แสดงออก</th>
     </tr>
   <thead>
-  <tbody>
-   <?php
+	<tbody>
+';	
+  
     $se_sumAsst2=mysqli_query($con,"SELECT subcap_id,goal,score FROM asessment_t2 WHERE ass_id='$ass_id'")or die("sumAsst2-error".mysqli_error($con));
    while(list($subcap_id,$goal2,$score2)=mysqli_fetch_row($se_sumAsst2)){
      $se_subcapName=mysqli_query($con,"SELECT cap_id,sub_name FROM sub_capacity WHERE sub_id='$subcap_id'")or die("subcapNamSQL-error".mysqli_error($con));
@@ -166,20 +151,34 @@ mysqli_free_result($se_inform);
 
      $se_capName=mysqli_query($con,"SELECT cap_name FROM capacity WHERE cap_id='$cap_id'")or die("capNamSQL-error".mysqli_error($con));
      list($cap_name)=mysqli_fetch_row($se_capName);
-     mysqli_free_result($se_capName);
-     echo"<tr>";
-          echo "<td >$subcap_name <a href='#' title='$cap_name'>( $cap_id )</a></td>";
-          echo "<td align='center'>$goal2</td>";
-          echo "<td align='center'>$score2</td>";
-     echo"</tr>";
-     
+		 mysqli_free_result($se_capName);
+		 $tableh2 .="
+     <tr>
+         <td >$subcap_name <a href='#' title='$cap_name'>( $cap_id )</a></td>
+          <td align='center'>$goal2</td>
+          <td align='center'>$score2</td>
+     </tr>;
+     ";
    }
    mysqli_free_result($se_sumAsst2);
-   ?>
+	 $tableh2 .="
     </tbody>
    </table>
-   </div>
-</div>
+	 ";
+
+
+	 $mpdf->WriteHTML($tableh2);
+
+$mpdf->WriteHTML("tst");
+
+$mpdf->Output();
+
+
+
+?>
+<
+
+
 
 <div class="row">
    <div class="col-md">
