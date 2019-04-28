@@ -221,8 +221,7 @@ mysqli_free_result($se_inform);
 
             $sumScore=mysqli_query($con,"SELECT sum_score FROM sum_score_assessment_t3 WHERE ass_id='$ass_id'") or die("AAA-SQL.error".mysqli_error($con));
             list($total)=mysqli_fetch_row($sumScore);
-     //print_r($sum);
-           // echo $total;
+
             mysqli_free_result($se_All);
       ?>
     </P>
@@ -435,7 +434,7 @@ mysqli_free_result($se_inform);
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
 			
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date)?>" name="" readonly>
+					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo DateThai($date_inform)?>" name="" readonly>
 					<input type="hidden" value="<?php echo $date ?>" name="tdate">
 				</div>				
 		 </div>

@@ -21,7 +21,31 @@ list($inform)=mysqli_fetch_row($se_inform);
 mysqli_free_result($se_inform);
 // echo $inform;
 if(!empty($inform==1)){
+
+	$seAss5 =mysqli_query($con,
+	"SELECT asst5_id,accept,inform,date_accept,date_inform
+	FROM asessment_t5
+	WHERE ass_id='$ass_id' " )or die("SQL-error.asAss5".mysqli_error($con));
+	list($asst5_id,$accept,$inform,$date_accept,$date_inform)=mysqli_fetch_row($seAss5);
+	
+			if($inform==1 && $accept==1){
+		?>
+			<div class="row ">
+				<div class="col-md text-right">
+					<form action="printsumAss.php" method="post" target="_blank">
+					<input type='hidden' name='year' value='<?php echo $year ?>'>
+					<input type='hidden' name='stid' value='<?php echo $_SESSION['user_id'] ?>'>
+					<button class='btn btn-success' type='submit'> พิมพ์ </button>
+					</form>
+				</div>
+			</div>
+		<?php
+			}
+
+
 ?>
+
+
 <div class="row ">
   <div class="col-md">
 <p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>
