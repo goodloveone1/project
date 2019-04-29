@@ -47,11 +47,11 @@
     </div>
   
 	<br><br>
-	<div class="row text-center" >
+	<div class="row text-left" >
 		<div class="col-md "> <!--ประจำปี งบประมาณ -->
 		
 		<div class="form-group row">
-			<label for="" class="col-sm-2 col-form-label">ประจำปี งบประมาณ</label>
+			<label for="" class="col-sm-3 col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-3">
 			<?php $se_year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end FROM years WHERE y_id='$_POST[year]'")or die("SQLerror.Year".mysqli_error($con));
 					list($y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($se_year);
@@ -69,16 +69,16 @@
 	</div>
 </div>
 
-<div class="row text-center">
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
-		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
-		<div class="col-sm">
+		<label  class="col-sm-3 col-form-label">ชื่อผู้รับการประเมิน</label>
+		<div class="col-sm-3">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required readonly>
 			<input type="hidden" name="staff_id" value="<?php  echo $staff_id  ?>" >
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
-		<div class="col-sm">
+		<div class="col-sm-3">
 		<select class="form-control" name="g_pos" disabled>
 		<?php 
 			$seaPos=mysqli_query($con,"SELECT pos_id,pos_name FROM position")or die("SQL_ERROR".mysqli_error($con));
@@ -91,14 +91,22 @@
 		</select>
 			<!-- <input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>"> -->
 		</div>
-		<label  class="col-sm-1 col-form-label">สังกัด.</label>
-		<div class="col-sm">
-			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $branchName?>" name="dept" readonly>
-		</div>
+		
 	</div>
 </div>
 </div>
-<div class="row text-center">
+<div class="row text-left">
+	<div class="col-md">
+			<div class="form-group row">
+			<label  class=" col-sm-3 col-form-label">สังกัด &nbsp;&nbsp;</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา" name="dept" readonly>
+		</div>
+			</div>
+	</div>
+</div>
+
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
 	<?php  //ผู้บังคบบัญชา
@@ -171,8 +179,7 @@
 
 						
 		?>
-		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา  /ผู้ประเมิน </label>
-		
+		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา / ผู้ประเมิน </label>
 		<div class="col-sm">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
 			<input type="hidden" name="leader_id" value="<?php echo $leader_id ?>">
