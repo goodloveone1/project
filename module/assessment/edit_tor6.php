@@ -1,3 +1,6 @@
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	session_start();
 	include("../../function/db_function.php");
@@ -196,7 +199,7 @@
 				if($check == true){
 				var formData = new FormData(this);
 					    $.ajax({
-					        url: "module/assessment/adddata_tor6.php",
+					        url: "module/assessment/noting.php",
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {

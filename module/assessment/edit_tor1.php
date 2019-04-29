@@ -1,3 +1,6 @@
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	session_start();
 	include("../../function/db_function.php");
@@ -36,10 +39,12 @@
 		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp;
 		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp;
 		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
-		 <br>
+		 
     </div>
 <div class="row ">
+
 	<div class="col-md">
+	<br>
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
 	</div>
 </div>

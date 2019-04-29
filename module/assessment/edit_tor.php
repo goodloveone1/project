@@ -1,3 +1,6 @@
+<div class="row  p-2 headtitle">
+	<h4 class="text-center col-md "> การประเมิน </h4>
+</div>
 <?php
 	 session_start();
 	 include("../../function/db_function.php");
@@ -32,7 +35,7 @@
 			$_SESSION['genIdpost']=$genIdpost;
 			$_SESSION['yearIdpost']=$yearIdpost;
 		}
-	echo $yearIdpost;
+	//echo $yearIdpost;
 
 
 	$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE ass_id='$yearIdpost'AND staff='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
