@@ -64,7 +64,7 @@ $fullname .= "<h3 align='center'> สังกัด คณะบริหาร
 $mpdf->WriteHTML($fullname);
 
 
-$mpdf->WriteHTML("<p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>");
+$mpdf->WriteHTML("<h3><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></h3>");
 
 
 $se_ass=mysqli_query($con,"SELECT ass_id FROM assessments WHERE staff='$stid' AND year_id='$year' AND ass_id LIKE 'TOR%' ") or die("ASS_SQLerror".mysqli_error($con));
@@ -86,7 +86,8 @@ $se_a1=mysqli_query($con,"SELECT title_name,goal,score,weight,weighted FROM ases
 $tableh1 ='
 <style>
 table, th, td {
-  border: 1px solid black;
+	border: 1px solid black;
+	font-size:18px;
 }
 @page {
 	size: 8.5in 11in; 
@@ -96,6 +97,9 @@ table, th, td {
 	margin-footer: 5mm; 
 	
 }
+p{
+	font-size:18px;
+}
 </style>
 <table style="border-collapse: collapse;border:1px solid" width="100%">
 
@@ -103,7 +107,7 @@ table, th, td {
       <th>ภาระงาน/กิจกรรม/โครงการ/งาน</th>
       <th> ค่าระดับเป้าหมาย </th>
       <th> ค่าคะแนนที่ได้  </th>
-      <th> น้ำหนัก(น้ำหนักความยากง่ายของงาน) </th>
+      <th>  น้ำหนัก<br>(น้ำหนักความยากง่ายของงาน) </th>
       <th> ค่าคะแนนถ่วงน้ำหนัก </th>
     </tr>
 
@@ -136,7 +140,7 @@ $tableh1 .="
 	
 $mpdf->WriteHTML($tableh1);
 
-$mpdf->WriteHTML("<p><b>องค์ประกอบที่  ๒ :  พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</b></p>");
+$mpdf->WriteHTML("<h3><b>องค์ประกอบที่  ๒ :  พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</b></h3>");
 
 $tableh2 ='
 <table style="border-collapse: collapse;border:1px solid" width="100%">
@@ -414,8 +418,9 @@ $tableh5 .="
 
 $mpdf->WriteHTML($tableh5);
 
+$mpdf->WriteHTML("<h3>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</h3>");
 
-///$mpdf->WriteHTML("<h3>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</h3>");
+
 
 $sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'";
 							$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
@@ -449,15 +454,30 @@ $sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'
 							$uagree1="";
 						}
 
+$tableh6 ="
+	<table style='border-collapse: collapse;border:1px solid' width='100%'>
+			<tr>
+				<td>
+				<p>ผู้บังคับบัญชาเหนือขึ้นไป<p>
 
+				<p><input  type='radio'  name='apc'  $apc0  >  เห็นด้วยผลการประเมิน	</p>
 
+				<p>	<input  type='radio'   name='apc' $apc1 > มีความเห็นแตกต่าง  ดังนี้  </p>
+			 
+				<p><textarea  name='hcompt'  cols='20' rows='3'>$leader_comt_disc</textarea>	</p>
+		  		   
+				</td>
+				<td>
+				<p>ผู้บังคับบัญชาเหนือขึ้นไป<p>
+				</td>
+			</tr>
+	</table>		
+";
 
+$mpdf->WriteHTML($tableh6);
 $mpdf->Output();
 
 ?>
-
-
-
 
 <div class="row">
 	 <div class="col-md">
