@@ -16,8 +16,6 @@
 		$yearIdpost = $_POST['year'];
 	}
 	
-
-
 //ผู้รับการประเมิน
 	 $seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
 	 list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca);

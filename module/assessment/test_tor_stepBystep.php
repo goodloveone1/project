@@ -51,7 +51,7 @@
 		<div class="col-md "> <!--ประจำปี งบประมาณ -->
 		
 		<div class="form-group row">
-			<label for="" class="col-sm-3 col-form-label">ประจำปี งบประมาณ</label>
+			<label for="" class="col-sm-2 col-form-label">ประจำปี งบประมาณ</label>
 			<div class="col-sm-3">
 			<?php $se_year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end FROM years WHERE y_id='$_POST[year]'")or die("SQLerror.Year".mysqli_error($con));
 					list($y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($se_year);
@@ -62,7 +62,7 @@
 						<input type="text" name="YearB" value="<?php echo $y_year+543;  ?>" class="form-control" readonly>
 			</div>
 			<div class="col-sm-5">
-			<input type="text" name="y_id" value="<?php  echo "รอบที่",$y_no," ( ",DateThai($y_start),"-",DateThai($y_end) ?>" class="form-control" readonly>
+			<input type="text" name="y_id" value="<?php  echo "รอบที่",$y_no," ( ",DateThai($y_start),"-",DateThai($y_end)," )" ?>" class="form-control" readonly>
 			<input type="hidden" name="a_no" value="<?php echo $_POST['year'] ?>">
 			</div>
 		</div>
@@ -171,7 +171,7 @@
 
 						
 		?>
-		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
+		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา  /ผู้ประเมิน </label>
 		
 		<div class="col-sm">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" name="" value="<?php echo $led_fname," ",$led_lname; ?>" required readonly>
