@@ -84,11 +84,11 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
     </div>
 
 	<br><br>
-	<div class="row text-center" >
-		<div class="col-md-5 "> <!--ประจำปี งบประมาณ -->
+	<div class="row text-left" >
+		<div class="col-md "> <!--ประจำปี งบประมาณ -->
 
 		<div class="form-group row">
-			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ <?php echo $year_id  ?></label>
+			<label for="" class="col-sm col-form-label">ประจำปี งบประมาณ </label>
 			<div class="col-sm-6">
 				<input type="hidden"  name="tor_id" value="<?php echo $tor_id  ?>" >
 				
@@ -133,12 +133,11 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 	</div>
 </div>
 
-<br>
-<div class="row text-center">
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
-		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
-		<div class="col-sm">
+		<label  class="col-sm-3 col-form-label">ชื่อผู้รับการประเมิน</label>
+		<div class="col-sm-3">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="ชื่อผู้รับการประเมิน" value="<?php echo $fname," ",$lname; ?>" name="name" required readonly>
 		</div>
 		<label  class="col-sm-1 col-form-label">ตำแหน่ง</label>
@@ -156,8 +155,8 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 		</select>
 		
 		</div>
-		<label  class="col-sm-1 col-form-label">สังกัด.</label>
-		<div class="col-sm">
+		<!--<label  class="col-sm-1 col-form-label">สังกัด.</label>
+		 <div class="col-sm">
 		<?php 
 			$re_branch=mysqli_query($con,"SELECT br_name,dept_id FROM branchs WHERE br_id='$branch_id'") or die("position-sqlError".mysqli_error($con));
 			list($branch_name,$dept_id)=mysqli_fetch_row($re_branch);
@@ -167,11 +166,22 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 			mysqli_free_result($re_branch)
 		?>
 			<input type="text" class="form-control" id="inputEmail3" placeholder="สังกัด" value="<?php echo $dept_name?>" name="dept" readonly>
-		</div>
+		</div> -->
 	</div>
 </div>
 </div>
-<div class="row text-center">
+<div class="row text-left">
+	<div class="col-md">
+			<div class="form-group row">
+			<label  class=" col-sm-3 col-form-label">สังกัด &nbsp;&nbsp;</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา" name="dept" readonly>
+		</div>
+			</div>
+	</div>
+</div>
+
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
 		<label  class="col-sm-3 col-form-label ">ชื่อผู้บังคับบัญชา /ผู้ประเมิน </label>
@@ -236,7 +246,7 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" value="คณะ<?php echo $dept_name?>" readonly>
+		      <input type="text" class="form-control" id="inputEmail3" placeholder="หน่วยงาน" value="คณะบริหารธุรกิจและศิลปศาสตร์" readonly>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -411,7 +421,7 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-	<button type="submit" class="btn " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
+	<button type="submit" class="btn updateuser bg-success text-white " data-modules="assessment" data-action="adddata_tor"> ต่อไป </button>
 	</div>
 </div>
 </form>
