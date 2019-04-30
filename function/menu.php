@@ -166,13 +166,15 @@ function webmenu($id){
 					</button>
 				</a>
 
+		
+
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-folder fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
+						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
 					</li>
 					</button>
-				</a>
+			
 
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
 					<button class="btn-block bt-color">
@@ -242,7 +244,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-					<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+					<i class="icon fas fa-archive fa-3x"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
 				</a>
@@ -337,7 +339,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-					<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+					<i class="icon fas fas fa-archive fa-3x"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
 				</a>
