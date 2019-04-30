@@ -238,37 +238,15 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
-				
-				<button class="btn-block bt-color" id="flip" >
+
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-folder fa-lg " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
+					<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
-					<div id="panelassess" style='display:none'>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
-							<button class="btn-block bt-color">
-							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
-							</li>
-							</button>
-						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
-							<button class="btn-block bt-color">
-							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> ตรวจสอบหลักฐานบุคลากร</span>
-							</li>
-							</button>
-						</a>
-					</div>
-					<script> 
-						$(document).ready(function(){
-						$("#flip").click(function(){
-							$("#panelassess").slideToggle();
-						});
-						});
-					</script>
-			
-
+				</a>
+				
 
 				<button class="btn-block bt-color" id="flip2" >
 					<li class="list-group-item list-menu-user">
@@ -356,34 +334,13 @@ function webmenu($id){
 		</a>
 
 
-		<button class="btn-block bt-color" id="flip" >
+		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
+					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-folder fa-lg " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
+					<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
-					<div id="panelassess" style='display:none'>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
-							<button class="btn-block bt-color">
-							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
-							</li>
-							</button>
-						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
-							<button class="btn-block bt-color">
-							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> ตรวจสอบหลักฐานบุคลากร</span>
-							</li>
-							</button>
-						</a>
-					</div>
-					<script> 
-						$(document).ready(function(){
-						$("#flip").click(function(){
-							$("#panelassess").slideToggle();
-						});
-						});
-					</script>
+				</a>
 
 	
 						<button class="btn-block bt-color" id="flip2" >
@@ -449,14 +406,7 @@ function webmenu($id){
 			</button>
 		</a>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-book-open fa-3x " ></i><span class="text">บันทึกการปฏิบัติงาน</span>
-			</li>
-			</button>
-		</a>
-
+	
 
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_asmIn">
 			<button class="btn-block bt-color">
@@ -466,14 +416,7 @@ function webmenu($id){
 			</button>
 		</a>
 
-		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence_course">
-			<button class="btn-block bt-color">
-			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-folder fa-3x " ></i><span class="text">&nbsp;หลักฐานบุคลากร</span>
-			</li>
-			</button>
-		</a>
-
+	
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_asmIn">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
