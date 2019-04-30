@@ -458,7 +458,7 @@ $tableh6 ="
 	<table style='border-collapse: collapse;border:1px solid' width='100%'>
 			<tr>
 				<td>
-				<p>ผู้บังคับบัญชาเหนือขึ้นไป<p>
+				<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
 
 				<p><input  type='radio'  name='apc'  $apc0  >  เห็นด้วยผลการประเมิน	</p>
 
@@ -468,132 +468,74 @@ $tableh6 ="
 		  		   
 				</td>
 				<td>
-				<p>ผู้บังคับบัญชาเหนือขึ้นไป<p>
-				</td>
-			</tr>
-	</table>		
 ";
+				$sehleader=mysqli_query($con,"SELECT prefix,fname,lname,position FROM staffs WHERE st_id='$hightL'")or die("SQL.hleaderError".mysqli_error($con));
+				 list($hl_prefix,$hl_name,$hl_fname,$hl_position)=mysqli_fetch_row($sehleader);
+				mysqli_free_result($sehleader);
+
+$tableh6 .="			
+				<p>	ลงชื่อ   $hl_prefix $hl_name $hl_fname </p>
+";			
+
+$se_hlpostion = mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id ='$hl_position'") or die("SQL.posHL_ERRor".mysqli_error($con));
+list($hl_posName)=mysqli_fetch_row($se_hlpostion);
+
+
+$tableh6 .="	 <p>ตำแหน่ง  $hl_posName</p> ";
+
+$date= date("Y/m/d"); 
+
+$leader_compt_date = $leader_compt_date==0?"":DateThai($leader_compt_date);		
+
+
+$tableh6 .="	 <p>วันที่ $leader_compt_date</p> </td></tr>";
+
+$seSleader=mysqli_query($con,
+"SELECT staffs.prefix,staffs.fname,staffs.lname,position.pos_name
+FROM staffs
+INNER JOIN position
+ON staffs.position=position.pos_id
+WHERE st_id='$supterL'")or die("SQL.hleaderError".mysqli_error($con));
+list($Sl_prefix,$Sl_name,$Sl_fname,$Sl_position)=mysqli_fetch_row($seSleader);
+mysqli_free_result($seSleader);
+
+$supervisor_comt_date = $supervisor_comt_date==0?"":DateThai($supervisor_comt_date);
+
+$tableh6 .="<tr><td>	 <p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p> 
+
+<p> <input  type='radio'  $uagree0>  เห็นด้วยผลการประเมิน  ดังนี้  </p>
+
+<p> <input  type='radio'  $uagree1>  มีความเห็นแตกต่าง  ดังนี้  </p>
+
+<p><textarea    cols='20' rows='3'>$supervisor_comtdisc</textarea>	</p>
+
+</td>
+<td>
+<p>	ลงชื่อ   $Sl_prefix $Sl_name $Sl_fname  </p>
+<p>ตำแหน่ง  $Sl_position</p>
+<p>วันที่ $supervisor_comt_date</p>
+</td>
+</tr>
+</table>
+";
+
+
+
+
 
 $mpdf->WriteHTML($tableh6);
 $mpdf->Output();
 
 ?>
 
-<div class="row">
-	 <div class="col-md">
-				<br>
-				<p><b>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</b></p>
-				<p>
-					<?php   
-							$sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'";
-							$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-							list($tor_ID,$hightL,$supterL)=mysqli_fetch_row($reChk);
-							mysqli_free_result($reChk);
-
-							$sqlA6="SELECT leader_comt,leader_comt_disc,leader_compt_date,supervisor_comt,supervisor_comtdisc,supervisor_comt_date FROM asessment_t6 WHERE  ass_id='$ass_id'";
-							$seAss6 = mysqli_query($con,"$sqlA6") or die("seAss6".mysqli_error($con));
-							list($leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($seAss6);
-							mysqli_free_result($seAss6);
-						//echo $leader_comt,">>",$leader_comt_disc,"<<<",$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date;
-							if($leader_comt==1){
-									$apc0="";
-									$apc1="checked=checked";
-							}else if($leader_comt==0){
-								$apc0="";
-								$apc1="";
-							}else{
-								$apc0="checked=checked";
-								$apc1="";
-							}
-
-							
-							if($supervisor_comt==1){
-								$uagree0="";
-								$uagree1="checked=checked";
-						}else if($supervisor_comt==0){
-							$uagree0="";
-							$uagree1="";
-						}else{
-							$uagree0="checked=checked";
-							$uagree1="";
-						}
-					?>
-				</p>
-	 </div>
-</div>
-<div class=row>
-<div class="col-md-6 border border-dark p-3">
-		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
-		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio1" name="apc" <?php echo $apc0; ?> disabled  >
-			  <label class="custom-control-label" for="customRadio1">
-			    เห็นด้วยผลการประเมิน
-
-			  </label>
-		</div>
-		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" <?php echo $apc1; ?>  disabled>
-			  <label class="custom-control-label" for="customRadio2">
-			    มีความเห็นแตกต่าง  ดังนี้
-
-			  </label>
-		</div>
-		<div class="form-group">
-		    <textarea class="form-control" name="hcompt" id="text1" rows="3"  disabled required><?php echo $leader_comt_disc ?></textarea>
-		 </div>
-
-	</div>
-	<div class="col-md-6 border   border-dark p-3">
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
-			
-				<div class="col-sm">
-				<?php
-					 $sehleader=mysqli_query($con,"SELECT prefix,fname,lname,position FROM staffs WHERE st_id='$hightL'")or die("SQL.hleaderError".mysqli_error($con));
-					 list($hl_prefix,$hl_name,$hl_fname,$hl_position)=mysqli_fetch_row($sehleader);
-					 mysqli_free_result($sehleader);
-				?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $hl_prefix,$hl_name," ",$hl_fname ?>" readonly>
-				</div>				
-		</div>
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
-				<div class="col-sm">
-				<?php
-						$se_hlpostion = mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id ='$hl_position'") or die("SQL.posHL_ERRor".mysqli_error($con));
-						list($hl_posName)=mysqli_fetch_row($se_hlpostion);
-
-				?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $hl_posName  ?>" readonly>
-				</div>				
-		</div>
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">วันที่</label>
-				<div class="col-sm">
-				<?php 
-					$date= date("Y/m/d"); 
-					$leader_compt_date = $leader_compt_date==0?"":DateThai($leader_compt_date);		
-				?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $leader_compt_date  ?> " readonly >
-				</div>				
-		</div>
-	</div>
-
 	<div class="col-md-6 border border-dark p-3">
                <?php
-                     $seSleader=mysqli_query($con,
-                     "SELECT staffs.prefix,staffs.fname,staffs.lname,position.pos_name
-                     FROM staffs
-                     INNER JOIN position
-                     ON staffs.position=position.pos_id
-                     WHERE st_id='$supterL'")or die("SQL.hleaderError".mysqli_error($con));
-					 list($Sl_prefix,$Sl_name,$Sl_fname,$Sl_position)=mysqli_fetch_row($seSleader);
-					 mysqli_free_result($seSleader);
+                    
 				?>
 
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?> disabled >
+			  
 			  <label class="custom-control-label" for="customRadio3">
 			    เห็นด้วยผลการประเมิน
 
@@ -625,7 +567,7 @@ $mpdf->Output();
 		<div class="form-group row">
 				<label  class="col-sm-2 col-form-label">วันที่</label>
 				<div class="col-sm">
-				<?php $supervisor_comt_date = $supervisor_comt_date==0?"":DateThai($supervisor_comt_date);	 ?>
+				<?php 	 ?>
 					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $supervisor_comt_date ?>" readonly>
 				</div>				
 		</div>
