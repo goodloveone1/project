@@ -122,21 +122,20 @@
 		
 
 		<script>
-					window.onscroll = function() {scrollFunction()};
-
+			window.onscroll = function() {scrollFunction()};
 			function scrollFunction() {
-				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				if (document.body.scrollTop > 350 || document.documentElement.scrollTop > 350) {
 					document.getElementById("myBtn").style.display = "block";
 				} else {
 					document.getElementById("myBtn").style.display = "none";
 				}
 			}
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+           // When the user clicks on the button, scroll to the top of the document
+			function topFunction() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			}
 		$(document).ready(function() {
 
 			if(sessionStorage.getItem("module1")=="" || sessionStorage.getItem("action")=="" ){
