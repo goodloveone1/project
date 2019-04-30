@@ -409,25 +409,25 @@ mysqli_free_result($se_inform);
 							mysqli_free_result($seAss6);
 						//echo $leader_comt,">>",$leader_comt_disc,"<<<",$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date;
 							if($leader_comt==1){
-									$apc0="";
-									$apc1="checked";
-							}else if($leader_comt==0){
+									$apc0="checked";
+									$apc1="";
+							}else if($leader_comt==2){
 								$apc0="";
-								$apc1="";
+								$apc1="checked";
 							}else{
-								$apc0="checked";
+								$apc0="";
 								$apc1="";
 							}
 
 							
 							if($supervisor_comt==1){
-								$uagree0="";
-								$uagree1="checked";
-						}else if($supervisor_comt==0){
+								$uagree0="checked";
+								$uagree1="";
+						}else if($supervisor_comt==2){
 							$uagree0="";
-							$uagree1="";
+							$uagree1="checked";
 						}else{
-							$uagree0="checked";
+							$uagree0="";
 							$uagree1="";
 						}
 					?>
