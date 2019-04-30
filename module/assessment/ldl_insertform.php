@@ -63,19 +63,21 @@ mysqli_close($con);
     $(document).ready(function() {
         $("#updatesu").click(function(event) {
 
-            var r = confirm("Press a button!");
+            var r = confirm("คุุณต้องการบันทึกใช่ไหม?");
             if (r == true) {
                 $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-                    alert(data);
-                });
+                    alert("บันทึกข้อมูลสำเร๊จ");
 
-                $('#addsub').modal("hide");
+                    $('#addsub').modal("hide");
 
                 $('#addsub').on('hidden.bs.modal', function (e) {
                     var module1 = sessionStorage.getItem("module1")
                     var action = sessionStorage.getItem("action")
                     loadmain(module1,action);
                 })
+                });
+
+                
 
 
             }

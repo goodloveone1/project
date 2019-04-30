@@ -49,7 +49,7 @@ $con=connect_db();
 					
 					}else if($evd_status == 2){
 						echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ยืนยันหลักฐานแล้ว </b></td>"; 
-						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
+						echo "  <td class='text-center'> <a href='javascript:void(0)' class='checkevd text-success' data-evdid='$evd_id'><b><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></a></td>";
 					}
 	
 				}	else{
@@ -61,7 +61,7 @@ $con=connect_db();
 						echo "  <td class='text-center text-danger'><b> <i class='fas fa-exclamation fa-2x'></i><br>อยู่นอกระยะการประเมิน </b> </td>";
 					}else if($evd_status == 2){
 						echo "<td class='text-center'><b class='text-success'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ยืนยันหลักฐานแล้ว </b></td>"; 
-						echo "  <td class='text-center'> <b class='btn checkevd text-success' data-evdid='$evd_id'><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></td>";
+						echo "  <td class='text-center'> <a href='javascript:void(0)' class='btn checkevd text-success' data-evdid='$evd_id'><b class='' ><i class='fas fa-info fa-2x'></i><br>รายละเอียดหลักฐาน </b></a></td>";
 					}
 				}
 
