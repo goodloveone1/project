@@ -13,7 +13,7 @@
        $start="-10-01";
        $end="-03-31";
        $yyyy=($y-543)+1;
-       echo $year+2;
+      // echo $year+2;
     }else{
         $y=$year;
         $n=$no+1;

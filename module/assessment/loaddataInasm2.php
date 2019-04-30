@@ -98,7 +98,14 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     if(empty($tor_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำการประเมิน</b></td>";
     }else{
-      echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>"; 
+      $seApp=mysqli_query($con,"SELECT inform FROM asessment_t5 WHERE ass_id='$tor_id'")or die("SQL error.asst5".mysqli_error($con));
+      list($inform)=mysqli_fetch_row($seApp);
+      if($inform==0){
+        echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+      }else{
+        echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>";
+      }
+      
     }
 
     if(empty($evd_id)){

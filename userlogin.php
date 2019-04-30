@@ -100,7 +100,7 @@
 				<section class="col-md-12  mt-0 pb-2" id="detail">
 
 				</section>
-
+				<button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
 				<footer id="footers" class="col-md-12 mt-3">
 
 				</footer>
@@ -122,6 +122,21 @@
 		
 
 		<script>
+					window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					document.getElementById("myBtn").style.display = "block";
+				} else {
+					document.getElementById("myBtn").style.display = "none";
+				}
+			}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 		$(document).ready(function() {
 
 			if(sessionStorage.getItem("module1")=="" || sessionStorage.getItem("action")=="" ){

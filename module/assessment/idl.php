@@ -5,17 +5,16 @@ $mm=date('m');  //เดือนปัจจุบัน
 	$y="$yearbudget";
 	if($m<=9 && $m>3){
 			$loop=2;
+			$y-=1;
 	}else{
 			$loop=1;
 	}
-	if($loop==2){
-			$y-1;
-}
+	
 
 	$y_id = $y.$loop;
 	//echo $y_id;
 
-	$seldlt=mysqli_query($con,"SELECT * FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='25621'")or die(mysqli_error($con));
+	$seldlt=mysqli_query($con,"SELECT * FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'")or die(mysqli_error($con));
 	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
 
 
@@ -32,7 +31,7 @@ $mm=date('m');  //เดือนปัจจุบัน
 		<thead>
 			<tr>
 				<th rowspan="2" class="text-center">ประเภท</th>
-				<th colspan="2">การประเมินรอบที่ <?php echo $loop," ปี ",$y  ?></th>
+				<th colspan="2">การประเมินรอบที่ <?php echo $loop," ปี ",$y ?></th>
 
 				<th rowspan="2" class="text-center">ประเภท</th>
 				<th colspan="2">การประเมินรอบที่ <?php echo $loop," ปี ",$y ?></th>

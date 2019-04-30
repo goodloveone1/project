@@ -424,14 +424,14 @@
 
 							
 							if($supervisor_comt==1){
-								$uagree0="";
-								$uagree1="checked";
+								$uagree0="checked";
+								$uagree1="";
 						}else if($supervisor_comt==0){
 							$uagree0="";
 							$uagree1="";
 						}else{
-							$uagree0="checked";
-							$uagree1="";
+							$uagree0="";
+							$uagree1="checked";
 						}
 						
            
@@ -515,15 +515,15 @@
 
 		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?> disabled >&nbsp;&nbsp;&nbsp;&nbsp;
-			  <label class="custom-control-label" for="customRadio3">
+			  <input class="custom-control-input" type="radio" value="0" id="customRadio3" name="uagree" <?php echo $uagree0  ?>  >&nbsp;&nbsp;&nbsp;&nbsp;
+			  <label class="custom-control-label" for="">
 			    เห็นด้วยผลการประเมิน
 
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> disabled>&nbsp;&nbsp;&nbsp;&nbsp;
-			  <label class="custom-control-label" for="customRadio4">
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> >&nbsp;&nbsp;&nbsp;&nbsp;
+			  <label class="custom-control-label" for="">
 			    มีความเห็นแตกต่าง  ดังนี้
 			  </label>
 		</div>

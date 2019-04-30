@@ -55,9 +55,8 @@
 			<u>เอกสารหมายเลข 2</u>
 		</div>
     </div>
-  
 	<br><br>
-	<div class="row text-center" >
+	<div class="row text-left" >
 		<div class="col-md "> <!--ประจำปี งบประมาณ -->
 		
 		<div class="form-group row">
@@ -72,18 +71,18 @@
 						<input type="text" name="YearB" value="<?php echo $y_year+543;  ?>" class="form-control" readonly>
 			</div>
 			<div class="col-sm-5">
-			<input type="text" name="y_id" value="<?php  echo "รอบที่",$y_no," ( ",DateThai($y_start),"-",DateThai($y_end) ?>" class="form-control" readonly>
+			<input type="text" name="y_id" value="<?php  echo "รอบที่",$y_no," ( ",DateThai($y_start),"-",DateThai($y_end)," )" ?>" class="form-control" readonly>
 			<input type="hidden" name="a_no" value="<?php echo $_POST['year'] ?>">
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row text-center">
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
-		<label  class="col-sm-2 col-form-label">ชื่อผู้รับการประเมิน</label>
-		<div class="col-sm">
+		<label  class="col-sm-3 col-form-label">ชื่อผู้รับการประเมิน</label>
+		<div class="col-sm-3">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo "$gen_prefix $gen_fname $gen_lname"; ?>" name="name" required readonly>
 			
 		</div>
@@ -101,14 +100,24 @@
 		</select>
 			<!-- <input type="text" class="form-control" id="inputEmail3" placeholder="Email"value="<?php echo $position?>"> -->
 		</div>
-		<label  class="col-sm-1 col-form-label">สังกัด.</label>
+		<!-- <label  class="col-sm-1 col-form-label">สังกัด.</label>
 		<div class="col-sm">
 			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $branchName?>" name="dept" readonly>
-		</div>
+		</div> -->
 	</div>
 </div>
 </div>
-<div class="row text-center">
+<div class="row text-left">
+	<div class="col-md">
+			<div class="form-group row">
+			<label  class=" col-sm-3 col-form-label">สังกัด &nbsp;&nbsp;</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="" value="คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา" name="dept" readonly>
+		</div>
+			</div>
+	</div>
+</div>
+<div class="row text-left">
 <div class="col-md">
 	<div class="form-group row">
 	<?php  //ผู้บังคบบัญชา
@@ -245,11 +254,11 @@
 
 <div class="row">
 	<div class="col-md-2"></div>
-	<div class="col-md">
+	<div class="col-md text-left">
 		 <div class="form-group row">
 		 	<label  class="col-sm-2 col-form-label"> หน่วยงาน</label>
 		 	<div class="col-sm-5">
-		      <input type="text" class="form-control" id="inputEmail3" value="คณะ<?php echo $dept_name   ?>" placeholder="" required readonly>
+		      <input type="text" class="col-md form-control" id="inputEmail3" value="คณะบริหารธุรกิจและศิลปศาตร์" placeholder=""  readonly>
 		    </div>
 			<label  class="col-sm col-form-label">มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา </label>
 
@@ -392,6 +401,7 @@
 			<!-- <div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;ขอข้อมูลจากเจ้าน้าที่</button></a></div><br> -->
 			<?php	
 			}else{
+				
 				include("idl.php");
 			}
 			

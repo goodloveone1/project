@@ -7,17 +7,22 @@
         <th>Passsword</th>
         <th>ตำแหน่ง</th>
         <th>หลักสูตร</th>
+        <th>ตำแหน่งทางวิชาการ</th>
     </tr>
 <?php
     include("function/db_function.php");
 	$con=connect_db();
-    $se_user = mysqli_query($con,"SELECT staffs.user,staffs.pwd,permissions.permiss_decs,branchs.br_name
+    $se_user = mysqli_query($con,"
+    SELECT staffs.user,staffs.pwd,permissions.permiss_decs,branchs.br_name,academic.aca_name
     FROM staffs
     INNER JOIN permissions
     ON staffs.permiss_id = permissions.permiss_id
     INNER JOIN branchs
-    ON staffs.branch_id = branchs.br_id")or die("errorSQL".mysqli_error($con));
-    while(list($user,$pwd,$position,$dpt)=mysqli_fetch_row($se_user)){
+    ON staffs.branch_id = branchs.br_id
+    INNER JOIN academic
+    ON staffs.acadeic = academic.aca_id
+    ")or die("errorSQL".mysqli_error($con));
+    while(list($user,$pwd,$position,$dpt,$aca)=mysqli_fetch_row($se_user)){
         
 ?>
 <tr>
@@ -26,6 +31,7 @@
         echo "<td>$pwd</td>";
         echo "<td>$position</td>";
         echo "<td>$dpt</td>";
+        echo "<td>$aca</td>";
 ?>
 
 </tr>
