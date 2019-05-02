@@ -46,7 +46,7 @@
 	<div class="col-md">
 <table class="table table-bordered" id="table_score" >
 <tr>
-<th rowspan="2">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
+<th rowspan="2" width="20%">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
 <th rowspan="2">(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
 <th colspan="5">(๓) ระดับค่าเป้าหมาย</th>
 <th rowspan="2">(๔) ค่าคะแนน ที่ได้ </th>
@@ -92,8 +92,10 @@
 		echo "</td>";
 		echo "<td>";
 $se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
+$num=1;
 while(list($con_ex)=mysqli_fetch_row($se_condition)){
-	   echo "<p>$con_ex</p>";
+	   echo "<label for='customRadio$num$tit' style='text-align: justify; text-indent: 2.1em;'>$con_ex</label>";
+	   $num++;
 }
 		
 		echo "</td>";
@@ -115,11 +117,11 @@ while(list($con_ex)=mysqli_fetch_row($se_condition)){
 						$ch5="checked";
 				break;
 			}
-				echo "<td><input type='radio' name='go$tit' value='1' required $ch1></td>";
-				echo "<td><input type='radio' name='go$tit' value='2' required $ch2></td>";
-					echo "<td><input type='radio' name='go$tit' value='3' required $ch3></td>";
-					echo "<td><input type='radio' name='go$tit' value='4' required $ch4></td>";
-					echo "<td><input type='radio' name='go$tit' value='5' required $ch5></td>";
+				echo "<td><input type='radio'  id='customRadio1$tit' name='go$tit' value='1' required $ch1></td>";
+				echo "<td><input type='radio'  id='customRadio2$tit' name='go$tit' value='2' required $ch2></td>";
+					echo "<td><input type='radio'  id='customRadio3$tit' name='go$tit' value='3' required $ch3></td>";
+					echo "<td><input type='radio'  id='customRadio4$tit' name='go$tit' value='4' required $ch4></td>";
+					echo "<td><input type='radio'  id='customRadio5$tit' name='go$tit' value='5' required $ch5></td>";
 				echo "<td class='text-center' ><input type='text' class='borderNon'  data-tit='$tit' name='score[]' id='score[]' class='score' value='$tort1_goal' size='2' readonly required></td>";
 				echo "<td id='wei$tit' class='text-center' data-wei='$weight'><input type='text' class='borderNon' value='$weight' size='2' name='wei$tit' readonly ></td>";
 				$sumA=($tort1_goal*$weight)/100;
