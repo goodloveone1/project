@@ -433,24 +433,24 @@ $sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'
 							mysqli_free_result($seAss6);
 						//echo $leader_comt,">>",$leader_comt_disc,"<<<",$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date;
 							if($leader_comt==1){
-									$apc0="";
-									$apc1="checked=checked";
-							}else if($leader_comt==0){
+									$apc0="checked=checked";
+									$apc1="";
+							}else if($leader_comt==2){
 								$apc0="";
-								$apc1="";
+								$apc1="checked=checked";
 							}else{
-								$apc0="checked=checked";
+								$apc0="";
 								$apc1="";
 							}
 
 							if($supervisor_comt==1){
-								$uagree0="";
-								$uagree1="checked=checked";
-						}else if($supervisor_comt==0){
+								$uagree0="checked=checked";
+								$uagree1="";
+						}else if($supervisor_comt==2){
 							$uagree0="";
-							$uagree1="";
+							$uagree1="checked=checked";
 						}else{
-							$uagree0="checked=checked";
+							$uagree0="";
 							$uagree1="";
 						}
 
