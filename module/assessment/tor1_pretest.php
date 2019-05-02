@@ -109,18 +109,21 @@ $y_id = $y.$loop;
 ?>
 									<td>
 											<?php
+												$num=1;
 												while(list($e_na,$con_level,$con_con,$con_ex )=mysqli_fetch_row($re_con)){
-													echo "<P>",$con_ex,"</P>";
+													
+													echo "<label class='label' for='customRadio$num$tit'>",$con_ex,"</label>";
+													$num++;
 												}
 											?>
 									</td>
 <?php
-									echo "<td><input type='radio' name='go$tit' value='1' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='2' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='3' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='4' required></td>";
-									echo "<td><input type='radio' name='go$tit' value='5' required></td>";
-									echo "<td ><input type='text'  data-tit='$tit' name='score[]' id='score[]' class='score borderNon form-control'  value='' size='2' readonly required></td>";						
+									echo "<td><input type='radio' id='customRadio1$tit'  name='go$tit' value='1' required></td>";
+									echo "<td><input type='radio' id='customRadio2$tit' name='go$tit' value='2' required></td>";
+									echo "<td><input type='radio' id='customRadio3$tit' name='go$tit' value='3' required></td>";
+									echo "<td><input type='radio' id='customRadio4$tit' name='go$tit' value='4' required></td>";
+									echo "<td><input type='radio' id='customRadio5$tit' name='go$tit' value='5' required></td>";
+									echo "<td ><input type='text' id='customRadio6$tit' data-tit='$tit' name='score[]' id='score[]' class='score borderNon form-control'  value='' size='2' readonly required></td>";						
 		echo "</tr>";
 	}
 	mysqli_close($con);

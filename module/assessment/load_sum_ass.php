@@ -482,7 +482,7 @@ if(!empty($inform==1)){
 			  </label>
 		</div>
 		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio2" name="apc" <?php echo $apc2; ?>  >
+			  <input class="custom-control-input" type="radio" value="1" id="customRadio2 " name="apc" <?php echo $apc2; ?>  >
 			  <label class="custom-control-label" for="">
 			    มีความเห็นแตกต่าง  ดังนี้
 
