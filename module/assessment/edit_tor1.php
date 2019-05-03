@@ -29,14 +29,14 @@
 <form method="POST" class="p-2" name="tor1" id="tor1">
 
 <input type="hidden" value="<?php echo $yearIdpost; ?>" name="tor_id">
-   <div class="row">
-	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-color ">ส่วนที่ 1</span></a>&nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
-		 <span class="step step-normal">ส่วนที่ 4</span> &nbsp;
-		 <span class="step step-normal">ส่วนที่ 5</span> &nbsp;
-		 <span class="step step-normal">ส่วนที่ 6</span> &nbsp;
+   <div class="row" id="link">
+   <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor" class="menu"><span class="step  step-normal ">ข้อตกลง</span></a> &nbsp;
+        <span class="step step-color ">ส่วนที่ 1</span>&nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor3" class="menu"><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
 		 
     </div>
 <div class="row ">
@@ -226,6 +226,14 @@ fncSum();
 
 <?php  } ?>
  $(document).ready(function() {
+	$("#link").on('click',".menu",function(e){
+					e.preventDefault();
+					module1 = $(this).data('modules');
+					action = $(this).data('action');
+				
+					loadingpage(module1,action); //code local functionjs.js
+
+				});
 
 	$("#tor1").submit(function(e){
 		      e.preventDefault();

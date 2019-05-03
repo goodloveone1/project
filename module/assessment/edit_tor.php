@@ -17,11 +17,9 @@
 	}else{
     	$loop=1;
 	}
-
     if($loop==2){
 		$y-=1;
 		$Y-=1;
-
     }
     $y_id = $y.$loop;
 
@@ -64,14 +62,14 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 <form method="POST" id="addtor"  class="p-2" action="javascript:void(0)" >
 
 	<input type="hidden" name="genid" value="<?php echo $genIdpost ?>">
-    <div class="row">
+    <div class="row" id="link">
 	    <span class="step step-color">ข้อตกลง</span> &nbsp;
-         <a href="javascript:void(0)"><span class="step step-normal" data-modules="assessment" data-action="tor_t1">ส่วนที่ 1</span></a>&nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
-		 <a href=#><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
-		 <a href="#"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
+     <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor1" class="menu"><span class="step step-normal">ส่วนที่ 1</span></a>&nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor3" class="menu"><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor4" class="menu"><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor5" class="menu"><span class="step step-normal">ส่วนที่ 5</span></a> &nbsp;
+		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor6" class="menu"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
     </div>
 	<br>
     <p></p>
@@ -431,6 +429,14 @@ $re_aca = mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$acadei
 
 <script type="text/javascript">
 $(document).ready(function() {
+	$("#link").on('click',".menu",function(e){
+					e.preventDefault();
+					module1 = $(this).data('modules');
+					action = $(this).data('action');
+				
+					loadingpage(module1,action); //code local functionjs.js
+
+				});
     $("#addbrn").click(function(e){
             e.preventDefault()
             $('#loadaddsub').load("module/assessment/ldl_insertform.php",function(){

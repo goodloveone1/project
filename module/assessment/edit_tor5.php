@@ -51,14 +51,14 @@ if($accept==1){
 <form class="p-2" name="tort5" id="tort5"> 
 <input type="hidden" name="tor_id" value="<?php echo $yearIdpost  ?>">
 <input type="hidden" name="asst5_id" value="<?php echo $asst5_id  ?>">
-<div class="row">
-	    <span class="step  step-normal ">ข้อตกลง</span> &nbsp;
-      <a href="javascript:void(0)"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp; 
-		 <a href=#><span class="step step-color">ส่วนที่ 5</span></a> &nbsp; 
-		 <a href=#><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
+<div class="row" id="link">
+      <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor" class="menu"> <span class="step  step-normal ">ข้อตกลง</span></a> &nbsp;
+      <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor1" class="menu"><span class="step step-normal ">ส่วนที่ 1</span></a>&nbsp; 
+	  <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor2" class="menu"><span class="step step-normal">ส่วนที่ 2</span></a> &nbsp; 
+	  <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor3" class="menu"><span class="step step-normal">ส่วนที่ 3</span></a> &nbsp; 
+	  <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor4" class="menu"><span class="step step-normal">ส่วนที่ 4</span></a> &nbsp; 
+	  <span class="step step-color">ส่วนที่ 5</span> &nbsp; 
+	  <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor6" class="menu"><span class="step step-normal">ส่วนที่ 6</span></a> &nbsp;
 		 <br>
 </div>
 <div class="row">
@@ -183,6 +183,14 @@ if($accept==1){
 
 
  	$(document).ready(function() {
+		$("#link").on('click',".menu",function(e){
+					e.preventDefault();
+					module1 = $(this).data('modules');
+					action = $(this).data('action');
+				
+					loadingpage(module1,action); //code local functionjs.js
+
+				});
 			$("a.next").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
