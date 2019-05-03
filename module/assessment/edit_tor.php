@@ -28,6 +28,8 @@
 		if(empty($_POST['genid']) && empty($_POST['year']) ){
 			$genIdpost=$_SESSION['genIdpost'];
 			$yearIdpost=$_SESSION['yearIdpost'];
+			$_SESSION['genIdpost']=$genIdpost;
+			$_SESSION['yearIdpost']=$yearIdpost;
 	
 		}else{
 			$genIdpost = $_POST['genid'];

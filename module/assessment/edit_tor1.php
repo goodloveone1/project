@@ -40,7 +40,6 @@
 		 
     </div>
 <div class="row ">
-
 	<div class="col-md">
 	<br>
 	<p><b><u>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน</b></u></p>
@@ -55,7 +54,7 @@
 	<div class="col-md">
 <table class="table table-bordered" id="table_score" >
 <tr>
-<th rowspan="2">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
+<th rowspan="2" width="20%">(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
 <th rowspan="2">(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
 <th colspan="5">(๓) ระดับค่าเป้าหมาย</th>
 <th rowspan="2">(๔) ค่าคะแนน ที่ได้ </th>
@@ -85,14 +84,26 @@
 
 		$sqltor1=mysqli_query($con,"SELECT asst1_id,ass_id,title_name,goal,score FROM asessment_t1 WHERE  ass_id='$yearIdpost' AND title_name='$tit'") or die("".mysqli_error($con));
 		 list($asst1_id,$tor_id,$title_name,$tort1_goal,$tort1_score)=mysqli_fetch_row($sqltor1);
-		
+		$re_hourmin=mysqli_query($con,"SELECT min_hour FROM work_hour WHERE aca_id='$gen_acadeic' AND e_id='$tit'")or die("SQL.Error-minhour".mysqli_error($con));
+	   list($min_hour)=mysqli_fetch_row($re_hourmin);
+	   mysqli_free_result($re_hourmin);
 		echo "<tr id='$tit'>";
-		echo "<td>$e_name</td>";
+		echo "<td>";
+			echo"<p>$e_name</p>";
+			echo "<p style='color:red;'>&nbsp;&nbsp;&nbsp;$min_hour</p>";
+			$re_sub_e=mysqli_query($con,"SELECT se_name FROM sub_evaluation WHERE e_id='$tit'")or die("SQL.Error-minhour".mysqli_error($con));
+		while(list($se_name)=mysqli_fetch_row($re_sub_e)){
+			echo "<p style='color:blue; '>&nbsp;&nbsp;&nbsp;$se_name</p>";
+		}
+		mysqli_free_result($re_sub_e);			
+		echo "</td>";
 		echo "<td>";
 		echo "<input type='hidden' name='id[]' value='$asst1_id'>";
 		$se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
+		$num=1;
 while(list($con_ex)=mysqli_fetch_row($se_condition)){
-	   echo "<p>$con_ex</p>";
+	   echo "<label for='customRadio$num$tit' style=' text-indent: 2.1em;'>$con_ex</label>";
+	   $num++;
 }
 	   echo "</td>";
 	
@@ -114,11 +125,11 @@ while(list($con_ex)=mysqli_fetch_row($se_condition)){
 						$ch5="checked";
 				break;
 			}
-				echo "<td><input type='radio' name='go$tit' value='1' required $ch1></td>";
-				echo "<td><input type='radio' name='go$tit' value='2' required $ch2></td>";
-					echo "<td><input type='radio' name='go$tit' value='3' required $ch3></td>";
-					echo "<td><input type='radio' name='go$tit' value='4' required $ch4></td>";
-					echo "<td><input type='radio' name='go$tit' value='5' required $ch5></td>";
+				echo "<td><input type='radio' id='customRadio1$tit' name='go$tit' value='1' required $ch1></td>";
+				echo "<td><input type='radio' id='customRadio2$tit' name='go$tit' value='2' required $ch2></td>";
+					echo "<td><input type='radio' id='customRadio3$tit' name='go$tit' value='3' required $ch3></td>";
+					echo "<td><input type='radio' id='customRadio4$tit' name='go$tit' value='4' required $ch4></td>";
+					echo "<td><input type='radio' id='customRadio5$tit' name='go$tit' value='5' required $ch5></td>";
 				echo "<td class='text-center' ><input type='text' class='borderNon'  data-tit='$tit' name='score[]' id='score[]' class='score' value='$tort1_goal' size='2' readonly required></td>";
 				echo "<td id='wei$tit' class='text-center' data-wei='$weight'><input type='text' class='borderNon' value='$weight' size='2' name='wei$tit' readonly ></td>";
 				$sumA=($tort1_goal*$weight)/100;
