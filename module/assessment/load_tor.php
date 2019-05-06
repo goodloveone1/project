@@ -99,7 +99,56 @@ unset($_SESSION['pre_id']);
                   if(empty($TOR_id)){
                     echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
                   }else{
-                    echo "<b class='text-success'>ประเมินเสร็จแล้ว<b>";
+                     //ตรวจสอบ ส่วนที่ 1-6
+                     //ส่วนที่1
+                     $se_asst1=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t1 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst1)=mysqli_fetch_row($se_asst1);
+                     mysqli_free_result($se_asst1);
+                    //ส่วนที่2
+                     $se_asst2=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t2 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst2)=mysqli_fetch_row($se_asst2);
+                     mysqli_free_result($se_asst2);
+                    //ส่วนที่3
+                     $se_asst3=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t3 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst3)=mysqli_fetch_row($se_asst3);
+                     mysqli_free_result($se_asst3);
+                    //ส่วนที่4
+                     $se_asst4=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t4 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst4)=mysqli_fetch_row($se_asst4);
+                     mysqli_free_result($se_asst4);
+
+                     $se_asst5=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t5 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst5)=mysqli_fetch_row($se_asst5);
+                     mysqli_free_result($se_asst5);
+
+                     $se_asst6=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t6 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst6)=mysqli_fetch_row($se_asst6);
+                     mysqli_free_result($se_asst6);
+
+                     if(empty($asst1)){
+                      echo "<p><a href='javascript:void(0)' class='asst1'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่1,2,3,4,5,6</a></p>";
+                     }else if(empty($asst2)){
+                      echo "<p><a href='javascript:void(0)' class='asst2'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่2,3,4,5,6</a></p>";
+                     }else if(empty($asst3)){
+                      echo "<p><a href='javascript:void(0)' class='asst3'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่3,4,5,6</a></p>";
+                     }else if(empty($asst4)){
+                      echo "<p><a href='javascript:void(0)' class='asst4'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่4,5,6</a></p>";
+                     }
+                     else if(empty($asst5)){
+                      echo "<p><a href='javascript:void(0)' class='asst5'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่5,6</a></p>";
+                     }else if(empty($asst6)){
+                      echo "<p><a href='javascript:void(0)' class='asst6'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่6</a></p>";
+                     }
+                     else{
+                      echo "<b class='text-success'>ประเมินเสร็จแล้ว<b>";
+                     }
+                    
                   }
               }
                

@@ -27,8 +27,8 @@
 
 	mysqli_free_result($genchk);
 	?>
+	
 <form class="p-2" name="tort6" id="tort6"> 
-
 <div class="row" id="link">
 <input type="hidden" name="tor_id" value="<?php echo $yearIdpost?>">
 		 <a href="javascript:void(0)" data-modules="assessment" data-action="edit_tor" class="menu"><span class="step  step-normal ">ข้อตกลง</span></a> &nbsp;
