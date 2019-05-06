@@ -65,7 +65,7 @@ CKEDITOR.config.height = 500;
 
 
             $.post( "module/public_relations/updatere.php", $("#formeditpr").serialize()).done(function(data,txtstuta){
-                alert(data);
+                alert("บันทึกสำเร็จ");
  
                  var module1 = sessionStorage.getItem("module1")
                  var action = sessionStorage.getItem("action")

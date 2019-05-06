@@ -69,7 +69,6 @@ $con=connect_db();
 		$("#addrela").click(function(event) {
 			event.preventDefault()
 			  $('#detail').load("module/public_relations/addpr.php");
-
 		});
 
 		$(".showre").click(function(event) {

@@ -61,7 +61,7 @@ var vform = $("#formaddpr").validate();
                                type: 'POST',
                                data: formData,
                                success: function (data) {
-                                   alert(data);
+                                   alert("บันทึกสำเร็จ");
                                    var module1 = sessionStorage.getItem("module1")
                                     var action = sessionStorage.getItem("action")
                                     loadmain(module1,action);
