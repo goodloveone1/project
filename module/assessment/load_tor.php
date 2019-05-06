@@ -85,21 +85,7 @@ unset($_SESSION['pre_id']);
                   if(empty($TOR_id)){
                     echo "<b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b>";
                   }else{
-                    echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
-                  }
-              }
-               
-            ?>
-        </td>
-        <td>
-        <?php
-              if(empty($PER_id)){
-                echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
-              }else{
-                  if(empty($TOR_id)){
-                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
-                  }else{
-                     //ตรวจสอบ ส่วนที่ 1-6
+                    //ตรวจสอบ ส่วนที่ 1-6
                      //ส่วนที่1
                      $se_asst1=mysqli_query($con,
                      "SELECT ass_id FROM asessment_t1 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
@@ -130,6 +116,27 @@ unset($_SESSION['pre_id']);
                      "SELECT ass_id FROM asessment_t6 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
                      list($asst6)=mysqli_fetch_row($se_asst6);
                      mysqli_free_result($se_asst6);
+
+                    if(empty($asst1)||empty($asst2)||empty($asst3)||empty($asst4)||empty($asst5)||empty($asst6)){
+                      echo "<b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b>";
+                    }else{
+                      echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
+                    }
+                    
+                  }
+              }
+               
+            ?>
+        </td>
+        <td>
+        <?php
+              if(empty($PER_id)){
+                echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
+              }else{
+                  if(empty($TOR_id)){
+                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
+                  }else{
+                     
 
                      if(empty($asst1)){
                       echo "<p><a href='javascript:void(0)' class='asst1'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่1,2,3,4,5,6</a></p>";
@@ -278,6 +285,78 @@ $(".addtor").click(function(){
     })
 })
 
+$(".asst1").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t1.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".asst2").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t2.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".asst3").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t3.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".asst4").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t4.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".asst5").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t5.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".asst6").click(function(){
+        var year_id = $(this).data("year");
+        var tor_id = $(this).data("tor");
+
+        $.ajax({
+            url: "module/assessment/ass_t6.php",
+            data:{year:year_id,tor:tor_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
 $(".addevd").click(function(){
 			var tor_id = $(this).data("torid");
 			//$("#detail").html("");
