@@ -50,6 +50,13 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Ass">
+					<button class="btn-block bt-color">
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-briefcase fa-3x " ></i><span class="text">&nbsp;จัดการการประเมิน</span>
+					</li>
+					</button>
+				</a>
 				
 					<button class="btn-block bt-color" id="flip" >
 					<li class="list-group-item list-menu-user">

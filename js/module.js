@@ -46,6 +46,7 @@ function modules(module1,action){
 				case "formuser":break;
 				case "editdegree":break;
 				case "managedegree":break;
+				case "manage_Ass":break;
 				case "weight":break;
 				case "year":break;
 				case "editwidght":break;
