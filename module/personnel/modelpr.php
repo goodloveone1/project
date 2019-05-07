@@ -27,12 +27,12 @@
             </div>
             <div class='row'>
                 <div class='col'>
-                    <h6>เผยแพร่เมื่อ  <?php echo DateThai($re_date) ?> </h6>      
+                    <small>เผยแพร่เมื่อ  <?php echo DateThai($re_date) ?> </small>   
                 </div>
             </div>
             <div class='row'>
                 <div class='col'>
-                    <h6>โดย  <?php echo "โดย ".$name." ".$lname ?> </h6>      
+                <small>โดย  <?php echo "โดย ".$name." ".$lname ?> </small>    
                 </div>
             </div>
       </div>

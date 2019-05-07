@@ -56,6 +56,8 @@ mysqli_free_result($tor);
 			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence'>ย้อนกลับ </button></div>";
 		}else if($_SESSION['user_level']==3){
 			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence_course'>ย้อนกลับ </button></div>";
+		}else if($_SESSION['user_level']==4){
+			echo	"<div class='col-sm-2'> <button type='button' class='btn  menuuser bg-secondary text-light' data-modules='assessment' data-action='manage_Evidence_course'>ย้อนกลับ </button></div>";
 		}
 		echo $come;
 		

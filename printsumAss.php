@@ -528,56 +528,6 @@ $mpdf->Output();
 
 ?>
 
-	<div class="col-md-6 border border-dark p-3">
-               <?php
-                    
-				?>
-
-		<p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p>
-		<div class="custom-control custom-radio">
-			  
-			  <label class="custom-control-label" for="customRadio3">
-			    เห็นด้วยผลการประเมิน
-
-			  </label>
-		</div>
-		<div class="custom-control custom-radio">
-			  <input class="custom-control-input" type="radio" value="1" id="customRadio4" name="uagree"<?php echo $uagree1  ?> disabled>
-			  <label class="custom-control-label" for="customRadio4">
-			    มีความเห็นแตกต่าง  ดังนี้
-			  </label>
-		</div>
-		<div class="form-group">
-		    <textarea class="form-control" name="scompt" id="text2" rows="3" disabled required><?php echo $supervisor_comtdisc ?></textarea>
-		 </div>
-	</div>
-	<div class="col-md-6 border   border-dark p-3">
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ลงชื่อ</label>
-				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Sl_prefix,$Sl_name," ",$Sl_fname ?>" readonly>
-				</div>				
-		</div>
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">ตำแหน่ง</label>
-				<div class="col-sm">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $Sl_position  ?>" readonly>
-				</div>				
-		</div>
-		<div class="form-group row">
-				<label  class="col-sm-2 col-form-label">วันที่</label>
-				<div class="col-sm">
-				<?php 	 ?>
-					<input type="text" class="form-control" id="inputEmail3" placeholder="" value="<?php echo $supervisor_comt_date ?>" readonly>
-				</div>				
-		</div>
-	</div>
-</div>
-</body>
-</html>
-
-<?php 
-
 
 mysqli_close($con);
 
