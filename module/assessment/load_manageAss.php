@@ -73,7 +73,7 @@
   var type =$(this).data("type");
   var r = confirm("ต้องการลบ "+ type +" ของ"+nuser+" ใช่หรือไม่?");
   if (r == true) {
-      $.post( "module/assessment/del_ass.php", {id : iduser}).done(function(data,txtstuta){
+      $.post( "module/assessment/del_ass.php", {id : iduser,type:type,user:nuser}).done(function(data,txtstuta){
   alert(data);
           var module1 = sessionStorage.getItem("module1");
           var action = sessionStorage.getItem("action");
