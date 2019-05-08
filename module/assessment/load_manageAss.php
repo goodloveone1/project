@@ -2,7 +2,7 @@
     include("../../function/db_function.php");
     $con=connect_db();
 
-    $year = $_POST["year"];
+    $year_id = $_POST["year"];
 ?>
     <div class="table-responsive">
   <table class="table table-border" id="Datatable">
@@ -22,20 +22,22 @@
         
 <?php
     $se_Ass=mysqli_query($con,
-    "SELECT assessments.ass_id,years.y_no,years.y_year,staffs.prefix,staffs.fname,staffs.lname,staffs.acadeic,staffs.position
+    "SELECT assessments.ass_id,years.y_no,years.y_year,staffs.prefix,staffs.fname,staffs.lname,staffs.acadeic,staffs.position,staffs.st_id
     FROM assessments
     INNER JOIN years
     ON years.y_id=assessments.year_id
     INNER JOIN staffs
     ON staffs.st_id=assessments.staff 
-    WHERE year_id='$year'")or die("SQL.errorAss".mysqli_error($con));
-    while(list($ass_id,$no,$year,$prefix,$fname,$lname,$aca,$position)=mysqli_fetch_row($se_Ass)){
+    WHERE year_id='$year_id'")or die("SQL.errorAss".mysqli_error($con));
+    while(list($ass_id,$no,$year,$prefix,$fname,$lname,$aca,$position,$gen_id)=mysqli_fetch_row($se_Ass)){
       $type=substr($ass_id,0,3);
       if($type=="PRE"){
           $p_type="TOR";
+          $class="showPRE";
       }
       if($type=="TOR"){
         $p_type="ประเมิน";
+        $class="showTOR";
       }
         $se_aca=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca'")or die("SQL.errorACA".mysqli_error($con));
         list($aca_name)=mysqli_fetch_row($se_aca);
@@ -46,7 +48,7 @@
         mysqli_free_result($se_post);
 
     echo"<tr>";
-        echo"<td>$ass_id</td> "; 
+        echo"<td><a href='javascript:void(0)' class='$class text-success'  data-genid='$gen_id' data-yearid='$year_id' data-torid='$ass_id' data-fullname='$prefix$fname $lname' title='คลิกเพื่อแสดงการประเมิน'>$ass_id</a></td> "; 
         echo"<td>$p_type</td>";
         echo"<td>",$year+543,"</td>";
         echo"<td>$no</td>";
@@ -62,7 +64,7 @@
     </tbody>
 </table>
 </div>
-
+<div id="loadmodel"></div>
 <script>
     $.getScript('js/mydatatable.js')
   
@@ -81,4 +83,23 @@
           })
     }
 })
+$(".showTOR").click(function(e) {
+		e.preventDefault(); 
+    //alert("TTEST");
+		//alert($(this).data("evdidtext"));
+        $.post("module/assessment/Ass_sum_All_staff.php", { user_id : $(this).data('genid') , tor_id : $(this).data('tor_id') ,tor_id: $(this).data('torid'),  fullname: $(this).data('fullname') } ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelsum').modal('show');
+        })
+  });
+
+  $(".showPRE").click(function(e) {
+		e.preventDefault(); 
+    //alert("TTEST");
+		//alert($(this).data("evdidtext"));
+        $.post("module/assessment/loaddetail_pretest.php", { stid: $(this).data('genid') , year: $(this).data('yearid'),fullname: $(this).data('fullname') } ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelpre').modal('show');
+        })
+  });
 </script>

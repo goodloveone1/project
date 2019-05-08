@@ -23,7 +23,7 @@ mysqli_free_result($se_ass);
 ?>
 <div class="row ">
   <div class="col-md">
-<p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</b></p>
+<p><b>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน <?php echo $_POST['year']  ?></b></p>
 <table class="table table-bordered ">
 <thead>
     <tr>
