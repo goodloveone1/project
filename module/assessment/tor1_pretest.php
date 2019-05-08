@@ -45,7 +45,7 @@ $y_id = $y.$loop;
 		list($tor_ID)=mysqli_fetch_row($reChk);
 		//echo $tor_ID;
 		mysqli_free_result($reChk);
-		$_SESSION['yearIdpost']=$tor_ID;
+		$_SESSION['pre_id']=$tor_ID;
 ?>
 
 <input type="hidden" value="<?php echo $tor_ID; ?>" name="tor_id">

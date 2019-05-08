@@ -58,7 +58,20 @@ unset($_SESSION['pre_id']);
               if(empty($PER_id)){
                 echo  "<b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b>";
               }else{
-                echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
+                $se_pre1=mysqli_query($con,"SELECT ass_id FROM preasessment_t1 WHERE ass_id='$PER_id'")or die("SQL.errorPreAss1".mysqli_error($con));
+                  list($preAss1)=mysqli_fetch_row($se_pre1);
+                  mysqli_free_result($se_pre1);
+
+                  $se_pre2=mysqli_query($con,"SELECT ass_id FROM asessment_t2 WHERE ass_id='$PER_id'")or die("SQL.errorPreAss2".mysqli_error($con));
+                  list($preAss2)=mysqli_fetch_row($se_pre2);
+                  mysqli_free_result($se_pre2);
+
+                  if(empty($preAss1)||empty($preAss2)){
+                    echo  "<b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b>";
+                  }else{
+                    echo "<b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b>";
+                  }
+                
               }
                
             ?>
@@ -68,7 +81,17 @@ unset($_SESSION['pre_id']);
               if(empty($PER_id)){
                 echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
               }else{
-                echo "<b class='text-success'>ทำTORแล้ว<b>";
+                  
+                  if(empty($preAss1)){
+                    echo  "<a href='javascript:void(0)' class='addpre1'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่ได้ทำ ผลสัมฤทธิ์งาน </a>";
+                  }else if(empty($preAss2)){
+                    echo  "<a href='javascript:void(0)' class='addpre2'  data-year='$PER_id' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่ได้ทำ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </a>";
+                  }
+                  
+                  else{
+                    echo "<b class='text-success'>ทำTORแล้ว<b>";
+                  }
+               
               }
                
             ?>
@@ -130,7 +153,7 @@ unset($_SESSION['pre_id']);
         </td>
         <td>
         <?php
-              if(empty($PER_id)){
+              if(empty($PER_id)||empty($preAss1)||empty($preAss2)){
                 echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
               }else{
                   if(empty($TOR_id)){
@@ -172,9 +195,9 @@ unset($_SESSION['pre_id']);
                 echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
                 echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำข้อตกลงก่อน</p></td>";
               }else{
-                  if(empty($TOR_id)){
+                  if(empty($TOR_id)||empty($asst1)||empty($asst2)||empty($asst3)||empty($asst4)||empty($asst5)||empty($asst6)){
                     echo "<td><b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                    echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำข้อตกลงก่อน</p></td>";
+                    echo "<td><p style='color:red;'>ยังไม่สามารอัปโหลดหลักฐานได้ ***ต้องทำการประเมินให้เสร็จก่อน</p></td>";
                   }else{
 
                     if(empty($evd_id)){
@@ -265,6 +288,28 @@ unset($_SESSION['pre_id']);
 
         $.ajax({
             url: "module/assessment/test_tor_stepBystep.php",
+            data:{year:year_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".addpre1").click(function(){
+        var year_id = $(this).data("year");
+
+        $.ajax({
+            url: "module/assessment/tor1_pretest.php",
+            data:{year:year_id},
+            type: "POST"
+        }).done(function(data){
+        $("#detail").html(data);
+    })
+})
+$(".addpre2").click(function(){
+        var year_id = $(this).data("year");
+
+        $.ajax({
+            url: "module/assessment/tor2_pretest.php",
             data:{year:year_id},
             type: "POST"
         }).done(function(data){

@@ -94,7 +94,7 @@
 $se_condition=mysqli_query($con,"SELECT con_ex FROM conditions WHERE aca_id='$gen_acadeic' AND e_name='$tit'")or die("SQL-error.Condition".mysqli_error($con));
 $num=1;
 while(list($con_ex)=mysqli_fetch_row($se_condition)){
-	   echo "<label for='customRadio$num$tit' style='text-align: justify; text-indent: 2.1em;'>$con_ex</label>";
+	   echo "<label for='customRadio$num$tit' style=' text-indent: 2.1em;'>$con_ex</label>";
 	   $num++;
 }
 		
