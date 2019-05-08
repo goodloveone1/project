@@ -87,9 +87,9 @@ $(".showTOR").click(function(e) {
 		e.preventDefault(); 
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/Ass_sum_All_staff.php", { user_id : $(this).data('genid') , tor_id : $(this).data('tor_id') ,tor_id: $(this).data('torid'),  fullname: $(this).data('fullname') } ).done(function(data){
+    $.post("module/assessment/loaddetail_tor.php", { stid: $(this).data('genid') , year: $(this).data('yearid') , fullname: $(this).data('fullname') } ).done(function(data){
             $('#loadmodel').html(data);
-                 $('#showmodelsum').modal('show');
+                 $('#showmodelpre').modal('show');
         })
   });
 
