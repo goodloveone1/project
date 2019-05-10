@@ -103,7 +103,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       if($inform==0){
         echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
       }else{
-        echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor' data-genid='$gen_id' data-year='$tor_id' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>";
+        echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>";
       }
       
     }
@@ -111,7 +111,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     if(empty($evd_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัพโหลดหลักฐาน</b></td>";
     }else{
-      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>อัพโหลดหลักฐานแล้ว</b></td>";
+      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' data-fullname='$fullname' title='คลิกเพื่อแสดงการหลักฐาน'><br>ดูไฟล์หลักฐาน</b></a></td>";
     }
 
  
@@ -172,15 +172,26 @@ $(document).ready(function() {
                  $('#showmodelsum').modal('show');
         })
   });
+
   $(".showtor").click(function(e) {
 		e.preventDefault(); 
     //alert("TTEST");
 		//alert($(this).data("evdidtext"));
-        $.post("module/assessment/Ass_sum_All_staff.php", { user_id: $(this).data('genid') , tor_id: $(this).data('year') , fullname: $(this).data('fullname') } ).done(function(data){
+        $.post("module/assessment/loaddetail_tor.php", { stid: $(this).data('genid') , year: $(this).data('yearid') , fullname: $(this).data('fullname') } ).done(function(data){
             $('#loadmodel').html(data);
-                 $('#showmodelsum').modal('show');
+                 $('#showmodelpre').modal('show');
         })
   });
+
+  $(".showevd").click(function(e) {
+		e.preventDefault(); 
+    //alert("TTEST");
+		//alert($(this).data("evdidtext"));
+        $.post("module/assessment/loaddetail_evd.php", { evdid: $(this).data("evdid") , checkshowfile: 1 , fullname: $(this).data('fullname')} ).done(function(data){
+            $('#loadmodel').html(data);
+                 $('#showmodelpre').modal('show');
+        })
+	});
   
 }) // END document
 </script>
