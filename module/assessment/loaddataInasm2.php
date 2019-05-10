@@ -161,7 +161,7 @@ mysqli_close($con);
 <script>
 
 $(document).ready(function() {
-
+  $.getScript('js/mydatatable.js')
 
   $(".comment").click(function(e) {
 		e.preventDefault(); 
