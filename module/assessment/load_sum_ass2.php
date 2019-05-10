@@ -123,32 +123,32 @@ mysqli_free_result($se_inform);
 			<th>คะแนน</th>
 		</tr>
 		<tr>
+		
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  สูงกว่าหรือเท่ากับ ระดับสมรรถนะที่คาดหวัง  ×  ๓ คะแนน</td>
-			<td align="center"><?php  echo $set[0]['score_skil']?></td>
-			<td align="center"><?php  echo $set[0]['score_x']?></td>
-			<td align="center"><?php  echo $set[0]['score']?></td>
-
+			<td align="center"><?php  echo empty($set[0]['score_skil'])?"-":$set[0]['score_skil'] ?></td>
+			<td align="center"><?php  echo empty( $set[0]['score_x'])?"-": $set[0]['score_x']?></td>
+			<td align="center"><?php  echo empty($set[0]['score'])?"-":$set[0]['score'] ?></td>
 
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๑  ระดับ    × ๒ คะแนน</td>
-			<td align="center"><?php  echo $set[1]['score_skil']?></td>
-			<td align="center"><?php  echo $set[1]['score_x']?></td>
-			<td align="center"><?php  echo $set[1]['score']?></td>
+			<td align="center"><?php  echo empty($set[1]['score_skil'])?"-":$set[1]['score_skil'] ?></td>
+			<td align="center"><?php  echo empty( $set[1]['score_x'])?"-": $set[1]['score_x']?></td>
+			<td align="center"><?php  echo empty($set[1]['score'])?"-":$set[1]['score'] ?></td>
 
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๒  ระดับ  ×  ๑  คะแนน  </td>
-			<td align="center"><?php  echo $set[2]['score_skil']?></td>
-			<td align="center"><?php  echo $set[2]['score_x']?></td>
-			<td align="center"><?php  echo $set[2]['score']?></td>
+			<td align="center"><?php  echo empty($set[2]['score_skil'])?"-":$set[2]['score_skil'] ?></td>
+			<td align="center"><?php  echo empty( $set[2]['score_x'])?"-": $set[2]['score_x']?></td>
+			<td align="center"><?php  echo empty($set[2]['score'])?"-":$set[2]['score'] ?></td>
 
 		</tr>
 		<tr>
 			<td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๓  ระดับ   ×  ๐  คะแนน</td>
-			<td align="center"><?php  echo $set[3]['score_skil']?></td>
-			<td align="center"><?php  echo $set[3]['score_x']?></td>
-			<td align="center"><?php  echo $set[3]['score']?></td>
+			<td align="center"><?php  echo empty($set[3]['score_skil'])?"-":$set[3]['score_skil'] ?></td>
+			<td align="center"><?php  echo empty( $set[3]['score_x'])?"-": $set[3]['score_x']?></td>
+			<td align="center"><?php  echo empty($set[3]['score'])?"-":$set[3]['score'] ?></td>
 
 		</tr>
 		<tr>
@@ -183,21 +183,21 @@ mysqli_free_result($se_inform);
 			</tr>
 			<tr>
 				<td class="text-left">องค์ประกอบที่  1 : ผลสัมฤทธิ์ของงาน</td>
-				<td><?php  echo $sum[0]['score']?></td>
-				<td><?php  echo $sum[0]['weignt']?></td>
-				<td><?php  echo $sum[0]['sum']?></td>
+				<td><?php  echo empty($sum[0]['score'])?"-":$sum[0]['score']?></td>
+				<td><?php  echo empty($sum[0]['weignt'])?"-":$sum[0]['weignt']?></td>
+				<td><?php  echo empty($sum[0]['sum'])?"-":$sum[0]['sum']?></td>
 			</tr>
 			<tr>
       <td class="text-left">องค์ประกอบที่  2 : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
-				<td><?php  echo $sum[1]['score']?></td>
-				<td><?php  echo $sum[1]['weignt']?></td>
-        <td><?php  echo $sum[1]['sum']?></td>
+				<td><?php  echo empty($sum[1]['score'])?"-":$sum[1]['score']?></td>
+				<td><?php  echo empty($sum[1]['weignt'])?"-":$sum[1]['weignt']?></td>
+        <td><?php  echo empty($sum[1]['sum'])?"-":$sum[1]['sum']?></td>
 			</tr>
 			<tr>
 			<td class="text-left">องค์ประกอบอื่น (ถ้ามี)</td>
-				<td><?php  echo $sum[2]['score']?></td>
-				<td><?php  echo $sum[2]['weignt']?></td>
-        <td><?php  echo $sum[2]['sum']?></td>
+				<td><?php  echo empty($sum[2]['score'])?"-":$sum[2]['score']?></td>
+				<td><?php  echo empty($sum[2]['weignt'])?"-":$sum[2]['weignt']?></td>
+        <td><?php  echo empty($sum[2]['sum'])?"-":$sum[2]['sum']?></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="text-right"><b>รวม</b></td>
