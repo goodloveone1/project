@@ -46,14 +46,14 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record_ad">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-briefcase fa-3x " ></i><span class="text">&nbsp;จัดการการมาปฏิบัติงาน</span>
+						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการมาปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Ass">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-briefcase fa-3x " ></i><span class="text">&nbsp;จัดการการประเมิน</span>
+						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการประเมิน</span>
 					</li>
 					</button>
 				</a>
@@ -144,7 +144,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
-						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
+						<i class="icon fas fa-home fa-lg " ></i><span class="text">&nbsp;หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
@@ -152,7 +152,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
+						<i class="icon fas fa-user-cog fa-lg " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
 					</li>
 					</button>
 				</a>
@@ -160,7 +160,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
+						<i class="icon fas fa-book-open fa-lg " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
@@ -168,7 +168,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_tor">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;จัดการประเมิน</span>
+						<i class="icon fas fa-check-square fa-lg " ></i><span class="text">&nbsp;จัดการประเมิน</span>
 					</li>
 					</button>
 				</a>
@@ -178,7 +178,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-archive fa-3x " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
+						<i class="icon fas fa-archive fa-lg " ></i><span class="text">&nbsp;จัดการไฟล์หลักฐาน</span>
 					</li>
 					</button>
 			
@@ -186,7 +186,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_assessment">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมิน</span>
+						<i class="icon fas fa-calendar-check fa-lg " ></i><span class="text">&nbsp;ผลการประเมิน</span>
 					</li>
 					</button>
 				</a>
@@ -209,7 +209,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
-						<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
+						<i class="icon fas fa-home fa-lg " ></i><span class="text">&nbsp;หน้าหลัก</span>
 					</li>
 					</button>
 				</a>
@@ -217,7 +217,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
+						<i class="icon fas fa-user-cog fa-lg " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
 					</li>
 					</button>
 				</a>
@@ -225,7 +225,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
+						<i class="icon fas fa-book-open fa-lg " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
@@ -234,7 +234,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_asmIn">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
+						<i class="icon fas fa-user-check fa-lg " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
 					</li>
 					</button>
 				</a>
@@ -243,7 +243,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_tor">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
+						<i class="icon fas fa-check-square fa-lg " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
 					</li>
 					</button>
 				</a>
@@ -251,7 +251,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-					<i class="icon fas fa-archive fa-3x"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+					<i class="icon fas fa-archive fa-lg"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
 				</a>
@@ -303,7 +303,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 			<button class="btn-block bt-color"  >
 			<li class="list-group-item list-menu-user" >
-				<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
+				<i class="icon fas fa-home fa-lg " ></i><span class="text">&nbsp;หน้าหลัก</span>
 			</li>
 			</button>
 		</a>
@@ -311,7 +311,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
+				<i class="icon fas fa-user-cog fa-lg " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
 			</li>
 			</button>
 		</a>
@@ -319,7 +319,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-book-open fa-3x " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
+				<i class="icon fas fa-book-open fa-lg " ></i><span class="text">&nbsp;บันทึกการปฏิบัติงาน</span>
 			</li>
 			</button>
 		</a>
@@ -328,7 +328,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_asmIn">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
+				<i class="icon fas fa-user-check fa-lg " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
 			</li>
 			</button>
 		</a>
@@ -337,7 +337,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_tor">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-check-square fa-3x " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
+				<i class="icon fas fa-check-square fa-lg " ></i><span class="text">&nbsp;ประเมินตนเอง</span>
 			</li>
 			</button>
 		</a>
@@ -346,7 +346,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Evidence">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-					<i class="icon fas fas fa-archive fa-3x"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
+					<i class="icon fas fas fa-archive fa-lg"></i><span class="text"> จัดการหลักฐานของตนเอง</span>
 					</li>
 					</button>
 				</a>
@@ -402,7 +402,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser " data-modules="personnel" data-action="home" >
 			<button class="btn-block bt-color"  >
 			<li class="list-group-item list-menu-user" >
-				<i class="icon fas fa-home fa-3x " ></i><span class="text">&nbsp;หน้าหลัก</span>
+				<i class="icon fas fa-home fa-lg " ></i><span class="text">&nbsp;หน้าหลัก</span>
 			</li>
 			</button>
 		</a>
@@ -410,7 +410,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="edituserall">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-user-cog fa-3x " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
+				<i class="icon fas fa-user-cog fa-lg " ></i><span class="text">&nbsp;แก้ไขข้อมูลส่วนตัว</span>
 			</li>
 			</button>
 		</a>
@@ -420,7 +420,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_asmIn">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-user-check fa-3x " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
+				<i class="icon fas fa-user-check fa-lg " ></i><span class="text">&nbsp;ประเมินบุคลากร</span>
 			</li>
 			</button>
 		</a>
@@ -429,7 +429,7 @@ function webmenu($id){
 		<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_asmIn">
 			<button class="btn-block bt-color">
 			<li class="list-group-item list-menu-user">
-				<i class="icon fas fa-calendar-check fa-3x " ></i><span class="text">&nbsp;ผลการประเมินบุคลากร</span>
+				<i class="icon fas fa-calendar-check fa-lg " ></i><span class="text">&nbsp;ผลการประเมินบุคลากร</span>
 			</li>
 			</button>
 		</a>

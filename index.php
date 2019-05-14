@@ -37,22 +37,7 @@
 
 							</div>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" >ผังการบริหาร</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								ดาวน์โหลด
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#" >อาจารย์</a>
-								<a class="dropdown-item" href="#">ผู้ช่วยศาสตราจารย์</a>
-								<a class="dropdown-item" href="#">รองศาสตราจารย์</a>
-								<a class="dropdown-item" href="#">ศาสตราจารย์</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">ไฟล์ที่เกี่ยวข้อง </a>
-							</div>
-						</li>
+						
 						
 					</ul>
 					
@@ -81,7 +66,7 @@
 					<br>
 				<?php
 					if(empty($_GET['page'])){
-						$page="news"; 
+						$page="history";  //news
 					}else{
 						$page=$_GET['page']; 
 					}
