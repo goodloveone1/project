@@ -2,8 +2,7 @@ RewriteEngine On
 DirectoryIndex index.php userlogin.php
 RewriteRule userlogin userlogin.php
 RewriteRule userlogin userlogin.php
-ErrorDocument 404 module/404/404.php
-ErrorDocument 500 module/404/404.php
+ErrorDocument 404 /project/module/404/404.php
 
 php_value post_max_size 200M
 php_value upload_max_filesize 100M
