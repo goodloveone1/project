@@ -40,6 +40,13 @@
 		<?php
 			require('function/menu.php');
 		?>
+
+		<!-- JS ui -->
+		<link rel="stylesheet" href="js/jsui/jquery-ui.min.css">
+		<script type="text/javascript" src="js/jsui/jquery-ui.min.js"></script>
+
+		<!-- canvasjs -->
+		<script type="text/javascript" src="js/canvasjs/jquery.canvasjs.min.js"></script>
 		
 	</head>
 	<body id='idbody'>
@@ -118,8 +125,10 @@
 		<!-- DATATABLE -->
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
 		<script type="text/javascript" src="js/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
-	
+
 		
+
+	
 
 		<script>
 			window.onscroll = function() {scrollFunction()};

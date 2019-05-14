@@ -8,12 +8,17 @@ function modules(module1,action){
 			    case "assessment":break;
 			    case "personnel":break;
 			    case "public_relations":break;
-			    case "download":break;
+				case "download":break;
+				case "report":break;
 			   	default: module1 = "404" ;
 			}
 
 
 		switch (action){
+			  /* report */
+				case "reportstaff":break;
+				case "listuser":break;
+			/* END report */
 			  /* personnel */
 			    case "home":break;
 			    case "mangauser":break;
