@@ -29,6 +29,10 @@ unset($_SESSION['pre_id']);
        $se_EVD=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE st_id='$_SESSION[user_id]' AND ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
        list($evd_id,$evd_status)=mysqli_fetch_row($se_EVD);
        mysqli_free_result($se_EVD);
+       empty($TOR_id)?"":$TOR_id;
+       if($evd_status==1||$evd_status==0){
+        $edit="<a href='javascript:void(0)' class='edittor' title='แก้ไข' data-genid='$_SESSION[user_id]' data-year='$TOR_id'> <i class ='far fa-edit fa-2x'> </i></a>";
+       }
 
        // เช็ค assid 5
       $se_ass5=mysqli_query($con,"SELECT asst5_id,accept,date_accept,inform,date_inform FROM asessment_t5 WHERE ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
@@ -47,6 +51,7 @@ unset($_SESSION['pre_id']);
       <th>แบบฟอร์ม </th>
       <th>สถานะ</th>
       <th>หมายเหตุ</th>
+     
     </tr>
   <thead>
   <tbody>
@@ -176,7 +181,7 @@ unset($_SESSION['pre_id']);
                       echo "<p><a href='javascript:void(0)' class='asst6'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ยังไม่ได้ทำ ส่วนที่6</a></p>";
                      }
                      else{
-                      echo "<b class='text-success'>ประเมินเสร็จแล้ว<b>";
+                      echo "<b class='text-success'>ประเมินเสร็จแล้ว <b>",empty($edit)?"":$edit;
                      }
                     
                   }
@@ -227,6 +232,7 @@ unset($_SESSION['pre_id']);
         
         <?php
                    if($evd_status == 2){
+                    
                       if($inform == 0){
                         echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
                         echo "<td> <p style='color:red;'><b>  รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
@@ -427,6 +433,21 @@ $(".addevd").click(function(){
 			sessionStorage.setItem("action","sum_assessment")
       loadingpage("assessment","sum_assessment")
 	})
+  $(".edittor").click(function(){
+  var gen_id = $(this).data("genid");
+  var year_id = $(this).data("year");
+  sessionStorage.setItem("module1","assessment")
+	sessionStorage.setItem("action","edit_tor")
+
+  $.ajax({
+    url: "module/assessment/edit_tor.php",
+    data:{genid:gen_id,year:year_id},
+    type: "POST"
+  }).done(function(data){
+    $("#detail").html(data);
+  })
+
+})
 
 
   
