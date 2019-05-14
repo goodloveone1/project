@@ -161,7 +161,7 @@
 		?>
 		<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
 				<?php }else{?>
-					<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
+					<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_asmIn"> ต่อไป </button>
 				<?php } ?>
 	</div>
 </div>
