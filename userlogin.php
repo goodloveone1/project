@@ -43,7 +43,7 @@
 		
 	</head>
 	<body id='idbody'>
-		<aside class="text-light" id="mySidenav" style="width:220px;">
+		<aside class="text-light" id="mySidenav" style="width:228px;">
 
 			<div class="row ">
 				<div class='col-auto mx-auto'><i class="fas fa-user-circle fa-3x"></i> </div>
@@ -61,7 +61,7 @@
 		</aside>
 
 
-		<div id="main2" style="margin-left:220px;">
+		<div id="main2" style="margin-left:228px;">
 			<!-- MENU -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-Brown sticky-top" style="height: 50px;">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">

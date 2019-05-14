@@ -1,4 +1,4 @@
-	var maxside = "220px";
+	var maxside = "228px";
 	var minside = "88px";
 	var maxside2 = "180px";
 	var minside2 = "88px";
