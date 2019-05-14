@@ -304,8 +304,6 @@ $mpdf->WriteHTML("<h3>ระดับผลการประเมิน</h3>".
 $mpdf->WriteHTML("<h3>ส่วนที่ ๔ แผนพัฒนาการปฏิบัติราชการรายบุคคล</h3>");
 
 
-
-
 $tableh4 ="
   <table style='border-collapse: collapse;border:1px solid' width='100%'>
 				<tr>
@@ -519,14 +517,10 @@ $tableh6 .="<tr><td>	 <p>ผู้บังคับบัญชาเหนื�
 </table>
 ";
 
-
-
-
-
 $mpdf->WriteHTML($tableh6);
 $mpdf->Output();
 
-?>
+
 
 
 mysqli_close($con);
@@ -537,5 +531,3 @@ else{
 	echo "<script> window.location = 'userlogin.php' </script>";
 }
 ?>
-
-

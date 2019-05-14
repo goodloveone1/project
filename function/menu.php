@@ -434,6 +434,35 @@ function webmenu($id){
 			</button>
 		</a>
 
+		<button class="btn-block bt-color" id="flip2" >
+					<li class="list-group-item list-menu-user">
+						<i class="icon fas fa-calendar-check fa-lg "></i> <span class="text"> รายงาน</span>
+					</li>
+					</button>
+					<div id="panelassess2" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="listuser">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลส่วนบุคคล </span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_asmIn">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของบุคลากร</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip2").click(function(){
+							$("#panelassess2").slideToggle();
+						});
+						});
+					</script>		
+
 					
 		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
