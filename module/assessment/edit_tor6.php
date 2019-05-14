@@ -156,11 +156,17 @@
 <br>
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
-		<!-- <p><a href="javascript:void(0)" class="text-center next" data-modules="assessment" data-action="tor_t6"><input type="submit" class="next" value="ต่อไป"></a> </p> -->
-		<button type="submit" class="btn updateuser bg-success text-white" data-modules="assessment" data-action="tor_t6"> ต่อไป </button>
+		<?php  
+				if($_SESSION['user_level']==2){
+		?>
+		<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
+				<?php }else{?>
+					<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
+				<?php } ?>
 	</div>
 </div>
 </form>
+
 <script type="text/javascript">
  	$(document).ready(function() {
 
@@ -172,7 +178,7 @@
 					loadingpage(module1,action); //code local functionjs.js
 
 				});
-			$("a.next").click(function(){
+			$(".goto").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
 				loadmain(module1,action)
@@ -202,30 +208,7 @@
         
             });
         
-	$("#tort6").submit(function(e){
-				e.preventDefault();
-				$check = $("#tort6").valid();
-				if($check == true){
-				var formData = new FormData(this);
-					    $.ajax({
-					        url: "module/assessment/noting.php",
-					        type: 'POST',
-					        data: formData,
-					        success: function (data) {
-					            alert(data);
-								$.post( "module/assessment/manage_asmIn.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
-    							//alert( "Data Loaded: " + data );
-								sessionStorage.setItem("module1","assessment");
-								sessionStorage.setItem("action","manage_asmIn");
-								$("#detail").html(data);
-  								});
-					        },
-					        cache: false,
-					        contentType: false,
-					        processData: false
-					    });
-				}
-			})
+	
 	});
 </script>
 <?php

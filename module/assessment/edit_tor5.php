@@ -108,9 +108,16 @@ if($accept==1){
 	</div>
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
+	<?php  
+		if($_SESSION['user_level']==2){
+			$dis="disabled";
+		}else{
+			$dis="";
+		}
+	?>
 	<p>ผู้ประเมิน :</p>
 		<div class="custom-control custom-checkbox">
-			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" <?php echo $chk_inform?> required>
+			  <input class="custom-control-input" type="checkbox" vlue="1" name="tappcetp" id="customCheck1" <?php echo $chk_inform?> required <?php echo $dis ?> >
 			  <label class="custom-control-label" for="customCheck1" >
 			   แจ้งผลการประเมิน
 			  </label>
