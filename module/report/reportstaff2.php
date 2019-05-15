@@ -5,8 +5,7 @@ include("../../function/fc_time.php");
 $con=connect_db();
 
 
-
-$st_id=empty($_POST['id'])?'':$_POST['id'];
+$st_id=empty($_SESSION['user_id'])?'':$_SESSION['user_id'];
 
 $sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
 FROM ((assessments AS am INNER JOIN years AS y ON am.year_id = y.y_id)  INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id)
@@ -46,7 +45,7 @@ while(list($assid,$y_no,$y_year,$sum_score)=mysqli_fetch_row($sumas)){
 ?>
 <div class="row  p-2 headtitle">
 <div class="col-md-2 text-center ">
-	<button type="button" class="btn  btn-block menuuser" data-modules="report" data-action="listuser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
+
 </div>
 	<h4 class="text-center col-md "> รายงานผลการประเมินของ <?php echo $prefix." ".$fname." ".$lname?> </h4>
 <div class="col-md-2 text-center "></div>

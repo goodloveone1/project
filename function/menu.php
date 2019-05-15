@@ -190,6 +190,15 @@ function webmenu($id){
 					</li>
 					</button>
 				</a>
+				
+				<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							</li>
+							</button>
+						</a>
+
 				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
@@ -284,7 +293,15 @@ function webmenu($id){
 							$("#panelassess2").slideToggle();
 						});
 						});
-					</script>		
+					</script>
+
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							</li>
+							</button>
+						</a>		
 
 
 				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
@@ -381,7 +398,13 @@ function webmenu($id){
 								});
 							</script>		
 
-
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							</li>
+							</button>
+						</a>
 
 		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
 					<button class="btn-block bt-color">
@@ -447,10 +470,10 @@ function webmenu($id){
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="sum_asmIn">
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportsumall">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> ผลการประเมินของบุคลากร</span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text">  รายงานผลทั้งหมด</span>
 							</li>
 							</button>
 						</a>
