@@ -18,6 +18,8 @@ function modules(module1,action){
 			  /* report */
 				case "reportstaff":break;
 				case "listuser":break;
+				case "reportsumall":break;
+
 			/* END report */
 			  /* personnel */
 			    case "home":break;

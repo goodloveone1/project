@@ -45,24 +45,20 @@ while(list($assid,$y_no,$y_year,$sum_score)=mysqli_fetch_row($sumas)){
 
 ?>
 <div class="row  p-2 headtitle">
-	<h4 class="text-center col-md "> รายงาน </h4>
+<div class="col-md-2 text-center ">
+	<button type="button" class="btn  btn-block menuuser" data-modules="report" data-action="listuser"><i class="fas fa-chevron-left"></i> ย้อนกลับ </button>
+</div>
+	<h4 class="text-center col-md "> รายงานผลการประเมินของ <?php echo $prefix." ".$fname." ".$lname?> </h4>
+<div class="col-md-2 text-center "></div>
 </div>
 <br>
 
 <?php 
  if($r1 != "" OR $r2 !=""){
 ?>
-<div id="resizable" style="height: 370px;border:1px solid gray;">
+<div id="resizable" style="height: 370px">
 	<div id="chartContainer" style="height: 100%; width: 100%;"></div>
 </div>
-<?php
- }
- else{
-	 echo "<div class='row'><div class='col text-center text-danger'> <h4>*ไม่พบข้อมูล </h4></div></div>";
- }
-?>
-
-
 <script>
 $( document ).ready(function() {
 
@@ -137,4 +133,13 @@ function toggleDataSeries(e) {
 
 });
 </script>
+
+<?php
+ }
+ else{
+	 echo "<div class='row'><div class='col text-center text-danger'> <h4>*ไม่พบข้อมูล </h4></div></div>";
+ }
+?>
+
+
 

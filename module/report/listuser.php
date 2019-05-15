@@ -9,7 +9,7 @@
 	</div>
 
 <div class="col-md text-center">
-	<h2> ข้อมูลบุคลากร </h2>
+	<h2> รายงานข้อมูลผลการประเมินของบุคลากร </h2>
 </div>
 <div class="col-md-2" style="display: block;"></div>
 </div>
@@ -37,10 +37,9 @@
 		</thead>
 		<tbody>
 
-
 			<?php
 
-					$show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture FROM staffs WHERE permiss_id !='1' ") or  die("SQL Error1==>1".mysql_error($con));
+					$show= mysqli_query($con,"SELECT st_id,fname,lname,branch_id,picture FROM staffs WHERE permiss_id !='1' AND  permiss_id !='5'") or  die("SQL Error1==>1".mysql_error($con));
 					$i=1;
 						while(list($st_id,$fname,$lname,$branch_id,$picture)=mysqli_fetch_row($show)){
 							$Sbrach=mysqli_query($con,"SELECT br_id,br_name,dept_id FROM branchs WHERE br_id='$branch_id'") or die ("mysql error=>>".mysql_error($con));
@@ -61,14 +60,12 @@
 										
 									";
 							$i++;
-							$Sbrach->free_result();
-							
+							$Sbrach->free_result();					
 							}
 							$show->free_result();
 							$con->close();
 				?>
 			</tbody>
-
 		</table>
 	</div>
 		<input type="hidden" name="test" value="1">
@@ -77,9 +74,9 @@
 		<p><input type="button " class="btn bg-success" value="ลบที่เลือก" id="btndelall" ></p>
 		</tfoot>
 	</div>
-
 </div>
 
+<div id="loadchart"></div>
 
 <script type="text/javascript">
 		$(document).ready(function() {
@@ -92,21 +89,19 @@
 				var action = $(this).data('action');
 				var genid = $(this).data('iduser');
 
-
 				$.post('module/report/'+action+'.php', {id:genid}, function(){
 
 				}).done(function(data){
 
 					 $("#detail").html(data);
+					// $('#loadchart').html(data);
+       				 //$('#modelchart').modal('show');
 				})
 			});
 
 		});	
-			
 
-      
-
-		
+					
 
 </script>
 <!-- aleat-->
