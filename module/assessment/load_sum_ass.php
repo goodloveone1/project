@@ -27,22 +27,66 @@ if(!empty($inform==1)){
 	FROM asessment_t5
 	WHERE ass_id='$ass_id' " )or die("SQL-error.asAss5".mysqli_error($con));
 	list($asst5_id,$accept,$inform,$date_accept,$date_inform)=mysqli_fetch_row($seAss5);
+
+	$seAss66 =mysqli_query($con,
+	"SELECT leader_comt,supervisor_comt
+	FROM asessment_t6
+	WHERE ass_id='$ass_id' " )or die("SQL-error.asAss5".mysqli_error($con));
+	list($leader_comt,$supervisor_comt)=mysqli_fetch_row($seAss66);
+
 	
-			if($inform==1 && $accept==1){
-		?>
-			<div class="row ">
-				<div class="col-md text-right">
-					<form action="printsumAss.php" method="post" target="_blank">
-					<input type='hidden' name='year' value='<?php echo $year ?>'>
-					<input type='hidden' name='stid' value='<?php echo $_SESSION['user_id'] ?>'>
-					<button class='btn btn-success' type='submit'> พิมพ์ </button>
-					</form>
+
+	
+	
+	if($_SESSION['user_level']==1){
+
+		if($inform==1 && $accept==1 && $leader_comt !=0 && $supervisor_comt != 0){
+			?>
+				<div class="row ">
+					<div class="col-md text-right">
+						<form action="printsumAss.php" method="post" target="_blank">
+						<input type='hidden' name='year' value='<?php echo $year ?>'>
+						<input type='hidden' name='stid' value='<?php echo $_SESSION['user_id'] ?>'>
+						<button class='btn btn-success' type='submit'> พิมพ์ </button>
+						</form>
+					</div>
 				</div>
-			</div>
-		<?php
-			}
+			<?php
+				}
 
-
+			
+	}else	if($_SESSION['user_level']==2){
+	
+	if($inform==1 && $accept==1 && $leader_comt !=0 ){
+		?>
+					<div class="row ">
+						<div class="col-md text-right">
+							<form action="printsumAss.php" method="post" target="_blank">
+							<input type='hidden' name='year' value='<?php echo $year ?>'>
+							<input type='hidden' name='stid' value='<?php echo $_SESSION['user_id'] ?>'>
+							<button class='btn btn-success' type='submit'> พิมพ์ </button>
+							</form>
+						</div>
+					</div>
+				<?php
+				}
+			}else	if($_SESSION['user_level']==4){
+			
+			if($inform==1 && $accept==1 ){
+				?>
+					<div class="row ">
+						<div class="col-md text-right">
+							<form action="printsumAss.php" method="post" target="_blank">
+							<input type='hidden' name='year' value='<?php echo $year ?>'>
+							<input type='hidden' name='stid' value='<?php echo $_SESSION['user_id'] ?>'>
+							<button class='btn btn-success' type='submit'> พิมพ์ </button>
+							</form>
+						</div>
+					</div>
+					<?php
+					}
+			}		
+			
 ?>
 
 

@@ -416,8 +416,6 @@ $tableh5 .="
 
 $mpdf->WriteHTML($tableh5);
 
-$mpdf->WriteHTML("<h3>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</h3>");
-
 
 
 $sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'";
@@ -451,6 +449,12 @@ $sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE  ass_id='$ass_id'
 							$uagree0="";
 							$uagree1="";
 						}
+
+if($hightL != 0){
+
+
+$mpdf->WriteHTML("<h3>ส่วนที่ ๖ ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</h3>");
+
 
 $tableh6 ="
 	<table style='border-collapse: collapse;border:1px solid' width='100%'>
@@ -499,6 +503,8 @@ mysqli_free_result($seSleader);
 
 $supervisor_comt_date = $supervisor_comt_date==0?"":DateThai($supervisor_comt_date);
 
+if($Sl_name!=""){
+
 $tableh6 .="<tr><td>	 <p>ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี)</p> 
 
 <p> <input  type='radio'  $uagree0>  เห็นด้วยผลการประเมิน  ดังนี้  </p>
@@ -516,8 +522,15 @@ $tableh6 .="<tr><td>	 <p>ผู้บังคับบัญชาเหนื�
 </tr>
 </table>
 ";
+}else{
+	$tableh6 .="</table>";
+}
 
 $mpdf->WriteHTML($tableh6);
+
+}// END IF
+
+
 $mpdf->Output();
 
 

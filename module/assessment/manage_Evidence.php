@@ -3,6 +3,9 @@
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
 $con=connect_db();
+
+
+
 ?>
 <div class="row  p-2 headtitle">
 
@@ -26,6 +29,39 @@ $con=connect_db();
 					$asm= mysqli_query($con,"SELECT ass_id,year_id FROM assessments WHERE staff='$_SESSION[user_id]' AND ass_id LIKE'TOR%' ORDER BY year_id DESC") or  die("SQL Error==>".mysqli_error($con));
 					while(list($ass_id,$tor_year) = mysqli_fetch_row($asm)){
 
+						$TOR_id=$ass_id;
+					//ตรวจสอบ ส่วนที่ 1-6
+                     //ส่วนที่1
+                     $se_asst1=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t1 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst1)=mysqli_fetch_row($se_asst1);
+                     mysqli_free_result($se_asst1);
+                    //ส่วนที่2
+                     $se_asst2=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t2 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst2)=mysqli_fetch_row($se_asst2);
+                     mysqli_free_result($se_asst2);
+                    //ส่วนที่3
+                     $se_asst3=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t3 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst3)=mysqli_fetch_row($se_asst3);
+                     mysqli_free_result($se_asst3);
+                    //ส่วนที่4
+                     $se_asst4=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t4 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst4)=mysqli_fetch_row($se_asst4);
+                     mysqli_free_result($se_asst4);
+
+                     $se_asst5=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t5 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst5)=mysqli_fetch_row($se_asst5);
+                     mysqli_free_result($se_asst5);
+
+                     $se_asst6=mysqli_query($con,
+                     "SELECT ass_id FROM asessment_t6 WHERE ass_id='$TOR_id'") or die("SQL.error-asst1".mysqli_error($con));
+                     list($asst6)=mysqli_fetch_row($se_asst6);
+                     mysqli_free_result($se_asst6);
+
 					echo "<tr>";
 					echo " <td> $ass_id </td>";
 
@@ -40,7 +76,14 @@ $con=connect_db();
 					
 					if(chk_idtest() ==  $tor_year)	{
 
-					if(empty($evd_status)){
+
+					if(empty($TOR_id)||empty($asst1)||empty($asst2)||empty($asst3)||empty($asst4)||empty($asst5)||empty($asst6)){
+						echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</br></td>";
+						echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</br></td>";
+
+
+					}
+					else if(empty($evd_status)){
 							echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัปโหลดหลักฐาน</br></td>";
 							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
