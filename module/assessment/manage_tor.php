@@ -3,6 +3,10 @@
   include("../../function/db_function.php");
   include("../../function/fc_time.php");
 $con=connect_db();
+unset($_SESSION['yearIdpost']);
+unset($_SESSION['pre_id']);
+unset($_SESSION['genIdpost']);
+
  ?>
 <div class="row  p-2 headtitle">
 	<h4 class="text-center col-md ">การประเมิน </h4>

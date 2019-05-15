@@ -3,8 +3,8 @@ session_start();
 include("../../function/db_function.php");
 include("../../function/fc_time.php"); 
 $con=connect_db();
-unset($_SESSION['yearIdpost']);
-unset($_SESSION['pre_id']);
+
+
 
 ?>
 <div class="row">
@@ -110,9 +110,13 @@ unset($_SESSION['pre_id']);
               if(empty($PER_id)){
                 echo "<b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b>";
               }else{
+                
                   if(empty($TOR_id)){
                     echo "<b class='text-success'><i class='fas fa-times-circle fa-2x'></i></b>";
                   }else{
+                    $_SESSION['genIdpost']=$_SESSION['user_id'];
+                    $_SESSION['yearIdpost']=$TOR_id;
+                    $_SESSION['pre_id']=$PER_id;
                     //ตรวจสอบ ส่วนที่ 1-6
                      //ส่วนที่1
                      $se_asst1=mysqli_query($con,
