@@ -53,17 +53,7 @@ $( document ).ready(function() {
 	},
 	axisY: {
 		title: "คะแนนที่ได้",
-		scaleBreaks: {
-			type: "wavy",
-			customBreaks: [{
-				startValue: 80,
-				endValue: 210
-				},
-				{
-					startValue: 230,
-					endValue: 600
-				}
-		]}
+		maximum: 100,
 	},
 	data: [{
 		type: "bar",
