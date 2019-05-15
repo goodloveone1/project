@@ -102,6 +102,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       list($inform)=mysqli_fetch_row($seApp);
       if($inform==0){
         echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+        
       }else{
         echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br><a href='javascript:void(0)' class='showtor text-success'  data-genid='$gen_id' data-yearid='$year' data-fullname='$fullname' title='คลิกเพื่อแสดงการประเมิน'>ดูผลการประเมิน</a></b></td>";
       }
@@ -111,14 +112,23 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
     if(empty($evd_id)){
       echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้อัพโหลดหลักฐาน</b></td>";
     }else{
-      echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' data-fullname='$fullname' title='คลิกเพื่อแสดงการหลักฐาน'><br>ดูไฟล์หลักฐาน</b></a></td>";
+      if($inform==0){
+        echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+      }else{
+        echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><a href='javascript:void(0)' class='showevd text-success'  data-evdid='$evd_id' data-fullname='$fullname' title='คลิกเพื่อแสดงการหลักฐาน'><br>ดูไฟล์หลักฐาน</b></a></td>";
+      }
+      
     }
 
  
     
     if(empty($tor_id)){
       echo $com_s,"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำการประเมิน</b></td>",$com_e;
+     
     }else{
+      if($inform==0){
+        echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+      }
       $comment=mysqli_query($con,"SELECT *FROM asessment_t6 WHERE ass_id='$tor_id'")or die("SQL.error".mysqli_error($con));
       list($ass6_id,$ass_id,$leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($comment);
       mysqli_free_result($comment);
