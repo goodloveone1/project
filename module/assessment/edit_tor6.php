@@ -17,9 +17,9 @@
 	}
    
 
-	$sqlyesr="SELECT ass_id,hleader,sleader FROM assessments WHERE staff ='$genIdpost'AND ass_id='$yearIdpost'";
+	$sqlyesr="SELECT ass_id,leader,hleader,sleader FROM assessments WHERE staff ='$genIdpost'AND ass_id='$yearIdpost'";
 	$reChk = mysqli_query($con,"$sqlyesr") or die("torChk".mysqli_error($con));
-	list($tor_ID,$hleader,$sleader)=mysqli_fetch_row($reChk);
+	list($tor_ID,$leader,$hleader,$sleader)=mysqli_fetch_row($reChk);
 
 	$sql="SELECT  prefix,lname,fname,position FROM staffs WHERE st_id ='$genIdpost'";
 	$genchk= mysqli_query($con,$sql) or die ("gen_chk".mysqli_error($con));
@@ -157,11 +157,13 @@
 <div class="row">
 	<div class="col-md-12 text-center mb-2" >
 		<?php  
-				if($_SESSION['user_level']==2){
+		
+				if($_SESSION['user_level']==$leader){
 		?>
-		<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
+		<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_asmIn"> ต่อไป </button>
+	
 				<?php }else{?>
-					<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_asmIn"> ต่อไป </button>
+					<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_tor"> ต่อไป </button>
 				<?php } ?>
 	</div>
 </div>

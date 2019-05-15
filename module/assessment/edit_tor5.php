@@ -109,10 +109,10 @@ if($accept==1){
 	<!-- ผู้ประเมิน : -->
 	<div class="col-md-6 border border-dark p-3">
 	<?php  
-		if($_SESSION['user_level']==2){
-			$dis="disabled";
-		}else{
+		if($_SESSION['user_id']==$hleader){
 			$dis="";
+		}else{
+			$dis="disabled";
 		}
 	?>
 	<p>ผู้ประเมิน :</p>
