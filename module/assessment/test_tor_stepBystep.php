@@ -42,7 +42,7 @@
 		</div>
 		<div class="col-md-2 text-center p-2" style="border:solid 1px " >
 			<u>ตัวชี้วัด – <?php echo $acaName ?></u><br>
-			<u>เอกสารหมายเลข 2</u>
+			<u>เอกสารหมายเลข 1</u>
 		</div>
     </div>
   
@@ -198,7 +198,7 @@
 		?>
 		</select>
 		</div>
-		
+
 	</div>
 </div>
 </div>
