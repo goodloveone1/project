@@ -1,5 +1,5 @@
 <div class='row p-2 headtitle mb-3'>
-<div class='col-md text-center'><h3  class="h3">เกณฑ์ให้คะแนน พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</h3> </div> 
+<div class='col-md text-center'><h3  class="h3">เกณฑ์คะแนน พฤติกรรมการปฏิบัติงาน (สมรรถนะ)</h3> </div> 
 </div>
 <?php
 	include("../../function/db_function.php");
