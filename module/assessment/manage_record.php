@@ -6,7 +6,7 @@ $con=connect_db();
 $yearnow = chk_idtest();
  ?>
 <div class="row  p-2 headtitle">
-	<h2 class="text-center col-md "> จัดการการมาปฏิบัติงาน </h2>
+	<h2 class="text-center col-md "> จัดการการปฏิบัติงาน </h2>
 </div>
 <br>
 <table class="table table-border col-auto" id="Datatable">
