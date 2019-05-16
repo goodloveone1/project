@@ -55,9 +55,26 @@ $con=connect_db();
       </div>
     </div>
 </div>
-<!-- <div class="col-md  ">
-    <button type='button' class="btn btn-block btn-success" id="btnOk"> ตกลง </button>
-</div> -->
+
+</div>
+
+<div class='row'>
+  <div class='col-3'> </div>
+  <div class='col'> 
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="exampleFormControlSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      </div>
+    </div>
+  </div>  
+  <div class='col-3'> </div>       
 </div>
 
 <div class="col-auto" id='loaddataInasm'></div>

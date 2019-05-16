@@ -27,11 +27,37 @@ while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_sco
 
 	$picture = empty($picture)?"default/user_default.svg":$picture;
 
-	if($r==""){
-		$r= "{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
-	}else{
-		$r.= ",{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
-	}
+	if($permiss_id==2){
+		if($accept==1 && $inform==1 && $leader_comt!=0 && $supervisor_comt!=0){
+
+			if($r==""){
+				$r= "{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}else{
+				$r.= ",{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}
+
+		}
+	}else if($permiss_id==3){
+		if($accept==1 && $inform==1 && $leader_comt!=0){
+
+			if($r==""){
+				$r= "{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}else{
+				$r.= ",{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}
+
+		}
+	}else if($permiss_id==4){
+		if($accept==1 && $inform==1){
+
+			if($r==""){
+				$r= "{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}else{
+				$r.= ",{ label: '$prefix $fname $lname', y: $sum_score, br: '$br_name',dp: '$dept_name',pos: '$pos_name', url: '$picture' }";
+			}
+
+		}
+	}	
 	
 }
 //echo $r;

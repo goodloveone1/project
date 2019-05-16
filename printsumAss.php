@@ -466,7 +466,7 @@ $tableh6 ="
 
 				<p>	<input  type='radio'   name='apc' $apc1 > มีความเห็นแตกต่าง  ดังนี้  </p>
 			 
-				<p><textarea  name='hcompt'  cols='20' rows='3'>$leader_comt_disc</textarea>	</p>
+				<p><textarea  style='font-family: th_niramit'  cols='20' rows='3'>$leader_comt_disc</textarea>	</p>
 		  		   
 				</td>
 				<td>
@@ -511,7 +511,7 @@ $tableh6 .="<tr><td>	 <p>ผู้บังคับบัญชาเหนื�
 
 <p> <input  type='radio'  $uagree1>  มีความเห็นแตกต่าง  ดังนี้  </p>
 
-<p><textarea    cols='20' rows='3'>$supervisor_comtdisc</textarea>	</p>
+<p><textarea  style='font-family: th_niramit'  cols='20' rows='3'>$supervisor_comtdisc</textarea>	</p>
 
 </td>
 <td>

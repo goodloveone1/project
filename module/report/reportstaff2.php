@@ -7,12 +7,44 @@ $con=connect_db();
 
 $st_id=empty($_SESSION['user_id'])?'':$_SESSION['user_id'];
 
-$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
-FROM ((assessments AS am INNER JOIN years AS y ON am.year_id = y.y_id)  INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id)
-WHERE  am.staff='$st_id' AND  am.ass_id LIKE  'TOR%' ") or  die("SQL Error1==>1".mysqli_error($con));
 
-$st = mysqli_query($con,"SELECT prefix,fname,lname FROM staffs WHERE st_id='$st_id'") or  die("SQL Error1==>1".mysqli_error($con));
-list($prefix,$fname,$lname)=mysqli_fetch_row($st);
+$st = mysqli_query($con,"SELECT prefix,fname,lname,permiss_id FROM staffs WHERE st_id='$st_id'") or  die("SQL Error1==>1".mysqli_error($con));
+list($prefix,$fname,$lname,$permiss_id)=mysqli_fetch_row($st);
+
+
+if($permiss_id==2){
+	$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+	FROM assessments AS am 
+	INNER JOIN years AS y ON am.year_id = y.y_id
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+	WHERE  am.staff='$st_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+	AND amt6.leader_comt != 0 AND amt6.supervisor_comt != 0
+	 ") or  die("SQL Error1==>1".mysqli_error($con));
+
+}
+if($permiss_id==3){
+	$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+	FROM assessments AS am 
+	INNER JOIN years AS y ON am.year_id = y.y_id
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+	WHERE  am.staff='$st_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+	AND amt6.leader_comt != 0 ") or  die("SQL Error1==>1".mysqli_error($con));
+
+}
+if($permiss_id==4){
+	$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+	FROM assessments AS am 
+	INNER JOIN years AS y ON am.year_id = y.y_id
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	WHERE  am.staff='$st_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+	 ") or  die("SQL Error1==>1".mysqli_error($con));
+
+}
 
 
 $r1 ="";

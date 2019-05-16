@@ -38,7 +38,7 @@ if(!empty($inform==1)){
 
 	
 	
-	if($_SESSION['user_level']==1){
+	if($_SESSION['user_level']==2){
 
 		if($inform==1 && $accept==1 && $leader_comt !=0 && $supervisor_comt != 0){
 			?>
@@ -55,7 +55,7 @@ if(!empty($inform==1)){
 				}
 
 			
-	}else	if($_SESSION['user_level']==2){
+	}else	if($_SESSION['user_level']==3){
 	
 	if($inform==1 && $accept==1 && $leader_comt !=0 ){
 		?>
