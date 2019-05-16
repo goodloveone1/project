@@ -6,7 +6,7 @@ function webmenu($id){
 ?>
 			<ul class="list-group" id="menuaside">
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="home" title="หน้าหลัก" >
 					<button class="btn-block bt-color"  >
 					<li class="list-group-item list-menu-user" >
 						<i class="icon fas fa-home fa-lg" ></i><span class="text">&nbsp;หน้าหลัก</span>
@@ -14,28 +14,28 @@ function webmenu($id){
 					</button>
 				</a>
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel"  data-action="mangauser" title="จัดการบุคลากร">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">&nbsp;จัดการบุคลากร</span>
 					</li>
 					</button>
 				</a> 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managesubject" >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managesubject" title="จัดการสาขา">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">&nbsp;จัดการสาขา</span>
 					</li>
 					</button>
 				</a> 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managebranch"  >
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managebranch" title="จัดการหลักสูตร">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-user-tie fa-lg " ></i><span class="text">&nbsp;จัดการหลักสูตร</span>
 					</li>
 					</button>
 				</a> 
-				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managedegree">
+				<a href="javascript:void(0)" class="menuuser" data-modules="personnel" data-action="managedegree" title="จัดการวุฒิการศึกษา">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-book fa-lg " ></i><span class="text">&nbsp;จัดการวุฒิการศึกษา</span>
@@ -43,56 +43,57 @@ function webmenu($id){
 					</button>
 				</a> 
 
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record_ad">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record_ad" title="จัดการการปฏิบัติงาน">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
-				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Ass">
+				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_Ass" title="จัดการการประเมิน">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการประเมิน</span>
 					</li>
 					</button>
 				</a>
-				
-					<button class="btn-block bt-color" id="flip" >
+					<a>
+					<button class="btn-block bt-color" id="flip" title="จัดการเกณฑ์การประเมิน">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-edit fa-lg " ></i><span class="text">&nbsp;จัดการเกณฑ์การประเมิน</span>
+						<i class="icon fas fa-edit fa-lg " ></i><span class="text" >&nbsp;จัดการเกณฑ์การประเมิน</span>
 					</li>
+				
 					</button>
 					<div id="panelassess" style='display:none'>
-					<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="year">
+					<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="year" title="ปีงบประมาณ">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text">ปีงบประมาณ</span>
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="weight">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="weight" title="น้ำหนักความสำคัญของงาน">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text">น้ำหนักความสำคัญของงาน</span>
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="evaluation">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="evaluation" title="ตัวชีวัด/เกณฑ์การประเมิน">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text">ตัวชีวัด/เกณฑ์การประเมิน</span>
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="min_hour_work">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="min_hour_work" title="ภาระงานขั้นต่ำ">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text">ภาระงานขั้นต่ำ</span>
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2">
+						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="Criteria_manage_tor2" title="พฤติกรรมการปฏิบัติงาน">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
 							<i class="icon fas fa-angle-double-right"></i><span class="text">พฤติกรรมการปฏิบัติงาน</span>
@@ -107,7 +108,7 @@ function webmenu($id){
 						});
 						});
 					</script>
-				<a href="javascript:void(0)" class="menuuser" data-modules="public_relations" data-action="pr_manage">
+				<a href="javascript:void(0)" class="menuuser" data-modules="public_relations" data-action="pr_manage" title="จัดการประชาสัมพันธ์">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 						<i class="icon fas fa-bullhorn fa-lg " ></i><span class="text">&nbsp;จัดการประชาสัมพันธ์</span>
@@ -121,7 +122,7 @@ function webmenu($id){
 					</li>
 					</button>
 				</a> -->
-				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
+				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">&nbsp;ออกจากระบบ</span>
@@ -459,7 +460,7 @@ function webmenu($id){
 
 		<button class="btn-block bt-color" id="flip2" >
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-calendar-check fa-lg "></i> <span class="text"> รายงาน</span>
+						<i class="icon fas fa-chart-bar fa-lg "></i> <span class="text"> รายงาน</span>
 					</li>
 					</button>
 					<div id="panelassess2" style='display:none'>
