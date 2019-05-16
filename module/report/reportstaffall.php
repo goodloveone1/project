@@ -6,18 +6,62 @@ $con=connect_db();
 
 
 $year=empty($_POST['year'])?'':$_POST['year'];
-	 
 
-$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
-FROM assessments AS am  
-INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id 
-INNER JOIN staffs AS st ON st.st_id = am.staff 
-INNER JOIN branchs AS br ON br.br_id = st.branch_id
-INNER JOIN departments AS dp ON dp.dept_id = br.dept_id
-INNER JOIN position AS pos ON pos.pos_id = st.position
-INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
-INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
-WHERE am.ass_id LIKE  'TOR%' AND am.year_id = '$year' ") or  die("SQL Error1==>1".mysqli_error($con));
+$brid=empty($_POST['brid'])?'':$_POST['brid'];
+$dpid=empty($_POST['dpid'])?'':$_POST['dpid'];
+
+$title = 'ผลสรุปการประเมินของบุุคลากรในคณะ';
+
+if($brid!=""){
+	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
+	FROM assessments AS am  
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id 
+	INNER JOIN staffs AS st ON st.st_id = am.staff 
+	INNER JOIN branchs AS br ON br.br_id = st.branch_id
+	INNER JOIN departments AS dp ON dp.dept_id = br.dept_id
+	INNER JOIN position AS pos ON pos.pos_id = st.position
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+	WHERE am.ass_id LIKE  'TOR%' AND am.year_id = '$year' AND  st.branch_id = '$brid'") or  die("SQL Error1==>1".mysqli_error($con));
+	
+	$br= mysqli_query($con,"SELECT br_name FROM branchs WHERE br_id ='$brid'");
+	list($br_name) = mysqli_fetch_row($br);
+	mysqli_free_result($br);
+	$title = "ผลสรุปการประเมินของบุุคลากรในหลักสูตร $br_name";
+}
+else if ($dpid!=""){
+
+	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
+	FROM assessments AS am  
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id 
+	INNER JOIN staffs AS st ON st.st_id = am.staff 
+	INNER JOIN branchs AS br ON br.br_id = st.branch_id
+	INNER JOIN departments AS dp ON dp.dept_id = br.dept_id
+	INNER JOIN position AS pos ON pos.pos_id = st.position
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+	WHERE am.ass_id LIKE  'TOR%' AND am.year_id = '$year' AND  dp.dept_id = '$dpid'") or  die("SQL Error1==>1".mysqli_error($con));
+	
+	$dp= mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id ='$dpid'") or  die("SQL Error1==>1".mysqli_error($con));
+	list($dept_name) = mysqli_fetch_row($dp);
+	mysqli_free_result($dp);
+	$title = "ผลสรุปการประเมินของบุุคลากรในหลักสูตร $dept_name";
+
+}else{
+	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
+	FROM assessments AS am  
+	INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id 
+	INNER JOIN staffs AS st ON st.st_id = am.staff 
+	INNER JOIN branchs AS br ON br.br_id = st.branch_id
+	INNER JOIN departments AS dp ON dp.dept_id = br.dept_id
+	INNER JOIN position AS pos ON pos.pos_id = st.position
+	INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+	INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+	WHERE am.ass_id LIKE  'TOR%' AND am.year_id = '$year'") or  die("SQL Error1==>1".mysqli_error($con));
+
+}
+
+
 
 $numrow = mysqli_num_rows($sumas);
 
@@ -75,7 +119,7 @@ $( document ).ready(function() {
 	var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title: {
-		text: "ผลสรุปการประเมิน"
+		text: "<?php echo $title ?>"
 	},
 	axisX: {
 		interval: 1

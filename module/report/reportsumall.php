@@ -59,22 +59,54 @@ $con=connect_db();
 </div>
 
 <div class='row'>
-  <div class='col-3'> </div>
-  <div class='col'> 
+  <div class='col-5'> 
     <div class="form-group row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
-      <div class="col-sm-10">
-        <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+      <label for="inputPassword" class="col-sm-3 col-form-label">เลือกแบบ</label>
+      <div class="col-sm-9">
+        <select class="form-control" id="choose">
+        <option value='0'>ทั้งหมด</option>
+        <option value='1'>หลักสูตร</option>
+        <option value='2'>สาขา</option>
       </select>
       </div>
     </div>
-  </div>  
-  <div class='col-3'> </div>       
+  </div>
+
+
+  <div class='col' id='brh' style='display:none'> 
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">หลักสูตร</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="brsel">
+        <?php
+           $br=mysqli_query($con,"SELECT br_id,br_name FROM branchs")or die(mysqli_error($con));
+           while(list($br_id,$br_name)=mysqli_fetch_row($br)){
+             echo "<option value='$br_id'>$br_name</option>";
+           }
+        ?>
+       
+      </select>
+      </div>
+    </div>
+  </div>
+
+   <div class='col' id='dph' style='display:none'> 
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">สาขา</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="dpsel">
+        <?php
+           $dp=mysqli_query($con,"SELECT dept_id,dept_name FROM departments")or die(mysqli_error($con));
+           while(list($dept_id,$dept_name)=mysqli_fetch_row($dp)){
+             echo "<option value='$dept_id'>$dept_name</option>";
+           }
+        ?>
+       
+      </select>
+      </div>
+    </div>
+  </div>    
+       
 </div>
 
 <div class="col-auto" id='loaddataInasm'></div>
@@ -129,6 +161,77 @@ $(document).ready(function() {
       })
    
     }
+
+    $("#choose").change(function(){
+      var ch = $(this).val();
+      if(ch==1){
+        $("#brh").css("display","");
+        $("#dph").css("display","none");
+        loadsunassbr($("#brsel").val())
+      }
+      else if(ch==2){
+        $("#brh").css("display","none");
+        $("#dph").css("display","");
+        loadsunassdp($("#dpsel").val())
+      }else{
+        $("#brh").css("display","none");
+        $("#dph").css("display","none");
+        loadsunass();
+      }
+    })
+
+    $("#brsel").change(function(){
+        loadsunassbr($(this).val())
+    })
+
+    $("#dpsel").change(function(){
+        loadsunassdp($(this).val())
+    })
+
+    function loadsunassbr(braid){
+      var years = $("#inputNo").val();
+
+      $("#loaddataInasm").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/report/reportstaffall.php",
+        data:{year:years, brid:braid},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataInasm").html(data)
+        
+        }, 2000);
+
+      })
+   
+    }
+
+    function loadsunassdp(dpmid){
+      var years = $("#inputNo").val();
+
+      $("#loaddataInasm").html("")
+      $("#loadging").css('display','')
+
+      $.ajax({
+        url: "module/report/reportstaffall.php",
+        data:{year:years, dpid:dpmid},
+        type: "POST"
+      }).done(function(data){
+
+        setTimeout(function(){ 
+          $("#loadging").css('display','none');
+          $("#loaddataInasm").html(data)
+        
+        }, 2000);
+
+      })
+   
+    }
+
 
   }) // document ready
 
