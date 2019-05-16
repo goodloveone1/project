@@ -50,7 +50,7 @@ WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.permiss_id !='1' AND 
       SELECT  staffs.st_id,staffs.fname,staffs.lname,staffs.branch_id,staffs.picture,position
       FROM staffs
       INNER JOIN branchs ON staffs.branch_id = branchs.br_id
-      WHERE  branchs.dept_id ='$_SESSION[department]' AND staffs.permiss_id !='1' AND st_id != '$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
+      WHERE  staffs.permiss_id !='1' AND st_id != '$_SESSION[user_id]' ") or  die("SQL Error1==>1".mysqli_error($con));
       
     }
     $i=1;

@@ -165,7 +165,7 @@ $tableh2 ='
 		 mysqli_free_result($se_capName);
 		 $tableh2 .="
      <tr>
-         <td >$subcap_name <a href='#' title='$cap_name'>( $cap_id )</a></td>
+         <td >$subcap_name </td>
           <td align='center'>$goal2</td>
           <td align='center'>$score2</td>
      </tr>;
@@ -371,7 +371,7 @@ $tableh5 ="
 			<p><input  type='checkbox' value='1'  name='ac' $chk_accept disabled> รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว <p> 
 		</td>
 		<td>
-			<p>ชื่อ $tle_g $g_fname $g_lname'	</p>
+			<p>ชื่อ $tle_g $g_fname $g_lname	</p>
 			<p>ตำแหน่ง 
 		";	
 					$sqlspos ="SELECT pos_name FROM position WHERE pos_id='$g_pos'";
@@ -382,8 +382,8 @@ $tableh5 ="
 					if($date_accept=='0000-00-00'){$date_accept2="";}else{echo $date_accept2=DateThai($date_accept); }
 
 $tableh5 .="
-			$sname_pos' 	</p>
-			<p>วันที่ $date_accept2' 	</p>
+			$sname_pos 	</p>
+			<p>วันที่ $date_accept2 	</p>
 		</td>
 	</tr>
 	<tr>
@@ -408,7 +408,7 @@ $tableh5 .="
 					mysqli_free_result($sesLpos);
 $tableh5 .="
 				$Lname_pos</p>
-			<p>วันที่ ".DateThai($date_inform)."	</p>			
+			<p>วันที่ ".DateThai($date_inform)."</p>			
 		</td>
 	</tr>
 </table>
