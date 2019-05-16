@@ -17,7 +17,7 @@
 <div class=" headtitle text-center p-2 row mb-2 row">
 	<div class="col-md-2" ></div>
     <div class="col-md">
-        <h2>แก้ไขบุคลากร</h2>
+        <h2>แก้ไขข้อมูลส่วนตัว</h2>
     </div>
      <div class="col-md-2" ></div>
 </div>
