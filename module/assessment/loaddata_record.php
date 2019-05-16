@@ -36,15 +36,15 @@ $year = $_POST["year"]
       
       if($yearnow == $year){
         if(!empty($year_id1)){
-          echo " <td class='text-center'>  <b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br> บันทึกการมาปฏิบัติงานแล้ว </br> </td>";
+          echo " <td class='text-center'>  <b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br> บันทึกการปฏิบัติงานแล้ว </br> </td>";
           if($yearnow == $year_id1){
-            echo " <td class='text-center'> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$year_id1' data-staff='$st_id'><i class='far fa-edit fa-2x'></i><br> แก้ไข <b></a></td>";
+            echo " <td class='text-center'> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$year_id1' data-staff='$st_id' data-s_name='$prefix $fname $lname'><i class='far fa-edit fa-2x'></i><br> แก้ไข <b></a></td>";
           }else{
               echo " <td class='text-center'> <b class='text-secondary'><a href='javascript:void(0)' class='showdata' data-id='$year_id1' data-staff='$st_id'><i class='fas fa-check fa-2x'></i><br> ตรวจสอบ <b></a></td>";
           }
 
         }else{
-          echo " <td class='text-center'> <b class='text-danger '> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ทำ<br>การบันทึกการมาปฏิบัติงาน </br></td>";
+          echo " <td class='text-center'> <b class='text-danger '> <i class='fas fa-times-circle fa-2x '></i><br> ยังไม่ได้ทำ<br>การบันทึกกาปฏิบัติงาน </br></td>";
           echo " <td class='text-center'> <b class='text-primary'><a href='javascript:void(0)' class='addbrn' data-id='$year_id1' data-staff='$st_id'><i class='fas fa-plus fa-2x'></i>&nbsp;<br>กรอกข้อมูล</a></b></td>";
         }
       }else{
@@ -79,7 +79,7 @@ $(document).ready(function() {
 $(".editbrn").click(function(e){
         e.preventDefault()
         var id =$(this).data("id");
-        $.post( "module/assessment/ldl_insertformedit2.php", { yearid: id , stid : $(this).data("staff") } ).done(function(data){
+        $.post( "module/assessment/ldl_insertformedit2.php", { yearid: id , stid : $(this).data("staff"),name : $(this).data("s_name") } ).done(function(data){
             $("#loadaddsub").html(data);
             $('#addsub').modal('show');
         })

@@ -46,7 +46,7 @@ function webmenu($id){
 				<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="manage_record_ad">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
-						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการมาปฏิบัติงาน</span>
+						<i class="icon fas fa-briefcase fa-lg " ></i><span class="text">&nbsp;จัดการการปฏิบัติงาน</span>
 					</li>
 					</button>
 				</a>
