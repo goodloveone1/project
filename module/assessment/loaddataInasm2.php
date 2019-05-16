@@ -161,7 +161,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
             }
         }
         if($position=='2'){
-          if($supervisor_comt==0){
+          if($leader_comt==0){
              if($inform==0){
                echo"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
              }else{
@@ -171,6 +171,8 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
           }else{
             echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
           }
+      }if($position=='3'){
+        echo"<td></td>";
       }
         
       }
