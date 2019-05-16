@@ -84,7 +84,7 @@ $con=connect_db();
         <td>
             <?php
               if(empty($PER_id)){
-                echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
+                echo "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล TOR'>ยังไม่มีข้อมูล <i class='fas fa-plus fa-2x'></i> </a>";
               }else{
                   
                   if(empty($preAss1)){
@@ -94,7 +94,7 @@ $con=connect_db();
                   }
                   
                   else{
-                    echo "<b class='text-success'>ทำTORแล้ว<b>";
+                    echo "<b class='text-success'>ทำTORเสร็จแล้ว<b>";
                   }
                
               }
@@ -166,7 +166,7 @@ $con=connect_db();
                 echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
               }else{
                   if(empty($TOR_id)){
-                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
+                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง &nbsp;<i class='fas fa-plus fa-2x'></i></a>";
                   }else{
                      
 
