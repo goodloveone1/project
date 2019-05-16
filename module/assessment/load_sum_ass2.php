@@ -247,9 +247,9 @@ mysqli_free_result($se_inform);
 						 while(list($knowledge,$develop,$longtime)=mysqli_fetch_row($se_Asst4)){
 						 ?>
 					<tr>
-					<td><?php echo $knowledge ?></td>
-					<td><?php echo $develop?></td>
-					<td><?php echo $longtime ?></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $knowledge ?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $develop?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $longtime ?></textarea></td>
 				</tr>
 						 <?php }?>
 			</table>

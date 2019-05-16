@@ -246,9 +246,9 @@
 						 while(list($knowledge,$develop,$longtime)=mysqli_fetch_row($se_Asst4)){
 						 ?>
 					<tr>
-					<td><?php echo $knowledge ?></td>
-					<td><?php echo $develop?></td>
-					<td><?php echo $longtime ?></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $knowledge ?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $develop?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly><?php echo $longtime ?></textarea></td>
 				</tr>
 						 <?php }?>
 			</table>
@@ -435,13 +435,13 @@
 							$uagree1="";
 						}
 						
-            if($_SESSION['user_level']==4){
+            if($_SESSION['user_id']==$hightL){
                 $disables="";
             }else{
               $disables="disabled";
 						}
 
-						if($_SESSION['user_level']==5){
+						if($_SESSION['user_id']==$supterL){
 							$sdis="";
 					}else{
 						$sdis="disabled";
@@ -455,7 +455,7 @@
 <div class=row>
 
 <div class="col-md-6 border border-dark p-3">
-		<p>ผู้บังคับบัญชาเหนือขึ้นไป</p>
+		<p>ผู้บังคับบัญชาเหนือขึ้นไป </p>
 		<input type="hidden" name="id" value="<?php echo $ass6_id ?>">
 		<div class="custom-control custom-radio ">
 			  <input class="custom-control-input" type="radio" value="1" id="customRadio1" name="ap" <?php echo $apc1," ",$disables ?> required <?php echo $dis?>  >&nbsp;&nbsp;&nbsp;&nbsp;
@@ -578,12 +578,12 @@
       </div>
       <div class="modal-footer">
 				<?php 
-						if($_SESSION['user_level']==4){
+						if($_SESSION['user_id']==$hightL){
 				?>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" id="save" class="btn btn-primary">Save changes</button>
 						<?php } ?>
-				<?php if($_SESSION['user_level']==5){?>
+				<?php if($_SESSION['user_id']==$supterL){?>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="button" id="supersave" class="btn btn-primary">Save changes</button>
 				<?php } ?>

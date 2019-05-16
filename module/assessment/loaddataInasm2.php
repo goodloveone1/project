@@ -126,9 +126,9 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
       echo $com_s,"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ยังไม่ได้ทำการประเมิน</b></td>",$com_e;
      
     }else{
-      if($inform==0){
-        echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
-      }
+      // if($inform==0){
+      //   echo "<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+      // }
       $comment=mysqli_query($con,"SELECT *FROM asessment_t6 WHERE ass_id='$tor_id'")or die("SQL.error".mysqli_error($con));
       list($ass6_id,$ass_id,$leader_comt,$leader_comt_disc,$leader_compt_date,$supervisor_comt,$supervisor_comtdisc,$supervisor_comt_date)=mysqli_fetch_row($comment);
       mysqli_free_result($comment);
@@ -138,30 +138,43 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               if($inform==0){
                 echo"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
               }else{
-               echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
+               echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อแสดงความเห็น'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
               }
               
             }else{
               echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
             }
         }else if($position=='2'){
-          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
-        }
+             echo"<td></td>";
+      }
       }else if($_SESSION['user_level']==5){
           if($position=='1'){
             if($supervisor_comt==0){
                if($inform==0){
                  echo"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
                }else{
-                echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อตรวจสอบ'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
+                echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อแสดงความเห็น'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
                }
               
             }else{
               echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
             }
-        }else if($position=='3'){
-          echo "<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>ประเมินแล้ว</b></td>"; 
         }
+        if($position=='2'){
+          if($leader_comt==0){
+             if($inform==0){
+               echo"<td class='text-center'><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i><br>ผู้บังคับบัญชายังไม่ได้ตรวจสอบการประเมิน</b></td>";
+             }else{
+              echo $com_s,"<td class='text-center'><b class='text-danger'><a href='javascript:void(0)' class='comment' data-genid='$gen_id' data-year='$tor_id'  title='คลิกเพื่อแสดงความเห็น'> <i class='fas fa-times-circle fa-2x '></i><br> แสดงความเห็น </br></a></b></td>",$com_e;
+             }
+            
+          }else{
+            echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
+          }
+      }if($position=='3'){
+        echo"<td></td>";
+      }
+        
       }
     }
     echo "</tr>";
