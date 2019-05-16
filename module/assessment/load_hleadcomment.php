@@ -15,8 +15,8 @@
 <div class="modal fade bd-example-modal-xl" id="showmodelsum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">ผลการประเมิน </h5>
+      <div class="modal-header headtitle">
+        <h5 class="modal-title" id="">ผลการประเมิน </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -580,12 +580,12 @@
 				<?php 
 						if($_SESSION['user_id']==$hightL){
 				?>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="save" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+        <button type="button" id="save" class="btn btn-primary">บันทึกข้อมูล</button>
 						<?php } ?>
 				<?php if($_SESSION['user_id']==$supterL){?>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" id="supersave" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+					<button type="button" id="supersave" class="btn btn-primary">บันทึกข้อมูล</button>
 				<?php } ?>
 
       </div>
