@@ -158,7 +158,7 @@
 	<div class="col-md-12 text-center mb-2" >
 		<?php  
 		
-				if($_SESSION['user_level']==$leader){
+				if($_SESSION['user_id']==$leader){
 		?>
 		<button type="button" class="btn goto bg-success text-white" data-modules="assessment" data-action="manage_asmIn"> ต่อไป </button>
 	
