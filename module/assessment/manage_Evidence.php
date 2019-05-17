@@ -88,7 +88,7 @@ $con=connect_db();
 							echo "  <td class='text-center'> <b class='btn text-primary addevd' data-torid='$ass_id' ><i class='far fa-plus-square fa-2x'></i> </b></td>";
 					}else if($evd_status == 1){
 						echo "<td class='text-center'><b class='text-danger'><i class='far fa-clock fa-2x'></i><br>รอตรวจสอบหลักฐานอีกคร้ง </b></td>"; 
-							echo "  <td class='text-center'> <b class='btn text-primary '> <a href='javascript:void(0)' class='editevd' data-torid='$ass_id' data-evdid='$evd_id' title='คลิกเพื่อตรวจสอบ'><i class='fas fa-check fa-2x'></i><br>ตรวจสอบหลักอีกครั้ง </b></a></td>";
+							echo "  <td class='text-center'> <b class='btn text-primary '> <a href='javascript:void(0)' class='editevd' data-torid='$ass_id' data-evdid='$evd_id' title='คลิกเพื่อตรวจสอบ'><i class='fas fa-check fa-2x'></i><br>ตรวจสอบหลักฐานอีกครั้ง </b></a></td>";
 					
 					}else if($evd_status == 2){
 						echo "<td class='text-center'><b class='text-success'> <i class='fas fa-check-circle fa-2x'></i><br> ยืนยันหลักฐานแล้ว </b></td>"; 
