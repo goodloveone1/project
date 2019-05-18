@@ -85,7 +85,7 @@
 		<input type="hidden" name="test" value="1">
 			</form>
 		<tfoot>
-		<p><input type="button " class="btn bg-success" value="ลบที่เลือก" id="btndelall" ></p>
+		<p><input type="button" class="btn bg-success" value="ลบที่เลือก" id="btndelall" ></p>
 		</tfoot>
 	</div>
 

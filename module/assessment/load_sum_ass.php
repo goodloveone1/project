@@ -359,7 +359,8 @@ if(!empty($inform==1)){
 					$chk_accept = "checked";
 					$not_action="disabled";
         }else{
-          $chk_accept = "";
+					$chk_accept = "";
+					$not_action="";
         }
         $date = date("Y/m/d");
       ?>
