@@ -45,7 +45,7 @@ else if ($dpid!=""){
 	$dp= mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id ='$dpid'") or  die("SQL Error1==>1".mysqli_error($con));
 	list($dept_name) = mysqli_fetch_row($dp);
 	mysqli_free_result($dp);
-	$title = "ผลสรุปการประเมินของบุุคลากรในหลักสูตร $dept_name";
+	$title = "ผลสรุปการประเมินของบุุคลากรในสาขา $dept_name";
 
 }else{
 	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
