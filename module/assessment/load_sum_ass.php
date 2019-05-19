@@ -357,7 +357,7 @@ if(!empty($inform==1)){
         }
         if($accept==1){
 					$chk_accept = "checked";
-					$not_action="disabled";
+					$not_action="readonly";
         }else{
 					$chk_accept = "";
 					$not_action="";
@@ -370,7 +370,7 @@ if(!empty($inform==1)){
 		<p>ผู้รับการประเมิน :</p>
 		<div class="custom-control custom-checkbox">
 			  <input class="custom-control-input" type="checkbox" value="1" id="ac" name="ac"  <?php echo $chk_accept?> <?php echo $not_action ?>>
-			  <label class="custom-control-label" for="ac">
+			  <label class="custom-control-label" for="">
 			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
 			  </label>
