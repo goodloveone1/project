@@ -649,11 +649,7 @@ mysqli_close($con);
 							
   						});
             }
-            else if($(this).prop("checked") == false){
-							$.post( "module/assessment/update_ac.php", {tor_id: "<?php echo $asst5_id ?>", ac: ""}).done(function( data ){
-									//alert(data);
-  								});
-            }
+           
 			});
 
 </script>

@@ -106,9 +106,6 @@ while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_sco
 }
 
 
-
-
-
 ?>
 <div id="resizable" style="height: 400px">
 	<div id="chartContainer" style="height: 100%; width: 100%;"></div>
