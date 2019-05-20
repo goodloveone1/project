@@ -35,7 +35,6 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
       $sy_no= 2;
     }else{
       $sy_no= 1;
-
     }
     echo " <td>", DateThai($y_start)," - ",DateThai($y_end),"</td>";
 
@@ -46,9 +45,10 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
         if(!empty($year_id1)){
           echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
           if($yearnow == $year_id1){
-            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$y_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
+            // echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$y_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
+            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl'  date-stid='$_SESSION[user_id]' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
           }else{
-              echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='showdata' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
+              echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl' date-stid='$_SESSION[user_id]' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
           }
 
         }else{
@@ -90,6 +90,16 @@ $(".editbrn").click(function(e){
         $.post( "module/assessment/ldl_insertformedit.php", { yearid: id  } ).done(function(data){
             $("#loadaddsub").html(data);
             $('#addsub').modal('show');
+        })
+});
+
+$(".modelshowidl").click(function(e){
+        e.preventDefault()
+        var id =$(this).data("id");
+        var idst =$(this).data("stid");
+        $.post( "module/assessment/ldl_modelform.php", { yearid: id,stid:idst  } ).done(function(data){
+            $("#loadaddsub").html(data);
+            $('#showldl').modal('show');
         })
 });
 

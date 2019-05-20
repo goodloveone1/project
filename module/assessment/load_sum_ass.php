@@ -357,7 +357,7 @@ if(!empty($inform==1)){
         }
         if($accept==1){
 					$chk_accept = "checked";
-					$not_action="disabled";
+					$not_action="readonly";
         }else{
 					$chk_accept = "";
 					$not_action="";
@@ -370,7 +370,7 @@ if(!empty($inform==1)){
 		<p>ผู้รับการประเมิน :</p>
 		<div class="custom-control custom-checkbox">
 			  <input class="custom-control-input" type="checkbox" value="1" id="ac" name="ac"  <?php echo $chk_accept?> <?php echo $not_action ?>>
-			  <label class="custom-control-label" for="ac">
+			  <label class="custom-control-label" for="">
 			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
 			  </label>
@@ -649,11 +649,7 @@ mysqli_close($con);
 							
   						});
             }
-            else if($(this).prop("checked") == false){
-							$.post( "module/assessment/update_ac.php", {tor_id: "<?php echo $asst5_id ?>", ac: ""}).done(function( data ){
-									//alert(data);
-  								});
-            }
+           
 			});
 
 </script>

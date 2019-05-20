@@ -4,7 +4,6 @@ include("../../function/db_function.php");
 include("../../function/fc_time.php");
 $con=connect_db();
 
-
 $year=empty($_POST['year'])?'':$_POST['year'];
 
 $brid=empty($_POST['brid'])?'':$_POST['brid'];
@@ -65,6 +64,7 @@ else if ($dpid!=""){
 
 $numrow = mysqli_num_rows($sumas);
 
+if($numrow !=0){
 $r="";
 
 while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_score,$permiss_id,$accept,$inform,$leader_comt,$supervisor_comt)=mysqli_fetch_row($sumas)){
@@ -104,10 +104,7 @@ while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_sco
 	}	
 	
 }
-//echo $r;
 
-
-if($numrow !=0){
 
 ?>
 <div id="resizable" style="height: 400px">
