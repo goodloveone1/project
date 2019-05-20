@@ -291,7 +291,7 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-								alert(data);
+								//alert(data);
 								alert("บันทึกข้อมูลสำเร็จ" );
 								loadingpage("personnel","edituserall")
 					        },
@@ -337,7 +337,7 @@ loaddatadegree(); // โหลดครั้งแรก
         var iddegree =$(this).data("iddegree");
 
 	        $.post("module/personnel/editeducate.php", { id : iddegree }).done(function(data){
-				alert(data);
+				//alert(data);
 	        $('#editD').html(data);
 	         $('#editsub').modal('show');
 	        })
