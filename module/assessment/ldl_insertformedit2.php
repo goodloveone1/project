@@ -6,6 +6,7 @@
 
 $tor_id = empty($_POST['yearid'])?'':$_POST['yearid'];
 $stid = empty($_POST['stid'])?'':$_POST['stid'];
+$chk_id = empty($_POST['chk_id'])?'':$_POST['chk_id'];
 
 if(empty($tor_id)){
   $tor_id = chk_idtest();
@@ -28,7 +29,7 @@ if(empty($tor_id)){
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header headtitle">
-                    <h5 class="modal-title" id="exampleModalLabel"> แก้ไขการปฏิบัติงานของ <?php echo $_POST['name']; ?></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> แก้ไขการปฏิบัติงานของ <?php echo $_POST['name'] ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -48,9 +49,30 @@ if(empty($tor_id)){
                        <input type="hidden"    value="<?php echo $set[$i]['abt_name']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
                        <input type="hidden"    value="<?php echo $stid?>"  name="gen_id" size=40 >
                         <input type="hidden"    value="<?php echo $set[$i]['ab_id']; ?>"  name="idl_id<?php echo $i+1  ?>" size=40 >
+                        <input type="hidden" value="<?php echo $_POST['acp'] ?>" name="chk_id">
+                        <input type="hidden" value="<?php echo"$_SESSION[user_fnaem] $_SESSION[user_lnaem]"; ?>" name="chk_name">
+                        
+                       
                     </div>
                 <?php   }?>
+                <div class="custom-control custom-checkbox " >
+                <?php $se_chk=mysqli_query($con,"SELECT chk FROM chk_absence WHERE chk_id='$_POST[acp]'")or die("SQL-error".mysqli_error($con));
+                list($chks)=mysqli_fetch_row($se_chk);
+                if($chks==1){
+                    $action="checked";
+                }else{
+                    $action="";
+                }           
+                ?>
+			    <input class="custom-control-input" type="checkbox" value="1" id="customCheckbox" name="chk" <?php echo $action ?> >
+			    <label class="custom-control-label" for="customCheckbox">
+                ตรวจสอบแล้ว &nbsp; โดย<b style="color:Blue;"><?php echo " $_SESSION[user_fnaem] $_SESSION[user_lnaem]" ; ?></b> ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน
+
+			    </label>
+		    </div>
+                    
                 </div>
+            
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
                     <button type="button" class="btn btn-primary" id="updatesu">บันทึก</button>

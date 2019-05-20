@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	include("../../function/db_function.php");
     $con=connect_db();
     
@@ -17,10 +18,15 @@
         // $test="INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]')";
         // mysqli_query($con,"INSERT INTO idlel VALUES('','$_POST[gen_id]','$_POST[Y]','$_POST[no]','$s','$_POST[$N]','$_POST[$D]');")or die (mysqli_error($con));
        
-        mysqli_query($con,$sql);
-        echo $sql;
+    mysqli_query($con,$sql);
+    //echo $sql;
     }
-    
+    $namechk=" $_SESSION[user_fnaem] $_SESSION[user_lnaem]";
+    $sql2="INSERT INTO chk_absence(chk_id,chk,name,staff_id,year_id)
+    VALUES('','$_POST[chk]','$namechk','$_POST[gen_id]','$_POST[a_no]')";
+   mysqli_query($con,$sql2)or die("SQL-error".mysqli_error($con));
+    //echo $sql2;
+
     mysqli_close($con);
 
 ?>
