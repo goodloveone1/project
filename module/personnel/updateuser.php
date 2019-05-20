@@ -16,9 +16,9 @@ else{
    $pic_usertemp=$_FILES['pic_u']['tmp_name'];
     copy($pic_usertemp,"../../img/$pic_user");
    if(!empty($_POST['old_pic'])){
-        unlink("../../img/$old_pic");
-        //echo "รูปเก่า".$_POST['old_pic'];
-    //echo"มีรูปเก่า";
+       unlink("../../img/$_POST[old_pic]");
+       //echo "รูปเก่า".$_POST['old_pic'];
+       //echo"มีรูปเก่า";
    }else{
        echo "ไม่มีรูปเก่า";
    }
