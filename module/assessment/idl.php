@@ -10,20 +10,12 @@ $mm=date('m');  //เดือนปัจจุบัน
 			$loop=1;
 	}
 	
-
 	$y_id = $y.$loop;
 	//echo $y_id;
 
 	$seldlt=mysqli_query($con,"SELECT * FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id'")or die(mysqli_error($con));
 	for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
 
-
-
-
-	//echo $y_id;
-
-	//print_r($set1);
-	// print_r($set2);
 ?>
 
 
