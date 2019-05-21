@@ -247,7 +247,7 @@ $mm=date('m');  //เดือนปัจจุบัน
  
 $mpdf->WriteHTML("<p>๓. บันทึกการมาปฏิบัติงาน</p>");
 
-if($y_no == 2){
+if($y_no == 1){
 $tableidl="
 <table style='border-collapse: collapse;border:solid 1px ' width='100%'>
 <tr>
@@ -271,24 +271,177 @@ $tableidl="
 </tr>
                 <tr>
                 <td>ลาป่วย</td>
-                <td > </td>
-                <td></td>
-                <td align='center'>".$set1[0]['ab_num']."</td> 
-                <td align='center'>".$set1[0]['abl_day']."</td>
+                    <td align='center'>".$set1[0]['ab_num']."</td> 
+                    <td align='center'>".$set1[0]['abl_day']."</td>
+                    <td > </td>
+                    <td></td>
+                    <td rowspan='3'>ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานาน<br>คราวเดียวหรือหลายคราวรวมกัน</td>
+                    <td rowspan='3' align='center'>".$set1[5]['abl_day']." </td>
+                    <td rowspan='3' align='center'>".$set1[5]['abl_day']."</td>
+                    <td rowspan='3'></td>
+                    <td rowspan='3'></td>
+                </tr>     
+                <tr>
+                    <td>ลากิจ</td>
+                    <td></td>
+                    <td></td>
+                    <td align='center'>".$set1[1]['ab_num']."</td> 
+                    <td align='center'>".$set1[1]['abl_day']."</td>
                 </tr>
-			
 
+                <tr>
+                    <td>มาสาย</td>
+                    <td align='center'>".$set1[2]['ab_num']."</td> 
+                    <td align='center'>".$set1[2]['abl_day']."</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>ลาคลอดบุตร</td>
+                    <td align='center'>".$set1[3]['ab_num']."</td> 
+                    <td align='center'>".$set1[3]['abl_day']."</td>
+                    <td></td>
+                    <td></td>
+                    <td>ขาดราชการ</td>
+                    <td align='center'>".$set1[6]['ab_num']."</td> 
+                    <td align='center'>".$set1[6]['abl_day']."</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>ลาอุปสมบท</td>
+                    <td align='center'>".$set1[4]['ab_num']."</td> 
+                    <td align='center'>".$set1[4]['abl_day']."</td>
+                    <td></td>
+                    <td></td>
+                    <td colspan='5'></td>                
+                </tr>
 </table>
 ";    
 
+}else{
+    $tableidl="
+    <table style='border-collapse: collapse;border:solid 1px ' width='100%'>
+    <tr>
+        <th rowspan='2' >ประเภท</th>
+        <th colspan='2'>รอบที่ 1 </th>
+        <th colspan='2'>รอบที่ 2 </th>
+    
+        <th rowspan='2' >ประเภท</th>
+        <th colspan='2'>รอบที่ 1 </th>
+        <th colspan='2'>รอบที่ 2 </th>
+    </tr>
+    <tr>
+    <th>ครั้ง</th>
+    <th>วัน</th>
+    <th>ครั้ง</th>
+    <th>วัน</th>
+    <th>ครั้ง</th>
+    <th>วัน</th>
+    <th>ครั้ง</th>
+    <th>วัน</th>
+    </tr>
+                    <tr>
+                    <td>ลาป่วย</td>
+                        <td > </td>
+                        <td></td>
+                        <td align='center'>".$set1[0]['ab_num']."</td> 
+                        <td align='center'>".$set1[0]['abl_day']."</td>
+                        <td rowspan='3'>ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานาน<br>คราวเดียวหรือหลายคราวรวมกัน</td>
+                        <td rowspan='3'></td>
+                        <td rowspan='3'></td>
+                        <td rowspan='3' align='center'>".$set1[5]['abl_day']." </td>
+                        <td rowspan='3' align='center'>".$set1[5]['abl_day']."</td>
+                    </tr>
+    
+                    
+                    <tr>
+                        <td>ลากิจ</td>
+                        <td></td>
+                        <td></td>
+                        <td align='center'>".$set1[1]['ab_num']."</td> 
+                        <td align='center'>".$set1[1]['abl_day']."</td>
+                    </tr>
+    
+                    <tr>
+                        <td>มาสาย</td>
+                        <td></td>
+                        <td></td>
+                        <td align='center'>".$set1[2]['ab_num']."</td> 
+                        <td align='center'>".$set1[2]['abl_day']."</td>
+                    </tr>
+    
+                    <tr>
+                        <td>ลาคลอดบุตร</td>
+                        <td></td>
+                        <td></td>
+                        <td align='center'>".$set1[3]['ab_num']."</td> 
+                        <td align='center'>".$set1[3]['abl_day']."</td>
+                        <td>ขาดราชการ</td>
+                        <td></td>
+                        <td></td>
+                        <td align='center'>".$set1[6]['ab_num']."</td> 
+                        <td align='center'>".$set1[6]['abl_day']."</td>
+                    </tr>
+    
+                    <tr>
+                        <td>ลาอุปสมบท</td>
+                        <td></td>
+                        <td></td>
+                        <td align='center'>".$set1[4]['ab_num']."</td> 
+                        <td align='center'>".$set1[4]['abl_day']."</td>
+                        <td colspan='5'></td>                
+                    </tr>
+    </table>
+    ";    
+    
+
 }
-
-
 
 $mpdf->WriteHTML($tableidl);
 
+$mpdf->WriteHTML("<p align='center'>ลงชื่อ..............................................................ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน</p>
+");
+
+$mpdf->WriteHTML("<p>๔. การกระทำผิดวินัย/การถูกลงโทษ<br>
+<span class='addunder'> $punishment <span>
+</p>
+");
 
 
+$mpdf->addpage();
+
+
+$mpdf->WriteHTML("<p class='addfontb addunder'> ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน </p>");
+
+$table3="
+<table style='border-collapse: collapse;border:solid 1px ' width='100%'>
+<tr>
+    <th rowspan='2'>(๑) ภาระงาน/กิจกรรม / โครงการ / งาน</th>
+    <th rowspan='2'>(๒) ตัวชี้วัด / เกณฑ์ประเมิน</th>
+    <th colspan='5'>(๓) ระดับค่าเป้าหมาย</th>
+    <th rowspan='2'>(๔) ค่าคะแนนที่ได้</th>
+    <th rowspan='2'>(๕) น้ำหนัก (ความสำคัญ/ยากง่ายของงาน)</th>
+    <th rowspan='2'>(๖) ค่าคะแนนถ่วงน้ำหนัก<br> (๔) × (๕ )  / ๑๐๐ </th>
+    
+  
+</tr>
+<tr>
+    <th>๑</th>
+    <th>๒</th>
+    <th>๓</th>
+    <th>๔</th>
+    <th>๕</th>
+  
+</tr>
+
+";
+
+
+
+$mpdf->WriteHTML($table3);
 
 
 $mpdf->Output();
@@ -300,59 +453,3 @@ mysqli_close($con);
 
 
 ?>
-<!-- 
- <tr>
-				<td>ลาป่วย</td>
-				<td>". empty($set1[0]['ab_num'])?"-":$set1[0]['ab_num'] ."</td>
-				<td>". empty($set1[0]['abl_day'])?"-":$set1[0]['abl_day'] ."</td>".
-
-					 empty($set1[8]['ab_num'])?"":"$set1[8]['ab_num']"
-
-
-                ."    
-				<td rowspan='3'>ลาป่วยจำเป็นต้องรักษาตัวเป็นเวลานาน<br>คราวเดียวหรือหลายคราวรวมกัน</td>
-				<td>".  empty($set1[5]['ab_num'])?"-":$set1[5]['ab_num'] ."</td>
-				<td>".  empty($set1[5]['abl_day'])?"-":$set1[5]['abl_day'] ."</td>
-
-			</tr>
-
-<tr>
-				<td>ลากิจ</td>
-				<td>".  empty($set1[1]['ab_num'])?"-":$set1[1]['ab_num'] ."</td>
-				<td>".  empty($set1[1]['abl_day'])?"-":$set1[1]['abl_day'] ."></td>
-
-				<td></td>
-				<td></td>
-
-
-
-			</tr>
-			<tr>
-				<td>มาสาย</td>
-				<td>".  empty($set1[2]['ab_num'])?"-":$set1[2]['ab_num'] ."</td>
-				<td>".   empty($set1[2]['abl_day'])?"-":$set1[2]['abl_day'] ."</td>
-
-				<td></td>
-				<td></td>
-
-
-
-			</tr>
-			<tr>
-				<td>ลาคลอดบุตร</td>
-				<td>". empty($set1[3]['ab_num'])?"-":$set1[3]['ab_num'] ."</td>
-				<td>".   empty($set1[3]['abl_day'])?"-":$set1[3]['abl_day'] ."</td>
-
-				<td>ขาดราชการ</td>
-				<td>".   empty($set1[6]['ab_num'])?"-":$set1[6]['ab_num'] ."</td>
-				<td>".   empty($set1[6]['abl_day'])?"-":$set1[6]['abl_day'] ."</td>
-
-			</tr>
-			<tr>
-				<td>ลาอุปสมบท</td>
-				<td>".   empty($set1[4]['ab_num'])?"-":$set1[4]['ab_num'] ."</td>
-				<td>".   empty($set1[4]['abl_day'])?"-":$set1[4]['abl_day'] ."</td>
-
-				<td colspan='5'></td>
-
-			</tr> -->
