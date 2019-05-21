@@ -36,7 +36,7 @@
           $class="showPRE";
       }
       if($type=="TOR"){
-        $p_type="ประเมิน";
+        $p_type="ข้อตกลง";
         $class="showTOR";
       }
         $se_aca=mysqli_query($con,"SELECT aca_name FROM academic WHERE aca_id='$aca'")or die("SQL.errorACA".mysqli_error($con));

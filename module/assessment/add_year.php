@@ -30,7 +30,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header headtitle">
-                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มปีงบประมาณ <?php echo $n ?> </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มปีงบประมาณ  </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <!-- <span aria-hidden="true">&times;</span> -->
                     <i class="fas fa-times" aria-hidden="true"></i>
