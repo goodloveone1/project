@@ -1,4 +1,5 @@
 <?php
+session_start();
 	include("../../function/db_function.php");
     $con=connect_db();
 
@@ -24,7 +25,14 @@
      mysqli_query($con,$sql) or die(mysqli_error($con));
       //  echo $sql;
     }
-
+     if(empty($_POST['chk'])){
+       $chk='0';
+     }else{
+       $chk=$_POST['chk'];
+     }
+      $sql2="UPDATE chk_absence SET chk='$chk',name='$_POST[chk_name]' WHERE chk_id='$_POST[chk_id]' ";
+      //echo $sql2;
+     mysqli_query($con,$sql2);
     mysqli_close($con);
 
 ?>

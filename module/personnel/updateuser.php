@@ -16,9 +16,9 @@ else{
    $pic_usertemp=$_FILES['pic_u']['tmp_name'];
     copy($pic_usertemp,"../../img/$pic_user");
    if(!empty($_POST['old_pic'])){
-        unlink("../../img/$old_pic");
-        //echo "รูปเก่า".$_POST['old_pic'];
-    //echo"มีรูปเก่า";
+       unlink("../../img/$_POST[old_pic]");
+       //echo "รูปเก่า".$_POST['old_pic'];
+       //echo"มีรูปเก่า";
    }else{
        echo "ไม่มีรูปเก่า";
    }
@@ -48,7 +48,7 @@ else{
 $update="UPDATE staffs SET st_id='$_POST[gen_id]',user='$_POST[uname]',pwd='$_POST[passwd]',branch_id='$_POST[suj]',code='$_POST[codeid]',prefix='$_POST[titlename]',fname='$_POST[name]',lname='$_POST[lname]',
 salary=' $_POST[salary]',acadeic='$_POST[ap]',leves='$_POST[level_id]',startdate='$_POST[gen_startdate]',permiss_id='$_POST[permiss]',position='$_POST[pos]',aca_code='$_POST[aca_code]',other='$_POST[other]'$updete_photo WHERE  st_id='$_POST[gen_id]'";
 
-echo $update;
+//echo $update;
 mysqli_query($con,$update)or die("SQL Error=>".mysqli_error($con));
 
 mysqli_close($con);

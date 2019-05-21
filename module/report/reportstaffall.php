@@ -4,13 +4,12 @@ include("../../function/db_function.php");
 include("../../function/fc_time.php");
 $con=connect_db();
 
-
 $year=empty($_POST['year'])?'':$_POST['year'];
 
 $brid=empty($_POST['brid'])?'':$_POST['brid'];
 $dpid=empty($_POST['dpid'])?'':$_POST['dpid'];
 
-$title = 'ผลสรุปการประเมินของบุุคลากรในคณะ';
+$title = 'ผลสรุปการประเมินของบุคลากรในคณะ';
 
 if($brid!=""){
 	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
@@ -45,7 +44,7 @@ else if ($dpid!=""){
 	$dp= mysqli_query($con,"SELECT dept_name FROM departments WHERE dept_id ='$dpid'") or  die("SQL Error1==>1".mysqli_error($con));
 	list($dept_name) = mysqli_fetch_row($dp);
 	mysqli_free_result($dp);
-	$title = "ผลสรุปการประเมินของบุุคลากรในหลักสูตร $dept_name";
+	$title = "ผลสรุปการประเมินของบุุคลากรในสาขา $dept_name";
 
 }else{
 	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
@@ -65,6 +64,7 @@ else if ($dpid!=""){
 
 $numrow = mysqli_num_rows($sumas);
 
+if($numrow !=0){
 $r="";
 
 while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_score,$permiss_id,$accept,$inform,$leader_comt,$supervisor_comt)=mysqli_fetch_row($sumas)){
@@ -104,10 +104,7 @@ while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_sco
 	}	
 	
 }
-//echo $r;
 
-
-if($numrow !=0){
 
 ?>
 <div id="resizable" style="height: 400px">

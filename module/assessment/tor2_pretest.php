@@ -6,10 +6,10 @@
 
 	if(empty($_POST['year']) ){
 		$yearIdpost=$_SESSION['pre_id'];
-		echo "tor_id = $yearIdpost";
+		//echo "tor_id = $yearIdpost";
 	}else{
 		$yearIdpost = $_POST['year'];
-		echo "tor_id = $yearIdpost";
+		//echo "tor_id = $yearIdpost";
 	}
 
 	$tor=mysqli_query($con,"SELECT *FROM assessments WHERE year_id='$yearIdpost'AND staff='$_SESSION[user_id]'")or die("SQL_ERROR".mysqli_error($con));

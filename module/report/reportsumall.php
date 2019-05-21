@@ -127,6 +127,8 @@ $(document).ready(function() {
 
   $("#inputState").change(function(){
     var years=$(this,"option:selected").val()
+    $("#choose option[value=0]").attr('selected','selected');
+    checkchoose('0');
   //  alert(years)
    $.post("module/assessment/loaddatayear.php",{year:years},
     function (data, textStatus, jqXHR) {
@@ -162,8 +164,7 @@ $(document).ready(function() {
    
     }
 
-    $("#choose").change(function(){
-      var ch = $(this).val();
+    function checkchoose(ch){
       if(ch==1){
         $("#brh").css("display","");
         $("#dph").css("display","none");
@@ -178,6 +179,11 @@ $(document).ready(function() {
         $("#dph").css("display","none");
         loadsunass();
       }
+    }
+
+    $("#choose").change(function(){
+      var ch = $(this).val();
+      checkchoose(ch);
     })
 
     $("#brsel").change(function(){

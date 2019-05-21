@@ -45,6 +45,7 @@ if(empty($yearid)){
                        <input type="number" min='0' max='999'  class="form-control col-sm" value="0"  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
                        <input type="hidden"    value="<?php echo $set[$i]['abt_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
                        <input type="hidden"    value="<?php echo $stid ?>"  name="gen_id" size=40 >
+                       <input type="hidden" value="1" name="chk">
                     </div>
                 <?php   }?>
                 </div>
@@ -67,7 +68,7 @@ mysqli_close($con);
             var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
             if (r == true) {
                 $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-                    //alert(data);
+                    alert(data);
                    
                     $('#addsub').modal("hide");
 

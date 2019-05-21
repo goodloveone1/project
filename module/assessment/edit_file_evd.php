@@ -27,7 +27,7 @@
                                         <input type="file" class="form-control-file filecheck" name='addfile[]' multiple>
                                         <small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP XLS XLSX เท่านั้น</small>
                                     </div>
-                                <div class="col-sm-2"> <button type='submit' class='btn btn-secondary' ><i class="fas fa-file-medical fa-lg"></i> อัปโหลดรูปภาพ </button> </div>
+                                <div class="col-sm-2"> <button type='submit' class='btn btn-secondary' ><i class="fas fa-file-medical fa-lg"></i> อัปโหลดไฟล์ </button> </div>
                            </div>
                         </form>   
          

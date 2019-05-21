@@ -382,7 +382,7 @@
 			// echo $y_id;
 			if(empty($idl)){
 				echo "<p style='color:red;' align='center'>เจ้าหน้าที่ยังไม่ได้กรอกข้อมูล</p>";
-			// 	echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='add' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
+			  echo "<div align='center'><a href='javascript:void(0)'><button type='button' id='addbrn' data-toggle='modal'>กรอกข้อมูล</button></a><div><br>";
 			 ?>
 			<!-- <div align='center'><a href="javascript:void(0)"><button type="button" class="btn" id="addbrn"  ><i class="fas fa-plus"></i>&nbsp;ขอข้อมูลจากเจ้าน้าที่</button></a></div><br> -->
 			<?php	

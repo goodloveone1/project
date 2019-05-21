@@ -38,6 +38,11 @@ $con=connect_db();
       $se_ass5=mysqli_query($con,"SELECT asst5_id,accept,date_accept,inform,date_inform FROM asessment_t5 WHERE ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
       list($asst5_id,$accept,$date_accept,$inform,$date_inform)=mysqli_fetch_row($se_ass5);
       mysqli_free_result($se_ass5);
+
+       // เช็ค assid 6
+       $se_ass6=mysqli_query($con,"SELECT leader_comt,supervisor_comt FROM asessment_t6 WHERE ass_id='$TOR_id'") or die("SQL-error".mysqli_error($con));
+       list($leader_comt,$supervisor_comt)=mysqli_fetch_row($se_ass6);
+       mysqli_free_result($se_ass6);
  
 
 
@@ -84,7 +89,7 @@ $con=connect_db();
         <td>
             <?php
               if(empty($PER_id)){
-                echo  "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล'>ยังไม่มีข้อมูล </a>";
+                echo "<a href='javascript:void(0)' class='addpre'  data-year='$year' title='คลิกเพื่อกรอกข้อมูล TOR'>ยังไม่มีข้อมูล <i class='fas fa-plus fa-2x'></i> </a>";
               }else{
                   
                   if(empty($preAss1)){
@@ -94,7 +99,7 @@ $con=connect_db();
                   }
                   
                   else{
-                    echo "<b class='text-success'>ทำTORแล้ว<b>";
+                    echo "<b class='text-success'>ทำTORเสร็จแล้ว<b>";
                   }
                
               }
@@ -166,7 +171,7 @@ $con=connect_db();
                 echo "<p style='color:red;'>ยังไม่สามารประเมินได้ ***ต้องทำTORก่อน</p>";
               }else{
                   if(empty($TOR_id)){
-                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง</a>";
+                    echo "<a href='javascript:void(0)' class='addtor'  data-year='$year' data-tor='$PER_id' title='คลิกเพื่อทำการประเมิน'>ประเมินตนเอง &nbsp;<i class='fas fa-plus fa-2x'></i></a>";
                   }else{
                      
 
@@ -230,9 +235,12 @@ $con=connect_db();
         
     </tr>
     <!-- ASS 5 -->
+    <?php
+    if($_SESSION['user_level']==2){
+    ?>
     <tr> 
         <td> - </td>
-        <td> หัวหน้าตรวจสอบการประเมิน </td>
+        <td> หัวหน้าหลักสูตรตรวจสอบการประเมิน </td>
         
         <?php
                    if($evd_status == 2){
@@ -246,36 +254,204 @@ $con=connect_db();
                         }
                     }else{
                       echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                      echo "<td><p style='color:red;'>ยังไม่ได้อัปโหลดหลักฐานได้</p></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
                     }        
-            ?>
-        
-        
+            ?>   
     </tr>
     <tr> 
         <td> - </td>
+        <td> ความเห็นของหัวหน้าสาขา </td>
+        
+        <?php
+                  if($evd_status == 2){
+                   if($leader_comt != 0){ 
+                    
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าสาขาแสดงความเห็นแล้ว</b></p> </td>";
+                        
+                    }else{
+                      echo "<td><b class='text-danger'><i class='far fa-clock fa-2x fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>รอหัวหน้าสาขาแสดงความเห็น</b></p></td>";
+                    }  
+                  }else{
+                    echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                    echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                  }             
+            ?>   
+    </tr>
+    <tr> 
+        <td> - </td>
+        <td> ความเห็นของหัวหน้าคณะ </td>
+        
+        <?php
+                if($evd_status == 2){
+                   if($supervisor_comt != 0){
+                  
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าคณะแสดงความเห็นแล้ว</b></p> </td>";
+                        
+                    }else{
+                      echo "<td><b class='text-danger'><i class='far fa-clock fa-2x fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>รอหัวหน้าคณะแสดงความเห็น</b></p></td>";
+                    }    
+                  }else{
+                    echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                    echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                  }         
+            ?>   
+    </tr>
+    <tr> 
+      <td> - </td>
         <td> รับทราบการประเมิน </td>
         <?php          
                 if($evd_status == 2){
                       if($inform == 0){
                         echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
                         echo "<td><p style='color:red;'><b> รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
-                      }else if($inform == 1 && $accept == 0){
+                      }else if($inform == 1 && $accept == 0 && $leader_comt !=0 && $supervisor_comt != 0){
                           echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
                           echo "<td><a href='javascript:void(0)' class='loadsum_assessment' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
-                      }else if($inform == 1 && $accept == 1){
+                      }else if($inform == 1 && $accept == 1 && $leader_comt !=0 && $supervisor_comt != 0){
                           echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
                           echo "<td><p class='text-success'><b>รับทราบการประเมินแล้ว </b></p></td>";
+                      }else{
+                        echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'><b>รอหัวหน้าตรวจสอบและแสดงความเห็น</b></p></td>";
                       }  
                     }else{
                       echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
-                      echo "<td><p style='color:red;'>ยังไม่ได้อัปโหลดหลักฐานได้</p></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้<b></p></td>";
                     }            
             ?>
+
+    </tr>
+<?php
+    }
+    else if($_SESSION['user_level']==3){
+?>
+   <tr> 
+        <td> - </td>
+        <td> หัวหน้าสาขาตรวจสอบการประเมิน </td>
         
+        <?php
+                   if($evd_status == 2){
+                    
+                      if($inform == 0){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td> <p style='color:red;'><b>  รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
+                        }else if($inform == 1){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าตรวจสอบการประเมินแล้ว</b></p> </td>";
+                        }
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                    }        
+            ?>   
+    </tr>
+ 
+    <tr> 
+        <td> - </td>
+        <td> ความเห็นของหัวหน้าคณะ </td>
         
+        <?php
+                if($evd_status == 2){
+                   if($leader_comt != 0){
+                  
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าคณะแสดงความเห็นแล้ว</b></p> </td>";
+                        
+                    }else{
+                      echo "<td><b class='text-danger'><i class='far fa-clock fa-2x fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>รอหัวหน้าคณะแสดงความเห็น</b></p></td>";
+                    }    
+                  }else{
+                    echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                    echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                  }         
+            ?>   
+    </tr>
+    <tr> 
+      <td> - </td>
+        <td> รับทราบการประเมิน </td>
+        <?php          
+                if($evd_status == 2){
+                      if($inform == 0){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'><b> รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
+                      }else if($inform == 1 && $accept == 0 && $leader_comt !=0 ){
+                          echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
+                          echo "<td><a href='javascript:void(0)' class='loadsum_assessment' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
+                      }else if($inform == 1 && $accept == 1 && $leader_comt !=0 ){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b>รับทราบการประเมินแล้ว </b></p></td>";
+                      }else{
+                        echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'><b>รอหัวหน้าตรวจสอบและแสดงความเห็น</b></p></td>";
+                      }  
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                    }            
+            ?>
+    </tr>
+<?php
+    }
+    else if($_SESSION['user_level']==4){
+?>
+  <tr> 
+        <td> - </td>
+        <td> หัวหน้าคณะตรวจสอบการประเมิน </td>
+        
+        <?php
+                   if($evd_status == 2){
+                    
+                      if($inform == 0){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td> <p style='color:red;'><b>  รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
+                        }else if($inform == 1){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b> หัวหน้าตรวจสอบการประเมินแล้ว</b></p> </td>";
+                        }
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                    }        
+            ?>   
     </tr>
 
+    <tr> 
+      <td> - </td>
+        <td> รับทราบการประเมิน </td>
+        <?php          
+                if($evd_status == 2){
+                      if($inform == 0){
+                        echo "<td><b class='text-success'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'><b> รอหัวหน้าตรวจสอบการประเมิน </b></p></td>";
+                      }else if($inform == 1 && $accept == 0  ){
+                          echo "<td><b class='text-success'><i class='far fa-times-circle fa-2x'></i></b></td>";
+                          echo "<td><a href='javascript:void(0)' class='loadsum_assessment' title='คลิกเพื่อทำการรับทราบการประเมิน'>รับทราบการประเมิน</a></td>";
+                      }else if($inform == 1 && $accept == 1  ){
+                          echo "<td><b class='text-success'><i class='fas fa-check-circle fa-2x'></i></b></td>";
+                          echo "<td><p class='text-success'><b>รับทราบการประเมินแล้ว </b></p></td>";
+                      }else{
+                        echo "<td><b class='text-danger'><i class='far fa-clock fa-2x'></i></b></td>";
+                        echo "<td><p style='color:red;'><b>รอหัวหน้าตรวจสอบและแสดงความเห็น</b></p></td>";
+                      }  
+                    }else{
+                      echo "<td><b class='text-danger'><i class='fas fa-times-circle fa-2x'></i></b></td>";
+                      echo "<td><p style='color:red;'><b>ยังไม่ได้อัปโหลดหลักฐานได้</b></p></td>";
+                    }            
+            ?>
+
+    </tr>
+
+
+
+
+<?php
+    }
+?>
    
   </tbody>
         <?php        

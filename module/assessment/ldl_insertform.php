@@ -44,6 +44,7 @@ if(empty($tor_id)){
                        <input type="number" min='0' max='999'  class="form-control col-sm" value=""  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
                        <input type="hidden"    value="<?php echo $set[$i]['abt_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
                        <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 >
+                       <input type="hidden" name="chk" value="0">
                     </div>
                 <?php   }?>
                 </div>

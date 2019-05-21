@@ -315,9 +315,9 @@ if(!empty($inform==1)){
 						 while(list($knowledge,$develop,$longtime)=mysqli_fetch_row($se_Asst4)){
 						 ?>
 					<tr>
-					<td><?php echo $knowledge ?></td>
-					<td><?php echo $develop?></td>
-					<td><?php echo $longtime ?></td>
+					<td> <textarea class="borderNon form-control" readonly ><?php echo $knowledge ?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly ><?php echo $develop?></textarea></td>
+					<td><textarea class="borderNon form-control" readonly ><?php echo $longtime ?></textarea></td>
 				</tr>
 						 <?php }?>
 			</table>
@@ -349,15 +349,18 @@ if(!empty($inform==1)){
 		
         if($inform==1){
 					$chk_inform = "checked";
+					
 					$ac="";
         }else{
 					$chk_inform = "";
 					$ac="ac";
         }
         if($accept==1){
-          $chk_accept = "checked";
+					$chk_accept = "checked";
+					$not_action="disabled";
         }else{
-          $chk_accept = "";
+					$chk_accept = "";
+					$not_action="";
         }
         $date = date("Y/m/d");
       ?>
@@ -366,7 +369,7 @@ if(!empty($inform==1)){
 	<div class="col-md-6 border border-dark p-3">
 		<p>ผู้รับการประเมิน :</p>
 		<div class="custom-control custom-checkbox">
-			  <input class="custom-control-input" type="checkbox" value="1" id="ac" name="ac"  <?php echo $chk_accept?>>
+			  <input class="custom-control-input" type="checkbox" value="1" id="ac" name="ac"  <?php echo $chk_accept?> <?php echo $not_action ?>>
 			  <label class="custom-control-label" for="ac">
 			    รับทราบผลการประเมินและแผนพัฒนา การปฏิบัติราชการรายบุคคลแล้ว
 
@@ -646,11 +649,7 @@ mysqli_close($con);
 							
   						});
             }
-            else if($(this).prop("checked") == false){
-							$.post( "module/assessment/update_ac.php", {tor_id: "<?php echo $asst5_id ?>", ac: ""}).done(function( data ){
-									//alert(data);
-  								});
-            }
+           
 			});
 
 </script>
