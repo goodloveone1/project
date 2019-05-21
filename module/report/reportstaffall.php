@@ -9,7 +9,7 @@ $year=empty($_POST['year'])?'':$_POST['year'];
 $brid=empty($_POST['brid'])?'':$_POST['brid'];
 $dpid=empty($_POST['dpid'])?'':$_POST['dpid'];
 
-$title = 'ผลสรุปการประเมินของบุุคลากรในคณะ';
+$title = 'ผลสรุปการประเมินของบุคลากรในคณะ';
 
 if($brid!=""){
 	$sumas= mysqli_query($con,"SELECT st.prefix,st.fname,st.lname,pos.pos_name,dp.dept_name,br.br_name,st.picture,sumt3.sum_score,st.permiss_id,amt5.accept,amt5.inform,amt6.leader_comt,amt6.supervisor_comt
