@@ -8,11 +8,11 @@ include("function/db_function.php");
 include("function/fc_time.php");
 $con=connect_db();
 
-// $yearIdpost = "TOR62229399";// TORID
-// $genIdpost = "6202399";
+$yearIdpost = "PRE62229399";// TORID
+$genIdpost = "6202399";
 
-$yearIdpost = "PRE62226083";// TORID
-$genIdpost = "6201083";
+// $yearIdpost = "PRE62226083";// TORID
+// $genIdpost = "6201083";
 
 
 // $year = $_POST['year'];
@@ -123,7 +123,7 @@ p {
 
 <div>
 <div style='float: left;width: 20%;color:white'> 1</div>
-<div style='float: left;width: 58%;'><h3 align='center'>ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบัน อุดมศึกษา สายวิชาการ(ตำแหน่ง $acaName) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h3></div>
+<div style='float: left;width: 58%;'><h2 align='center'>ข้อตกลงและแบบประเมินผลการปฏิบัติงานของข้าราชการพลเรือนในสถาบัน อุดมศึกษา สายวิชาการ(ตำแหน่ง $acaName) สังกัดมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</h2></div>
 
 <div style='float: right; width: 20%;border:solid;text-align:center;'>
 <span style='font-size:16px'>
@@ -171,7 +171,7 @@ $seaPos=mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$position
 list( $pos_name)=mysqli_fetch_row($seaPos);
 mysqli_free_result($seaPos);
 
-$mpdf->WriteHTML("<br><p class='addfontb'>ชื่อผู้รับการประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$pos_name&nbsp;&nbsp;</span> </p>
+$mpdf->WriteHTML("<p class='addfontb'>ชื่อผู้รับการประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$pos_name&nbsp;&nbsp;</span> </p>
 <p class='addfontb'>สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</span></p>
 ");
 
@@ -460,7 +460,7 @@ $ck1='';$ck2='';$ck3='';$ck4='';$ck5='';
 $ev=mysqli_query($con,"SELECT e_id,e_name FROM evaluation")or die("tor SQL_ERROR ".mysqli_error($con));
 while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
 
-    $asst1=mysqli_query($con,"SELECT goal,score FROM preasessment_t1 WHERE title_name='$e_id'") or die("tor SQL_ERROR ".mysqli_error($con));
+    $asst1=mysqli_query($con,"SELECT goal,score FROM preasessment_t1 WHERE title_name='$e_id' AND ass_id='$yearIdpost'") or die("tor SQL_ERROR ".mysqli_error($con));
     list($goal,$score)=mysqli_fetch_row($asst1);
     $ck1='';$ck2='';$ck3='';$ck4='';$ck5='';
     switch($goal){
@@ -693,7 +693,7 @@ $mpdf->WriteHTML("
     <td></td>
 </tr>
 <tr>
-    <td colspan='3'>ผลรวมคะแนน</td>
+    <td colspan='3' align='right'>ผลรวมคะแนน&nbsp;&nbsp;&nbsp;</td>
     <td></td>
 </tr>
 </table>
