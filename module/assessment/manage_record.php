@@ -43,7 +43,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     
     if($yearnow==$y_id){
         if(!empty($year_id1)){
-          echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
+          echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> กรอกข้อมูลแล้ว </b> </td>";
           if($yearnow == $year_id1){
             // echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$y_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
             echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl'  date-stid='$_SESSION[user_id]' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
@@ -52,7 +52,7 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
           }
 
         }else{
-          echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้ทำการบันทึกการมาปฏิบัติงาน </b></td>";
+          echo " <td> <b class='text-danger'> <i class='fas fa-times-circle fa-2x '></i> ยังไม่ได้กรอกข้อมูล </b></td>";
           echo " <td> <b class='text-primary'><a href='javascript:void(0)' class='addbrn' data-id='$y_id'><i class='fas fa-plus fa-2x'></i>&nbsp;กรอกข้อมูล</a></b></td>";
         }
       }else{
