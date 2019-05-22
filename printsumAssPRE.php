@@ -8,12 +8,12 @@ include("function/db_function.php");
 include("function/fc_time.php");
 $con=connect_db();
 
-$yearIdpost = "TOR62251000";// TORID
+//$yearIdpost = "TOR62251000";// TORID
 
 // $yearIdpost = "PRE62226083";// TORID
 // $genIdpost = "6201083";
 
-
+$yearIdpost = $_POST['assid'];
 // $year = $_POST['year'];
 // $stid = $_POST['stid'];
 

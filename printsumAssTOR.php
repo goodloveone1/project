@@ -8,8 +8,9 @@ include("function/db_function.php");
 include("function/fc_time.php");
 $con=connect_db();
 
-$yearIdpost = "PRE62229399";// TORID
-$genIdpost = "6202399";
+//$yearIdpost = "PRE62229399";// TORID
+
+$yearIdpost = $_POST['assid'];
 
 // $yearIdpost = "PRE62226083";// TORID
 // $genIdpost = "6201083";
@@ -18,7 +19,7 @@ $genIdpost = "6202399";
 // $year = $_POST['year'];
 // $stid = $_POST['stid'];
 
-$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE ass_id='$yearIdpost'AND staff='$genIdpost'")or die("tor SQL_ERROR ".mysqli_error($con));
+$tor=mysqli_query($con,"SELECT ass_id,staff,year_id,leader,hleader,sleader,sumwork,punishment FROM assessments WHERE ass_id='$yearIdpost'")or die("tor SQL_ERROR ".mysqli_error($con));
 list($tor_id,$staff_id,$year_id,$leader_id,$hleader,$sleader,$sumwork,$punishment)=mysqli_fetch_row($tor);
 
 $year=mysqli_query($con,"SELECT y_year,y_no,y_start,y_end,YEAR(y_start),YEAR(y_end) FROM years WHERE y_id='$year_id'")or die("SQL_ERROR".mysqli_error($con));
@@ -38,7 +39,7 @@ list($branch_name,$dept_id)=mysqli_fetch_row($re_branch);
 $re_dept=mysqli_query($con,"SELECT dept_name FROM departments	WHERE dept_id='$dept_id'") or die("dept-sqlError".mysqli_error($con));
 list($dept_name)=mysqli_fetch_row($re_dept);
 
-$seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$genIdpost'")or die("SQL_ERROR".mysqli_error($con));
+$seaca=mysqli_query($con,"SELECT acadeic,fname,lname FROM staffs WHERE st_id='$staff_id'")or die("SQL_ERROR".mysqli_error($con));
 list($gen_acadeic,$fname,$lname)=mysqli_fetch_row($seaca); 
 
 mysqli_free_result($seaca);
@@ -258,7 +259,7 @@ $mm=date('m');  //เดือนปัจจุบัน
 	$y_id = $y.$loop;
 	//echo $y_id;
 
-	$seldlt=mysqli_query($con,"SELECT * FROM absence WHERE staff='$genIdpost' AND year_id='$year_id'")or die(mysqli_error($con));
+	$seldlt=mysqli_query($con,"SELECT * FROM absence WHERE staff='$staff_id' AND year_id='$year_id'")or die(mysqli_error($con));
     for ($set1 = array (); $row = $seldlt->fetch_assoc(); $set1[] = $row);
     mysqli_free_result($seldlt);
 
