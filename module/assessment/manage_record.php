@@ -23,13 +23,13 @@ $yearnow = chk_idtest();
   <tbody>
     <?php
 
-    $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_id DESC") or  die("SQL Error1==>1".mysql_error($con));
+    $selectyear= mysqli_query($con,"SELECT y_id,y_year,y_no,y_start,y_end FROM years ORDER BY y_year DESC") or  die("SQL Error1==>1".mysql_error($con));
     
 $i=1;
 while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
     echo "<tr>";
-    echo " <td>$y_no</td>";
     echo " <td>".($y_year+543)."</td>";
+    echo " <td>$y_no</td>";
     $m=DATE('m');
     if($m<=9 && $m>3){
       $sy_no= 2;

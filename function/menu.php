@@ -192,13 +192,42 @@ function webmenu($id){
 					</button>
 				</a>
 				
-				<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="รายงานผลการประเมิน">
+
+					<button class="btn-block bt-color" id="flip2" >
+					<li class="list-group-item list-menu-user" title="รายงาน">
+						<i class="icon fas fa-chart-bar fa-lg "></i> <span class="text"> รายงาน</span>
+					</li>
+					</button>
+					<div id="panelassess2" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_tor" title="ผลการประเมินของบุคลากร">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงาน TOR </span>
 							</li>
 							</button>
 						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_pre" title="ผลการประเมินของบุคลากร">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานข้อตกลง </span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="ผลการประเมินของตนเอง">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip2").click(function(){
+							$("#panelassess2").slideToggle();
+						});
+						});
+					</script>		
 
 				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
@@ -296,13 +325,41 @@ function webmenu($id){
 						});
 					</script>
 
-						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="รายงานผลการประเมิน">
+					<button class="btn-block bt-color" id="flip3" >
+					<li class="list-group-item list-menu-user" title="รายงาน">
+						<i class="icon fas fa-chart-bar fa-lg "></i> <span class="text"> รายงาน</span>
+					</li>
+					</button>
+					<div id="panelassess3" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_tor" title="ผลการประเมินของบุคลากร">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงาน TOR </span>
 							</li>
 							</button>
-						</a>		
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_pre" title="ผลการประเมินของบุคลากร">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานข้อตกลง </span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="ผลการประเมินของตนเอง">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip3").click(function(){
+							$("#panelassess3").slideToggle();
+						});
+						});
+					</script>				
 
 
 				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
@@ -399,13 +456,41 @@ function webmenu($id){
 								});
 							</script>		
 
-						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="รายงานผลการประเมิน">
+<button class="btn-block bt-color" id="flip3" >
+					<li class="list-group-item list-menu-user" title="รายงาน">
+						<i class="icon fas fa-chart-bar fa-lg "></i> <span class="text"> รายงาน</span>
+					</li>
+					</button>
+					<div id="panelassess3" style='display:none'>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_tor" title="ผลการประเมินของบุคลากร">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-chart-bar"></i><span class="text">&nbsp;รายงานผลการประเมิน </span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงาน TOR </span>
 							</li>
 							</button>
 						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="list_pre" title="ผลการประเมินของบุคลากร">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานข้อตกลง </span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="ผลการประเมินของตนเอง">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ</span>
+							</li>
+							</button>
+						</a>
+					</div>
+					<script> 
+						$(document).ready(function(){
+						$("#flip3").click(function(){
+							$("#panelassess3").slideToggle();
+						});
+						});
+					</script>			
 
 		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
