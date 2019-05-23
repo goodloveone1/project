@@ -14,12 +14,12 @@ for($i=0;$i<3;$i++){
    
     $sql="INSERT INTO asessment_t3(asst3_id,ass_id,name,score,weignt,sum) 
     VALUES('','$_POST[tor_id]','$_POST[$name]','$_POST[$score]','$_POST[$wei]','$sumscore[$i]')";
-    echo $sql;
+    //echo $sql;
    mysqli_query ($con,$sql) or die ("error1".mysqli_error($con));
 }
 $sql2="INSERT INTO sum_score_assessment_t3(sumasst3_id,ass_id,sum_score) VALUES('','$_POST[tor_id]','$_POST[sumall]')";
 //echo $sql2;
 mysqli_query ($con,$sql2) or die ("error1".mysqli_error($con));
-//echo"บันทึกสำเร็จแล้ว";
+echo"บันทึกสำเร็จแล้ว";
 mysqli_close($con);
 ?>

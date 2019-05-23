@@ -21,7 +21,7 @@ for($i=0;$i<5;$i++){
 
 $sql="INSERT INTO asessment_t1(asst1_id,ass_id,title_name,goal,score,weight,weighted) 
 VALUES('','$tor_id','$no','$_POST[$go]','$score[$i]','$_POST[$wei]','$scwei[$i]') ";
- echo $sql;
+//echo $sql;
 mysqli_query ($con,$sql) or die ("error1".mysqli_error($con));
 }
 $sqli2="INSERT INTO sum_score_assessment_t1(sum_asst1_id,ass_id,sum_weight,sum_weighted,sum_asst1) 

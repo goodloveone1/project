@@ -14,8 +14,8 @@ VALUES('$tor_id','$_SESSION[user_id]','$_POST[a_no]','$_POST[leader_id]','$_POST
 //echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error".mysqli_error($con));
 // $_SESSION['tor_id']=$tor_id;
-echo $tor_id;
-// echo "บันทึกเสร็จแล้ว";
+// echo $tor_id;
+echo "บันทึกเสร็จแล้ว";
 $con->close();
 
 ?>

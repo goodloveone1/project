@@ -27,8 +27,8 @@ $sql2 = "UPDATE sum_score_assessment_t3 SET sum_score='$_POST[sumall]' WHERE sum
 
 
 //$sql2="INSERT INTO sum_score_assessment_t3(sumasst3_id,ass_id,sum_score) VALUES('','$_POST[tor_id]','$_POST[sumall]')";
-echo $sql2;
+//echo $sql2;
 mysqli_query ($con,$sql2) or die ("error1".mysqli_error($con));
-//echo"บันทึกสำเร็จแล้ว";
+echo"บันทึกสำเร็จแล้ว";
 mysqli_close($con);
 ?>

@@ -474,7 +474,7 @@ $("#addtor").submit(function(e){
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+					       alert(data);
 								$.post( "module/assessment/ass_t1.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>"}).done(function( data ) 
 							{
     							//alert( "Data Loaded: " + data );

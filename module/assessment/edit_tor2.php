@@ -50,7 +50,6 @@
 	ORDER BY subcap_id ASC")or die("SQL-error.Asst2".mysqli_error($con));
     for ($ass2 = array (); $row = $Se_ass2->fetch_assoc(); $ass2[] = $row);
       //print_r($ass2);
-   
 
 ?>
   <form  method="post" class="p-2" name="tort2" id="tort2"> 

@@ -450,8 +450,8 @@ function fncSum(){
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
-								
+					            //alert(data);
+								alert("บันทึกสำเร็จ");
 								loadmain("assessment","manage_tor");
   							
 					        },

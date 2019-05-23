@@ -91,7 +91,7 @@ mysqli_close($con);
             var r = confirm("คุณต้องการบันทึกใช่หรือไม่?");
             if (r == true) {
                 $.post( "module/assessment/ldl_update.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-                    alert(data);
+                   // alert(data);
                 });
 
                 $('#addsub').modal("hide");

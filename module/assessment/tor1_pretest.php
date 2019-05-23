@@ -220,7 +220,7 @@ $('#table_score').on('click', 'input[name="<?php echo $go.$tit; ?>"]:checked', f
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+					            //alert(data);
 								$.post( "module/assessment/tor2_pretest.php", { year_id: "<?php echo $tor_ID  ?>" }).done(function( data ) 
 							{
     							//alert( "Data Loaded: " + data );

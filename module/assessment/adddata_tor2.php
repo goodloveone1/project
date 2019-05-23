@@ -39,7 +39,7 @@ VALUES('','$_POST[tor_id]','$_POST[sumscore]','$_POST[sumAllscore]')";
 mysqli_query ($con,$sql3) or die ("error3".mysqli_error($con));
 
 
-// echo"บันทึกเสร็จแล้ว";
+echo"บันทึกเสร็จแล้ว";
 mysqli_close($con);
 ?>
 

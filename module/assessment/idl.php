@@ -95,7 +95,7 @@ $mm=date('m');  //เดือนปัจจุบัน
 			</tr>
 		</tbody>	
 	</table>
-	<div class="custom-control custom-checkbox " >
+	<div class="custom-control custom-checkbox text-center" >
 				<?php 
 				$se_chk=mysqli_query($con,"SELECT chk,name FROM chk_absence WHERE staff_id='$_SESSION[user_id]' AND year_id='$y_id'")or die("SQL-error".mysqli_error($con));
 				list($chks,$nameChk)=mysqli_fetch_row($se_chk);

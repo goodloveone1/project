@@ -17,13 +17,9 @@ if(empty($_POST['tappcetp'])){
 
 $sql="INSERT INTO asessment_t5(asst5_id,ass_id,accept,inform,date_inform)
         VALUES('','$_POST[tor_id]','$accept','$taccept','$_POST[tdate]')";
-        echo $sql;
+       // echo $sql;
        mysqli_query ($con,$sql) or die ("error1".mysqli_error($con));
 
-
-
-
- 
 
 // unset($_SESSION['genIdpost']);
 // unset($_SESSION['yearIdpost']);
