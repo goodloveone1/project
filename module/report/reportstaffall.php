@@ -105,11 +105,18 @@ while(list($prefix,$fname,$lname,$pos_name,$dept_name,$br_name,$picture,$sum_sco
 	
 }
 
-
+if($r !=""){
 ?>
+
 <div id="resizable" style="height: 400px">
 	<div id="chartContainer" style="height: 100%; width: 100%;"></div>
-	
+<?php
+}else{
+	echo "<h4 class='h4 text-center text-danger'> *ไม่พบข้อมูล  </h4>";
+}
+?>
+
+
 <script>
 $( document ).ready(function() {
 
