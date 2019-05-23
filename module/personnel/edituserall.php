@@ -10,8 +10,6 @@
 	list($st_id,$user,$pwd,$branch_id,$code,$prefix,$fname,$lname,$salary,$aca_code,$acadeic,$levels,$other,$startdate,$permiss_id,$position,$picture,$savetime)=mysqli_fetch_row($selectA);
 
 	$userphoto=empty($picture)?"default/user_default.svg":$picture;
-
-
 ?>
 
 <div class=" headtitle text-center p-2 row mb-2 row">
@@ -21,7 +19,6 @@
     </div>
      <div class="col-md-2" ></div>
 </div>
-
 
 <form method="POST" enctype="multipart/form-data" id="edituser">
 	<div class="row mt-2">

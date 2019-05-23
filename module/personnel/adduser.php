@@ -9,9 +9,6 @@ $y_id=substr($thai_year,2,4);
 $min=DATE('i');
 
 
-
-
-
 if(!empty($_FILES['pic']['name'])){
 	$target_dir = "../../img/";
 
@@ -56,8 +53,8 @@ $sql = "INSERT INTO staffs (st_id,user,pwd,branch_id,code,prefix,fname,lname,sal
 echo $sql;
 mysqli_query($con,$sql ) or  die ("staffs error=>>".mysql_error($con));
 
-$result = mysqli_query($con,"SELECT MAX(st_id) FROM staffs") or die ("mysql error=>>".mysql_error($con));
-list($genid) = mysqli_fetch_row($result);
+// $result = mysqli_query($con,"SELECT MAX(st_id) FROM staffs") or die ("mysql error=>>".mysql_error($con));
+// list($genid) = mysqli_fetch_row($result);
 
 
 if(!empty($_POST['degname']) && !empty($_POST['degaddes']) && !empty($_POST['degree'])){
@@ -68,7 +65,7 @@ if(!empty($_POST['degname']) && !empty($_POST['degaddes']) && !empty($_POST['deg
 
 
 	for($i=0;$i < count($degname);$i++){
-		$sqlder = "INSERT INTO education VALUES ('','".$genid."','".$degname[$i]."','".$degaddes[$i]."','".$degree[$i]."')";
+		$sqlder = "INSERT INTO education VALUES ('','".$gen_id."','".$degname[$i]."','".$degaddes[$i]."','".$degree[$i]."')";
 
 		mysqli_query($con,$sqlder) or  die ("mysql error=>>".mysql_error($con));
 
@@ -78,9 +75,6 @@ if(!empty($_POST['degname']) && !empty($_POST['degaddes']) && !empty($_POST['deg
 
 
 }
-
-
-
 
       mysqli_close($con);
 

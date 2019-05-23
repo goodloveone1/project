@@ -552,7 +552,7 @@ function webmenu($id){
 						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="listuser" title="รายงานผลส่วนบุคคล">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลส่วนบุคคล </span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแต่ละบุคคล </span>
 							</li>
 							</button>
 						</a>

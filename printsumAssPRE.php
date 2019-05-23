@@ -2,7 +2,8 @@
 <?php
 session_start();
 
-//if(!empty($_POST['year']) && !empty($_POST['stid'])){
+if(!empty($_POST['assid'])){
+
 
 include("function/db_function.php");
 include("function/fc_time.php");
@@ -1015,5 +1016,9 @@ $mpdf->Output();
 
 mysqli_close($con);
 
+} /// END IF TOP
+else{
+	echo "<script> window.location = 'userlogin.php' </script>";
+}
 
 ?>

@@ -37,15 +37,17 @@ $("#updatesu").click(function(event) {
     // var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
     // if (r == true) {
         $.post( "module/personnel/updatesubject.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            // alert(data);
+            //alert(data);
+           
          });
         $('#editsub').modal("hide");
 
         $('#editsub').on('hidden.bs.modal', function (e) {
-
+            
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
-           loadmain(module1,action);
+            loadmain(module1,action);
+            alert("บันทึกสำเร็จ");
         })
     //}
 });

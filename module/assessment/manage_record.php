@@ -40,15 +40,21 @@ while(list($y_id,$y_year,$y_no,$y_start,$y_end)=mysqli_fetch_row($selectyear)){
 
     $idl= mysqli_query($con,"SELECT year_id FROM absence WHERE staff='$_SESSION[user_id]' AND year_id='$y_id' ") or  die("SQL Error1==>1".mysql_error($con));
     list($year_id1)=mysqli_fetch_row($idl);
+
+    $se_chk=mysqli_query($con,
+      "SELECT chk_id,chk,name
+      FROM chk_absence WHERE staff_id='$_SESSION[user_id]' AND year_id='$year_id1'")or die("SQL-error".mysqli_error($con));
+      list($chk_id,$chk,$name)=mysqli_fetch_row($se_chk);
+      mysqli_free_result($se_chk);
     
     if($yearnow==$y_id){
         if(!empty($year_id1)){
           echo " <td> <b class='text-success'><i class='fas fa-check-circle fa-2x'></i> บันทึกการมาปฏิบัติงานแล้ว </b> </td>";
           if($yearnow == $year_id1){
             // echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='editbrn' data-id='$y_id'><i class='far fa-edit fa-2x'></i> แก้ไข <b></a></td>";
-            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl'  date-stid='$_SESSION[user_id]' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
+            echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl'  date-stid='$_SESSION[user_id]' data-id='$y_id' data-ck='$chk_id'> <i class='fas fa-info-circle fa-2x'></i> รายละเอียด <b></a></td>";
           }else{
-              echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl' date-stid='$_SESSION[user_id]' data-id='$y_id'><i class='fas fa-check fa-2x'></i> ตรวจสอบ <b></a></td>";
+              echo " <td> <b class='text-secondary'><a href='javascript:void(0)' class='modelshowidl' date-stid='$_SESSION[user_id]' data-id='$y_id' data-ck='$chk_id'> <i class='fas fa-info-circle fa-2x'></i> รายละเอียด <b></a></td>";
           }
 
         }else{
@@ -97,9 +103,10 @@ $(".modelshowidl").click(function(e){
         e.preventDefault()
         var id =$(this).data("id");
         var idst =$(this).data("stid");
-        $.post( "module/assessment/ldl_modelform.php", { yearid: id,stid:idst  } ).done(function(data){
+        var cks =$(this).data("ck");
+        $.post( "module/assessment/ldl_modelform.php", { yearid: id, stid : idst , acp:cks } ).done(function(data){
             $("#loadaddsub").html(data);
-            $('#showldl').modal('show');
+            $('#checksub').modal('show');
         })
 });
 
