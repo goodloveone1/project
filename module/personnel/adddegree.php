@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-center">วุฒิการศึกษา :</label>
                          <div class="col-md">
-                            <input type="text"   class="form-control" value=""  name="ed_name" size=40 require>
+                            <input type="text"   class="form-control" value=""  name="ed_name" size=40 required>
                         </div>
                           <input type="hidden"    value=""  name="degree_name" size=40 require>
                     </div>
@@ -41,12 +41,15 @@
 
 
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-    var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-    if (r == true) {
+$("#updatesu").click(function(event){
+    $( "#foreditbrc" ).submit() 
+})
+$("#foreditbrc").submit(function(e) {
+    e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/personnel/adddatadegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            alert("บันทึกข้อมูลสำเร๊จ")
+            swal("บันทึกสำเร็จแล้ว", "", "success")
             $('#addsub').modal("hide");
 
             $('#addsub').on('hidden.bs.modal', function (e) {
@@ -55,8 +58,6 @@ $("#updatesu").click(function(event) {
                 loadmain(module1,action);
             })  
          });
-         
-       
-    } 
+        }    
 });
 </script>

@@ -23,7 +23,7 @@
 
                     <div class="form-group">
                         <label > วุฒิการศึกษา :</label>
-                         <input type="text"   class="form-control" value="<?php echo $degree_name ?>"  name="degree_name" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $degree_name ?>"  name="degree_name" size=40 required>
                           <input type="hidden"    value="<?php echo $degree_id ?>"  name="degree_id" size=40 require>
                     </div>
 
@@ -44,20 +44,22 @@
 
 
 <script type="text/javascript">
-$("#updatede").click(function(event) {
-    var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-    if (r == true) {
+$("#updatede").click(function(event){
+    $( "#foreditbrc" ).submit() 
+})
+$("#foreditbrc").submit(function(e) {
+    e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/personnel/updatedegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){        
             $('#editde').modal("hide");
-            alert("บันทึกข้อมูลสำเร๊จ");
+            swal("บันทึกสำเร็จแล้ว!", "", "success")
             $('#editde').on('hidden.bs.modal', function (e) {
                 var module1 = sessionStorage.getItem("module1")
                 var action = sessionStorage.getItem("action")
                 loadmain(module1,action);
             })  
          });
-         
-        
-    } 
+        }
 });
 </script>

@@ -24,8 +24,8 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
                 <div class="modal-body">
                     <div class="form-group">
                         <label > ชื่อหลักสูตร :</label>
-                         <input type="text"   class="form-control" value="<?php echo $subject_name ?>"  name="subject" size=40 require>
-                          <input type="hidden"    value="<?php echo $subject_id ?>"  name="subject_id" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $subject_name ?>"  name="subject" size=40 required>
+                          <input type="hidden"    value="<?php echo $subject_id ?>"  name="subject_id" size=40 required>
                     </div>
                     <div class="form-group">
                         <label > ชื่อสาขาวิชา :</label>
@@ -50,27 +50,25 @@ list($subject_id,$subject_name,$branch_id)=mysqli_fetch_row($result);
     </div>
 </form>
 <script type="text/javascript">
-
-    $("#updatesu").click(function(event) {
-        var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
-        if (r == true) {
+$("#updatesu").click(function(event){
+    $( "#foreditbrc" ).submit() 
+}) 
+    $("#foreditbrc").submit(function(e){
+        e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
             $.post( "module/personnel/updatebranch.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
                  // alert(data);
              });
             $('#editsub').modal("hide");
-
             $('#editsub').on('hidden.bs.modal', function (e) {
-
+                swal("บันทึกสำเร็จแล้ว!", "", "success")
                 var module1 = sessionStorage.getItem("module1");
                 var action = sessionStorage.getItem("action");
                 loadmain(module1,action);
             })
-
-
         }
-
-
-    });
+    })
 </script>
 
             <?php
