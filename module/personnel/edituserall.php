@@ -324,8 +324,6 @@
 
 		$(document).ready(function() {
 
-
-
 			selectsuj();
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');
@@ -349,8 +347,8 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-								//alert(data);
-								alert("บันทึกข้อมูลสำเร็จ" );
+								// alert("บันทึกข้อมูลสำเร็จ" );
+								swal("บันทึกสำเร็จแล้ว!", "", "success")
 								loadingpage("personnel","edituserall")
 					        },
 					        cache: false,

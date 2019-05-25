@@ -276,7 +276,7 @@
 					        data: formData,
 					        success: function (data) {
 								//alert(data);
-								alert("บันทึกข้อมูลสำเร็จ" );
+								swal("บันทึกสำเร็จแล้ว!", "", "success")
 								loadmain("personnel","mangauser")
 					        },
 					        cache: false,
