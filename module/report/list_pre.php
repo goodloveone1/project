@@ -76,7 +76,7 @@
 				
 							echo "
 								<tr>
-									<td>  $y_no/$y_year</td>
+									<td>  $y_no/".($y_year+543)."</td>
 									<td>  $sum_score </td>
 									<td>  $text </td>
 									<td>

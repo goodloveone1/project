@@ -49,7 +49,7 @@
 
 							echo "
 								<tr>
-									<td>  $y_no/$y_year</td>
+									<td>  $y_no/".($y_year+543)."</td>
 									<td>  <form action='printsumAssTOR.php' method='POST'  target='blank'>
 									<input type='hidden' name='assid' value='$ass_id'>
 									<button class='btn btn-success' type='submit'><i class='fas fa-print'></i> พิมพ์ </button>
