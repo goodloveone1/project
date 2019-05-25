@@ -15,6 +15,7 @@
         <th>ชื่อ-สกุล</th>
         <th>ตำแหน่งทางวิชาการ</th>
         <th>ตำแหน่งการบริหาร</th>
+        <th class='text-center'>สถานะหลักฐาน</th>
         <th>ลบ</th>
       </tr>
     <thead>
@@ -47,6 +48,41 @@
         list($pos_name)=mysqli_fetch_row($se_post);
         mysqli_free_result($se_post);
 
+        $evs=mysqli_query($con,"SELECT evd_id,evd_status FROM evidence WHERE ass_id='$ass_id'")or die("SQL.errorACA".mysqli_error($con));
+        list($evd_id,$evd_status)=mysqli_fetch_row($evs);
+        mysqli_free_result($evs);
+
+        $asst5=mysqli_query($con,"SELECT inform FROM asessment_t5 WHERE ass_id='$ass_id'")or die("SQL.errorACA".mysqli_error($con));
+        list($inform)=mysqli_fetch_row($asst5);
+        mysqli_free_result($asst5);
+
+        $evd="";
+        if($type=="PRE"){
+          $evd = "<i class='fas fa-minus-circle fa-2x text-danger'></i>";
+        }else if(empty($evd_id)){
+          $evd = "<i class='fas fa-minus-circle fa-2x text-danger'></i>";
+        }else if(!empty($evd_id) AND $evd_status==1){
+
+          $evd = "
+          <select class='form-control' id='selectsuj' name='suj'>
+            <option value='1' selected>ตรวจสอบหลักฐานอีกครั้ง</option>
+            <option value='2'>ยืนหลักฐานแล้ว</option>
+          </select> 
+          ";
+        } else if(!empty($evd_id) AND $evd_status==2 AND $inform==0){
+
+          $evd = "
+          <select class='form-control' id='selectsuj' name='suj'>
+            <option value='1'>ตรวจสอบหลักฐานอีกครั้ง</option>
+            <option value='2' selected>ยืนหลักฐานแล้ว</option>
+          </select> 
+          ";
+        }else if(!empty($evd_id) AND $evd_status==2 AND $inform==1){
+
+          $evd = "<i class='fas fa-minus-circle fa-2x text-danger'></i><br>หัวหน้ารับทราบการประเมินแล้ว";
+        }
+
+
     echo"<tr>";
         echo"<td><a href='javascript:void(0)' class='$class text-success'  data-genid='$gen_id' data-yearid='$year_id' data-torid='$ass_id' data-fullname='$prefix$fname $lname' title='คลิกเพื่อแสดงการประเมิน'>$ass_id</a></td> "; 
         echo"<td>$p_type</td>";
@@ -55,6 +91,8 @@
         echo"<td>$prefix$fname $lname</td>";
         echo"<td>$aca_name</td>";
         echo"<td>$pos_name</td>";
+        echo"<td class='text-center'>$evd</td>";
+
         echo"<td><a href='javascript:void(0)'  class='deluser' data-iduser='$ass_id' data-type='$p_type' data-nuser='$fname $lname' ><i class='fa fa-trash fa-2x'></i></a></td>";
     echo"</tr>";
     }

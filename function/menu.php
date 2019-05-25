@@ -75,7 +75,7 @@ function webmenu($id){
 						<a href="javascript:void(0)" class="menuuser" data-modules="assessment" data-action="weight" title="น้ำหนักความสำคัญของงาน">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user addindent">
-							<i class="icon fas fa-angle-double-right"></i><span class="text">น้ำหนักความสำคัญของงาน</span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text">น้ำหนักความ<br>สำคัญของงาน</span>
 							</li>
 							</button>
 						</a>

@@ -233,8 +233,8 @@ $( document ).ready(function() {
 
 		}else{
 			var filemuti = "<div class='form-group'><small id='fileHelpInline' class='form-text text-muted '>**อัปโหลดเฉพาะไฟล์ PDF DOC DOCX PNG JPG RAR ZIP XLSX XLS เท่านั้น และ ขนาดไม่เกิน 2 MB</small>"
-			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"1'   aria-describedby='fileHelpInline'>"
-			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"2'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file' value='อัฟไฟล์' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"1'   aria-describedby='fileHelpInline'>"
+			filemuti += "<input type='file'  class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"2'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"3'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"4'   aria-describedby='fileHelpInline'>"
 			filemuti += "<input type='file' class='form-control-file filecheck' name='fileimg2"+$(this,"option:selected").data("subid")+"5'   aria-describedby='fileHelpInline'>"

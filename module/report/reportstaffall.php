@@ -61,7 +61,6 @@ else if ($dpid!=""){
 }
 
 
-
 $numrow = mysqli_num_rows($sumas);
 
 if($numrow !=0){
@@ -112,7 +111,7 @@ if($r !=""){
 	<div id="chartContainer" style="height: 100%; width: 100%;"></div>
 <?php
 }else{
-	echo "<h4 class='h4 text-center text-danger'> *ไม่พบข้อมูล  </h4>";
+	echo "<h5 class='h5 text-center text-danger'> *โปรดเลือกรอบปีงบประมาณหรือเลือกแบบใหม่อีกครั้ง  </h5>";
 }
 ?>
 
@@ -159,7 +158,7 @@ function toggleDataSeries(e) {
 <?php
 }
 else{
-	echo "<h4 class='h4 text-center text-danger'> *ไม่พบข้อมูล  </h4>";
+	echo "<h5 class='h5 text-center text-danger'> *โปรดเลือกรอบปีงบประมาณหรือเลือกแบบใหม่อีกครั้ง </h5>";
 }
 
 mysqli_free_result($sumas);
