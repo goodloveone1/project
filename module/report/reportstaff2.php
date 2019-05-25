@@ -121,6 +121,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{
 		type: "column",
+		indexLabel: "คะแนน {y}",
+        indexLabelPlacement: "auto",
 		name: "รอบที่ 1",
 		legendText: "รอบที่ 1",
 		showInLegend: true, 

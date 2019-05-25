@@ -72,8 +72,10 @@ $mpdf = new \Mpdf\Mpdf(
     'fontdata' => $fontData + [
         // จุดสำคัญคือตรงชื่อ font ตรงนี้ต้องตัวเล็กหมดครับ
         'th_niramit' => [
-						'R' => 'TH_Niramit_AS.ttf',
-						'useOTL' => 0x00,
+                        'R' => 'THSarabunIT9.ttf',
+                        'B' => 'THSarabunIT9_Bold.ttf',
+                        'I' => 'THSarabunIT9_Italic.ttf',
+ 						'useOTL' => 0x00,
         ]
     ],
         'default_font' => 'th_niramit' ,
@@ -99,9 +101,15 @@ p,span,b{
     word-wrap: break-word;
 }
 
-.addunder{
+.addunder2{
     text-decoration: underline;
     text-decoration-style:dotted;
+}
+
+.addunder{
+    border-bottom:dotted;
+    padding-bottom:0px;
+    border-width:1px;
 }
 
 table, th, td {
@@ -425,7 +433,7 @@ $mpdf->WriteHTML("<p>๔. การกระทำผิดวินัย/ก�
 ");
 
 
-$mpdf->WriteHTML("<p class='addfontb addunder'> ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน </p>");
+$mpdf->WriteHTML("<p > <span class='addfontb addunder2'>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน </span></p>");
 
 $table3="
 <table style='border-collapse: collapse;border:solid 1px' width='100%' >
@@ -480,7 +488,7 @@ while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
 
     $table3.= "
     <tr>
-        <td> <span  class='addfontb addunder'>".$numthai[$countnumthai]."  $e_name </span><br><span  class='addfontb'> $min_hour <span><br> <span>";
+        <td> <span  class='addfontb addunder2'>".$numthai[$countnumthai]."  $e_name </span><br><span  class='addfontb'> $min_hour <span><br> <span>";
         
         
 

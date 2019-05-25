@@ -1,6 +1,8 @@
 <?php
 	 session_start();
 	include("../../function/db_function.php");
+	include("../../function/fc_time.php");
+	$yearnow = chk_idtest();
 	$con=connect_db();
 
 
@@ -96,20 +98,79 @@
 					$selectP=mysqli_query ($con,"SELECT * FROM academic  WHERE aca_id='$acadeic' ") or die ("error".mysqli_error($con));
 					list($aca_id,$aca_name)=mysqli_fetch_row($selectP);
 					$selectP->free_result();
+
+					$seltor= mysqli_query($con,"SELECT * FROM assessments WHERE staff = '$gen_id' AND  year_id = '$yearnow'  ");
+					$numtor = mysqli_num_rows($seltor);
+					$seltor->free_result();
+
+					$num ='0';
+					if($permiss_id==2){
+						$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+						FROM assessments AS am 
+						INNER JOIN years AS y ON am.year_id = y.y_id
+						INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+						INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+						INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+						WHERE  am.staff='$gen_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+						AND amt6.leader_comt != 0 AND amt6.supervisor_comt != 0
+						 ") or  die("SQL Error1==>1".mysqli_error($con));
+						 $num = mysqli_num_rows($sumas);
+						 mysqli_free_result($sumas);
+					
+					}
+					if($permiss_id==3){
+						$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+						FROM assessments AS am 
+						INNER JOIN years AS y ON am.year_id = y.y_id
+						INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+						INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+						INNER JOIN asessment_t6 AS amt6 ON am.ass_id = amt6.ass_id
+						WHERE  am.staff='$gen_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+						AND amt6.leader_comt != 0 ") or  die("SQL Error1==>1".mysqli_error($con));
+						$num = mysqli_num_rows($sumas);
+						mysqli_free_result($sumas);
+					
+					}
+					if($permiss_id==4){
+						$sumas= mysqli_query($con,"SELECT am.ass_id,y.y_no,y.y_year,sumt3.sum_score
+						FROM assessments AS am 
+						INNER JOIN years AS y ON am.year_id = y.y_id
+						INNER JOIN sum_score_assessment_t3 AS sumt3 ON am.ass_id = sumt3.ass_id
+						INNER JOIN asessment_t5 AS amt5 ON am.ass_id = amt5.ass_id
+						WHERE  am.staff='$gen_id' AND  am.ass_id LIKE  'TOR%' AND  amt5.accept = 1 AND amt5.inform = 1 
+						 ") or  die("SQL Error1==>1".mysqli_error($con));
+						 $num = mysqli_num_rows($sumas);
+						 mysqli_free_result($sumas);
+					
+					}			
+
+					//echo "-".$num." -$numtor- ";
+
+					if($num == 0 AND $numtor != 0){
+
 				?>
 				<input type="hidden"  name="ap" value="<?php echo $aca_id ?>">
 				<input type="text" class="form-control"   value="<?php echo $aca_name; ?>" disabled>
-					<!-- <select class="form-control"  name="ap" disabled>
-					<?php
-						// $selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
 
-						//  while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
-						// 	$seA=$aca_id==$acadeic?"selected":"";
-						// 	echo "<option value=$aca_id $seA>$aca_name</option>";
-						//  }
-						//  $selectP->free_result();
-						// ?>
-					</select> -->
+				<?php
+					}
+					else{
+				?>		
+					 <select class="form-control"  name="ap" >
+					<?php
+						$selectP=mysqli_query ($con,"SELECT  *FROM academic ") or die ("error".mysqli_error($con));
+
+						 while(list($aca_id,$aca_name)=mysqli_fetch_row($selectP)){
+							$seA=$aca_id==$acadeic?"selected":"";
+							echo "<option value=$aca_id $seA>$aca_name</option>";
+						 }
+						 $selectP->free_result();
+						?>
+					</select> 
+				<?php	
+					}
+				?>
+					
 				</div>
 			</div>
 			<div class="form-group row">

@@ -121,6 +121,9 @@
 		<script src="js/validate/localization/messages_th.min.js" ></script>
 		<script src="js/validateSetdef.js" ></script> 
 		<?php //END validate ?>	
+	
+		<!-- Sweetalert -->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 		<!-- DATATABLE -->
 		<script type="text/javascript" src="js/DataTables/datatables.min.js"></script>

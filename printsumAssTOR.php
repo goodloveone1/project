@@ -79,7 +79,9 @@ $mpdf = new \Mpdf\Mpdf(
     'fontdata' => $fontData + [
         // จุดสำคัญคือตรงชื่อ font ตรงนี้ต้องตัวเล็กหมดครับ
         'th_niramit' => [
-						'R' => 'TH_Niramit_AS.ttf',
+                        'R' => 'THSarabunIT9.ttf',
+                        'B' => 'THSarabunIT9_Bold.ttf',
+                        'I' => 'THSarabunIT9_Italic.ttf',
 						'useOTL' => 0x00,
         ]
     ],
