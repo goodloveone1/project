@@ -56,17 +56,31 @@
         $(".delbrn").click(function(){
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
+          // var r = confirm("ต้องการลบสาขา "+branchname+" ใช่หรือไม่?");
+                swal({
+                        title: "ต้องการลบสาขา "+branchname+" ใช่หรือไม่?",
+                        text: "หากลบสาขา "+branchname+" ข้อมูลหลักสูตรและบุคลากรทั้งหมดที่อยู่ในสาขา "+branchname+" จะถูกลบไปด้วย!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons:["ไม่","ใช่"]
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
+                        var module1 = sessionStorage.getItem("module1");
+                        var action = sessionStorage.getItem("action");
+                        //alert(data)
+                        loadmain(module1,action);
+                        })
+                        swal("ลบข้อมูลสำเสร็จแล้ว!", {
+                        icon: "success",
+                        });
 
-            var r = confirm("ต้องการลบสาขา "+branchname+" ใช่หรือไม่?");
-            if (r == true) {
-               
-                $.post( "module/personnel/deletesubject.php", {id : ideditsub}).done(function(data,txtstuta){
-                    var module1 = sessionStorage.getItem("module1");
-                    var action = sessionStorage.getItem("action");
-                    alert(data)
-                    loadmain(module1,action);
-                    })
-            }
+                    } else {
+                        // swal("Your imaginary file is safe!");
+                    }
+                });
         })
         $("#addbrn").click(function( ){
             $('#loadaddsub').load("module/personnel/addsubject.php",function(){
