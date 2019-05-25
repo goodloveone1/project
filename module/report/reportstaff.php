@@ -117,6 +117,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		itemclick: toggleDataSeries
 	},
 	data: [{
+		indexLabel: "คะแนน {y}",
+        indexLabelPlacement: "auto",
 		type: "column",
 		name: "รอบที่ 1",
 		legendText: "รอบที่ 1",
@@ -130,6 +132,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
+		
 		type: "column",	
 		name: "รอบที่ 2",
 		legendText: "รอบที่ 2",

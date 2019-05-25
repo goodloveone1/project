@@ -129,11 +129,12 @@ $( document ).ready(function() {
 		interval: 1
 	},
 	axisY: {
-		title: "คะแนนที่ได้",
-		maximum: 100,
+		title: "คะแนน"
 	},
 	data: [{
 		type: "bar",
+		indexLabel: "คะแนน {y}",
+        indexLabelPlacement: "auto",
 		toolTipContent: "<img src=\"img/\"{url}\"\" style=\"width:40px; height:20px;\"> <b>{label}</b><br>หลักสูตร: {br}<br>สาขา: {dp}<br>ตำแหน่ง: {pos}<br>คะแนน: {y}",
 		dataPoints: [
 			<?php echo  $r; ?>	
