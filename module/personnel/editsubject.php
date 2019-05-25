@@ -16,7 +16,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label > ชื่อสาขาวิชา :</label>
-                         <input type="text"   class="form-control" value="<?php echo $_POST['branchname'] ?>"  name="branch_name" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $_POST['branchname'] ?>"  name="branch_name" size=40 required>
                           <input type="hidden"    value="<?php echo $_POST['id'] ?>"  name="branch_id" size=40 require>
                     </div>
 
@@ -32,13 +32,15 @@
 </form>
 
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-    // var r = confirm("คุณต้องการแก้ไขข้อมูลใช่หรือไหม?");
-    // if (r == true) {
+$("#updatesu").click(function(event){
+    $( "#foreditbrc" ).submit() 
+})
+$("#foreditbrc").submit(function(e) {
+    e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/personnel/updatesubject.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
             //alert(data);
-           
          });
         $('#editsub').modal("hide");
 
@@ -47,8 +49,8 @@ $("#updatesu").click(function(event) {
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
             loadmain(module1,action);
-            alert("บันทึกสำเร็จ");
+            swal("บันทึกสำเร็จแล้ว!", "", "success")
         })
-    //}
+        }
 });
 </script>

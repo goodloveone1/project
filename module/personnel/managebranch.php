@@ -79,14 +79,31 @@ $con=connect_db();
         $("#Datatable").on('click', '.delbrn', function(event) {
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
-            var r = confirm("คณต้องการลบหลักสูตร "+branchname+" ใช่ไหม?");
-            if (r == true) {
-                $.post( "module/personnel/delbranch.php", {id : ideditsub}).done(function(data,txtstuta){
+           // var r = confirm("คณต้องการลบหลักสูตร "+branchname+" ใช่ไหม?");
+            swal({
+                title: "ต้องการลบหลักสูตร "+branchname+" ใช่หรือไม่",
+                text: "หากลบหลักสูตร "+branchname+" ข้อมูลบุคลากรทั้งหมดที่อยู่ใน "+branchname+" จะถูกลบไปด้วย!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons:["ไม่","ใช่"],
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.post( "module/personnel/delbranch.php", {id : ideditsub}).done(function(data,txtstuta){
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
                     loadmain(module1,action);
                     })
-            }
+
+                    swal("ลบข้อมูลสำเสร็จแล้ว!", {
+                    icon: "success",
+                    });
+                } else {
+                   // swal("Your imaginary file is safe!");
+                }
+            });
+            
         })
 
        $("#addbrn").click(function( ){

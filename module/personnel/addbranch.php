@@ -19,7 +19,7 @@ $con=connect_db();
                 <div class="modal-body">
                     <div class="form-group">
                         <label > ชื่อหลักสูตร :</label>
-                         <input type="text"   class="form-control" value="" placeholder="ชื่อหลักสตร" name="subject" size=40 require>
+                         <input type="text"   class="form-control" value="" placeholder="ชื่อหลักสตร" name="subject" size=40 required>
                     </div>
                     <div class="form-group">
                         <label > ชื่อสาขาวิชา :</label>
@@ -44,9 +44,13 @@ $con=connect_db();
 </form>
 <script type="text/javascript">
 
-    $("#addsu").click(function(event) {
-        var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
-        if (r == true) {
+$("#addsu").click(function(event){
+    $( "#formaddbrc" ).submit() 
+}) 
+    $("#formaddbrc").submit(function(e){
+        e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
             $.post( "module/personnel/adddatabranch.php", $("#formaddbrc").serialize()).done(function(data,txtstuta){
                 //alert(data);
                 $('#addsub').modal("hide")
@@ -56,14 +60,10 @@ $con=connect_db();
                 var module1 = sessionStorage.getItem("module1")
                 var action = sessionStorage.getItem("action")
               loadmain(module1,action);
+              swal("บันทึกสำเร็จแล้ว!", "", "success")
                })
              })
-
-
-
         }
-
-
     });
 </script>
 

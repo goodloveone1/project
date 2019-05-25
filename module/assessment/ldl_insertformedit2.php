@@ -88,12 +88,12 @@ mysqli_close($con);
     $(document).ready(function() {
         $("#updatesu").click(function(event) {
 
-            var r = confirm("คุณต้องการบันทึกใช่หรือไม่?");
-            if (r == true) {
+           // var r = confirm("คุณต้องการบันทึกใช่หรือไม่?");
+            
                 $.post( "module/assessment/ldl_update.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
                    // alert(data);
                 });
-
+                swal("บันทึกสำเร็จแล้ว!", "", "success")
                 $('#addsub').modal("hide");
 
                 $('#addsub').on('hidden.bs.modal', function (e) {
@@ -101,9 +101,8 @@ mysqli_close($con);
                     var action = sessionStorage.getItem("action")
                     loadmain(module1,action);
                 })
+                
 
-
-            }
         });
         $("#inputState").change(function(){
                 var years=$(this,"option:selected").val()

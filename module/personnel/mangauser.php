@@ -116,15 +116,33 @@
             var iduser =$(this).data("iduser");
             var nuser =$(this).data("nuser");
 
-            var r = confirm("ต้องการลบข้อมูล "+nuser+" ใช่หรือไม่?");
-            if (r == true) {
+            // var r = confirm("ต้องการลบข้อมูล "+nuser+" ใช่หรือไม่?");
+			swal({
+				title: "ต้องการลบ "+nuser+" ใช่หรือไม่?",
+				text: "เมื่อลบไปแล้วจะไม่สามารถกู้คืนข้อมูลได้!",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				buttons:["ไม่","ใช่"]
+				})
+				.then((willDelete) => {
+				if (willDelete) {
+				
                 $.post( "module/personnel/deluser.php", {id : iduser}).done(function(data,txtstuta){
-					alert(data);
+					//alert(data);
                     var module1 = sessionStorage.getItem("module1");
                     var action = sessionStorage.getItem("action");
                     loadmain(module1,action);
                     })
-            	}
+            	
+					swal("ลบข้อมูลสำเสร็จแล้ว!", {
+					icon: "success",
+					});
+				} else {
+					//swal("Your imaginary file is safe!");
+				}
+				});
+           
         	})
 
       
@@ -145,25 +163,40 @@
 			});
 
 			$("#btndelall").click(function(){
-
 				var text=$("input[name='delid[]']:checked").val();
-
-
-
 				if(text!=undefined){
-					$.post("module/personnel/deluser.php",$("#delall").serialize()).done(function(data,txtstuta){
-					//alert(data);
-					var module1 = sessionStorage.getItem("module1");
-                    var action = sessionStorage.getItem("action");
-                    loadmain(module1,action);
-				})
+					swal({
+					title: "ต้องการลบบุคลากรที่เลือกใช่หรือไม่",
+					text: "เมือถูกลบไปแล้วไม่สามารถกู้คืนได้",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+					buttons:["ไม่","ใช่"],
+					})
+					.then((willDelete) => {
+					if (willDelete) {
+								
+						$.post("module/personnel/deluser.php",$("#delall").serialize()).done(function(data,txtstuta){
+						//alert(data);
+						var module1 = sessionStorage.getItem("module1");
+						var action = sessionStorage.getItem("action");
+						loadmain(module1,action);
+					})
+						swal("ลบข้อมูลสำเสร็จแล้ว!", {
+						icon: "success",
+						});
+					} else {
+						// swal("Your imaginary file is safe!");
+					}
+					});
+			
 				}
 				else{
 					alert("กรุณาเลือกข้อมูลที่ต้องการลบ");
 				}
 
 			})
-
+			
 		});
 
 </script>

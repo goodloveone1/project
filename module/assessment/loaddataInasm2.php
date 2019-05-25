@@ -145,7 +145,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
               echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
             }
         }else if($position=='2'){
-             echo"<td></td>";
+             echo"<td class='text-center'><b class='text-danger'><i class='fas fa-minus-circle fa-2x'></i><br>ไม่ได้เป็นผู้บังคับบัญชาเหนือขึ้นไป</b><br></td>";
       }
       }else if($_SESSION['user_level']==5){
           if($position=='1'){
@@ -172,7 +172,7 @@ while(list($gen_id,$gen_fname,$gen_lname,$branch_id,$gen_pict,$position)=mysqli_
             echo $com_s,"<td class='text-center'><b class='text-success'><i class='fas fa-check-circle fa-2x'></i><br>แสดงความเห็นแล้ว</b></td>",$com_e; 
           }
       }if($position=='3'){
-        echo"<td></td>";
+        echo"<td class='text-center'><b class='text-danger'><i class='fas fa-minus-circle fa-2x'></i><br>ไม่ได้เป็นผู้บังคับบัญชาเหนือขึ้นไป</b><br></td>";
       }
         
       }
