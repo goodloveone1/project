@@ -65,16 +65,31 @@
             var ideditsub =$(this).data("ideditsub");
             var branchname =$(this).data("branchname");
 
-            var r = confirm("ต้องการลบวุฒิ "+branchname+" ใช่หรือไม่?");
-            if (r == true) {
-
-                $.post( "module/personnel/deletedegree.php", {id : ideditsub}).done(function(data,txtstuta){
-                    var module1 = sessionStorage.getItem("module1");
-                    var action = sessionStorage.getItem("action");
-                   // alert(data);
-                    loadmain(module1,action);
+            //var r = confirm("ต้องการลบวุฒิ "+branchname+" ใช่หรือไม่?");
+                    swal({
+                        title: "ต้องการลบ "+branchname+" ใช่หรือไม่",
+                        text: "เมื่อถูกลบแล้วจะไม่สามารถกู้คืนได้!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons:["ไม่","ใช่"],
                     })
-            }
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.post( "module/personnel/deletedegree.php", {id : ideditsub}).done(function(data,txtstuta){
+                            var module1 = sessionStorage.getItem("module1");
+                            var action = sessionStorage.getItem("action");
+                                // alert(data);
+                            loadmain(module1,action);
+                            })
+                            swal("ลบข้อมูลสำเสร็จแล้ว!", {
+                            icon: "success",
+                            });
+                        } else {
+                        // swal("Your imaginary file is safe!");
+                        }
+                    });
+            
         })
 
         $("#addbrn").click(function(e){
