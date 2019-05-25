@@ -132,7 +132,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		]
 	},
 	{
-		
+		indexLabel: "คะแนน {y}",
 		type: "column",	
 		name: "รอบที่ 2",
 		legendText: "รอบที่ 2",

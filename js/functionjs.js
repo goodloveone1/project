@@ -67,3 +67,10 @@ function setsession(module1,action,id){
 }
 
 
+function alertsweet(){
+
+	swal("Good job!", "You clicked the button!", "success");
+
+}
+
+

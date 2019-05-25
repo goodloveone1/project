@@ -101,6 +101,12 @@ p,span,b{
     word-wrap: break-word;
 }
 
+.addfontnb{
+    font-weight: normal;
+    font-size:18px;
+    word-wrap: break-word;
+}
+
 .addunder2{
     text-decoration: underline;
     text-decoration-style:dotted;
@@ -116,6 +122,10 @@ table, th, td {
 	border: 1px solid black;
     font-size:18px;
     word-wrap: break-word;
+}
+
+.text-center{
+    text-align:center;
 }
 
 p {
@@ -174,16 +184,19 @@ $seaPos=mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$position
 list( $pos_name)=mysqli_fetch_row($seaPos);
 mysqli_free_result($seaPos);
 
-$mpdf->WriteHTML("<p class='addfontb'>ชื่อผู้รับการประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$pos_name&nbsp;&nbsp;</span> </p>
-<p class='addfontb'>สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</span></p>
-");
-
 $seaPos=mysqli_query($con,"SELECT pos_name FROM position WHERE pos_id='$l_position'")or die("SQL_ERROR".mysqli_error($con));
 list( $lpos_name)=mysqli_fetch_row($seaPos);
 mysqli_free_result($seaPos);
 
-$mpdf->WriteHTML("<p class='addfontb'>ชื่อผู้บังคับบัญชา/ผู้ประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;$l_prefix $l_fname $l_lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;$lpos_name&nbsp;&nbsp;</span> </p>
+$mpdf->WriteHTML("
+<div class='text-center'>
+<p class='addfontb'>ชื่อผู้รับการประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$pos_name&nbsp;&nbsp;</span> </p>
+<p class='addfontb'>สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</span></p>
+<p class='addfontb'>ชื่อผู้บังคับบัญชา/ผู้ประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$l_prefix $l_fname $l_lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder addfontnb'>&nbsp;&nbsp;$lpos_name&nbsp;&nbsp;</span> </p>
+</div>
 ");
+
+
 
 
 $mpdf->WriteHTML("

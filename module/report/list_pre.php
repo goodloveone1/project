@@ -134,10 +134,23 @@
 	
 	</div>
 </div>
+<button type="button" id="test" class="btn btn-primary"> TEST </button>
 <script type="text/javascript">
 		$(document).ready(function() {
 
 			$.getScript('js/mydatatable.js') // dataTable	
+			//$.getScript('js/functionjs.js')
+
+			$("#test").click(function(){
+
+
+				alertsweet();
+
+				
+
+			})
+			
+
 
 		});	
 </script> 			
