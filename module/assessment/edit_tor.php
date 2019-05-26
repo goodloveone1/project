@@ -470,9 +470,9 @@ $(document).ready(function() {
 					        data: formData,
 					        success: function (data) {
 										 // alert(data);
-										 swal("บันทึกสำเร็จ","","success", {
+										 swal("บันทึกสำเร็จ"," ","success", {
 											buttons: false,
-											timer: 2000,
+											timer: 1000,
 											});
 					        },
 					        cache: false,

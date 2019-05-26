@@ -135,8 +135,10 @@
                     loadmain(module1,action);
                     })
             	
-					swal("ลบข้อมูลสำเสร็จแล้ว!", {
+					swal("ลบข้อมูลสำเสร็จ!", {
 					icon: "success",
+					buttons: false,
+					timer: 1000,
 					});
 				} else {
 					//swal("Your imaginary file is safe!");
@@ -184,6 +186,8 @@
 					})
 						swal("ลบข้อมูลสำเสร็จแล้ว!", {
 						icon: "success",
+						buttons: false,
+						timer: 1000,
 						});
 					} else {
 						// swal("Your imaginary file is safe!");

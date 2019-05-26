@@ -476,9 +476,9 @@ $("#addtor").submit(function(e){
 					        success: function (data) {
 									//alert(data);
 									// swal("บันทึกสำเร็จแล้ว!", "", "success")
-									swal("บันทึกสำเร็จแล้ว!", "", "success", {
+									swal("บันทึกสำเร็จแล้ว!", " ", "success", {
 								buttons: false,
-								timer: 2000,
+								timer: 1000,
 								});
 								$.post( "module/assessment/ass_t1.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>"}).done(function( data ) 
 							{

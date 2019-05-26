@@ -49,7 +49,11 @@ $("#foreditbrc").submit(function(e) {
         var chack=$( this ).valid()
         if(chack==true){
         $.post( "module/personnel/adddatadegree.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            swal("บันทึกสำเร็จแล้ว", "", "success")
+            swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
             $('#addsub').modal("hide");
 
             $('#addsub').on('hidden.bs.modal', function (e) {

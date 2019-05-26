@@ -49,7 +49,11 @@ $("#foreditbrc").submit(function(e) {
             var module1 = sessionStorage.getItem("module1");
             var action = sessionStorage.getItem("action");
             loadmain(module1,action);
-            swal("บันทึกสำเร็จแล้ว!", "", "success")
+            swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
         })
         }
 });

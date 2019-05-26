@@ -98,6 +98,8 @@ $con=connect_db();
 
                     swal("ลบข้อมูลสำเสร็จแล้ว!", {
                     icon: "success",
+                    buttons: false,
+					timer: 1000,
                     });
                 } else {
                    // swal("Your imaginary file is safe!");

@@ -323,7 +323,12 @@
 						        processData: false
 						    }).done(function() {
 
-									alert("บันทึกข้อมูลสำเร็จ");
+								//	alert("บันทึกข้อมูลสำเร็จ");
+								swal("เพิ่มข้อมูลสำเสร็จ!", {
+								icon: "success",
+								buttons: false,
+								timer: 1000,
+								});
 						    	loadingpage("personnel","mangauser");
 
 						    })

@@ -89,17 +89,25 @@ $(document).ready(function() {
 		e.preventDefault() 
 
 			if($vform.valid()){
-				$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-				if($conf==true){
-					var formData = new FormData(this);
-
+				//$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
+				swal({
+                title: "คุณต้องการอัปโหลดไฟล์ใช่หรือไม่?",
+                text: " ",
+                icon: "info",
+                buttons: true,
+                dangerMode: true,
+                buttons:["ยกเลิก","ตกลง"],
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    var formData = new FormData(this);
 						$.ajax({
 							url: "module/assessment/edit_evd_add_file.php",
 							type: 'POST',
 							data: formData,
 							success: function (data) {
 
-                            alert(data)
+                            //alert(data)
 
 							},
 							cache: false,
@@ -109,7 +117,17 @@ $(document).ready(function() {
                             $('.filecheck').val("");
                             loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,'<?php echo $_POST['evdid'] ?>')
 						})
-		}
+                    swal("อัปโหลดไฟล์สำเร็จแล้ว", {
+                    icon: "success",
+                    buttons: false,
+					timer: 1000,
+                    });
+                } else {
+            
+                }
+                });
+					
+		
 	}
 	
 	});

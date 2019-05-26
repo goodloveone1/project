@@ -219,9 +219,9 @@ if($accept==1){
 					        data: formData,
 					        success: function (data) {
 							   // alert(data);
-							   swal("บันทึกสำเร็จ","","success", {
+							   swal("บันทึกสำเร็จ"," ","success", {
 											buttons: false,
-											timer: 2000,
+											timer: 1000,
 											});
 								$.post( "module/assessment/edit_tor6.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
     							//alert( "Data Loaded: " + data );

@@ -345,7 +345,11 @@
 					        data: formData,
 					        success: function (data) {
 								// alert("บันทึกข้อมูลสำเร็จ" );
-								swal("บันทึกสำเร็จแล้ว!", "", "success")
+								swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
 								loadingpage("personnel","edituserall")
 					        },
 					        cache: false,

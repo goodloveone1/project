@@ -82,7 +82,11 @@ $("#updateedu").click(function(event) {
         $('#editsub').on('hidden.bs.modal', function (e) {
             $.post( "module/personnel/loaddatadegree2.php", { genid : <?php echo $staff_id;?> })
             .done(function( data ) {
-                alert("บันทึกข้อมูลสำเร็จ")
+                swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
                 $("#loadtabledegree").html(data);
             });
         })

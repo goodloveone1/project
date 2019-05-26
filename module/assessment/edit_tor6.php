@@ -182,9 +182,9 @@
 			$(".goto").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
-				swal("บันทึกสำเร็จ","","success", {
+				swal("บันทึกสำเร็จ"," ","success", {
 											buttons: false,
-											timer: 2000,
+											timer: 1000,
 											});
 				loadmain(module1,action)
 			});

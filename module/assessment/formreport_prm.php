@@ -251,10 +251,18 @@ $( document ).ready(function() {
 
 	$( "#fmreport" ).submit(function(e){
 		e.preventDefault() 
-
 			if($vform.valid()){
-				$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-				if($conf==true){
+			//	$conf = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
+			swal({
+				title: "ต้องการบันทึกข้อมูลใช่หรือไม่?",
+				text: "เมื่อบันทึกไปแล้วจะสามารถกลับไปแก้ไข้ข้อมูลได้อยู่",
+				icon: "info",
+				buttons: true,
+				dangerMode: true,
+				buttons:["ยกเลิก","ตกลง"],
+			})
+		.then((willDelete) => {
+				if (willDelete) {
 					var formData = new FormData(this);
 
 						$.ajax({
@@ -267,13 +275,21 @@ $( document ).ready(function() {
 							contentType: false,
 							processData: false
 						}).done(function(data) {
-
-							alert(data)
+							//alert(data)
 						loadingpage("assessment","manage_Evidence");
 						//	$("#detail").html(data);
-
 						})
-		}
+					swal("บันข้อมูลสำเสร็จ!", {
+						icon: "success",
+						buttons: false,
+						timer: 1000,
+					});
+				} else {
+					// swal("Your imaginary file is safe!");
+				}
+			});
+					
+
 	}
 	
 	});

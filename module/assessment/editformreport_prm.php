@@ -262,24 +262,42 @@ $( document ).ready(function() {
 		$( "#formstatus" ).submit(function(e){
 		e.preventDefault() 
 
-				$conf = confirm("คุณต้องการยืนยันข้อมูลใช่ไหม?");
-				if($conf==true){
-					var formData = new FormData(this);
+				//$conf = confirm("คุณต้องการยืนยันข้อมูลใช่ไหม?");
+				swal({
+				title: "คุณต้องการยืนยันข้อมูลใช่ไหม?",
+				text: "กรุณาตรวจสอบไฟล์หลักฐานของคุณว่าครบแล้วหรือไม่ ถ้ากดตกลงไปแล้วจะไม่สามารถกลับมาแก้ไขข้อมูลได้อีก!",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				buttons:["ยกเลิก","ตกลง"],
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						var formData = new FormData(this);
 
 						$.ajax({
 							url: "module/assessment/update_status_evd.php",
 							type: 'POST',
 							data: formData,
 							success: function (data) {
-
-                            alert(data)
+                            //alert(data)
 							loadingpage("assessment","manage_Evidence");		
 							},
 							cache: false,
 							contentType: false,
 							processData: false
 						})
-		}
+						swal("บันทึกข้อมูลสำเสร็จแล้ว!", {
+						icon: "success",
+						buttons: false,
+						timer: 1000,
+						});
+					} else {
+						//swal("Your imaginary file is safe!");
+					}
+				});
+					
+		
 	});
 });
 </script>

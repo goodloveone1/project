@@ -273,7 +273,11 @@
 					        data: formData,
 					        success: function (data) {
 								//alert(data);
-								swal("บันทึกสำเร็จแล้ว!", "", "success")
+								swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
 								loadmain("personnel","mangauser")
 					        },
 					        cache: false,

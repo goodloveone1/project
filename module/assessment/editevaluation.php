@@ -102,7 +102,11 @@ $( document ).ready(function() {
                 // alert(data);
             })
             $('#editsub').modal("hide");
-            swal("บันทึกสำเร็จแล้ว!", "", "success") 
+            swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								}); 
             $('#editsub').on('hidden.bs.modal', function (e) {
             loadmain("assessment","evaluation");
             })

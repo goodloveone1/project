@@ -43,14 +43,32 @@ $(document).ready(function() {
     $.getScript('js/mydatatable.js');
 
     $(".tableevdfile").on("click",".filedel",function(){
-         var r = confirm("คุณต้องลบไฟล์ใช่หรือไหม?");
-         if (r == true) {
-        $.post("module/assessment/del_evd_file.php", { evdidfile : $(this).data("evdfileid") ,url: $(this).data("url") }).done(function(data){
+        // var r = confirm("คุณต้องลบไฟล์ใช่หรือไหม?");
+        swal({
+        title: "ต้องการลบไฟล์ใช่หรือไม่?",
+        text: "เมือไฟล์ถูกลบจะไม่สามารถกู้คืนได้!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.post("module/assessment/del_evd_file.php", { evdidfile : $(this).data("evdfileid") ,url: $(this).data("url") }).done(function(data){
            //alert(data);
-           alert("ลบไฟล์สำเร็จแล้ว");
+           //alert("ลบไฟล์สำเร็จแล้ว");
            loadtablefile('<?php echo $_POST['torid'] ?>',<?php echo $_POST['seid'] ?>,'<?php echo $_POST['evdid'] ?>')
         })
-        }
+                swal("ลบไฟล์สำเร็จแล้ว", {
+                icon: "success",
+                buttons: false,
+				timer: 1000,
+                });
+            } else {
+               // swal("Your imaginary file is safe!");
+            }
+        });
+       
+      
     })
 
     function loadtablefile(torids,seids,evdids){
