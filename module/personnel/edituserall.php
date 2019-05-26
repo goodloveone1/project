@@ -30,7 +30,7 @@
 				<div class="card-body text-center">
 					<div class="form-group row">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input " name="pic_u" accept="image/*">
+							<input type="file" class="custom-file-input " name="pic_u" accept="image/* ">
 							<label class="custom-file-label"  >เลือกรูปภาพ</label>
 						</div>
 					</div> 
@@ -323,7 +323,7 @@
 
 
 		$(document).ready(function() {
-
+			bsCustomFileInput.init() // TYPE file RENAME
 			selectsuj();
 			function selectsuj(){
 				var $idbrn = $("#selectsuj option:selected").data('idbrn');

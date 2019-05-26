@@ -104,15 +104,31 @@ $con=connect_db();
 		$(".delre").click(function(event) {
 			event.preventDefault()
 			var re_tit = $(this).data('retit')
-			var r = confirm("ต้องการลบข่าวประชาสัมพันธ์ "+re_tit+" ใช่หรือไม่?");
-            if (r == true) {
-			var re_id = $(this).data('reid')
-			$.post('module/public_relations/delre.php', {reid: re_id}).done(function(data,txtstuta){
+			//var r = confirm("ต้องการลบข่าวประชาสัมพันธ์ "+re_tit+" ใช่หรือไม่?");
+            swal({
+				title: "ต้องการลบข่าวประชาสัมพันธ์ "+re_tit+" ใช่หรือไม่?",
+				text: "หากลบไปแล้วจะไม่สามารถกู้คืนข้อมูลได้!",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+				buttons:["ยกเลิก","ตกลง"],
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						var re_id = $(this).data('reid')
+						$.post('module/public_relations/delre.php', {reid: re_id}).done(function(data,txtstuta){
 
-				loadingpage("public_relations","pr_manage");
-
-			});
-			}
+							loadingpage("public_relations","pr_manage");
+						});
+						swal("บันทึกสำเร็จแล้ว!", {
+						icon: "success",
+						});
+					} else {
+						// swal("Your imaginary file is safe!");
+					}
+				});
+			
+			
 		});
 
 	})

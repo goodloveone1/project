@@ -30,16 +30,16 @@ $con->close();
 <form id="formeditpr" enctype="multipart/form-data">
 <div class="form-group">
                         <label > หัวเรื่อง :</label>
-                         <input type="text"   class="form-control" value="<?php echo $re_title ?>" placeholder="หัวเรื่อง" name="title" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $re_title ?>" placeholder="หัวเรื่อง" name="title" size=40 required>
                     </div>
                     <div class="form-group">
                         <label > รายละเอียด :</label>
 
-                          <textarea class="form-control" id="editor" rows="3" require name="detail"><?php echo $re_detail ?></textarea >
+                          <textarea class="form-control" id="editor" rows="3" required name="detail"><?php echo $re_detail ?></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
-                         <input type="date"   class="form-control" value="<?php echo $re_date ?>" placeholder="วันที่" name="date" size=40   >
+                         <input type="date"   class="form-control" value="<?php echo $re_date ?>" placeholder="วันที่" name="date" size=40 required  >
                     </div>
 
                     <input type="hidden" name="re_id" value="<?php echo $re_id ?>">
@@ -56,8 +56,8 @@ CKEDITOR.config.height = 500;
 
     $("#formeditpr").submit(function(event) {
         event.preventDefault()
-        var r = confirm("คุณต้องการแก้ไขข้อมูลใช่ไหม?");
-        if (r == true) {
+        //var r = confirm("คุณต้องการแก้ไขข้อมูลใช่ไหม?");
+        
 
             for (instance in CKEDITOR.instances) {
                CKEDITOR.instances[instance].updateElement();
@@ -65,7 +65,7 @@ CKEDITOR.config.height = 500;
 
 
             $.post( "module/public_relations/updatere.php", $("#formeditpr").serialize()).done(function(data,txtstuta){
-                alert("บันทึกสำเร็จ");
+                swal("บันทึกสำเร็จแล้ว!", "", "success") 
  
                  var module1 = sessionStorage.getItem("module1")
                  var action = sessionStorage.getItem("action")
@@ -73,7 +73,7 @@ CKEDITOR.config.height = 500;
                
              })
 
-        }
+        
 
 
     });

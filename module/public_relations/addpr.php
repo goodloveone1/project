@@ -20,16 +20,16 @@ $date = date("Y-m-d");
 <form id="formaddpr" enctype="multipart/form-data">
                     <div class="form-group">
                         <label > หัวเรื่อง :</label>
-                         <input type="text"   class="form-control" value="" placeholder="หัวเรื่อง" name="title" size=40 require>
+                         <input type="text"   class="form-control" value="" placeholder="หัวเรื่อง" name="title" size=40 required>
                     </div>
                     <div class="form-group">
                         <label > รายละเอียด :</label>
 
-                          <textarea class="" id="editor" rows="20" require name="detail"></textarea >
+                          <textarea class="form-control" id="editor" rows="20"  name="detail" required></textarea >
                     </div>
                     <div class="form-group">
                         <label > วันที่ :</label>
-                         <input type="date"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="date" size=40   >
+                         <input type="date"   class="form-control" value="<?php echo $date ?>" placeholder="วันที่" name="date" size=40 required   >
                     </div>
                    <div class='text-center'> <button type="submit" class="btn btn-primary" id="addsu">บันทึก</button></div>
 </form>
@@ -47,8 +47,8 @@ var vform = $("#formaddpr").validate();
     
 
     if(vform.valid()){
-       var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
-       if (r == true) {
+       //var r = confirm("คุณต้องการเพื่มข้อมูลใช่ไหม?");
+      
 
            for (instance in CKEDITOR.instances) {
                CKEDITOR.instances[instance].updateElement();
@@ -61,7 +61,7 @@ var vform = $("#formaddpr").validate();
                                type: 'POST',
                                data: formData,
                                success: function (data) {
-                                   alert("บันทึกสำเร็จ");
+                                swal("บันทึกสำเร็จแล้ว!", "", "success") 
                                    var module1 = sessionStorage.getItem("module1")
                                     var action = sessionStorage.getItem("action")
                                     loadmain(module1,action);
@@ -70,7 +70,7 @@ var vform = $("#formaddpr").validate();
                                contentType: false,
                                processData: false
                            })
-       }  
+        
     }                
    });
 
