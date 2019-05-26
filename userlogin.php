@@ -94,7 +94,24 @@
 
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuLink99">
 							<a class="dropdown-item menuuser" href="javascript:void(0)" data-modules="personnel" data-action="edituserall"><i class="fas fa-user-tie  d-inline-block "></i> ประวัติส่วนตัว</a>
-							<a class="dropdown-item" href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'><i class="fas fa-sign-out-alt  d-inline-block" ></i> ออกจากระบบ</a>
+							<a  href="javascript:void(0)"class="dropdown-item"  onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});'><i class="fas fa-sign-out-alt  d-inline-block" ></i> ออกจากระบบ</a>
 						</div>
 					</li>
 				</ul>

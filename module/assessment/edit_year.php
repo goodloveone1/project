@@ -31,20 +31,20 @@
                     <div class="form-group">
                         <label >ปีงบประมาณ : </label>
                          <input type="hidden" name="y_id" value="<?php echo $y_id ?>">
-                         <input type="number"   class="form-control"  max="3030" min="2017"  value="<?php echo $thai_y  ?>"  name="year" size=40 require>  
+                         <input type="number"   class="form-control"  max="3030" min="2017"  value="<?php echo $thai_y  ?>"  name="year" size=40 required>  
                     </div>
                     <div class="form-group">
                         <label >รอบที่ : <?php ?></label>
-                         <input type="number"   class="form-control" max="2" min="1" value="<?php echo $y_no ?>"  name="no" size=40 require>  
+                         <input type="number"   class="form-control" max="2" min="1" value="<?php echo $y_no ?>"  name="no" size=40 required>  
                     </div>
                     <div class="form-group">
                         <label >วันที่เริ่ม : <?php ?></label>
-                         <input type="date"   class="form-control" value="<?php echo $y_start ?>"  name="start" size=40 require>  
+                         <input type="date"   class="form-control" value="<?php echo $y_start ?>"  name="start" size=40 required>  
                     </div>
                     <div class="form-group">
                        
                         <label >วันที่สิ้นสุด : <?php ?></label>
-                         <input type="date"   class="form-control" value="<?php echo $y_end ?>"  name="end" size=40 require>  
+                         <input type="date"   class="form-control" value="<?php echo $y_end ?>"  name="end" size=40 required>  
                     </div> 
                 </div>
                 <div class="modal-footer">
@@ -63,21 +63,21 @@
 
 
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-   // var r = confirm("Press a button!");
-   //if (r == true) {
+$("#updatesu").click(function(event){
+    $( "#foreditbrc" ).submit() 
+})
+$("#foreditbrc").submit(function(e) {
+    e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/assessment/update_year.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            alert(data);
+            //alert(data);
          });
         $('#editsub').modal("hide");
-
-        $('#editsub').on('hidden.bs.modal', function (e) {
-            
+        swal("บันทึกสำเร็จแล้ว!", "", "success") 
+        $('#editsub').on('hidden.bs.modal', function (e) { 
            loadmain("assessment","year");
         }) 
-  //  } 
-
-   
+    }
 });
 </script>

@@ -111,15 +111,30 @@
   var iduser =$(this).data("iduser");
   var nuser =$(this).data("nuser");
   var type =$(this).data("type");
-  var r = confirm("ต้องการลบ "+ type +" ของ"+nuser+" ใช่หรือไม่?");
-  if (r == true) {
-      $.post( "module/assessment/del_ass.php", {id : iduser,type:type,user:nuser}).done(function(data,txtstuta){
-  alert(data);
+  //var r = confirm("ต้องการลบ "+ type +" ของ"+nuser+" ใช่หรือไม่?");
+      swal({
+      title: "ต้องการลบ"+ type +" ของ"+nuser+" ใช่หรือไม่?",
+      text: "เมื่อ "+type+" ของ"+nuser+"ถูกลบ ไฟล์หลักฐานก็จะถูกลบไปด้วย",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+      buttons:["ยกเลิก","ตกลง"],
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+          $.post( "module/assessment/del_ass.php", {id : iduser,type:type,user:nuser}).done(function(data,txtstuta){
+            //alert(data);
           var module1 = sessionStorage.getItem("module1");
           var action = sessionStorage.getItem("action");
           loadmain(module1,action);
           })
-    }
+          swal("ลบข้อมูลสำเสร็จแล้ว!", {
+            icon: "success",
+          });
+        } else {
+          //swal("Your imaginary file is safe!");
+        }
+    });   
 })
 $(".showTOR").click(function(e) {
 		e.preventDefault(); 

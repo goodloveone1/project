@@ -123,7 +123,7 @@
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
-				buttons:["ไม่","ใช่"]
+				buttons:["ยกเลิก","ตกลง"]
 				})
 				.then((willDelete) => {
 				if (willDelete) {
@@ -171,7 +171,7 @@
 					icon: "warning",
 					buttons: true,
 					dangerMode: true,
-					buttons:["ไม่","ใช่"],
+					buttons:["ยกเลก","ตกลง"],
 					})
 					.then((willDelete) => {
 					if (willDelete) {

@@ -7,6 +7,7 @@
     $se_year=mysqli_query($con,"SELECT *FROM years")or die("SQL.error".mysqli_error($con));
    
 ?>
+<form>
 <div class=" headtitle text-center p-2 row mb-2 row"> 
     <div class="col-lg">
         <h2>ปีงบประมาณ</h2>
@@ -50,6 +51,7 @@
     </table>
     </div>
 </div>
+</form>
 <div id="loadeditsub"></div>
 <div id="addyear"></div>
 <?php 
@@ -70,15 +72,32 @@
     $(".del").click(function(){   /// ป่มลบข้อมูล 
         var iduser =$(this).data("iduser");
         var nuser =$(this).data("nuser");
-        var r = confirm("ต้องการลบ "+nuser+" ใช่หรือไม่?");
-        if (r == true) {
-            $.post( "module/assessment/delete_year.php", {id : iduser}).done(function(data,txtstuta){
-                alert(data);
+       // var r = confirm("ต้องการลบ "+nuser+" ใช่หรือไม่?");
+       swal({
+            title: "ต้องการลบ "+nuser+" ใช่หรือไม่?",
+            text: "เมื่อลบไปแล้วจะไม่สามารถกู้คืนได้!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            buttons:["ยกเลิก","ตกลง"],
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.post( "module/assessment/delete_year.php", {id : iduser}).done(function(data,txtstuta){
+                //alert(data);
                 var module1 = sessionStorage.getItem("module1");
                 var action = sessionStorage.getItem("action");
                 loadmain(module1,action);
             })
-        }
+                swal("ลบข้อมูลสำเสร็จแล้ว!", {
+                icon: "success",
+                });
+            } else {
+               // swal("Your imaginary file is safe!");
+            }
+        });
+            
+        
     })
     $(".addyear").click(function(){
         $.post("module/assessment/add_year.php").done(function(data){

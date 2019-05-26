@@ -31,7 +31,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label >ภาระงาน : <?php echo $tit_name; ?></label>
-                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="wid" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $weighs ?>"  name="wid" size=40 required>
                           <input type="hidden"    value="<?php echo $w_id ?>"  name="w_id" size=40 require>
                     </div>
                     
@@ -55,23 +55,23 @@
 
 
 <script type="text/javascript">
+$("#updatesu").click(function(event){
+    $( "#foreditbrc" ).submit() 
+})
 
-$("#updatesu").click(function(event) {
-   // var r = confirm("Press a button!");
-   //if (r == true) {
+$("#foreditbrc").submit(function(e) {
+    e.preventDefault();
+        var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/assessment/updateweight.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
             // alert(data);
          });
         $('#editsub').modal("hide");
-
+        swal("บันทึกสำเร็จแล้ว!", "", "success") 
         $('#editsub').on('hidden.bs.modal', function (e) {
             
            loadmain("assessment","weight");
-        })
-       
-        
-  //  } 
-
-   
+        }) 
+    }
 });
 </script>

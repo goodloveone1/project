@@ -122,7 +122,24 @@ function webmenu($id){
 					</li>
 					</button>
 				</a> -->
-				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
+				<a href="javascript:void(0)" onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">&nbsp;ออกจากระบบ</span>
@@ -229,7 +246,24 @@ function webmenu($id){
 						});
 					</script>		
 
-				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
+				<a href="javascript:void(0)" onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">&nbsp;ออกจากระบบ</span>
@@ -362,7 +396,24 @@ function webmenu($id){
 					</script>				
 
 
-				<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
+				<a href="javascript:void(0)" onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">&nbsp;ออกจากระบบ</span>
@@ -492,7 +543,24 @@ function webmenu($id){
 						});
 					</script>			
 
-		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")' title="ออกจากระบบ">
+		<a href="javascript:void(0)" onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});' title="ออกจากระบบ">
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text">&nbsp;ออกจากระบบ</span>
@@ -573,7 +641,24 @@ function webmenu($id){
 					</script>		
 
 					
-		<a href="logout.php" onclick='return confirm("คุณ้องการออกจากระบบใช่หรือไม่")'>
+		<a href="javascript:void(0)" onclick='swal({
+									title: "คุณต้องการออกจากระบบใช่หรือไม่?",
+									text: "",
+									icon: "warning",
+									buttons: true,
+									dangerMode: true,
+									buttons:["ยกเลิก","ตกลง"],
+									})
+									.then((willDelete) => {
+									if (willDelete) {
+										window.location.href = "logout.php";
+									// swal("Poof! Your imaginary file has been deleted!", {
+										//   icon: "success",
+										//});
+									} else {
+									// swal("Your imaginary file is safe!");
+									}
+});'>
 					<button class="btn-block bt-color">
 					<li class="list-group-item list-menu-user">
 					<i class="icon fas fa-sign-out-alt  d-inline-block" ></i><span class="text" title="ออกจากระบบ">&nbsp;ออกจากระบบ</span>

@@ -64,14 +64,11 @@ mysqli_close($con);
 <script type="text/javascript">
     $(document).ready(function() {
         $("#updatesu").click(function(event) {
-
             //var r = confirm("คุณต้องการบันทึกข้อมูลใช่ไหม?");
-            
                 $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
                     //alert(data);
-                   
                     $('#addsub').modal("hide");
-                    swal("บันทึกสำเร็จแล้ว!", "", "success")
+                    swal("บันทึกสำเร็จแล้ว!", "", "success")    
                     $('#addsub').on('hidden.bs.modal', function (e) {
                         var module1 = sessionStorage.getItem("module1")
                         var action = sessionStorage.getItem("action")
