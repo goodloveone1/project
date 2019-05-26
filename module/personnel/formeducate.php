@@ -66,14 +66,12 @@ $genid = $_POST['genid'];
 
 $("#addedus").click(function(e) {
   e.preventDefault();
-
-
           var ed_name = $("input[name='ed_name']").val();
           var ed_loc  = $("input[name='ed_loc']").val();
 
           if(ed_name != "" && ed_loc != ""){
-              var r = confirm("คุณต้องการเพิ่มวุฒิการศึกษาใช่ไหม");
-                        if (r == true) {
+              //var r = confirm("คุณต้องการเพิ่มวุฒิการศึกษาใช่ไหม");
+                        
                             $.post( "module/personnel/addedu.php", $( "#formaddeud" ).serialize()).done(function(data,txtstuta){
                               //   alert(data);
                              });
@@ -83,16 +81,26 @@ $("#addedus").click(function(e) {
                                 $.post( "module/personnel/loaddatadegree2.php", { genid : <?php echo $genid;?> })
                                 .done(function( data ) {
                                     //alert(data)
-                                    alert("บันทึกข้อมูลสำเร็จ")
+                                    // alert("บันทึกข้อมูลสำเร็จ")
+                                    swal("บันทึกข้อมูลสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
                                     $("#loadtabledegree").html(data);
                                 });
                             })
 
 
-                        }
+                        
 
           }else{
-            alert("กรุณาใส่ข้อมูลให้ครบ");
+            // alert("กรุณาใส่ข้อมูลให้ครบ");
+            swal("กรุณาใส่ข้อมูลให้ครบ!", {
+									icon: "error",
+									buttons: false,
+									timer: 1000,
+								});
           }
 
 

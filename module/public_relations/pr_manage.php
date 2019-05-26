@@ -120,7 +120,7 @@ $con=connect_db();
 
 							loadingpage("public_relations","pr_manage");
 						});
-						swal("บันทึกสำเร็จ!", {
+						swal("ลบสำเร็จแล้ว!", {
 									icon: "success",
 									buttons: false,
 									timer: 1000,

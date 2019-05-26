@@ -171,8 +171,8 @@
 				<div class="col-sm-10">
 					<input type="password" class="form-control"  placeholder="Password" name="passwd" value="<?php echo $pwd ?>" required id="showpw">
 					<div class="form-check">
-					 <input class="form-check-input " type="checkbox" onclick="chkpw()">
-					  <label class="form-check-label" for="defaultCheck2">
+					 <input class="form-check-input " type="checkbox" onclick="chkpw()" id="defaultCheck1">
+					  <label class="form-check-label" for="defaultCheck1">
 					   แสดงรหัส
 					  </label>
 					</div>
@@ -184,7 +184,7 @@
 				<div class="col-sm-10">
 					<input type="password" class="form-control"  placeholder="ConPW" name="conPW" value="<?php echo $pwd ?>"  id="showconPW" required>
 					<div class="form-check">
-					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()">
+					 <input class="form-check-input" type="checkbox" onclick="chkpwcon()" id="defaultCheck2">
 					  <label class="form-check-label" for="defaultCheck2">
 					   แสดงรหัส
 					  </label>
@@ -338,15 +338,36 @@ $("#loadtabledegree").on('click', '.delbrn', function(event) {
 		var ideditsub =$(this).data("iddegree");
 		var degreename =$(this).data("degreename");
 
-            var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
-            if (r == true) {
-
-                $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
+            //var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
+            swal({
+			title: "ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?",
+			text: "เมื่อลบไปแล้วจะไม่สามารถกู้คืนได้!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+			buttons:["ยกเลิก","ตกลง"],
+			
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+					$.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
 					//alert(data);
-					alert("ลบข้อมูลสำเร็จ")	
+					// alert("ลบข้อมูลสำเร็จ")	
+					
 					loaddatadegree();
                     })
-            }
+					swal("ลบข้อมูลสำเร็จแล้ว!", {
+						icon: "success",
+						buttons: false,
+						timer: 1000,
+					});
+				} else {
+					//swal("Your imaginary file is safe!");
+				}
+			});
+
+                
+           
 	})
 
 $("#loadtabledegree").on('click', '#adddegree', function(event) {

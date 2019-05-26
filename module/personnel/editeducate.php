@@ -69,9 +69,11 @@
 
 <script type="text/javascript">
 
-$("#updateedu").click(function(event) {
-    var r = confirm("คุณต้องการแก้ไขวุฒิการศึกษาใช่ไหม");
-    if (r == true) {
+$("#updateedu").click(function(e) {
+    e.preventDefault();
+          var ed_name = $("input[name='ed_name']").val();
+          var ed_loc  = $("input[name='ed_loc']").val();
+          if(ed_name != "" && ed_loc != ""){
 
         $.post( "module/personnel/updateeducate.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
              //alert(data);
@@ -89,11 +91,13 @@ $("#updateedu").click(function(event) {
 								});
                 $("#loadtabledegree").html(data);
             });
-        })
-       
-        
+        }) 
+    }else{
+        swal("กรุณาใส่ข้อมูลให้ครบ!", {
+									icon: "error",
+									buttons: false,
+									timer: 1000,
+								});
     } 
-
-   
 });
 </script>

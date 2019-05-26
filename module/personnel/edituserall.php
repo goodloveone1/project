@@ -407,18 +407,35 @@ $("#loadtabledegree").on('click', '.delbrn', function(event) {
 	  // $(".delbrn").click(function(){
 		var ideditsub =$(this).data("iddegree");
 		var degreename =$(this).data("degreename");
-
-            var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
-            if (r == true) {
-
-                $.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
+            //var r = confirm("ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?");
+        swal({
+			title: "ต้องการลบวุฒิ "+degreename+" ใช่หรือไม่?",
+			text: "เมื่อลบไปแล้วจะไม่สามารถกู้คืนได้!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		})
+		.then((willDelete) => {
+			if (willDelete) {
+				$.post( "module/personnel/deleteducate.php", { id : ideditsub}).done(function(data,txtstuta){
 					//alert(data);
-					alert("ลบข้อมูลสำเร็จ")	
+					
 					loaddatadegree();
                     })
+				swal("ลบข้อมูลสำเร็จแล้ว!", {
+				icon: "success",
+				buttons: false,
+				timer: 1000,
+				});
+			} else {
+				//swal("Your imaginary file is safe!");
+			}
+		});
+
+               
 
 
-            }
+            
 
 	})
 
