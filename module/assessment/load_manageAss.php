@@ -64,16 +64,16 @@
         }else if(!empty($evd_id) AND $evd_status==1){
 
           $evd = "
-          <select class='form-control' id='selectsuj' name='suj'>
-            <option value='1' selected>ตรวจสอบหลักฐานอีกครั้ง</option>
-            <option value='2'>ยืนหลักฐานแล้ว</option>
+          <select class='form-control' id='stuevd' name='suj' data-idevd='$evd_id'>
+            <option value='1'  selected>ตรวจสอบหลักฐานอีกครั้ง</option>
+            <option value='2' >ยืนหลักฐานแล้ว</option>
           </select> 
           ";
         } else if(!empty($evd_id) AND $evd_status==2 AND $inform==0){
 
           $evd = "
-          <select class='form-control' id='selectsuj' name='suj'>
-            <option value='1'>ตรวจสอบหลักฐานอีกครั้ง</option>
+          <select class='form-control' id='stuevd' name='suj' data-idevd='$evd_id'>
+            <option value='1' >ตรวจสอบหลักฐานอีกครั้ง</option>
             <option value='2' selected>ยืนหลักฐานแล้ว</option>
           </select> 
           ";
@@ -104,6 +104,8 @@
 </div>
 <div id="loadmodel"></div>
 <script>
+$( document ).ready(function(){
+
     $.getScript('js/mydatatable.js')
   
   $(".deluser").click(function(){   /// ป่มลบข้อมูล user
@@ -157,4 +159,37 @@ $(".showTOR").click(function(e) {
                  $('#showmodelpre').modal('show');
         })
   });
+
+  $("#stuevd").change(function(e) {
+    e.preventDefault(); 
+ 
+    swal({
+      title: "",
+      text: "คุณต้องการเปลี่ยนสถานะหลักฐานใช่หรือใหม",
+      icon: "warning",
+      buttons: ["ยกเลิก","ตกลง"],
+      dangerMode: true,
+    }) 
+    .then((willDelete) => {
+      if (willDelete) {
+        $.post("module/assessment/update_statusevd.php", { evdids: $(this,"option:selected").data('idevd') , status: $(this,"option:selected").val() } 
+        ).done(function(data){
+             //alert(data);
+             swal("อัพเดทสถานะสำเร็จแล้ว", {
+              buttons: false,
+              timer: 2000,
+              icon: "success",
+            });
+            var module1 = sessionStorage.getItem("module1");
+            var action = sessionStorage.getItem("action");
+            loadmain(module1,action);
+        })
+        
+      } 
+    });
+    
+        
+  });
+  
+})  
 </script>
