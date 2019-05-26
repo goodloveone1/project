@@ -287,7 +287,7 @@ $( document ).ready(function() {
 							contentType: false,
 							processData: false
 						})
-						swal("บันทึกข้อมูลสำเสร็จแล้ว!", {
+						swal("บันทึกข้อมูลสำเสร็จ!", {
 						icon: "success",
 						buttons: false,
 						timer: 1000,

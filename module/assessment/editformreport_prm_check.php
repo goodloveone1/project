@@ -368,7 +368,7 @@ $( document ).ready(function() {
 	mysqli_close($con);
 }else{
 	echo "<script> 
-	    alert('!!!!!');
+	     alert('!!!!!');
 		loadmain('assessment','manage_Evidence') 
 		</script>";
 } ///END IF $ass_id

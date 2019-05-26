@@ -470,10 +470,11 @@ $(document).ready(function() {
 					        data: formData,
 					        success: function (data) {
 										 // alert(data);
-										 swal("บันทึกสำเร็จ"," ","success", {
+										 swal("บันทึกสำเร็จ!", {
+											icon: "success",
 											buttons: false,
 											timer: 1000,
-											});
+								});   
 					        },
 					        cache: false,
 					        contentType: false,

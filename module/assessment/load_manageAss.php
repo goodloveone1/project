@@ -128,9 +128,11 @@
           var action = sessionStorage.getItem("action");
           loadmain(module1,action);
           })
-          swal("ลบข้อมูลสำเสร็จแล้ว!", {
-            icon: "success",
-          });
+          swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
         } else {
           //swal("Your imaginary file is safe!");
         }

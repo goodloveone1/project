@@ -120,9 +120,11 @@ $con=connect_db();
 
 							loadingpage("public_relations","pr_manage");
 						});
-						swal("บันทึกสำเร็จแล้ว!", {
-						icon: "success",
-						});
+						swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
 					} else {
 						// swal("Your imaginary file is safe!");
 					}

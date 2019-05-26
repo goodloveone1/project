@@ -93,7 +93,11 @@ mysqli_close($con);
                 $.post( "module/assessment/ldl_update.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
                    // alert(data);
                 });
-                swal("บันทึกสำเร็จแล้ว!", "", "success")
+                swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
                 $('#addsub').modal("hide");
 
                 $('#addsub').on('hidden.bs.modal', function (e) {

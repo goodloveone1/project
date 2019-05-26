@@ -182,10 +182,11 @@
 			$(".goto").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
-				swal("บันทึกสำเร็จ"," ","success", {
-											buttons: false,
-											timer: 1000,
-											});
+				swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});   
 				loadmain(module1,action)
 			});
 			$('#customRadio1').click(function() {

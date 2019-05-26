@@ -42,7 +42,11 @@
         $.post( "module/assessment/updateCriteria.php", $( "#formedit_tor2" ).serialize()).done(function(data,txtstuta){
             // alert(data);
             $('#editsub').modal("hide");
-            swal("บันทึกสำเร็จแล้ว!", "", "success") 
+            swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
             $('#editsub').on('hidden.bs.modal', function (e) {
             loadmain("assessment","Criteria_manage_tor2");
             });

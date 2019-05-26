@@ -643,7 +643,11 @@ mysqli_close($con);
 				
 					if($(this).prop("checked") == true){
 						$.post( "module/assessment/update_ac.php", {tor_id: "<?php echo $asst5_id ?>", ac: "1"}).done(function( data ){
-									alert("รับทราบผลการประเมินแล้ว");
+									swal("รับทราบผลการประเมินแล้ว!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});
 									loadingpage("assessment","sum_assessment");
 						//var d = "<?php $date ?>";
 							

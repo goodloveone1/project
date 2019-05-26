@@ -208,10 +208,11 @@
 					        data: formData,
 					        success: function (data) {
 											//alert(data);
-											swal("บันทึกสำเร็จ"," ","success", {
-											buttons: false,
-											timer: 1000,
-											});
+											swal("บันทึกสำเร็จ!", {
+												icon: "success",
+												buttons: false,
+												timer: 1000,
+											});   
 								$.post( "module/assessment/manage_tor.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");

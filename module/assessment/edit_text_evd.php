@@ -52,7 +52,7 @@ $("#updatesu").click(function(event) {
             var action = sessionStorage.getItem("action");
             $.post( "module/"+module1+"/"+action+".php", { torid: '<?php echo $_POST['torid'] ?>' ,evdid: '<?php echo $_POST['evdid'] ?>' }).done(function(data,txtstuta){
 
-                swal("บันทึกสำเร็จแล้ว","","success", {
+                swal("บันทึกสำเร็จแล้ว"," ","success", {
 											buttons: false,
 											timer: 1000,
 											});
@@ -116,10 +116,11 @@ $("#updatesu").click(function(event) {
             var action = sessionStorage.getItem("action");
             $.post( "module/"+module1+"/"+action+".php", { torid: "<?php echo $_POST['torid'] ?>" ,evdid: "<?php echo $_POST['evdid2'] ?>" }).done(function(data,txtstuta){
 
-                swal("บันทึกสำเร็จแล้ว","","success", {
-											buttons: false,
-											timer: 1000,
-											});
+                swal("บันทึกสำเร็จ", {
+                    icon: "success",
+                    buttons: false,
+					timer: 1000,
+                    });
 
             $("#detail").html(data);
             });

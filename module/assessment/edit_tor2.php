@@ -479,10 +479,11 @@ function fncSum(){
 					        data: formData,
 					        success: function (data) {
 							   // alert(data);
-							   swal("บันทึกสำเร็จ"," ","success", {
-											buttons: false,
-											timer: 1000,
-											});
+							   swal("บันทึกสำเร็จ!", {
+									icon: "success",
+									buttons: false,
+									timer: 1000,
+								});   
 								$.post( "module/assessment/edit_tor3.php", { gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>" }).done(function( data ) 
 							{
 								sessionStorage.setItem("module1","assessment");
