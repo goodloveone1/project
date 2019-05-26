@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>PRING</title>
+</head>
+<body>
 <?php
 session_start();
 
@@ -84,6 +89,7 @@ $mpdf = new \Mpdf\Mpdf(
 
 
 $mpdf->WriteHTML("
+
 <style>
 p,span,b{
     font-size:19px;
@@ -118,7 +124,7 @@ p,span,b{
     border-width:1px;
 }
 
-table, th, td {
+table, th, td ,tr{
 	border: 1px solid black;
     font-size:18px;
     word-wrap: break-word;
@@ -190,9 +196,11 @@ mysqli_free_result($seaPos);
 
 $mpdf->WriteHTML("
 <div class='text-center'>
-<p class='addfontb'>ชื่อผู้รับการประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$pos_name&nbsp;&nbsp;</span> </p>
-<p class='addfontb'>สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</span></p>
-<p class='addfontb'>ชื่อผู้บังคับบัญชา/ผู้ประเมิน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder addfontnb'>&nbsp;&nbsp;$l_prefix $l_fname $l_lname&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่ง  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder addfontnb'>&nbsp;&nbsp;$lpos_name&nbsp;&nbsp;</span> </p>
+<p class='addfontb'>ชื่อผู้รับการประเมิน <span class='addunder addfontnb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $prefix $fname $lname &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>  
+ตำแหน่ง <span class='addunder addfontnb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$pos_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> </p>
+<p class='addfontb'>สังกัด<span class='addunder addfontnb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; คณะบริหารธุรกิจและศิลปศาสตร์ มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+<p class='addfontb'>ชื่อผู้บังคับบัญชา/ผู้ประเมิน <span class='addunder addfontnb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;$l_prefix $l_fname $l_lname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+ตำแหน่ง <span class='addunder addfontnb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$lpos_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> </p>
 </div>
 ");
 
@@ -221,12 +229,12 @@ $mpdf->WriteHTML("
 ");
 $text="";
 if($y_no==1){
-    $text .= " <p class='addfontb' align='center'> <input type='checkbox' class='addfontck' checked='checked'> รอบที่  ๑  (๑ ต.ค. <span class='addunder'> ".($yearst+543)."</span> -๓๑ มี.ค. <span class='addunder'> ".($yearnd+543)."</span>)";
-    $text .= " <br> <input type='checkbox' class='addfontck'> รอบที่ ๒  (๑ เม.ย. ..........- ๓๐ ก.ย. ...........)</p>";
+    $text .= " <p class='addfontb' align='center'> <input type='checkbox' class='addfontck' checked='checked'>>&nbsp;&nbsp;&nbsp;&nbsp; รอบที่ &nbsp;&nbsp; ๑ &nbsp;&nbsp; (๑ ต.ค. <span class='addunder'>>&nbsp;&nbsp; ".($yearst+543).">&nbsp;&nbsp;</span> -๓๑ มี.ค. <span class='addunder'> >&nbsp;&nbsp;".($yearnd+543).">&nbsp;&nbsp;</span>)";
+    $text .= " <br> <input type='checkbox' class='addfontck'> &nbsp;&nbsp;&nbsp;&nbsp; รอบที่ &nbsp;&nbsp; ๒ &nbsp;&nbsp; (๑ เม.ย. ...................- ๓๐ ก.ย. .....................)</p>";
 }
 else{
-    $text .= " <p class='addfontb' align='center'> <input type='checkbox' class='addfontck'> รอบที่  ๑  (๑ ต.ค. ..........-๓๑ มี.ค. ..........)";
-    $text .= " <br> <input type='checkbox' checked='checked' class='addfontck'> รอบที่ ๒  (๑ เม.ย. <span class='addunder'> ".($yearst+543)."</span> - ๓๐ ก.ย. <span class='addunder'> ".($yearnd+543)."</span>)</p>";
+    $text .= " <p class='addfontb' align='center'> <input type='checkbox' class='addfontck'>&nbsp;&nbsp;&nbsp;&nbsp; รอบที่ &nbsp;&nbsp; ๑ &nbsp;&nbsp; (๑ ต.ค. ...................-๓๑ มี.ค. .....................)";
+    $text .= " <br> <input type='checkbox' checked='checked' class='addfontck'>&nbsp;&nbsp;&nbsp;&nbsp; รอบที่ &nbsp;&nbsp; ๒ &nbsp;&nbsp; (๑ เม.ย. <span class='addunder'>&nbsp;&nbsp; ".($yearst+543)."&nbsp;&nbsp;</span> - ๓๐ ก.ย. <span class='addunder'>&nbsp;&nbsp; ".($yearnd+543)."&nbsp;&nbsp;</span>)</p>";
 }
 
 $mpdf->WriteHTML($text);
@@ -245,19 +253,30 @@ $stdate = explode(" ",$datest);
 
 $sumworkex = explode(" ",$sumwork);
 
-
-
 $mpdf->WriteHTML("
 <p>
-๑. ชื่อ-สกุล &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;$prefix $fname $lname&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ประเภทตำแหน่งวิชาการ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;$aca_name&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ตำแหน่งบริหาร  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class='addunder'>&nbsp;&nbsp;&nbsp;$pos_name&nbsp;&nbsp;&nbsp;</span>
-<br>
-เงินเดือน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;$salary&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; บาท &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; เลขที่ประจำตำแหน่ง <span class='addunder'>&nbsp;&nbsp;&nbsp;$aca_code&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;$branch_name&nbsp;&nbsp;&nbsp;</span>
-<br>
-มาช่วยราชการจากที่ใด (ถ้ามี) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;$other&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;หน้าที่พิเศษ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='addunder'>&nbsp;&nbsp;&nbsp;$leves&nbsp;&nbsp;&nbsp;</span>
-<br>
-๒. เริ่มรับราชการเมื่อวันที่ <span class='addunder'>&nbsp;&nbsp;&nbsp;".$stdate[0]."&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;".$stdate[1]."&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp; พ.ศ. <span class='addunder'>&nbsp;&nbsp;&nbsp;".$stdate[2]."&nbsp;&nbsp;&nbsp;</span>
-<br>
-รวมเวลารับราชการ <span class='addunder'>&nbsp;&nbsp;".$sumworkex[0]."&nbsp;&nbsp;</span> &nbsp;&nbsp;ปี <span class='addunder'>&nbsp;&nbsp;".$sumworkex[2]."&nbsp;&nbsp;</span> &nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;".$sumworkex[4]."&nbsp;&nbsp;</span> วัน
+๑. ชื่อ-สกุล  <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  $prefix $fname $lname  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+ประเภทตำแหน่งวิชาการ <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $aca_name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+ตำแหน่งบริหาร <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $pos_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</p>
+<p>
+เงินเดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ".number_format($salary,2)." &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  บาท 
+&nbsp;&nbsp;เลขที่ประจำตำแหน่ง <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $aca_code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+&nbsp;&nbsp; สังกัด <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $branch_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</p>
+<p>
+มาช่วยราชการจากที่ใด (ถ้ามี) <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$other&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+&nbsp;&nbsp;หน้าที่พิเศษ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$leves&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</p>
+<p>
+๒. เริ่มรับราชการเมื่อวันที่ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+&nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[1]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+&nbsp;&nbsp; พ.ศ. <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[2]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</p>
+<p>
+รวมเวลารับราชการ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+&nbsp;&nbsp;ปี <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[2]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+&nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[4]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> วัน
 </p>");
 
 $mm=date('m');  //เดือนปัจจุบัน
@@ -285,6 +304,7 @@ $mpdf->WriteHTML("<p>๓. บันทึกการมาปฏิบัติ
 if($y_no == 1){
 $tableidl="
 <table style='border-collapse: collapse;border:solid 1px ' width='100%'>
+<thead>
 <tr>
     <th rowspan='2' >ประเภท</th>
     <th colspan='2'>รอบที่ 1 </th>
@@ -304,6 +324,7 @@ $tableidl="
 <th>ครั้ง</th>
 <th>วัน</th>
 </tr>
+</thead>
                 <tr>
                 <td>ลาป่วย</td>
                     <td align='center'>".$set1[0]['ab_num']."</td> 
@@ -441,7 +462,7 @@ $mpdf->WriteHTML("<p align='center'>ลงชื่อ..........................
 $mpdf->addpage();
 
 $mpdf->WriteHTML("<p>๔. การกระทำผิดวินัย/การถูกลงโทษ<br>
-<span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $punishment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+<span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $punishment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
 </p>
 ");
 
@@ -501,7 +522,7 @@ while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
 
     $table3.= "
     <tr>
-        <td> <span  class='addfontb addunder2'>".$numthai[$countnumthai]."  $e_name </span><br><span  class='addfontb'> $min_hour <span><br> <span>";
+        <td style='vertical-align:top'> <span  class='addfontb addunder2'>".$numthai[$countnumthai]."  $e_name </span><br><span  class='addfontb'> $min_hour </span><br> <span>";
         
         
 
@@ -562,7 +583,7 @@ $mpdf->WriteHTML($table3);
 
 $mpdf->addpage();
 
-$mpdf->WriteHTML("<span class='addfontb addunder'> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </span>");
+$mpdf->WriteHTML("<span class='addfontb addunder2'> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </span>");
 
 
 $seexp=mysqli_query($con,"SELECT goal,score FROM asessment_t2 WHERE ass_id='$tor_id' ORDER BY subcap_id ASC")or die(mysqli_error($con));
@@ -579,11 +600,11 @@ $n7 = empty($set[6]['score'])?"0":$set[6]['score'];
 $n8 = empty($set[7]['score'])?"0":$set[7]['score'];
 $n9 = empty($set[8]['score'])?"0":$set[8]['score'];
 $n10 = empty($set[9]['score'])?"0":$set[9]['score'];
-$n11 = empty($set[10]['score'])?"0":$set[10]['score'];
-$n12 = empty($set[11]['score'])?"0":$set[11]['score'];
-$n13 = empty($set[12]['score'])?"0":$set[12]['score'];
-$n14 = empty($set[13]['score'])?"0":$set[13]['score'];
-$n15 = empty($set[14]['score'])?"0":$set[14]['score'];
+$n11 = empty($set[10]['score'])?" ":$set[10]['score'];
+$n12 = empty($set[11]['score'])?" ":$set[11]['score'];
+$n13 = empty($set[12]['score'])?" ":$set[12]['score'];
+$n14 = empty($set[13]['score'])?" ":$set[13]['score'];
+$n15 = empty($set[14]['score'])?" ":$set[14]['score'];
 
 $g1 = empty($set[0]['goal'])?"0":$set[0]['goal'];
 $g2 = empty($set[1]['goal'])?"0":$set[1]['goal'];
@@ -595,11 +616,11 @@ $g7 = empty($set[6]['goal'])?"0":$set[6]['goal'];
 $g8 = empty($set[7]['goal'])?"0":$set[7]['goal'];
 $g9 = empty($set[8]['goal'])?"0":$set[8]['goal'];
 $g10 = empty($set[9]['goal'])?"0":$set[9]['goal'];
-$g11 = empty($set[10]['goal'])?"0":$set[10]['goal'];
-$g12 = empty($set[11]['goal'])?"0":$set[11]['goal'];
-$g13 = empty($set[12]['goal'])?"0":$set[12]['goal'];
-$g14 = empty($set[13]['goal'])?"0":$set[13]['goal'];
-$g15 = empty($set[14]['goal'])?"0":$set[14]['goal'];
+$g11 = empty($set[10]['goal'])?" ":$set[10]['goal'];
+$g12 = empty($set[11]['goal'])?" ":$set[11]['goal'];
+$g13 = empty($set[12]['goal'])?" ":$set[12]['goal'];
+$g14 = empty($set[13]['goal'])?" ":$set[13]['goal'];
+$g15 = empty($set[14]['goal'])?" ":$set[14]['goal'];
 
 
 
@@ -816,7 +837,7 @@ list($sum_score)=mysqli_fetch_row($sumt3);
 mysqli_free_result($sumt3);
 
 
-$mpdf->WriteHTML("<span class='addfontb addunder'> ส่วนที่ ๓ สรุปการประเมินผลการปฏิบัติราชการ </span>");
+$mpdf->WriteHTML("<span class='addfontb addunder2'> ส่วนที่ ๓ สรุปการประเมินผลการปฏิบัติราชการ </span>");
 
 $mpdf->WriteHTML("
 <br>
@@ -885,7 +906,7 @@ $mpdf->addpage();
 
 
 $t4 ="<br>
-<span class='addfontb addunder'> ส่วนที่ ๔  :  แผนพัฒนาการปฏิบัติราชการรายบุคคล </span><br>
+<span class='addfontb addunder2'> ส่วนที่ ๔  :  แผนพัฒนาการปฏิบัติราชการรายบุคคล </span><br>
 <table style='border-collapse: collapse;border:solid 1px ' width='100%'>
 <tr>
     <th>ความรู้/ทักษะ/สมรรถนะ<br>ที่ต้องได้รับการพัฒนา</th>
@@ -935,7 +956,7 @@ $mpdf->addpage();
 
 $mpdf->WriteHTML("
 <br>
-<span class='addfontb addunder'> ส่วนที่ ๕  การรับทราบผลการประเมิน </span><br>
+<span class='addfontb addunder2'> ส่วนที่ ๕  การรับทราบผลการประเมิน </span><br>
 <div style='border:solid'>
     
     <div style='float: left; width: 49%;padding:4px;border-right:solid'>
@@ -982,7 +1003,7 @@ $mpdf->addpage();
 
 $mpdf->WriteHTML("
 <br>
-<span class='addfontb addunder'>ส่วนที่ ๖  ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</span><br>
+<span class='addfontb addunder2'>ส่วนที่ ๖  ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</span><br>
 <div style='border:solid'>
     
     <div style='float: left; width: 69%;padding:4px;border-right:solid'>
@@ -1030,6 +1051,8 @@ $mpdf->WriteHTML("
     <div style='clear: both; margin: 0pt; padding: 0pt; '></div>
 
 </div>
+
+</html>
 ");
 
 
@@ -1043,3 +1066,5 @@ else{
 }
 
 ?>
+</body>
+</html>
