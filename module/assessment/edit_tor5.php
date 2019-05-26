@@ -218,7 +218,11 @@ if($accept==1){
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+							   // alert(data);
+							   swal("บันทึกสำเร็จ","","success", {
+											buttons: false,
+											timer: 2000,
+											});
 								$.post( "module/assessment/edit_tor6.php", {gen_id: "<?php echo $genIdpost ?>", year_id: "<?php echo $yearIdpost  ?>"}).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");

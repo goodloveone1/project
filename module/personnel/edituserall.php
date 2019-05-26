@@ -29,11 +29,8 @@
 				<img class="card-img-top img-thumbnail" src="img/<?php echo $userphoto; ?>" alt="Card image cap">
 				<div class="card-body text-center">
 					<div class="form-group row">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input " name="pic_u" accept="image/* ">
-							<label class="custom-file-label"  >เลือกรูปภาพ</label>
+							<input type="file" class="form-control-file" name="pic_u" accept="image/* " id="gen_pic">	
 						</div>
-					</div> 
 				</div>
 			</div>
 		</div>

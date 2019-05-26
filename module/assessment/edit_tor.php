@@ -469,7 +469,11 @@ $(document).ready(function() {
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+										 // alert(data);
+										 swal("บันทึกสำเร็จ","","success", {
+											buttons: false,
+											timer: 2000,
+											});
 					        },
 					        cache: false,
 					        contentType: false,

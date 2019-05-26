@@ -101,7 +101,11 @@
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+								//alert(data);
+								swal("บันทึกสำเร็จ","","success", {
+											buttons: false,
+											timer: 2000,
+											});
 								$.post( "module/assessment/ass_t5.php", {tor: "<?php echo $TOR_id ?>", year: "<?php echo $yearIdpost  ?>" }).done(function( data ){
     							//alert( "Data Loaded: " + data );
 								sessionStorage.setItem("module1","assessment");

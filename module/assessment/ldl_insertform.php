@@ -39,8 +39,8 @@ if(empty($tor_id)){
                     <div class="col-md form-group row" >
                         <label class="col-sm col-form-label" > <?php echo $set[$i]['abt_name']; ?> :</label>
                         <!-- <input type="text"   class="form-control" value=""  name="i_no" size=10 > -->
-                       <input type="number" min='0' max='999'  class="form-control col-sm" value="0"  name="i_no<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > ครั้ง</label>
-                       <input type="number" min='0' max='999'  class="form-control col-sm" value="0"  name="i_day<?php echo $i+1 ?>" size=3 ><label class="col-sm-1 col-form-label" > วัน</label>
+                       <input type="number" min='0' max='999'  class="form-control col-sm" value="0"  name="i_no<?php echo $i+1 ?>" size=3 required><label class="col-sm-1 col-form-label"  > ครั้ง</label>
+                       <input type="number" min='0' max='999'  class="form-control col-sm" value="0"  name="i_day<?php echo $i+1 ?>" size=3 required><label class="col-sm-1 col-form-label" > วัน</label>
                        <input type="hidden"    value="<?php echo $set[$i]['abt_id']; ?>"  name="type<?php echo $i+1  ?>" size=40 >
                        <input type="hidden"    value="<?php echo$_SESSION['user_id']?>"  name="gen_id" size=40 >
                        <input type="hidden" name="chk" value="0">
@@ -61,12 +61,15 @@ mysqli_close($con);
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#updatesu").click(function(event) {
-
-            var r = confirm("คุุณต้องการบันทึกใช่ไหม?");
-            if (r == true) {
+        $("#updatesu").click(function(event){
+            $( "#foreditbrc" ).submit() 
+        })
+        $("#foreditbrc").submit(function(e) {
+            e.preventDefault();
+         var chack=$( this ).valid()
+        if(chack==true){
                 $.post( "module/assessment/ldl_insert.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-                    alert("บันทึกข้อมูลสำเร๊จ");
+                    swal("บันทึกสำเร็จแล้ว!", "", "success") 
 
                     $('#addsub').modal("hide");
 
@@ -76,10 +79,6 @@ mysqli_close($con);
                     loadmain(module1,action);
                 })
                 });
-
-                
-
-
             }
         });
         $("#inputState").change(function(){

@@ -174,15 +174,18 @@
 
 		$("#link").on('click',".menu",function(e){
 					e.preventDefault();
-					module1 = $(this).data('modules');
 					action = $(this).data('action');
-				
+					module1 = $(this).data('modules');
 					loadingpage(module1,action); //code local functionjs.js
 
 				});
 			$(".goto").click(function(){
 				var module1 = $(this).data('modules');
 				var action = $(this).data('action');
+				swal("บันทึกสำเร็จ","","success", {
+											buttons: false,
+											timer: 2000,
+											});
 				loadmain(module1,action)
 			});
 			$('#customRadio1').click(function() {

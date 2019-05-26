@@ -457,12 +457,14 @@ $(document).ready(function() {
 					        type: 'POST',
 					        data: formData,
 					        success: function (data) {
-					            alert(data);
+											//alert(data);
+										
 					        },
 					        cache: false,
 					        contentType: false,
 					        processData: false
-					    });
+							});
+							//swal("บันทึกสำเร็จแล้ว!", "", "success")
 				}
 				loadmain("assessment","tor1_pretest")
 			})	

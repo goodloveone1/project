@@ -451,7 +451,11 @@ function fncSum(){
 					        data: formData,
 					        success: function (data) {
 					            //alert(data);
-								alert("บันทึกสำเร็จ");
+								//alert("บันทึกสำเร็จ");
+								swal("บันทึกสำเร็จ","","success", {
+											buttons: false,
+											timer: 2000,
+											});
 								loadmain("assessment","manage_tor");
   							
 					        },
