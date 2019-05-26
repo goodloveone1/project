@@ -19,7 +19,7 @@
                   <p><label for=""> <b>สมรรถนะ: </b> <?php echo $_POST['subname'] ?></label></p> 
                   <p><label for=""> <b>ตำแหน่ง:</b> <?php echo $_POST['aca'] ?></label></p>
                    <input type="number" max = "5" min="0"
-                     class="form-control" name="score" value='<?php echo $_POST['score'] ?>'>
+                     class="form-control" name="score" value='<?php echo $_POST['score'] ?>' required>
                  </div>
                 </div>
                 <div class="modal-footer">
@@ -31,20 +31,24 @@
     </div>
 </form>
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-    
-    
+  $( document ).ready(function() {
+    $("#updatesu").click(function(event){
+        $( "#formedit_tor2" ).submit() 
+    })
+    $("#formedit_tor2").submit(function(e) {
+        e.preventDefault();
+         var chack=$( this ).valid()
+        if(chack==true){
         $.post( "module/assessment/updateCriteria.php", $( "#formedit_tor2" ).serialize()).done(function(data,txtstuta){
             // alert(data);
-           // alert("ับันทึกข้อมูลสำเร๊จ");
             $('#editsub').modal("hide");
-
+            swal("บันทึกสำเร็จแล้ว!", "", "success") 
             $('#editsub').on('hidden.bs.modal', function (e) {
-                
             loadmain("assessment","Criteria_manage_tor2");
-            })
+            });
         });
-    
+      }
+    });
 });
+
 </script>

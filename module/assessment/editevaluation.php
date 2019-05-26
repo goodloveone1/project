@@ -90,23 +90,23 @@
 
 
 <script type="text/javascript">
-
-$("#update").click(function(event) {
-    var r = confirm("บันทึกสำเร็จแล้ว");
-    // if (r == true) {
-        $.post( "module/assessment/update_evaluation.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            // alert(data);
-         })
-        $('#editsub').modal("hide");
-
-        $('#editsub').on('hidden.bs.modal', function (e) {
-            
-           loadmain("assessment","evaluation");
-        })
-       
-        
-    // } 
-
-   
-});
+$( document ).ready(function() {
+    $("#update").click(function(event){
+        $( "#foreditbrc" ).submit() 
+    })
+    $("#foreditbrc").submit(function(e) {
+        e.preventDefault();
+            var chack=$( this ).valid()
+            if(chack==true){
+            $.post( "module/assessment/update_evaluation.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+                // alert(data);
+            })
+            $('#editsub').modal("hide");
+            swal("บันทึกสำเร็จแล้ว!", "", "success") 
+            $('#editsub').on('hidden.bs.modal', function (e) {
+            loadmain("assessment","evaluation");
+            })
+        }
+    });
+})
 </script>

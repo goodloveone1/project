@@ -36,7 +36,7 @@
                         ?>
                         <label ><b>ตำแหน่งงาน :</b> <?php echo $aca_name ?></label><br>
                         <label ><b>ภาระงาน :</b> <?php echo $e_name ?></label>
-                         <input type="text"   class="form-control" value="<?php echo $minWork;  ?>"  name="minwork" size=40 require>
+                         <input type="text"   class="form-control" value="<?php echo $minWork;  ?>"  name="minwork" size=40 required>
                           <input type="hidden"    value="<?php echo $i ?>"  name="id" size=40 require>
                     </div>
                     
@@ -57,15 +57,23 @@
 
 
 <script type="text/javascript">
-
-$("#updatesu").click(function(event) {
-        $.post( "module/assessment/update_minhourWork.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            // alert(data);
-         });
-        $('#editsub').modal("hide");
-
-        $('#editsub').on('hidden.bs.modal', function (e) { 
-           loadmain("assessment","min_hour_work");
-        })
+$( document ).ready(function() {
+    $("#updatesu").click(function(event){
+        $( "#foreditbrc" ).submit() 
+    })
+    $("#foreditbrc").submit(function(e) {
+        e.preventDefault();
+         var chack=$( this ).valid()
+        if(chack==true){
+            $.post( "module/assessment/update_minhourWork.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+                // alert(data);
+            });
+            $('#editsub').modal("hide");
+            swal("บันทึกสำเร็จแล้ว!", "", "success") 
+            $('#editsub').on('hidden.bs.modal', function (e) { 
+            loadmain("assessment","min_hour_work");
+            })
+        }
+    });
 });
 </script>

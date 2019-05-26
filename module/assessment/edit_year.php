@@ -63,21 +63,24 @@
 
 
 <script type="text/javascript">
-$("#updatesu").click(function(event){
-    $( "#foreditbrc" ).submit() 
-})
-$("#foreditbrc").submit(function(e) {
-    e.preventDefault();
-        var chack=$( this ).valid()
-        if(chack==true){
-        $.post( "module/assessment/update_year.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
-            //alert(data);
-         });
-        $('#editsub').modal("hide");
-        swal("บันทึกสำเร็จแล้ว!", "", "success") 
-        $('#editsub').on('hidden.bs.modal', function (e) { 
-           loadmain("assessment","year");
-        }) 
-    }
+$( document ).ready(function() {
+    $("#updatesu").click(function(event){
+        $( "#foreditbrc" ).submit() 
+    })
+    $("#foreditbrc").submit(function(e) {
+        e.preventDefault();
+            var chack=$( this ).valid()
+            if(chack==true){
+            $.post( "module/assessment/update_year.php", $( "#foreditbrc" ).serialize()).done(function(data,txtstuta){
+                //alert(data);
+            });
+            $('#editsub').modal("hide");
+            swal("บันทึกสำเร็จแล้ว!", "", "success") 
+            $('#editsub').on('hidden.bs.modal', function (e) { 
+            loadmain("assessment","year");
+            }) 
+        }
+    });
+
 });
 </script>
