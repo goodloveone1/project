@@ -98,7 +98,7 @@ $( document ).ready(function() {
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title:{
-		text: "ผลการประเมินของ <?php echo $prefix." ".$fname." ".$lname ?>"
+		text: "รายงานผลการประเมิน 5 ปีย้อนหลัง"
 	},	
 	axisY: {
 		title: "คะแนนผลการปฏิบัติงาน รอบที่ 1",
