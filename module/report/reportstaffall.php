@@ -125,10 +125,12 @@ $( document ).ready(function() {
 		text: "<?php echo $title ?>"
 	},
 	axisX: {
-		interval: 1
+		interval: 1,
+		
 	},
 	axisY: {
 		title: "คะแนน"
+	
 	},
 	data: [{
 		type: "bar",

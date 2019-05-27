@@ -17,7 +17,8 @@ function modules(module1,action){
 		switch (action){
 			  /* report */
 				case "reportstaff":break;
-				case "reportstaff2":break;
+				case "reportstaff2Y5":break;
+				case "reportstaff2Y10":break;
 				case "listuser":break;
 				case "reportsumall":break;
 				case "list_tor":break;

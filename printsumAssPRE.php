@@ -43,22 +43,13 @@ list($branch_name,$dept_id)=mysqli_fetch_row($re_branch);
 $re_dept=mysqli_query($con,"SELECT dept_name FROM departments	WHERE dept_id='$dept_id'") or die("dept-sqlError".mysqli_error($con));
 list($dept_name)=mysqli_fetch_row($re_dept);
 
-
-
-
-
 mysqli_free_result($re_branch);
 mysqli_free_result($re_dept);
-
 mysqli_free_result($tor);
 mysqli_free_result($year);
 mysqli_free_result($re_staff);
 mysqli_free_result($re_leader);
 mysqli_free_result($re_aca);
-
-
-
-
 
 require_once __DIR__ . '/vendor/autoload.php';
  
@@ -67,7 +58,6 @@ $fontDirs = $defaultConfig['fontDir'];
  
 $defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
 $fontData = $defaultFontConfig['fontdata'];
- 
  
 $mpdf = new \Mpdf\Mpdf(
     [
@@ -86,7 +76,6 @@ $mpdf = new \Mpdf\Mpdf(
         'default_font' => 'th_niramit' ,
      'mode' => 'utf-8', 'format' => 'A4-L'    
 ]);
-
 
 $mpdf->WriteHTML("
 
@@ -153,7 +142,6 @@ p {
 เอกสารหมายเลข 2 
 <span>
 </div>
-		
         <div style='clear: both; margin: 0pt; padding: 0pt; '></div>
 </div>
 ");
@@ -209,8 +197,8 @@ $mpdf->WriteHTML("
 
 $mpdf->WriteHTML("
 <br>
-<span class='addfontb'>คำชี้แจง</span>
-<div style='padding-left:20px;font-size:19px'>
+<span class='addfontb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;คำชี้แจง</span>
+<div style='padding-left:100px;font-size:19px'>
 <br>๑. แบบข้อตกลงฯ นี้เป็นการกำหนดแผนการปฏิบัติงานของผู้ปฏิบัติงานในมหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา  ซึ่งเป็นข้อตกลงร่วมกับผู้บังคับบัญชาก่อนเริ่มปฏิบัติงาน 
 <br>๒. การกำหนดข้อตกลงร่วม ผู้ปฏิบัติงานจะต้องกรอกรายละเอียดภาระงานโดยสังเขปในส่วนของภาระงานตามหน้าที่ความรับผิดชอบของตำแหน่ง และ/หรือภาระงานด้านอื่นๆ
 พร้อมกำหนดตัวชี้วัดความสำเร็จของภาระงานแต่ละรายการ ตลอดจนค่าเป้าหมาย และน้ำหนักร้อยละ  สำหรับในส่วนของพฤติกรรมการปฏิบัติราชการ (สมรรถนะ)  ให้ระบุ 
@@ -254,30 +242,26 @@ $stdate = explode(" ",$datest);
 $sumworkex = explode(" ",$sumwork);
 
 $mpdf->WriteHTML("
-<p>
+<span>
 ๑. ชื่อ-สกุล  <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  $prefix $fname $lname  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
 ประเภทตำแหน่งวิชาการ <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $aca_name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 ตำแหน่งบริหาร <span class='addunder'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $pos_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-</p>
-<p>
+<br>
 เงินเดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ".number_format($salary,2)." &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  บาท 
 &nbsp;&nbsp;เลขที่ประจำตำแหน่ง <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $aca_code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  
 &nbsp;&nbsp; สังกัด <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $branch_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-</p>
-<p>
+<br>
 มาช่วยราชการจากที่ใด (ถ้ามี) <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$other&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 &nbsp;&nbsp;หน้าที่พิเศษ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$leves&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-</p>
-<p>
+<br>
 ๒. เริ่มรับราชการเมื่อวันที่ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 &nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[1]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 &nbsp;&nbsp; พ.ศ. <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$stdate[2]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-</p>
-<p>
+<br>
 รวมเวลารับราชการ <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[0]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 &nbsp;&nbsp;ปี <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[2]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 &nbsp;&nbsp;เดือน <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$sumworkex[4]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> วัน
-</p>");
+</span>");
 
 $mm=date('m');  //เดือนปัจจุบัน
 	$yearbudget=DATE('Y')+543;  //ปีปัจจุบัน
@@ -299,7 +283,7 @@ $mm=date('m');  //เดือนปัจจุบัน
 
    // print_r($set1);
  
-$mpdf->WriteHTML("<p>๓. บันทึกการมาปฏิบัติงาน</p>");
+$mpdf->WriteHTML("<span>๓. บันทึกการมาปฏิบัติงาน</span><br>");
 
 if($y_no == 1){
 $tableidl="
@@ -309,7 +293,6 @@ $tableidl="
     <th rowspan='2' >ประเภท</th>
     <th colspan='2'>รอบที่ 1 </th>
     <th colspan='2'>รอบที่ 2 </th>
-
     <th rowspan='2' >ประเภท</th>
     <th colspan='2'>รอบที่ 1 </th>
     <th colspan='2'>รอบที่ 2 </th>
@@ -459,14 +442,14 @@ $mpdf->WriteHTML($tableidl);
 $mpdf->WriteHTML("<p align='center'>ลงชื่อ..............................................................ผู้ปฏิบัติหน้าที่ตรวจสอบการมาปฏิบัติราชการของหน่วยงาน</p>
 ");
 
-$mpdf->addpage();
+
 
 $mpdf->WriteHTML("<p>๔. การกระทำผิดวินัย/การถูกลงโทษ<br>
 <span class='addunder'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $punishment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
 </p>
 ");
 
-
+$mpdf->addpage();
 $mpdf->WriteHTML("<p > <span class='addfontb addunder2'>ส่วนที่  ๑  องค์ประกอบที่ ๑ ผลสัมฤทธิ์ของงาน </span></p>");
 
 $table3="
@@ -478,9 +461,7 @@ $table3="
     <th colspan='5' >(๓) ระดับค่าเป้าหมาย</th>
     <th rowspan='2' width='5%'>(๔) ค่าคะแนนที่ได้</th>
     <th rowspan='2' width='5%'>(๕) น้ำหนัก (ความสำคัญ/<br>ยากง่ายของงาน)</th>
-    <th rowspan='2' width='5%'>(๖) ค่าคะแนนถ่วงน้ำหนัก<br> (๔) × (๕ )  / ๑๐๐ </th>
-    
-  
+    <th rowspan='2' width='5%'>(๖) ค่าคะแนนถ่วงน้ำหนัก<br> (๔) × (๕ )  / ๑๐๐ </th> 
 </tr>
 <tr>
     <th >๑</th>
@@ -488,7 +469,6 @@ $table3="
     <th>๓</th>
     <th>๔</th>
     <th>๕</th>
-  
 </tr>
 </thead>
 ";
@@ -515,8 +495,6 @@ while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
         case '5':$ck5="<span class='addfontb'>&radic;</span>";
         break;
     }
-
-
     $work_hour=mysqli_query($con,"SELECT min_hour FROM work_hour WHERE e_id='$e_id' AND aca_id='$acadeic' ") or die("work_hour SQL_ERROR ".mysqli_error($con));
     list($min_hour)=mysqli_fetch_row($work_hour);
 
@@ -524,15 +502,11 @@ while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
     <tr>
         <td style='vertical-align:top'> <span  class='addfontb addunder2'>".$numthai[$countnumthai]."  $e_name </span><br><span  class='addfontb'> $min_hour </span><br> <span>";
         
-        
-
         $subev=mysqli_query($con,"SELECT se_name FROM sub_evaluation WHERE e_id='$e_id'") or die("tor SQL_ERROR ".mysqli_error($con));
         while(list($se_name)=mysqli_fetch_row($subev)){
             $table3.="&nbsp;&nbsp;&nbsp;$se_name<br>";
         };
-        
-        
-       
+           
         $table3.= "</span></td>
         <td > <p>";
         
@@ -548,8 +522,8 @@ while(list($e_id,$e_name)=mysqli_fetch_row($ev)){
         <td align='center'>$ck4</td>
         <td align='center'>$ck5</td>
         <td align='center'><p>$score</p></td>
-        <td align='center'><p>$weight</p></td>
-        <td align='center'><p>$weighted</p></td>
+        <td align='right'><p>$weight</p></td>
+        <td align='right'><p>$weighted</p></td>
     </tr>
 
     ";
@@ -562,16 +536,16 @@ list($sum_weight,$sum_weighted,$sum_asst1)=mysqli_fetch_row($sumasst1);
 
 $table3.="
 <tr>
-    <td colspan='8' align='center'> ผลรวม </td>
-    <td align='center'><p> $sum_weight </p></td>
-    <td align='center'><p> $sum_weighted </p></td>
+    <td colspan='8' align='right'> ผลรวม &nbsp&nbsp&nbsp&nbsp</td>
+    <td align='right'><p> $sum_weight </p></td>
+    <td align='right'><p> $sum_weighted </p></td>
 </tr>
 <tr>
     <td colspan='9' align='right'>
     สรุปคะแนนส่วนผลสัมฤทธิ์ของงาน  =  <span class='' style='border-bottom:solid 1mm' >ผลรวมของค่าคะแนนถ่วงน้ำหนัก</span>   = <br>
     จำนวนระดับค่าเป้าหมาย =  ๕  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </td>
-    <td align='center' class='addfontb'> <p>$sum_asst1 </p></td>
+    <td align='right' class='addfontb'> <p>$sum_asst1 </p></td>
 </tr>
 </table>
 
@@ -584,7 +558,6 @@ $mpdf->WriteHTML($table3);
 $mpdf->addpage();
 
 $mpdf->WriteHTML("<span class='addfontb addunder2'> ส่วนที่  ๒  องค์ประกอบที่ ๒ พฤติกรรมการปฏิบัติงาน (สมรรถนะ) </span>");
-
 
 $seexp=mysqli_query($con,"SELECT goal,score FROM asessment_t2 WHERE ass_id='$tor_id' ORDER BY subcap_id ASC")or die(mysqli_error($con));
 for ($set = array (); $row = $seexp->fetch_assoc(); $set[] = $row);
@@ -622,14 +595,8 @@ $g13 = empty($set[12]['goal'])?" ":$set[12]['goal'];
 $g14 = empty($set[13]['goal'])?" ":$set[13]['goal'];
 $g15 = empty($set[14]['goal'])?" ":$set[14]['goal'];
 
-
-
-
-
 $t2 ="
-<br>
 <div>
-   
     <div style='float: left; width: 32%;padding:5px'>
         <table style='border-collapse: collapse;border:solid 1px ' width='100%' align='center'>
         <tr>
@@ -753,7 +720,6 @@ mysqli_free_result($sumt2);
 
 
 $mpdf->WriteHTML("
-<br>
 <table style='border-collapse: collapse;border:solid 1px ' width='100%' >
 <tr>
     <th rowspan='2'>หลักเกณฑ์การประเมิน</th>
@@ -766,31 +732,31 @@ $mpdf->WriteHTML("
 </tr>
 <tr>
     <td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  สูงกว่าหรือเท่ากับ ระดับสมรรถนะที่คาดหวัง  ×  ๓ คะแนน</td>
-    <td align='center'>".$setskill['0']['score_skil']."</td>
-    <td align='center'>".$setskill['0']['score_x']."</td>
-    <td align='center'>".$setskill['0']['score']."</td>
+    <td align='right'>".$setskill['0']['score_skil']."</td>
+    <td align='right'>".$setskill['0']['score_x']."</td>
+    <td align='right'>".$setskill['0']['score']."</td>
 </tr>
 <tr>
     <td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๑  ระดับ    × ๒ คะแนน</td>
-    <td align='center'>".$setskill['1']['score_skil']."</td>
-    <td align='center'>".$setskill['1']['score_x']."</td>
-    <td align='center'>".$setskill['1']['score']."</td>
+    <td align='right'>".$setskill['1']['score_skil']."</td>
+    <td align='right'>".$setskill['1']['score_x']."</td>
+    <td align='right'>".$setskill['1']['score']."</td>
 </tr>
 <tr>
     <td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๒  ระดับ  ×  ๑  คะแนน  </td>
-    <td align='center'>".$setskill['2']['score_skil']."</td>
-    <td align='center'>".$setskill['2']['score_x']."</td>
-    <td align='center'>".$setskill['2']['score']."</td>
+    <td align='right'>".$setskill['2']['score_skil']."</td>
+    <td align='right'>".$setskill['2']['score_x']."</td>
+    <td align='right'>".$setskill['2']['score']."</td>
 </tr>
 <tr>
     <td>จำนวนสมรรถนะหลัก/สมรรถนะเฉพาะ/สมรรถนะทางการบริหาร  ที่มีระดับสมรรถนะที่แสดงออก  ต่ำกว่า ระดับสมรรถนะที่คาดหวัง   ๓  ระดับ   ×  ๐  คะแนน</td>
-    <td align='center'>".$setskill['3']['score_skil']."</td>
-    <td align='center'>".$setskill['3']['score_x']."</td>
-    <td align='center'>".$setskill['3']['score']."</td>
+    <td align='right'>".$setskill['3']['score_skil']."</td>
+    <td align='right'>".$setskill['3']['score_x']."</td>
+    <td align='right'>".$setskill['3']['score']."</td>
 </tr>
 <tr>
     <td colspan='3' align='right'>ผลรวมคะแนน&nbsp;&nbsp;&nbsp;</td>
-    <td align='center'> $sum_asst2 </td>
+    <td align='right'> $sum_asst2 </td>
 </tr>
 <tr>
     <td colspan='4' align='right' >
@@ -802,10 +768,6 @@ $mpdf->WriteHTML("
 </tr>
 </table>
 ");
-
-
-$mpdf->addpage();
-
 $mpdf->WriteHTML("
 <br>
 <div style='font-size:19px;border:solid;padding:5px' align='center'>
@@ -822,11 +784,10 @@ $mpdf->WriteHTML("
 </div>
 
 <div style='clear: both; margin: 0pt; padding: 0pt;'></div>
-
-
 </div>
-<br>
 ");
+
+$mpdf->addpage();
 
 $t3=mysqli_query($con,"SELECT score,weignt,sum FROM asessment_t3 WHERE ass_id='$tor_id' ORDER BY weignt DESC")or die(mysqli_error($con));
 for ($sett3 = array (); $row = $t3->fetch_assoc(); $sett3[] = $row);
@@ -835,7 +796,6 @@ mysqli_free_result($t3);
 $sumt3=mysqli_query($con,"SELECT sum_score FROM sum_score_assessment_t3 WHERE ass_id='$tor_id'")or die(mysqli_error($con));
 list($sum_score)=mysqli_fetch_row($sumt3);
 mysqli_free_result($sumt3);
-
 
 $mpdf->WriteHTML("<span class='addfontb addunder2'> ส่วนที่ ๓ สรุปการประเมินผลการปฏิบัติราชการ </span>");
 
@@ -850,26 +810,26 @@ $mpdf->WriteHTML("
 </tr>
 <tr>
     <td>องค์ประกอบที่  ๑ : ผลสัมฤทธิ์ของงาน</td>
-    <td align='center'>".$sett3['0']['score']."</td>
-    <td align='center'>".$sett3['0']['weignt']."</td>
-    <td align='center'>".$sett3['0']['sum']."</td>
+    <td align='right'>".$sett3['0']['score']."</td>
+    <td align='right'>".$sett3['0']['weignt']."</td>
+    <td align='right'>".$sett3['0']['sum']."</td>
 </tr>
 <tr>
     <td>องค์ประกอบที่  ๒ : พฤติกรรมการปฏิบัติราชการ (สมรรถนะ)</td>
-    <td align='center'>".$sett3['1']['score']."</td>
-    <td align='center'>".$sett3['1']['weignt']."</td>
-    <td align='center'>".$sett3['1']['sum']."</td>
+    <td align='right'>".$sett3['1']['score']."</td>
+    <td align='right'>".$sett3['1']['weignt']."</td>
+    <td align='right'>".$sett3['1']['sum']."</td>
 </tr>
 <tr>
     <td>องค์ประกอบอื่น (ถ้ามี)</td>
-    <td align='center'>".$sett3['2']['score']."</td>
-    <td align='center'>".$sett3['2']['weignt']."</td>
-    <td align='center'>".$sett3['2']['sum']."</td>
+    <td align='right'>".$sett3['2']['score']."</td>
+    <td align='right'>".$sett3['2']['weignt']."</td>
+    <td align='right'>".$sett3['2']['sum']."</td>
 </tr>
 <tr>
     <td colspan='2' align='right'>รวม&nbsp;</td>
-    <td align='center'>๑๐๐</td>
-    <td align='center'> $sum_score</td>
+    <td align='right'>".number_format(($sett3['0']['weignt']+$sett3['1']['weignt']+$sett3['2']['weignt']),2)."</td>
+    <td align='right'> $sum_score</td>
 </tr>
 </table>
 ");
@@ -891,8 +851,7 @@ else if($sum_score >= 60){
 }
 
 $mpdf->WriteHTML("
-<br>
-<span class='addfontb addunder'> ระดับผลการประเมิน </span><br>
+<span class='addfontb addunder2'> ระดับผลการประเมิน </span><br>
 <span class='addfontb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class='addfontck' type='checkbox' $ch1>&nbsp;&nbsp;ดีเด่น (๙๐-๑๐๐) </span><br>
 <span class='addfontb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class='addfontck' type='checkbox' $ch2>&nbsp;&nbsp;ดีมาก (๘๐-๘๙) </span><br>
 <span class='addfontb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class='addfontck' type='checkbox' $ch3>&nbsp;&nbsp;ดี (๗๐-๗๙) </span><br>
@@ -900,9 +859,6 @@ $mpdf->WriteHTML("
 <span class='addfontb'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class='addfontck' type='checkbox' $ch5>&nbsp;&nbsp;ต้องปรับปรุง (ต่ำกว่า๖๐) </span><br>
 
 ");
-$mpdf->addpage();
-
-
 
 
 $t4 ="<br>
@@ -914,10 +870,8 @@ $t4 ="<br>
     <th>ช่วงเวลาที่ต้องการพัฒนา</th>
 </tr>";
 
-$se_Asst4 = mysqli_query($con,
-						 "SELECT knowledge,develop,longtime FROM asessment_t4 WHERE  ass_id='$yearIdpost'")or die("SQL-error.asst4".mysqli_error($con)); 
+$se_Asst4 = mysqli_query($con,"SELECT knowledge,develop,longtime FROM asessment_t4 WHERE  ass_id='$yearIdpost'")or die("SQL-error.asst4".mysqli_error($con)); 
 						
-
 if(mysqli_num_rows($se_Asst4)!=0){
     while(list($knowledge,$develop,$longtime)=mysqli_fetch_row($se_Asst4)){
         $t4 .= "
@@ -945,9 +899,6 @@ if(mysqli_num_rows($se_Asst4)!=0){
 </tr>";
 }
 
-
-
-
 $t4.="</table>";
 
 $mpdf->WriteHTML($t4);
@@ -970,7 +921,6 @@ $mpdf->WriteHTML("
     <p>ตำแหน่ง.......................................................</p>
     <p>วันที่.............................................................</p>
     </div>
-
     <div style='clear: both; margin: 0pt; padding: 0pt;'></div> 
 </div>
 <div style='border:solid'>
@@ -983,9 +933,7 @@ $mpdf->WriteHTML("
         แต่ผู้รับการประเมินไม่ลงนามรับทราบผลการ
        ประเมินโดยมี………………..........เป็นพยาน
    </p>
-
     </div>
-
     <div style='float: left; width: 49%;padding:4px;'>
     <br>
     <br>
@@ -993,19 +941,14 @@ $mpdf->WriteHTML("
     <p>ตำแหน่ง.......................................................</p>
     <p>วันที่.............................................................</p>
     </div>
-
     <div style='clear: both; margin: 0pt; padding: 0pt; '></div>
-
 </div>
 ");
-
 $mpdf->addpage();
-
 $mpdf->WriteHTML("
 <br>
 <span class='addfontb addunder2'>ส่วนที่ ๖  ความเห็นของผู้บังคับบัญชาเหนือขึ้นไป</span><br>
 <div style='border:solid'>
-    
     <div style='float: left; width: 69%;padding:4px;border-right:solid'>
         <p class='addfontb' >ผู้บังคับบัญชาเหนือขึ้นไป </p>
         <p><input type='checkbox' class='addfontck'> เห็นด้วยผลการประเมิน </p>
@@ -1013,17 +956,13 @@ $mpdf->WriteHTML("
         <p><dottab></p>
         <p><dottab></p>
         <p><dottab></p>
-        </p>
-       
     </div>
-
     <div style='float: left; width: 29%;padding:4px;'>
-    <br><br>
-    <p>ลงชื่อ...........................................................</p>
-    <p>ตำแหน่ง.......................................................</p>
-    <p>วันที่.............................................................</p>
+        <br><br>
+        <p>ลงชื่อ...........................................................</p>
+        <p>ตำแหน่ง.......................................................</p>
+        <p>วันที่.............................................................</p>
     </div>
-
     <div style='clear: both; margin: 0pt; padding: 0pt;'></div> 
 </div>
 <div style='border:solid'>
@@ -1031,40 +970,28 @@ $mpdf->WriteHTML("
     <div style='float: left; width: 69%;padding:4px;border-right:solid'>
         <p class='addfontb' >ผู้บังคับบัญชาเหนือขึ้นไปอีกชั้นหนึ่ง  (ถ้ามี) </p>
         <p><input type='checkbox' class='addfontck'> เห็นด้วยผลการประเมิน </p>
-
         <p><input type='checkbox' class='addfontck'> มีความเห็นแตกต่าง  ดังนี้ </p>
         <p><dottab></p>
         <p><dottab></p>
         <p><dottab></p>
-   </p>
-
     </div>
-
     <div style='float: left; width: 29%;padding:4px;'>
-    <br>
-    <br>
-    <p>ลงชื่อ...........................................................</p>
-    <p>ตำแหน่ง.......................................................</p>
-    <p>วันที่.............................................................</p>
+        <br>
+        <br>
+        <p>ลงชื่อ...........................................................</p>
+        <p>ตำแหน่ง.......................................................</p>
+        <p>วันที่.............................................................</p>
     </div>
-
     <div style='clear: both; margin: 0pt; padding: 0pt; '></div>
-
 </div>
-
 </html>
 ");
-
-
 $mpdf->Output();
-
 mysqli_close($con);
-
 } /// END IF TOP
 else{
 	echo "<script> window.location = 'userlogin.php' </script>";
 }
-
 ?>
 </body>
 </html>

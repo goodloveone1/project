@@ -230,10 +230,17 @@ function webmenu($id){
 							</li>
 							</button>
 						</a>
-						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2" title="ผลการประเมินของตนเอง">
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2Y5" title="ผลการประเมินของตนเอง">
 							<button class="btn-block bt-color">
 							<li class="list-group-item list-menu-user addindent">
-							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ</span>
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ<br> 5 ปี ย้อนหลัง</span>
+							</li>
+							</button>
+						</a>
+						<a href="javascript:void(0)" class="menuuser" data-modules="report" data-action="reportstaff2Y10" title="ผลการประเมินของตนเอง">
+							<button class="btn-block bt-color">
+							<li class="list-group-item list-menu-user addindent">
+							<i class="icon fas fa-angle-double-right"></i><span class="text"> รายงานผลแบบกราฟ<br> 10 ปี ย้อนหลัง</span>
 							</li>
 							</button>
 						</a>

@@ -14,7 +14,6 @@ $sql="UPDATE assessments SET  punishment = '$_POST[punishment]' WHERE  ass_id = 
 //echo $sql;
 $result=mysqli_query ($con,$sql) or die ("error sql1".mysqli_error($con));
 
-
 if(!$result){
     echo  mysqli_error($con);
 }else{
